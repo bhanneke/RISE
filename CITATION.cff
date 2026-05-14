@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "RISE — Research Information Systems Engineering"
+message: "If you reference this knowledge base, please cite it as below."
+type: dataset
+authors:
+  - family-names: Hanneke
+    given-names: Björn
+    affiliation: Goethe University Frankfurt
+    email: hanneke@wiwi.uni-frankfurt.de
+repository-code: "https://github.com/bhanneke/RISE"
+url: "https://bhanneke.github.io/RISE/"
+abstract: >
+  RISE is a public knowledge base introducing Research Information
+  Systems Engineering — the design and study of information systems
+  that produce scholarly knowledge, with a focus on agentic research
+  pipelines. It maintains two curated catalogs: (i) an academic-papers
+  database with structured notes, and (ii) a projects database
+  evaluating agentic research systems against a standard rubric.
+keywords:
+  - research-information-systems
+  - agentic-research
+  - ai-scientist
+  - knowledge-base
+  - research-infrastructure
+license: CC-BY-4.0
+version: "0.1.0"
+date-released: "2026-05-14"

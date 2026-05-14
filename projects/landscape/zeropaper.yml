@@ -1,0 +1,81 @@
+slug: zeropaper
+name: "zeropaper"
+type: external
+status: active
+url: "https://github.com/alejandroll10/zeropaper"
+maintainers:
+  - "Alejandro Aldea"
+year_started: 2025
+
+positioning: >
+  An autonomous paper-writing pipeline that takes a research topic and
+  produces a written paper with minimal user input. Sits firmly in the
+  paper-drafting / revision portion of the RISE pipeline with light
+  upstream ideation.
+
+distinctive_contribution: >
+  Lightweight, accessible single-developer implementation of the
+  autonomous-paper-writing idea, with a focus on minimizing per-paper
+  human input rather than on multi-agent sophistication.
+
+pipeline_stages:
+  - hypothesis-generation
+  - literature-discovery
+  - paper-drafting
+  - revision-editing
+
+architectural_features:
+  - single-llm
+  - tool-use
+  - iterative-loop
+
+discipline: general
+
+inputs:
+  - research-topic
+
+outputs:
+  - paper-draft
+
+data_sources: []
+
+knowledge_sources:
+  - web-search
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Covers ~4 stages; no formal data analysis, modeling, or referee simulation."
+  autonomy_level:
+    score: 2
+    note: "Supervised agent — user provides topic and reviews output."
+  architectural_transparency:
+    score: 2
+    note: "Open-source code; prompts visible; architecture documentation modest."
+  inputs_supported:
+    score: 1
+    note: "Single input form (topic); no integration of private corpora or datasets."
+  outputs_reproducibility:
+    score: 1
+    note: "Persists drafts; not aimed at reproducibility of generated content."
+  internal_evaluation:
+    score: 0
+    note: "No reported systematic evaluation of output quality."
+  openness:
+    score: 3
+    note: "Open source on GitHub; reproducible setup."
+  maturity_traction:
+    score: 1
+    note: "Single-developer research prototype."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Output quality unevaluated against external standards."
+  - "No data-analysis or empirical-modeling stages."
+  - "Limited literature integration."
+
+related:
+  - sakana-ai-scientist
+  - e2er
+
+references: []

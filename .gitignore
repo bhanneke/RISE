@@ -1,0 +1,13 @@
+.DS_Store
+
+# Seed source — superseded by papers/references.bib and projects/landscape/*.yml
+bibliography.md
+__pycache__/
+*.pyc
+.venv/
+venv/
+site/
+.cache/
+.mkdocs_cache/
+*.egg-info/
+.python-version

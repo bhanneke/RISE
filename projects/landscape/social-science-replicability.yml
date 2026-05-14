@@ -1,0 +1,83 @@
+slug: social-science-replicability
+name: "Social Science Replicability Infrastructure"
+type: external
+status: active
+url: "https://github.com/benjamin-kohler/social_science_replicability"
+maintainers:
+  - "Benjamin Köhler"
+year_started: 2025
+
+positioning: >
+  Infrastructure aimed at the replication stage of the RISE pipeline:
+  given a published paper, attempt to reproduce its empirical results
+  in an automated or semi-automated fashion. Sits squarely in the
+  replication block of the RISE diagram.
+
+distinctive_contribution: >
+  Focuses the agentic-research conversation on *replication of existing
+  papers* rather than generation of new ones — a complementary axis to
+  the AI-scientist line.
+
+pipeline_stages:
+  - replication
+  - data-acquisition
+  - data-analysis
+  - code-generation
+
+architectural_features:
+  - tool-use
+  - dag-orchestration
+  - artifact-versioning
+
+discipline: social-sciences
+
+inputs:
+  - target-paper
+  - target-dataset
+
+outputs:
+  - replication-report
+  - code
+  - comparison-tables
+
+data_sources:
+  - target-paper-data
+
+knowledge_sources:
+  - target-paper
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Four stages, all in the replication arc; does not cover ideation/drafting."
+  autonomy_level:
+    score: 2
+    note: "Supervised: user supplies target, system attempts replication."
+  architectural_transparency:
+    score: 2
+    note: "Open source; architecture documented in README; prompts visible."
+  inputs_supported:
+    score: 2
+    note: "Accepts target paper + target dataset; integrates external sources."
+  outputs_reproducibility:
+    score: 2
+    note: "Reports + code persisted; reproducibility-by-design as a stated goal."
+  internal_evaluation:
+    score: 1
+    note: "Demonstrated on example papers; no broad benchmark of replication success rates."
+  openness:
+    score: 3
+    note: "Open source under permissive license."
+  maturity_traction:
+    score: 1
+    note: "Active prototype; single-developer-led."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Success rate depends heavily on availability of target paper's data + code."
+  - "Limited published benchmarks of replication accuracy."
+
+related:
+  - e2er
+
+references: []

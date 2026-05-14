@@ -1,0 +1,74 @@
+slug: refine-ink
+name: "refine.ink"
+type: external
+status: active
+url: "https://www.refine.ink/"
+maintainers:
+  - "refine.ink team"
+year_started: 2026
+
+positioning: >
+  Academic prose tooling focused on the revision/editing stage of the
+  RISE pipeline. Does not produce papers end-to-end; consumes drafts
+  and produces refined prose.
+
+distinctive_contribution: >
+  Targeted product surface for academic-style revision, distinct from
+  general-purpose AI writing assistants; positions itself within the
+  scholarly-writing workflow rather than as a generic chat tool.
+
+pipeline_stages:
+  - revision-editing
+
+architectural_features:
+  - single-llm
+  - tool-use
+
+discipline: general
+
+inputs:
+  - paper-draft
+
+outputs:
+  - revised-prose
+
+data_sources: []
+
+knowledge_sources: []
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Single stage (revision-editing)."
+  autonomy_level:
+    score: 1
+    note: "Copilot: author reviews each suggestion."
+  architectural_transparency:
+    score: 0
+    note: "Commercial product; internals not publicly documented."
+  inputs_supported:
+    score: 1
+    note: "Accepts drafts; limited external integration."
+  outputs_reproducibility:
+    score: 1
+    note: "Persists revisions; not designed for run-to-run determinism."
+  internal_evaluation:
+    score: 0
+    note: "No public systematic evaluation."
+  openness:
+    score: 0
+    note: "Closed commercial product."
+  maturity_traction:
+    score: 1
+    note: "Active commercial offering; adoption scope unclear from public info."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Single-stage tool; not a RISE system on its own."
+  - "Closed implementation; cannot be audited or extended."
+
+related:
+  - coarse-ink
+
+references:
+  - riemer2024styleengines

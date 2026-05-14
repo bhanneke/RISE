@@ -1,0 +1,122 @@
+# E2ER — End-to-End Research project
+# Owned project entry. See ../projects/schema.md for field definitions
+# and ../projects/EVALUATION.md for the scoring rubric.
+
+slug: e2er
+name: "E2ER — End-to-End Research"
+type: owned
+status: active
+url: "https://github.com/bhanneke/E2ER-project"
+maintainers:
+  - "Björn Hanneke"
+year_started: 2025
+
+positioning: >
+  E2ER is a strategist-driven agentic research pipeline that takes a
+  research idea (human- or agent-supplied) and carries it through
+  literature synthesis, identification, data acquisition, analysis,
+  and paper drafting. It targets the full inputs → knowledge production
+  → outputs arc of the RISE diagram, with explicit data and knowledge
+  side-inputs.
+
+distinctive_contribution: >
+  Strategist-orchestrated multi-agent design with persona-rich review
+  loops; emphasizes durable artifact production over chat output, and
+  treats methodological skills (econometrics, replication, referee
+  simulation) as first-class reusable modules.
+
+pipeline_stages:
+  - rq-formulation
+  - hypothesis-generation
+  - literature-discovery
+  - literature-synthesis
+  - research-design
+  - data-acquisition
+  - data-analysis
+  - formal-modeling
+  - code-generation
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - human-in-loop
+  - tool-use
+  - rag-knowledge-base
+  - persistent-memory
+  - dag-orchestration
+  - iterative-loop
+  - artifact-versioning
+
+discipline: economics
+
+inputs:
+  - human-idea
+  - agentic-idea
+  - research-question
+  - prior-paper
+
+outputs:
+  - paper-draft
+  - figures
+  - tables
+  - code
+  - referee-reports
+  - replication-package
+
+data_sources:
+  - fred
+  - yfinance
+  - ssrn
+  - openalex
+
+knowledge_sources:
+  - arxiv
+  - ssrn
+  - openalex
+  - semantic-scholar
+
+scores:
+  lifecycle_coverage:
+    score: 3
+    note: "Covers ideation through referee simulation — 12 of 14 canonical stages."
+  autonomy_level:
+    score: 2
+    note: "Supervised agent — human sets up the task and reviews final artifacts; intermediate steps are autonomous."
+  architectural_transparency:
+    score: 2
+    note: "Architecture, prompts, and skills published on GitHub; some orchestration internals still evolving."
+  inputs_supported:
+    score: 3
+    note: "Accepts ideas, RQs, prior papers; integrates literature corpora and live data sources."
+  outputs_reproducibility:
+    score: 2
+    note: "Versioned artifacts persisted; full end-to-end reproducibility from inputs still in progress."
+  internal_evaluation:
+    score: 1
+    note: "Reviewer-simulation loops provide internal evaluation; no external benchmark or peer-reviewed publication yet."
+  openness:
+    score: 2
+    note: "Public repository under permissive license; some examples reproducible without proprietary credentials."
+  maturity_traction:
+    score: 1
+    note: "Active research prototype; single-team use as of 2026-05."
+scored_on: "2026-05-14"
+
+limitations:
+  - "End-to-end reproducibility from inputs not yet demonstrated on a public test case."
+  - "Domain coverage currently focused on economics/finance; portability to other fields untested."
+  - "External evaluation (peer review, third-party replication) pending."
+
+related:
+  - sakana-ai-scientist
+  - zeropaper
+  - social-science-replicability
+
+references:
+  - wu2025agenticreasoning
+  - schick2023toolformer
+  - cao2025aifinance
+  - cunningham2025claudecode
+  - eberhardt2025claudecode

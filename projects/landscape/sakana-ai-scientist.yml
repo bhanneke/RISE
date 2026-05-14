@@ -1,0 +1,93 @@
+slug: sakana-ai-scientist
+name: "Sakana AI Scientist v2"
+type: external
+status: active
+url: "https://github.com/SakanaAI/AI-Scientist-v2"
+maintainers:
+  - "Sakana AI"
+year_started: 2024
+
+positioning: >
+  An autonomous "AI scientist" pipeline that ideates, runs experiments
+  (primarily ML), drafts a paper, and self-reviews. Targets the full
+  RISE arc end-to-end with minimal human oversight per task.
+
+distinctive_contribution: >
+  Among the earliest publicly released systems to demonstrate a single
+  agentic pipeline producing complete machine-learning papers (idea →
+  experiments → write-up → self-review) without per-step human
+  intervention.
+
+pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - iterative-loop
+  - artifact-versioning
+
+discipline: computer-science
+
+inputs:
+  - research-area
+  - seed-template
+
+outputs:
+  - paper-draft
+  - code
+  - experiment-logs
+  - self-review
+
+data_sources:
+  - benchmark-datasets
+
+knowledge_sources:
+  - semantic-scholar
+  - openreview
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Covers ~7 stages; weak on literature discovery/synthesis and external dissemination."
+  autonomy_level:
+    score: 3
+    note: "Runs end-to-end without per-task human approval."
+  architectural_transparency:
+    score: 3
+    note: "Code, prompts, and configurations publicly released."
+  inputs_supported:
+    score: 1
+    note: "Narrow input form (research area + template); limited external data integration."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists papers + code + experiment logs; reproducibility depends on the seeded template."
+  internal_evaluation:
+    score: 2
+    note: "Self-review pass and reported metrics on generated papers; external validation contested."
+  openness:
+    score: 3
+    note: "Open source under permissive license."
+  maturity_traction:
+    score: 2
+    note: "Released, widely discussed, multiple iterations (v1 → v2)."
+scored_on: "2026-05-14"
+
+limitations:
+  - "ML-paper focus; portability to non-CS domains unclear."
+  - "Quality of produced papers strongly dependent on seed templates."
+  - "Self-review is not a substitute for external peer review."
+
+related:
+  - e2er
+  - zeropaper
+
+references:
+  - wu2025agenticreasoning
+  - schick2023toolformer

@@ -1,0 +1,77 @@
+slug: coarse-ink
+name: "coarse.ink"
+type: external
+status: active
+url: "https://coarse.ink/"
+maintainers:
+  - "coarse.ink team"
+year_started: 2026
+
+positioning: >
+  Research-workflow tooling that supports upstream stages of writing
+  and project management. Sits in the research-design / drafting
+  portion of the RISE pipeline as a workspace rather than an autonomous
+  pipeline.
+
+distinctive_contribution: >
+  A workflow-shaped product surface for academic writing — closer to a
+  research IDE than to a chat or single-step assistant.
+
+pipeline_stages:
+  - research-design
+  - paper-drafting
+  - revision-editing
+
+architectural_features:
+  - tool-use
+  - human-in-loop
+
+discipline: general
+
+inputs:
+  - research-idea
+  - paper-draft
+
+outputs:
+  - paper-draft
+
+data_sources: []
+
+knowledge_sources: []
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three drafting-adjacent stages."
+  autonomy_level:
+    score: 1
+    note: "Copilot mode; author drives."
+  architectural_transparency:
+    score: 0
+    note: "Commercial product; internals not documented publicly."
+  inputs_supported:
+    score: 1
+    note: "Idea + draft inputs; limited external corpus integration."
+  outputs_reproducibility:
+    score: 1
+    note: "Drafts persist; reproducibility not a design goal."
+  internal_evaluation:
+    score: 0
+    note: "No public systematic evaluation."
+  openness:
+    score: 0
+    note: "Closed commercial product."
+  maturity_traction:
+    score: 1
+    note: "Active commercial offering; adoption scope unclear from public info."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Closed implementation."
+  - "Limited coverage of empirical / analysis stages."
+
+related:
+  - refine-ink
+
+references:
+  - riemer2024styleengines
