@@ -70,8 +70,8 @@ portion of this diagram. Different systems differ in:
 - **how autonomously** the pipeline operates (copilot ↔ society of agents);
 - **what artifacts** they produce, and to what reproducibility standard.
 
-The [projects catalog](../projects/index.md) scores every system on
-these dimensions using the [evaluation rubric](../projects/EVALUATION.md).
+The [projects catalog](projects/index.md) scores every system on
+these dimensions using the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).
 
 ---
 

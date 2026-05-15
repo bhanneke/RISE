@@ -1,12 +1,12 @@
 # Papers catalog
 
-> This page is regenerated from `papers/notes/*.md` and
+> This page is regenerated from `docs/papers/notes/*.md` and
 > `papers/references.bib` by `scripts/build_indexes.py`.
 > Do not edit by hand — edit the source notes.
 
 The papers catalog tracks academic references that frame Research
 Information Systems Engineering. Each entry is a structured markdown
-note (see [`papers/schema.md`](../../papers/schema.md)) backed by a
+note (see [`papers/schema.md`](https://github.com/bhanneke/RISE/blob/main/papers/schema.md)) backed by a
 BibTeX record in [`papers/references.bib`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib).
 
 ## By theme
