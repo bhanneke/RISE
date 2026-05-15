@@ -1,0 +1,89 @@
+slug: autosurvey
+name: "AutoSurvey"
+type: external
+status: dormant
+url: "https://github.com/AutoSurveys/AutoSurvey"
+maintainers:
+  - "Yidong Wang"
+  - "Westlake University + Peking University + Nanjing University + HIT Shenzhen + Squirrel AI"
+year_started: 2024
+
+positioning: >
+  A NeurIPS 2024 framework (arXiv:2406.10252) for automatically
+  generating comprehensive literature surveys from a topic and a
+  paper database. Demonstrated on survey lengths of 8k–64k tokens
+  with reported citation-quality and content-quality scores. Sits
+  squarely in the literature-synthesis stage of the RISE diagram.
+
+distinctive_contribution: >
+  Among the first systems to treat *long-form survey writing* (not
+  short-form QA or summarization) as the target task, with explicit
+  evaluation of citation quality at scale. Ships with a 530K-abstract
+  arXiv-CS database used in the published experiments.
+
+focus: literature
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - paper-drafting
+
+architectural_features:
+  - multi-agent
+  - rag-knowledge-base
+  - iterative-loop
+
+discipline: general
+
+inputs:
+  - survey-topic
+
+outputs:
+  - long-form-survey
+  - citations
+
+data_sources:
+  - arxiv-cs-abstracts
+
+knowledge_sources:
+  - arxiv
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three stages clustered around literature synthesis and drafting."
+  autonomy_level:
+    score: 3
+    note: "Runs end-to-end from a topic to a survey; no per-step approval."
+  architectural_transparency:
+    score: 2
+    note: "NeurIPS 2024 paper documents the framework; code and database public; prompts visible."
+  inputs_supported:
+    score: 1
+    note: "Topic input only; database is fixed (CS-arXiv abstracts in the public release)."
+  outputs_reproducibility:
+    score: 2
+    note: "Code + database + commands published for paper experiments."
+  internal_evaluation:
+    score: 3
+    note: "Systematic evaluation across multiple survey lengths in the NeurIPS paper."
+  openness:
+    score: 1
+    note: "No license declared in repository metadata — defaults to all rights reserved; database access via OneDrive link from maintainers."
+  maturity_traction:
+    score: 1
+    note: "468 stars; activity slowed sharply after the NeurIPS publication (last push 2025-02)."
+scored_on: "2026-05-15"
+
+limitations:
+  - "No declared open-source license — reuse rights are uncertain."
+  - "Database limited to CS-arXiv abstracts in the public release; full-text version requires contacting authors."
+  - "Last commit ~2025-02; appears semi-maintained."
+
+related:
+  - surveyx
+  - storm
+  - open-scholar
+
+references:
+  - wu2025agenticreasoning

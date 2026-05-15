@@ -1,0 +1,101 @@
+slug: kosmos
+name: "Kosmos (jimmc414 implementation)"
+type: external
+status: research-prototype
+url: "https://github.com/jimmc414/Kosmos"
+maintainers:
+  - "jimmc414"
+year_started: 2025
+
+positioning: >
+  An open-source implementation of the Kosmos AI scientist
+  architecture (Lu et al., arXiv:2511.02824), adapted to run via
+  Claude Code or the Anthropic / OpenAI APIs. Runs autonomous
+  research cycles: hypothesis generation, experiment design, code
+  execution in sandboxed Docker, validation against an 8-dimension
+  quality framework, and knowledge-graph construction.
+
+distinctive_contribution: >
+  Operationalizes the Kosmos architecture as a runnable system on
+  commodity infrastructure, including a built-in 8-dimension
+  validation harness and an explicit knowledge-graph layer that
+  tracks concept relationships across cycles. The validation
+  framework is independently reusable as a methodological scaffold.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - data-analysis
+  - code-generation
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - rag-knowledge-base
+  - persistent-memory
+  - iterative-loop
+  - artifact-versioning
+
+discipline: general
+
+inputs:
+  - research-area
+  - data
+
+outputs:
+  - hypotheses
+  - experiment-results
+  - knowledge-graph
+  - validated-discoveries
+
+data_sources:
+  - user-provided
+
+knowledge_sources:
+  - literature
+  - knowledge-graph
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Four stages from ideation through analysis; no paper drafting or review."
+  autonomy_level:
+    score: 3
+    note: "Autonomous research cycles by design."
+  architectural_transparency:
+    score: 3
+    note: "Open implementation; references the source paper (arXiv:2511.02824); 3700+ tests reported in repo."
+  inputs_supported:
+    score: 2
+    note: "Research-area + data inputs; Anthropic or OpenAI back-ends; Docker-sandboxed execution."
+  outputs_reproducibility:
+    score: 2
+    note: "Knowledge graph + validated-discovery artifacts persisted; cycle outputs deterministic given fixed inputs and model."
+  internal_evaluation:
+    score: 2
+    note: "Built-in 8-dimension quality framework; broader external evaluation pending."
+  openness:
+    score: 1
+    note: "Source public but no declared license in repo metadata — reuse rights uncertain."
+  maturity_traction:
+    score: 2
+    note: "511 stars; alpha-stage release; active community uptake post-Kosmos paper."
+scored_on: "2026-05-15"
+
+limitations:
+  - "No declared open-source license."
+  - "Alpha-stage; expect breaking changes."
+  - "Code-execution without Docker falls back to `exec()` with static validation — security caveat in README."
+  - "Implements an architecture from a third-party paper; not a primary research artifact."
+
+related:
+  - sakana-ai-scientist
+  - sakana-ai-scientist-v1
+  - agent-laboratory
+  - robin
+
+references:
+  - wu2025agenticreasoning
+  - park2023generative

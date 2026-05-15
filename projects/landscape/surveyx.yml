@@ -1,0 +1,90 @@
+slug: surveyx
+name: "SurveyX"
+type: external
+status: active
+url: "https://github.com/IAAR-Shanghai/SurveyX"
+maintainers:
+  - "IAAR Shanghai"
+year_started: 2025
+
+positioning: >
+  An academic survey-automation system (arXiv:2502.14776) that
+  generates domain-specific surveys from a paper title plus retrieval
+  keywords. Open-source repository ships only the offline processing
+  path; full-version capabilities (real-time online search,
+  multimodal parsing) are gated behind the hosted surveyx.cn service.
+
+distinctive_contribution: >
+  Two-tier deployment — an open offline pipeline plus a commercial
+  online service — making the field's tension between research
+  reproducibility and product gating explicit. The offline release
+  is usable as a methodological baseline.
+
+focus: literature
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - paper-drafting
+
+architectural_features:
+  - multi-agent
+  - rag-knowledge-base
+  - iterative-loop
+
+discipline: general
+
+inputs:
+  - survey-title
+  - keywords
+  - reference-markdown
+
+outputs:
+  - long-form-survey
+  - citations
+
+data_sources:
+  - user-provided-markdown
+
+knowledge_sources:
+  - user-provided
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three stages around literature synthesis and drafting."
+  autonomy_level:
+    score: 3
+    note: "Runs from title + keywords to survey; offline version is autonomous given the reference set."
+  architectural_transparency:
+    score: 2
+    note: "arXiv:2502.14776 documents the method; offline code is public; online crawler + paper-DB system are closed."
+  inputs_supported:
+    score: 1
+    note: "Open version: user-uploaded Markdown references only. Full feature set requires the hosted service."
+  outputs_reproducibility:
+    score: 1
+    note: "Open path is reproducible given user-supplied references; hosted-service runs are not."
+  internal_evaluation:
+    score: 2
+    note: "ArXiv paper reports comparative evaluation; the hosted-service variant has not been independently audited."
+  openness:
+    score: 1
+    note: "No declared license in repository metadata; substantial functionality reserved for the commercial service."
+  maturity_traction:
+    score: 2
+    note: "970 stars; active development; live hosted service at surveyx.cn."
+scored_on: "2026-05-15"
+
+limitations:
+  - "Open-source release deliberately omits the most capability-relevant components (crawler, paper DB, multimodal parser)."
+  - "No declared open-source license."
+  - "Output quality on the open path depends entirely on the references the user supplies."
+
+related:
+  - autosurvey
+  - storm
+  - open-scholar
+
+references:
+  - wu2025agenticreasoning

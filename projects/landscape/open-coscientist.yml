@@ -1,0 +1,96 @@
+slug: open-coscientist
+name: "Open CoScientist Agents"
+type: external
+status: dormant
+url: "https://github.com/conradry/open-coscientist-agents"
+maintainers:
+  - "conradry"
+year_started: 2025
+
+positioning: >
+  An open-source implementation of Google DeepMind's *AI co-scientist*
+  (arXiv:2502.18864), built on LangGraph and GPT Researcher. Realizes
+  the co-scientist's multi-agent design — literature review,
+  generation, reflection, evolution, meta-review, supervisor, and a
+  tournament-style hypothesis competition with ELO ranking.
+
+distinctive_contribution: >
+  Makes a major closed industrial design (DeepMind's co-scientist)
+  inspectable and runnable: every agent role and the ELO tournament
+  loop are present in code, with a Streamlit dashboard for inspecting
+  hypothesis competition transcripts. Useful as a reference
+  implementation against which the original paper's claims can be
+  audited.
+
+focus: ideation
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - hypothesis-generation
+  - research-design
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - rag-knowledge-base
+  - iterative-loop
+  - debate-consensus
+
+discipline: general
+
+inputs:
+  - research-goal
+
+outputs:
+  - ranked-hypotheses
+  - tournament-transcripts
+  - research-report
+
+data_sources:
+  - web-search
+
+knowledge_sources:
+  - web-search
+  - gpt-researcher
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Four upstream stages culminating in ranked hypotheses; no execution or drafting."
+  autonomy_level:
+    score: 3
+    note: "Supervisor agent orchestrates the loop without per-step approval."
+  architectural_transparency:
+    score: 3
+    note: "MIT-licensed; every agent role visible in source; references the original DeepMind paper."
+  inputs_supported:
+    score: 2
+    note: "Research-goal inputs; multi-LLM (Gemini 2.5 Pro + Claude Sonnet 4 + o3) collaboration."
+  outputs_reproducibility:
+    score: 1
+    note: "Tournament transcripts persisted; LLM nondeterminism and live web search limit run-to-run determinism."
+  internal_evaluation:
+    score: 1
+    note: "Demo-quality evaluation; tournament metrics are internal to the loop, not external validation."
+  openness:
+    score: 3
+    note: "MIT-licensed; reproducible setup with PyPI install path."
+  maturity_traction:
+    score: 1
+    note: "53 stars; last push 2025-07; appears semi-maintained."
+scored_on: "2026-05-15"
+
+limitations:
+  - "Requires API keys from multiple commercial providers (Gemini + Anthropic + OpenAI) for the full design."
+  - "Independent implementation; fidelity to the original DeepMind system is the implementer's best effort, not author-verified."
+  - "Last push 2025-07."
+
+related:
+  - researchagent
+  - agent-laboratory
+  - gpt-researcher
+
+references:
+  - wu2025agenticreasoning
+  - park2023generative

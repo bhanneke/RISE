@@ -1,0 +1,88 @@
+slug: tooluniverse
+name: "ToolUniverse"
+type: external
+status: active
+url: "https://github.com/mims-harvard/ToolUniverse"
+maintainers:
+  - "Mims Lab, Harvard Medical School (Zitnik Lab)"
+year_started: 2025
+
+positioning: >
+  A curated tool registry and MCP server (arXiv:2509.23426) that
+  packages biomedical, chemical, and general scientific APIs into a
+  uniform agent-callable surface. Distributed as an MCP server, a
+  Python SDK, and an agent-skills bundle; sits in the *infrastructure
+  for RISE pipelines* layer, not as a pipeline itself.
+
+distinctive_contribution: >
+  Reframes the AI-scientist problem as an *interface* problem:
+  scientific tools need to be discoverable, callable, and validable
+  by agents through a uniform protocol. Backed by a Harvard lab and
+  distributed via the MCP registry, making it a natural building
+  block for downstream RISE systems.
+
+focus: end-to-end
+
+pipeline_stages:
+  - data-acquisition
+  - literature-discovery
+
+architectural_features:
+  - tool-use
+  - rag-knowledge-base
+
+discipline: biomedical
+
+inputs:
+  - tool-query
+
+outputs:
+  - tool-results
+
+data_sources:
+  - biomedical-apis
+  - chemical-apis
+
+knowledge_sources:
+  - biomedical-literature
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Infrastructure layer; supports stages rather than implementing a pipeline itself."
+  autonomy_level:
+    score: 2
+    note: "Supervised: agents invoke tools through the MCP server; user wires it into their pipeline."
+  architectural_transparency:
+    score: 3
+    note: "Open under Apache-2.0; arXiv:2509.23426; full documentation site at zitniklab.hms.harvard.edu/ToolUniverse/."
+  inputs_supported:
+    score: 3
+    note: "Tool catalog spans biomedical, chemical, and general scientific APIs; MCP + Python SDK + skill-bundle distribution."
+  outputs_reproducibility:
+    score: 2
+    note: "Tool calls are deterministic by the underlying APIs; pipeline-level reproducibility depends on the wrapping agent."
+  internal_evaluation:
+    score: 2
+    note: "ArXiv paper validates the tool registry against scientific-agent benchmarks; broader uptake metrics public."
+  openness:
+    score: 3
+    note: "Apache-2.0; PyPI; MCP registry listing; community channels (Slack, WeChat)."
+  maturity_traction:
+    score: 2
+    note: "1.3k+ stars; Harvard institutional backing; recent and active (last push 2026-05)."
+scored_on: "2026-05-15"
+
+limitations:
+  - "Biomedical orientation; coverage for empirical economics, social sciences thin or absent."
+  - "Infrastructure layer — value depends on the downstream agent system."
+  - "Some tools wrap commercial APIs with rate limits or paid tiers."
+
+related:
+  - paper-qa
+  - aviary
+  - robin
+
+references:
+  - schick2023toolformer
+  - wu2025agenticreasoning

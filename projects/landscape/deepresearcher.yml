@@ -1,0 +1,90 @@
+slug: deepresearcher
+name: "DeepResearcher (GAIR-NLP)"
+type: external
+status: active
+url: "https://github.com/GAIR-NLP/DeepResearcher"
+maintainers:
+  - "GAIR-NLP, Shanghai Jiao Tong University"
+year_started: 2025
+
+positioning: >
+  An end-to-end RL-trained deep-research agent (arXiv:2504.03160)
+  that learns to plan, retrieve, cross-validate, and self-reflect via
+  reinforcement learning in real-world web environments rather than
+  in simulated retrieval. Ships a 7B HuggingFace checkpoint
+  (DeepResearcher-7b) trained via this pipeline.
+
+distinctive_contribution: >
+  Argues that *end-to-end RL on real web environments* — not prompt
+  engineering and not RL on retrieval simulators — is what unlocks
+  emergent cognitive behaviors in research agents (planning, multi-
+  source cross-validation, self-reflection, honest non-answer when
+  evidence is missing). Reports +28.9 points over prompt baselines
+  and +7.2 over RAG-RL baselines.
+
+focus: literature
+
+pipeline_stages:
+  - rq-formulation
+  - literature-discovery
+  - literature-synthesis
+
+architectural_features:
+  - tool-use
+  - iterative-loop
+  - rag-knowledge-base
+
+discipline: general
+
+inputs:
+  - research-question
+
+outputs:
+  - research-report
+  - citations
+
+data_sources:
+  - web-search
+
+knowledge_sources:
+  - web-search
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three deep-research stages."
+  autonomy_level:
+    score: 3
+    note: "Designed for autonomous multi-turn research without per-step approval."
+  architectural_transparency:
+    score: 3
+    note: "Open under Apache-2.0; arXiv:2504.03160 documents training; checkpoint released; code public."
+  inputs_supported:
+    score: 2
+    note: "Research-question inputs; trained for real-world web environments rather than simulated retrieval."
+  outputs_reproducibility:
+    score: 2
+    note: "Released checkpoint enables reproducible inference; full RL training pipeline released."
+  internal_evaluation:
+    score: 3
+    note: "Quantitative gains vs. prompt-engineering and RAG-RL baselines reported in the arXiv paper."
+  openness:
+    score: 3
+    note: "Apache-2.0; open weights on HuggingFace; permissive license."
+  maturity_traction:
+    score: 2
+    note: "751 stars; active; recent academic release (2025-04)."
+scored_on: "2026-05-15"
+
+limitations:
+  - "7B parameter scale limits ceiling on the hardest benchmarks."
+  - "RL training is compute-intensive and not trivially reproducible end-to-end."
+  - "Live-web inference is non-deterministic by design."
+
+related:
+  - tongyi-deepresearch
+  - gpt-researcher
+  - storm
+
+references:
+  - wu2025agenticreasoning

@@ -1,0 +1,93 @@
+slug: paper2code
+name: "PaperCoder (Paper2Code)"
+type: external
+status: active
+url: "https://github.com/going-doer/Paper2Code"
+maintainers:
+  - "Minju Seo, Jinheon Baek, Seongyun Lee, Sung Ju Hwang (KAIST)"
+year_started: 2025
+
+positioning: >
+  An ICLR 2026 multi-agent system (arXiv:2504.17192) that transforms
+  a machine-learning paper into a working code repository via a
+  three-stage pipeline (planning, analysis, code generation) with
+  specialized agents per stage. Sits at the replication / code-
+  generation block of the RISE pipeline, distinct from referee-
+  simulation or drafting tools.
+
+distinctive_contribution: >
+  Explicitly targets the *paper-to-implementation* gap rather than
+  paper-from-scratch authoring, and reports outperforming strong
+  baselines on both Paper2Code and PaperBench evaluation suites.
+  Ships its own benchmark datasets alongside the system.
+
+focus: replication
+
+pipeline_stages:
+  - replication
+  - research-design
+  - code-generation
+
+architectural_features:
+  - multi-agent
+  - dag-orchestration
+  - tool-use
+  - artifact-versioning
+
+discipline: computer-science
+
+inputs:
+  - target-paper
+
+outputs:
+  - code-repository
+  - implementation-plan
+  - analysis-report
+
+data_sources:
+  - paper-pdf
+  - paper-latex
+
+knowledge_sources:
+  - target-paper
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three stages all in the replication arc; does not cover lit synthesis or drafting."
+  autonomy_level:
+    score: 3
+    note: "Runs end-to-end from a paper to a code repository."
+  architectural_transparency:
+    score: 3
+    note: "Open under Apache-2.0; ICLR 2026 paper documents agent roles; benchmark datasets released."
+  inputs_supported:
+    score: 2
+    note: "Accepts PDF and LaTeX inputs; supports OpenAI API and vLLM-served open-source models."
+  outputs_reproducibility:
+    score: 3
+    note: "Bundled benchmark datasets + run scripts make published-paper experiments reproducible."
+  internal_evaluation:
+    score: 3
+    note: "Reports gains on Paper2Code and PaperBench against strong baselines; model-based eval published."
+  openness:
+    score: 3
+    note: "Apache-2.0; reproducible setup; ICLR paper."
+  maturity_traction:
+    score: 3
+    note: "4.6k+ stars; ICLR 2026 acceptance; clear external citation trajectory."
+scored_on: "2026-05-15"
+
+limitations:
+  - "ML-paper focus; portability to empirical economics or biomedical papers untested in the published evaluations."
+  - "Cost per run (~$0.50–0.70 with o3-mini) is non-trivial at scale."
+  - "Faithfulness depends on the LaTeX/PDF parsing quality."
+
+related:
+  - social-science-replicability
+  - agent-laboratory
+  - sakana-ai-scientist
+
+references:
+  - wu2025agenticreasoning
+  - schick2023toolformer

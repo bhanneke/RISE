@@ -1,0 +1,92 @@
+slug: tongyi-deepresearch
+name: "Tongyi DeepResearch"
+type: external
+status: active
+url: "https://github.com/Alibaba-NLP/DeepResearch"
+maintainers:
+  - "Tongyi Lab, Alibaba"
+year_started: 2025
+
+positioning: >
+  An agentic large language model purpose-built for long-horizon
+  deep-information-seeking tasks (arXiv:2510.24701), shipped both as
+  open weights (30.5B total / 3.3B active) and as inference code with
+  ReAct and 'Heavy' (IterResearch) modes. Sits in the literature/
+  synthesis block of the RISE diagram, with state-of-the-art reported
+  results on agentic-search benchmarks (BrowseComp, FRAMES,
+  Humanity's Last Exam).
+
+distinctive_contribution: >
+  Treats agentic-research capability as a *model-training* problem,
+  not just an orchestration problem: continual agentic pre-training,
+  fully automated synthetic data generation, and end-to-end on-policy
+  RL with GRPO. Distinguishes itself from prompt-engineering pipelines
+  by shipping a model purpose-trained for research-style tool use.
+
+focus: literature
+
+pipeline_stages:
+  - rq-formulation
+  - literature-discovery
+  - literature-synthesis
+
+architectural_features:
+  - tool-use
+  - rag-knowledge-base
+  - iterative-loop
+
+discipline: general
+
+inputs:
+  - research-question
+
+outputs:
+  - cited-response
+  - research-report
+
+data_sources:
+  - web-search
+
+knowledge_sources:
+  - web-search
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three deep-research stages; not an end-to-end paper-writing pipeline."
+  autonomy_level:
+    score: 3
+    note: "Runs end-to-end without per-step approval; long-horizon trajectories are the design target."
+  architectural_transparency:
+    score: 3
+    note: "Open under Apache-2.0; arXiv:2510.24701 + technical blog document training and inference."
+  inputs_supported:
+    score: 2
+    note: "Research-query inputs; ReAct and Heavy inference paradigms; HuggingFace + ModelScope deployment."
+  outputs_reproducibility:
+    score: 2
+    note: "Open weights and inference scripts; full training pipeline partially released."
+  internal_evaluation:
+    score: 3
+    note: "Extensive benchmark results reported on BrowseComp, FRAMES, HLE, SimpleQA; state-of-the-art on several."
+  openness:
+    score: 3
+    note: "Apache-2.0; HuggingFace + ModelScope checkpoints; commercial deployment via Bailian."
+  maturity_traction:
+    score: 3
+    note: "18k+ stars; production deployment via Aliyun Bailian; widely-discussed model release."
+scored_on: "2026-05-15"
+
+limitations:
+  - "Specialized for deep-information-seeking; does not produce papers, code, or replication packages directly."
+  - "Heavy mode is compute-expensive; quality–cost trade-off non-trivial."
+  - "Real-world agentic search depends on live web state — outputs not bitwise reproducible."
+
+related:
+  - gpt-researcher
+  - deepresearcher
+  - storm
+  - paper-qa
+
+references:
+  - wu2025agenticreasoning

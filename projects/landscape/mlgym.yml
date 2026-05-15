@@ -1,0 +1,94 @@
+slug: mlgym
+name: "MLGym (Meta)"
+type: external
+status: active
+url: "https://github.com/facebookresearch/MLGym"
+maintainers:
+  - "Meta AI / FAIR"
+year_started: 2025
+
+positioning: >
+  A gym-style framework and benchmark (MLGym-Bench, arXiv:2502.14499)
+  for advancing AI research agents on 13 diverse ML research tasks
+  (CV, NLP, RL, game theory). Like [`aviary`](aviary.md), MLGym is
+  **evaluation infrastructure** for RISE-style systems rather than a
+  RISE pipeline itself.
+
+distinctive_contribution: >
+  First gym environment specifically for *ML research tasks* — not
+  general QA or knowledge work — covering idea generation, data
+  processing, method implementation, training, and result analysis
+  as a unified RL training surface. Distinct from Aviary in that it
+  targets the *training* of research agents via RL, not only their
+  evaluation.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - data-analysis
+  - code-generation
+
+architectural_features:
+  - tool-use
+  - artifact-versioning
+  - iterative-loop
+
+discipline: computer-science
+
+inputs:
+  - task-specification
+
+outputs:
+  - agent-trajectories
+  - evaluation-metrics
+  - training-data
+
+data_sources:
+  - benchmark-datasets
+
+knowledge_sources:
+  - task-descriptions
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Cross-cutting evaluation/training infrastructure; not a pipeline producing scholarship."
+  autonomy_level:
+    score: 2
+    note: "Supervised: user defines tasks; agents act within them; RL training is a separate pipeline."
+  architectural_transparency:
+    score: 3
+    note: "Open source; arXiv:2502.14499; benchmark task definitions public."
+  inputs_supported:
+    score: 2
+    note: "13 task definitions across CV, NLP, RL, game theory; extensible to user-defined tasks."
+  outputs_reproducibility:
+    score: 3
+    note: "Reproducible by design — gym-style task specs + trajectory artifacts."
+  internal_evaluation:
+    score: 2
+    note: "Used to benchmark AI research agents in the arXiv paper; framework described as experimental."
+  openness:
+    score: 2
+    note: "CC BY-NC 4.0 license — open for research and non-commercial use; not permissive for commercial deployment."
+  maturity_traction:
+    score: 2
+    note: "599 stars; Meta institutional backing; last push 2025-08; flagged as 'experimental, under heavy development'."
+scored_on: "2026-05-15"
+
+limitations:
+  - "Non-commercial license restricts deployment options."
+  - "Evaluation infrastructure — value depends on downstream agent systems being benchmarked."
+  - "ML-research orientation; not designed for empirical-social-science or biomedical tasks."
+  - "Author flag: 'Please expect major changes to the design.'"
+
+related:
+  - aviary
+  - paper2code
+  - sakana-ai-scientist
+  - sakana-ai-scientist-v1
+
+references:
+  - wu2025agenticreasoning
