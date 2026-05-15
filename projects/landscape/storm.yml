@@ -1,0 +1,95 @@
+slug: storm
+name: "STORM / Co-STORM"
+type: external
+status: active
+url: "https://github.com/stanford-oval/storm"
+maintainers:
+  - "Stanford OVAL"
+year_started: 2024
+
+positioning: >
+  An LLM-powered knowledge-curation system that writes Wikipedia-style
+  long-form articles from web search. STORM uses perspective-guided
+  question asking and simulated conversations between a writer and a
+  topic expert; Co-STORM (EMNLP 2024) adds a collaborative discourse
+  protocol with human-in-the-loop and a dynamic mind map.
+
+distinctive_contribution: >
+  Treats the *pre-writing* problem (deciding what questions to ask)
+  as the central bottleneck of automated long-form writing, and
+  operationalizes it via perspective discovery and simulated expert
+  dialogue. Co-STORM further makes the human–LLM curation loop a
+  first-class architectural element.
+
+focus: literature
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - paper-drafting
+
+architectural_features:
+  - multi-agent
+  - human-in-loop
+  - tool-use
+  - rag-knowledge-base
+  - iterative-loop
+
+discipline: general
+
+inputs:
+  - topic
+
+outputs:
+  - long-form-article
+  - citations
+  - mind-map
+
+data_sources:
+  - web-search
+  - user-provided-documents
+
+knowledge_sources:
+  - bing-search
+  - you-search
+  - vector-rm
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three stages clustered around the pre-writing + drafting block; no analysis, modeling, or review."
+  autonomy_level:
+    score: 2
+    note: "Supervised in STORM (topic → article); Co-STORM adds collaborative human steering."
+  architectural_transparency:
+    score: 3
+    note: "Open under MIT; modular interfaces; two arXiv papers (NAACL 2024 + EMNLP 2024) document the design."
+  inputs_supported:
+    score: 2
+    note: "Single input form (topic) but multiple retrieval back-ends: Bing, You.com, custom vector store."
+  outputs_reproducibility:
+    score: 2
+    note: "Pip-installable `knowledge-storm` package; outputs are deterministic given the retrieval back-end and model."
+  internal_evaluation:
+    score: 2
+    note: "Both papers report systematic evaluations against baselines and Wikipedia editors."
+  openness:
+    score: 3
+    note: "MIT-licensed, pip-installable, demo site, public papers."
+  maturity_traction:
+    score: 3
+    note: "28k+ stars, live research preview with 70k+ users, integrated into multiple downstream projects."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Stated explicitly by authors: output is not publication-ready and requires significant editing."
+  - "Focused on Wikipedia-style synthesis; not designed to generate novel research."
+  - "Quality dependent on search back-end coverage."
+
+related:
+  - gpt-researcher
+  - open-scholar
+  - paper-qa
+
+references:
+  - wu2025agenticreasoning

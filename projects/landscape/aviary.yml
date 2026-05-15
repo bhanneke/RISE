@@ -1,0 +1,86 @@
+slug: aviary
+name: "Aviary (FutureHouse)"
+type: external
+status: active
+url: "https://github.com/Future-House/aviary"
+maintainers:
+  - "FutureHouse"
+year_started: 2024
+
+positioning: >
+  A gymnasium for defining custom language-agent environments
+  (arXiv:2412.21154), with pre-built environments for math, general
+  knowledge, biological sequences, scientific literature search, and
+  protein stability. Aviary is **evaluation infrastructure** for RISE
+  systems, not a RISE pipeline itself — but it is directly relevant
+  because it defines tasks against which RISE pipelines can be measured.
+
+distinctive_contribution: >
+  Provides a standardized environment-and-agent abstraction (paired
+  with the LDP language-decision-process library) for benchmarking
+  agentic systems on scientific tasks. Lowers the cost of producing
+  comparable evaluations across pipelines.
+
+focus: end-to-end
+
+pipeline_stages:
+  - data-analysis
+  - literature-discovery
+
+architectural_features:
+  - tool-use
+  - artifact-versioning
+
+discipline: general
+
+inputs:
+  - task-specification
+
+outputs:
+  - agent-trajectories
+  - evaluation-metrics
+
+data_sources:
+  - benchmark-datasets
+  - scientific-literature
+
+knowledge_sources:
+  - paper-qa
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Cross-cutting evaluation infrastructure; does not produce scholarly artifacts itself."
+  autonomy_level:
+    score: 2
+    note: "Supervised: user defines environments; agents act within them."
+  architectural_transparency:
+    score: 3
+    note: "Open under Apache-2.0; arXiv paper; tutorials; full documentation site."
+  inputs_supported:
+    score: 2
+    note: "Multiple environment definitions ship with the library; user-defined environments supported."
+  outputs_reproducibility:
+    score: 3
+    note: "Pip-installable; deterministic given fixed model + environment; designed for benchmark reproducibility."
+  internal_evaluation:
+    score: 2
+    note: "Used by FutureHouse to evaluate their own agents (Robin, PaperQA); benchmarks published in the arXiv paper."
+  openness:
+    score: 3
+    note: "Apache-2.0; PyPI as `fhaviary`; sister library LDP also open."
+  maturity_traction:
+    score: 2
+    note: "261 stars; active development; embedded in FutureHouse evaluation stack."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Evaluation infrastructure, not a RISE pipeline — included here for completeness, scored conservatively on lifecycle coverage."
+  - "Benchmarks reflect the environments included; coverage of social-science tasks limited."
+
+related:
+  - paper-qa
+  - robin
+
+references:
+  - wu2025agenticreasoning

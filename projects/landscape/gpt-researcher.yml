@@ -1,0 +1,94 @@
+slug: gpt-researcher
+name: "GPT Researcher"
+type: external
+status: active
+url: "https://github.com/assafelovic/gpt-researcher"
+maintainers:
+  - "Assaf Elovic"
+  - "community"
+year_started: 2023
+
+positioning: >
+  An autonomous "deep research" agent that produces long-form, cited
+  reports on any topic from web and local sources. Uses a planner +
+  parallel execution-agent architecture inspired by Plan-and-Solve
+  and RAG; outputs reports of 2,000+ words with smart image scraping
+  and inline image generation.
+
+distinctive_contribution: >
+  Earliest and most-adopted general-purpose deep-research agent; the
+  planner/executor split with parallelized sub-queries set the
+  reference pattern that several later systems adopted. Distributed
+  as a pip package, Claude Skill, Docker image, and Colab notebook.
+
+focus: literature
+
+pipeline_stages:
+  - rq-formulation
+  - literature-discovery
+  - literature-synthesis
+  - paper-drafting
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - rag-knowledge-base
+  - iterative-loop
+
+discipline: general
+
+inputs:
+  - research-query
+  - local-documents
+
+outputs:
+  - long-form-report
+  - citations
+  - inline-images
+
+data_sources:
+  - web-search
+  - user-provided-documents
+
+knowledge_sources:
+  - web-search
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Four pre-writing + drafting stages; no analysis, formal modeling, or review."
+  autonomy_level:
+    score: 3
+    note: "Runs end-to-end from a research query; no per-step approval required."
+  architectural_transparency:
+    score: 3
+    note: "Open source under Apache-2.0; planner/executor pattern documented; modular configuration."
+  inputs_supported:
+    score: 2
+    note: "Query + optional local documents; multiple LLM and retrieval back-ends supported."
+  outputs_reproducibility:
+    score: 2
+    note: "Pip-installable, Docker image, Colab; outputs depend on live web state — not bitwise reproducible."
+  internal_evaluation:
+    score: 1
+    note: "Demonstration-quality evaluation; no rigorous benchmark in the README at this scoring date."
+  openness:
+    score: 3
+    note: "Apache-2.0; broad distribution; active community."
+  maturity_traction:
+    score: 3
+    note: "27k+ stars, regular releases, Claude Skill integration, large Discord community."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Optimized for general-purpose research; not tuned for academic-rigor outputs (no method/identification awareness)."
+  - "Output reproducibility depends on live web state."
+  - "No formal evaluation against academic-quality benchmarks reported."
+
+related:
+  - storm
+  - paper-qa
+  - open-scholar
+
+references:
+  - wu2025agenticreasoning

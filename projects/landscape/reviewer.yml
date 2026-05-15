@@ -1,0 +1,90 @@
+slug: reviewer
+name: "Reviewer (Ingar30)"
+type: external
+status: active
+url: "https://github.com/Ingar30/reviewer"
+maintainers:
+  - "Ingar30"
+year_started: 2026
+
+positioning: >
+  A reproducible multi-agent reviewer for academic economics papers.
+  Takes a PDF as input, runs a fixed set of mandatory reviewers plus
+  dynamically-selected optional reviewers, validates their JSON output
+  against schemas, deduplicates findings, and assembles a final editor
+  report. Sits firmly in the referee-simulation stage of the RISE
+  pipeline.
+
+distinctive_contribution: >
+  Treats peer review as a structured engineering problem with explicit
+  schemas, validation, parser-quality preflight, and editor-bundle
+  assembly — distinguishing itself from chat-style review assistants.
+  Reviewer prompts and orchestration are open and reproducible; review
+  outputs are kept private by default.
+
+focus: review
+
+pipeline_stages:
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - dag-orchestration
+  - tool-use
+  - artifact-versioning
+
+discipline: economics
+
+inputs:
+  - submitted-paper-pdf
+
+outputs:
+  - editor-report
+  - reviewer-json
+  - parser-artifacts
+
+data_sources: []
+
+knowledge_sources: []
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Single stage (referee simulation)."
+  autonomy_level:
+    score: 2
+    note: "Supervised: user provides a PDF and receives a final editor report."
+  architectural_transparency:
+    score: 3
+    note: "Open source under MIT; reviewer prompts, schemas, validation, and orchestration all in the repo."
+  inputs_supported:
+    score: 1
+    note: "Accepts paper PDFs; no integration of external literature corpora at present."
+  outputs_reproducibility:
+    score: 2
+    note: "Schema-validated reviewer JSON and structured editor report persisted; deterministic given fixed model + prompts."
+  internal_evaluation:
+    score: 1
+    note: "Smoke checks on report structure and traceability; no published systematic benchmark yet."
+  openness:
+    score: 3
+    note: "MIT-licensed; setup scripts for Windows and macOS/Linux; reproducible workflow."
+  maturity_traction:
+    score: 1
+    note: "Very new (initialized 2026-05-14); single-developer research prototype."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Single-stage tool (review only); requires upstream paper provenance."
+  - "Economics-paper focused; portability to other disciplines untested."
+  - "Depends on Codex CLI; not a fully local solution."
+  - "Source PDFs and review outputs are private by design; no shared evaluation corpus."
+
+related:
+  - ape
+  - e2er
+
+references:
+  - gartenberg2026morebetter
+  - naddaf2025aipeer
+  - neurips2024checklist

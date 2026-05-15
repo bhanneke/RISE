@@ -25,6 +25,8 @@ distinctive_contribution: >
   treats methodological skills (econometrics, replication, referee
   simulation) as first-class reusable modules.
 
+focus: end-to-end
+
 pipeline_stages:
   - rq-formulation
   - hypothesis-generation

@@ -72,6 +72,25 @@ How the system is built. Multiple tags allowed.
 
 ---
 
+## Focus — for **projects** KB
+
+A single tag capturing the project's headline focus. One per entry.
+Use this for top-level filtering; use `pipeline_stages` for detail.
+
+| Tag | Meaning |
+|-----|---------|
+| `end-to-end` | A pipeline that aims to cover ideation through paper/output. |
+| `review` | Peer-review / referee-simulation tools. |
+| `drafting` | Generating first-draft paper prose. |
+| `revision` | Revising / editing existing drafts. |
+| `ideation` | Generating or refining research questions and hypotheses. |
+| `literature` | Literature search, synthesis, gap-identification. |
+| `analysis` | Empirical analysis, modeling, code generation for data work. |
+| `replication` | Reproducing the results of published papers. |
+| `publishing` | Publication ecosystems, venues, dissemination infrastructure. |
+
+---
+
 ## Disciplinary scope — for **projects** KB
 
 Single tag preferred; `general` if domain-agnostic.

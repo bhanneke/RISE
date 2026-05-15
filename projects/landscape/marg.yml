@@ -1,0 +1,87 @@
+slug: marg
+name: "MARG (Multi-Agent Review Generation)"
+type: external
+status: active
+url: "https://github.com/allenai/marg-reviewer"
+maintainers:
+  - "Allen Institute for AI"
+year_started: 2024
+
+positioning: >
+  A research artifact (arXiv:2401.04259) and reusable demo for
+  generating peer reviews of scientific papers using multiple
+  specialized agents. Ships with a web interface and reproduction
+  scripts for the published user study comparing MARG-S to single-LLM
+  baselines (SARG-B, LiZCa). Sits at the referee-simulation stage of
+  the RISE pipeline.
+
+distinctive_contribution: >
+  Among the earliest peer-reviewed treatments of agentic peer review,
+  with an explicit user study comparing review quality across multiple
+  generation strategies. The repository functions as both a runnable
+  demo and a reproducibility package for the paper.
+
+focus: review
+
+pipeline_stages:
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - tool-use
+
+discipline: general
+
+inputs:
+  - submitted-paper
+
+outputs:
+  - generated-review
+  - alignment-metrics
+
+data_sources:
+  - aries-dataset
+
+knowledge_sources:
+  - paper-text
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Single stage (referee simulation)."
+  autonomy_level:
+    score: 2
+    note: "Supervised: user submits a paper; multiple review variants generated."
+  architectural_transparency:
+    score: 3
+    note: "Open Apache-2.0; arXiv paper documents method; reproduction configs + GPT cache included."
+  inputs_supported:
+    score: 1
+    note: "Single input form (paper PDF/text)."
+  outputs_reproducibility:
+    score: 3
+    note: "Bundled GPT cache + alignment-metric configs make published-paper experiments reproducible."
+  internal_evaluation:
+    score: 2
+    note: "User study + alignment metrics in the arXiv paper compare three review-generation strategies."
+  openness:
+    score: 3
+    note: "Apache-2.0; Docker-compose deployment; AI2 backing."
+  maturity_traction:
+    score: 1
+    note: "63 stars; cited research artifact rather than a widely-adopted product."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Pre-2024 model assumptions; modern frontier models may shift the comparison."
+  - "Single-stage tool; needs to be embedded in a pipeline for end-to-end use."
+  - "Requires OpenAI API access."
+
+related:
+  - ape
+  - reviewer
+
+references:
+  - gartenberg2026morebetter
+  - naddaf2025aipeer
+  - neurips2024checklist

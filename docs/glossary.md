@@ -13,7 +13,7 @@
 
 **Autonomy level**
 :   A 0–3 score capturing how much human oversight a system requires
-    per task. See [`projects/EVALUATION.md`](../projects/EVALUATION.md).
+    per task. See [`projects/EVALUATION.md`](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).
 
 **Capability** *(deprecated; use **pipeline stage** + **architectural feature**)*
 :   Earlier draft term for what a system does. Split into orthogonal

@@ -17,6 +17,8 @@ distinctive_contribution: >
   A workflow-shaped product surface for academic writing — closer to a
   research IDE than to a chat or single-step assistant.
 
+focus: drafting
+
 pipeline_stages:
   - research-design
   - paper-drafting

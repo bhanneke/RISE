@@ -1,0 +1,93 @@
+slug: open-scholar
+name: "OpenScholar (AI2)"
+type: external
+status: active
+url: "https://github.com/AkariAsai/OpenScholar"
+maintainers:
+  - "Akari Asai"
+  - "Allen Institute for AI"
+year_started: 2024
+
+positioning: >
+  A retrieval-augmented LM designed to answer scientific queries by
+  searching the literature and generating responses grounded in
+  sources. Releases include training code, an 8B fine-tuned Llama
+  checkpoint, an offline retrieval index, and the ScholarQABench
+  evaluation suite. Sits in the literature block of the RISE diagram
+  with strong evaluation tooling.
+
+distinctive_contribution: >
+  Pairs the inference system with two purpose-built evaluation
+  artifacts — ScholarQABench (automatic) and OpenScholar_ExpertEval
+  (human) — addressing the under-developed *evaluation* axis of
+  scholarly-synthesis systems. Open weights make it usable as a
+  research baseline.
+
+focus: literature
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+
+architectural_features:
+  - rag-knowledge-base
+  - tool-use
+  - iterative-loop
+
+discipline: general
+
+inputs:
+  - research-question
+
+outputs:
+  - cited-response
+  - citations
+
+data_sources:
+  - semantic-scholar-api
+  - you-search
+
+knowledge_sources:
+  - semantic-scholar
+  - web-search
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Two stages (discovery + synthesis); a literature-QA building block."
+  autonomy_level:
+    score: 2
+    note: "Supervised: user submits a query, system returns a cited answer."
+  architectural_transparency:
+    score: 3
+    note: "Open under Apache-2.0; arXiv:2411.14199 documents method; training + retrieval code published."
+  inputs_supported:
+    score: 2
+    note: "Scientific queries with optional retrieval-result inputs; supports both open and proprietary LMs."
+  outputs_reproducibility:
+    score: 2
+    note: "Released retrieval results, model checkpoints, and inference scripts make pipeline runs reproducible."
+  internal_evaluation:
+    score: 3
+    note: "ScholarQABench + expert evaluation interfaces; both quantitative and human evaluation reported."
+  openness:
+    score: 3
+    note: "Apache-2.0; open weights for Llama-3.1_OpenScholar-8B; data and benchmark publicly released."
+  maturity_traction:
+    score: 2
+    note: "1.5k+ stars; cited as a baseline; demo at open-scholar.allen.ai; backed by AI2."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Single-stage focus (literature synthesis), not an end-to-end pipeline."
+  - "Quality depends on retrieval coverage; Semantic Scholar API required."
+  - "Last commit slightly older than the most-active projects in this catalog."
+
+related:
+  - storm
+  - paper-qa
+  - gpt-researcher
+
+references:
+  - wu2025agenticreasoning
+  - ji2023hallucination

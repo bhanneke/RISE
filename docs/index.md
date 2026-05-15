@@ -10,7 +10,7 @@ The repository maintains two curated catalogs:
 1. an **academic-papers database** of structured notes on the literature
    that frames RISE;
 2. a **projects database** that evaluates agentic research systems
-   against a [standard rubric](../projects/EVALUATION.md).
+   against a [standard rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).
 
 ---
 
@@ -81,8 +81,8 @@ these dimensions using the [evaluation rubric](../projects/EVALUATION.md).
 |-------------|----------|
 | New to the topic | [Concept → Definition](concept/definition.md) |
 | Looking for the diagram explained | [Concept → Pipeline anatomy](concept/pipeline-anatomy.md) |
-| Surveying existing systems | [Projects](../projects/index.md) |
-| Looking for the literature | [Papers](../papers/index.md) |
+| Surveying existing systems | [Projects](projects/index.md) |
+| Looking for the literature | [Papers](papers/index.md) |
 | Wanting to contribute | [Contributing](contributing.md) |
 
 ## Provenance

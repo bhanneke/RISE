@@ -1,0 +1,99 @@
+slug: sakana-ai-scientist-v1
+name: "Sakana AI Scientist (v1)"
+type: external
+status: active
+url: "https://github.com/SakanaAI/AI-Scientist"
+maintainers:
+  - "Sakana AI"
+year_started: 2024
+
+positioning: >
+  The original AI Scientist release (arXiv:2408.06292): an end-to-end
+  agentic pipeline that ideates, runs experiments, and writes a paper
+  with self-review on a fixed set of CS templates (NanoGPT, 2D
+  Diffusion, Grokking). Foundational reference for the AI-scientist
+  line and direct predecessor to v2.
+
+distinctive_contribution: >
+  First widely-noticed system to demonstrate a complete machine-learning
+  paper produced autonomously by an LLM pipeline, including in-pipeline
+  reviewer simulation. Released with example papers and per-template
+  scaffolds, making the line of work concrete and inspectable.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - iterative-loop
+  - artifact-versioning
+
+discipline: computer-science
+
+inputs:
+  - research-area
+  - template
+
+outputs:
+  - paper-pdf
+  - code
+  - experiment-logs
+  - llm-generated-review
+
+data_sources:
+  - template-datasets
+
+knowledge_sources:
+  - semantic-scholar
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Seven stages from ideation through self-review; no literature-synthesis or external dissemination stage."
+  autonomy_level:
+    score: 3
+    note: "Runs end-to-end without per-step human approval; user supplies a template and topic."
+  architectural_transparency:
+    score: 3
+    note: "Code, prompts, templates, and example outputs publicly released; arXiv paper documents the design."
+  inputs_supported:
+    score: 1
+    note: "Narrow input form (area + curated template); limited external data integration."
+  outputs_reproducibility:
+    score: 2
+    note: "Papers + code + logs persisted; reproducibility tied to the seeded template."
+  internal_evaluation:
+    score: 2
+    note: "Self-review pass and qualitative evaluation in the arXiv paper; external evaluations of output quality are mixed."
+  openness:
+    score: 2
+    note: "Open source under a non-OSI 'Other' license (verify terms before reuse); requires Linux + NVIDIA GPU."
+  maturity_traction:
+    score: 3
+    note: "13k+ stars, peer attention, basis for follow-up systems and the v2 release."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Locked to three CS templates; portability to other domains community-maintained."
+  - "Self-review correlates weakly with external peer-review judgments."
+  - "Non-permissive license; requires Linux + NVIDIA GPU + texlive-full."
+  - "Executes LLM-written code; security/containment is the user's responsibility."
+
+related:
+  - sakana-ai-scientist
+  - agent-laboratory
+  - zeropaper
+  - e2er
+
+references:
+  - wu2025agenticreasoning
+  - schick2023toolformer

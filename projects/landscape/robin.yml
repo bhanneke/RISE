@@ -1,0 +1,94 @@
+slug: robin
+name: "Robin (FutureHouse)"
+type: external
+status: active
+url: "https://github.com/Future-House/robin"
+maintainers:
+  - "FutureHouse"
+year_started: 2025
+
+positioning: >
+  A multi-agent system for automating scientific discovery
+  (arXiv:2505.13400), with explicit support for hypothesis generation,
+  experiment design, and data analysis. The hypothesis and experiment
+  modules are usable standalone; the full data-analysis path requires
+  FutureHouse's commercial Edison platform.
+
+distinctive_contribution: >
+  One of the few openly-documented RISE systems that explicitly
+  separates *hypothesis generation* and *experiment design* as
+  modular, runnable components rather than bundling them into a
+  monolithic ideation step. FutureHouse-blog write-up demonstrates a
+  full end-to-end scientific-discovery run.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - data-acquisition
+  - data-analysis
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - rag-knowledge-base
+  - iterative-loop
+
+discipline: biomedical
+
+inputs:
+  - research-question
+
+outputs:
+  - hypotheses
+  - experiment-design
+  - analysis-results
+
+data_sources:
+  - edison-platform
+  - literature
+
+knowledge_sources:
+  - literature
+  - paper-qa
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Four stages spanning ideation through analysis; no drafting or review."
+  autonomy_level:
+    score: 2
+    note: "Supervised: human researcher provides RQ; agents execute the discovery loop."
+  architectural_transparency:
+    score: 3
+    note: "Open under Apache-2.0; arXiv paper + FutureHouse blog post; Docker setup published."
+  inputs_supported:
+    score: 2
+    note: "Research-question inputs; integrated retrieval; multiple LLM providers via LiteLLM."
+  outputs_reproducibility:
+    score: 1
+    note: "Hypothesis/experiment paths runnable offline; full analysis path requires paid Edison API."
+  internal_evaluation:
+    score: 2
+    note: "Demonstrated end-to-end run on a biological discovery task in the arXiv paper."
+  openness:
+    score: 2
+    note: "Source open under Apache-2.0, but full functionality gated behind commercial API credits."
+  maturity_traction:
+    score: 2
+    note: "301 stars; FutureHouse backing; recent (April 2026)."
+scored_on: "2026-05-14"
+
+limitations:
+  - "Data-analysis path requires paid Edison API credits."
+  - "Biomedical orientation; portability to other empirical disciplines untested."
+  - "Quality depends on access to recent commercial LLMs."
+
+related:
+  - paper-qa
+  - aviary
+  - agent-laboratory
+
+references:
+  - wu2025agenticreasoning

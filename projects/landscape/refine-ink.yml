@@ -17,6 +17,8 @@ distinctive_contribution: >
   general-purpose AI writing assistants; positions itself within the
   scholarly-writing workflow rather than as a generic chat tool.
 
+focus: revision
+
 pipeline_stages:
   - revision-editing
 

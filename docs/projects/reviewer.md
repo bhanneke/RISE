@@ -1,0 +1,64 @@
+<!-- DO NOT EDIT — auto-generated from projects/landscape/reviewer.yml by scripts/build_indexes.py -->
+
+# Reviewer (Ingar30)
+
+`external` · status: `active` · focus: `review` · discipline: `economics` · started: 2026
+
+**Project page:** <https://github.com/Ingar30/reviewer>
+
+**Source:** [`projects/landscape/reviewer.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/reviewer.yml)
+
+## Positioning
+
+A reproducible multi-agent reviewer for academic economics papers. Takes a PDF as input, runs a fixed set of mandatory reviewers plus dynamically-selected optional reviewers, validates their JSON output against schemas, deduplicates findings, and assembles a final editor report. Sits firmly in the referee-simulation stage of the RISE pipeline.
+
+## Distinctive contribution
+
+Treats peer review as a structured engineering problem with explicit schemas, validation, parser-quality preflight, and editor-bundle assembly — distinguishing itself from chat-style review assistants. Reviewer prompts and orchestration are open and reproducible; review outputs are kept private by default.
+
+## Evaluation scores
+
+| Dimension | Score (0–3) | Note |
+|---|:---:|---|
+| Lifecycle coverage | 0 | Single stage (referee simulation). |
+| Autonomy level | 2 | Supervised: user provides a PDF and receives a final editor report. |
+| Architectural transparency | 3 | Open source under MIT; reviewer prompts, schemas, validation, and orchestration all in the repo. |
+| Inputs supported | 1 | Accepts paper PDFs; no integration of external literature corpora at present. |
+| Outputs / reproducibility | 2 | Schema-validated reviewer JSON and structured editor report persisted; deterministic given fixed model + prompts. |
+| Internal evaluation | 1 | Smoke checks on report structure and traceability; no published systematic benchmark yet. |
+| Openness | 3 | MIT-licensed; setup scripts for Windows and macOS/Linux; reproducible workflow. |
+| Maturity / traction | 1 | Very new (initialized 2026-05-14); single-developer research prototype. |
+
+*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+
+## Tags
+
+**Pipeline stages:** `referee-simulation`
+
+
+**Architectural features:** `multi-agent` `dag-orchestration` `tool-use` `artifact-versioning`
+
+
+**Inputs:** `submitted-paper-pdf`
+
+
+**Outputs:** `editor-report` `reviewer-json` `parser-artifacts`
+
+
+## Limitations
+
+- Single-stage tool (review only); requires upstream paper provenance.
+- Economics-paper focused; portability to other disciplines untested.
+- Depends on Codex CLI; not a fully local solution.
+- Source PDFs and review outputs are private by design; no shared evaluation corpus.
+
+## Related projects in this catalog
+
+- [`ape`](ape.md)
+- [`e2er`](e2er.md)
+
+## References
+
+- `gartenberg2026morebetter` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
+- `naddaf2025aipeer` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
+- `neurips2024checklist` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))

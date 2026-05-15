@@ -1,16 +1,20 @@
 # Papers KB — note schema
 
-Each file in `papers/notes/` is a markdown document with YAML
+Each file in `docs/papers/notes/` is a markdown document with YAML
 front-matter conforming to the schema below, plus a structured prose
 body. The corresponding BibTeX entry must exist in
 `papers/references.bib` under the same `citekey`.
 
 ## File naming
 
-`papers/notes/<citekey>.md` where `<citekey>` is the BibTeX key, of
-the form `lastnameYEARword` (all lowercase, no punctuation).
+`docs/papers/notes/<citekey>.md` where `<citekey>` is the BibTeX key,
+of the form `lastnameYEARword` (all lowercase, no punctuation).
 
 Example: `wu2025agenticreasoning.md` ↔ `@inproceedings{wu2025agenticreasoning, ...}`.
+
+(Paper notes live inside `docs/` so MkDocs can render them as part of
+the site. The BibTeX file and this schema documentation stay in
+`papers/`.)
 
 ## Front-matter schema
 

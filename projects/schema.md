@@ -31,6 +31,7 @@ distinctive_contribution: |       # 1–3 sentences; what it does that others do
   ...
 
 # ── What it does ─────────────────────────────────────────────────
+focus: enum                       # from VOCABULARY.md → focus (one tag)
 pipeline_stages: [enum]           # from VOCABULARY.md → pipeline stages
 architectural_features: [enum]    # from VOCABULARY.md → architectural features
 discipline: enum                  # from VOCABULARY.md → disciplinary scope

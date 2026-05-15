@@ -70,6 +70,12 @@ plugins:
       bib_file: papers/references.bib
       csl_file: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 
+validation:
+  nav:
+    omitted_files: ignore
+  links:
+    not_found: warn
+
 nav:
   - Home: index.md
   - Concept:
