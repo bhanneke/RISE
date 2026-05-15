@@ -116,6 +116,9 @@ related:
   - zeropaper
   - social-science-replicability
 
+# ── Papers describing this project ─────────────────────
+papers: []  # No project-describing paper located.
+
 references:
   - wu2025agenticreasoning
   - schick2023toolformer

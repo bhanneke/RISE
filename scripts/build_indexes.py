@@ -227,10 +227,39 @@ def render_project_page(
             out.append(f"- [`{r}`]({r}.md)")
         out.append("")
 
+    # Papers describing the project itself
+    papers_list = project.get("papers") or []
+    if papers_list:
+        out.append("## Papers describing this project")
+        out.append("")
+        for p in papers_list:
+            title = p.get("title", "")
+            authors = p.get("authors") or []
+            year = p.get("year", "")
+            venue = p.get("venue", "")
+            a = ", ".join(authors) if authors else "?"
+            line = f"- **{title}** — {a} ({year})"
+            if venue:
+                line += f". *{venue}*"
+            links = []
+            if p.get("arxiv_id"):
+                aid = p["arxiv_id"]
+                links.append(f"[arXiv:{aid}](https://arxiv.org/abs/{aid})")
+            if p.get("doi"):
+                links.append(f"[doi]({p['doi'] if p['doi'].startswith('http') else 'https://doi.org/' + p['doi']})")
+            if p.get("ssrn_id"):
+                links.append(f"[SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id={p['ssrn_id']})")
+            if p.get("url") and not links:
+                links.append(f"[link]({p['url']})")
+            if links:
+                line += ". " + " · ".join(links)
+            out.append(line)
+        out.append("")
+
     # References
     refs = project.get("references") or []
     if refs:
-        out.append("## References")
+        out.append("## Related references (literature catalog)")
         out.append("")
         for ck in refs:
             paper = papers_by_ck.get(ck)

@@ -58,3 +58,7 @@ Lightweight, accessible single-developer implementation of the autonomous-paper-
 
 - [`sakana-ai-scientist`](sakana-ai-scientist.md)
 - [`e2er`](e2er.md)
+
+## Papers describing this project
+
+- **zeropaper companion: Autonomous research paper generation at scale** — Aldea, A. (2026). *SSRN working paper*. [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6687378)

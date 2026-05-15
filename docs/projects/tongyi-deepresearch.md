@@ -64,6 +64,10 @@ Treats agentic-research capability as a *model-training* problem, not just an or
 - [`storm`](storm.md)
 - [`paper-qa`](paper-qa.md)
 
-## References
+## Papers describing this project
+
+- **Tongyi DeepResearch Technical Report** — Tongyi DeepResearch Team (2025). *arXiv (Alibaba)*. [arXiv:2510.24701](https://arxiv.org/abs/2510.24701)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

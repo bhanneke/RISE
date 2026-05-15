@@ -90,6 +90,21 @@ related:
   - e2er
   - zeropaper
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search'
+    authors:
+      - 'Yamada, Y.'
+      - 'Lange, R. T.'
+      - 'Lu, C.'
+      - 'Hu, S.'
+      - 'Lu, C.'
+      - 'Foerster, J.'
+      - 'et al.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2504.08066'
+
 references:
   - wu2025agenticreasoning
   - schick2023toolformer

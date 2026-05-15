@@ -88,6 +88,18 @@ related:
   - agent-laboratory
   - sakana-ai-scientist
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Paper2Code: Automating Code Generation from Scientific Papers in Machine Learning'
+    authors:
+      - 'Seo, M.'
+      - 'Baek, J.'
+      - 'Lee, S.'
+      - 'Hwang, S. J.'
+    year: 2025
+    venue: 'ICLR 2026 (arXiv)'
+    arxiv_id: '2504.17192'
+
 references:
   - wu2025agenticreasoning
   - schick2023toolformer

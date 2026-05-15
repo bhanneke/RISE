@@ -63,6 +63,11 @@ Treats the *pre-writing* problem (deciding what questions to ask) as the central
 - [`open-scholar`](open-scholar.md)
 - [`paper-qa`](paper-qa.md)
 
-## References
+## Papers describing this project
+
+- **Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models** — Shao, Y., Jiang, Y., Kanell, T. A., Xu, P., Khattab, O., Lam, M. S. (2024). *NAACL 2024*. [arXiv:2402.14207](https://arxiv.org/abs/2402.14207)
+- **Into the Unknown Unknowns: Engaged Human Learning through Participation in Language Model Agent Conversations** — Jiang, Y., Shao, Y., Ma, D., Semnani, S. J., Lam, M. S. (2024). *EMNLP 2024 (Co-STORM)*. [arXiv:2408.15232](https://arxiv.org/abs/2408.15232)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

@@ -63,6 +63,10 @@ One of the few openly-documented RISE systems that explicitly separates *hypothe
 - [`aviary`](aviary.md)
 - [`agent-laboratory`](agent-laboratory.md)
 
-## References
+## Papers describing this project
+
+- **Robin: A multi-agent system for automating scientific discovery** — Ghareeb, A. E., Chang, B., Mitchener, L., Yiu, A., Szostkiewicz, C. J., Laurent, J. M., et al. (2025). *arXiv*. [arXiv:2505.13400](https://arxiv.org/abs/2505.13400)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

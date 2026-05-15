@@ -1,0 +1,109 @@
+slug: coral
+name: "CORAL"
+type: external
+status: active
+url: "https://github.com/Human-Agent-Society/CORAL"
+maintainers:
+  - "Human-Agent-Society"
+year_started: 2026
+
+positioning: >
+  Infrastructure (arXiv:2604.01658) for *multi-agent autonomous
+  self-evolution* — organizations of AI agents that run experiments,
+  share knowledge through persistent stores, and continuously improve
+  solutions against a user-supplied grading script. Sits in the
+  *autoresearch infrastructure* layer alongside Aviary and MLGym, but
+  emphasizes evolution and self-improvement rather than benchmarking.
+
+distinctive_contribution: >
+  Treats the *organization* of agents (workspaces, shared knowledge,
+  judges) as a first-class engineering surface, with rubric-based
+  judge packages (race_japan_grader, apex_judge) that themselves
+  spawn Claude Code for evaluation. Natively integrated with Claude
+  Code, OpenCode, Codex, and Cursor.
+
+focus: end-to-end
+
+pipeline_stages:
+  - research-design
+  - data-analysis
+  - code-generation
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - persistent-memory
+  - artifact-versioning
+  - iterative-loop
+  - debate-consensus
+
+discipline: general
+
+inputs:
+  - codebase
+  - grading-script
+
+outputs:
+  - evolved-solutions
+  - shared-knowledge-store
+  - judge-reports
+
+data_sources:
+  - user-provided
+
+knowledge_sources:
+  - shared-knowledge-store
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Four stages spanning design through internal review; oriented to optimization rather than publication."
+  autonomy_level:
+    score: 3
+    note: "Autonomous evolution loop; user supplies task + grader."
+  architectural_transparency:
+    score: 3
+    note: "Open under MIT; arXiv:2604.01658; integrates Claude Code, OpenCode, Codex, Cursor with documented patterns."
+  inputs_supported:
+    score: 2
+    note: "Codebase + grading script inputs; multiple coding-agent back-ends."
+  outputs_reproducibility:
+    score: 2
+    note: "Isolated workspaces + persistent knowledge stores; LLM nondeterminism limits exact reruns."
+  internal_evaluation:
+    score: 2
+    note: "Rubric-judge packages provide structured internal evaluation; arXiv paper presents systematic results."
+  openness:
+    score: 3
+    note: "MIT-licensed; uv-installable; broad agent-back-end support."
+  maturity_traction:
+    score: 2
+    note: "655 stars; active 2026 development; integrated with major coding agents."
+scored_on: "2026-05-15"
+
+limitations:
+  - "Optimization-focused: best fit for *grade-against-script* tasks, not open-ended scholarly authoring."
+  - "Heavy on coding-agent integration; lighter on literature-layer integration."
+
+related:
+  - aviary
+  - mlgym
+  - agent-laboratory
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'CORAL: Towards Autonomous Multi-Agent Evolution for Open-Ended Discovery'
+    authors:
+      - 'Qu, A.'
+      - 'Zheng, H.'
+      - 'Zhou, Z.'
+      - 'Yan, Y.'
+      - 'Tang, Y.'
+      - 'Ong, S. Y.'
+      - 'et al.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2604.01658'
+
+references:
+  - wu2025agenticreasoning

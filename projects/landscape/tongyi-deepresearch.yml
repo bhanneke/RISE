@@ -88,5 +88,14 @@ related:
   - storm
   - paper-qa
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Tongyi DeepResearch Technical Report'
+    authors:
+      - 'Tongyi DeepResearch Team'
+    year: 2025
+    venue: 'arXiv (Alibaba)'
+    arxiv_id: '2510.24701'
+
 references:
   - wu2025agenticreasoning

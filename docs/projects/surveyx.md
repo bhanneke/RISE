@@ -63,6 +63,10 @@ Two-tier deployment — an open offline pipeline plus a commercial online servic
 - [`storm`](storm.md)
 - [`open-scholar`](open-scholar.md)
 
-## References
+## Papers describing this project
+
+- **SurveyX: Academic Survey Automation via Large Language Models** — Liang, X., Yang, J., Wang, Y., Tang, C., Zheng, Z., Song, S., et al. (2025). *arXiv*. [arXiv:2502.14776](https://arxiv.org/abs/2502.14776)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

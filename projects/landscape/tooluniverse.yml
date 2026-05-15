@@ -83,6 +83,21 @@ related:
   - aviary
   - robin
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Democratizing AI scientists using ToolUniverse'
+    authors:
+      - 'Gao, S.'
+      - 'Zhu, R.'
+      - 'Sui, P.'
+      - 'Kong, Z.'
+      - 'Aldogom, S.'
+      - 'Huang, Y.'
+      - 'et al.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2509.23426'
+
 references:
   - schick2023toolformer
   - wu2025agenticreasoning

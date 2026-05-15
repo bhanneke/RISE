@@ -57,7 +57,25 @@ limitations:                      # bullet list of strings
   - "..."
 related: [slug]                   # other entries in this catalog
 references: [citekey]             # citekeys from papers/references.bib
+
+# ── Papers describing the project itself ─────────────────────────
+papers:                           # 0+ entries; each must be a paper
+                                  # whose primary topic IS this project
+  - title: string
+    authors: [string]             # "Lastname, F."
+    year: integer
+    venue: string                 # arxiv | NeurIPS | ICLR | SSRN | …
+    arxiv_id: string              # e.g., "2504.17192"  (optional)
+    doi: string                   # e.g., "10.xxxx/..." (optional)
+    ssrn_id: string               # SSRN abstract ID    (optional)
+    url: string                   # canonical URL       (optional)
 ```
+
+`papers:` describes papers whose primary subject is the project
+itself (the system, its design, its evaluation). Use `references:`
+for related literature that informs but is not specifically about
+the project. If no project-describing paper exists, leave `papers:`
+empty.
 
 ## Notes
 

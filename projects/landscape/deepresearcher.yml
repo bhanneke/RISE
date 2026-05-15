@@ -86,5 +86,20 @@ related:
   - gpt-researcher
   - storm
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'DeepResearcher: Scaling Deep Research via Reinforcement Learning in Real-world Environments'
+    authors:
+      - 'Zheng, Y.'
+      - 'Fu, D.'
+      - 'Hu, X.'
+      - 'Cai, X.'
+      - 'Ye, L.'
+      - 'Lu, P.'
+      - 'et al.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2504.03160'
+
 references:
   - wu2025agenticreasoning

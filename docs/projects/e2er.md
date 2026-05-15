@@ -63,7 +63,7 @@ Strategist-orchestrated multi-agent design with persona-rich review loops; empha
 - [`zeropaper`](zeropaper.md)
 - [`social-science-replicability`](social-science-replicability.md)
 
-## References
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Schick, T. et al. (2023). [*Toolformer: Language Models Can Teach Themselves to Use Tools*](../papers/notes/schick2023toolformer.md) `schick2023toolformer`

@@ -1,0 +1,101 @@
+slug: zochi
+name: "Zochi (Intology)"
+type: external
+status: active
+url: "https://github.com/IntologyAI/Zochi"
+maintainers:
+  - "Andy Zhou and Intology team"
+year_started: 2025
+
+positioning: >
+  An end-to-end "artificial scientist" system from Intology, claimed
+  to span hypothesis generation through to peer-reviewed publication.
+  Differentiates itself from earlier AI-scientist releases by
+  publishing the *outputs* — accepted ACL 2025 and ICLR 2025 workshop
+  papers (CS-ReFT, Tempest/Siege) with reported state-of-the-art
+  results — rather than only the pipeline.
+
+distinctive_contribution: >
+  The strongest *external-validation* claim in the AI-scientist
+  landscape: peer-reviewed acceptances of papers produced by the
+  system, including ACL 2025 main proceedings. The repository
+  releases code and a technical report covering an earlier version
+  of the system.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - iterative-loop
+  - artifact-versioning
+
+discipline: computer-science
+
+inputs:
+  - research-area
+
+outputs:
+  - paper-draft
+  - code
+  - experiment-results
+
+data_sources:
+  - benchmark-datasets
+
+knowledge_sources:
+  - literature
+
+scores:
+  lifecycle_coverage:
+    score: 3
+    note: "Seven stages from hypothesis through review; full lifecycle in claimed scope."
+  autonomy_level:
+    score: 3
+    note: "Autonomous end-to-end discovery is the stated design target."
+  architectural_transparency:
+    score: 2
+    note: "Public repository covers earlier version; current capabilities described in blog posts; full current pipeline not open."
+  inputs_supported:
+    score: 2
+    note: "Research-area inputs with optional dataset; commercial back-end at intology.ai."
+  outputs_reproducibility:
+    score: 2
+    note: "Published papers + benchmark code; full system reproduction depends on current closed components."
+  internal_evaluation:
+    score: 3
+    note: "External peer review at ACL 2025 + ICLR 2025 workshops — strongest external validation in the catalog."
+  openness:
+    score: 2
+    note: "MIT-licensed code for earlier version; current system features are commercial."
+  maturity_traction:
+    score: 2
+    note: "305 stars; commercial backing (Intology); credible publication trajectory."
+scored_on: "2026-05-15"
+
+limitations:
+  - "Public code lags the current capabilities described in marketing — current pipeline is not fully open."
+  - "Validation is via specific peer-reviewed papers; cross-domain generality is asserted but not separately tested."
+  - "Last push 2025-11; the open repository may not reflect the live system."
+
+related:
+  - sakana-ai-scientist
+  - sakana-ai-scientist-v1
+  - agent-laboratory
+  - e2er
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No project-describing paper located.
+
+references:
+  - wu2025agenticreasoning
+  - gartenberg2026morebetter

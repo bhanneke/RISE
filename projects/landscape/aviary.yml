@@ -82,5 +82,20 @@ related:
   - paper-qa
   - robin
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Aviary: training language agents on challenging scientific tasks'
+    authors:
+      - 'Narayanan, S.'
+      - 'Braza, J. D.'
+      - 'Griffiths, R.'
+      - 'Ponnapati, M.'
+      - 'Bou, A.'
+      - 'Laurent, J.'
+      - 'et al.'
+    year: 2024
+    venue: 'arXiv'
+    arxiv_id: '2412.21154'
+
 references:
   - wu2025agenticreasoning

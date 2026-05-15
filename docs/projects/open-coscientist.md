@@ -63,7 +63,11 @@ Makes a major closed industrial design (DeepMind's co-scientist) inspectable and
 - [`agent-laboratory`](agent-laboratory.md)
 - [`gpt-researcher`](gpt-researcher.md)
 
-## References
+## Papers describing this project
+
+- **Towards an AI co-scientist** — Gottweis, J., Weng, W.-H., Daryin, A., Tu, T., Palepu, A., Sirkovic, P., et al. (2025). *arXiv (Google DeepMind)*. [arXiv:2502.18864](https://arxiv.org/abs/2502.18864)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Park, J. S. et al. (2023). [*Generative Agents: Interactive Simulacra of Human Behavior*](../papers/notes/park2023generative.md) `park2023generative`

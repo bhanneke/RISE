@@ -1,0 +1,105 @@
+slug: research-town
+name: "ResearchTown"
+type: external
+status: active
+url: "https://github.com/ulab-uiuc/research-town"
+maintainers:
+  - "ULab, UIUC"
+year_started: 2024
+
+positioning: >
+  An ICML 2025 multi-agent platform for *community-level* automatic
+  research simulation. ResearchTown models a research community as
+  agents (Researchers), environments (collaboration rooms), and
+  engines (state-machine controllers that route agents between
+  tasks like idea discussion, rebuttal writing, paper writing, and
+  reviewing). Sits in the ideation + lit-synthesis + drafting +
+  review block.
+
+distinctive_contribution: >
+  Studies *community dynamics* rather than single-pipeline output:
+  how groups of agents interact, divide labor, and shape each
+  other's work. The simulator-vs-pipeline framing makes it a natural
+  vehicle for studying field-level RISE questions (cf.
+  [@gartenberg2026morebetter], [@tonerrodgers2025genai]).
+
+focus: ideation
+
+pipeline_stages:
+  - literature-synthesis
+  - rq-formulation
+  - hypothesis-generation
+  - paper-drafting
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - dag-orchestration
+  - persistent-memory
+  - artifact-versioning
+
+discipline: general
+
+inputs:
+  - research-community-spec
+  - paper-seed
+
+outputs:
+  - agent-trajectories
+  - simulated-papers
+  - simulated-reviews
+
+data_sources: []
+
+knowledge_sources:
+  - paper-corpus
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Five stages spanning ideation through review (in simulation)."
+  autonomy_level:
+    score: 3
+    note: "Community runs autonomously; user configures the simulation."
+  architectural_transparency:
+    score: 3
+    note: "Open under Apache-2.0; ICML 2025 publication; researcher/environment/engine abstractions documented."
+  inputs_supported:
+    score: 2
+    note: "Community/paper-seed inputs; configurable agent skill sets."
+  outputs_reproducibility:
+    score: 2
+    note: "PyPI-installable; trajectories persisted; LLM nondeterminism limits exact reproduction."
+  internal_evaluation:
+    score: 2
+    note: "ICML paper presents systematic evaluation of community-level metrics."
+  openness:
+    score: 3
+    note: "Apache-2.0; pip-installable; active community channels."
+  maturity_traction:
+    score: 2
+    note: "204 stars; ICML 2025 acceptance; active development through 2026-05."
+scored_on: "2026-05-15"
+
+limitations:
+  - "Community simulation, not a deployable RISE pipeline — outputs are research about RISE, not research output."
+  - "OpenAI API + database required to run end-to-end."
+
+related:
+  - agent-laboratory
+  - open-coscientist
+  - aviary
+  - mlgym
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'ResearchTown: Simulator of Human Research Community'
+    authors:
+      - 'ULab UIUC team'
+    year: 2025
+    venue: 'ICML 2025'
+    url: 'https://github.com/ulab-uiuc/research-town'
+
+references:
+  - park2023generative
+  - wu2025agenticreasoning

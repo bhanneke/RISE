@@ -63,7 +63,11 @@ Explicitly targets the *paper-to-implementation* gap rather than paper-from-scra
 - [`agent-laboratory`](agent-laboratory.md)
 - [`sakana-ai-scientist`](sakana-ai-scientist.md)
 
-## References
+## Papers describing this project
+
+- **Paper2Code: Automating Code Generation from Scientific Papers in Machine Learning** — Seo, M., Baek, J., Lee, S., Hwang, S. J. (2025). *ICLR 2026 (arXiv)*. [arXiv:2504.17192](https://arxiv.org/abs/2504.17192)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Schick, T. et al. (2023). [*Toolformer: Language Models Can Teach Themselves to Use Tools*](../papers/notes/schick2023toolformer.md) `schick2023toolformer`

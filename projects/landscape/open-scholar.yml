@@ -88,6 +88,21 @@ related:
   - paper-qa
   - gpt-researcher
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'OpenScholar: Synthesizing Scientific Literature with Retrieval-augmented LMs'
+    authors:
+      - 'Asai, A.'
+      - 'He, J.'
+      - 'Shao, R.'
+      - 'Shi, W.'
+      - 'Singh, A.'
+      - 'Chang, J. C.'
+      - 'et al.'
+    year: 2024
+    venue: 'arXiv'
+    arxiv_id: '2411.14199'
+
 references:
   - wu2025agenticreasoning
   - ji2023hallucination

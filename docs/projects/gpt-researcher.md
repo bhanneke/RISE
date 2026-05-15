@@ -63,6 +63,6 @@ Earliest and most-adopted general-purpose deep-research agent; the planner/execu
 - [`paper-qa`](paper-qa.md)
 - [`open-scholar`](open-scholar.md)
 
-## References
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

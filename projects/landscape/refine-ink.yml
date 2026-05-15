@@ -72,5 +72,8 @@ limitations:
 related:
   - coarse-ink
 
+# ── Papers describing this project ─────────────────────
+papers: []  # No project-describing paper located.
+
 references:
   - riemer2024styleengines

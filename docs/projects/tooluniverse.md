@@ -63,7 +63,11 @@ Reframes the AI-scientist problem as an *interface* problem: scientific tools ne
 - [`aviary`](aviary.md)
 - [`robin`](robin.md)
 
-## References
+## Papers describing this project
+
+- **Democratizing AI scientists using ToolUniverse** — Gao, S., Zhu, R., Sui, P., Kong, Z., Aldogom, S., Huang, Y., et al. (2025). *arXiv*. [arXiv:2509.23426](https://arxiv.org/abs/2509.23426)
+
+## Related references (literature catalog)
 
 - Schick, T. et al. (2023). [*Toolformer: Language Models Can Teach Themselves to Use Tools*](../papers/notes/schick2023toolformer.md) `schick2023toolformer`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

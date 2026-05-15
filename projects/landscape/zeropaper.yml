@@ -80,4 +80,14 @@ related:
   - sakana-ai-scientist
   - e2er
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'zeropaper companion: Autonomous research paper generation at scale'
+    authors:
+      - 'Aldea, A.'
+    year: 2026
+    venue: 'SSRN working paper'
+    ssrn_id: '6687378'
+    url: 'https://ssrn.com/abstract=6687378'
+
 references: []

@@ -78,6 +78,9 @@ limitations:
 
 related: []
 
+# ── Papers describing this project ─────────────────────
+papers: []  # No project-describing paper located.
+
 references:
   - gartenberg2026morebetter
   - naddaf2025aipeer

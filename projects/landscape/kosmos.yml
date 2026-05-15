@@ -96,6 +96,21 @@ related:
   - agent-laboratory
   - robin
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Kosmos: An AI Scientist for Autonomous Discovery'
+    authors:
+      - 'Mitchener, L.'
+      - 'Yiu, A.'
+      - 'Chang, B.'
+      - 'Bourdenx, M.'
+      - 'Nadolski, T.'
+      - 'Sulovari, A.'
+      - 'et al.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2511.02824'
+
 references:
   - wu2025agenticreasoning
   - park2023generative

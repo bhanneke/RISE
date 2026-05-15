@@ -65,7 +65,11 @@ Operationalizes the Kosmos architecture as a runnable system on commodity infras
 - [`agent-laboratory`](agent-laboratory.md)
 - [`robin`](robin.md)
 
-## References
+## Papers describing this project
+
+- **Kosmos: An AI Scientist for Autonomous Discovery** — Mitchener, L., Yiu, A., Chang, B., Bourdenx, M., Nadolski, T., Sulovari, A., et al. (2025). *arXiv*. [arXiv:2511.02824](https://arxiv.org/abs/2511.02824)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Park, J. S. et al. (2023). [*Generative Agents: Interactive Simulacra of Human Behavior*](../papers/notes/park2023generative.md) `park2023generative`

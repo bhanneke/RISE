@@ -82,4 +82,17 @@ limitations:
 related:
   - e2er
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Read the Paper, Write the Code: Agentic Reproduction of Social-Science Results'
+    authors:
+      - 'Köhler, B.'
+      - 'Zollikofer, D.'
+      - 'Einsiedler, A.'
+      - 'Hoyle, A.'
+      - 'Ash, E.'
+    year: 2026
+    venue: 'working paper'
+    url: 'https://elliottash.com/wp-content/uploads/2026/04/Kohler-Zollikofer-Einsiedler-Hoyle-Ash-Read-Paper-Write-Code-Agentic-Reproduction-Social-Science-Results.pdf'
+
 references: []

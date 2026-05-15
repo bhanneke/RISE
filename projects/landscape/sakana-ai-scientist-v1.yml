@@ -94,6 +94,20 @@ related:
   - zeropaper
   - e2er
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery'
+    authors:
+      - 'Lu, C.'
+      - 'Lu, C.'
+      - 'Lange, R. T.'
+      - 'Foerster, J.'
+      - 'Clune, J.'
+      - 'Ha, D.'
+    year: 2024
+    venue: 'arXiv'
+    arxiv_id: '2408.06292'
+
 references:
   - wu2025agenticreasoning
   - schick2023toolformer

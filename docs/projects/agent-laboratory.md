@@ -64,7 +64,11 @@ Treats *cumulative agentic research* as a first-class concern via AgentRxiv: age
 - [`robin`](robin.md)
 - [`e2er`](e2er.md)
 
-## References
+## Papers describing this project
+
+- **Agent Laboratory: Using LLM Agents as Research Assistants** — Schmidgall, S., Su, Y., Wang, Z., Sun, X., Wu, J., Yu, X., et al. (2025). *arXiv*. [arXiv:2501.04227](https://arxiv.org/abs/2501.04227)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Schick, T. et al. (2023). [*Toolformer: Language Models Can Teach Themselves to Use Tools*](../papers/notes/schick2023toolformer.md) `schick2023toolformer`

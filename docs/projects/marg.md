@@ -62,7 +62,11 @@ Among the earliest peer-reviewed treatments of agentic peer review, with an expl
 - [`ape`](ape.md)
 - [`reviewer`](reviewer.md)
 
-## References
+## Papers describing this project
+
+- **MARG: Multi-Agent Review Generation for Scientific Papers** — D'Arcy, M., Hope, T., Birnbaum, L., Downey, D. (2024). *arXiv*. [arXiv:2401.04259](https://arxiv.org/abs/2401.04259)
+
+## Related references (literature catalog)
 
 - `gartenberg2026morebetter` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
 - `naddaf2025aipeer` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))

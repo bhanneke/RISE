@@ -54,7 +54,7 @@ Treats peer review as a first-class agentic capability with its own product surf
 - Closed implementation hampers reproducibility of the review process.
 - Dependence on a hosted service introduces availability risk.
 
-## References
+## Related references (literature catalog)
 
 - `gartenberg2026morebetter` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
 - `naddaf2025aipeer` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))

@@ -91,5 +91,29 @@ related:
   - open-scholar
   - paper-qa
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models'
+    authors:
+      - 'Shao, Y.'
+      - 'Jiang, Y.'
+      - 'Kanell, T. A.'
+      - 'Xu, P.'
+      - 'Khattab, O.'
+      - 'Lam, M. S.'
+    year: 2024
+    venue: 'NAACL 2024'
+    arxiv_id: '2402.14207'
+  - title: 'Into the Unknown Unknowns: Engaged Human Learning through Participation in Language Model Agent Conversations'
+    authors:
+      - 'Jiang, Y.'
+      - 'Shao, Y.'
+      - 'Ma, D.'
+      - 'Semnani, S. J.'
+      - 'Lam, M. S.'
+    year: 2024
+    venue: 'EMNLP 2024 (Co-STORM)'
+    arxiv_id: '2408.15232'
+
 references:
   - wu2025agenticreasoning

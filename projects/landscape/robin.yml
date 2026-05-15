@@ -90,5 +90,20 @@ related:
   - aviary
   - agent-laboratory
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Robin: A multi-agent system for automating scientific discovery'
+    authors:
+      - 'Ghareeb, A. E.'
+      - 'Chang, B.'
+      - 'Mitchener, L.'
+      - 'Yiu, A.'
+      - 'Szostkiewicz, C. J.'
+      - 'Laurent, J. M.'
+      - 'et al.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2505.13400'
+
 references:
   - wu2025agenticreasoning

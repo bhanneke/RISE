@@ -91,5 +91,17 @@ related:
   - open-coscientist
   - e2er
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'ResearchAgent: Iterative Research Idea Generation over Scientific Literature with Large Language Models'
+    authors:
+      - 'Baek, J.'
+      - 'Jauhar, S. K.'
+      - 'Cucerzan, S.'
+      - 'Hwang, S. J.'
+    year: 2024
+    venue: 'NAACL 2025 (arXiv)'
+    arxiv_id: '2404.07738'
+
 references:
   - wu2025agenticreasoning

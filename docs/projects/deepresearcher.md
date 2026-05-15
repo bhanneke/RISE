@@ -63,6 +63,10 @@ Argues that *end-to-end RL on real web environments* — not prompt engineering 
 - [`gpt-researcher`](gpt-researcher.md)
 - [`storm`](storm.md)
 
-## References
+## Papers describing this project
+
+- **DeepResearcher: Scaling Deep Research via Reinforcement Learning in Real-world Environments** — Zheng, Y., Fu, D., Hu, X., Cai, X., Ye, L., Lu, P., et al. (2025). *arXiv*. [arXiv:2504.03160](https://arxiv.org/abs/2504.03160)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

@@ -81,6 +81,18 @@ related:
   - ape
   - reviewer
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'MARG: Multi-Agent Review Generation for Scientific Papers'
+    authors:
+      - "D'Arcy, M."
+      - 'Hope, T.'
+      - 'Birnbaum, L.'
+      - 'Downey, D.'
+    year: 2024
+    venue: 'arXiv'
+    arxiv_id: '2401.04259'
+
 references:
   - gartenberg2026morebetter
   - naddaf2025aipeer

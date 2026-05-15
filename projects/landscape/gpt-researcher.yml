@@ -90,5 +90,8 @@ related:
   - paper-qa
   - open-scholar
 
+# ── Papers describing this project ─────────────────────
+papers: []  # No project-describing paper located.
+
 references:
   - wu2025agenticreasoning

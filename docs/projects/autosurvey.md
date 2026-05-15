@@ -63,6 +63,10 @@ Among the first systems to treat *long-form survey writing* (not short-form QA o
 - [`storm`](storm.md)
 - [`open-scholar`](open-scholar.md)
 
-## References
+## Papers describing this project
+
+- **AutoSurvey: Large Language Models Can Automatically Write Surveys** — Wang, Y., Guo, Q., Yao, W., Zhang, H., Zhang, X., Wu, Z., et al. (2024). *NeurIPS 2024*. [arXiv:2406.10252](https://arxiv.org/abs/2406.10252)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

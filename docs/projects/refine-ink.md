@@ -54,6 +54,6 @@ Targeted product surface for academic-style revision, distinct from general-purp
 
 - [`coarse-ink`](coarse-ink.md)
 
-## References
+## Related references (literature catalog)
 
 - Riemer, K. et al. (2024). [*Conceptualizing Generative AI as Style Engines: Application Archetypes and Implications*](../papers/notes/riemer2024styleengines.md) `riemer2024styleengines`

@@ -90,5 +90,20 @@ related:
   - sakana-ai-scientist
   - sakana-ai-scientist-v1
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'MLGym: A New Framework and Benchmark for Advancing AI Research Agents'
+    authors:
+      - 'Nathani, D.'
+      - 'Madaan, L.'
+      - 'Roberts, N.'
+      - 'Bashlykov, N.'
+      - 'Menon, A.'
+      - 'Moens, V.'
+      - 'et al.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2502.14499'
+
 references:
   - wu2025agenticreasoning

@@ -63,7 +63,11 @@ Pairs the inference system with two purpose-built evaluation artifacts — Schol
 - [`paper-qa`](paper-qa.md)
 - [`gpt-researcher`](gpt-researcher.md)
 
-## References
+## Papers describing this project
+
+- **OpenScholar: Synthesizing Scientific Literature with Retrieval-augmented LMs** — Asai, A., He, J., Shao, R., Shi, W., Singh, A., Chang, J. C., et al. (2024). *arXiv*. [arXiv:2411.14199](https://arxiv.org/abs/2411.14199)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Ji, Z. et al. (2023). [*Survey of Hallucination in Natural Language Generation*](../papers/notes/ji2023hallucination.md) `ji2023hallucination`

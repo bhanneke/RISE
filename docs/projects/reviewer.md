@@ -57,7 +57,7 @@ Treats peer review as a structured engineering problem with explicit schemas, va
 - [`ape`](ape.md)
 - [`e2er`](e2er.md)
 
-## References
+## Related references (literature catalog)
 
 - `gartenberg2026morebetter` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
 - `naddaf2025aipeer` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))

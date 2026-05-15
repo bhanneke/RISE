@@ -85,5 +85,20 @@ related:
   - storm
   - open-scholar
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'AutoSurvey: Large Language Models Can Automatically Write Surveys'
+    authors:
+      - 'Wang, Y.'
+      - 'Guo, Q.'
+      - 'Yao, W.'
+      - 'Zhang, H.'
+      - 'Zhang, X.'
+      - 'Wu, Z.'
+      - 'et al.'
+    year: 2024
+    venue: 'NeurIPS 2024'
+    arxiv_id: '2406.10252'
+
 references:
   - wu2025agenticreasoning

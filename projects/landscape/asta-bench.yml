@@ -1,0 +1,106 @@
+slug: asta-bench
+name: "AstaBench (AI2)"
+type: external
+status: active
+url: "https://github.com/allenai/asta-bench"
+maintainers:
+  - "Allen Institute for AI"
+year_started: 2025
+
+positioning: >
+  An evaluation framework from AI2 for measuring scientific-research
+  abilities of AI agents. 2,400+ examples across 11 benchmarks
+  covering literature search, code execution, data analysis, and
+  end-to-end discovery. Built on the InspectAI framework. Sits in
+  the *RISE evaluation infrastructure* layer alongside Aviary and
+  MLGym.
+
+distinctive_contribution: >
+  The most-scoped benchmark suite for scholarly-research agent
+  abilities specifically — not generic agent benchmarks, not
+  domain-specific science tasks (cf. BixBench), but a curated
+  spectrum of *research skills* with standardized tools and
+  execution environments for fair efficiency-comparable runs.
+
+focus: end-to-end
+
+pipeline_stages:
+  - literature-discovery
+  - data-analysis
+  - code-generation
+
+architectural_features:
+  - tool-use
+  - artifact-versioning
+
+discipline: general
+
+inputs:
+  - task-specification
+  - agent-implementation
+
+outputs:
+  - agent-trajectories
+  - leaderboard-submissions
+  - efficiency-metrics
+
+data_sources:
+  - benchmark-tasks
+
+knowledge_sources:
+  - paper-corpus
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Evaluation infrastructure; does not produce scholarship itself."
+  autonomy_level:
+    score: 2
+    note: "Supervised: user submits an agent; AstaBench scores it across 11 tasks."
+  architectural_transparency:
+    score: 3
+    note: "Open under Apache-2.0; AstaBench paper at allenai.org; built on documented InspectAI framework."
+  inputs_supported:
+    score: 3
+    note: "11 benchmarks spanning research skills; standardized agent interface; leaderboard submission supported."
+  outputs_reproducibility:
+    score: 3
+    note: "Docker-based execution; standardized scoring; decoupled solve/score for cross-version comparison."
+  internal_evaluation:
+    score: 2
+    note: "Self-application: AI2 uses AstaBench to evaluate its own agents; broader cross-system results on leaderboard."
+  openness:
+    score: 3
+    note: "Apache-2.0; AI2 institutional backing; public leaderboard."
+  maturity_traction:
+    score: 2
+    note: "104 stars; active development; AI2 institutional backing; recent (2025–2026)."
+scored_on: "2026-05-15"
+
+limitations:
+  - "Evaluation infrastructure — value depends on downstream agent systems being benchmarked."
+  - "Requires Docker for the recommended path."
+  - "Sub-tasks vary in maturity; the 11-benchmark scope is broad but not exhaustive."
+
+related:
+  - aviary
+  - mlgym
+  - paper-qa
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'AstaBench: Rigorous Benchmarking of AI Agents with a Scientific Research Suite'
+    authors:
+      - 'Bragg, J.'
+      - "D'Arcy, M."
+      - 'Balepur, N.'
+      - 'Bareket, D.'
+      - 'Dalvi, B.'
+      - 'Feldman, S.'
+      - 'et al.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2510.21652'
+
+references:
+  - wu2025agenticreasoning

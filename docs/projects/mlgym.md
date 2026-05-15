@@ -65,6 +65,10 @@ First gym environment specifically for *ML research tasks* — not general QA or
 - [`sakana-ai-scientist`](sakana-ai-scientist.md)
 - [`sakana-ai-scientist-v1`](sakana-ai-scientist-v1.md)
 
-## References
+## Papers describing this project
+
+- **MLGym: A New Framework and Benchmark for Advancing AI Research Agents** — Nathani, D., Madaan, L., Roberts, N., Bashlykov, N., Menon, A., Moens, V., et al. (2025). *arXiv*. [arXiv:2502.14499](https://arxiv.org/abs/2502.14499)
+
+## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

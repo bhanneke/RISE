@@ -91,6 +91,21 @@ related:
   - agent-laboratory
   - gpt-researcher
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Towards an AI co-scientist'
+    authors:
+      - 'Gottweis, J.'
+      - 'Weng, W.-H.'
+      - 'Daryin, A.'
+      - 'Tu, T.'
+      - 'Palepu, A.'
+      - 'Sirkovic, P.'
+      - 'et al.'
+    year: 2025
+    venue: 'arXiv (Google DeepMind)'
+    arxiv_id: '2502.18864'
+
 references:
   - wu2025agenticreasoning
   - park2023generative

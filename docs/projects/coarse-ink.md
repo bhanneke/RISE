@@ -54,6 +54,6 @@ A workflow-shaped product surface for academic writing — closer to a research 
 
 - [`refine-ink`](refine-ink.md)
 
-## References
+## Related references (literature catalog)
 
 - Riemer, K. et al. (2024). [*Conceptualizing Generative AI as Style Engines: Application Archetypes and Implications*](../papers/notes/riemer2024styleengines.md) `riemer2024styleengines`

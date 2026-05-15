@@ -20,9 +20,11 @@ sources.
 | [E2ER — End-to-End Research](e2er.md) | owned | `end-to-end` | 3 | 2 | 2 | 3 | 2 | 1 | 2 | 1 | economics |
 | [Agent Laboratory](agent-laboratory.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 3 | 3 | computer-science |
 | [APE — Automated Peer Evaluator](ape.md) | external | `review` | 0 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | general |
+| [AstaBench (AI2)](asta-bench.md) | external | `end-to-end` | 0 | 2 | 3 | 3 | 3 | 2 | 3 | 2 | general |
 | [AutoSurvey](autosurvey.md) | external | `literature` | 1 | 3 | 2 | 1 | 2 | 3 | 1 | 1 | general |
 | [Aviary (FutureHouse)](aviary.md) | external | `end-to-end` | 0 | 2 | 3 | 2 | 3 | 2 | 3 | 2 | general |
 | [coarse.ink](coarse-ink.md) | external | `drafting` | 1 | 1 | 0 | 1 | 1 | 0 | 0 | 1 | general |
+| [CORAL](coral.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 2 | general |
 | [DeepResearcher (GAIR-NLP)](deepresearcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 3 | 3 | 2 | general |
 | [GPT Researcher](gpt-researcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 1 | 3 | 3 | general |
 | [Kosmos (jimmc414 implementation)](kosmos.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 2 | 1 | 2 | general |
@@ -33,6 +35,7 @@ sources.
 | [PaperQA2 (FutureHouse)](paper-qa.md) | external | `literature` | 0 | 2 | 3 | 2 | 2 | 3 | 3 | 3 | general |
 | [PaperCoder (Paper2Code)](paper2code.md) | external | `replication` | 1 | 3 | 3 | 2 | 3 | 3 | 3 | 3 | computer-science |
 | [refine.ink](refine-ink.md) | external | `revision` | 0 | 1 | 0 | 1 | 1 | 0 | 0 | 1 | general |
+| [ResearchTown](research-town.md) | external | `ideation` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 2 | general |
 | [ResearchAgent (NAACL 2025)](researchagent.md) | external | `ideation` | 1 | 2 | 3 | 2 | 2 | 2 | 1 | 1 | general |
 | [Reviewer (Ingar30)](reviewer.md) | external | `review` | 0 | 2 | 3 | 1 | 2 | 1 | 3 | 1 | economics |
 | [Robin (FutureHouse)](robin.md) | external | `end-to-end` | 2 | 2 | 3 | 2 | 1 | 2 | 2 | 2 | biomedical |
@@ -44,6 +47,7 @@ sources.
 | [Tongyi DeepResearch](tongyi-deepresearch.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 3 | 3 | 3 | general |
 | [ToolUniverse](tooluniverse.md) | external | `end-to-end` | 0 | 2 | 3 | 3 | 2 | 2 | 3 | 2 | biomedical |
 | [zeropaper](zeropaper.md) | external | `drafting` | 1 | 2 | 2 | 1 | 1 | 0 | 3 | 1 | general |
+| [Zochi (Intology)](zochi.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 2 | computer-science |
 
 *Score columns: LC = lifecycle coverage, AUT = autonomy, ARC = architectural transparency, IN = inputs supported, OUT = outputs/reproducibility, EVAL = internal evaluation, OPEN = openness, MAT = maturity/traction. Scale 0–3. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
@@ -52,9 +56,11 @@ sources.
 - **[E2ER — End-to-End Research](e2er.md)** — E2ER is a strategist-driven agentic research pipeline that takes a research idea (human- or agent-supplied) and carries it through literature synthesis, identification, data acquisition, analysis, and paper drafting.
 - **[Agent Laboratory](agent-laboratory.md)** — An end-to-end autonomous research workflow (arXiv:2501.04227) that guides a research idea through three phases — literature review, experimentation, and report writing — with specialized LLM-driven agents and external tools (arXiv, Hugging Face, Python, LaTeX).
 - **[APE — Automated Peer Evaluator](ape.md)** — A focused tool for automated peer evaluation of submitted papers, sitting at the *referee-simulation* stage of the RISE pipeline.
+- **[AstaBench (AI2)](asta-bench.md)** — An evaluation framework from AI2 for measuring scientific-research abilities of AI agents.
 - **[AutoSurvey](autosurvey.md)** — A NeurIPS 2024 framework (arXiv:2406.10252) for automatically generating comprehensive literature surveys from a topic and a paper database.
 - **[Aviary (FutureHouse)](aviary.md)** — A gymnasium for defining custom language-agent environments (arXiv:2412.21154), with pre-built environments for math, general knowledge, biological sequences, scientific literature search, and protein stability.
 - **[coarse.ink](coarse-ink.md)** — Research-workflow tooling that supports upstream stages of writing and project management.
+- **[CORAL](coral.md)** — Infrastructure (arXiv:2604.01658) for *multi-agent autonomous self-evolution* — organizations of AI agents that run experiments, share knowledge through persistent stores, and continuously improve solutions against a user-supplied grading script.
 - **[DeepResearcher (GAIR-NLP)](deepresearcher.md)** — An end-to-end RL-trained deep-research agent (arXiv:2504.03160) that learns to plan, retrieve, cross-validate, and self-reflect via reinforcement learning in real-world web environments rather than in simulated retrieval.
 - **[GPT Researcher](gpt-researcher.md)** — An autonomous "deep research" agent that produces long-form, cited reports on any topic from web and local sources.
 - **[Kosmos (jimmc414 implementation)](kosmos.md)** — An open-source implementation of the Kosmos AI scientist architecture (Lu et al., arXiv:2511.02824), adapted to run via Claude Code or the Anthropic / OpenAI APIs.
@@ -65,6 +71,7 @@ sources.
 - **[PaperQA2 (FutureHouse)](paper-qa.md)** — A high-accuracy retrieval-augmented generation package focused on scientific PDFs (and Office docs, source code).
 - **[PaperCoder (Paper2Code)](paper2code.md)** — An ICLR 2026 multi-agent system (arXiv:2504.17192) that transforms a machine-learning paper into a working code repository via a three-stage pipeline (planning, analysis, code generation) with specialized agents per stage.
 - **[refine.ink](refine-ink.md)** — Academic prose tooling focused on the revision/editing stage of the RISE pipeline.
+- **[ResearchTown](research-town.md)** — An ICML 2025 multi-agent platform for *community-level* automatic research simulation.
 - **[ResearchAgent (NAACL 2025)](researchagent.md)** — The NAACL 2025 reference implementation (arXiv:2404.07738) of *iterative research idea generation over scientific literature*.
 - **[Reviewer (Ingar30)](reviewer.md)** — A reproducible multi-agent reviewer for academic economics papers.
 - **[Robin (FutureHouse)](robin.md)** — A multi-agent system for automating scientific discovery (arXiv:2505.13400), with explicit support for hypothesis generation, experiment design, and data analysis.
@@ -76,6 +83,7 @@ sources.
 - **[Tongyi DeepResearch](tongyi-deepresearch.md)** — An agentic large language model purpose-built for long-horizon deep-information-seeking tasks (arXiv:2510.24701), shipped both as open weights (30.5B total / 3.3B active) and as inference code with ReAct and 'Heavy' (IterResearch) modes.
 - **[ToolUniverse](tooluniverse.md)** — A curated tool registry and MCP server (arXiv:2509.23426) that packages biomedical, chemical, and general scientific APIs into a uniform agent-callable surface.
 - **[zeropaper](zeropaper.md)** — An autonomous paper-writing pipeline that takes a research topic and produces a written paper with minimal user input.
+- **[Zochi (Intology)](zochi.md)** — An end-to-end "artificial scientist" system from Intology, claimed to span hypothesis generation through to peer-reviewed publication.
 
 <!-- AUTO-GENERATED:projects-end -->
 

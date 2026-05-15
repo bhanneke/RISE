@@ -96,6 +96,21 @@ related:
   - robin
   - e2er
 
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Agent Laboratory: Using LLM Agents as Research Assistants'
+    authors:
+      - 'Schmidgall, S.'
+      - 'Su, Y.'
+      - 'Wang, Z.'
+      - 'Sun, X.'
+      - 'Wu, J.'
+      - 'Yu, X.'
+      - 'et al.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2501.04227'
+
 references:
   - wu2025agenticreasoning
   - schick2023toolformer
