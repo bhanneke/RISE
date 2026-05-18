@@ -1,0 +1,140 @@
+slug: evoscientist
+name: "EvoScientist"
+type: external
+status: active
+url: "https://github.com/EvoScientist/EvoScientist"
+maintainers:
+  - "EvoScientist team"
+year_started: 2026
+
+positioning: >
+  A self-evolving AI scientist system (arXiv:2603.08127) built on
+  the DeepAgents framework. Six sub-agents (plan, research, code,
+  debug, analyze, write) co-evolve with persistent memory, adaptive
+  per-turn tool selection, dynamic system-prompt rewriting, and
+  installable skill / knowledge packs (EvoSkills). Positioned around
+  "vibe research" — a human-on-the-loop paradigm where the AI acts
+  as a co-evolving research buddy that internalizes scholarly taste.
+
+distinctive_contribution: >
+  Strongest external-benchmark trajectory in the catalog: #1 on
+  DeepResearch Bench, #1 on DeepResearch Bench II, #1 on AstaBench
+  Code & Execution, #1 on AstaBench Data Analysis (all at submission
+  time), plus 6/6 papers accepted at ICAIS 2025 with Best Paper +
+  Appraisal awards. Skills + memory architecture is engineered for
+  *evolution* over sessions, not just task completion.
+
+focus: end-to-end
+
+pipeline_stages:
+  - rq-formulation
+  - hypothesis-generation
+  - literature-discovery
+  - literature-synthesis
+  - research-design
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+
+architectural_features:
+  - multi-agent
+  - human-in-loop
+  - tool-use
+  - rag-knowledge-base
+  - persistent-memory
+  - iterative-loop
+  - artifact-versioning
+
+discipline: general
+
+inputs:
+  - research-direction
+  - prior-context
+
+outputs:
+  - research-report
+  - code
+  - paper-draft
+  - evolved-skills
+
+data_sources:
+  - user-provided
+
+knowledge_sources:
+  - mcp-servers
+  - evoskills
+
+scores:
+  lifecycle_coverage:
+    score: 3
+    note: "Nine stages from RQ formulation through revision; six-agent team covers plan/research/code/debug/analyze/write."
+  autonomy_level:
+    score: 3
+    note: "'Human-on-the-loop' (not in-the-loop): AI acts as a research buddy that internalizes scholarly taste; runs autonomously by default."
+  architectural_transparency:
+    score: 3
+    note: "Open Apache-2.0; technical report arXiv:2603.08127; project site at EvoScientist.github.io."
+  inputs_supported:
+    score: 2
+    note: "Multiple input forms (direction, prior context); skill-pack and MCP-server extensibility."
+  outputs_reproducibility:
+    score: 2
+    note: "Persistent memory enables session-to-session continuity; benchmark submissions have reproducible runs."
+  internal_evaluation:
+    score: 3
+    note: "External validation: top-ranked on four agentic-research benchmarks; ICAIS 2025 peer-reviewed acceptance with multiple awards."
+  openness:
+    score: 3
+    note: "Apache-2.0; PyPI package; companion EvoSkills repo; multi-provider configuration."
+  maturity_traction:
+    score: 3
+    note: "3.1k+ stars; sustained leaderboard performance; multi-IDE + multi-channel deployments; ICAIS 2025 recognition."
+  cross_family_policy:
+    score: 1
+    note: "Multi-provider configuration (Anthropic, OpenAI, Google, MiniMax, NVIDIA) supports cross-family setups but no required policy."
+  assurance_runtime:
+    score: 2
+    note: "Per-turn adaptive tool selection + context editing + 'More Effort' code-generation refinement loop provide moderate runtime gating; no published claim-audit harness comparable to ARIS or ARS."
+  cross_platform_portability:
+    score: 3
+    note: "Framework-agnostic by design: CLI hub + Telegram + Slack + Feishu + WeChat + mobile; multi-provider config."
+
+scored_on: "2026-05-18"
+
+limitations:
+  - "Benchmark dominance does not directly demonstrate methodological novelty of papers produced."
+  - "Built on DeepAgents framework — architecture is layered, requires reading DeepAgents to fully audit."
+  - "Skill quality varies across EvoSkills packs (community-contributed)."
+
+related:
+  - aris
+  - academic-research-skills
+  - autoresearchclaw
+  - agent-laboratory
+  - paper-qa
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'EvoScientist Technical Report'
+    authors:
+      - 'EvoScientist team'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2603.08127'
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: "ARIS Table 4 (footnote 1)"
+    citekey: yang2026aris
+    note: "Noted as 'very recently' built; no detailed comparison."
+  - source: "AstaBench leaderboard"
+    citekey: ""
+    note: "Held #1 on Code & Execution + Data Analysis tracks at submission time."
+  - source: "DeepResearch Bench II leaderboard"
+    citekey: ""
+    note: "Held #1 at multiple submission windows."
+
+references:
+  - wu2025agenticreasoning
+  - park2023generative

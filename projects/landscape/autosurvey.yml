@@ -73,7 +73,16 @@ scores:
   maturity_traction:
     score: 1
     note: "468 stars; activity slowed sharply after the NeurIPS publication (last push 2025-02)."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 0
+    note: 'Single LLM per run.'
+  assurance_runtime:
+    score: 1
+    note: 'Citation-quality and content-quality scoring in NeurIPS paper; no in-pipeline claim audit harness.'
+  cross_platform_portability:
+    score: 1
+    note: 'Code + paper-DB available; single back-end.'
+scored_on: "2026-05-18"
 
 limitations:
   - "No declared open-source license — reuse rights are uncertain."

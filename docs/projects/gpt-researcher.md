@@ -28,8 +28,11 @@ Earliest and most-adopted general-purpose deep-research agent; the planner/execu
 | Internal evaluation | 1 | Demonstration-quality evaluation; no rigorous benchmark in the README at this scoring date. |
 | Openness | 3 | Apache-2.0; broad distribution; active community. |
 | Maturity / traction | 3 | 27k+ stars, regular releases, Claude Skill integration, large Discord community. |
+| Cross-family policy | 0 | Multi-LLM-provider but no cross-family policy. |
+| Runtime assurance | 1 | Planner/executor split with summary aggregation; no claim-audit harness. |
+| Cross-platform portability | 2 | Multi-provider, Claude Skill, Docker, Colab, PyPI; deliberately portable. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -62,6 +65,10 @@ Earliest and most-adopted general-purpose deep-research agent; the planner/execu
 - [`storm`](storm.md)
 - [`paper-qa`](paper-qa.md)
 - [`open-scholar`](open-scholar.md)
+
+## Also compared in
+
+- **Agentic AI for Scientific Discovery: A Survey** ([`gridach2025agenticsurvey`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Covered as a planner/executor deep-research agent.
 
 ## Related references (literature catalog)
 

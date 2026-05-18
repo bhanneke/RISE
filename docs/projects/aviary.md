@@ -28,8 +28,11 @@ Provides a standardized environment-and-agent abstraction (paired with the LDP l
 | Internal evaluation | 2 | Used by FutureHouse to evaluate their own agents (Robin, PaperQA); benchmarks published in the arXiv paper. |
 | Openness | 3 | Apache-2.0; PyPI as `fhaviary`; sister library LDP also open. |
 | Maturity / traction | 2 | 261 stars; active development; embedded in FutureHouse evaluation stack. |
+| Cross-family policy | 1 | Environment-agnostic; cross-family possible by user setup. |
+| Runtime assurance | 1 | Trajectory logging + environment-level scoring; not a runtime claim-audit harness. |
+| Cross-platform portability | 2 | Pip-installable; pairs with LDP; multi-environment by design. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

@@ -15,44 +15,47 @@ sources.
 
 ### Comparison matrix
 
-| Project | Type | Focus | LC | AUT | ARC | IN | OUT | EVAL | OPEN | MAT | Discipline |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| [E2ER — End-to-End Research](e2er.md) | owned | `end-to-end` | 3 | 2 | 2 | 3 | 2 | 1 | 2 | 1 | economics |
-| [Academic Research Skills (ARS)](academic-research-skills.md) | external | `end-to-end` | 2 | 1 | 3 | 3 | 3 | 3 | 2 | 3 | general |
-| [Agent Laboratory](agent-laboratory.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 3 | 3 | computer-science |
-| [Project APE](ape.md) | external | `end-to-end` | 3 | 3 | 3 | 2 | 3 | 3 | 3 | 1 | economics |
-| [ARIS (Auto-Research-In-Sleep)](aris.md) | external | `end-to-end` | 3 | 3 | 3 | 3 | 2 | 3 | 3 | 3 | computer-science |
-| [AstaBench (AI2)](asta-bench.md) | external | `end-to-end` | 0 | 2 | 3 | 3 | 3 | 2 | 3 | 2 | general |
-| [AutoSurvey](autosurvey.md) | external | `literature` | 1 | 3 | 2 | 1 | 2 | 3 | 1 | 1 | general |
-| [Aviary (FutureHouse)](aviary.md) | external | `end-to-end` | 0 | 2 | 3 | 2 | 3 | 2 | 3 | 2 | general |
-| [Clo-Author](clo-author.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 1 | 1 | economics |
-| [Coarse (coarse.ink)](coarse-ink.md) | external | `review` | 0 | 2 | 2 | 1 | 1 | 1 | 3 | 1 | general |
-| [CORAL](coral.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 2 | general |
-| [DeepResearcher (GAIR-NLP)](deepresearcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 3 | 3 | 2 | general |
-| [GPT Researcher](gpt-researcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 1 | 3 | 3 | general |
-| [Kosmos (jimmc414 implementation)](kosmos.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 2 | 1 | 2 | general |
-| [MARG (Multi-Agent Review Generation)](marg.md) | external | `review` | 0 | 2 | 3 | 1 | 3 | 2 | 3 | 1 | general |
-| [MLGym (Meta)](mlgym.md) | external | `end-to-end` | 0 | 2 | 3 | 2 | 3 | 2 | 2 | 2 | computer-science |
-| [Open CoScientist Agents](open-coscientist.md) | external | `ideation` | 1 | 3 | 3 | 2 | 1 | 1 | 3 | 1 | general |
-| [OpenScholar (AI2)](open-scholar.md) | external | `literature` | 0 | 2 | 3 | 2 | 2 | 3 | 3 | 2 | general |
-| [PaperQA2 (FutureHouse)](paper-qa.md) | external | `literature` | 0 | 2 | 3 | 2 | 2 | 3 | 3 | 3 | general |
-| [PaperCoder (Paper2Code)](paper2code.md) | external | `replication` | 1 | 3 | 3 | 2 | 3 | 3 | 3 | 3 | computer-science |
-| [Refine (refine.ink)](refine-ink.md) | external | `review` | 0 | 2 | 1 | 1 | 1 | 1 | 0 | 2 | general |
-| [ResearchTown](research-town.md) | external | `ideation` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 2 | general |
-| [ResearchAgent (NAACL 2025)](researchagent.md) | external | `ideation` | 1 | 2 | 3 | 2 | 2 | 2 | 1 | 1 | general |
-| [Reviewer (Ingar30)](reviewer.md) | external | `review` | 0 | 2 | 3 | 1 | 2 | 1 | 3 | 1 | economics |
-| [Robin (FutureHouse)](robin.md) | external | `end-to-end` | 2 | 2 | 3 | 2 | 1 | 2 | 2 | 2 | biomedical |
-| [Sakana AI Scientist v2](sakana-ai-scientist.md) | external | `end-to-end` | 2 | 3 | 3 | 1 | 2 | 2 | 3 | 2 | computer-science |
-| [Sakana AI Scientist (v1)](sakana-ai-scientist-v1.md) | external | `end-to-end` | 2 | 3 | 3 | 1 | 2 | 2 | 2 | 3 | computer-science |
-| [Social Science Replicability Infrastructure](social-science-replicability.md) | external | `replication` | 1 | 2 | 2 | 2 | 2 | 1 | 3 | 1 | social-sciences |
-| [STORM / Co-STORM](storm.md) | external | `literature` | 1 | 2 | 3 | 2 | 2 | 2 | 3 | 3 | general |
-| [SurveyX](surveyx.md) | external | `literature` | 1 | 3 | 2 | 1 | 1 | 2 | 1 | 2 | general |
-| [Tongyi DeepResearch](tongyi-deepresearch.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 3 | 3 | 3 | general |
-| [ToolUniverse](tooluniverse.md) | external | `end-to-end` | 0 | 2 | 3 | 3 | 2 | 2 | 3 | 2 | biomedical |
-| [zeropaper (Auto AI Research Template)](zeropaper.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 2 | 1 | 1 | finance |
-| [Zochi (Intology)](zochi.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 2 | computer-science |
+| Project | Type | Focus | LC | AUT | ARC | IN | OUT | EVAL | OPEN | MAT | XF | RUN | PORT | Discipline |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| [E2ER — End-to-End Research](e2er.md) | owned | `end-to-end` | 3 | 2 | 2 | 3 | 2 | 1 | 2 | 1 | 0 | 2 | 1 | economics |
+| [Academic Research Skills (ARS)](academic-research-skills.md) | external | `end-to-end` | 2 | 1 | 3 | 3 | 3 | 3 | 2 | 3 | 1 | 3 | 3 | general |
+| [Agent Laboratory](agent-laboratory.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 3 | 3 | 0 | 1 | 1 | computer-science |
+| [Project APE](ape.md) | external | `end-to-end` | 3 | 3 | 3 | 2 | 3 | 3 | 3 | 1 | 1 | 2 | 1 | economics |
+| [ARIS (Auto-Research-In-Sleep)](aris.md) | external | `end-to-end` | 3 | 3 | 3 | 3 | 2 | 3 | 3 | 3 | 2 | 3 | 3 | computer-science |
+| [AstaBench (AI2)](asta-bench.md) | external | `end-to-end` | 0 | 2 | 3 | 3 | 3 | 2 | 3 | 2 | 1 | 1 | 2 | general |
+| [AutoResearchClaw](autoresearchclaw.md) | external | `end-to-end` | 3 | 2 | 2 | 3 | 2 | 2 | 3 | 3 | 1 | 3 | 3 | general |
+| [AutoSurvey](autosurvey.md) | external | `literature` | 1 | 3 | 2 | 1 | 2 | 3 | 1 | 1 | 0 | 1 | 1 | general |
+| [Aviary (FutureHouse)](aviary.md) | external | `end-to-end` | 0 | 2 | 3 | 2 | 3 | 2 | 3 | 2 | 1 | 1 | 2 | general |
+| [Clo-Author](clo-author.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 1 | 1 | 0 | 2 | 1 | economics |
+| [Coarse (coarse.ink)](coarse-ink.md) | external | `review` | 0 | 2 | 2 | 1 | 1 | 1 | 3 | 1 | 1 | 1 | 2 | general |
+| [CORAL](coral.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 1 | 2 | 2 | general |
+| [data-to-paper](data-to-paper.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 3 | 3 | 3 | 2 | 0 | 2 | 1 | general |
+| [DeepResearcher (GAIR-NLP)](deepresearcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 3 | 3 | 2 | 0 | 2 | 1 | general |
+| [EvoScientist](evoscientist.md) | external | `end-to-end` | 3 | 3 | 3 | 2 | 2 | 3 | 3 | 3 | 1 | 2 | 3 | general |
+| [GPT Researcher](gpt-researcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 1 | 3 | 3 | 0 | 1 | 2 | general |
+| [Kosmos (jimmc414 implementation)](kosmos.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 2 | 1 | 2 | 1 | 2 | 1 | general |
+| [MARG (Multi-Agent Review Generation)](marg.md) | external | `review` | 0 | 2 | 3 | 1 | 3 | 2 | 3 | 1 | 0 | 1 | 0 | general |
+| [MLGym (Meta)](mlgym.md) | external | `end-to-end` | 0 | 2 | 3 | 2 | 3 | 2 | 2 | 2 | 0 | 1 | 1 | computer-science |
+| [Open CoScientist Agents](open-coscientist.md) | external | `ideation` | 1 | 3 | 3 | 2 | 1 | 1 | 3 | 1 | 3 | 2 | 1 | general |
+| [OpenScholar (AI2)](open-scholar.md) | external | `literature` | 0 | 2 | 3 | 2 | 2 | 3 | 3 | 2 | 1 | 1 | 1 | general |
+| [PaperQA2 (FutureHouse)](paper-qa.md) | external | `literature` | 0 | 2 | 3 | 2 | 2 | 3 | 3 | 3 | 1 | 3 | 3 | general |
+| [PaperCoder (Paper2Code)](paper2code.md) | external | `replication` | 1 | 3 | 3 | 2 | 3 | 3 | 3 | 3 | 0 | 2 | 2 | computer-science |
+| [Refine (refine.ink)](refine-ink.md) | external | `review` | 0 | 2 | 1 | 1 | 1 | 1 | 0 | 2 | 0 | 1 | 0 | general |
+| [ResearchTown](research-town.md) | external | `ideation` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 0 | 1 | 1 | general |
+| [ResearchAgent (NAACL 2025)](researchagent.md) | external | `ideation` | 1 | 2 | 3 | 2 | 2 | 2 | 1 | 1 | 0 | 2 | 0 | general |
+| [Reviewer (Ingar30)](reviewer.md) | external | `review` | 0 | 2 | 3 | 1 | 2 | 1 | 3 | 1 | 0 | 2 | 0 | economics |
+| [Robin (FutureHouse)](robin.md) | external | `end-to-end` | 2 | 2 | 3 | 2 | 1 | 2 | 2 | 2 | 1 | 2 | 2 | biomedical |
+| [Sakana AI Scientist v2](sakana-ai-scientist.md) | external | `end-to-end` | 2 | 3 | 3 | 1 | 2 | 2 | 3 | 2 | 0 | 1 | 0 | computer-science |
+| [Sakana AI Scientist (v1)](sakana-ai-scientist-v1.md) | external | `end-to-end` | 2 | 3 | 3 | 1 | 2 | 2 | 2 | 3 | 0 | 1 | 0 | computer-science |
+| [Social Science Replicability Infrastructure](social-science-replicability.md) | external | `replication` | 1 | 2 | 2 | 2 | 2 | 1 | 3 | 1 | 0 | 2 | 1 | social-sciences |
+| [STORM / Co-STORM](storm.md) | external | `literature` | 1 | 2 | 3 | 2 | 2 | 2 | 3 | 3 | 0 | 1 | 2 | general |
+| [SurveyX](surveyx.md) | external | `literature` | 1 | 3 | 2 | 1 | 1 | 2 | 1 | 2 | 0 | 1 | 1 | general |
+| [Tongyi DeepResearch](tongyi-deepresearch.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 3 | 3 | 3 | 0 | 1 | 2 | general |
+| [ToolUniverse](tooluniverse.md) | external | `end-to-end` | 0 | 2 | 3 | 3 | 2 | 2 | 3 | 2 | 1 | 2 | 2 | biomedical |
+| [zeropaper (Auto AI Research Template)](zeropaper.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | 3 | 1 | finance |
+| [Zochi (Intology)](zochi.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 2 | 0 | 2 | 1 | computer-science |
 
-*Score columns: LC = lifecycle coverage, AUT = autonomy, ARC = architectural transparency, IN = inputs supported, OUT = outputs/reproducibility, EVAL = internal evaluation, OPEN = openness, MAT = maturity/traction. Scale 0–3. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Score columns: LC = lifecycle coverage, AUT = autonomy, ARC = architectural transparency, IN = inputs supported, OUT = outputs/reproducibility, EVAL = internal evaluation, OPEN = openness, MAT = maturity/traction, XF = cross-family policy, RUN = runtime assurance, PORT = cross-platform portability. Scale 0–3. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ### One-line summaries
 
@@ -62,12 +65,15 @@ sources.
 - **[Project APE](ape.md)** — An autonomous system that generates empirical economic policy research papers end-to-end from publicly available data, then scores them via a TrueSkill tournament in which AI-generated papers compete head-to-head against peer-reviewed human benchmarks from AER and AEJ:Policy (judged by Gemini 3.1 Flash Lite).
 - **[ARIS (Auto-Research-In-Sleep)](aris.md)** — An open-source research harness for autonomous ML research (arXiv:2605.03042) built around *cross-model adversarial collaboration*: an executor model drives forward progress while a reviewer from a different model family critiques intermediate artifacts and requests revisions.
 - **[AstaBench (AI2)](asta-bench.md)** — An evaluation framework from AI2 for measuring scientific-research abilities of AI agents.
+- **[AutoResearchClaw](autoresearchclaw.md)** — An autonomous research pipeline taking a chat-level idea to a full paper via ACP-compatible agent back-ends (Claude Code, Codex CLI, Copilot CLI, Gemini CLI, Kimi CLI).
 - **[AutoSurvey](autosurvey.md)** — A NeurIPS 2024 framework (arXiv:2406.10252) for automatically generating comprehensive literature surveys from a topic and a paper database.
 - **[Aviary (FutureHouse)](aviary.md)** — A gymnasium for defining custom language-agent environments (arXiv:2412.21154), with pre-built environments for math, general knowledge, biological sequences, scientific literature search, and protein stability.
 - **[Clo-Author](clo-author.md)** — A Claude Code scaffold for empirical economics research, spanning literature review through journal submission.
 - **[Coarse (coarse.ink)](coarse-ink.md)** — A web-based AI peer-review service: users upload academic papers (up to 50 MB) and receive AI-generated referee reports with 20+ detailed comments.
 - **[CORAL](coral.md)** — Infrastructure (arXiv:2604.01658) for *multi-agent autonomous self-evolution* — organizations of AI agents that run experiments, share knowledge through persistent stores, and continuously improve solutions against a user-supplied grading script.
+- **[data-to-paper](data-to-paper.md)** — An end-to-end framework that takes annotated data and produces *backward-traceable* scientific manuscripts: every numeric value in the output can be click-traced to the specific code line that generated it.
 - **[DeepResearcher (GAIR-NLP)](deepresearcher.md)** — An end-to-end RL-trained deep-research agent (arXiv:2504.03160) that learns to plan, retrieve, cross-validate, and self-reflect via reinforcement learning in real-world web environments rather than in simulated retrieval.
+- **[EvoScientist](evoscientist.md)** — A self-evolving AI scientist system (arXiv:2603.08127) built on the DeepAgents framework.
 - **[GPT Researcher](gpt-researcher.md)** — An autonomous "deep research" agent that produces long-form, cited reports on any topic from web and local sources.
 - **[Kosmos (jimmc414 implementation)](kosmos.md)** — An open-source implementation of the Kosmos AI scientist architecture (Lu et al., arXiv:2511.02824), adapted to run via Claude Code or the Anthropic / OpenAI APIs.
 - **[MARG (Multi-Agent Review Generation)](marg.md)** — A research artifact (arXiv:2401.04259) and reusable demo for generating peer reviews of scientific papers using multiple specialized agents.

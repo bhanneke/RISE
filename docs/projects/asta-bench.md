@@ -28,8 +28,11 @@ The most-scoped benchmark suite for scholarly-research agent abilities specifica
 | Internal evaluation | 2 | Self-application: AI2 uses AstaBench to evaluate its own agents; broader cross-system results on leaderboard. |
 | Openness | 3 | Apache-2.0; AI2 institutional backing; public leaderboard. |
 | Maturity / traction | 2 | 104 stars; active development; AI2 institutional backing; recent (2025–2026). |
+| Cross-family policy | 1 | InspectAI framework allows cross-family agent submissions; not a policy on the system itself. |
+| Runtime assurance | 1 | Per-task scoring against rubrics; not a runtime audit during pipeline execution. |
+| Cross-platform portability | 2 | InspectAI compatibility + Docker + decoupled solve/score paths. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

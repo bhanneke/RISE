@@ -73,7 +73,16 @@ scores:
   maturity_traction:
     score: 1
     note: "Active prototype; single-developer-led."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 0
+    note: 'Single-LLM-family pipeline; methodology extractor + replicator within one family.'
+  assurance_runtime:
+    score: 2
+    note: 'Code-execution + output-match comparison against target paper is the runtime assurance.'
+  cross_platform_portability:
+    score: 1
+    note: 'Python-CLI tool; back-end LLM swappable but not multi-IDE.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Success rate depends heavily on availability of target paper's data + code."

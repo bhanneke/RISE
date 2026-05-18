@@ -28,8 +28,11 @@ Strategist-orchestrated multi-agent design with persona-rich review loops; empha
 | Internal evaluation | 1 | Reviewer-simulation loops provide internal evaluation; no external benchmark or peer-reviewed publication yet. |
 | Openness | 2 | Public repository under permissive license; some examples reproducible without proprietary credentials. |
 | Maturity / traction | 1 | Active research prototype; single-team use as of 2026-05. |
+| Cross-family policy | 0 | Single-LLM-family design (Claude Code); skill-based critics within the same family — no cross-family policy. |
+| Runtime assurance | 2 | Reviewer-simulation skills + skills-loader + persistent memory + scheme-aggregated weighted consensus provide moderate runtime gating; no published claim-audit harness. |
+| Cross-platform portability | 1 | Docker stack; Claude Code as primary back-end; some skills reusable elsewhere but no native multi-IDE adapters. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

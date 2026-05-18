@@ -79,7 +79,16 @@ scores:
   maturity_traction:
     score: 1
     note: "53 stars; last push 2025-07; appears semi-maintained."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 3
+    note: 'Requires Gemini 2.5 Pro + Claude Sonnet 4 + o3 in collaboration — explicitly multi-family by design.'
+  assurance_runtime:
+    score: 2
+    note: 'ELO tournament + meta-review + reflection agents provide debate-based runtime gating.'
+  cross_platform_portability:
+    score: 1
+    note: 'LangGraph + GPT-Researcher dependency; single Python entry.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Requires API keys from multiple commercial providers (Gemini + Anthropic + OpenAI) for the full design."

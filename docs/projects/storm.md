@@ -28,8 +28,11 @@ Treats the *pre-writing* problem (deciding what questions to ask) as the central
 | Internal evaluation | 2 | Both papers report systematic evaluations against baselines and Wikipedia editors. |
 | Openness | 3 | MIT-licensed, pip-installable, demo site, public papers. |
 | Maturity / traction | 3 | 28k+ stars, live research preview with 70k+ users, integrated into multiple downstream projects. |
+| Cross-family policy | 0 | Single LLM provider per run. |
+| Runtime assurance | 1 | Perspective-guided question asking + simulated conversation provide light internal review. |
+| Cross-platform portability | 2 | Multiple retrieval back-ends (Bing, You.com, VectorRM); knowledge-storm pip package usable across providers. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -67,6 +70,10 @@ Treats the *pre-writing* problem (deciding what questions to ask) as the central
 
 - **Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models** — Shao, Y., Jiang, Y., Kanell, T. A., Xu, P., Khattab, O., Lam, M. S. (2024). *NAACL 2024*. [arXiv:2402.14207](https://arxiv.org/abs/2402.14207)
 - **Into the Unknown Unknowns: Engaged Human Learning through Participation in Language Model Agent Conversations** — Jiang, Y., Shao, Y., Ma, D., Semnani, S. J., Lam, M. S. (2024). *EMNLP 2024 (Co-STORM)*. [arXiv:2408.15232](https://arxiv.org/abs/2408.15232)
+
+## Also compared in
+
+- **Agentic AI for Scientific Discovery: A Survey** ([`gridach2025agenticsurvey`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Covered as a flagship literature-synthesis agent.
 
 ## Related references (literature catalog)
 

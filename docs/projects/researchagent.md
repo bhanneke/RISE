@@ -28,8 +28,11 @@ Among the earliest peer-reviewed treatments of agentic ideation *grounded in lit
 | Internal evaluation | 2 | Multi-criteria reviewer evaluation built into the loop; broader external evaluation reported in the NAACL paper. |
 | Openness | 1 | Code is public but no declared open-source license — reuse rights are uncertain. |
 | Maturity / traction | 1 | 37 stars; published-paper artifact with limited community uptake; last push 2025-08. |
+| Cross-family policy | 0 | Single LLM family. |
+| Runtime assurance | 2 | Multi-criteria reviewer agents (5 metrics) provide parallel runtime evaluation gates. |
+| Cross-platform portability | 0 | Single Python pipeline; OpenAI-API-locked. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

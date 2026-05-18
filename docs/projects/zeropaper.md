@@ -28,6 +28,9 @@ Treats subscription-tier coding-agent CLIs (Claude Code / Codex / Gemini CLI) as
 | Internal evaluation | 2 | In-pipeline adversarial gates (math-auditor, novelty-checker, simulated referees); companion benchmarks paper referenced. |
 | Openness | 1 | Source on GitHub but under a restrictive 'Other' license — prior notice, AI-disclosure, watermark, non-commercial clauses all encumber reuse. |
 | Maturity / traction | 1 | Active development (last push 2026-05-18); single-developer / Institute for Automated Research; modest star count. |
+| Cross-family policy | 1 | Optional cross-family setup (Claude Code / Codex / Gemini CLI as dispatcher); not required. |
+| Runtime assurance | 3 | Math-auditor + novelty-checker + simulated referees as adversarial gates; sandboxed execution (bubblewrap/Seatbelt); watermarking. |
+| Cross-platform portability | 1 | Three dispatcher CLIs (Claude Code, Codex, Gemini CLI); finance/macro variants but single template runtime. |
 
 *Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 

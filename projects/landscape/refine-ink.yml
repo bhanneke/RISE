@@ -72,6 +72,15 @@ scores:
     score: 2
     note: "Active commercial offering with named institutional adoption signals; user-base size not disclosed."
 
+  cross_family_policy:
+    score: 0
+    note: 'Closed; single internal stack.'
+  assurance_runtime:
+    score: 1
+    note: '~2-hour parallel compute per review implies multiple internal passes; mechanism not public.'
+  cross_platform_portability:
+    score: 0
+    note: 'Closed commercial product; single web surface.'
 scored_on: "2026-05-18"
 
 limitations:

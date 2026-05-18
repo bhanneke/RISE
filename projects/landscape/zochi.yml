@@ -80,7 +80,16 @@ scores:
   maturity_traction:
     score: 2
     note: "305 stars; commercial backing (Intology); credible publication trajectory."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 0
+    note: 'Same-model self-refinement is the canonical failure mode ARIS Table 4 identifies.'
+  assurance_runtime:
+    score: 2
+    note: 'External peer-review acceptance (ACL 2025) is the strongest runtime-equivalent assurance signal in the catalog.'
+  cross_platform_portability:
+    score: 1
+    note: 'Public code covers earlier version; current pipeline is commercial.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Public code lags the current capabilities described in marketing — current pipeline is not fully open."
@@ -95,6 +104,13 @@ related:
 
 # ── Papers describing this project ─────────────────────
 papers: []  # No project-describing paper located.
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'A Survey of AI Scientists'
+    citekey: tie2025aiscientistsurvey
+    note: 'Covered as an end-to-end system with peer-reviewed publication trajectory.'
 
 references:
   - wu2025agenticreasoning

@@ -97,6 +97,15 @@ scores:
   maturity_traction:
     score: 1
     note: "Created 2026-02; 193 stars; very active development through May 2026; single-author project at this date."
+  cross_family_policy:
+    score: 0
+    note: 'Worker-critic pairs within Claude Code (single model family).'
+  assurance_runtime:
+    score: 2
+    note: 'Worker-critic pair architecture with 3-round escalation + 80/100 quality gate before ship.'
+  cross_platform_portability:
+    score: 1
+    note: 'Claude Code primary back-end; multi-language analysis (R, Python, Julia) is data-side, not agent-side.'
 scored_on: "2026-05-18"
 
 limitations:

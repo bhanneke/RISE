@@ -108,6 +108,15 @@ scores:
     score: 3
     note: "9.8k+ stars, Hugging Face Daily Paper #1, featured in awesome-agent-skills, 7-release polish sequence in May 2026; active community."
 
+  cross_family_policy:
+    score: 2
+    note: 'Cross-family is the DEFAULT (executor + reviewer from different model families recommended out-of-the-box).'
+  assurance_runtime:
+    score: 3
+    note: 'Three-stage evidence verification + claim auditing + 5-pass scientific editing + math-proof checks + visual PDF inspection.'
+  cross_platform_portability:
+    score: 3
+    note: 'Claude Code + Codex + Cursor + Trae + Antigravity + Copilot CLI + OpenClaw + Windsurf — 8+ documented adaptations.'
 scored_on: "2026-05-18"
 
 limitations:

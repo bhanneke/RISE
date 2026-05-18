@@ -74,7 +74,16 @@ scores:
   maturity_traction:
     score: 2
     note: "751 stars; active; recent academic release (2025-04)."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 0
+    note: 'Self-trained 7B model; single-family by design.'
+  assurance_runtime:
+    score: 2
+    note: 'RL-induced cognitive behaviors (cross-validation, self-reflection, honest non-answer) are emergent runtime checks, not external gates.'
+  cross_platform_portability:
+    score: 1
+    note: 'HuggingFace checkpoint + inference scripts; single model family.'
+scored_on: "2026-05-18"
 
 limitations:
   - "7B parameter scale limits ceiling on the hardest benchmarks."
@@ -100,6 +109,13 @@ papers:
     year: 2025
     venue: 'arXiv'
     arxiv_id: '2504.03160'
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'Agentic AI for Scientific Discovery: A Survey'
+    citekey: gridach2025agenticsurvey
+    note: 'Covered as an RL-trained deep-research agent.'
 
 references:
   - wu2025agenticreasoning

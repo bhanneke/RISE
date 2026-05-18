@@ -28,8 +28,11 @@ One of the few openly-documented RISE systems that explicitly separates *hypothe
 | Internal evaluation | 2 | Demonstrated end-to-end run on a biological discovery task in the arXiv paper. |
 | Openness | 2 | Source open under Apache-2.0, but full functionality gated behind commercial API credits. |
 | Maturity / traction | 2 | 301 stars; FutureHouse backing; recent (April 2026). |
+| Cross-family policy | 1 | Edison platform agents + OpenAI/other via LiteLLM — cross-family supported. |
+| Runtime assurance | 2 | Multi-agent literature → hypothesis → experiment loop with EdisonScientific platform validation. |
+| Cross-platform portability | 2 | Docker setup + LiteLLM multi-provider; Edison API integration. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -66,6 +69,10 @@ One of the few openly-documented RISE systems that explicitly separates *hypothe
 ## Papers describing this project
 
 - **Robin: A multi-agent system for automating scientific discovery** — Ghareeb, A. E., Chang, B., Mitchener, L., Yiu, A., Szostkiewicz, C. J., Laurent, J. M., et al. (2025). *arXiv*. [arXiv:2505.13400](https://arxiv.org/abs/2505.13400)
+
+## Also compared in
+
+- **A Survey of AI Scientists** ([`tie2025aiscientistsurvey`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Covered in the biomedical AI-scientist subsection.
 
 ## Related references (literature catalog)
 

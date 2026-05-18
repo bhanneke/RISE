@@ -75,7 +75,16 @@ scores:
   maturity_traction:
     score: 3
     note: "18k+ stars; production deployment via Aliyun Bailian; widely-discussed model release."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 0
+    note: 'Self-trained model; no architectural cross-family policy.'
+  assurance_runtime:
+    score: 1
+    note: "IterResearch 'Heavy' mode adds test-time deliberation; no published claim-audit harness."
+  cross_platform_portability:
+    score: 2
+    note: 'HuggingFace + ModelScope + Bailian deployment; ReAct + IterResearch inference modes.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Specialized for deep-information-seeking; does not produce papers, code, or replication packages directly."
@@ -96,6 +105,13 @@ papers:
     year: 2025
     venue: 'arXiv (Alibaba)'
     arxiv_id: '2510.24701'
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'Agentic AI for Scientific Discovery: A Survey'
+    citekey: gridach2025agenticsurvey
+    note: 'Covered as a deep-research agent trained via RL.'
 
 references:
   - wu2025agenticreasoning

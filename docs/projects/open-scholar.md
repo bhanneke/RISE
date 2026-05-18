@@ -28,8 +28,11 @@ Pairs the inference system with two purpose-built evaluation artifacts — Schol
 | Internal evaluation | 3 | ScholarQABench + expert evaluation interfaces; both quantitative and human evaluation reported. |
 | Openness | 3 | Apache-2.0; open weights for Llama-3.1_OpenScholar-8B; data and benchmark publicly released. |
 | Maturity / traction | 2 | 1.5k+ stars; cited as a baseline; demo at open-scholar.allen.ai; backed by AI2. |
+| Cross-family policy | 1 | 8B open-weight model + optional commercial LLMs; cross-family configurable. |
+| Runtime assurance | 1 | ScholarQABench evaluation set + retrieval verification; runtime gating is light. |
+| Cross-platform portability | 1 | HuggingFace + Semantic Scholar API + You.com; not multi-IDE. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -66,6 +69,10 @@ Pairs the inference system with two purpose-built evaluation artifacts — Schol
 ## Papers describing this project
 
 - **OpenScholar: Synthesizing Scientific Literature with Retrieval-augmented LMs** — Asai, A., He, J., Shao, R., Shi, W., Singh, A., Chang, J. C., et al. (2024). *arXiv*. [arXiv:2411.14199](https://arxiv.org/abs/2411.14199)
+
+## Also compared in
+
+- **Agentic AI for Scientific Discovery: A Survey** ([`gridach2025agenticsurvey`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Covered as a retrieval-augmented LM for scholarly literature.
 
 ## Related references (literature catalog)
 

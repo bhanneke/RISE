@@ -28,6 +28,9 @@ Positions itself as enterprise-grade with explicit security and privacy commitme
 | Internal evaluation | 1 | Marketing claims of reviewer-grade quality; no publicly verifiable benchmark. |
 | Openness | 0 | Closed-source commercial product. |
 | Maturity / traction | 2 | Active commercial offering with named institutional adoption signals; user-base size not disclosed. |
+| Cross-family policy | 0 | Closed; single internal stack. |
+| Runtime assurance | 1 | ~2-hour parallel compute per review implies multiple internal passes; mechanism not public. |
+| Cross-platform portability | 0 | Closed commercial product; single web surface. |
 
 *Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 

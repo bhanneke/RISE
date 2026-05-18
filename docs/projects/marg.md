@@ -28,8 +28,11 @@ Among the earliest peer-reviewed treatments of agentic peer review, with an expl
 | Internal evaluation | 2 | User study + alignment metrics in the arXiv paper compare three review-generation strategies. |
 | Openness | 3 | Apache-2.0; Docker-compose deployment; AI2 backing. |
 | Maturity / traction | 1 | 63 stars; cited research artifact rather than a widely-adopted product. |
+| Cross-family policy | 0 | Single-LLM-family; uses OpenAI API. |
+| Runtime assurance | 1 | Schema validation + alignment-metric scoring of reviews; no in-pipeline claim audit. |
+| Cross-platform portability | 0 | Docker-compose deployment; single-LLM tied. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

@@ -28,8 +28,11 @@ Two-tier deployment — an open offline pipeline plus a commercial online servic
 | Internal evaluation | 2 | ArXiv paper reports comparative evaluation; the hosted-service variant has not been independently audited. |
 | Openness | 1 | No declared license in repository metadata; substantial functionality reserved for the commercial service. |
 | Maturity / traction | 2 | 970 stars; active development; live hosted service at surveyx.cn. |
+| Cross-family policy | 0 | No cross-family policy in open release. |
+| Runtime assurance | 1 | Offline path has reference-grounding only; full crawler + paper-DB closed. |
+| Cross-platform portability | 1 | Offline (markdown) + hosted-service (closed) paths. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

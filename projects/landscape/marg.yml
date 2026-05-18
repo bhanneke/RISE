@@ -70,7 +70,16 @@ scores:
   maturity_traction:
     score: 1
     note: "63 stars; cited research artifact rather than a widely-adopted product."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 0
+    note: 'Single-LLM-family; uses OpenAI API.'
+  assurance_runtime:
+    score: 1
+    note: 'Schema validation + alignment-metric scoring of reviews; no in-pipeline claim audit.'
+  cross_platform_portability:
+    score: 0
+    note: 'Docker-compose deployment; single-LLM tied.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Pre-2024 model assumptions; modern frontier models may shift the comparison."

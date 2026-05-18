@@ -28,8 +28,11 @@ Operationalizes the Kosmos architecture as a runnable system on commodity infras
 | Internal evaluation | 2 | Built-in 8-dimension quality framework; broader external evaluation pending. |
 | Openness | 1 | Source public but no declared license in repo metadata — reuse rights uncertain. |
 | Maturity / traction | 2 | 511 stars; alpha-stage release; active community uptake post-Kosmos paper. |
+| Cross-family policy | 1 | Anthropic or OpenAI API back-ends — cross-family possible by config. |
+| Runtime assurance | 2 | Built-in 8-dimension quality framework + knowledge-graph consistency checks + sandboxed Docker execution. |
+| Cross-platform portability | 1 | Anthropic or OpenAI; single agent framework. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -68,6 +71,10 @@ Operationalizes the Kosmos architecture as a runnable system on commodity infras
 ## Papers describing this project
 
 - **Kosmos: An AI Scientist for Autonomous Discovery** — Mitchener, L., Yiu, A., Chang, B., Bourdenx, M., Nadolski, T., Sulovari, A., et al. (2025). *arXiv*. [arXiv:2511.02824](https://arxiv.org/abs/2511.02824)
+
+## Also compared in
+
+- **A Survey of AI Scientists** ([`tie2025aiscientistsurvey`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Covered as an autonomous-discovery system.
 
 ## Related references (literature catalog)
 

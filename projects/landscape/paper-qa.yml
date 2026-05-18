@@ -80,7 +80,16 @@ scores:
   maturity_traction:
     score: 3
     note: "8.5k+ stars, production-grade releases, embedded in downstream FutureHouse systems."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 1
+    note: 'Multiple model back-ends; cross-family setups supported via LiteLLM.'
+  assurance_runtime:
+    score: 3
+    note: 'Retraction-Watch integration + citation grounding + metadata enrichment + multi-pass RAG = heavy runtime assurance for citation faithfulness specifically.'
+  cross_platform_portability:
+    score: 3
+    note: 'Pip-installable, multiple embedding back-ends, multiple LLM back-ends via LiteLLM, embeddable in other pipelines.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Building block (literature Q&A) — not an end-to-end research pipeline."
@@ -119,6 +128,13 @@ papers:
     year: 2024
     venue: 'arXiv (PaperQA2)'
     arxiv_id: '2409.13740'
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'Agentic AI for Scientific Discovery: A Survey'
+    citekey: gridach2025agenticsurvey
+    note: 'Covered as a high-accuracy scientific-document RAG system.'
 
 references:
   - wu2025agenticreasoning

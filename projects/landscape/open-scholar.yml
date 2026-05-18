@@ -76,7 +76,16 @@ scores:
   maturity_traction:
     score: 2
     note: "1.5k+ stars; cited as a baseline; demo at open-scholar.allen.ai; backed by AI2."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 1
+    note: '8B open-weight model + optional commercial LLMs; cross-family configurable.'
+  assurance_runtime:
+    score: 1
+    note: 'ScholarQABench evaluation set + retrieval verification; runtime gating is light.'
+  cross_platform_portability:
+    score: 1
+    note: 'HuggingFace + Semantic Scholar API + You.com; not multi-IDE.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Single-stage focus (literature synthesis), not an end-to-end pipeline."
@@ -102,6 +111,13 @@ papers:
     year: 2024
     venue: 'arXiv'
     arxiv_id: '2411.14199'
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'Agentic AI for Scientific Discovery: A Survey'
+    citekey: gridach2025agenticsurvey
+    note: 'Covered as a retrieval-augmented LM for scholarly literature.'
 
 references:
   - wu2025agenticreasoning

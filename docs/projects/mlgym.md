@@ -28,8 +28,11 @@ First gym environment specifically for *ML research tasks* — not general QA or
 | Internal evaluation | 2 | Used to benchmark AI research agents in the arXiv paper; framework described as experimental. |
 | Openness | 2 | CC BY-NC 4.0 license — open for research and non-commercial use; not permissive for commercial deployment. |
 | Maturity / traction | 2 | 599 stars; Meta institutional backing; last push 2025-08; flagged as 'experimental, under heavy development'. |
+| Cross-family policy | 0 | Single-family in published baselines; framework agnostic but no policy. |
+| Runtime assurance | 1 | Task-level trajectory + leaderboard scoring; runtime gating minimal. |
+| Cross-platform portability | 1 | Open framework, multiple agents pluggable; not multi-IDE. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

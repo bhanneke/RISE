@@ -28,8 +28,11 @@ Treats agentic-research capability as a *model-training* problem, not just an or
 | Internal evaluation | 3 | Extensive benchmark results reported on BrowseComp, FRAMES, HLE, SimpleQA; state-of-the-art on several. |
 | Openness | 3 | Apache-2.0; HuggingFace + ModelScope checkpoints; commercial deployment via Bailian. |
 | Maturity / traction | 3 | 18k+ stars; production deployment via Aliyun Bailian; widely-discussed model release. |
+| Cross-family policy | 0 | Self-trained model; no architectural cross-family policy. |
+| Runtime assurance | 1 | IterResearch 'Heavy' mode adds test-time deliberation; no published claim-audit harness. |
+| Cross-platform portability | 2 | HuggingFace + ModelScope + Bailian deployment; ReAct + IterResearch inference modes. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -67,6 +70,10 @@ Treats agentic-research capability as a *model-training* problem, not just an or
 ## Papers describing this project
 
 - **Tongyi DeepResearch Technical Report** — Tongyi DeepResearch Team (2025). *arXiv (Alibaba)*. [arXiv:2510.24701](https://arxiv.org/abs/2510.24701)
+
+## Also compared in
+
+- **Agentic AI for Scientific Discovery: A Survey** ([`gridach2025agenticsurvey`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Covered as a deep-research agent trained via RL.
 
 ## Related references (literature catalog)
 

@@ -28,8 +28,11 @@ The strongest *external-validation* claim in the AI-scientist landscape: peer-re
 | Internal evaluation | 3 | External peer review at ACL 2025 + ICLR 2025 workshops — strongest external validation in the catalog. |
 | Openness | 2 | MIT-licensed code for earlier version; current system features are commercial. |
 | Maturity / traction | 2 | 305 stars; commercial backing (Intology); credible publication trajectory. |
+| Cross-family policy | 0 | Same-model self-refinement is the canonical failure mode ARIS Table 4 identifies. |
+| Runtime assurance | 2 | External peer-review acceptance (ACL 2025) is the strongest runtime-equivalent assurance signal in the catalog. |
+| Cross-platform portability | 1 | Public code covers earlier version; current pipeline is commercial. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -63,6 +66,10 @@ The strongest *external-validation* claim in the AI-scientist landscape: peer-re
 - [`sakana-ai-scientist-v1`](sakana-ai-scientist-v1.md)
 - [`agent-laboratory`](agent-laboratory.md)
 - [`e2er`](e2er.md)
+
+## Also compared in
+
+- **A Survey of AI Scientists** ([`tie2025aiscientistsurvey`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Covered as an end-to-end system with peer-reviewed publication trajectory.
 
 ## Related references (literature catalog)
 

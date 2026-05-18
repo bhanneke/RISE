@@ -28,8 +28,11 @@ Makes a major closed industrial design (DeepMind's co-scientist) inspectable and
 | Internal evaluation | 1 | Demo-quality evaluation; tournament metrics are internal to the loop, not external validation. |
 | Openness | 3 | MIT-licensed; reproducible setup with PyPI install path. |
 | Maturity / traction | 1 | 53 stars; last push 2025-07; appears semi-maintained. |
+| Cross-family policy | 3 | Requires Gemini 2.5 Pro + Claude Sonnet 4 + o3 in collaboration — explicitly multi-family by design. |
+| Runtime assurance | 2 | ELO tournament + meta-review + reflection agents provide debate-based runtime gating. |
+| Cross-platform portability | 1 | LangGraph + GPT-Researcher dependency; single Python entry. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

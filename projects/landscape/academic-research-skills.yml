@@ -90,6 +90,15 @@ scores:
   maturity_traction:
     score: 3
     note: "9.3k+ stars; v3.9.0 with multi-version release cadence; English + Traditional Chinese docs; multi-IDE support."
+  cross_family_policy:
+    score: 1
+    note: 'ARS_CROSS_MODEL flag enables cross-family verification; not the default.'
+  assurance_runtime:
+    score: 3
+    note: 'Claim-faithfulness audit pass (ARS_CLAIM_AUDIT) with 5 HIGH-WARN classes + 3-stage citation anchors + cross-model verification = heaviest claim-audit harness in the catalog alongside ARIS.'
+  cross_platform_portability:
+    score: 3
+    note: 'Claude Code + VS Code + JetBrains + Codex CLI sibling distribution + 5 install methods.'
 scored_on: "2026-05-18"
 
 limitations:
@@ -106,6 +115,13 @@ related:
 
 # ── Papers describing this project ─────────────────────
 papers: []  # No project-describing paper located; project cites Lu et al. 2026 (Nature) on AI Scientist failure modes and Zhao et al. 2026 (arXiv:2605.07723) on citation hallucinations as motivating works.
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'ARIS Table 4 (footnote)'
+    citekey: yang2026aris
+    note: 'Discussed as a parallel claim-audit project.'
 
 references:
   - ji2023hallucination

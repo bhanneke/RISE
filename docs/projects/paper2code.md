@@ -28,8 +28,11 @@ Explicitly targets the *paper-to-implementation* gap rather than paper-from-scra
 | Internal evaluation | 3 | Reports gains on Paper2Code and PaperBench against strong baselines; model-based eval published. |
 | Openness | 3 | Apache-2.0; reproducible setup; ICLR paper. |
 | Maturity / traction | 3 | 4.6k+ stars; ICLR 2026 acceptance; clear external citation trajectory. |
+| Cross-family policy | 0 | Multi-agent within one model family. |
+| Runtime assurance | 2 | Three-stage pipeline (planning / analysis / code) with model-based evaluation of output repository quality. |
+| Cross-platform portability | 2 | OpenAI API + vLLM open-source path; multiple LLM back-ends supported. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

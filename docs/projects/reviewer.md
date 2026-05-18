@@ -28,8 +28,11 @@ Treats peer review as a structured engineering problem with explicit schemas, va
 | Internal evaluation | 1 | Smoke checks on report structure and traceability; no published systematic benchmark yet. |
 | Openness | 3 | MIT-licensed; setup scripts for Windows and macOS/Linux; reproducible workflow. |
 | Maturity / traction | 1 | Very new (initialized 2026-05-14); single-developer research prototype. |
+| Cross-family policy | 0 | Single-family (Codex CLI); reviewer agents within one model family. |
+| Runtime assurance | 2 | Parser-quality preflight + schema validation + smoke checks gate the editor report; no claim-audit pass. |
+| Cross-platform portability | 0 | Codex-CLI-locked; Windows + macOS/Linux setup scripts but single agent framework. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

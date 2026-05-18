@@ -78,7 +78,16 @@ scores:
   maturity_traction:
     score: 2
     note: "301 stars; FutureHouse backing; recent (April 2026)."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 1
+    note: 'Edison platform agents + OpenAI/other via LiteLLM — cross-family supported.'
+  assurance_runtime:
+    score: 2
+    note: 'Multi-agent literature → hypothesis → experiment loop with EdisonScientific platform validation.'
+  cross_platform_portability:
+    score: 2
+    note: 'Docker setup + LiteLLM multi-provider; Edison API integration.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Data-analysis path requires paid Edison API credits."
@@ -104,6 +113,13 @@ papers:
     year: 2025
     venue: 'arXiv'
     arxiv_id: '2505.13400'
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'A Survey of AI Scientists'
+    citekey: tie2025aiscientistsurvey
+    note: 'Covered in the biomedical AI-scientist subsection.'
 
 references:
   - wu2025agenticreasoning

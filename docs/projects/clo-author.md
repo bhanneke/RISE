@@ -28,6 +28,9 @@ Worker-critic pair architecture as a first-class design principle: every creator
 | Internal evaluation | 2 | Built-in peer-review simulation with weighted reviewer dispositions; no published external benchmark yet. |
 | Openness | 1 | Source is public on GitHub but no declared open-source license — reuse rights are uncertain. |
 | Maturity / traction | 1 | Created 2026-02; 193 stars; very active development through May 2026; single-author project at this date. |
+| Cross-family policy | 0 | Worker-critic pairs within Claude Code (single model family). |
+| Runtime assurance | 2 | Worker-critic pair architecture with 3-round escalation + 80/100 quality gate before ship. |
+| Cross-platform portability | 1 | Claude Code primary back-end; multi-language analysis (R, Python, Julia) is data-side, not agent-side. |
 
 *Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 

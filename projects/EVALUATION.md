@@ -1,4 +1,4 @@
-# Project evaluation rubric (v0.1)
+# Project evaluation rubric (v0.2)
 
 Every entry in `projects/e2er.yml` and `projects/landscape/*.yml` is
 scored against the eight dimensions below.
@@ -110,6 +110,59 @@ software*.
 
 ---
 
+## v0.2 additions — architectural dimensions
+
+Added in v0.2 (2026-05-18) to make the catalog directly comparable with
+the architectural feature matrix in Yang, Li, Li (2026) "ARIS"
+(arXiv:2605.03042, Table 4). These dimensions sit alongside the
+original 8 methodological dimensions.
+
+### 9. Cross-family policy
+
+Does the system *require, default to, or merely allow* cross-model-family
+review (executor and reviewer from different model families)? Motivated
+by ARIS's argument that same-model self-refinement falls into local
+minima — see [@yang2026aris].
+
+| Score | Meaning |
+|-------|---------|
+| 0 | None — single-LLM by design, or multi-agent within one model family only. |
+| 1 | Optional — cross-family setup is supported via config but not the default path. |
+| 2 | Default — cross-family is the recommended / out-of-the-box configuration. |
+| 3 | Required — system cannot function without two different model families. |
+
+### 10. Runtime assurance
+
+In-flight integrity mechanisms that catch failure *as the pipeline
+runs*, distinct from post-hoc evaluation. Includes claim-faithfulness
+checks, hallucinated-citation detection, math-proof verification,
+runtime fact-checking, visual artifact inspection, adversarial gates.
+
+| Score | Meaning |
+|-------|---------|
+| 0 | None — outputs pass through without runtime integrity checks. |
+| 1 | Light — logging, basic schema validation, or single-pass review. |
+| 2 | Moderate — multiple in-pipeline gates (e.g., math auditor + novelty checker, or RAG citation grounding). |
+| 3 | Heavy — full runtime audit stack (evidence verification + claim audit + math proof + figure inspection) with gating on failure. |
+
+Note: this dimension is **about runtime mechanisms only**, not about
+benchmark results or peer-review acceptance — those belong under
+dimension 6 (`internal_evaluation`).
+
+### 11. Cross-platform portability
+
+How many distinct execution environments / model providers / agent
+runtimes can the system be deployed against without rewriting it?
+
+| Score | Meaning |
+|-------|---------|
+| 0 | Single platform — locked to one IDE / one provider / one runtime. |
+| 1 | Limited — 2 backends or a known small adapter set. |
+| 2 | Multiple — 3+ LLM providers OR 2+ IDEs / runtimes. |
+| 3 | Framework-agnostic — 5+ supported execution environments, deliberately portable design (skills-as-Markdown, protocol-based). |
+
+---
+
 ## Required narrative sections
 
 In addition to the eight scores, each entry includes free-text fields:
@@ -135,6 +188,14 @@ In addition to the eight scores, each entry includes free-text fields:
 
 ## Versioning
 
-This rubric is **v0.1**. Material changes (new dimension, redefinition
-of a score band) bump the minor version and require a re-scoring pass
+This rubric is **v0.2** (2026-05-18). v0.2 added three architectural
+dimensions (cross_family_policy, assurance_runtime,
+cross_platform_portability) derived from ARIS Table 4
+[@yang2026aris]. Material changes (new dimension, redefinition of a
+score band) bump the minor version and require a re-scoring pass
 across the catalog.
+
+### Change log
+
+- **v0.2** (2026-05-18) — Added dimensions 9–11 from ARIS Table 4 analogy. Re-scored all 34 existing projects + 3 new ARIS-flagged additions (data-to-paper, AutoResearchClaw, EvoScientist).
+- **v0.1** (2026-05-14) — Initial 8 dimensions.

@@ -28,8 +28,11 @@ Among the earliest publicly released systems to demonstrate a single agentic pip
 | Internal evaluation | 2 | Self-review pass and reported metrics on generated papers; external validation contested. |
 | Openness | 3 | Open source under permissive license. |
 | Maturity / traction | 2 | Released, widely discussed, multiple iterations (v1 → v2). |
+| Cross-family policy | 0 | Same-model self-refinement is the canonical failure mode ARIS Table 4 identifies in this lineage. |
+| Runtime assurance | 1 | Agentic tree search + self-review pass provide light runtime gating. |
+| Cross-platform portability | 0 | Linux + NVIDIA GPU locked; single-template runtime. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -65,6 +68,11 @@ Among the earliest publicly released systems to demonstrate a single agentic pip
 ## Papers describing this project
 
 - **The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search** — Yamada, Y., Lange, R. T., Lu, C., Hu, S., Lu, C., Foerster, J., et al. (2025). *arXiv*. [arXiv:2504.08066](https://arxiv.org/abs/2504.08066)
+
+## Also compared in
+
+- **ARIS Table 4** ([`yang2026aris`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Same scoring profile as v1 in Table 4; noted as workshop-level paper produced via agentic tree search.
+- **A Survey of AI Scientists** ([`tie2025aiscientistsurvey`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Covered as the v2 release of the foundational AI-scientist line.
 
 ## Related references (literature catalog)
 

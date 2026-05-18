@@ -78,7 +78,16 @@ scores:
   maturity_traction:
     score: 3
     note: "27k+ stars, regular releases, Claude Skill integration, large Discord community."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 0
+    note: 'Multi-LLM-provider but no cross-family policy.'
+  assurance_runtime:
+    score: 1
+    note: 'Planner/executor split with summary aggregation; no claim-audit harness.'
+  cross_platform_portability:
+    score: 2
+    note: 'Multi-provider, Claude Skill, Docker, Colab, PyPI; deliberately portable.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Optimized for general-purpose research; not tuned for academic-rigor outputs (no method/identification awareness)."
@@ -92,6 +101,13 @@ related:
 
 # ── Papers describing this project ─────────────────────
 papers: []  # No project-describing paper located.
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'Agentic AI for Scientific Discovery: A Survey'
+    citekey: gridach2025agenticsurvey
+    note: 'Covered as a planner/executor deep-research agent.'
 
 references:
   - wu2025agenticreasoning

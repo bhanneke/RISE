@@ -97,6 +97,15 @@ scores:
     score: 1
     note: "Active development (last push 2026-05-18); single-developer / Institute for Automated Research; modest star count."
 
+  cross_family_policy:
+    score: 1
+    note: 'Optional cross-family setup (Claude Code / Codex / Gemini CLI as dispatcher); not required.'
+  assurance_runtime:
+    score: 3
+    note: 'Math-auditor + novelty-checker + simulated referees as adversarial gates; sandboxed execution (bubblewrap/Seatbelt); watermarking.'
+  cross_platform_portability:
+    score: 1
+    note: 'Three dispatcher CLIs (Claude Code, Codex, Gemini CLI); finance/macro variants but single template runtime.'
 scored_on: "2026-05-18"
 
 limitations:

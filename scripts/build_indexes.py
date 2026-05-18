@@ -53,8 +53,15 @@ SCORE_KEYS = [
     "internal_evaluation",
     "openness",
     "maturity_traction",
+    # v0.2 — architectural dimensions from ARIS Table 4 analogy
+    "cross_family_policy",
+    "assurance_runtime",
+    "cross_platform_portability",
 ]
-SCORE_HEADERS = ["LC", "AUT", "ARC", "IN", "OUT", "EVAL", "OPEN", "MAT"]
+SCORE_HEADERS = [
+    "LC", "AUT", "ARC", "IN", "OUT", "EVAL", "OPEN", "MAT",
+    "XF", "RUN", "PORT",
+]
 SCORE_LABELS = {
     "lifecycle_coverage": "Lifecycle coverage",
     "autonomy_level": "Autonomy level",
@@ -64,6 +71,9 @@ SCORE_LABELS = {
     "internal_evaluation": "Internal evaluation",
     "openness": "Openness",
     "maturity_traction": "Maturity / traction",
+    "cross_family_policy": "Cross-family policy",
+    "assurance_runtime": "Runtime assurance",
+    "cross_platform_portability": "Cross-platform portability",
 }
 
 PAGE_HEADER = "<!-- DO NOT EDIT — auto-generated from {path} by scripts/build_indexes.py -->"
@@ -256,6 +266,23 @@ def render_project_page(
             out.append(line)
         out.append("")
 
+    # Cross-references in external surveys
+    compared = project.get("compared_in") or []
+    if compared:
+        out.append("## Also compared in")
+        out.append("")
+        for c in compared:
+            src = c.get("source", "?")
+            ck = c.get("citekey")
+            note = c.get("note", "")
+            line = f"- **{src}**"
+            if ck:
+                line += f" ([`{ck}`]({GITHUB_BASE}/papers/references.bib))"
+            if note:
+                line += f" — {note}"
+            out.append(line)
+        out.append("")
+
     # References
     refs = project.get("references") or []
     if refs:
@@ -340,7 +367,9 @@ def render_projects_section(projects: list[dict[str, Any]]) -> str:
         "*Score columns: LC = lifecycle coverage, AUT = autonomy, "
         "ARC = architectural transparency, IN = inputs supported, "
         "OUT = outputs/reproducibility, EVAL = internal evaluation, "
-        "OPEN = openness, MAT = maturity/traction. Scale 0–3. "
+        "OPEN = openness, MAT = maturity/traction, "
+        "XF = cross-family policy, RUN = runtime assurance, "
+        "PORT = cross-platform portability. Scale 0–3. "
         f"See the [evaluation rubric]({GITHUB_BASE}/projects/EVALUATION.md).*"
     )
     lines.append("")

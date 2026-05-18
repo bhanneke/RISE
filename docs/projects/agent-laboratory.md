@@ -28,8 +28,11 @@ Treats *cumulative agentic research* as a first-class concern via AgentRxiv: age
 | Internal evaluation | 2 | ArXiv paper reports systematic evaluation across phases; external validation pending. |
 | Openness | 3 | MIT-licensed; broad community translations of README; LaTeX optional via flag. |
 | Maturity / traction | 3 | 5.6k+ stars; active in 2025; AgentRxiv extension shows continued development direction. |
+| Cross-family policy | 0 | No required cross-family policy; multi-back-end (OpenAI o-series + DeepSeek) without architectural separation. |
+| Runtime assurance | 1 | Phase-level review gates; AgentRxiv enables cross-project artifact reuse but no in-pipeline claim audit. |
+| Cross-platform portability | 1 | Multi-back-end (OpenAI, DeepSeek) but framework-level (not multi-IDE). |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -67,6 +70,11 @@ Treats *cumulative agentic research* as a first-class concern via AgentRxiv: age
 ## Papers describing this project
 
 - **Agent Laboratory: Using LLM Agents as Research Assistants** — Schmidgall, S., Su, Y., Wang, Z., Sun, X., Wu, J., Yu, X., et al. (2025). *arXiv*. [arXiv:2501.04227](https://arxiv.org/abs/2501.04227)
+
+## Also compared in
+
+- **ARIS Table 4** ([`yang2026aris`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Scored: no cross-family, NO adversarial review, no composable skills, ✓ E2E, NO assurance, no portability. ARIS specifically flags the absence of system-level integrity checks.
+- **A Survey of AI Scientists** ([`tie2025aiscientistsurvey`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Covered as a three-phase research-assistant pipeline.
 
 ## Related references (literature catalog)
 

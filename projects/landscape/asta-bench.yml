@@ -75,7 +75,16 @@ scores:
   maturity_traction:
     score: 2
     note: "104 stars; active development; AI2 institutional backing; recent (2025–2026)."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 1
+    note: 'InspectAI framework allows cross-family agent submissions; not a policy on the system itself.'
+  assurance_runtime:
+    score: 1
+    note: 'Per-task scoring against rubrics; not a runtime audit during pipeline execution.'
+  cross_platform_portability:
+    score: 2
+    note: 'InspectAI compatibility + Docker + decoupled solve/score paths.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Evaluation infrastructure — value depends on downstream agent systems being benchmarked."

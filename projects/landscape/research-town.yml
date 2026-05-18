@@ -79,7 +79,16 @@ scores:
   maturity_traction:
     score: 2
     note: "204 stars; ICML 2025 acceptance; active development through 2026-05."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 0
+    note: 'Single-family agent population in published runs.'
+  assurance_runtime:
+    score: 1
+    note: 'Community-level metrics + state-machine engines provide some structural gating.'
+  cross_platform_portability:
+    score: 1
+    note: 'Pip-installable; OpenAI-tied in default config.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Community simulation, not a deployable RISE pipeline — outputs are research about RISE, not research output."

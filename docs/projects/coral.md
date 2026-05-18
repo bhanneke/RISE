@@ -28,8 +28,11 @@ Treats the *organization* of agents (workspaces, shared knowledge, judges) as a 
 | Internal evaluation | 2 | Rubric-judge packages provide structured internal evaluation; arXiv paper presents systematic results. |
 | Openness | 3 | MIT-licensed; uv-installable; broad agent-back-end support. |
 | Maturity / traction | 2 | 655 stars; active 2026 development; integrated with major coding agents. |
+| Cross-family policy | 1 | Multi-agent coding-agent integration (Claude Code, Codex, OpenCode, Cursor) — cross-family configurable. |
+| Runtime assurance | 2 | Rubric judges (race_japan_grader, apex_judge) + isolated workspaces + persistent shared knowledge = moderate gating. |
+| Cross-platform portability | 2 | Multiple coding-agent back-ends (Claude Code, OpenCode, Codex, Cursor, Kiro) — broad portability. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

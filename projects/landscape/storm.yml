@@ -79,7 +79,16 @@ scores:
   maturity_traction:
     score: 3
     note: "28k+ stars, live research preview with 70k+ users, integrated into multiple downstream projects."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 0
+    note: 'Single LLM provider per run.'
+  assurance_runtime:
+    score: 1
+    note: 'Perspective-guided question asking + simulated conversation provide light internal review.'
+  cross_platform_portability:
+    score: 2
+    note: 'Multiple retrieval back-ends (Bing, You.com, VectorRM); knowledge-storm pip package usable across providers.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Stated explicitly by authors: output is not publication-ready and requires significant editing."
@@ -114,6 +123,13 @@ papers:
     year: 2024
     venue: 'EMNLP 2024 (Co-STORM)'
     arxiv_id: '2408.15232'
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'Agentic AI for Scientific Discovery: A Survey'
+    citekey: gridach2025agenticsurvey
+    note: 'Covered as a flagship literature-synthesis agent.'
 
 references:
   - wu2025agenticreasoning

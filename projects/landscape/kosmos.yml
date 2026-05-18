@@ -82,7 +82,16 @@ scores:
   maturity_traction:
     score: 2
     note: "511 stars; alpha-stage release; active community uptake post-Kosmos paper."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 1
+    note: 'Anthropic or OpenAI API back-ends — cross-family possible by config.'
+  assurance_runtime:
+    score: 2
+    note: 'Built-in 8-dimension quality framework + knowledge-graph consistency checks + sandboxed Docker execution.'
+  cross_platform_portability:
+    score: 1
+    note: 'Anthropic or OpenAI; single agent framework.'
+scored_on: "2026-05-18"
 
 limitations:
   - "No declared open-source license."
@@ -110,6 +119,13 @@ papers:
     year: 2025
     venue: 'arXiv'
     arxiv_id: '2511.02824'
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'A Survey of AI Scientists'
+    citekey: tie2025aiscientistsurvey
+    note: 'Covered as an autonomous-discovery system.'
 
 references:
   - wu2025agenticreasoning

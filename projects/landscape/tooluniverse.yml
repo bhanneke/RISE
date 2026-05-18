@@ -71,7 +71,16 @@ scores:
   maturity_traction:
     score: 2
     note: "1.3k+ stars; Harvard institutional backing; recent and active (last push 2026-05)."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 1
+    note: 'Tool registry; LLM-agnostic by design — cross-family configurable.'
+  assurance_runtime:
+    score: 2
+    note: 'Tool-call validation + biomedical-API-specific guardrails.'
+  cross_platform_portability:
+    score: 2
+    note: 'MCP server + Python SDK + agent-skills bundle = multiple consumer surfaces.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Biomedical orientation; coverage for empirical economics, social sciences thin or absent."

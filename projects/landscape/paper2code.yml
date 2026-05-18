@@ -76,7 +76,16 @@ scores:
   maturity_traction:
     score: 3
     note: "4.6k+ stars; ICLR 2026 acceptance; clear external citation trajectory."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 0
+    note: 'Multi-agent within one model family.'
+  assurance_runtime:
+    score: 2
+    note: 'Three-stage pipeline (planning / analysis / code) with model-based evaluation of output repository quality.'
+  cross_platform_portability:
+    score: 2
+    note: 'OpenAI API + vLLM open-source path; multiple LLM back-ends supported.'
+scored_on: "2026-05-18"
 
 limitations:
   - "ML-paper focus; portability to empirical economics or biomedical papers untested in the published evaluations."

@@ -88,6 +88,15 @@ scores:
     score: 1
     note: "Active hosted project in 2026; adoption / external use signals not yet clear."
 
+  cross_family_policy:
+    score: 1
+    note: 'Judge is Gemini 3.1 Flash Lite, distinct from execution back-end — implicit cross-family setup.'
+  assurance_runtime:
+    score: 2
+    note: 'TrueSkill tournament vs human benchmarks + replication-verification step (code-execution + output-match check).'
+  cross_platform_portability:
+    score: 1
+    note: "Hosted service; back-end choice is the maintainers', not user-facing."
 scored_on: "2026-05-18"
 
 limitations:

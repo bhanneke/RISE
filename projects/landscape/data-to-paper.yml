@@ -1,0 +1,143 @@
+slug: data-to-paper
+name: "data-to-paper"
+type: external
+status: active
+url: "https://github.com/Technion-Kishony-lab/data-to-paper"
+maintainers:
+  - "Roy Kishony Lab (Technion)"
+year_started: 2023
+
+positioning: >
+  An end-to-end framework that takes annotated data and produces
+  *backward-traceable* scientific manuscripts: every numeric value
+  in the output can be click-traced to the specific code line that
+  generated it. Navigates interacting LLM and rule-based agents
+  through data exploration, literature search, hypothesis raising,
+  code-debugging, interpretation, and step-by-step paper writing.
+  Released alongside an NEJM AI peer-reviewed paper (Ifargan et al.,
+  2024 — DOI:10.1056/AIoa2400555).
+
+distinctive_contribution: >
+  The "data-chained" provenance design is unique in the catalog: the
+  manuscript is constructed so that traceability is intrinsic, not a
+  reporting add-on — any reported number resolves backward through
+  the data analysis steps. Ships both Autopilot and Copilot modes
+  (oversee / inspect / guide / rewind / replay) and overrides
+  standard statistical packages with coding guardrails to minimize
+  common LLM coding errors.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - literature-discovery
+  - research-design
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+
+architectural_features:
+  - multi-agent
+  - human-in-loop
+  - tool-use
+  - artifact-versioning
+  - dag-orchestration
+
+discipline: general
+
+inputs:
+  - annotated-dataset
+  - research-goal
+
+outputs:
+  - traceable-manuscript
+  - data-chained-paper
+  - code
+
+data_sources:
+  - user-provided
+
+knowledge_sources:
+  - literature
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Seven stages from hypothesis through revision; explicitly skips referee simulation and dissemination."
+  autonomy_level:
+    score: 3
+    note: "Autopilot mode runs end-to-end from data; Copilot mode adds human oversight on demand."
+  architectural_transparency:
+    score: 3
+    note: "Open under MIT; NEJM AI paper + arXiv:2404.17605 document the method; agent prompts visible."
+  inputs_supported:
+    score: 2
+    note: "Accepts annotated datasets with optional research-goal specification; open-goal and fixed-goal modes."
+  outputs_reproducibility:
+    score: 3
+    note: "Backward-traceable manuscripts where any numeric value resolves to its generating code line — strongest reproducibility design in the catalog."
+  internal_evaluation:
+    score: 3
+    note: "Peer-reviewed publication in NEJM AI demonstrating the framework; example papers across diabetes, social-network, and clinical datasets."
+  openness:
+    score: 3
+    note: "MIT-licensed; pip-installable; example datasets + example papers all public."
+  maturity_traction:
+    score: 2
+    note: "793 stars; NEJM AI publication; last push 2025-07 — slower cadence but stable mature release."
+  cross_family_policy:
+    score: 0
+    note: "Single-LLM design with rule-based agents alongside; no cross-family review architecture."
+  assurance_runtime:
+    score: 2
+    note: "Coding guardrails (overridden statistical packages), data-chaining provenance checks, and AI-review-on-demand in Copilot mode."
+  cross_platform_portability:
+    score: 1
+    note: "Pip package; works with multiple LLM back-ends, but no native multi-IDE adaptation layer."
+
+scored_on: "2026-05-18"
+
+limitations:
+  - "Designed for 'relatively simple research goals and simple datasets' per the authors — does not yet target deep theoretical or large-scale studies."
+  - "Last push 2025-07; cadence has slowed since the NEJM publication."
+  - "No referee-simulation or dissemination-packaging stages."
+
+related:
+  - e2er
+  - ape
+  - clo-author
+  - sakana-ai-scientist
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Autonomous LLM-Driven Research — from Data to Human-Verifiable Research Papers'
+    authors:
+      - 'Ifargan, T.'
+      - 'Hafner, L.'
+      - 'Kern, M.'
+      - 'Alcalay, O.'
+      - 'Kishony, R.'
+    year: 2024
+    venue: 'NEJM AI'
+    doi: '10.1056/AIoa2400555'
+  - title: 'Autonomous LLM-driven research from data to human-verifiable research papers'
+    authors:
+      - 'Ifargan, T.'
+      - 'Hafner, L.'
+      - 'Kern, M.'
+      - 'Alcalay, O.'
+      - 'Kishony, R.'
+    year: 2024
+    venue: 'arXiv preprint'
+    arxiv_id: '2404.17605'
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: "ARIS Table 4"
+    citekey: yang2026aris
+    note: "Listed as 'data-driven (not open-ended idea-to-paper)' with narrower research state retention."
+
+references:
+  - wu2025agenticreasoning
+  - schick2023toolformer

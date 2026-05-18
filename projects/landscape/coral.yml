@@ -79,7 +79,16 @@ scores:
   maturity_traction:
     score: 2
     note: "655 stars; active 2026 development; integrated with major coding agents."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 1
+    note: 'Multi-agent coding-agent integration (Claude Code, Codex, OpenCode, Cursor) — cross-family configurable.'
+  assurance_runtime:
+    score: 2
+    note: 'Rubric judges (race_japan_grader, apex_judge) + isolated workspaces + persistent shared knowledge = moderate gating.'
+  cross_platform_portability:
+    score: 2
+    note: 'Multiple coding-agent back-ends (Claude Code, OpenCode, Codex, Cursor, Kiro) — broad portability.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Optimization-focused: best fit for *grade-against-script* tasks, not open-ended scholarly authoring."

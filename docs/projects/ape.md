@@ -28,6 +28,9 @@ An autonomous system that generates empirical economic policy research papers en
 | Internal evaluation | 3 | Tournament evaluation against peer-reviewed human-benchmark papers from top economics journals — strongest internal-eval design in the catalog. |
 | Openness | 3 | Fully open: papers, code, data, failures. |
 | Maturity / traction | 1 | Active hosted project in 2026; adoption / external use signals not yet clear. |
+| Cross-family policy | 1 | Judge is Gemini 3.1 Flash Lite, distinct from execution back-end — implicit cross-family setup. |
+| Runtime assurance | 2 | TrueSkill tournament vs human benchmarks + replication-verification step (code-execution + output-match check). |
+| Cross-platform portability | 1 | Hosted service; back-end choice is the maintainers', not user-facing. |
 
 *Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 

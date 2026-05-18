@@ -28,8 +28,11 @@ Studies *community dynamics* rather than single-pipeline output: how groups of a
 | Internal evaluation | 2 | ICML paper presents systematic evaluation of community-level metrics. |
 | Openness | 3 | Apache-2.0; pip-installable; active community channels. |
 | Maturity / traction | 2 | 204 stars; ICML 2025 acceptance; active development through 2026-05. |
+| Cross-family policy | 0 | Single-family agent population in published runs. |
+| Runtime assurance | 1 | Community-level metrics + state-machine engines provide some structural gating. |
+| Cross-platform portability | 1 | Pip-installable; OpenAI-tied in default config. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

@@ -28,8 +28,11 @@ First widely-noticed system to demonstrate a complete machine-learning paper pro
 | Internal evaluation | 2 | Self-review pass and qualitative evaluation in the arXiv paper; external evaluations of output quality are mixed. |
 | Openness | 2 | Open source under a non-OSI 'Other' license (verify terms before reuse); requires Linux + NVIDIA GPU. |
 | Maturity / traction | 3 | 13k+ stars, peer attention, basis for follow-up systems and the v2 release. |
+| Cross-family policy | 0 | Same as v2 — self-refinement within one model family. |
+| Runtime assurance | 1 | Self-review pass + per-template scaffold checks. |
+| Cross-platform portability | 0 | Linux + NVIDIA GPU + texlive locked. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -68,6 +71,11 @@ First widely-noticed system to demonstrate a complete machine-learning paper pro
 ## Papers describing this project
 
 - **The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery** — Lu, C., Lu, C., Lange, R. T., Foerster, J., Clune, J., Ha, D. (2024). *arXiv*. [arXiv:2408.06292](https://arxiv.org/abs/2408.06292)
+
+## Also compared in
+
+- **ARIS Table 4** ([`yang2026aris`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Cited as exhibiting 'recurring limitations' of same-model self-refinement; scored: no cross-family, partial adversarial review, no composable skills, ✓ E2E, partial assurance, no portability.
+- **A Survey of AI Scientists** ([`tie2025aiscientistsurvey`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Covered as a foundational AI-scientist system.
 
 ## Related references (literature catalog)
 

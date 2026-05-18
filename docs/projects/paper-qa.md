@@ -28,8 +28,11 @@ Reports superhuman performance on scientific QA, summarization, and contradictio
 | Internal evaluation | 3 | Published 2024 paper with comparative benchmarks; widely cited as a reference RAG baseline. |
 | Openness | 3 | Apache-2.0; PyPI; documented API; permissive license; reproducibility scripts in repo. |
 | Maturity / traction | 3 | 8.5k+ stars, production-grade releases, embedded in downstream FutureHouse systems. |
+| Cross-family policy | 1 | Multiple model back-ends; cross-family setups supported via LiteLLM. |
+| Runtime assurance | 3 | Retraction-Watch integration + citation grounding + metadata enrichment + multi-pass RAG = heavy runtime assurance for citation faithfulness specifically. |
+| Cross-platform portability | 3 | Pip-installable, multiple embedding back-ends, multiple LLM back-ends via LiteLLM, embeddable in other pipelines. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -69,6 +72,10 @@ Reports superhuman performance on scientific QA, summarization, and contradictio
 
 - **PaperQA: Retrieval-Augmented Generative Agent for Scientific Research** — Lála, J., O'Donoghue, O., Shtedritski, A., Cox, S., Rodriques, S. G., White, A. D. (2023). *arXiv (PaperQA1)*. [arXiv:2312.07559](https://arxiv.org/abs/2312.07559)
 - **Language agents achieve superhuman synthesis of scientific knowledge** — Skarlinski, M. D., Cox, S., Laurent, J. M., Braza, J. D., Hinks, M., Hammerling, M. J., et al. (2024). *arXiv (PaperQA2)*. [arXiv:2409.13740](https://arxiv.org/abs/2409.13740)
+
+## Also compared in
+
+- **Agentic AI for Scientific Discovery: A Survey** ([`gridach2025agenticsurvey`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib)) — Covered as a high-accuracy scientific-document RAG system.
 
 ## Related references (literature catalog)
 

@@ -76,7 +76,16 @@ scores:
   maturity_traction:
     score: 2
     note: "599 stars; Meta institutional backing; last push 2025-08; flagged as 'experimental, under heavy development'."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 0
+    note: 'Single-family in published baselines; framework agnostic but no policy.'
+  assurance_runtime:
+    score: 1
+    note: 'Task-level trajectory + leaderboard scoring; runtime gating minimal.'
+  cross_platform_portability:
+    score: 1
+    note: 'Open framework, multiple agents pluggable; not multi-IDE.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Non-commercial license restricts deployment options."

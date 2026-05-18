@@ -74,7 +74,16 @@ scores:
   maturity_traction:
     score: 2
     note: "970 stars; active development; live hosted service at surveyx.cn."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 0
+    note: 'No cross-family policy in open release.'
+  assurance_runtime:
+    score: 1
+    note: 'Offline path has reference-grounding only; full crawler + paper-DB closed.'
+  cross_platform_portability:
+    score: 1
+    note: 'Offline (markdown) + hosted-service (closed) paths.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Open-source release deliberately omits the most capability-relevant components (crawler, paper DB, multimodal parser)."

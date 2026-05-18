@@ -80,7 +80,16 @@ scores:
   maturity_traction:
     score: 3
     note: "13k+ stars, peer attention, basis for follow-up systems and the v2 release."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 0
+    note: 'Same as v2 — self-refinement within one model family.'
+  assurance_runtime:
+    score: 1
+    note: 'Self-review pass + per-template scaffold checks.'
+  cross_platform_portability:
+    score: 0
+    note: 'Linux + NVIDIA GPU + texlive locked.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Locked to three CS templates; portability to other domains community-maintained."
@@ -107,6 +116,16 @@ papers:
     year: 2024
     venue: 'arXiv'
     arxiv_id: '2408.06292'
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'ARIS Table 4'
+    citekey: yang2026aris
+    note: "Cited as exhibiting 'recurring limitations' of same-model self-refinement; scored: no cross-family, partial adversarial review, no composable skills, ✓ E2E, partial assurance, no portability."
+  - source: 'A Survey of AI Scientists'
+    citekey: tie2025aiscientistsurvey
+    note: 'Covered as a foundational AI-scientist system.'
 
 references:
   - wu2025agenticreasoning

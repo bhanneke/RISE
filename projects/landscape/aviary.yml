@@ -72,7 +72,16 @@ scores:
   maturity_traction:
     score: 2
     note: "261 stars; active development; embedded in FutureHouse evaluation stack."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 1
+    note: 'Environment-agnostic; cross-family possible by user setup.'
+  assurance_runtime:
+    score: 1
+    note: 'Trajectory logging + environment-level scoring; not a runtime claim-audit harness.'
+  cross_platform_portability:
+    score: 2
+    note: 'Pip-installable; pairs with LDP; multi-environment by design.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Evaluation infrastructure, not a RISE pipeline — included here for completeness, scored conservatively on lifecycle coverage."

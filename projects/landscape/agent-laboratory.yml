@@ -83,7 +83,16 @@ scores:
   maturity_traction:
     score: 3
     note: "5.6k+ stars; active in 2025; AgentRxiv extension shows continued development direction."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 0
+    note: 'No required cross-family policy; multi-back-end (OpenAI o-series + DeepSeek) without architectural separation.'
+  assurance_runtime:
+    score: 1
+    note: 'Phase-level review gates; AgentRxiv enables cross-project artifact reuse but no in-pipeline claim audit.'
+  cross_platform_portability:
+    score: 1
+    note: 'Multi-back-end (OpenAI, DeepSeek) but framework-level (not multi-IDE).'
+scored_on: "2026-05-18"
 
 limitations:
   - "Computer-science orientation; portability to empirical social sciences untested."
@@ -110,6 +119,16 @@ papers:
     year: 2025
     venue: 'arXiv'
     arxiv_id: '2501.04227'
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'ARIS Table 4'
+    citekey: yang2026aris
+    note: 'Scored: no cross-family, NO adversarial review, no composable skills, ✓ E2E, NO assurance, no portability. ARIS specifically flags the absence of system-level integrity checks.'
+  - source: 'A Survey of AI Scientists'
+    citekey: tie2025aiscientistsurvey
+    note: 'Covered as a three-phase research-assistant pipeline.'
 
 references:
   - wu2025agenticreasoning

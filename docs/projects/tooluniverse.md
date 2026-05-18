@@ -28,8 +28,11 @@ Reframes the AI-scientist problem as an *interface* problem: scientific tools ne
 | Internal evaluation | 2 | ArXiv paper validates the tool registry against scientific-agent benchmarks; broader uptake metrics public. |
 | Openness | 3 | Apache-2.0; PyPI; MCP registry listing; community channels (Slack, WeChat). |
 | Maturity / traction | 2 | 1.3k+ stars; Harvard institutional backing; recent and active (last push 2026-05). |
+| Cross-family policy | 1 | Tool registry; LLM-agnostic by design — cross-family configurable. |
+| Runtime assurance | 2 | Tool-call validation + biomedical-API-specific guardrails. |
+| Cross-platform portability | 2 | MCP server + Python SDK + agent-skills bundle = multiple consumer surfaces. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

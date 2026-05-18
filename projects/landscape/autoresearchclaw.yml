@@ -1,0 +1,134 @@
+slug: autoresearchclaw
+name: "AutoResearchClaw"
+type: external
+status: active
+url: "https://github.com/aiming-lab/AutoResearchClaw"
+maintainers:
+  - "Aiming Lab"
+year_started: 2026
+
+positioning: >
+  An autonomous research pipeline taking a chat-level idea to a full
+  paper via ACP-compatible agent back-ends (Claude Code, Codex CLI,
+  Copilot CLI, Gemini CLI, Kimi CLI). Ships v0.4.0+ with a
+  Human-in-the-Loop Co-Pilot system offering 6 intervention modes
+  (`full-auto` / `gate-only` / `checkpoint` / `step-by-step` /
+  `co-pilot` / `custom`), 19 pre-loaded skills, anti-fabrication
+  VerifiedRegistry, and CLI commands for attaching to / approving /
+  redirecting in-flight pipelines.
+
+distinctive_contribution: >
+  Among the largest user communities in the catalog (12.3k stars,
+  multi-language localizations covering 9 languages + Discord
+  community). The HITL co-pilot system with 6 explicit intervention
+  modes is the most differentiated human-oversight surface among
+  the end-to-end pipelines — and the anti-fabrication system
+  (VerifiedRegistry + experiment diagnosis & repair loop) is a
+  named runtime-assurance component, not an evaluation afterthought.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - literature-discovery
+  - literature-synthesis
+  - research-design
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - human-in-loop
+  - tool-use
+  - rag-knowledge-base
+  - persistent-memory
+  - iterative-loop
+  - artifact-versioning
+
+discipline: general
+
+inputs:
+  - research-idea
+  - prior-paper
+  - existing-results
+
+outputs:
+  - paper
+  - code
+  - figures
+  - experiment-logs
+
+data_sources:
+  - user-provided
+
+knowledge_sources:
+  - arxiv
+  - literature
+  - mcp-servers
+
+scores:
+  lifecycle_coverage:
+    score: 3
+    note: "Nine stages including referee simulation; explicit dissemination support via OpenClaw integration."
+  autonomy_level:
+    score: 2
+    note: "User-selectable: full-auto through co-pilot. After v0.4.0 HITL launch, the design centers on partial autonomy rather than fully autonomous default."
+  architectural_transparency:
+    score: 2
+    note: "Open MIT; v0.4.0 HITL guide documents the 6 intervention modes; some agent internals require source dive."
+  inputs_supported:
+    score: 3
+    note: "Multiple inputs (idea, prior paper, existing results); 5+ ACP-compatible back-ends; messaging-platform integration via OpenClaw bridge."
+  outputs_reproducibility:
+    score: 2
+    note: "Per-project workspaces; experiment diagnosis & repair loop; 2699 tests passing — but not bitwise-deterministic by design."
+  internal_evaluation:
+    score: 2
+    note: "Anti-fabrication VerifiedRegistry, paper showcase across 8 domains, active testing program; no published peer-reviewed evaluation paper at this scoring date."
+  openness:
+    score: 3
+    note: "MIT-licensed; multi-language documentation; active Discord community; community-contributed skill ecosystem."
+  maturity_traction:
+    score: 3
+    note: "12.3k+ stars (largest in the catalog); regular releases (v0.4.x in 2026-04); broad community adoption signals."
+  cross_family_policy:
+    score: 1
+    note: "Multiple back-ends (Claude/Codex/Copilot/Gemini/Kimi CLI) make cross-family configurations easy, but no required cross-family review policy in the architecture."
+  assurance_runtime:
+    score: 3
+    note: "Anti-fabrication system (VerifiedRegistry + experiment diagnosis & repair loop), SmartPause (confidence-driven dynamic intervention), ALHF intervention learning, cost budget guardrails."
+  cross_platform_portability:
+    score: 3
+    note: "5+ CLI back-ends (Claude Code, Codex CLI, Copilot CLI, Gemini CLI, Kimi CLI) + 4 messaging platforms (Discord, Telegram, Lark, WeChat) via OpenClaw bridge."
+
+scored_on: "2026-05-18"
+
+limitations:
+  - "Ethics-and-responsible-use guidelines added 2026-04; the autonomous-default era leaves a legacy of misuse risk."
+  - "No peer-reviewed publication describing the system at this scoring date."
+  - "Heavy aspirational marketing ('Chat an Idea. Get a Paper.') sets a higher bar than the showcase examples meet."
+  - "Single-organization maintenance (Aiming Lab); long-term governance unclear."
+
+related:
+  - aris
+  - evoscientist
+  - clo-author
+  - sakana-ai-scientist
+  - academic-research-skills
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper-about-AutoResearchClaw at this scoring date.
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: "ARIS Table 4 (footnote 1)"
+    citekey: yang2026aris
+    note: "Noted as 'very recently' built; no detailed comparison."
+
+references:
+  - wu2025agenticreasoning
+  - schick2023toolformer
+  - ji2023hallucination

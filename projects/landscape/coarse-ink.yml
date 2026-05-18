@@ -72,6 +72,15 @@ scores:
     score: 1
     note: "Active hosted service in 2026; user-base scope not publicly disclosed."
 
+  cross_family_policy:
+    score: 1
+    note: 'BYOK OpenRouter exposes Claude / GPT-5 / Gemini / DeepSeek as user-selectable executor — cross-family by user choice.'
+  assurance_runtime:
+    score: 1
+    note: 'Single-pass review with focus-note steering; no published claim-audit harness.'
+  cross_platform_portability:
+    score: 2
+    note: 'Multi-provider via OpenRouter + local Claude Code/Codex/Gemini CLI fallback.'
 scored_on: "2026-05-18"
 
 limitations:

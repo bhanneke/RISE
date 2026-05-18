@@ -104,7 +104,16 @@ scores:
   maturity_traction:
     score: 1
     note: "Active research prototype; single-team use as of 2026-05."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 0
+    note: 'Single-LLM-family design (Claude Code); skill-based critics within the same family — no cross-family policy.'
+  assurance_runtime:
+    score: 2
+    note: 'Reviewer-simulation skills + skills-loader + persistent memory + scheme-aggregated weighted consensus provide moderate runtime gating; no published claim-audit harness.'
+  cross_platform_portability:
+    score: 1
+    note: 'Docker stack; Claude Code as primary back-end; some skills reusable elsewhere but no native multi-IDE adapters.'
+scored_on: "2026-05-18"
 
 limitations:
   - "End-to-end reproducibility from inputs not yet demonstrated on a public test case."

@@ -28,6 +28,9 @@ Open-source (MIT) and explicitly anti-commercial in framing — "Academic peer r
 | Internal evaluation | 1 | Self-reported blind evaluation vs. refine.ink, Stanford Agentic Reviewer, reviewer3.com; no third-party benchmark. |
 | Openness | 3 | MIT-licensed; BYOK (bring-your-own-key) model; transparent pricing (~under $2/review with OpenRouter). |
 | Maturity / traction | 1 | Active hosted service in 2026; user-base scope not publicly disclosed. |
+| Cross-family policy | 1 | BYOK OpenRouter exposes Claude / GPT-5 / Gemini / DeepSeek as user-selectable executor — cross-family by user choice. |
+| Runtime assurance | 1 | Single-pass review with focus-note steering; no published claim-audit harness. |
+| Cross-platform portability | 2 | Multi-provider via OpenRouter + local Claude Code/Codex/Gemini CLI fallback. |
 
 *Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 

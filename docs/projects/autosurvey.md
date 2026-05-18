@@ -28,8 +28,11 @@ Among the first systems to treat *long-form survey writing* (not short-form QA o
 | Internal evaluation | 3 | Systematic evaluation across multiple survey lengths in the NeurIPS paper. |
 | Openness | 1 | No license declared in repository metadata — defaults to all rights reserved; database access via OneDrive link from maintainers. |
 | Maturity / traction | 1 | 468 stars; activity slowed sharply after the NeurIPS publication (last push 2025-02). |
+| Cross-family policy | 0 | Single LLM per run. |
+| Runtime assurance | 1 | Citation-quality and content-quality scoring in NeurIPS paper; no in-pipeline claim audit harness. |
+| Cross-platform portability | 1 | Code + paper-DB available; single back-end. |
 
-*Scored on 2026-05-15. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

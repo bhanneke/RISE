@@ -72,7 +72,16 @@ scores:
   maturity_traction:
     score: 1
     note: "Very new (initialized 2026-05-14); single-developer research prototype."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 0
+    note: 'Single-family (Codex CLI); reviewer agents within one model family.'
+  assurance_runtime:
+    score: 2
+    note: 'Parser-quality preflight + schema validation + smoke checks gate the editor report; no claim-audit pass.'
+  cross_platform_portability:
+    score: 0
+    note: 'Codex-CLI-locked; Windows + macOS/Linux setup scripts but single agent framework.'
+scored_on: "2026-05-18"
 
 limitations:
   - "Single-stage tool (review only); requires upstream paper provenance."

@@ -79,7 +79,16 @@ scores:
   maturity_traction:
     score: 1
     note: "37 stars; published-paper artifact with limited community uptake; last push 2025-08."
-scored_on: "2026-05-15"
+  cross_family_policy:
+    score: 0
+    note: 'Single LLM family.'
+  assurance_runtime:
+    score: 2
+    note: 'Multi-criteria reviewer agents (5 metrics) provide parallel runtime evaluation gates.'
+  cross_platform_portability:
+    score: 0
+    note: 'Single Python pipeline; OpenAI-API-locked.'
+scored_on: "2026-05-18"
 
 limitations:
   - "No declared open-source license."

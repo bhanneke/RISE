@@ -50,6 +50,10 @@ scores:
   internal_evaluation:        {score: 0|1|2|3, note: "..."}
   openness:                   {score: 0|1|2|3, note: "..."}
   maturity_traction:          {score: 0|1|2|3, note: "..."}
+  # ── v0.2 architectural dimensions (from ARIS Table 4 analogy) ──
+  cross_family_policy:        {score: 0|1|2|3, note: "..."}
+  assurance_runtime:          {score: 0|1|2|3, note: "..."}
+  cross_platform_portability: {score: 0|1|2|3, note: "..."}
 scored_on: "YYYY-MM-DD"
 
 # ── Narrative ────────────────────────────────────────────────────
@@ -57,6 +61,12 @@ limitations:                      # bullet list of strings
   - "..."
 related: [slug]                   # other entries in this catalog
 references: [citekey]             # citekeys from papers/references.bib
+
+# ── Cross-references in external surveys / comparison tables ─────
+compared_in:                      # 0+ entries; external places this project is compared against peers
+  - source: string                # e.g., "ARIS Table 4", "AstaBench leaderboard"
+    citekey: string               # citekey from references.bib (if any)
+    note: string                  # optional 1-line summary of how it's classified there
 
 # ── Papers describing the project itself ─────────────────────────
 papers:                           # 0+ entries; each must be a paper

@@ -79,7 +79,16 @@ scores:
   maturity_traction:
     score: 2
     note: "Released, widely discussed, multiple iterations (v1 → v2)."
-scored_on: "2026-05-14"
+  cross_family_policy:
+    score: 0
+    note: 'Same-model self-refinement is the canonical failure mode ARIS Table 4 identifies in this lineage.'
+  assurance_runtime:
+    score: 1
+    note: 'Agentic tree search + self-review pass provide light runtime gating.'
+  cross_platform_portability:
+    score: 0
+    note: 'Linux + NVIDIA GPU locked; single-template runtime.'
+scored_on: "2026-05-18"
 
 limitations:
   - "ML-paper focus; portability to non-CS domains unclear."
@@ -104,6 +113,16 @@ papers:
     year: 2025
     venue: 'arXiv'
     arxiv_id: '2504.08066'
+
+
+# ── Also compared in ────────────────────────────────────
+compared_in:
+  - source: 'ARIS Table 4'
+    citekey: yang2026aris
+    note: 'Same scoring profile as v1 in Table 4; noted as workshop-level paper produced via agentic tree search.'
+  - source: 'A Survey of AI Scientists'
+    citekey: tie2025aiscientistsurvey
+    note: 'Covered as the v2 release of the foundational AI-scientist line.'
 
 references:
   - wu2025agenticreasoning
