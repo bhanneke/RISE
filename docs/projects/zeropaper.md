@@ -1,8 +1,8 @@
 <!-- DO NOT EDIT — auto-generated from projects/landscape/zeropaper.yml by scripts/build_indexes.py -->
 
-# zeropaper
+# zeropaper (Auto AI Research Template)
 
-`external` · status: `active` · focus: `drafting` · discipline: `general` · started: 2025
+`external` · status: `active` · focus: `end-to-end` · discipline: `finance` · started: 2025
 
 **Project page:** <https://github.com/alejandroll10/zeropaper>
 
@@ -10,55 +10,62 @@
 
 ## Positioning
 
-An autonomous paper-writing pipeline that takes a research topic and produces a written paper with minimal user input. Sits firmly in the paper-drafting / revision portion of the RISE pipeline with light upstream ideation.
+An autonomous research-paper pipeline that uses Claude Code, Codex, or Gemini CLI as the subagent dispatcher. From a chosen variant (finance theory, macro theory, finance + empirical with CRSP / Compustat / FRED, finance + theory_llm, or seed / manual / faithful / light modes) it runs problem discovery → idea generation → theory development → math verification → paper writing → referee simulation, producing watermarked PDF drafts under a restrictive academic-use license.
 
 ## Distinctive contribution
 
-Lightweight, accessible single-developer implementation of the autonomous-paper-writing idea, with a focus on minimizing per-paper human input rather than on multi-agent sophistication.
+Treats subscription-tier coding-agent CLIs (Claude Code / Codex / Gemini CLI) as the dispatch substrate for an autonomous-paper pipeline with adversarial gates (math-auditor, novelty-checker, simulated referees), per-project git-isolated workspaces, and sandboxed execution (bubblewrap on Linux, Seatbelt on macOS). Notable for its license-coded responsible-use protocol: §2 requires prior notice before submission, §3 requires AI-disclosure, §4 forbids watermark removal, §5 prohibits commercial use without separate license.
 
 ## Evaluation scores
 
 | Dimension | Score (0–3) | Note |
 |---|:---:|---|
-| Lifecycle coverage | 1 | Covers ~4 stages; no formal data analysis, modeling, or referee simulation. |
-| Autonomy level | 2 | Supervised agent — user provides topic and reviews output. |
-| Architectural transparency | 2 | Open-source code; prompts visible; architecture documentation modest. |
-| Inputs supported | 1 | Single input form (topic); no integration of private corpora or datasets. |
-| Outputs / reproducibility | 1 | Persists drafts; not aimed at reproducibility of generated content. |
-| Internal evaluation | 0 | No reported systematic evaluation of output quality. |
-| Openness | 3 | Open source on GitHub; reproducible setup. |
-| Maturity / traction | 1 | Single-developer research prototype. |
+| Lifecycle coverage | 3 | Covers ~10 stages including formal modeling, empirical analysis (--ext empirical), and referee simulation. |
+| Autonomy level | 3 | 'Set up a project, launch Claude Code, Codex, or Gemini CLI, walk away.' Autonomous by design. |
+| Architectural transparency | 2 | Pipeline stages documented in README; full agent-prompt internals require reading the template. |
+| Inputs supported | 2 | Multiple variants (finance, macro), modes (--seed, --faithful, --manual, --light, empirical-first); empirical extension integrates external financial corpora. |
+| Outputs / reproducibility | 2 | Per-project git repositories isolate outputs; sandboxed execution; watermarked PDF provenance. |
+| Internal evaluation | 2 | In-pipeline adversarial gates (math-auditor, novelty-checker, simulated referees); companion benchmarks paper referenced. |
+| Openness | 1 | Source on GitHub but under a restrictive 'Other' license — prior notice, AI-disclosure, watermark, non-commercial clauses all encumber reuse. |
+| Maturity / traction | 1 | Active development (last push 2026-05-18); single-developer / Institute for Automated Research; modest star count. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
-**Pipeline stages:** `hypothesis-generation` `literature-discovery` `paper-drafting` `revision-editing`
+**Pipeline stages:** `rq-formulation` `hypothesis-generation` `literature-discovery` `research-design` `formal-modeling` `data-acquisition` `data-analysis` `paper-drafting` `revision-editing` `referee-simulation`
 
 
-**Architectural features:** `single-llm` `tool-use` `iterative-loop`
+**Architectural features:** `multi-agent` `tool-use` `iterative-loop` `debate-consensus` `artifact-versioning`
 
 
-**Inputs:** `research-topic`
+**Inputs:** `research-area` `seed-idea` `prior-paper`
 
 
-**Outputs:** `paper-draft`
+**Outputs:** `watermarked-pdf` `code` `replication-data`
 
 
-**Knowledge sources:** `web-search`
+**Data sources:** `crsp` `compustat` `fred` `user-provided`
+
+
+**Knowledge sources:** `web-search` `prior-literature`
 
 
 ## Limitations
 
-- Output quality unevaluated against external standards.
-- No data-analysis or empirical-modeling stages.
-- Limited literature integration.
+- Restrictive license: submission requires prior written notice; AI-disclosure mandatory; watermark removal terminates license; commercial use prohibited.
+- Designed for finance/macro/empirical-finance papers — portability to other empirical disciplines requires variant authoring.
+- Watermarking is non-cosmetic; detection methodology shared only with journal editors.
+- Subscription path (~$200/mo, ~$2/paper) recommended; pay-per-token path is ~$2,000/paper.
+- Sandbox depends on bubblewrap (Linux) or Seatbelt (macOS); Windows untested.
 
 ## Related projects in this catalog
 
 - [`sakana-ai-scientist`](sakana-ai-scientist.md)
 - [`e2er`](e2er.md)
+- [`clo-author`](clo-author.md)
+- [`ape`](ape.md)
 
 ## Papers describing this project
 
-- **zeropaper companion: Autonomous research paper generation at scale** — Aldea, A. (2026). *SSRN working paper*. [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6687378)
+- **IAR-M-001: zeropaper companion paper** — Aldea, A. (2026). *Institute for Automated Research working paper series*. [link](https://instituteforautomatedresearch.org/papers/iar-m/iar-m-001)

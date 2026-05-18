@@ -11,3 +11,4 @@ site/
 .mkdocs_cache/
 *.egg-info/
 .python-version
+.audit/

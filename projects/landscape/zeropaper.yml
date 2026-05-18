@@ -1,93 +1,124 @@
 slug: zeropaper
-name: "zeropaper"
+name: "zeropaper (Auto AI Research Template)"
 type: external
 status: active
 url: "https://github.com/alejandroll10/zeropaper"
 maintainers:
-  - "Alejandro Aldea"
+  - "Alejandro Aldea (Institute for Automated Research)"
 year_started: 2025
 
 positioning: >
-  An autonomous paper-writing pipeline that takes a research topic and
-  produces a written paper with minimal user input. Sits firmly in the
-  paper-drafting / revision portion of the RISE pipeline with light
-  upstream ideation.
+  An autonomous research-paper pipeline that uses Claude Code, Codex,
+  or Gemini CLI as the subagent dispatcher. From a chosen variant
+  (finance theory, macro theory, finance + empirical with CRSP /
+  Compustat / FRED, finance + theory_llm, or seed / manual / faithful /
+  light modes) it runs problem discovery → idea generation → theory
+  development → math verification → paper writing → referee simulation,
+  producing watermarked PDF drafts under a restrictive academic-use
+  license.
 
 distinctive_contribution: >
-  Lightweight, accessible single-developer implementation of the
-  autonomous-paper-writing idea, with a focus on minimizing per-paper
-  human input rather than on multi-agent sophistication.
+  Treats subscription-tier coding-agent CLIs (Claude Code / Codex /
+  Gemini CLI) as the dispatch substrate for an autonomous-paper
+  pipeline with adversarial gates (math-auditor, novelty-checker,
+  simulated referees), per-project git-isolated workspaces, and
+  sandboxed execution (bubblewrap on Linux, Seatbelt on macOS).
+  Notable for its license-coded responsible-use protocol: §2 requires
+  prior notice before submission, §3 requires AI-disclosure, §4
+  forbids watermark removal, §5 prohibits commercial use without
+  separate license.
 
-focus: drafting
+focus: end-to-end
 
 pipeline_stages:
+  - rq-formulation
   - hypothesis-generation
   - literature-discovery
+  - research-design
+  - formal-modeling
+  - data-acquisition
+  - data-analysis
   - paper-drafting
   - revision-editing
+  - referee-simulation
 
 architectural_features:
-  - single-llm
+  - multi-agent
   - tool-use
   - iterative-loop
+  - debate-consensus
+  - artifact-versioning
 
-discipline: general
+discipline: finance
 
 inputs:
-  - research-topic
+  - research-area
+  - seed-idea
+  - prior-paper
 
 outputs:
-  - paper-draft
+  - watermarked-pdf
+  - code
+  - replication-data
 
-data_sources: []
+data_sources:
+  - crsp
+  - compustat
+  - fred
+  - user-provided
 
 knowledge_sources:
   - web-search
+  - prior-literature
 
 scores:
   lifecycle_coverage:
-    score: 1
-    note: "Covers ~4 stages; no formal data analysis, modeling, or referee simulation."
+    score: 3
+    note: "Covers ~10 stages including formal modeling, empirical analysis (--ext empirical), and referee simulation."
   autonomy_level:
-    score: 2
-    note: "Supervised agent — user provides topic and reviews output."
+    score: 3
+    note: "'Set up a project, launch Claude Code, Codex, or Gemini CLI, walk away.' Autonomous by design."
   architectural_transparency:
     score: 2
-    note: "Open-source code; prompts visible; architecture documentation modest."
+    note: "Pipeline stages documented in README; full agent-prompt internals require reading the template."
   inputs_supported:
-    score: 1
-    note: "Single input form (topic); no integration of private corpora or datasets."
+    score: 2
+    note: "Multiple variants (finance, macro), modes (--seed, --faithful, --manual, --light, empirical-first); empirical extension integrates external financial corpora."
   outputs_reproducibility:
-    score: 1
-    note: "Persists drafts; not aimed at reproducibility of generated content."
+    score: 2
+    note: "Per-project git repositories isolate outputs; sandboxed execution; watermarked PDF provenance."
   internal_evaluation:
-    score: 0
-    note: "No reported systematic evaluation of output quality."
+    score: 2
+    note: "In-pipeline adversarial gates (math-auditor, novelty-checker, simulated referees); companion benchmarks paper referenced."
   openness:
-    score: 3
-    note: "Open source on GitHub; reproducible setup."
+    score: 1
+    note: "Source on GitHub but under a restrictive 'Other' license — prior notice, AI-disclosure, watermark, non-commercial clauses all encumber reuse."
   maturity_traction:
     score: 1
-    note: "Single-developer research prototype."
-scored_on: "2026-05-14"
+    note: "Active development (last push 2026-05-18); single-developer / Institute for Automated Research; modest star count."
+
+scored_on: "2026-05-18"
 
 limitations:
-  - "Output quality unevaluated against external standards."
-  - "No data-analysis or empirical-modeling stages."
-  - "Limited literature integration."
+  - "Restrictive license: submission requires prior written notice; AI-disclosure mandatory; watermark removal terminates license; commercial use prohibited."
+  - "Designed for finance/macro/empirical-finance papers — portability to other empirical disciplines requires variant authoring."
+  - "Watermarking is non-cosmetic; detection methodology shared only with journal editors."
+  - "Subscription path (~$200/mo, ~$2/paper) recommended; pay-per-token path is ~$2,000/paper."
+  - "Sandbox depends on bubblewrap (Linux) or Seatbelt (macOS); Windows untested."
 
 related:
   - sakana-ai-scientist
   - e2er
+  - clo-author
+  - ape
 
 # ── Papers describing this project ─────────────────────
 papers:
-  - title: 'zeropaper companion: Autonomous research paper generation at scale'
+  - title: 'IAR-M-001: zeropaper companion paper'
     authors:
       - 'Aldea, A.'
     year: 2026
-    venue: 'SSRN working paper'
-    ssrn_id: '6687378'
-    url: 'https://ssrn.com/abstract=6687378'
+    venue: 'Institute for Automated Research working paper series'
+    url: 'https://instituteforautomatedresearch.org/papers/iar-m/iar-m-001'
 
 references: []

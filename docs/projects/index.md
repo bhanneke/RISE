@@ -48,7 +48,7 @@ sources.
 | [SurveyX](surveyx.md) | external | `literature` | 1 | 3 | 2 | 1 | 1 | 2 | 1 | 2 | general |
 | [Tongyi DeepResearch](tongyi-deepresearch.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 3 | 3 | 3 | general |
 | [ToolUniverse](tooluniverse.md) | external | `end-to-end` | 0 | 2 | 3 | 3 | 2 | 2 | 3 | 2 | biomedical |
-| [zeropaper](zeropaper.md) | external | `drafting` | 1 | 2 | 2 | 1 | 1 | 0 | 3 | 1 | general |
+| [zeropaper (Auto AI Research Template)](zeropaper.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 2 | 1 | 1 | finance |
 | [Zochi (Intology)](zochi.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 2 | computer-science |
 
 *Score columns: LC = lifecycle coverage, AUT = autonomy, ARC = architectural transparency, IN = inputs supported, OUT = outputs/reproducibility, EVAL = internal evaluation, OPEN = openness, MAT = maturity/traction. Scale 0–3. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
@@ -86,7 +86,7 @@ sources.
 - **[SurveyX](surveyx.md)** — An academic survey-automation system (arXiv:2502.14776) that generates domain-specific surveys from a paper title plus retrieval keywords.
 - **[Tongyi DeepResearch](tongyi-deepresearch.md)** — An agentic large language model purpose-built for long-horizon deep-information-seeking tasks (arXiv:2510.24701), shipped both as open weights (30.5B total / 3.3B active) and as inference code with ReAct and 'Heavy' (IterResearch) modes.
 - **[ToolUniverse](tooluniverse.md)** — A curated tool registry and MCP server (arXiv:2509.23426) that packages biomedical, chemical, and general scientific APIs into a uniform agent-callable surface.
-- **[zeropaper](zeropaper.md)** — An autonomous paper-writing pipeline that takes a research topic and produces a written paper with minimal user input.
+- **[zeropaper (Auto AI Research Template)](zeropaper.md)** — An autonomous research-paper pipeline that uses Claude Code, Codex, or Gemini CLI as the subagent dispatcher.
 - **[Zochi (Intology)](zochi.md)** — An end-to-end "artificial scientist" system from Intology, claimed to span hypothesis generation through to peer-reviewed publication.
 
 <!-- AUTO-GENERATED:projects-end -->
