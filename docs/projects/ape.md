@@ -1,8 +1,8 @@
 <!-- DO NOT EDIT — auto-generated from projects/landscape/ape.yml by scripts/build_indexes.py -->
 
-# APE — Automated Peer Evaluator
+# Project APE
 
-`external` · status: `active` · focus: `review` · discipline: `general` · started: 2026
+`external` · status: `active` · focus: `end-to-end` · discipline: `economics` · started: 2026
 
 **Project page:** <https://ape.socialcatalystlab.org/>
 
@@ -10,52 +10,62 @@
 
 ## Positioning
 
-A focused tool for automated peer evaluation of submitted papers, sitting at the *referee-simulation* stage of the RISE pipeline. Does not produce papers itself; consumes them and produces structured reviews.
+An autonomous system that generates empirical economic policy research papers end-to-end from publicly available data, then scores them via a TrueSkill tournament in which AI-generated papers compete head-to-head against peer-reviewed human benchmarks from AER and AEJ:Policy (judged by Gemini 3.1 Flash Lite). The motivating problem: "Most policies — probably millions of them globally — are never rigorously evaluated."
 
 ## Distinctive contribution
 
-Treats peer review as a first-class agentic capability with its own product surface, decoupled from upstream authoring. Provides a reusable evaluation interface that other RISE pipelines can route drafts through.
+*Combines* autonomous research generation with an explicit human-benchmark tournament — most catalog projects do one or the other. The TrueSkill ranking + AER/AEJ:Policy benchmark set is a reusable evaluation harness; everything (papers, code, data, failures) is published transparently. The project explicitly disclaims policy use: "None of the generated papers have been peer-reviewed and should not be used for evidence-based policy making."
 
 ## Evaluation scores
 
 | Dimension | Score (0–3) | Note |
 |---|:---:|---|
-| Lifecycle coverage | 0 | Single stage (referee simulation) only. |
-| Autonomy level | 2 | Supervised agent: user submits a paper and receives a structured review. |
-| Architectural transparency | 1 | Service homepage describes capability; internals not publicly documented in detail. |
-| Inputs supported | 1 | Accepts submitted papers; limited integration with external corpora. |
-| Outputs / reproducibility | 1 | Structured reports are persisted; not aimed at reproducibility across runs. |
-| Internal evaluation | 1 | Demonstration-level evaluation; no published systematic benchmark to date. |
-| Openness | 1 | Hosted service; source not publicly available at time of scoring. |
-| Maturity / traction | 1 | Active service; user-base scope unclear from public info. |
+| Lifecycle coverage | 3 | Eight stages from hypothesis through replication-verification; full end-to-end loop. |
+| Autonomy level | 3 | Generates papers autonomously without per-step human approval. |
+| Architectural transparency | 3 | Stated commitment: 'everything is public — papers, code, data, failures.' TrueSkill scoring + benchmark set are open. |
+| Inputs supported | 2 | Policy-question inputs; integrates public-data sources; uses AER / AEJ:Policy corpus as benchmark. |
+| Outputs / reproducibility | 3 | Replication-verification step: 'Checks whether code executes and outputs match.' Full artifact transparency by design. |
+| Internal evaluation | 3 | Tournament evaluation against peer-reviewed human-benchmark papers from top economics journals — strongest internal-eval design in the catalog. |
+| Openness | 3 | Fully open: papers, code, data, failures. |
+| Maturity / traction | 1 | Active hosted project in 2026; adoption / external use signals not yet clear. |
 
-*Scored on 2026-05-14. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
-**Pipeline stages:** `referee-simulation`
+**Pipeline stages:** `hypothesis-generation` `research-design` `data-acquisition` `data-analysis` `code-generation` `paper-drafting` `referee-simulation` `replication`
 
 
-**Architectural features:** `multi-agent` `tool-use` `rag-knowledge-base`
+**Architectural features:** `multi-agent` `tool-use` `artifact-versioning` `debate-consensus`
 
 
-**Inputs:** `submitted-paper`
+**Inputs:** `policy-question`
 
 
-**Outputs:** `referee-report` `structured-scores`
+**Outputs:** `paper` `code` `data` `tournament-ranking`
 
 
-**Knowledge sources:** `prior-reviews` `literature`
+**Data sources:** `public-policy-data`
+
+
+**Knowledge sources:** `aer` `aej-policy`
 
 
 ## Limitations
 
-- Single-stage coverage limits use as a standalone RISE system.
-- Closed implementation hampers reproducibility of the review process.
-- Dependence on a hosted service introduces availability risk.
+- Explicit author disclaimer that outputs should not be used for evidence-based policy making.
+- Tournament judge (Gemini 3.1 Flash Lite) may itself be biased — meta-evaluation question.
+- Economics-policy scope by design; portability to other empirical fields untested.
+- Maintainer identity (Social Catalyst Lab) and funding model not publicly detailed.
+
+## Related projects in this catalog
+
+- [`e2er`](e2er.md)
+- [`clo-author`](clo-author.md)
+- [`sakana-ai-scientist`](sakana-ai-scientist.md)
+- [`social-science-replicability`](social-science-replicability.md)
 
 ## Related references (literature catalog)
 
-- `gartenberg2026morebetter` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
-- `naddaf2025aipeer` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
-- `neurips2024checklist` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
+- Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
+- `cao2025aifinance` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))

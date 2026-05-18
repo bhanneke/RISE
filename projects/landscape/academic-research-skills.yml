@@ -1,0 +1,113 @@
+slug: academic-research-skills
+name: "Academic Research Skills (ARS)"
+type: external
+status: active
+url: "https://github.com/Imbad0202/academic-research-skills"
+maintainers:
+  - "Edward Cheng-I Wu"
+year_started: 2026
+
+positioning: >
+  A comprehensive Claude Code plugin suite (v3.9.0 at scoring date)
+  for the academic research pipeline: literature → write → review →
+  revise → finalize. Three sub-suites — Deep Research (13 agents),
+  Academic Paper (12 agents), Academic Paper Reviewer (7 agents) —
+  with Style Calibration, anti-leakage protocols, Semantic Scholar
+  API verification, VLM figure verification, and explicit human-in-
+  the-loop gates throughout.
+
+distinctive_contribution: >
+  Most-adopted Claude Code-native research plugin (9k+ stars) with
+  an explicit "AI as copilot, not pilot" design stance. v3.8
+  introduces a *claim-faithfulness audit pass*
+  (`ARS_CLAIM_AUDIT=1`) that fetches each cited source against
+  three-layer citation anchors and gate-blocks output on five
+  hallucination classes (claim-not-supported,
+  negative-constraint-violation, fabricated-reference, anchorless,
+  constraint-violation-uncited). This is the most operationally
+  serious anti-hallucination apparatus in the catalog.
+
+focus: end-to-end
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - debate-consensus
+  - human-in-loop
+  - tool-use
+  - rag-knowledge-base
+  - artifact-versioning
+
+discipline: general
+
+inputs:
+  - research-topic
+  - paper-draft
+  - reviewer-comments
+
+outputs:
+  - paper-pdf
+  - paper-docx
+  - literature-review
+  - reviewer-report
+  - revision-plan
+
+data_sources:
+  - user-provided
+
+knowledge_sources:
+  - semantic-scholar
+  - arxiv
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Five stages spanning literature through review; less coverage on empirical analysis / modeling than full-pipeline economics tools."
+  autonomy_level:
+    score: 1
+    note: "Explicit copilot stance: 'AI is your copilot, not the pilot.' Human approval at every stage gate."
+  architectural_transparency:
+    score: 3
+    note: "Detailed architecture docs (docs/ARCHITECTURE.md), public failure-mode reference, calibration thresholds (FNR<0.15, FPR<0.10) published in spec."
+  inputs_supported:
+    score: 3
+    note: "Topic / draft / reviewer-comment inputs; Pandoc + tectonic for DOCX/PDF; multiple installation paths (plugin, project skills, global skills, claude.ai Project)."
+  outputs_reproducibility:
+    score: 3
+    note: "Three-layer citation anchors enable claim-level audits; replication packages; versioned releases."
+  internal_evaluation:
+    score: 3
+    note: "Calibration mode with gold-set FNR/FPR measurement; cross-model verification (`ARS_CROSS_MODEL`); engages published failure-mode literature directly."
+  openness:
+    score: 2
+    note: "CC BY-NC 4.0 (non-commercial); sponsor-supported; Codex CLI sibling distribution available."
+  maturity_traction:
+    score: 3
+    note: "9.3k+ stars; v3.9.0 with multi-version release cadence; English + Traditional Chinese docs; multi-IDE support."
+scored_on: "2026-05-18"
+
+limitations:
+  - "Non-commercial license restricts deployment options."
+  - "Heavy on the writing/review block; lighter on empirical data analysis or formal modeling."
+  - "Quality of claim-audit gating depends on user-supplied calibration set."
+  - "Author's substantive scholarly background is not disclosed in repo metadata; project is engineering-led rather than discipline-led."
+
+related:
+  - clo-author
+  - e2er
+  - agent-laboratory
+  - reviewer
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No project-describing paper located; project cites Lu et al. 2026 (Nature) on AI Scientist failure modes and Zhao et al. 2026 (arXiv:2605.07723) on citation hallucinations as motivating works.
+
+references:
+  - ji2023hallucination
+  - schick2023toolformer
+  - wu2025agenticreasoning

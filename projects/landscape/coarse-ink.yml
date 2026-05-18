@@ -1,5 +1,5 @@
 slug: coarse-ink
-name: "coarse.ink"
+name: "Coarse (coarse.ink)"
 type: external
 status: active
 url: "https://coarse.ink/"
@@ -8,21 +8,26 @@ maintainers:
 year_started: 2026
 
 positioning: >
-  Research-workflow tooling that supports upstream stages of writing
-  and project management. Sits in the research-design / drafting
-  portion of the RISE pipeline as a workspace rather than an autonomous
-  pipeline.
+  A web-based AI peer-review service: users upload academic papers
+  (up to 50 MB) and receive AI-generated referee reports with 20+
+  detailed comments. Operates in two modes — web-based using
+  user-supplied OpenRouter API keys, or local processing via Claude
+  Code / Codex / Gemini CLI subscriptions. Sits squarely in the
+  referee-simulation stage of the RISE pipeline.
 
 distinctive_contribution: >
-  A workflow-shaped product surface for academic writing — closer to a
-  research IDE than to a chat or single-step assistant.
+  Open-source (MIT) and explicitly anti-commercial in framing —
+  "Academic peer review runs on unpaid academic labor. Others
+  decided to make a business out of that. We didn't like that." The
+  site reports a blind self-evaluation against refine.ink, Stanford
+  Agentic Reviewer, and reviewer3.com claiming higher coverage,
+  specificity, and depth. Privacy-by-design: API keys remain in the
+  user's browser tab and clear on close.
 
-focus: drafting
+focus: review
 
 pipeline_stages:
-  - research-design
-  - paper-drafting
-  - revision-editing
+  - referee-simulation
 
 architectural_features:
   - tool-use
@@ -31,11 +36,11 @@ architectural_features:
 discipline: general
 
 inputs:
-  - research-idea
-  - paper-draft
+  - submitted-paper-pdf
+  - reviewer-focus-note
 
 outputs:
-  - paper-draft
+  - referee-report
 
 data_sources: []
 
@@ -43,40 +48,46 @@ knowledge_sources: []
 
 scores:
   lifecycle_coverage:
-    score: 1
-    note: "Three drafting-adjacent stages."
-  autonomy_level:
-    score: 1
-    note: "Copilot mode; author drives."
-  architectural_transparency:
     score: 0
-    note: "Commercial product; internals not documented publicly."
+    note: "Single stage (referee simulation)."
+  autonomy_level:
+    score: 2
+    note: "Supervised: user uploads paper and receives a report; optional 'reviewer focus' notes steer emphasis."
+  architectural_transparency:
+    score: 2
+    note: "Open source under MIT; multiple back-end models exposed (Claude, GPT-5, Gemini, DeepSeek). Internal orchestration not deeply documented in marketing."
   inputs_supported:
     score: 1
-    note: "Idea + draft inputs; limited external corpus integration."
+    note: "PDF + optional focus note; no integration of literature corpora or prior reviews."
   outputs_reproducibility:
     score: 1
-    note: "Drafts persist; reproducibility not a design goal."
+    note: "Reports are persisted client-side; not deterministic across runs by design (different model choices)."
   internal_evaluation:
-    score: 0
-    note: "No public systematic evaluation."
+    score: 1
+    note: "Self-reported blind evaluation vs. refine.ink, Stanford Agentic Reviewer, reviewer3.com; no third-party benchmark."
   openness:
-    score: 0
-    note: "Closed commercial product."
+    score: 3
+    note: "MIT-licensed; BYOK (bring-your-own-key) model; transparent pricing (~under $2/review with OpenRouter)."
   maturity_traction:
     score: 1
-    note: "Active commercial offering; adoption scope unclear from public info."
-scored_on: "2026-05-14"
+    note: "Active hosted service in 2026; user-base scope not publicly disclosed."
+
+scored_on: "2026-05-18"
 
 limitations:
-  - "Closed implementation."
-  - "Limited coverage of empirical / analysis stages."
+  - "Single-stage tool; needs upstream paper provenance."
+  - "Quality varies with chosen back-end model."
+  - "Self-evaluation against competitors not independently audited."
 
 related:
   - refine-ink
+  - ape
+  - marg
+  - reviewer
 
 # ── Papers describing this project ─────────────────────
 papers: []  # No project-describing paper located.
 
 references:
-  - riemer2024styleengines
+  - gartenberg2026morebetter
+  - naddaf2025aipeer

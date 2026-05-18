@@ -1,0 +1,120 @@
+slug: clo-author
+name: "Clo-Author"
+type: external
+status: active
+url: "https://github.com/hugosantanna/clo-author"
+maintainers:
+  - "Hugo Sant'Anna (University of Alabama at Birmingham, Economics)"
+year_started: 2026
+
+positioning: >
+  A Claude Code scaffold for empirical economics research, spanning
+  literature review through journal submission. Eighteen agents
+  organized as worker-critic pairs (e.g., Strategist + strategist-
+  critic, Coder + coder-critic) with thirteen named pipeline commands
+  from `/discover` and `/strategize` through `/write`, `/review`,
+  `/revise`, `/talk`, and `/submit`. Targets the full inputs →
+  knowledge production → outputs arc of the RISE diagram with a
+  domain-specific focus on applied economics.
+
+distinctive_contribution: >
+  Worker-critic pair architecture as a first-class design principle:
+  every creator agent has a paired critic that cannot edit files,
+  with 3-round escalation when they disagree. Built-in peer-review
+  simulation with intellectual-disposition reviewers (Structuralist,
+  Credibility, Measurement, Policy, Theory, Skeptic) weighted by
+  journal culture and FATAL / ADDRESSABLE / TASTE classification of
+  comments. Direct sibling to [`e2er`](e2er.md) but distributed as
+  a forkable Claude Code template rather than a Docker stack.
+
+focus: end-to-end
+
+pipeline_stages:
+  - rq-formulation
+  - hypothesis-generation
+  - literature-discovery
+  - literature-synthesis
+  - research-design
+  - data-acquisition
+  - data-analysis
+  - formal-modeling
+  - code-generation
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+  - dissemination
+
+architectural_features:
+  - multi-agent
+  - debate-consensus
+  - human-in-loop
+  - tool-use
+  - persistent-memory
+  - artifact-versioning
+
+discipline: economics
+
+inputs:
+  - research-topic
+  - research-question
+  - referee-report
+
+outputs:
+  - paper-latex
+  - code
+  - slides
+  - replication-package
+  - referee-reports
+
+data_sources:
+  - user-provided
+
+knowledge_sources:
+  - literature
+
+scores:
+  lifecycle_coverage:
+    score: 3
+    note: "Thirteen stages including dissemination (`/submit`) — broadest coverage in catalog after E2ER."
+  autonomy_level:
+    score: 2
+    note: "Supervised: researcher approves plans before execution; worker-critic disagreements escalate to human after 3 rounds."
+  architectural_transparency:
+    score: 3
+    note: "Skill, agent, and command definitions are plain markdown in `.claude/`; full guide at hugosantanna.github.io/clo-author/."
+  inputs_supported:
+    score: 2
+    note: "Topic / question / referee-report inputs; user provides data; multi-language analysis (R, Python, Julia)."
+  outputs_reproducibility:
+    score: 2
+    note: "Generates replication packages with `/submit`; LaTeX paper is single source of truth; quality gate (>=80/100) before ship."
+  internal_evaluation:
+    score: 2
+    note: "Built-in peer-review simulation with weighted reviewer dispositions; no published external benchmark yet."
+  openness:
+    score: 1
+    note: "Source is public on GitHub but no declared open-source license — reuse rights are uncertain."
+  maturity_traction:
+    score: 1
+    note: "Created 2026-02; 193 stars; very active development through May 2026; single-author project at this date."
+scored_on: "2026-05-18"
+
+limitations:
+  - "No declared open-source license; reuse rights uncertain."
+  - "Economics-focused by default; portability to other fields requires customizing domain-profile + journal profiles."
+  - "Depends on Claude Code; not a fully local solution."
+  - "Quality gates and review simulation are internal; no third-party validation reported."
+
+related:
+  - e2er
+  - agent-laboratory
+  - reviewer
+  - social-science-replicability
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No project-describing paper located.
+
+references:
+  - wu2025agenticreasoning
+  - cunningham2025claudecode
+  - eberhardt2025claudecode

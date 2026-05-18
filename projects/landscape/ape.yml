@@ -1,5 +1,5 @@
 slug: ape
-name: "APE — Automated Peer Evaluator"
+name: "Project APE"
 type: external
 status: active
 url: "https://ape.socialcatalystlab.org/"
@@ -8,80 +8,103 @@ maintainers:
 year_started: 2026
 
 positioning: >
-  A focused tool for automated peer evaluation of submitted papers,
-  sitting at the *referee-simulation* stage of the RISE pipeline. Does
-  not produce papers itself; consumes them and produces structured
-  reviews.
+  An autonomous system that generates empirical economic policy
+  research papers end-to-end from publicly available data, then
+  scores them via a TrueSkill tournament in which AI-generated papers
+  compete head-to-head against peer-reviewed human benchmarks from
+  AER and AEJ:Policy (judged by Gemini 3.1 Flash Lite). The motivating
+  problem: "Most policies — probably millions of them globally —
+  are never rigorously evaluated."
 
 distinctive_contribution: >
-  Treats peer review as a first-class agentic capability with its own
-  product surface, decoupled from upstream authoring. Provides a
-  reusable evaluation interface that other RISE pipelines can route
-  drafts through.
+  *Combines* autonomous research generation with an explicit
+  human-benchmark tournament — most catalog projects do one or the
+  other. The TrueSkill ranking + AER/AEJ:Policy benchmark set is a
+  reusable evaluation harness; everything (papers, code, data,
+  failures) is published transparently. The project explicitly
+  disclaims policy use: "None of the generated papers have been
+  peer-reviewed and should not be used for evidence-based policy
+  making."
 
-focus: review
+focus: end-to-end
 
 pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - data-acquisition
+  - data-analysis
+  - code-generation
+  - paper-drafting
   - referee-simulation
+  - replication
 
 architectural_features:
   - multi-agent
   - tool-use
-  - rag-knowledge-base
+  - artifact-versioning
+  - debate-consensus
 
-discipline: general
+discipline: economics
 
 inputs:
-  - submitted-paper
+  - policy-question
 
 outputs:
-  - referee-report
-  - structured-scores
+  - paper
+  - code
+  - data
+  - tournament-ranking
 
-data_sources: []
+data_sources:
+  - public-policy-data
 
 knowledge_sources:
-  - prior-reviews
-  - literature
+  - aer
+  - aej-policy
 
 scores:
   lifecycle_coverage:
-    score: 0
-    note: "Single stage (referee simulation) only."
+    score: 3
+    note: "Eight stages from hypothesis through replication-verification; full end-to-end loop."
   autonomy_level:
-    score: 2
-    note: "Supervised agent: user submits a paper and receives a structured review."
+    score: 3
+    note: "Generates papers autonomously without per-step human approval."
   architectural_transparency:
-    score: 1
-    note: "Service homepage describes capability; internals not publicly documented in detail."
+    score: 3
+    note: "Stated commitment: 'everything is public — papers, code, data, failures.' TrueSkill scoring + benchmark set are open."
   inputs_supported:
-    score: 1
-    note: "Accepts submitted papers; limited integration with external corpora."
+    score: 2
+    note: "Policy-question inputs; integrates public-data sources; uses AER / AEJ:Policy corpus as benchmark."
   outputs_reproducibility:
-    score: 1
-    note: "Structured reports are persisted; not aimed at reproducibility across runs."
+    score: 3
+    note: "Replication-verification step: 'Checks whether code executes and outputs match.' Full artifact transparency by design."
   internal_evaluation:
-    score: 1
-    note: "Demonstration-level evaluation; no published systematic benchmark to date."
+    score: 3
+    note: "Tournament evaluation against peer-reviewed human-benchmark papers from top economics journals — strongest internal-eval design in the catalog."
   openness:
-    score: 1
-    note: "Hosted service; source not publicly available at time of scoring."
+    score: 3
+    note: "Fully open: papers, code, data, failures."
   maturity_traction:
     score: 1
-    note: "Active service; user-base scope unclear from public info."
-scored_on: "2026-05-14"
+    note: "Active hosted project in 2026; adoption / external use signals not yet clear."
+
+scored_on: "2026-05-18"
 
 limitations:
-  - "Single-stage coverage limits use as a standalone RISE system."
-  - "Closed implementation hampers reproducibility of the review process."
-  - "Dependence on a hosted service introduces availability risk."
+  - "Explicit author disclaimer that outputs should not be used for evidence-based policy making."
+  - "Tournament judge (Gemini 3.1 Flash Lite) may itself be biased — meta-evaluation question."
+  - "Economics-policy scope by design; portability to other empirical fields untested."
+  - "Maintainer identity (Social Catalyst Lab) and funding model not publicly detailed."
 
-related: []
+related:
+  - e2er
+  - clo-author
+  - sakana-ai-scientist
+  - social-science-replicability
 
 # ── Papers describing this project ─────────────────────
 papers: []  # No project-describing paper located.
 
 references:
-  - gartenberg2026morebetter
-  - naddaf2025aipeer
-  - neurips2024checklist
+  - wu2025agenticreasoning
+  - cao2025aifinance

@@ -1,5 +1,5 @@
 slug: refine-ink
-name: "refine.ink"
+name: "Refine (refine.ink)"
 type: external
 status: active
 url: "https://www.refine.ink/"
@@ -8,31 +8,39 @@ maintainers:
 year_started: 2026
 
 positioning: >
-  Academic prose tooling focused on the revision/editing stage of the
-  RISE pipeline. Does not produce papers end-to-end; consumes drafts
-  and produces refined prose.
+  A commercial AI peer-review service that produces reviewer-grade
+  feedback on academic papers within ~20–40 minutes by running
+  multi-hour parallel compute jobs (~2+ hours per review). Targets
+  four error classes: accuracy (statistical / methodological),
+  mathematical reasoning (proof gaps, edge cases), internal
+  consistency (text↔tables↔citations), and general rigor. Sits in
+  the referee-simulation stage of the RISE pipeline.
 
 distinctive_contribution: >
-  Targeted product surface for academic-style revision, distinct from
-  general-purpose AI writing assistants; positions itself within the
-  scholarly-writing workflow rather than as a generic chat tool.
+  Positions itself as enterprise-grade with explicit security and
+  privacy commitments (SOC 2 + ISO 27001 in progress, zero-retention
+  contracts, papers never used for training). Markets adoption by
+  Oxford / Stanford / Yale / MIT / Caltech / Cambridge / Brown /
+  OpenAI researchers. Closed-source commercial offering; first
+  document free.
 
-focus: revision
+focus: review
 
 pipeline_stages:
-  - revision-editing
+  - referee-simulation
 
 architectural_features:
-  - single-llm
+  - multi-agent
   - tool-use
 
 discipline: general
 
 inputs:
-  - paper-draft
+  - submitted-paper-pdf
 
 outputs:
-  - revised-prose
+  - referee-report
+  - issue-list
 
 data_sources: []
 
@@ -41,39 +49,46 @@ knowledge_sources: []
 scores:
   lifecycle_coverage:
     score: 0
-    note: "Single stage (revision-editing)."
+    note: "Single stage (referee simulation)."
   autonomy_level:
-    score: 1
-    note: "Copilot: author reviews each suggestion."
+    score: 2
+    note: "Supervised: user uploads, system returns a structured review."
   architectural_transparency:
-    score: 0
-    note: "Commercial product; internals not publicly documented."
+    score: 1
+    note: "Marketing-level descriptions only; internals not publicly documented."
   inputs_supported:
     score: 1
-    note: "Accepts drafts; limited external integration."
+    note: "PDF inputs; no integration of literature corpora or co-author context."
   outputs_reproducibility:
     score: 1
-    note: "Persists revisions; not designed for run-to-run determinism."
+    note: "Reports persisted to user account; not designed for byte-level reproducibility."
   internal_evaluation:
-    score: 0
-    note: "No public systematic evaluation."
+    score: 1
+    note: "Marketing claims of reviewer-grade quality; no publicly verifiable benchmark."
   openness:
     score: 0
-    note: "Closed commercial product."
+    note: "Closed-source commercial product."
   maturity_traction:
-    score: 1
-    note: "Active commercial offering; adoption scope unclear from public info."
-scored_on: "2026-05-14"
+    score: 2
+    note: "Active commercial offering with named institutional adoption signals; user-base size not disclosed."
+
+scored_on: "2026-05-18"
 
 limitations:
-  - "Single-stage tool; not a RISE system on its own."
-  - "Closed implementation; cannot be audited or extended."
+  - "Closed-source; cannot be audited, extended, or self-hosted."
+  - "Per-review compute cost passed to user via subscription; pricing not transparent on landing page."
+  - "Marketing-driven adoption claims; no published systematic comparison against alternatives."
+  - "Targets the same review niche as coarse.ink and reviewer3.com; differentiation is per-review compute intensity."
 
 related:
   - coarse-ink
+  - ape
+  - marg
+  - reviewer
 
 # ── Papers describing this project ─────────────────────
 papers: []  # No project-describing paper located.
 
 references:
-  - riemer2024styleengines
+  - gartenberg2026morebetter
+  - naddaf2025aipeer
