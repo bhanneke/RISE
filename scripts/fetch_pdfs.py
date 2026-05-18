@@ -42,17 +42,66 @@ BROWSER_UA = (
 )
 
 
+def _read_field_value(body: str, start: int) -> tuple[str, int]:
+    """Read a brace- or quote-delimited value starting at position start.
+    Handles nested braces. Returns (value, end_position)."""
+    if start >= len(body):
+        return "", start
+    if body[start] == "{":
+        depth = 1
+        i = start + 1
+        while i < len(body) and depth > 0:
+            if body[i] == "{":
+                depth += 1
+            elif body[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    return body[start + 1 : i], i + 1
+            i += 1
+        return body[start + 1 :], len(body)
+    elif body[start] == '"':
+        end = body.find('"', start + 1)
+        if end == -1:
+            return body[start + 1 :], len(body)
+        return body[start + 1 : end], end + 1
+    else:
+        end = start
+        while end < len(body) and body[end] not in ",\n":
+            end += 1
+        return body[start:end].strip(), end
+
+
 def parse_bib() -> list[dict[str, str]]:
-    """Parse references.bib into a list of dicts."""
+    """Parse references.bib into a list of dicts (brace-aware)."""
     text = BIB.read_text(encoding="utf-8")
     entries = []
-    for m in re.finditer(r"@(\w+)\{([^,]+),(.+?)\n\}", text, re.DOTALL):
-        kind, citekey, body = m.group(1), m.group(2).strip(), m.group(3)
+    for entry_match in re.finditer(r"@(\w+)\s*\{\s*([^,\s]+)\s*,", text):
+        kind, citekey = entry_match.group(1), entry_match.group(2)
+        body_start = entry_match.end()
+        depth, i = 1, body_start
+        while i < len(text) and depth > 0:
+            if text[i] == "{":
+                depth += 1
+            elif text[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    break
+            i += 1
+        body = text[body_start:i]
         fields = {"_kind": kind, "_citekey": citekey}
-        for fm in re.finditer(
-            r"^\s*(\w+)\s*=\s*[\{\"]([^}\"\n]+)", body, re.MULTILINE
-        ):
-            fields[fm.group(1)] = fm.group(2).strip().strip(",")
+        j = 0
+        while j < len(body):
+            fm = re.match(r"\s*(\w+)\s*=\s*", body[j:])
+            if not fm:
+                j += 1
+                continue
+            name = fm.group(1).lower()
+            val_start = j + fm.end()
+            value, val_end = _read_field_value(body, val_start)
+            fields[name] = re.sub(r"\s+", " ", value).strip()
+            j = val_end
+            while j < len(body) and body[j] in ", \n\t":
+                j += 1
         entries.append(fields)
     return entries
 
@@ -276,12 +325,51 @@ def main():
         print(f"{r['status']:8} {r['source']:20} {r['detail']}")
         time.sleep(0.5)  # be polite
 
-    # Write log
+    # Write log with full searchable info
     if not args.dry_run:
+        bib_by_ck = {e["_citekey"]: e for e in parse_bib()}
         with LOG.open("w", encoding="utf-8", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=["citekey", "status", "source", "detail"])
+            w = csv.DictWriter(f, fieldnames=[
+                "citekey", "status", "source", "title", "first_author", "year",
+                "venue", "doi", "arxiv_id", "publisher_url", "scholar_search_url",
+                "detail",
+            ])
             w.writeheader()
-            w.writerows(results)
+            for r in results:
+                e = bib_by_ck.get(r["citekey"], {})
+                title = e.get("title", "").replace("{", "").replace("}", "")
+                first_author = (e.get("author", "") or "").split(" and ")[0]
+                year = e.get("year", "")
+                venue = (
+                    e.get("journal") or e.get("booktitle") or
+                    e.get("howpublished") or e.get("institution") or
+                    ("arXiv" if e.get("eprint") else "")
+                )
+                doi = e.get("doi", "")
+                arxiv_id = e.get("eprint", "")
+                pub_url = (
+                    f"https://doi.org/{doi}" if doi else
+                    (f"https://arxiv.org/abs/{arxiv_id}" if arxiv_id else
+                     e.get("url", ""))
+                )
+                # Build a Google Scholar search URL — useful when DOI is paywalled
+                scholar = "https://scholar.google.com/scholar?q=" + urllib.parse.quote(
+                    f'"{title}"' if title else r["citekey"]
+                )
+                w.writerow({
+                    "citekey": r["citekey"],
+                    "status": r["status"],
+                    "source": r["source"],
+                    "title": title,
+                    "first_author": first_author,
+                    "year": year,
+                    "venue": venue,
+                    "doi": doi,
+                    "arxiv_id": arxiv_id,
+                    "publisher_url": pub_url,
+                    "scholar_search_url": scholar,
+                    "detail": r["detail"],
+                })
 
     ok = sum(1 for r in results if r["status"] == "ok")
     cached = sum(1 for r in results if r["status"] == "exists")
