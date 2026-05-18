@@ -12,3 +12,9 @@ site/
 *.egg-info/
 .python-version
 .audit/
+
+# Fetched PDFs (large binaries; populated by scripts/fetch_pdfs.py)
+papers/pdfs/
+
+# Built Zenodo release bundles
+dist/
