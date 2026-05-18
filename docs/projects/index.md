@@ -21,6 +21,7 @@ sources.
 | [Academic Research Skills (ARS)](academic-research-skills.md) | external | `end-to-end` | 2 | 1 | 3 | 3 | 3 | 3 | 2 | 3 | general |
 | [Agent Laboratory](agent-laboratory.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 3 | 3 | computer-science |
 | [Project APE](ape.md) | external | `end-to-end` | 3 | 3 | 3 | 2 | 3 | 3 | 3 | 1 | economics |
+| [ARIS (Auto-Research-In-Sleep)](aris.md) | external | `end-to-end` | 3 | 3 | 3 | 3 | 2 | 3 | 3 | 3 | computer-science |
 | [AstaBench (AI2)](asta-bench.md) | external | `end-to-end` | 0 | 2 | 3 | 3 | 3 | 2 | 3 | 2 | general |
 | [AutoSurvey](autosurvey.md) | external | `literature` | 1 | 3 | 2 | 1 | 2 | 3 | 1 | 1 | general |
 | [Aviary (FutureHouse)](aviary.md) | external | `end-to-end` | 0 | 2 | 3 | 2 | 3 | 2 | 3 | 2 | general |
@@ -59,6 +60,7 @@ sources.
 - **[Academic Research Skills (ARS)](academic-research-skills.md)** — A comprehensive Claude Code plugin suite (v3.9.0 at scoring date) for the academic research pipeline: literature → write → review → revise → finalize.
 - **[Agent Laboratory](agent-laboratory.md)** — An end-to-end autonomous research workflow (arXiv:2501.04227) that guides a research idea through three phases — literature review, experimentation, and report writing — with specialized LLM-driven agents and external tools (arXiv, Hugging Face, Python, LaTeX).
 - **[Project APE](ape.md)** — An autonomous system that generates empirical economic policy research papers end-to-end from publicly available data, then scores them via a TrueSkill tournament in which AI-generated papers compete head-to-head against peer-reviewed human benchmarks from AER and AEJ:Policy (judged by Gemini 3.1 Flash Lite).
+- **[ARIS (Auto-Research-In-Sleep)](aris.md)** — An open-source research harness for autonomous ML research (arXiv:2605.03042) built around *cross-model adversarial collaboration*: an executor model drives forward progress while a reviewer from a different model family critiques intermediate artifacts and requests revisions.
 - **[AstaBench (AI2)](asta-bench.md)** — An evaluation framework from AI2 for measuring scientific-research abilities of AI agents.
 - **[AutoSurvey](autosurvey.md)** — A NeurIPS 2024 framework (arXiv:2406.10252) for automatically generating comprehensive literature surveys from a topic and a paper database.
 - **[Aviary (FutureHouse)](aviary.md)** — A gymnasium for defining custom language-agent environments (arXiv:2412.21154), with pre-built environments for math, general knowledge, biological sequences, scientific literature search, and protein stability.

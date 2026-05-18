@@ -1,0 +1,142 @@
+slug: aris
+name: "ARIS (Auto-Research-In-Sleep)"
+type: external
+status: active
+url: "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+maintainers:
+  - "Ruofeng Yang"
+  - "Yongcan Li"
+  - "Shuai Li"
+year_started: 2026
+
+positioning: >
+  An open-source research harness for autonomous ML research
+  (arXiv:2605.03042) built around *cross-model adversarial
+  collaboration*: an executor model drives forward progress while a
+  reviewer from a different model family critiques intermediate
+  artifacts and requests revisions. Ships as 74+ Markdown-only
+  `SKILL.md` files plus an optional standalone CLI (ARIS-Code), with
+  the explicit design stance that the harness is a *methodology*,
+  not a platform, portable across Claude Code, Codex CLI, Cursor,
+  Trae, Antigravity, Copilot CLI, OpenClaw, Windsurf, and custom
+  agents.
+
+distinctive_contribution: >
+  Treats *long-running plausible-unsupported-success* as the central
+  failure mode of autonomous research and addresses it by mandating
+  cross-model review as the default (executor and reviewer from
+  different model families, e.g., Claude Code + Codex MCP at GPT-5.4
+  xhigh, or MiniMax-M2.7 + GLM-5). Three-stage evidence verification,
+  five-pass scientific editing pipeline, mathematical-proof checks,
+  visual PDF inspection, and a persistent *Research Wiki* (papers /
+  ideas / experiments / claims + relationship graph). Notably most-
+  starred (9.8k+) Claude-Code-native research harness in the catalog.
+
+focus: end-to-end
+
+pipeline_stages:
+  - rq-formulation
+  - hypothesis-generation
+  - literature-discovery
+  - literature-synthesis
+  - research-design
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+  - dissemination
+
+architectural_features:
+  - multi-agent
+  - debate-consensus
+  - human-in-loop
+  - tool-use
+  - rag-knowledge-base
+  - persistent-memory
+  - iterative-loop
+  - artifact-versioning
+
+discipline: computer-science
+
+inputs:
+  - research-direction
+  - prior-paper
+  - base-repo
+  - reviewer-comments
+
+outputs:
+  - paper
+  - code
+  - figures
+  - rebuttal
+  - slides
+  - research-wiki
+
+data_sources:
+  - user-provided
+
+knowledge_sources:
+  - arxiv
+  - semantic-scholar
+  - openalex
+  - research-wiki
+
+scores:
+  lifecycle_coverage:
+    score: 3
+    note: "11 stages including rebuttal mode (responses to reviewer comments) and conference-talk pipeline."
+  autonomy_level:
+    score: 3
+    note: "'Wake up to find your paper scored, weaknesses identified, experiments run, and narrative rewritten.'"
+  architectural_transparency:
+    score: 3
+    note: "Open under MIT; arXiv technical report (2605.03042); every skill is plain Markdown; AGENT_GUIDE.md for LLM consumption."
+  inputs_supported:
+    score: 3
+    note: "Multiple modes (basic, targeted-improvement with `ref paper` + `base repo`, rebuttal); 5 workflows; broad provider support."
+  outputs_reproducibility:
+    score: 2
+    note: "Persistent Research Wiki + per-project artifacts; non-determinism intrinsic to LLM execution."
+  internal_evaluation:
+    score: 3
+    note: "Cross-model adversarial review IS the evaluation harness; three-stage evidence verification + claim audit + math-proof checks + visual PDF inspection; 5-round Codex MCP cross-review reported in v0.4.11 release notes."
+  openness:
+    score: 3
+    note: "MIT-licensed; pure-Markdown skills (no framework lock-in); standalone CLI; multi-IDE adaptations documented; supports free-tier ModelScope path."
+  maturity_traction:
+    score: 3
+    note: "9.8k+ stars, Hugging Face Daily Paper #1, featured in awesome-agent-skills, 7-release polish sequence in May 2026; active community."
+
+scored_on: "2026-05-18"
+
+limitations:
+  - "ML-research orientation; portability to empirical economics or biomedical research requires skill rewriting."
+  - "Cross-model design requires keys for two model families; single-key fallback exists but degrades the adversarial property."
+  - "Long histories (Research Wiki) can grow large — periodic compaction is the user's responsibility."
+  - "ARIS-Code CLI is Rust-based and binary-distributed; auditing the runtime requires reading non-trivial code."
+
+related:
+  - e2er
+  - clo-author
+  - agent-laboratory
+  - sakana-ai-scientist
+  - academic-research-skills
+  - zeropaper
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration'
+    authors:
+      - 'Yang, R.'
+      - 'Li, Y.'
+      - 'Li, S.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2605.03042'
+
+references:
+  - wu2025agenticreasoning
+  - schick2023toolformer
+  - ji2023hallucination
+  - matton2025walkthetalk
