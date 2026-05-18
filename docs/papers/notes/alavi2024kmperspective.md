@@ -16,21 +16,20 @@ themes:
 methods:
   - conceptual
 relates_to_projects: []
-status: queued
+status: skimmed
 ---
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+Revisiting Alavi and Leidner (2001) as a conceptual lens, the editorial examines GenAI's organizational implications across knowledge creation, storage, transfer, and application. The authors note that GenAI enhances information processing and learning but introduces risks such as AI bias, reduced socialization, and potential marginalization of junior knowledge workers; in storage and retrieval it changes how employees interact with KM systems and raises questions about balancing tacit and AI-generated explicit knowledge; in transfer it affects training and learning culture but risks over-reliance and sensitive-information disclosure; in application it boosts productivity and innovation but raises issues of misapplication, IP, and ethics. They argue for a balanced integration of GenAI into KM that harmonizes its capabilities with human insights.
 
 ## Contribution
 
-*Pending.*
+Applies the four-process KM framework (creation, storage/retrieval, transfer, application) to GenAI, identifying opportunities and risks in each, and argues for a balanced KM integration that combines GenAI capabilities with human insight and ethical responsibility.
 
 ## Method
 
-*Pending.*
+Editorial; conceptual analysis using the Alavi and Leidner (2001) KM framework as the lens. No empirical evaluation reported.
 
 ## Relevance to RISE
 
@@ -38,8 +37,8 @@ Alavi and Leidner — foundational KM scholars — frame GenAI through the KM le
 
 ## Critique / open questions
 
-*Pending.*
+Conceptual editorial without empirical study; the proposed balanced-integration prescription is normative and not benchmarked against organizational outcomes.
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

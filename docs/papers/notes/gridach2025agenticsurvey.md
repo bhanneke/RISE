@@ -22,21 +22,20 @@ relates_to_projects:
   - agent-laboratory
   - robin
   - kosmos
-status: queued
+status: skimmed
 ---
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+The authors survey Agentic AI for scientific discovery — AI systems capable of reasoning, planning, and autonomous decision-making — and how they are transforming literature review, hypothesis generation, experimentation, and analysis. They categorize existing systems and tools and highlight progress across chemistry, biology, and materials science. They also discuss key evaluation metrics, implementation frameworks, and commonly used datasets, and address challenges such as literature-review automation, system reliability, and ethical concerns, outlining future directions emphasizing human-AI collaboration and improved system calibration.
 
 ## Contribution
 
-*Pending.*
+Provides a comprehensive survey and categorization of Agentic AI systems for scientific discovery, alongside an overview of evaluation metrics, implementation frameworks, datasets, and open challenges and research directions.
 
 ## Method
 
-*Pending.*
+Survey paper; literature review covering systems and tools across chemistry, biology, and materials science. No new empirical experiments reported.
 
 ## Relevance to RISE
 
@@ -44,8 +43,8 @@ Survey of agentic-AI systems for scientific discovery, with explicit taxonomy of
 
 ## Critique / open questions
 
-*Pending.*
+Survey scope concentrates on chemistry, biology, and materials science; the abstract does not report a systematic search protocol or coverage of information-systems / social-science agentic research, limiting cross-domain claims.
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

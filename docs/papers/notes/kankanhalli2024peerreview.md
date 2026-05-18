@@ -17,21 +17,20 @@ relates_to_projects:
   - ape
   - reviewer
   - marg
-status: queued
+status: skimmed
 ---
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+Kankanhalli notes that generative AI is rapidly impacting IS work, and that peer review remains the primary quality control for research articles. Given high submission volumes and limited reviewer resources, she argues there is a pressing need to consider AI augmentation of review, while acknowledging concerns about bias, hallucinations, and ethics. The piece offers her views on how AI can augment and potentially automate the review process, the pitfalls of doing so, and implications for IS research and peer review practice.
 
 ## Contribution
 
-*Pending.*
+Articulates a perspective on how AI may augment or automate peer review, identifies the associated pitfalls, and draws out implications for IS research and review practice.
 
 ## Method
 
-*Pending.*
+Opinion/editorial piece; no empirical evaluation reported in the abstract.
 
 ## Relevance to RISE
 
@@ -39,8 +38,8 @@ JAIS editorial directly engaging how the journal handles GenAI in submissions an
 
 ## Critique / open questions
 
-*Pending.*
+Single-author opinion piece without empirical evaluation; claims about pitfalls and implications are not benchmarked against data.
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

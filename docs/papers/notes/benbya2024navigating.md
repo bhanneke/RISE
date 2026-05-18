@@ -17,21 +17,20 @@ methods:
   - conceptual
   - review
 relates_to_projects: []
-status: queued
+status: skimmed
 ---
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+The editorial observes that generative AI is rapidly becoming a viable productivity and innovation tool across sectors, performing tasks that traditionally required human judgment and creativity, and is thereby transforming knowledge and creative work. The authors also flag that GenAI raises concerns that could reshape the landscape of such work. They conduct an in-depth examination of both the opportunities and challenges presented by GenAI for future IS research.
 
 ## Contribution
 
-*Pending.*
+Provides an IS-research-oriented agenda by examining both the promises and the perils of GenAI for knowledge and creative work and identifying directions for future IS research.
 
 ## Method
 
-*Pending.*
+Editorial; conceptual review of opportunities and challenges, without empirical study.
 
 ## Relevance to RISE
 
@@ -39,8 +38,8 @@ Promises-and-perils synthesis specifically for *knowledge and creative work* —
 
 ## Critique / open questions
 
-*Pending.*
+Editorial without empirical evaluation; the abstract does not specify a systematic review protocol, so the breadth and selection of "opportunities and challenges" are not transparent.
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

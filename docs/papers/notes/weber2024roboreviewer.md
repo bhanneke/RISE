@@ -17,21 +17,20 @@ relates_to_projects:
   - ape
   - reviewer
   - marg
-status: queued
+status: skimmed
 ---
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+Weber considers how AI technologies — in particular pretrained LLMs with downstream fine-tuning — might be used to automate peer review, given the documented limitations of human review such as reviewer bias. He discusses challenges in building and deploying such systems and possible ways to address them. He then sketches the characteristics of a likely highly competitive, lucrative marketplace for such systems and considers implications for authors, reviewers, editors, conference chairs and committees, publishers, and the peer review process.
 
 ## Contribution
 
-*Pending.*
+Proposes the concept of automated peer review via fine-tuned LLMs ("RoboReviewer"), identifies key deployment challenges and mitigations, and characterizes a probable commercial marketplace for these systems along with its ramifications for academic stakeholders.
 
 ## Method
 
-*Pending.*
+Opinion piece; conceptual analysis without empirical evaluation reported in the abstract.
 
 ## Relevance to RISE
 
@@ -39,8 +38,8 @@ Ron Weber — long-time MISQ EIC — sketches a 'RoboReviewer' role in scholarly
 
 ## Critique / open questions
 
-*Pending.*
+Single-author opinion piece without empirical evaluation; marketplace dynamics are speculative and the proposed automation challenges are not tested.
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

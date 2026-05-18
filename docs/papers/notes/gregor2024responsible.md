@@ -15,21 +15,20 @@ themes:
 methods:
   - conceptual
 relates_to_projects: []
-status: queued
+status: skimmed
 ---
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+Gregor examines the responsible use of AI, including generative AI, in academic journal publishing. She identifies consensus around eight normative themes for responsible AI principles and their risks, and applies Shneiderman's (2022) human-centered AI framework to publishing. She develops an AI principled governance matrix (AI-PGM) that links responsible-AI principles to countermeasures applied at the levels of the author-researcher team, the organization, the industry, and government regulation.
 
 ## Contribution
 
-*Pending.*
+Introduces an AI principled governance matrix (AI-PGM) for journal publishing that structures responsible-AI countermeasures across stakeholder and regulatory levels, arguing that the whole publishing ecosystem — not just journal policy — must be considered.
 
 ## Method
 
-*Pending.*
+Opinion piece; conceptual framework synthesis drawing on prior responsible-AI principles and Shneiderman's human-centered AI framework. No empirical evaluation reported.
 
 ## Relevance to RISE
 
@@ -37,8 +36,8 @@ Shirley Gregor (ANU) on responsible-AI principles applied to journal publishing.
 
 ## Critique / open questions
 
-*Pending.*
+Conceptual framework without empirical validation; the AI-PGM is presented as modifiable as AI develops but the abstract does not report tests of its usefulness in practice.
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

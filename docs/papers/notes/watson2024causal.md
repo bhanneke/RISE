@@ -18,21 +18,20 @@ methods:
   - conceptual
   - methodological
 relates_to_projects: []
-status: queued
+status: skimmed
 ---
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+The authors revisit Phillip Ein-Dor's call for electronic journals to be more than digital PDFs and his envisioned transformation of scholarship. They argue the need has grown since JAIS's first issue in 2000 because the continuing growth and fragmentation of knowledge limits the generation of new knowledge. They propose drawing on analytics and AI to accelerate and transform scholarship.
 
 ## Contribution
 
-*Pending.*
+Proposes "causal knowledge analytics" — an AI- and analytics-driven approach to transforming scholarship — as a tribute and extension of Ein-Dor's vision.
 
 ## Method
 
-*Pending.*
+Opinion/conceptual piece honoring Phillip Ein-Dor; no empirical evaluation reported in the abstract.
 
 ## Relevance to RISE
 
@@ -40,8 +39,8 @@ Methodological piece on *causal knowledge analytics* — building AI-native infr
 
 ## Critique / open questions
 
-*Pending.*
+Short tribute-style essay; the abstract sketches the vision without detailing technical mechanisms, datasets, or evaluation of "causal knowledge analytics."
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

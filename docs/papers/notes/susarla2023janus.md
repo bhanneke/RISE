@@ -22,16 +22,15 @@ status: queued
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+Editorial; Crossref-indexed abstract is only a funding note. Substantive content requires the full PDF (DOI:10.1287/isre.2023.ed.v34.n2).
 
 ## Contribution
 
-*Pending.*
+Editorial; Crossref-indexed abstract is only a funding note. Substantive content requires the full PDF (DOI:10.1287/isre.2023.ed.v34.n2).
 
 ## Method
 
-*Pending.*
+Editorial; Crossref-indexed abstract is only a funding note. Substantive content requires the full PDF (DOI:10.1287/isre.2023.ed.v34.n2).
 
 ## Relevance to RISE
 
@@ -39,8 +38,8 @@ ISR editorial — the direct predecessor to [@gopal2025inventing]. The same auth
 
 ## Critique / open questions
 
-*Pending.*
+Cannot be assessed from the Crossref record — only a funding acknowledgement is indexed; the full editorial PDF is required for any substantive critique.
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

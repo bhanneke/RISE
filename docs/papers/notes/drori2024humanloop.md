@@ -40,8 +40,8 @@ Designs an explicit human-in-the-loop architecture for AI-assisted peer review w
 
 ## Critique / open questions
 
-*Pending.*
+The abstract reports a demonstration with GPT-4 only, without specifying sample size, venue diversity, or a quantitative agreement metric; conclusions about accuracy are necessarily limited.
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*
