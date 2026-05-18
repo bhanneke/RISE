@@ -4,9 +4,9 @@ The landing-page diagram is a coarse model. This page expands each
 block into its operational components and points to the projects in
 the [catalog](../projects/index.md) that realize them concretely.
 
-<figure markdown>
-  ![Anatomy of a RISE pipeline](../assets/rise-pipeline.svg){ width="100%" }
-</figure>
+<p style="text-align:center; margin: 1.5em 0;">
+  <img src="../assets/rise-pipeline.svg" alt="Anatomy of a RISE pipeline" style="width:100%; max-width:1100px; height:auto;" />
+</p>
 
 ## Inputs
 

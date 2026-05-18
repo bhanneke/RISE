@@ -393,6 +393,16 @@ def render_projects_section(projects: list[dict[str, Any]]) -> str:
 # ── papers index ──────────────────────────────────────────────────────
 
 
+def status_badge(status: str) -> str:
+    """Visible inline marker for note completion state."""
+    return {
+        "queued":     " ⚠️ *stub*",
+        "skimmed":    " · skimmed",
+        "read":       "",
+        "re-reading": " · re-reading",
+    }.get(status or "", "")
+
+
 def render_papers_by_theme(papers: list[dict[str, Any]]) -> str:
     by_theme: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for p in papers:
@@ -412,7 +422,7 @@ def render_papers_by_theme(papers: list[dict[str, Any]]) -> str:
             lines.append(
                 f"- **{p.get('year', '?')}** — {author_str}. "
                 f"[*{p.get('title', '')}*](notes/{p['_filename']}.md) "
-                f"`{p.get('citekey', '')}`"
+                f"`{p.get('citekey', '')}`{status_badge(p.get('status', ''))}"
             )
         lines.append("")
     return "\n".join(lines)
@@ -436,10 +446,18 @@ def render_papers_by_year(papers: list[dict[str, Any]]) -> str:
             lines.append(
                 f"- {author_str}. "
                 f"[*{p.get('title', '')}*](notes/{p['_filename']}.md) "
-                f"`{p.get('citekey', '')}`"
+                f"`{p.get('citekey', '')}`{status_badge(p.get('status', ''))}"
             )
         lines.append("")
-    return "\n".join(lines)
+    # Summary at top
+    n_total = len(papers)
+    n_filled = sum(1 for p in papers if (p.get("status") or "") in ("skimmed", "read", "re-reading"))
+    n_stubs = sum(1 for p in papers if (p.get("status") or "") == "queued")
+    header = (
+        f"*{n_filled}/{n_total} notes have been filled with abstract-grounded summaries; "
+        f"{n_stubs} remain as stubs marked ⚠️ (front-matter verified, but Summary / Contribution / Method / Critique not yet written).*\n"
+    )
+    return header + "\n".join(lines)
 
 
 def replace_between(text: str, start: str, end: str, replacement: str) -> str:

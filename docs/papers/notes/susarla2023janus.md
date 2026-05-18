@@ -20,6 +20,17 @@ relates_to_projects: []
 status: queued
 ---
 
+!!! warning "Stub — content not yet written"
+    This note's **front-matter is verified** (citekey, authors, DOI, year),
+    but the **Summary / Contribution / Method / Critique** sections below
+    have not been filled in yet. Only the *Relevance to RISE* paragraph
+    reflects curator analysis; everything else is a placeholder.
+
+    Reason: the paper's abstract was not retrievable via Crossref / arXiv
+    API (typical for SSRN, paywalled-publisher-blocked, or recently-posted
+    items). The note will be filled in on a future pass.
+
+
 ## Summary
 
 Editorial; Crossref-indexed abstract is only a funding note. Substantive content requires the full PDF (DOI:10.1287/isre.2023.ed.v34.n2).

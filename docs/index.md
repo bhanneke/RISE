@@ -16,9 +16,9 @@ The repository maintains two curated catalogs:
 
 ## The RISE pipeline at a glance
 
-<figure markdown>
-  ![The RISE pipeline at a glance](assets/rise-pipeline.svg){ width="100%" }
-</figure>
+<p style="text-align:center; margin: 1.5em 0;">
+  <img src="assets/rise-pipeline.svg" alt="The RISE pipeline at a glance" style="width:100%; max-width:1100px; height:auto;" />
+</p>
 
 A RISE system is any information system that implements some non-trivial
 portion of this diagram. Different systems differ in:
