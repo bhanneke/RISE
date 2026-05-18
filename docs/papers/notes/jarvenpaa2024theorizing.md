@@ -15,21 +15,20 @@ themes:
 methods:
   - conceptual
 relates_to_projects: []
-status: queued
+status: skimmed
 ---
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+The authors observe that theory development at JAIS can feel risky and frustrating due to a lack of divergence and convergence, both in ideas and in the social dynamics among human theorists, and that misconceptions about theory further hamper progress. They examine how generative AI tools may support theory development in information systems through human-gAI collaboration. The piece positions such collaboration as a new frontier in IS theorizing.
 
 ## Contribution
 
-*Pending.*
+Examines ways generative AI tools may be useful for developing IS theory through human-gAI collaboration, framing this as a new frontier for theorizing in the field.
 
 ## Method
 
-*Pending.*
+Conceptual essay; no empirical evaluation reported in the abstract.
 
 ## Relevance to RISE
 
@@ -37,8 +36,8 @@ Jarvenpaa (UT Austin) and Klein (Münster) treat generative AI as a *theorizing 
 
 ## Critique / open questions
 
-*Pending.*
+Conceptual essay without empirical demonstration; the operational details of human-gAI theorizing workflows and their effects on theory quality are not evaluated in the abstract.
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

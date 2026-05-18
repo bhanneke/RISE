@@ -22,21 +22,20 @@ relates_to_projects:
   - ape
   - reviewer
   - marg
-status: queued
+status: skimmed
 ---
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+The authors argue that AI, including large language models, is poised to disrupt traditional academic peer review and knowledge evaluation. They contend that human-AI collaboration is already unfolding and may help close gaps among diverse scholars and competing scholarly traditions. The piece focuses on the peer review process and how that collaboration is likely to change it.
 
 ## Contribution
 
-*Pending.*
+Offers preliminary ideas on how human-AI collaboration will likely transform peer review, highlights the benefits, identifies possible bottlenecks, and underscores the potential for democratizing academic culture worldwide.
 
 ## Method
 
-*Pending.*
+Opinion piece; conceptual/editorial, with no empirical evaluation reported in the abstract.
 
 ## Relevance to RISE
 
@@ -44,8 +43,8 @@ Senior-scholar JAIS editorial (Sarker is editor-in-chief; Gopal, Thatcher, Susar
 
 ## Critique / open questions
 
-*Pending.*
+Opinion piece without empirical evaluation; claims about democratization and bottlenecks are speculative and not tested against data in the abstract.
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

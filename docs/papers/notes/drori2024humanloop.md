@@ -19,21 +19,20 @@ relates_to_projects:
   - ape
   - reviewer
   - marg
-status: queued
+status: skimmed
 ---
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+The authors explore the feasibility, opportunities, and risks of using large language models to review academic submissions while keeping a human in the loop. They experiment with GPT-4 as a reviewer following a conference review form covering contribution, soundness, and presentation, and compare LLM reviews with human reviews. They conclude that current AI-augmented reviewing is sufficiently accurate to alleviate reviewing burden but not completely, and not for all cases, and they identify risks including bias, value misalignment, and misuse.
 
 ## Contribution
 
-*Pending.*
+Demonstrates feasibility of LLM-augmented reviewing via a GPT-4 experiment, enumerates opportunities and open questions, identifies key risks (bias, value misalignment, misuse), and offers recommendations for managing those risks.
 
 ## Method
 
-*Pending.*
+Opinion piece with a small-scale demonstration experiment: GPT-4 used as a reviewer against a structured conference review form, with LLM reviews compared to human reviews.
 
 ## Relevance to RISE
 

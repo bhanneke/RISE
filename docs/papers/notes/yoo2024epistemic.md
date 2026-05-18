@@ -15,21 +15,20 @@ themes:
 methods:
   - conceptual
 relates_to_projects: []
-status: queued
+status: skimmed
 ---
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+Yoo argues that scientific journals, as components of our epistemic infrastructure, must adapt to generative AI such as GPT and Bard. Drawing on the recombinatorial nature of knowledge creation, he suggests generative AI can facilitate "long jumps" in knowledge exploration. He proposes decentralization and deferred/temporary binding as two characteristics of an evolving epistemic infrastructure that supports precarious knowledge production, and foresees journals extending beyond traditional gatekeeping roles.
 
 ## Contribution
 
-*Pending.*
+Proposes decentralization and deferred and temporary binding as defining characteristics of the future epistemic infrastructure, and calls on scholars to use generative AI to enable broader knowledge exploration and a more inclusive scientific ecosystem.
 
 ## Method
 
-*Pending.*
+Opinion piece; conceptual essay, no empirical study reported.
 
 ## Relevance to RISE
 
@@ -37,8 +36,8 @@ Yoo (Case Western) frames scientific journals as *epistemic infrastructure* and 
 
 ## Critique / open questions
 
-*Pending.*
+Single-author opinion piece with no empirical evaluation; proposed constructs (decentralization, deferred/temporary binding) are not operationalized or tested.
 
 ## Key quotes
 
-*Pending.*
+*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*
