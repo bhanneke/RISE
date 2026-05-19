@@ -224,12 +224,23 @@ def try_unpaywall(doi: str, dest: Path) -> tuple[bool, str, str]:
     return ok, f"unpaywall→{best.get('host_type','?')}", pdf_url if ok else msg
 
 
+CONFIRMED_UNAVAILABLE = {
+    "riemer2024styleengines": "Elsevier IJIM paywall — user-confirmed no access",
+    "kwon2025inequality":     "AISeL AWS WAF blocks automated download — user-confirmed manual fetch failed",
+}
+
+
 def fetch_one(entry: dict[str, str], dry: bool) -> dict[str, str]:
     citekey = entry["_citekey"]
     dest = OUT_DIR / f"{citekey}.pdf"
     if dest.exists():
         return {"citekey": citekey, "status": "exists",
                 "source": "cached", "detail": f"{dest.stat().st_size} bytes"}
+
+    if citekey in CONFIRMED_UNAVAILABLE:
+        return {"citekey": citekey, "status": "skipped",
+                "source": "user-confirmed",
+                "detail": CONFIRMED_UNAVAILABLE[citekey]}
 
     if dry:
         return {"citekey": citekey, "status": "dry-run",

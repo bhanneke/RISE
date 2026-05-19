@@ -4,8 +4,9 @@ title: "Conceptualizing Generative AI as Style Engines: Application Archetypes a
 authors: ["Riemer, K.", "Peter, S."]
 year: 2024
 venue: "International Journal of Information Management"
-doi: ""
-url: ""
+doi: "10.1016/j.ijinfomgt.2024.102824"
+url: "https://doi.org/10.1016/j.ijinfomgt.2024.102824"
+pdf_status: "unavailable — Elsevier IJIM paywall; user-confirmed no access (2026-05-20)"
 kind: paper
 themes:
   - style-engines

@@ -27,39 +27,124 @@ DOCS_SKILLS_INDEX = DOCS_SKILLS_DIR / "index.md"
 
 
 def copy_skill_details(packs: list[dict]) -> int:
-    """Copy each pack's skills/<pack>/details/<skill>.md into docs/skills/<pack>/.
-
-    Adds a one-line front-matter so MkDocs treats them as navigable pages.
-    Returns the number of detail pages written.
-    """
+    """Build marketplace-style per-skill pages from skills/<pack>/details/."""
     n_total = 0
     for p in packs:
-        pack_slug = p["pack"]["slug"]
-        pack_name = p["pack"]["name"]
+        pack = p["pack"]
+        pack_slug = pack["slug"]
+        pack_name = pack["name"]
+        pack_source = pack.get("source_url", "")
+        pack_license = pack.get("license", "")
         src_details = SKILLS_DIR / pack_slug / "details"
         if not src_details.exists():
             continue
         dst_dir = DOCS_SKILLS_DIR / pack_slug
         dst_dir.mkdir(parents=True, exist_ok=True)
-        # Index of pack-slug → skill metadata
         skills_by_slug = {s.get("slug"): s for s in (p.get("skills") or [])}
+
         for src in sorted(src_details.glob("*.md")):
             skill_slug = src.stem
             text = src.read_text(encoding="utf-8")
             meta = skills_by_slug.get(skill_slug, {})
-            header = (
-                f"<!-- DO NOT EDIT — auto-copied from skills/{pack_slug}/details/{skill_slug}.md -->\n"
-                f"\n# `{meta.get('name', skill_slug)}`\n\n"
-                f"*Pack: [{pack_name}](../{pack_slug}.md)"
+            name = meta.get("name", skill_slug)
+            category = meta.get("category", "—")
+            field = meta.get("field", "—")
+            stages = meta.get("pipeline_stages") or []
+            source_url = meta.get("details_url", pack_source)
+            updated = meta.get("last_update", pack.get("last_update", "—"))
+            description = meta.get("description", "")
+            github_repo_match = re.search(r"github\.com/([^/]+/[^/]+)", source_url or "")
+            github_repo = github_repo_match.group(1).split("/blob/")[0].rstrip("/") if github_repo_match else None
+            github_repo = github_repo.split("/tree/")[0] if github_repo else None
+
+            # Page URL for sharing
+            page_url = f"https://bhanneke.github.io/RISE/skills/{pack_slug}/{skill_slug}/"
+
+            # Sidebar HTML (marketplace-style: install / source / share / GitHub stars)
+            sidebar = ['<div class="skill-sidebar">']
+            sidebar.append(f'<h3 style="margin-top:0;">Use this skill</h3>')
+
+            if pack_slug == "hundredx-os":
+                install_block = (
+                    f'<pre style="white-space:pre-wrap;"># curator-private; copy text from\n'
+                    f'# /Users/hanneke/Documents/Projects/100xOS/shared/skills/{meta.get("source_path","")}</pre>'
+                )
+            elif github_repo:
+                src_path = meta.get("source_path", "")
+                install_block = (
+                    f'<button onclick="navigator.clipboard.writeText(`gh api repos/{github_repo}/contents/{src_path} --jq .content | base64 -d`); this.textContent=\'✓ copied\';"\n'
+                    f'  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>\n'
+                    f'<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>{github_repo}</code>.</p>'
+                )
+            else:
+                install_block = '<p style="font-size:0.85em; color:#666;">No automated install — see source URL.</p>'
+
+            sidebar.append(install_block)
+
+            sidebar.append('<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">')
+            sidebar.append('<h4 style="margin:0 0 0.3em 0;">Metadata</h4>')
+            sidebar.append(f'<dl style="font-size:0.85em; margin:0;">')
+            sidebar.append(f'<dt><b>Pack</b></dt><dd><a href="../{pack_slug}.md">{pack_name}</a></dd>')
+            sidebar.append(f'<dt><b>Category</b></dt><dd><code>{category}</code></dd>')
+            sidebar.append(f'<dt><b>Field</b></dt><dd>{field}</dd>')
+            if stages:
+                sidebar.append(f'<dt><b>Pipeline stages</b></dt><dd>{" ".join(f"<code>{x}</code>" for x in stages)}</dd>')
+            sidebar.append(f'<dt><b>License</b></dt><dd>{pack_license}</dd>')
+            sidebar.append(f'<dt><b>Last update</b></dt><dd>{updated}</dd>')
+            sidebar.append('</dl>')
+
+            if github_repo:
+                sidebar.append('<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">')
+                sidebar.append('<h4 style="margin:0 0 0.5em 0;">Upstream</h4>')
+                sidebar.append(
+                    f'<p style="font-size:0.85em; margin:0.3em 0;">'
+                    f'<a href="https://github.com/{github_repo}">⭐ {github_repo}</a><br>'
+                    f'<img src="https://img.shields.io/github/stars/{github_repo}?style=flat" alt="stars">'
+                    f'</p>'
+                )
+
+            if source_url:
+                sidebar.append(
+                    f'<p style="margin:0.6em 0;"><a href="{source_url}" '
+                    f'style="font-size:0.9em;">↗ view SKILL.md on source</a></p>'
+                )
+
+            # Share
+            sidebar.append('<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">')
+            sidebar.append(
+                f'<button onclick="navigator.clipboard.writeText(\'{page_url}\'); this.textContent=\'✓ copied\';"\n'
+                f'  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>'
             )
-            if meta.get("category"):
-                header += f" · category `{meta['category']}`"
-            if meta.get("field"):
-                header += f" · field `{meta['field']}`"
-            if meta.get("details_url"):
-                header += f" · [source]({meta['details_url']})"
-            header += "*\n\n---\n\n"
-            (dst_dir / f"{skill_slug}.md").write_text(header + text, encoding="utf-8")
+            sidebar.append(
+                f'<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">'
+                f'Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> '
+                f'or <a href="https://github.com/bhanneke/RISE/edit/main/skills/{pack_slug}.yml">edit on GitHub</a>.</p>'
+            )
+            sidebar.append('</div>')
+
+            # Page body: two-column layout
+            stages_chip = " · ".join(f"`{x}`" for x in stages) if stages else "—"
+            page = (
+                f"<!-- DO NOT EDIT — auto-copied from skills/{pack_slug}/details/{skill_slug}.md -->\n\n"
+                f"# `{name}`\n\n"
+                f"{description}\n\n"
+                f"<style>\n"
+                f".skill-layout {{ display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }}\n"
+                f"@media (max-width: 900px) {{ .skill-layout {{ grid-template-columns: 1fr; }} }}\n"
+                f".skill-sidebar {{ background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }}\n"
+                f".skill-sidebar h3, .skill-sidebar h4 {{ color:#00695c; }}\n"
+                f".skill-sidebar dl dt {{ margin-top:0.5em; }}\n"
+                f".skill-sidebar dl dd {{ margin:0.1em 0 0 0; }}\n"
+                f"</style>\n\n"
+                f'<div class="skill-layout">\n'
+                f'<div class="skill-content" markdown>\n\n'
+                f"---\n\n"
+                f"{text}\n\n"
+                f"</div>\n\n"
+                + "\n".join(sidebar) + "\n\n"
+                f"</div>\n"
+            )
+            (dst_dir / f"{skill_slug}.md").write_text(page, encoding="utf-8")
             n_total += 1
     return n_total
 
@@ -157,6 +242,7 @@ def render_pack_page(pack_data: dict[str, Any]) -> str:
             details = s.get("details_url", "")
             origin_cell = f"[origin]({details})" if details else "—"
             updated = s.get("last_update", "") or "—"
+            # Source-tree-relative link: from docs/skills/<pack>.md → docs/skills/<pack>/<skill>.md
             full_cell = f"[view]({slug}/{s_slug}.md)" if s_slug in have_details else "—"
             out.append(
                 f"| `{name}` | {field} | {stages} | {desc} | {full_cell} | {origin_cell} | {updated} |"
@@ -189,26 +275,78 @@ def render_index(packs: list[dict[str, Any]]) -> str:
         )
     out.append("")
 
-    # Filterable all-skills table
+    # Filterable all-skills table with dropdowns + free-text search
     out.append("## All skills (filterable)")
     out.append("")
-    out.append("""<input type="text" id="skillFilter" placeholder="🔍 filter by skill name / pack / field / category / pipeline stage…"
-  style="width:100%; padding:0.5em; margin:1em 0; font-size:1em; border:1px solid #ccc; border-radius:4px;"
-  oninput="filterSkills(this.value)">
+
+    # Collect facet values
+    all_packs = sorted({p["pack"]["slug"] for p in packs})
+    all_cats = sorted({s.get("category", "—") for p in packs for s in (p.get("skills") or [])})
+    all_fields = sorted({s.get("field", "—") for p in packs for s in (p.get("skills") or [])})
+    all_stages = sorted({st for p in packs for s in (p.get("skills") or []) for st in (s.get("pipeline_stages") or [])})
+
+    def opts(values, label):
+        items = "\n".join(f'    <option value="{v}">{v}</option>' for v in values)
+        return f'<select id="filter-{label}" onchange="applyFilters()">\n  <option value="">all {label}s</option>\n{items}\n</select>'
+
+    out.append(f"""<div style="display:flex; flex-wrap:wrap; gap:0.5em; align-items:center; margin:1em 0;">
+  <input type="text" id="skillFilter" placeholder="🔍 free text search…"
+    style="flex:1; min-width:240px; padding:0.5em; font-size:1em; border:1px solid #ccc; border-radius:4px;"
+    oninput="applyFilters()">
+  {opts(all_packs, "pack")}
+  {opts(all_cats, "category")}
+  {opts(all_fields, "field")}
+  {opts(all_stages, "stage")}
+  <button onclick="resetFilters()" style="padding:0.5em 0.8em;">reset</button>
+  <span id="skillCount" style="margin-left:0.5em; color:#666; font-size:0.9em;"></span>
+</div>
 
 <script>
-function filterSkills(q) {
-  q = q.toLowerCase().trim();
-  document.querySelectorAll('#skillsTable tbody tr').forEach(function(row) {
-    row.style.display = (!q || row.textContent.toLowerCase().includes(q)) ? '' : 'none';
-  });
-}
+function applyFilters() {{
+  var q = (document.getElementById('skillFilter').value || '').toLowerCase().trim();
+  var pack = document.getElementById('filter-pack').value;
+  var cat = document.getElementById('filter-category').value;
+  var field = document.getElementById('filter-field').value;
+  var stage = document.getElementById('filter-stage').value;
+  var n_visible = 0, n_total = 0;
+  document.querySelectorAll('#skillsTable tbody tr').forEach(function(row) {{
+    n_total++;
+    var rowPack = row.dataset.pack || '';
+    var rowCat = row.dataset.category || '';
+    var rowField = row.dataset.field || '';
+    var rowStages = row.dataset.stages || '';
+    var matchesText = !q || row.textContent.toLowerCase().includes(q);
+    var matchesPack = !pack || rowPack === pack;
+    var matchesCat = !cat || rowCat === cat;
+    var matchesField = !field || rowField === field;
+    var matchesStage = !stage || rowStages.split(' ').includes(stage);
+    var show = matchesText && matchesPack && matchesCat && matchesField && matchesStage;
+    row.style.display = show ? '' : 'none';
+    if (show) n_visible++;
+  }});
+  document.getElementById('skillCount').textContent = n_visible + ' / ' + n_total + ' skills';
+}}
+function resetFilters() {{
+  document.getElementById('skillFilter').value = '';
+  document.getElementById('filter-pack').value = '';
+  document.getElementById('filter-category').value = '';
+  document.getElementById('filter-field').value = '';
+  document.getElementById('filter-stage').value = '';
+  applyFilters();
+}}
+document.addEventListener('DOMContentLoaded', applyFilters);
 </script>
+
+<style>
+select {{ padding:0.4em; border:1px solid #ccc; border-radius:4px; background:white; }}
+#skillsTable {{ font-size:0.9em; }}
+#skillsTable td, #skillsTable th {{ padding:0.4em 0.6em; vertical-align:top; }}
+</style>
 """)
     out.append('<table id="skillsTable">')
     out.append("<thead><tr>"
                "<th>Skill</th><th>Pack</th><th>Field</th><th>Category</th>"
-               "<th>Stages</th><th>Description</th><th>Source</th><th>Updated</th>"
+               "<th>Stages</th><th>Description</th><th>Detail</th><th>Source</th>"
                "</tr></thead>")
     out.append("<tbody>")
     rows = []
@@ -216,25 +354,34 @@ function filterSkills(q) {
         pk = p["pack"]
         pack_slug = pk["slug"]
         pack_name = pk["name"]
+        # Determine which detail pages exist
+        pack_details_dir = SKILLS_DIR / pack_slug / "details"
+        have_details = ({f.stem for f in pack_details_dir.glob("*.md")}
+                        if pack_details_dir.exists() else set())
         for s in p.get("skills") or []:
-            name = s.get("name", s.get("slug", ""))
+            s_slug = s.get("slug", "")
+            name = s.get("name", s_slug)
             field = s.get("field", "—") or "—"
             cat = s.get("category", "—") or "—"
-            stages = " ".join(f"<code>{x}</code>" for x in (s.get("pipeline_stages") or []))
+            stages_list = s.get("pipeline_stages") or []
+            stages_html = " ".join(f"<code>{x}</code>" for x in stages_list)
+            stages_attr = " ".join(stages_list)
             desc = s.get("description", "—") or "—"
-            details = s.get("details_url", "")
-            details_cell = f'<a href="{details}">link</a>' if details else "—"
-            updated = s.get("last_update", "—") or "—"
+            source_url = s.get("details_url", "")
+            source_cell = f'<a href="{source_url}">↗</a>' if source_url else "—"
+            detail_cell = (f'<a href="{pack_slug}/{s_slug}.md">view</a>'
+                           if s_slug in have_details else "—")
             rows.append((cat, name, pack_slug,
-                         f"<tr>"
+                         f'<tr data-pack="{pack_slug}" data-category="{cat}" '
+                         f'data-field="{field}" data-stages="{stages_attr}">'
                          f"<td><code>{name}</code></td>"
                          f'<td><a href="{pack_slug}.md">{pack_name}</a></td>'
                          f"<td>{field}</td>"
                          f"<td><code>{cat}</code></td>"
-                         f"<td>{stages}</td>"
+                         f"<td>{stages_html}</td>"
                          f"<td>{desc}</td>"
-                         f"<td>{details_cell}</td>"
-                         f"<td>{updated}</td>"
+                         f"<td>{detail_cell}</td>"
+                         f"<td>{source_cell}</td>"
                          f"</tr>"))
     for _, _, _, row_html in sorted(rows):
         out.append(row_html)

@@ -7,7 +7,8 @@ authors:
 year: 2025
 venue: 'ICIS 2025 Proceedings'
 doi: ""
-url: ""
+url: "https://aisel.aisnet.org/icis2025/gen_ai/gen_ai/2"
+pdf_status: "unavailable — AISeL AWS WAF blocks automated download; user-confirmed manual fetch also unsuccessful (2026-05-20)"
 kind: paper
 themes:
   - research-productivity

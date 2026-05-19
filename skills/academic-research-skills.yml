@@ -5,7 +5,7 @@ pack:
   maintainers:
     - 'Edward Cheng-I Wu'
   license: 'CC BY-NC 4.0'
-  total_skills: 17
+  total_skills: 4
   last_update: '2026-05-17'
   related_project: 'academic-research-skills'
   compatibility:
@@ -13,128 +13,54 @@ pack:
     - codex
     - vscode
     - jetbrains
-  notes: 'Distributed as a Claude Code plugin in 3 sub-suites: Deep Research (13 agents), Academic Paper (12 agents), Academic Paper Reviewer (7 agents). Notable for claim-faithfulness audit pass.'
+  notes: 'Distributed as a Claude Code plugin. Four top-level skills, each backed by multiple sub-agents (7–13 each). Notable for claim-faithfulness audit pass (ARS_CLAIM_AUDIT) and cross-model verification.'
 
 skills:
-  - slug: 'ars-plan'
-    name: 'ars-plan'
+  - slug: academic-paper
+    name: academic-paper
     category: drafting
     pipeline_stages:
       - paper-drafting
-    description: 'Socratic dialogue to map paper chapter structure'
-    source_path: 'ars-plan/'
-  - slug: 'ars-write'
-    name: 'ars-write'
-    category: drafting
-    pipeline_stages:
-      - paper-drafting
-    description: 'Draft paper sections'
-    source_path: 'ars-write/'
-  - slug: 'ars-citation-convert'
-    name: 'ars-citation-convert'
-    category: editing
-    pipeline_stages:
       - revision-editing
-    description: 'Citation format conversion across styles'
-    source_path: 'ars-citation-convert/'
-  - slug: 'ars-style-calibration'
-    name: 'ars-style-calibration'
-    category: editing
-    pipeline_stages:
-      - revision-editing
-    description: 'Learns user''s writing voice from past work'
-    source_path: 'ars-style-calibration/'
-  - slug: 'ars-quality-check'
-    name: 'ars-quality-check'
-    category: audit
-    pipeline_stages:
-      - referee-simulation
-    description: 'Writing-quality check catches machine-generated patterns'
-    source_path: 'ars-quality-check/'
-  - slug: 'ars-latex-harden'
-    name: 'ars-latex-harden'
-    category: drafting
-    pipeline_stages:
-      - paper-drafting
-    description: 'LaTeX hardening for journal compliance'
-    source_path: 'ars-latex-harden/'
-  - slug: 'ars-vlm-figure'
-    name: 'ars-vlm-figure'
-    category: figures
-    pipeline_stages:
-      - paper-drafting
-    description: 'VLM figure verification'
-    source_path: 'ars-vlm-figure/'
-  - slug: 'ars-anti-leakage'
-    name: 'ars-anti-leakage'
-    category: audit
-    pipeline_stages:
-      - referee-simulation
-    description: 'Anti-leakage protocol for sensitive data'
-    source_path: 'ars-anti-leakage/'
-  - slug: 'ars-revision-coach'
-    name: 'ars-revision-coach'
-    category: revision
-    pipeline_stages:
-      - revision-editing
-    description: 'Revision coaching with reviewer-comment routing'
-    source_path: 'ars-revision-coach/'
-  - slug: 'ars-review'
-    name: 'ars-review'
+    field: general
+    description: '12-agent paper writing skill with Style Calibration, Writing Quality Check, LaTeX hardening, visualization, revision coaching, citation conversion, anti-leakage protocol, and VLM figure verification.'
+    source_path: 'academic-paper/SKILL.md'
+    details_url: 'https://github.com/Imbad0202/academic-research-skills/blob/main/academic-paper/SKILL.md'
+    provenance: 'ARS repo curation 2026-05-20'
+    last_update: '2026-05'
+
+  - slug: academic-paper-reviewer
+    name: academic-paper-reviewer
     category: review
     pipeline_stages:
       - referee-simulation
-    description: 'Multi-perspective peer review (EIC + 3 dynamic reviewers + Devil''s Advocate)'
-    source_path: 'ars-review/'
-  - slug: 'ars-review-rubric'
-    name: 'ars-review-rubric'
-    category: review
-    pipeline_stages:
-      - referee-simulation
-    description: '0-100 quality rubrics'
-    source_path: 'ars-review-rubric/'
-  - slug: 'ars-review-rr'
-    name: 'ars-review-rr'
-    category: revision
-    pipeline_stages:
-      - revision-editing
-    description: 'R&R traceability matrix'
-    source_path: 'ars-review-rr/'
-  - slug: 'ars-lit-review'
-    name: 'ars-lit-review'
+    field: general
+    description: '7-agent multi-perspective peer review with 0–100 quality rubrics (EIC + 3 dynamic reviewers + Devil''s Advocate), concession threshold protocol, attack intensity preservation, optional cross-model DA critique/calibration, R&R traceability matrix.'
+    source_path: 'academic-paper-reviewer/SKILL.md'
+    details_url: 'https://github.com/Imbad0202/academic-research-skills/blob/main/academic-paper-reviewer/SKILL.md'
+    provenance: 'ARS repo curation 2026-05-20'
+    last_update: '2026-05'
+
+  - slug: deep-research
+    name: deep-research
     category: literature
     pipeline_stages:
       - literature-discovery
       - literature-synthesis
-    description: '13-agent literature-review team with Socratic guided mode'
-    source_path: 'ars-lit-review/'
-  - slug: 'ars-prisma'
-    name: 'ars-prisma'
-    category: literature
-    pipeline_stages:
-      - literature-discovery
-      - literature-synthesis
-    description: 'PRISMA systematic-review workflow'
-    source_path: 'ars-prisma/'
-  - slug: 'ars-semantic-scholar'
-    name: 'ars-semantic-scholar'
-    category: literature
-    pipeline_stages:
-      - literature-discovery
-      - literature-synthesis
-    description: 'Semantic Scholar API verification'
-    source_path: 'ars-semantic-scholar/'
-  - slug: 'ars-claim-audit'
-    name: 'ars-claim-audit'
-    category: audit
-    pipeline_stages:
-      - referee-simulation
-    description: 'v3.8 claim-faithfulness audit pass with 5 HIGH-WARN classes'
-    source_path: 'ars-claim-audit/'
-  - slug: 'ars-cross-model'
-    name: 'ars-cross-model'
-    category: audit
-    pipeline_stages:
-      - referee-simulation
-    description: 'Cross-model verification harness (ARS_CROSS_MODEL)'
-    source_path: 'ars-cross-model/'
+    field: general
+    description: '13-agent research team with Socratic guided mode, PRISMA systematic review, intent detection, dialogue health monitoring, optional cross-model DA, Semantic Scholar API verification.'
+    source_path: 'deep-research/SKILL.md'
+    details_url: 'https://github.com/Imbad0202/academic-research-skills/blob/main/deep-research/SKILL.md'
+    provenance: 'ARS repo curation 2026-05-20'
+    last_update: '2026-05'
+
+  - slug: academic-pipeline
+    name: academic-pipeline
+    category: meta
+    pipeline_stages: []
+    field: general
+    description: 'Pipeline orchestrator that chains deep-research → academic-paper → academic-paper-reviewer with quality gates between stages.'
+    source_path: 'academic-pipeline/SKILL.md'
+    details_url: 'https://github.com/Imbad0202/academic-research-skills/blob/main/academic-pipeline/SKILL.md'
+    provenance: 'ARS repo curation 2026-05-20'
+    last_update: '2026-05'

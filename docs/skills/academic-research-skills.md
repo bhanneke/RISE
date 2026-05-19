@@ -2,7 +2,7 @@
 
 # Academic Research Skills (ARS)
 
-license: `CC BY-NC 4.0` · 17 skills · last update: 2026-05-17
+license: `CC BY-NC 4.0` · 4 skills · last update: 2026-05-17
 
 **Source:** <https://github.com/Imbad0202/academic-research-skills>
 
@@ -12,60 +12,32 @@ license: `CC BY-NC 4.0` · 17 skills · last update: 2026-05-17
 
 **Compatibility:** `claude-code` `codex` `vscode` `jetbrains`
 
-> Distributed as a Claude Code plugin in 3 sub-suites: Deep Research (13 agents), Academic Paper (12 agents), Academic Paper Reviewer (7 agents). Notable for claim-faithfulness audit pass.
+> Distributed as a Claude Code plugin. Four top-level skills, each backed by multiple sub-agents (7–13 each). Notable for claim-faithfulness audit pass (ARS_CLAIM_AUDIT) and cross-model verification.
 
 **Source YAML:** [`skills/academic-research-skills.yml`](https://github.com/bhanneke/RISE/blob/main/skills/academic-research-skills.yml)
 
 ## Skills
 
-### `audit` (4)
+### `drafting` (1)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `ars-anti-leakage` | — | `referee-simulation` | Anti-leakage protocol for sensitive data | [view](academic-research-skills/ars-anti-leakage.md) | — | — |
-| `ars-claim-audit` | — | `referee-simulation` | v3.8 claim-faithfulness audit pass with 5 HIGH-WARN classes | [view](academic-research-skills/ars-claim-audit.md) | — | — |
-| `ars-cross-model` | — | `referee-simulation` | Cross-model verification harness (ARS_CROSS_MODEL) | [view](academic-research-skills/ars-cross-model.md) | — | — |
-| `ars-quality-check` | — | `referee-simulation` | Writing-quality check catches machine-generated patterns | [view](academic-research-skills/ars-quality-check.md) | — | — |
+| `academic-paper` | general | `paper-drafting` `revision-editing` | 12-agent paper writing skill with Style Calibration, Writing Quality Check, LaTeX hardening, visualization, revision coaching, citation conversion, anti-leakage protocol, and VLM figure verification. | [view](academic-research-skills/academic-paper.md) | [origin](https://github.com/Imbad0202/academic-research-skills/blob/main/academic-paper/SKILL.md) | 2026-05 |
 
-### `drafting` (3)
+### `literature` (1)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `ars-latex-harden` | — | `paper-drafting` | LaTeX hardening for journal compliance | [view](academic-research-skills/ars-latex-harden.md) | — | — |
-| `ars-plan` | — | `paper-drafting` | Socratic dialogue to map paper chapter structure | [view](academic-research-skills/ars-plan.md) | — | — |
-| `ars-write` | — | `paper-drafting` | Draft paper sections | [view](academic-research-skills/ars-write.md) | — | — |
+| `deep-research` | general | `literature-discovery` `literature-synthesis` | 13-agent research team with Socratic guided mode, PRISMA systematic review, intent detection, dialogue health monitoring, optional cross-model DA, Semantic Scholar API verification. | [view](academic-research-skills/deep-research.md) | [origin](https://github.com/Imbad0202/academic-research-skills/blob/main/deep-research/SKILL.md) | 2026-05 |
 
-### `editing` (2)
+### `meta` (1)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `ars-citation-convert` | — | `revision-editing` | Citation format conversion across styles | [view](academic-research-skills/ars-citation-convert.md) | — | — |
-| `ars-style-calibration` | — | `revision-editing` | Learns user's writing voice from past work | [view](academic-research-skills/ars-style-calibration.md) | — | — |
+| `academic-pipeline` | general |  | Pipeline orchestrator that chains deep-research → academic-paper → academic-paper-reviewer with quality gates between stages. | [view](academic-research-skills/academic-pipeline.md) | [origin](https://github.com/Imbad0202/academic-research-skills/blob/main/academic-pipeline/SKILL.md) | 2026-05 |
 
-### `figures` (1)
-
-| Skill | Field | Stages | Description | Full text | Source | Updated |
-|---|---|---|---|---|---|---|
-| `ars-vlm-figure` | — | `paper-drafting` | VLM figure verification | [view](academic-research-skills/ars-vlm-figure.md) | — | — |
-
-### `literature` (3)
+### `review` (1)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `ars-lit-review` | — | `literature-discovery` `literature-synthesis` | 13-agent literature-review team with Socratic guided mode | [view](academic-research-skills/ars-lit-review.md) | — | — |
-| `ars-prisma` | — | `literature-discovery` `literature-synthesis` | PRISMA systematic-review workflow | [view](academic-research-skills/ars-prisma.md) | — | — |
-| `ars-semantic-scholar` | — | `literature-discovery` `literature-synthesis` | Semantic Scholar API verification | [view](academic-research-skills/ars-semantic-scholar.md) | — | — |
-
-### `review` (2)
-
-| Skill | Field | Stages | Description | Full text | Source | Updated |
-|---|---|---|---|---|---|---|
-| `ars-review` | — | `referee-simulation` | Multi-perspective peer review (EIC + 3 dynamic reviewers + Devil's Advocate) | [view](academic-research-skills/ars-review.md) | — | — |
-| `ars-review-rubric` | — | `referee-simulation` | 0-100 quality rubrics | [view](academic-research-skills/ars-review-rubric.md) | — | — |
-
-### `revision` (2)
-
-| Skill | Field | Stages | Description | Full text | Source | Updated |
-|---|---|---|---|---|---|---|
-| `ars-review-rr` | — | `revision-editing` | R&R traceability matrix | [view](academic-research-skills/ars-review-rr.md) | — | — |
-| `ars-revision-coach` | — | `revision-editing` | Revision coaching with reviewer-comment routing | [view](academic-research-skills/ars-revision-coach.md) | — | — |
+| `academic-paper-reviewer` | general | `referee-simulation` | 7-agent multi-perspective peer review with 0–100 quality rubrics (EIC + 3 dynamic reviewers + Devil's Advocate), concession threshold protocol, attack intensity preservation, optional cross-model DA critique/calibration, R&R traceability matrix. | [view](academic-research-skills/academic-paper-reviewer.md) | [origin](https://github.com/Imbad0202/academic-research-skills/blob/main/academic-paper-reviewer/SKILL.md) | 2026-05 |

@@ -2,7 +2,19 @@
 
 # `econ-visualization`
 
-*Pack: [awesome-econ-ai-stuff (Antonio Mele)](../awesome-econ-ai-stuff.md) · category `figures` · field `economics` · [source](https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/communication/econ-visualization/SKILL.md)*
+Publication-quality charts and graphs for economics papers.
+
+<style>
+.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
+@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
+.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
+.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
+.skill-sidebar dl dt { margin-top:0.5em; }
+.skill-sidebar dl dd { margin:0.1em 0 0 0; }
+</style>
+
+<div class="skill-layout">
+<div class="skill-content" markdown>
 
 ---
 
@@ -132,3 +144,33 @@ ggsave("figures/gdp_per_capita.pdf", width = 7, height = 4, dpi = 300)
 ### v1.0.0
 
 - Initial release
+
+
+</div>
+
+<div class="skill-sidebar">
+<h3 style="margin-top:0;">Use this skill</h3>
+<button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/communication/econ-visualization/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
+  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
+<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>meleantonio/awesome-econ-ai-stuff</code>.</p>
+<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
+<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
+<dl style="font-size:0.85em; margin:0;">
+<dt><b>Pack</b></dt><dd><a href="../awesome-econ-ai-stuff.md">awesome-econ-ai-stuff (Antonio Mele)</a></dd>
+<dt><b>Category</b></dt><dd><code>figures</code></dd>
+<dt><b>Field</b></dt><dd>economics</dd>
+<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
+<dt><b>License</b></dt><dd>Other (see repo)</dd>
+<dt><b>Last update</b></dt><dd>2026</dd>
+</dl>
+<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
+<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
+<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff">⭐ meleantonio/awesome-econ-ai-stuff</a><br><img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="stars"></p>
+<p style="margin:0.6em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/communication/econ-visualization/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
+<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
+<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/econ-visualization/'); this.textContent='✓ copied';"
+  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
+<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/awesome-econ-ai-stuff.yml">edit on GitHub</a>.</p>
+</div>
+
+</div>

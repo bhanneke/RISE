@@ -2,7 +2,19 @@
 
 # `resubmit-pipeline`
 
-*Pack: [ARIS skills](../aris.md) · category `submission`*
+
+
+<style>
+.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
+@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
+.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
+.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
+.skill-sidebar dl dt { margin-top:0.5em; }
+.skill-sidebar dl dd { margin:0.1em 0 0 0; }
+</style>
+
+<div class="skill-layout">
+<div class="skill-content" markdown>
 
 ---
 
@@ -433,3 +445,33 @@ Every Codex MCP reviewer call across all phases saves traces per `shared-referen
 - The 5-layer anonymity scan is intentionally more thorough than `/paper-compile`'s generic self-citation warning, because resubmit-mode often inherits camera-ready text from a non-double-blind venue going to a double-blind venue.
 - Page-shrink heuristic is ordered (compress conclusion → tighten hedging → move marginal figures → move proof sketches → compress related-work prose). The order is calibrated to "least risky to most risky" — compressing conclusion is mostly editorial; moving proof sketches changes the reading flow. Stop as early as page limit is met.
 - `RESUBMIT_REPORT.json` schema follows `shared-references/assurance-contract.md` exactly. This makes resubmit runs forensically reproducible. **Note**: `verify_paper_audits.sh` does not currently include `RESUBMIT_REPORT.json` in its `MANDATORY_AUDITS` list (the verifier checks proof / paper-claim / citation / kill-argument). The 4 mandatory audit files consumed by resubmit (which DO live in `<NEW_VENUE_DIR>/`) are recognized by the verifier as usual; `RESUBMIT_REPORT.json` is the orchestrator's own ledger and is not yet a verifier mandatory artifact. Adding it to the verifier is a separate follow-up if the user wants resubmit to be a submission gate via the verifier.
+
+
+</div>
+
+<div class="skill-sidebar">
+<h3 style="margin-top:0;">Use this skill</h3>
+<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/resubmit-pipeline/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
+  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
+<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
+<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
+<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
+<dl style="font-size:0.85em; margin:0;">
+<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
+<dt><b>Category</b></dt><dd><code>submission</code></dd>
+<dt><b>Field</b></dt><dd>—</dd>
+<dt><b>Pipeline stages</b></dt><dd><code>dissemination</code></dd>
+<dt><b>License</b></dt><dd>MIT</dd>
+<dt><b>Last update</b></dt><dd>2026-05-18</dd>
+</dl>
+<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
+<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
+<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
+<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
+<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
+<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/resubmit-pipeline/'); this.textContent='✓ copied';"
+  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
+<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
+</div>
+
+</div>

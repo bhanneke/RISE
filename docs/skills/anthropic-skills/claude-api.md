@@ -2,7 +2,19 @@
 
 # `claude-api`
 
-*Pack: [Anthropic Skills (foundational)](../anthropic-skills.md) · category `infra`*
+Build apps with the Claude API + Anthropic SDK
+
+<style>
+.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
+@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
+.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
+.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
+.skill-sidebar dl dt { margin-top:0.5em; }
+.skill-sidebar dl dd { margin:0.1em 0 0 0; }
+</style>
+
+<div class="skill-layout">
+<div class="skill-content" markdown>
 
 ---
 
@@ -330,3 +342,32 @@ Live documentation URLs are in `shared/live-sources.md`.
 - **Don't reimplement SDK functionality:** The SDK provides high-level helpers — use them instead of building from scratch. Specifically: use `stream.finalMessage()` instead of wrapping `.on()` events in `new Promise()`; use typed exception classes (`Anthropic.RateLimitError`, etc.) instead of string-matching error messages; use SDK types (`Anthropic.MessageParam`, `Anthropic.Tool`, `Anthropic.Message`, etc.) instead of redefining equivalent interfaces.
 - **Don't define custom types for SDK data structures:** The SDK exports types for all API objects. Use `Anthropic.MessageParam` for messages, `Anthropic.Tool` for tool definitions, `Anthropic.ToolUseBlock` / `Anthropic.ToolResultBlockParam` for tool results, `Anthropic.Message` for responses. Defining your own `interface ChatMessage { role: string; content: unknown }` duplicates what the SDK already provides and loses type safety.
 - **Report and document output:** For tasks that produce reports, documents, or visualizations, the code execution sandbox has `python-docx`, `python-pptx`, `matplotlib`, `pillow`, and `pypdf` pre-installed. Claude can generate formatted files (DOCX, PDF, charts) and return them via the Files API — consider this for "report" or "document" type requests instead of plain stdout text.
+
+
+</div>
+
+<div class="skill-sidebar">
+<h3 style="margin-top:0;">Use this skill</h3>
+<button onclick="navigator.clipboard.writeText(`gh api repos/anthropics/skills/contents/skills/claude-api/ --jq .content | base64 -d`); this.textContent='✓ copied';"
+  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
+<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>anthropics/skills</code>.</p>
+<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
+<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
+<dl style="font-size:0.85em; margin:0;">
+<dt><b>Pack</b></dt><dd><a href="../anthropic-skills.md">Anthropic Skills (foundational)</a></dd>
+<dt><b>Category</b></dt><dd><code>infra</code></dd>
+<dt><b>Field</b></dt><dd>—</dd>
+<dt><b>License</b></dt><dd>MIT</dd>
+<dt><b>Last update</b></dt><dd>2026-05</dd>
+</dl>
+<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
+<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
+<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/anthropics/skills">⭐ anthropics/skills</a><br><img src="https://img.shields.io/github/stars/anthropics/skills?style=flat" alt="stars"></p>
+<p style="margin:0.6em 0;"><a href="https://github.com/anthropics/skills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
+<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
+<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/anthropic-skills/claude-api/'); this.textContent='✓ copied';"
+  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
+<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/anthropic-skills.yml">edit on GitHub</a>.</p>
+</div>
+
+</div>
