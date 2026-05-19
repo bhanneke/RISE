@@ -79,6 +79,8 @@ nav:
       - projects/index.md
   - Papers:
       - papers/index.md
+  - Skills:
+      - skills/index.md
   - Glossary: glossary.md
   - Contributing: contributing.md
 

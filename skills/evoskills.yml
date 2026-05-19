@@ -1,0 +1,117 @@
+pack:
+  slug: evoskills
+  name: 'EvoSkills'
+  source_url: 'https://github.com/EvoScientist/EvoSkills'
+  maintainers:
+    - 'EvoScientist team'
+  license: 'Apache-2.0'
+  total_skills: 14
+  last_update: '2026-05-17'
+  related_project: 'evoscientist'
+  compatibility:
+    - claude-code
+    - codex
+    - agnostic
+  notes: 'Companion skill packs for EvoScientist. Installable into other CLI coding agents.'
+
+skills:
+  - slug: 'academic-slides'
+    name: 'academic-slides'
+    category: slides
+    pipeline_stages:
+      - dissemination
+    description: 'Academic slide deck generation'
+    source_path: 'skills/academic-slides/'
+  - slug: 'evo-memory'
+    name: 'evo-memory'
+    category: infra
+    pipeline_stages: []
+    description: 'Persistent memory layer for EvoScientist sessions'
+    source_path: 'skills/evo-memory/'
+  - slug: 'evomath-tao'
+    name: 'evomath-tao'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    description: 'Mathematical derivation skill in the spirit of Tao-style proof reasoning'
+    source_path: 'skills/evomath-tao/'
+  - slug: 'experiment-craft'
+    name: 'experiment-craft'
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    description: 'Experiment design and code crafting'
+    source_path: 'skills/experiment-craft/'
+  - slug: 'experiment-iterative-coder'
+    name: 'experiment-iterative-coder'
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    description: 'Iterative coding loop for experimentation'
+    source_path: 'skills/experiment-iterative-coder/'
+  - slug: 'experiment-pipeline'
+    name: 'experiment-pipeline'
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    description: 'End-to-end experiment pipeline orchestration'
+    source_path: 'skills/experiment-pipeline/'
+  - slug: 'nano-banana'
+    name: 'nano-banana'
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    description: 'AI-generated inline figures (Google Gemini Nano Banana)'
+    source_path: 'skills/nano-banana/'
+  - slug: 'paper-navigator'
+    name: 'paper-navigator'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: 'Navigate literature with persistent memory'
+    source_path: 'skills/paper-navigator/'
+  - slug: 'paper-planning'
+    name: 'paper-planning'
+    category: design
+    pipeline_stages:
+      - research-design
+    description: 'Paper structure + research plan'
+    source_path: 'skills/paper-planning/'
+  - slug: 'paper-rebuttal'
+    name: 'paper-rebuttal'
+    category: revision
+    pipeline_stages:
+      - revision-editing
+    description: 'Rebuttal pipeline for reviewer comments'
+    source_path: 'skills/paper-rebuttal/'
+  - slug: 'paper-review'
+    name: 'paper-review'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: 'Multi-perspective peer review'
+    source_path: 'skills/paper-review/'
+  - slug: 'paper-writing'
+    name: 'paper-writing'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: 'Paper drafting pipeline'
+    source_path: 'skills/paper-writing/'
+  - slug: 'research-ideation'
+    name: 'research-ideation'
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+      - hypothesis-generation
+    description: 'Research idea generation'
+    source_path: 'skills/research-ideation/'
+  - slug: 'research-survey'
+    name: 'research-survey'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: 'Survey/literature review generation'
+    source_path: 'skills/research-survey/'

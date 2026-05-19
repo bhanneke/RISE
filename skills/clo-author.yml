@@ -1,0 +1,114 @@
+pack:
+  slug: clo-author
+  name: 'Clo-Author skills'
+  source_url: 'https://github.com/hugosantanna/clo-author'
+  maintainers:
+    - 'Hugo Sant''Anna (UAB Economics)'
+  license: 'none declared'
+  total_skills: 14
+  last_update: '2026-05-11'
+  related_project: 'clo-author'
+  compatibility:
+    - claude-code
+  notes: '13 commands organized as worker-critic pairs. Empirical-economics-focused defaults with multi-language analysis (R, Python, Julia).'
+
+skills:
+  - slug: 'analyze'
+    name: 'analyze'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    description: ''
+    source_path: '.claude/skills/analyze/'
+  - slug: 'careful'
+    name: 'careful'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/careful/'
+  - slug: 'checkpoint'
+    name: 'checkpoint'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/checkpoint/'
+  - slug: 'dashboard'
+    name: 'dashboard'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/dashboard/'
+  - slug: 'discover'
+    name: 'discover'
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+      - hypothesis-generation
+    description: ''
+    source_path: '.claude/skills/discover/'
+  - slug: 'freeze'
+    name: 'freeze'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/freeze/'
+  - slug: 'new-project'
+    name: 'new-project'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/new-project/'
+  - slug: 'review'
+    name: 'review'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: '.claude/skills/review/'
+  - slug: 'revise'
+    name: 'revise'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/revise/'
+  - slug: 'strategize'
+    name: 'strategize'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/strategize/'
+  - slug: 'submit'
+    name: 'submit'
+    category: submission
+    pipeline_stages:
+      - dissemination
+    description: ''
+    source_path: '.claude/skills/submit/'
+  - slug: 'talk'
+    name: 'talk'
+    category: slides
+    pipeline_stages:
+      - dissemination
+    description: ''
+    source_path: '.claude/skills/talk/'
+  - slug: 'tools'
+    name: 'tools'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/tools/'
+  - slug: 'write'
+    name: 'write'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/write/'

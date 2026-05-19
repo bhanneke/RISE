@@ -43,10 +43,26 @@ these dimensions using the [evaluation rubric](https://github.com/bhanneke/RISE/
 | Looking for the diagram explained | [Concept → Pipeline anatomy](concept/pipeline-anatomy.md) |
 | Surveying existing systems | [Projects](projects/index.md) |
 | Looking for the literature | [Papers](papers/index.md) |
+| Looking for reusable agent skills | [Skills](skills/index.md) |
 | Wanting to contribute | [Contributing](contributing.md) |
 
 ## Provenance
 
 This knowledge base is curated by [Björn Hanneke](https://github.com/bhanneke)
-(Goethe University Frankfurt). It is licensed CC-BY-4.0; please cite per
+(Goethe University Frankfurt), with research and evaluation supported by
+**[Claude Code](https://www.anthropic.com/claude-code)** (Anthropic) —
+project audits, paper-note drafting, PDF-text extraction, and rubric
+scoring are produced through Claude Code workflows under the curator's
+review.
+
+> **Hobby project — not (yet) a scientific contribution.** RISE is a
+> living catalog assembled in the open. Claims, scorings, and
+> classifications reflect the curator's current best-effort
+> understanding of fast-moving primary sources; they have not been
+> peer-reviewed, and the rubric (v0.2) is itself a working artifact.
+> Use it as a navigable map of the field, not as a citable evaluation
+> of any individual project. Corrections and additions welcome via
+> pull request.
+
+Licensed CC-BY-4.0; please cite per
 [`CITATION.cff`](https://github.com/bhanneke/RISE/blob/main/CITATION.cff).

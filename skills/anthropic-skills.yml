@@ -1,0 +1,69 @@
+pack:
+  slug: anthropic-skills
+  name: 'Anthropic Skills (foundational)'
+  source_url: 'https://github.com/anthropics/skills'
+  maintainers:
+    - 'Anthropic'
+  license: 'MIT'
+  total_skills: 8
+  last_update: '2026-05'
+  related_project: ''
+  compatibility:
+    - claude-code
+    - agnostic
+  notes: 'Anthropic''s public skills repository. Most skills are general-purpose (slides, docx, pdf, frontend); included here only for skills relevant to research workflows.'
+
+skills:
+  - slug: 'skill-creator'
+    name: 'skill-creator'
+    category: meta
+    pipeline_stages: []
+    description: 'Meta-skill for building new skills from scratch'
+    source_path: 'skills/skill-creator/'
+  - slug: 'doc-coauthoring'
+    name: 'doc-coauthoring'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: 'Long-document coauthoring workflow'
+    source_path: 'skills/doc-coauthoring/'
+  - slug: 'docx'
+    name: 'docx'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: 'Microsoft Word document generation'
+    source_path: 'skills/docx/'
+  - slug: 'pdf'
+    name: 'pdf'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: 'PDF document generation'
+    source_path: 'skills/pdf/'
+  - slug: 'pptx'
+    name: 'pptx'
+    category: slides
+    pipeline_stages:
+      - dissemination
+    description: 'PowerPoint deck generation'
+    source_path: 'skills/pptx/'
+  - slug: 'xlsx'
+    name: 'xlsx'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    description: 'Excel spreadsheet generation'
+    source_path: 'skills/xlsx/'
+  - slug: 'mcp-builder'
+    name: 'mcp-builder'
+    category: meta
+    pipeline_stages: []
+    description: 'Build MCP servers (Anthropic spec)'
+    source_path: 'skills/mcp-builder/'
+  - slug: 'claude-api'
+    name: 'claude-api'
+    category: infra
+    pipeline_stages: []
+    description: 'Build apps with the Claude API + Anthropic SDK'
+    source_path: 'skills/claude-api/'

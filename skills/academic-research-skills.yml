@@ -1,0 +1,140 @@
+pack:
+  slug: academic-research-skills
+  name: 'Academic Research Skills (ARS)'
+  source_url: 'https://github.com/Imbad0202/academic-research-skills'
+  maintainers:
+    - 'Edward Cheng-I Wu'
+  license: 'CC BY-NC 4.0'
+  total_skills: 17
+  last_update: '2026-05-17'
+  related_project: 'academic-research-skills'
+  compatibility:
+    - claude-code
+    - codex
+    - vscode
+    - jetbrains
+  notes: 'Distributed as a Claude Code plugin in 3 sub-suites: Deep Research (13 agents), Academic Paper (12 agents), Academic Paper Reviewer (7 agents). Notable for claim-faithfulness audit pass.'
+
+skills:
+  - slug: 'ars-plan'
+    name: 'ars-plan'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: 'Socratic dialogue to map paper chapter structure'
+    source_path: 'ars-plan/'
+  - slug: 'ars-write'
+    name: 'ars-write'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: 'Draft paper sections'
+    source_path: 'ars-write/'
+  - slug: 'ars-citation-convert'
+    name: 'ars-citation-convert'
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    description: 'Citation format conversion across styles'
+    source_path: 'ars-citation-convert/'
+  - slug: 'ars-style-calibration'
+    name: 'ars-style-calibration'
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    description: 'Learns user''s writing voice from past work'
+    source_path: 'ars-style-calibration/'
+  - slug: 'ars-quality-check'
+    name: 'ars-quality-check'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: 'Writing-quality check catches machine-generated patterns'
+    source_path: 'ars-quality-check/'
+  - slug: 'ars-latex-harden'
+    name: 'ars-latex-harden'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: 'LaTeX hardening for journal compliance'
+    source_path: 'ars-latex-harden/'
+  - slug: 'ars-vlm-figure'
+    name: 'ars-vlm-figure'
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    description: 'VLM figure verification'
+    source_path: 'ars-vlm-figure/'
+  - slug: 'ars-anti-leakage'
+    name: 'ars-anti-leakage'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: 'Anti-leakage protocol for sensitive data'
+    source_path: 'ars-anti-leakage/'
+  - slug: 'ars-revision-coach'
+    name: 'ars-revision-coach'
+    category: revision
+    pipeline_stages:
+      - revision-editing
+    description: 'Revision coaching with reviewer-comment routing'
+    source_path: 'ars-revision-coach/'
+  - slug: 'ars-review'
+    name: 'ars-review'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: 'Multi-perspective peer review (EIC + 3 dynamic reviewers + Devil''s Advocate)'
+    source_path: 'ars-review/'
+  - slug: 'ars-review-rubric'
+    name: 'ars-review-rubric'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: '0-100 quality rubrics'
+    source_path: 'ars-review-rubric/'
+  - slug: 'ars-review-rr'
+    name: 'ars-review-rr'
+    category: revision
+    pipeline_stages:
+      - revision-editing
+    description: 'R&R traceability matrix'
+    source_path: 'ars-review-rr/'
+  - slug: 'ars-lit-review'
+    name: 'ars-lit-review'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: '13-agent literature-review team with Socratic guided mode'
+    source_path: 'ars-lit-review/'
+  - slug: 'ars-prisma'
+    name: 'ars-prisma'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: 'PRISMA systematic-review workflow'
+    source_path: 'ars-prisma/'
+  - slug: 'ars-semantic-scholar'
+    name: 'ars-semantic-scholar'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: 'Semantic Scholar API verification'
+    source_path: 'ars-semantic-scholar/'
+  - slug: 'ars-claim-audit'
+    name: 'ars-claim-audit'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: 'v3.8 claim-faithfulness audit pass with 5 HIGH-WARN classes'
+    source_path: 'ars-claim-audit/'
+  - slug: 'ars-cross-model'
+    name: 'ars-cross-model'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: 'Cross-model verification harness (ARS_CROSS_MODEL)'
+    source_path: 'ars-cross-model/'

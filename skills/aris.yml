@@ -1,0 +1,598 @@
+pack:
+  slug: aris
+  name: 'ARIS skills'
+  source_url: 'https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep'
+  maintainers:
+    - 'Yang, Ruofeng'
+    - 'Li, Yongcan'
+    - 'Li, Shuai'
+  license: 'MIT'
+  total_skills: 80
+  last_update: '2026-05-18'
+  related_project: 'aris'
+  compatibility:
+    - claude-code
+    - codex
+    - cursor
+    - trae
+    - antigravity
+    - openclaw
+    - copilot-cli
+    - windsurf
+    - agnostic
+  notes: '74+ Markdown SKILL.md files designed around cross-model adversarial collaboration. Framework-agnostic by design.'
+
+skills:
+  - slug: 'ablation-planner'
+    name: 'ablation-planner'
+    category: design
+    pipeline_stages:
+      - research-design
+    description: ''
+    source_path: 'skills/ablation-planner/SKILL.md'
+  - slug: 'alphaxiv'
+    name: 'alphaxiv'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/alphaxiv/SKILL.md'
+  - slug: 'analyze-results'
+    name: 'analyze-results'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    description: ''
+    source_path: 'skills/analyze-results/SKILL.md'
+  - slug: 'arxiv'
+    name: 'arxiv'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/arxiv/SKILL.md'
+  - slug: 'auto-paper-improvement-loop'
+    name: 'auto-paper-improvement-loop'
+    category: meta
+    pipeline_stages: []
+    description: ''
+    source_path: 'skills/auto-paper-improvement-loop/SKILL.md'
+  - slug: 'auto-review-loop-llm'
+    name: 'auto-review-loop-llm'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/auto-review-loop-llm/SKILL.md'
+  - slug: 'auto-review-loop-minimax'
+    name: 'auto-review-loop-minimax'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/auto-review-loop-minimax/SKILL.md'
+  - slug: 'auto-review-loop'
+    name: 'auto-review-loop'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/auto-review-loop/SKILL.md'
+  - slug: 'citation-audit'
+    name: 'citation-audit'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/citation-audit/SKILL.md'
+  - slug: 'claims-drafting'
+    name: 'claims-drafting'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/claims-drafting/SKILL.md'
+  - slug: 'comm-lit-review'
+    name: 'comm-lit-review'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/comm-lit-review/SKILL.md'
+  - slug: 'deepxiv'
+    name: 'deepxiv'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/deepxiv/SKILL.md'
+  - slug: 'dse-loop'
+    name: 'dse-loop'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/dse-loop/SKILL.md'
+  - slug: 'embodiment-description'
+    name: 'embodiment-description'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/embodiment-description/SKILL.md'
+  - slug: 'exa-search'
+    name: 'exa-search'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/exa-search/SKILL.md'
+  - slug: 'experiment-audit'
+    name: 'experiment-audit'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/experiment-audit/SKILL.md'
+  - slug: 'experiment-bridge'
+    name: 'experiment-bridge'
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    description: ''
+    source_path: 'skills/experiment-bridge/SKILL.md'
+  - slug: 'experiment-plan'
+    name: 'experiment-plan'
+    category: design
+    pipeline_stages:
+      - research-design
+    description: ''
+    source_path: 'skills/experiment-plan/SKILL.md'
+  - slug: 'experiment-queue'
+    name: 'experiment-queue'
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    description: ''
+    source_path: 'skills/experiment-queue/SKILL.md'
+  - slug: 'feishu-notify'
+    name: 'feishu-notify'
+    category: infra
+    pipeline_stages: []
+    description: ''
+    source_path: 'skills/feishu-notify/SKILL.md'
+  - slug: 'figure-description'
+    name: 'figure-description'
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/figure-description/SKILL.md'
+  - slug: 'figure-spec'
+    name: 'figure-spec'
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/figure-spec/SKILL.md'
+  - slug: 'formula-derivation'
+    name: 'formula-derivation'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    description: ''
+    source_path: 'skills/formula-derivation/SKILL.md'
+  - slug: 'gemini-search'
+    name: 'gemini-search'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/gemini-search/SKILL.md'
+  - slug: 'grant-proposal'
+    name: 'grant-proposal'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/grant-proposal/SKILL.md'
+  - slug: 'idea-creator'
+    name: 'idea-creator'
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+      - hypothesis-generation
+    description: ''
+    source_path: 'skills/idea-creator/SKILL.md'
+  - slug: 'idea-discovery-robot'
+    name: 'idea-discovery-robot'
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+      - hypothesis-generation
+    description: ''
+    source_path: 'skills/idea-discovery-robot/SKILL.md'
+  - slug: 'idea-discovery'
+    name: 'idea-discovery'
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+      - hypothesis-generation
+    description: ''
+    source_path: 'skills/idea-discovery/SKILL.md'
+  - slug: 'interview-cheatsheet'
+    name: 'interview-cheatsheet'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/interview-cheatsheet/SKILL.md'
+  - slug: 'invention-structuring'
+    name: 'invention-structuring'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/invention-structuring/SKILL.md'
+  - slug: 'jurisdiction-format'
+    name: 'jurisdiction-format'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/jurisdiction-format/SKILL.md'
+  - slug: 'kill-argument'
+    name: 'kill-argument'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/kill-argument/SKILL.md'
+  - slug: 'mermaid-diagram'
+    name: 'mermaid-diagram'
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/mermaid-diagram/SKILL.md'
+  - slug: 'meta-optimize'
+    name: 'meta-optimize'
+    category: meta
+    pipeline_stages: []
+    description: ''
+    source_path: 'skills/meta-optimize/SKILL.md'
+  - slug: 'monitor-experiment'
+    name: 'monitor-experiment'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/monitor-experiment/SKILL.md'
+  - slug: 'novelty-check'
+    name: 'novelty-check'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/novelty-check/SKILL.md'
+  - slug: 'openalex'
+    name: 'openalex'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/openalex/SKILL.md'
+  - slug: 'overleaf-sync'
+    name: 'overleaf-sync'
+    category: submission
+    pipeline_stages:
+      - dissemination
+    description: ''
+    source_path: 'skills/overleaf-sync/SKILL.md'
+  - slug: 'paper-claim-audit'
+    name: 'paper-claim-audit'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/paper-claim-audit/SKILL.md'
+  - slug: 'paper-compile'
+    name: 'paper-compile'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/paper-compile/SKILL.md'
+  - slug: 'paper-figure'
+    name: 'paper-figure'
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/paper-figure/SKILL.md'
+  - slug: 'paper-illustration-image2'
+    name: 'paper-illustration-image2'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/paper-illustration-image2/SKILL.md'
+  - slug: 'paper-illustration'
+    name: 'paper-illustration'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/paper-illustration/SKILL.md'
+  - slug: 'paper-plan'
+    name: 'paper-plan'
+    category: design
+    pipeline_stages:
+      - research-design
+    description: ''
+    source_path: 'skills/paper-plan/SKILL.md'
+  - slug: 'paper-poster'
+    name: 'paper-poster'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/paper-poster/SKILL.md'
+  - slug: 'paper-slides'
+    name: 'paper-slides'
+    category: slides
+    pipeline_stages:
+      - dissemination
+    description: ''
+    source_path: 'skills/paper-slides/SKILL.md'
+  - slug: 'paper-talk'
+    name: 'paper-talk'
+    category: slides
+    pipeline_stages:
+      - dissemination
+    description: ''
+    source_path: 'skills/paper-talk/SKILL.md'
+  - slug: 'paper-write'
+    name: 'paper-write'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/paper-write/SKILL.md'
+  - slug: 'paper-writing'
+    name: 'paper-writing'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/paper-writing/SKILL.md'
+  - slug: 'patent-novelty-check'
+    name: 'patent-novelty-check'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/patent-novelty-check/SKILL.md'
+  - slug: 'patent-pipeline'
+    name: 'patent-pipeline'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/patent-pipeline/SKILL.md'
+  - slug: 'patent-review'
+    name: 'patent-review'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/patent-review/SKILL.md'
+  - slug: 'pixel-art'
+    name: 'pixel-art'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/pixel-art/SKILL.md'
+  - slug: 'prior-art-search'
+    name: 'prior-art-search'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/prior-art-search/SKILL.md'
+  - slug: 'proof-checker'
+    name: 'proof-checker'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    description: ''
+    source_path: 'skills/proof-checker/SKILL.md'
+  - slug: 'proof-writer'
+    name: 'proof-writer'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    description: ''
+    source_path: 'skills/proof-writer/SKILL.md'
+  - slug: 'qzcli'
+    name: 'qzcli'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/qzcli/SKILL.md'
+  - slug: 'rebuttal'
+    name: 'rebuttal'
+    category: revision
+    pipeline_stages:
+      - revision-editing
+    description: ''
+    source_path: 'skills/rebuttal/SKILL.md'
+  - slug: 'render-html'
+    name: 'render-html'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/render-html/SKILL.md'
+  - slug: 'research-lit'
+    name: 'research-lit'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/research-lit/SKILL.md'
+  - slug: 'research-pipeline'
+    name: 'research-pipeline'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/research-pipeline/SKILL.md'
+  - slug: 'research-refine-pipeline'
+    name: 'research-refine-pipeline'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/research-refine-pipeline/SKILL.md'
+  - slug: 'research-refine'
+    name: 'research-refine'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/research-refine/SKILL.md'
+  - slug: 'research-review'
+    name: 'research-review'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/research-review/SKILL.md'
+  - slug: 'research-wiki'
+    name: 'research-wiki'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/research-wiki/SKILL.md'
+  - slug: 'resubmit-pipeline'
+    name: 'resubmit-pipeline'
+    category: submission
+    pipeline_stages:
+      - dissemination
+    description: ''
+    source_path: 'skills/resubmit-pipeline/SKILL.md'
+  - slug: 'result-to-claim'
+    name: 'result-to-claim'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/result-to-claim/SKILL.md'
+  - slug: 'run-experiment'
+    name: 'run-experiment'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/run-experiment/SKILL.md'
+  - slug: 'semantic-scholar'
+    name: 'semantic-scholar'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: 'skills/semantic-scholar/SKILL.md'
+  - slug: 'serverless-modal'
+    name: 'serverless-modal'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/serverless-modal/SKILL.md'
+  - slug: 'shared-references'
+    name: 'shared-references'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/shared-references/SKILL.md'
+  - slug: 'skills-codex-claude-review'
+    name: 'skills-codex-claude-review'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/skills-codex-claude-review/SKILL.md'
+  - slug: 'skills-codex-gemini-review'
+    name: 'skills-codex-gemini-review'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: ''
+    source_path: 'skills/skills-codex-gemini-review/SKILL.md'
+  - slug: 'skills-codex'
+    name: 'skills-codex'
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    description: ''
+    source_path: 'skills/skills-codex/SKILL.md'
+  - slug: 'slides-polish'
+    name: 'slides-polish'
+    category: slides
+    pipeline_stages:
+      - dissemination
+    description: ''
+    source_path: 'skills/slides-polish/SKILL.md'
+  - slug: 'specification-writing'
+    name: 'specification-writing'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/specification-writing/SKILL.md'
+  - slug: 'system-profile'
+    name: 'system-profile'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/system-profile/SKILL.md'
+  - slug: 'training-check'
+    name: 'training-check'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/training-check/SKILL.md'
+  - slug: 'vast-gpu'
+    name: 'vast-gpu'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/vast-gpu/SKILL.md'
+  - slug: 'writing-systems-papers'
+    name: 'writing-systems-papers'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: 'skills/writing-systems-papers/SKILL.md'

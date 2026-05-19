@@ -1,0 +1,86 @@
+pack:
+  slug: autoresearchclaw
+  name: 'AutoResearchClaw skills'
+  source_url: 'https://github.com/aiming-lab/AutoResearchClaw'
+  maintainers:
+    - 'Aiming Lab'
+  license: 'MIT'
+  total_skills: 9
+  last_update: '2026-04-23'
+  related_project: 'autoresearchclaw'
+  compatibility:
+    - claude-code
+    - codex
+    - copilot-cli
+    - gemini-cli
+    - kimi-cli
+    - openclaw
+  notes: '19 pre-loaded research skills + flexible loading from .claude/skills/. ACP-compatible (Agent Communication Protocol).'
+
+skills:
+  - slug: 'a-evolve'
+    name: 'a-evolve'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/a-evolve/'
+  - slug: 'biology-biopython'
+    name: 'biology-biopython'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/biology-biopython/'
+  - slug: 'chemistry-rdkit'
+    name: 'chemistry-rdkit'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/chemistry-rdkit/'
+  - slug: 'hypothesis-formulation'
+    name: 'hypothesis-formulation'
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+      - hypothesis-generation
+    description: ''
+    source_path: '.claude/skills/hypothesis-formulation/'
+  - slug: 'literature-search'
+    name: 'literature-search'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: '.claude/skills/literature-search/'
+  - slug: 'researchclaw'
+    name: 'researchclaw'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    description: ''
+    source_path: '.claude/skills/researchclaw/'
+  - slug: 'scientific-visualization'
+    name: 'scientific-visualization'
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/scientific-visualization/'
+  - slug: 'scientific-writing'
+    name: 'scientific-writing'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    description: ''
+    source_path: '.claude/skills/scientific-writing/'
+  - slug: 'statistical-reporting'
+    name: 'statistical-reporting'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    description: ''
+    source_path: '.claude/skills/statistical-reporting/'
