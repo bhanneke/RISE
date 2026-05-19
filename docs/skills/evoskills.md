@@ -20,69 +20,69 @@ license: `Apache-2.0` · 14 skills · last update: 2026-05-17
 
 ### `code-gen` (3)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `experiment-craft` | `code-generation` | Experiment design and code crafting |
-| `experiment-iterative-coder` | `code-generation` | Iterative coding loop for experimentation |
-| `experiment-pipeline` | `code-generation` | End-to-end experiment pipeline orchestration |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `experiment-craft` | — | `code-generation` | Experiment design and code crafting | — | — |
+| `experiment-iterative-coder` | — | `code-generation` | Iterative coding loop for experimentation | — | — |
+| `experiment-pipeline` | — | `code-generation` | End-to-end experiment pipeline orchestration | — | — |
 
 ### `design` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `paper-planning` | `research-design` | Paper structure + research plan |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `paper-planning` | — | `research-design` | Paper structure + research plan | — | — |
 
 ### `drafting` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `paper-writing` | `paper-drafting` | Paper drafting pipeline |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `paper-writing` | — | `paper-drafting` | Paper drafting pipeline | — | — |
 
 ### `figures` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `nano-banana` | `paper-drafting` | AI-generated inline figures (Google Gemini Nano Banana) |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `nano-banana` | — | `paper-drafting` | AI-generated inline figures (Google Gemini Nano Banana) | — | — |
 
 ### `ideation` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `research-ideation` | `rq-formulation` `hypothesis-generation` | Research idea generation |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `research-ideation` | — | `rq-formulation` `hypothesis-generation` | Research idea generation | — | — |
 
 ### `infra` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `evo-memory` |  | Persistent memory layer for EvoScientist sessions |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `evo-memory` | — |  | Persistent memory layer for EvoScientist sessions | — | — |
 
 ### `literature` (2)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `paper-navigator` | `literature-discovery` `literature-synthesis` | Navigate literature with persistent memory |
-| `research-survey` | `literature-discovery` `literature-synthesis` | Survey/literature review generation |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `paper-navigator` | — | `literature-discovery` `literature-synthesis` | Navigate literature with persistent memory | — | — |
+| `research-survey` | — | `literature-discovery` `literature-synthesis` | Survey/literature review generation | — | — |
 
 ### `modeling` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `evomath-tao` | `formal-modeling` | Mathematical derivation skill in the spirit of Tao-style proof reasoning |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `evomath-tao` | — | `formal-modeling` | Mathematical derivation skill in the spirit of Tao-style proof reasoning | — | — |
 
 ### `review` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `paper-review` | `referee-simulation` | Multi-perspective peer review |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `paper-review` | — | `referee-simulation` | Multi-perspective peer review | — | — |
 
 ### `revision` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `paper-rebuttal` | `revision-editing` | Rebuttal pipeline for reviewer comments |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `paper-rebuttal` | — | `revision-editing` | Rebuttal pipeline for reviewer comments | — | — |
 
 ### `slides` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `academic-slides` | `dissemination` | Academic slide deck generation |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `academic-slides` | — | `dissemination` | Academic slide deck generation | — | — |

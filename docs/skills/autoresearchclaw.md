@@ -20,34 +20,34 @@ license: `MIT` · 9 skills · last update: 2026-04-23
 
 ### `analysis` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `statistical-reporting` | `data-analysis` | — |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `statistical-reporting` | — | `data-analysis` | — | — | — |
 
 ### `drafting` (4)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `a-evolve` | `paper-drafting` | — |
-| `biology-biopython` | `paper-drafting` | — |
-| `chemistry-rdkit` | `paper-drafting` | — |
-| `scientific-writing` | `paper-drafting` | — |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `a-evolve` | — | `paper-drafting` | — | — | — |
+| `biology-biopython` | — | `paper-drafting` | — | — | — |
+| `chemistry-rdkit` | — | `paper-drafting` | — | — | — |
+| `scientific-writing` | — | `paper-drafting` | — | — | — |
 
 ### `figures` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `scientific-visualization` | `paper-drafting` | — |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `scientific-visualization` | — | `paper-drafting` | — | — | — |
 
 ### `ideation` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `hypothesis-formulation` | `rq-formulation` `hypothesis-generation` | — |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `hypothesis-formulation` | — | `rq-formulation` `hypothesis-generation` | — | — | — |
 
 ### `literature` (2)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `literature-search` | `literature-discovery` `literature-synthesis` | — |
-| `researchclaw` | `literature-discovery` `literature-synthesis` | — |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `literature-search` | — | `literature-discovery` `literature-synthesis` | — | — | — |
+| `researchclaw` | — | `literature-discovery` `literature-synthesis` | — | — | — |

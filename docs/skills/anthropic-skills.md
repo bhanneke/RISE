@@ -18,33 +18,33 @@ license: `MIT` · 8 skills · last update: 2026-05
 
 ### `data-handling` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `xlsx` | `data-acquisition` | Excel spreadsheet generation |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `xlsx` | — | `data-acquisition` | Excel spreadsheet generation | — | — |
 
 ### `drafting` (3)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `doc-coauthoring` | `paper-drafting` | Long-document coauthoring workflow |
-| `docx` | `paper-drafting` | Microsoft Word document generation |
-| `pdf` | `paper-drafting` | PDF document generation |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `doc-coauthoring` | — | `paper-drafting` | Long-document coauthoring workflow | — | — |
+| `docx` | — | `paper-drafting` | Microsoft Word document generation | — | — |
+| `pdf` | — | `paper-drafting` | PDF document generation | — | — |
 
 ### `infra` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `claude-api` |  | Build apps with the Claude API + Anthropic SDK |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `claude-api` | — |  | Build apps with the Claude API + Anthropic SDK | — | — |
 
 ### `meta` (2)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `mcp-builder` |  | Build MCP servers (Anthropic spec) |
-| `skill-creator` |  | Meta-skill for building new skills from scratch |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `mcp-builder` | — |  | Build MCP servers (Anthropic spec) | — | — |
+| `skill-creator` | — |  | Meta-skill for building new skills from scratch | — | — |
 
 ### `slides` (1)
 
-| Skill | Pipeline stages | Description |
-|---|---|---|
-| `pptx` | `dissemination` | PowerPoint deck generation |
+| Skill | Field | Stages | Description | Source | Updated |
+|---|---|---|---|---|---|
+| `pptx` | — | `dissemination` | PowerPoint deck generation | — | — |

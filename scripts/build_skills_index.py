@@ -104,14 +104,20 @@ def render_pack_page(pack_data: dict[str, Any]) -> str:
     for cat in sorted(by_cat.keys()):
         out.append(f"### `{cat}` ({len(by_cat[cat])})")
         out.append("")
-        out.append("| Skill | Pipeline stages | Description |")
-        out.append("|---|---|---|")
+        out.append("| Skill | Field | Stages | Description | Source | Updated |")
+        out.append("|---|---|---|---|---|---|")
         for s in sorted(by_cat[cat], key=lambda x: x.get("slug", "")):
             slug = s.get("slug", "")
             name = s.get("name", slug)
+            field = s.get("field", "—") or "—"
             stages = " ".join(f"`{x}`" for x in (s.get("pipeline_stages") or []))
             desc = s.get("description", "") or "—"
-            out.append(f"| `{name}` | {stages} | {desc} |")
+            details = s.get("details_url", "")
+            details_cell = f"[link]({details})" if details else "—"
+            updated = s.get("last_update", "") or "—"
+            out.append(
+                f"| `{name}` | {field} | {stages} | {desc} | {details_cell} | {updated} |"
+            )
         out.append("")
 
     return "\n".join(out).rstrip() + "\n"
@@ -138,6 +144,58 @@ def render_index(packs: list[dict[str, Any]]) -> str:
             f"| [{pk['name']}]({pk['slug']}.md) | `{pk.get('license','?')}` "
             f"| {n} | {proj_link} | {compat} |"
         )
+    out.append("")
+
+    # Filterable all-skills table
+    out.append("## All skills (filterable)")
+    out.append("")
+    out.append("""<input type="text" id="skillFilter" placeholder="🔍 filter by skill name / pack / field / category / pipeline stage…"
+  style="width:100%; padding:0.5em; margin:1em 0; font-size:1em; border:1px solid #ccc; border-radius:4px;"
+  oninput="filterSkills(this.value)">
+
+<script>
+function filterSkills(q) {
+  q = q.toLowerCase().trim();
+  document.querySelectorAll('#skillsTable tbody tr').forEach(function(row) {
+    row.style.display = (!q || row.textContent.toLowerCase().includes(q)) ? '' : 'none';
+  });
+}
+</script>
+""")
+    out.append('<table id="skillsTable">')
+    out.append("<thead><tr>"
+               "<th>Skill</th><th>Pack</th><th>Field</th><th>Category</th>"
+               "<th>Stages</th><th>Description</th><th>Source</th><th>Updated</th>"
+               "</tr></thead>")
+    out.append("<tbody>")
+    rows = []
+    for p in packs:
+        pk = p["pack"]
+        pack_slug = pk["slug"]
+        pack_name = pk["name"]
+        for s in p.get("skills") or []:
+            name = s.get("name", s.get("slug", ""))
+            field = s.get("field", "—") or "—"
+            cat = s.get("category", "—") or "—"
+            stages = " ".join(f"<code>{x}</code>" for x in (s.get("pipeline_stages") or []))
+            desc = s.get("description", "—") or "—"
+            details = s.get("details_url", "")
+            details_cell = f'<a href="{details}">link</a>' if details else "—"
+            updated = s.get("last_update", "—") or "—"
+            rows.append((cat, name, pack_slug,
+                         f"<tr>"
+                         f"<td><code>{name}</code></td>"
+                         f'<td><a href="{pack_slug}.md">{pack_name}</a></td>'
+                         f"<td>{field}</td>"
+                         f"<td><code>{cat}</code></td>"
+                         f"<td>{stages}</td>"
+                         f"<td>{desc}</td>"
+                         f"<td>{details_cell}</td>"
+                         f"<td>{updated}</td>"
+                         f"</tr>"))
+    for _, _, _, row_html in sorted(rows):
+        out.append(row_html)
+    out.append("</tbody></table>")
     out.append("")
 
     # Skills by category across all packs

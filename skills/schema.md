@@ -33,8 +33,12 @@ skills:
     name: string                  # invocation form, e.g., "/research-pipeline" or "research-pipeline"
     category: enum                # single tag from VOCABULARY.md → skill categories
     pipeline_stages: [enum]       # RISE pipeline stages this skill serves (from projects/VOCABULARY.md)
+    field: string                 # academic discipline / domain (general, economics, econometrics, finance, etc.)
     description: string           # 1-line summary
-    source_path: string           # optional path under the repo, e.g., "skills/research-pipeline/SKILL.md"
+    source_path: string           # path under the repo, e.g., "skills/research-pipeline/SKILL.md"
+    details_url: string           # canonical URL to the skill's full text (SKILL.md, blog post, doc)
+    provenance: string            # where the entry was sourced from (e.g., "scraped from <repo> 2026-05-20", "manually curated")
+    last_update: "YYYY-MM-DD"     # last meaningful update to the underlying skill
 ```
 
 ## Notes
