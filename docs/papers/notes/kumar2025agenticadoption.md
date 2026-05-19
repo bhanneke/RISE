@@ -1,18 +1,19 @@
 ---
 citekey: kumar2025agenticadoption
-title: 'Adopting Agentic AI: Challenges and Opportunities for Information Management Research'
+title: 'Agentic Artificial Intelligence as a New Frontier in Information Systems: Promise, Peril, and Research Opportunities'
 authors:
   - 'Kumar, N.'
   - 'Wei, X.'
   - 'Zhang, H.'
-year: 2025
-venue: 'SSRN Working Paper 5490048'
-doi: ""
+year: 2026
+venue: 'Information & Management 63(7):104317'
+doi: '10.1016/j.im.2026.104317'
 url: ""
 kind: paper
 themes:
   - autonomous-research-agents
   - is-methodology
+  - sociotechnical
 methods:
   - conceptual
   - framework
@@ -20,32 +21,35 @@ relates_to_projects:
   - e2er
   - sakana-ai-scientist
   - agent-laboratory
-status: queued
+status: read
 ---
-
-!!! warning "Stub — content not yet written"
-    This note's **front-matter is verified** (citekey, authors, DOI, year),
-    but the **Summary / Contribution / Method / Critique** sections below
-    have not been filled in yet. Only the *Relevance to RISE* paragraph
-    reflects curator analysis; everything else is a placeholder.
-
-    Reason: the paper's abstract was not retrievable via Crossref / arXiv
-    API (typical for SSRN, paywalled-publisher-blocked, or recently-posted
-    items). The note will be filled in on a future pass.
-
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+A research note characterising agentic AI as autonomous systems
+"capable of planning, reasoning, and acting with minimal human
+oversight" that are reshaping enterprise information systems. Early
+deployments are credited with measurable efficiency gains (e.g., 30%
+cost reductions in customer service, improved decision accuracy in
+finance, streamlined administrative workflows in healthcare) but also
+expose tensions around labor displacement, transparency, governance,
+and equity, which the authors frame as structural consequences viewed
+through a socio-technical systems lens.
 
 ## Contribution
 
-*Pending.*
+Three explicit contributions: (1) clarifying the architectural and
+operational foundations of agentic AI and surveying application
+domains; (2) situating adoption risks within socio-technical
+perspectives; and (3) introducing an "agentic AI tradeoff framework"
+that names six strategic tensions with associated research questions
+for the IS community.
 
 ## Method
 
-*Pending.*
+Conceptual research note; surveys current enterprise deployments and
+risks and derives a framework of six strategic tradeoffs from a
+socio-technical systems perspective.
 
 ## Relevance to RISE
 
@@ -53,8 +57,18 @@ Proposes an 'Agentic AI Tradeoff Framework' with six strategic tradeoffs (effici
 
 ## Critique / open questions
 
-*Pending.*
+Industrial deployment numbers are sourced from vendor press releases
+(Microsoft, Google Cloud, Salesforce), not independent measurement;
+the tradeoff framework is conceptual rather than empirically
+validated; the paper takes the existence of "agentic" systems as a
+clean category despite the term's commercial elasticity.
 
 ## Key quotes
 
-*Pending.*
+> "Agentic artificial intelligence (AI), autonomous systems capable of
+> planning, reasoning, and acting with minimal human oversight, is
+> reshaping enterprise information systems."
+
+> "This research note … (3) introducing the 'agentic AI tradeoff
+> framework,' which outlines six strategic tensions and associated
+> research questions."

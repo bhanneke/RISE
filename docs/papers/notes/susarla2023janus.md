@@ -10,38 +10,43 @@ year: 2023
 venue: 'Information Systems Research 34(2) editorial'
 doi: '10.1287/isre.2023.ed.v34.n2'
 url: ""
-kind: paper
+kind: editorial
 themes:
   - is-methodology
   - sociotechnical
+  - ai-publishing-ecosystems
 methods:
   - editorial
 relates_to_projects: []
-status: queued
+status: read
 ---
-
-!!! warning "Stub — content not yet written"
-    This note's **front-matter is verified** (citekey, authors, DOI, year),
-    but the **Summary / Contribution / Method / Critique** sections below
-    have not been filled in yet. Only the *Relevance to RISE* paragraph
-    reflects curator analysis; everything else is a placeholder.
-
-    Reason: the paper's abstract was not retrievable via Crossref / arXiv
-    API (typical for SSRN, paywalled-publisher-blocked, or recently-posted
-    items). The note will be filled in on a future pass.
-
 
 ## Summary
 
-Editorial; Crossref-indexed abstract is only a funding note. Substantive content requires the full PDF (DOI:10.1287/isre.2023.ed.v34.n2).
+An ISR editorial by the senior-editor team arguing that generative AI
+in scholarly activities has a *Janus* character — promising because of
+genuine capability gains, but easily mischaracterised. The authors
+note that academic conversations have already "moved beyond bemoaning
+the decline of learning to thinking more critically about how scholars
+will and should use generative AI tools," and ask whether such tools
+can really replace accumulated experience or insight even as they
+automate aspects of writing.
 
 ## Contribution
 
-Editorial; Crossref-indexed abstract is only a funding note. Substantive content requires the full PDF (DOI:10.1287/isre.2023.ed.v34.n2).
+The editorial sets a responsible-conduct agenda for IS scholarship in
+the generative-AI era — flagging concerns about the misuse, opacity,
+and contextual misreading of these tools — and positions IS as the
+discipline responsible for understanding both the technology and the
+meaning-making practices academics build around it. It is the
+acknowledged predecessor to the 2025 ISR editorial by an overlapping
+author team (Gopal et al. 2025).
 
 ## Method
 
-Editorial; Crossref-indexed abstract is only a funding note. Substantive content requires the full PDF (DOI:10.1287/isre.2023.ed.v34.n2).
+Editorial; conceptual argument addressed to the IS research community,
+synthesising current debate rather than presenting new empirical
+evidence.
 
 ## Relevance to RISE
 
@@ -49,8 +54,18 @@ ISR editorial — the direct predecessor to [@gopal2025inventing]. The same auth
 
 ## Critique / open questions
 
-Cannot be assessed from the Crossref record — only a funding acknowledgement is indexed; the full editorial PDF is required for any substantive critique.
+Like any editorial, the piece is programmatic; concrete policy or
+evaluation criteria are not provided, and the "Janus" framing risks
+collapsing distinct issues (capability, governance, epistemics) into a
+single binary opportunity/risk register.
 
 ## Key quotes
 
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*
+> "Academic conversations about generative AI have moved beyond
+> bemoaning the decline of learning to thinking more critically about
+> how scholars will and should use generative AI tools."
+
+> "Although they may be able to help automate aspects of writing or
+> serve as an aid to the creative process, can they replace our
+> accumulated experience or insights into the problems with which we
+> grapple?"

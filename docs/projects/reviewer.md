@@ -62,6 +62,6 @@ Treats peer review as a structured engineering problem with explicit schemas, va
 
 ## Related references (literature catalog)
 
-- `gartenberg2026morebetter` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
-- `naddaf2025aipeer` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
+- Gartenberg, C. et al. (2026). [*More Versus Better: Artificial Intelligence, Incentives, and the Emerging Crisis in Peer Review*](../papers/notes/gartenberg2026morebetter.md) `gartenberg2026morebetter`
+- Naddaf, M. (2025). [*AI Is Transforming Peer Review — and Many Scientists Are Worried*](../papers/notes/naddaf2025aipeer.md) `naddaf2025aipeer`
 - `neurips2024checklist` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))

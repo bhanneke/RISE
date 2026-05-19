@@ -71,4 +71,4 @@ An autonomous system that generates empirical economic policy research papers en
 ## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
-- `cao2025aifinance` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
+- Filimonovic, D. et al. (2025). [*Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral Sciences*](../papers/notes/filimonovic2025genai.md) `filimonovic2025genai`

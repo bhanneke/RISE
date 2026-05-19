@@ -14,7 +14,7 @@ An ICML 2025 multi-agent platform for *community-level* automatic research simul
 
 ## Distinctive contribution
 
-Studies *community dynamics* rather than single-pipeline output: how groups of agents interact, divide labor, and shape each other's work. The simulator-vs-pipeline framing makes it a natural vehicle for studying field-level RISE questions (cf. [@gartenberg2026morebetter], [@tonerrodgers2025genai]).
+Studies *community dynamics* rather than single-pipeline output: how groups of agents interact, divide labor, and shape each other's work. The simulator-vs-pipeline framing makes it a natural vehicle for studying field-level RISE questions (cf. [@gartenberg2026morebetter], [@filimonovic2025genai]).
 
 ## Evaluation scores
 

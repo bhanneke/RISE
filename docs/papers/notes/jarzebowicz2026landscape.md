@@ -15,40 +15,44 @@ year: 2026
 venue: 'arXiv 2603.11842'
 doi: ""
 url: ""
-kind: paper
+kind: survey
 themes:
   - is-methodology
   - sociotechnical
+  - ai-publishing-ecosystems
 methods:
   - systematic-review
   - synthesis
 relates_to_projects: []
-status: queued
+status: read
 ---
-
-!!! warning "Stub — content not yet written"
-    This note's **front-matter is verified** (citekey, authors, DOI, year),
-    but the **Summary / Contribution / Method / Critique** sections below
-    have not been filled in yet. Only the *Relevance to RISE* paragraph
-    reflects curator analysis; everything else is a placeholder.
-
-    Reason: the paper's abstract was not retrievable via Crossref / arXiv
-    API (typical for SSRN, paywalled-publisher-blocked, or recently-posted
-    items). The note will be filled in on a future pass.
-
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+A systematic literature review of *secondary* studies and research
+agendas on GenAI in Information Systems, synthesising 28 papers
+published since 2023. The authors organise findings around three
+intertwined challenge clusters — technical unreliability
+(hallucinations, performance drift), societal-ethical risks (bias,
+misuse, skill erosion), and a systemic governance vacuum (privacy,
+accountability, IP). They interpret these through a socio-technical
+lens, arguing that GenAI's fast-evolving technical subsystem is
+persistently misaligned with the slower social subsystem.
 
 ## Contribution
 
-*Pending.*
+A consolidated research agenda that "reorients IS scholarship from
+analyzing impacts toward actively shaping the co-evolution of technical
+capabilities with organizational procedures, societal values, and
+regulatory institutions," emphasising hybrid human-AI ensembles,
+situated validation, design principles for probabilistic systems, and
+adaptive governance.
 
 ## Method
 
-*Pending.*
+Systematic literature review of secondary studies (reviews and
+research agendas) published since 2023; interpretation through the
+socio-technical systems lens.
 
 ## Relevance to RISE
 
@@ -56,8 +60,22 @@ Seventeen-author systematic synthesis of secondary reviews on GenAI in IS, frame
 
 ## Critique / open questions
 
-*Pending.*
+A review of reviews compresses methodological detail; the agenda is
+high-level and does not yet evaluate concrete artefacts or pipelines.
+The 28-paper corpus is small and skewed toward IS-discipline
+publications, so adjacent literatures (NLP, HCI, science studies) are
+under-represented.
 
 ## Key quotes
 
-*Pending.*
+> "Analyzing 28 papers published since 2023, we find that while GenAI
+> offers transformative potential for productivity and innovation, its
+> adoption is constrained by multiple interrelated challenges,
+> including technical unreliability (hallucinations, performance
+> drift), societal-ethical risks (bias, misuse, skill erosion), and a
+> systemic governance vacuum."
+
+> "These findings reveal a persistent misalignment between GenAI's
+> fast-evolving technical subsystem and the slower-adapting social
+> subsystem, positioning IS research as critical for achieving joint
+> optimization."

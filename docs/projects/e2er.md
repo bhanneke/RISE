@@ -70,6 +70,6 @@ Strategist-orchestrated multi-agent design with persona-rich review loops; empha
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Schick, T. et al. (2023). [*Toolformer: Language Models Can Teach Themselves to Use Tools*](../papers/notes/schick2023toolformer.md) `schick2023toolformer`
-- `cao2025aifinance` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
+- Filimonovic, D. et al. (2025). [*Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral Sciences*](../papers/notes/filimonovic2025genai.md) `filimonovic2025genai`
 - `cunningham2025claudecode` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
 - `eberhardt2025claudecode` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))

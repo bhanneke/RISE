@@ -8,39 +8,41 @@ year: 2024
 venue: 'JAIS 25(1):37-47'
 doi: '10.17705/1jais.00862'
 url: ""
-kind: paper
+kind: editorial
 themes:
   - is-methodology
   - human-ai-research-collaboration
+  - ai-publishing-ecosystems
 methods:
-  - conceptual
+  - editorial
 relates_to_projects: []
-status: queued
+status: read
 ---
-
-!!! warning "Stub — content not yet written"
-    This note's **front-matter is verified** (citekey, authors, DOI, year),
-    but the **Summary / Contribution / Method / Critique** sections below
-    have not been filled in yet. Only the *Relevance to RISE* paragraph
-    reflects curator analysis; everything else is a placeholder.
-
-    Reason: the paper's abstract was not retrievable via Crossref / arXiv
-    API (typical for SSRN, paywalled-publisher-blocked, or recently-posted
-    items). The note will be filled in on a future pass.
-
 
 ## Summary
 
-*To be written on read. Pulled into the RISE knowledge base as part of
-the IS-discipline literature survey 2026-05-16.*
+The introductory editorial of the JAIS special issue commemorating
+founding editor Phillip Ein-Dor, on AI for knowledge creation,
+curation, and consumption in context. The editors frame academic
+journals as adaptive systems that source, legitimate, and curate
+knowledge through interrelated editorial, production, and distribution
+processes, and survey the range of contributor views — from "AI could
+fully overtake the journal publication process" to arguments that
+human editorial roles remain essential.
 
 ## Contribution
 
-*Pending.*
+A scoping introduction that lays out the special issue's structural
+questions (will the author/editor/reviewer/publisher/reader roles
+persist, and on what epistemological footing?) and signals the
+emerging *diversity* and conflict in journal-level AI policies as
+itself an empirical phenomenon worth studying.
 
 ## Method
 
-*Pending.*
+Special-issue editorial; conceptual mapping of the journal system as
+an adaptive socio-technical system, plus framing of the included
+contributions.
 
 ## Relevance to RISE
 
@@ -48,8 +50,16 @@ Knowledge-process framing (creation/curation/consumption) for AI in scholarly co
 
 ## Critique / open questions
 
-*Pending.*
+As an editorial, claims are programmatic rather than evidenced; the
+"will this be our last editorial?" rhetorical frame is provocative but
+leaves open whether the answer is a measurable empirical question or a
+normative one.
 
 ## Key quotes
 
-*Pending.*
+> "Will this be the last editorial that we write or need to write?"
+
+> "Academic journals can be seen as systems designed to publish
+> academic articles that impact research and practice. Journals
+> source, legitimate, and curate knowledge for consumption by
+> researchers and practitioners, functioning in a particular context."

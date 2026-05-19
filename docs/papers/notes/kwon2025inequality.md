@@ -32,7 +32,7 @@ Empirical observational study: panel of 4,582 CS scholars at 194 top U.S. univer
 
 ## Relevance to RISE
 
-ICIS 2025 paper documenting the *inequality* side of AI-in-academia productivity gains. Companion to [@tonerrodgers2025genai]; cited together they sketch a productivity-with-distributional-cost story for RISE deployment.
+ICIS 2025 paper documenting the *inequality* side of AI-in-academia productivity gains. Companion to [@filimonovic2025genai]; cited together they sketch a productivity-with-distributional-cost story for RISE deployment.
 
 ## Critique / open questions
 

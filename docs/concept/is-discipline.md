@@ -148,7 +148,7 @@ consequences of routing scholarship through AI?
   theoretical formulation here.
 - **Productivity with distributional cost**
   ([@kwon2025inequality]). ICIS 2025 paper documenting that the
-  productivity gains documented in [@tonerrodgers2025genai] are
+  productivity gains documented in [@filimonovic2025genai] are
   *unequally distributed* — concentrating in well-resourced
   researchers. Combined, the two papers sketch a productivity-with-
   inequality story for RISE deployment.
@@ -197,7 +197,7 @@ where the discipline is actually thinking.
 The cluster is overwhelmingly *conceptual* / *editorial* /
 *position-paper* in genre. Empirical IS work on GenAI in research
 practice exists (e.g., [@kwon2025inequality],
-[@tonerrodgers2025genai], [@cao2025aifinance],
+[@filimonovic2025genai], [@filimonovic2025genai],
 [@bapna2025analytics]) but is the minority. **This is the open
 opportunity for new RISE contributions:** empirical evaluation of
 agentic-research systems against the methodological claims the
@@ -219,7 +219,7 @@ in one place.
 
 If you want the macro / economic frame:
 [@acemoglu2026collapse] + [@gartenberg2026morebetter] +
-[@tonerrodgers2025genai].
+[@filimonovic2025genai].
 
 If you want the agentic-AI engineering frame (the other side of
 the same conversation): the catalog's

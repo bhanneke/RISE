@@ -74,4 +74,4 @@ The strongest *external-validation* claim in the AI-scientist landscape: peer-re
 ## Related references (literature catalog)
 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
-- `gartenberg2026morebetter` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
+- Gartenberg, C. et al. (2026). [*More Versus Better: Artificial Intelligence, Incentives, and the Emerging Crisis in Peer Review*](../papers/notes/gartenberg2026morebetter.md) `gartenberg2026morebetter`

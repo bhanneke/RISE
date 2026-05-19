@@ -28,7 +28,7 @@ The catalog's rubric scores (1) directly (architectural
 transparency, openness, reproducibility) and (2) indirectly (via
 *internal_evaluation*). (3) — field-level effects — is currently
 out of scope but is the subject of growing empirical attention
-([@tonerrodgers2025genai], [@gartenberg2026morebetter]).
+([@filimonovic2025genai], [@gartenberg2026morebetter]).
 
 ## Output-level evaluation
 
@@ -85,7 +85,7 @@ If RISE systems are deployed at scale, what are the field-level
 consequences?
 
 - **Composition shifts.** Does the kind of research that gets done
-  change ([@cao2025aifinance], [@tonerrodgers2025genai])?
+  change ([@filimonovic2025genai], [@brodeur2025reproducibility])?
 - **Quality-quantity tradeoffs.** Does more output mean lower
   marginal quality? [@gartenberg2026morebetter] develop this
   argument for peer review specifically; the parallel question for

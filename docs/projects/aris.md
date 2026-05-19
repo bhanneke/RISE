@@ -79,4 +79,4 @@ Treats *long-running plausible-unsupported-success* as the central failure mode 
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Schick, T. et al. (2023). [*Toolformer: Language Models Can Teach Themselves to Use Tools*](../papers/notes/schick2023toolformer.md) `schick2023toolformer`
 - Ji, Z. et al. (2023). [*Survey of Hallucination in Natural Language Generation*](../papers/notes/ji2023hallucination.md) `ji2023hallucination`
-- `matton2025walkthetalk` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
+- Matton, K. et al. (2025). [*Walk the Talk? Measuring the Faithfulness of Large Language Model Explanations*](../papers/notes/matton2025walkthetalk.md) `matton2025walkthetalk`
