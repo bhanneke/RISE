@@ -1,10 +1,11 @@
 ---
 citekey: agrawal2024aiscience
-title: 'AI-Powered (Finance) Scholarship'
+title: 'AI in Science'
 authors:
-  - 'Cao, S.'
-  - 'et al.'
-year: 2025
+  - 'Agrawal, A. K.'
+  - 'McHale, J.'
+  - 'Oettl, A.'
+year: 2024
 venue: 'NBER Working Paper w34953'
 doi: ""
 url: 'https://www.nber.org/papers/w34953'

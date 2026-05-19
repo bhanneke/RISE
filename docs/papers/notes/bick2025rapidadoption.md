@@ -1,8 +1,10 @@
 ---
 citekey: bick2025rapidadoption
-title: 'AI in Peer Review Study'
+title: 'The Rapid Adoption of Generative AI'
 authors:
-  - 'Management Science (editorial)'
+  - 'Bick, A.'
+  - 'Blandin, A.'
+  - 'Deming, D. J.'
 year: 2025
 venue: 'Management Science'
 doi: '10.1287/mnsc.2025.02523'

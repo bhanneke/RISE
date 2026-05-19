@@ -127,6 +127,97 @@ def load_bibtex_citekeys() -> set[str]:
     return set(re.findall(r"@\w+\{([^,\s]+),", text))
 
 
+# ── Proper brace-aware bibtex parser ──────────────────────────────────
+
+def _bib_read_value(body: str, start: int) -> tuple[str, int]:
+    if start >= len(body):
+        return "", start
+    if body[start] == "{":
+        depth, i = 1, start + 1
+        while i < len(body) and depth > 0:
+            if body[i] == "{":
+                depth += 1
+            elif body[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    return body[start + 1 : i], i + 1
+            i += 1
+        return body[start + 1 :], len(body)
+    elif body[start] == '"':
+        end = body.find('"', start + 1)
+        if end == -1:
+            return body[start + 1 :], len(body)
+        return body[start + 1 : end], end + 1
+    end = start
+    while end < len(body) and body[end] not in ",\n":
+        end += 1
+    return body[start:end].strip(), end
+
+
+def load_bibtex_entries() -> dict[str, dict[str, str]]:
+    """Parse references.bib into {citekey: {field: value}}."""
+    if not BIB_FILE.exists():
+        return {}
+    text = BIB_FILE.read_text(encoding="utf-8")
+    entries: dict[str, dict[str, str]] = {}
+    for entry_match in re.finditer(r"@(\w+)\s*\{\s*([^,\s]+)\s*,", text):
+        kind, citekey = entry_match.group(1), entry_match.group(2)
+        body_start = entry_match.end()
+        depth, i = 1, body_start
+        while i < len(text) and depth > 0:
+            if text[i] == "{":
+                depth += 1
+            elif text[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    break
+            i += 1
+        body = text[body_start:i]
+        fields = {"_kind": kind}
+        j = 0
+        while j < len(body):
+            fm = re.match(r"\s*(\w+)\s*=\s*", body[j:])
+            if not fm:
+                j += 1
+                continue
+            name = fm.group(1).lower()
+            val_start = j + fm.end()
+            value, val_end = _bib_read_value(body, val_start)
+            # Strip remaining {} (e.g. {AI}) for display
+            value = re.sub(r"[{}]", "", value)
+            fields[name] = re.sub(r"\s+", " ", value).strip()
+            j = val_end
+            while j < len(body) and body[j] in ", \n\t":
+                j += 1
+        entries[citekey] = fields
+    return entries
+
+
+def short_authors(author_field: str) -> str:
+    """Render BibTeX author list as 'Lastname et al.' or 'A & B'."""
+    if not author_field:
+        return "?"
+    authors = [a.strip() for a in re.split(r"\s+and\s+", author_field)]
+    def lastname(a: str) -> str:
+        if "," in a:
+            return a.split(",", 1)[0].strip()
+        parts = a.split()
+        return parts[-1] if parts else a
+    if len(authors) == 1:
+        return lastname(authors[0])
+    if len(authors) == 2:
+        return f"{lastname(authors[0])} & {lastname(authors[1])}"
+    return f"{lastname(authors[0])} et al."
+
+
+def venue_short(entry: dict[str, str]) -> str:
+    v = (entry.get("journal") or entry.get("booktitle") or
+         entry.get("howpublished") or entry.get("institution") or "")
+    if not v and entry.get("eprint"):
+        v = "arXiv"
+    return v
+
+
 # ── per-project page rendering ────────────────────────────────────────
 
 
@@ -403,7 +494,117 @@ def status_badge(status: str) -> str:
     }.get(status or "", "")
 
 
-def render_papers_by_theme(papers: list[dict[str, Any]]) -> str:
+def render_papers_table(papers: list[dict[str, Any]], bib: dict[str, dict[str, str]]) -> str:
+    """Render the full filterable papers table — bib is the source of truth.
+
+    Columns: Year · Authors · Title · Venue · DOI/arXiv · Themes · Status · Note
+    """
+    # Build by_citekey for papers (notes data: status, themes, doc_path)
+    notes_by_ck = {p.get("citekey"): p for p in papers if p.get("citekey")}
+
+    # Include every bib entry, even if it has no note
+    rows = []
+    for ck in sorted(bib.keys()):
+        entry = bib[ck]
+        note = notes_by_ck.get(ck, {})
+        year = entry.get("year") or note.get("year", "") or "?"
+        authors = short_authors(entry.get("author", "") or
+                                " and ".join(note.get("authors", []) or []))
+        title = entry.get("title") or note.get("title", "") or ""
+        venue = venue_short(entry) or note.get("venue", "")
+        doi = entry.get("doi", "")
+        arxiv = entry.get("eprint", "")
+        themes = " ".join(f"`{t}`" for t in (note.get("themes") or []))
+        status = (note.get("status") or "—")
+
+        # Build link cell (raw HTML so it renders inside <td>)
+        if doi:
+            doi_url = doi if doi.startswith("http") else "https://doi.org/" + doi
+            link = f'<a href="{doi_url}">doi</a>'
+        elif arxiv:
+            link = f'<a href="https://arxiv.org/abs/{arxiv}">arXiv</a>'
+        elif entry.get("url"):
+            link = f'<a href="{entry["url"]}">link</a>'
+        else:
+            link = "—"
+
+        # Title links to note if note exists; else plain (raw HTML)
+        if note.get("_filename"):
+            title_cell = f'<a href="notes/{note["_filename"]}/">{title}</a>'
+        else:
+            title_cell = title
+
+        # Themes as raw HTML chips
+        theme_chips = " ".join(f"<code>{t}</code>" for t in (note.get("themes") or []))
+
+        rows.append({
+            "ck": ck,
+            "year": str(year),
+            "authors": authors,
+            "title_cell": title_cell,
+            "title_plain": title,
+            "venue": venue,
+            "link": link,
+            "themes": theme_chips,
+            "status": status,
+        })
+
+    n_total = len(rows)
+    n_with_note = sum(1 for r in rows if r["status"] != "—")
+    n_read = sum(1 for r in rows if r["status"] == "read")
+
+    out: list[str] = []
+    out.append(
+        f"*{n_total} bibliographic entries; {n_with_note} have curator notes "
+        f"({n_read} fully read).*"
+    )
+    out.append("")
+
+    # JS-powered filter: search box that filters rows in the table below
+    out.append("""<input type="text" id="paperFilter" placeholder="🔍 filter by author / title / venue / theme / year / citekey…"
+  style="width:100%; padding:0.5em; margin:1em 0; font-size:1em; border:1px solid #ccc; border-radius:4px;"
+  oninput="filterPapers(this.value)">
+
+<script>
+function filterPapers(q) {
+  q = q.toLowerCase().trim();
+  document.querySelectorAll('#papersTable tbody tr').forEach(function(row) {
+    row.style.display = (!q || row.textContent.toLowerCase().includes(q)) ? '' : 'none';
+  });
+}
+</script>
+""")
+
+    # Build the HTML table directly (Markdown tables don't get IDs easily)
+    out.append('<table id="papersTable" markdown>')
+    out.append("<thead>")
+    out.append("<tr>"
+               "<th>Year</th><th>Authors</th><th>Title</th>"
+               "<th>Venue</th><th>Link</th><th>Themes</th>"
+               "<th>Citekey</th><th>Note</th>"
+               "</tr>")
+    out.append("</thead>")
+    out.append("<tbody markdown>")
+    for r in sorted(rows, key=lambda x: (x["year"], x["authors"])):
+        out.append(
+            f"<tr><td>{r['year']}</td>"
+            f"<td>{r['authors']}</td>"
+            f"<td>{r['title_cell']}</td>"
+            f"<td>{r['venue']}</td>"
+            f"<td>{r['link']}</td>"
+            f"<td>{r['themes']}</td>"
+            f"<td><code>{r['ck']}</code></td>"
+            f"<td>{r['status']}</td>"
+            f"</tr>"
+        )
+    out.append("</tbody>")
+    out.append("</table>")
+    out.append("")
+    return "\n".join(out)
+
+
+def render_papers_by_theme(papers: list[dict[str, Any]], bib: dict[str, dict[str, str]] | None = None) -> str:
+    bib = bib or {}
     by_theme: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for p in papers:
         for t in p.get("themes", []) or []:
@@ -415,23 +616,31 @@ def render_papers_by_theme(papers: list[dict[str, Any]]) -> str:
         lines.append(f"### `{theme}`")
         lines.append("")
         for p in sorted(by_theme[theme], key=lambda x: (x.get("year", 0), x.get("citekey", ""))):
-            authors = p.get("authors", []) or []
-            author_str = authors[0] if authors else "?"
-            if len(authors) > 1:
-                author_str += " et al."
+            ck = p.get("citekey", "")
+            entry = bib.get(ck, {})
+            # Use bib as source of truth, fall back to note
+            title = entry.get("title") or p.get("title", "") or ""
+            year = entry.get("year") or p.get("year", "") or "?"
+            authors = short_authors(entry.get("author", "")) if entry.get("author") else (
+                (p.get("authors", [None])[0] or "?") + (" et al." if len(p.get("authors", []) or []) > 1 else "")
+            )
             lines.append(
-                f"- **{p.get('year', '?')}** — {author_str}. "
-                f"[*{p.get('title', '')}*](notes/{p['_filename']}.md) "
-                f"`{p.get('citekey', '')}`{status_badge(p.get('status', ''))}"
+                f"- **{year}** — {authors}. "
+                f"[*{title}*](notes/{p['_filename']}.md) "
+                f"`{ck}`{status_badge(p.get('status', ''))}"
             )
         lines.append("")
     return "\n".join(lines)
 
 
-def render_papers_by_year(papers: list[dict[str, Any]]) -> str:
-    by_year: dict[int, list[dict[str, Any]]] = defaultdict(list)
+def render_papers_by_year(papers: list[dict[str, Any]], bib: dict[str, dict[str, str]] | None = None) -> str:
+    bib = bib or {}
+    # Year sourced from bib
+    by_year: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for p in papers:
-        by_year[p.get("year", 0)].append(p)
+        ck = p.get("citekey", "")
+        year = bib.get(ck, {}).get("year") or p.get("year", "") or "?"
+        by_year[str(year)].append(p)
     if not by_year:
         return "\n*No papers indexed yet.*\n"
     lines: list[str] = [""]
@@ -439,14 +648,16 @@ def render_papers_by_year(papers: list[dict[str, Any]]) -> str:
         lines.append(f"### {year}")
         lines.append("")
         for p in sorted(by_year[year], key=lambda x: x.get("citekey", "")):
-            authors = p.get("authors", []) or []
-            author_str = authors[0] if authors else "?"
-            if len(authors) > 1:
-                author_str += " et al."
+            ck = p.get("citekey", "")
+            entry = bib.get(ck, {})
+            title = entry.get("title") or p.get("title", "") or ""
+            authors = short_authors(entry.get("author", "")) if entry.get("author") else (
+                (p.get("authors", [None])[0] or "?") + (" et al." if len(p.get("authors", []) or []) > 1 else "")
+            )
             lines.append(
-                f"- {author_str}. "
-                f"[*{p.get('title', '')}*](notes/{p['_filename']}.md) "
-                f"`{p.get('citekey', '')}`{status_badge(p.get('status', ''))}"
+                f"- {authors}. "
+                f"[*{title}*](notes/{p['_filename']}.md) "
+                f"`{ck}`{status_badge(p.get('status', ''))}"
             )
         lines.append("")
     # Summary at top
@@ -530,14 +741,22 @@ def main() -> int:
     )
     DOCS_PROJECTS_INDEX.write_text(projects_text, encoding="utf-8")
 
+    bib_entries = load_bibtex_entries()
     papers_text = DOCS_PAPERS_INDEX.read_text(encoding="utf-8")
+    # New: full filterable table from bib (single source of truth)
+    PAPERS_TABLE_START = "<!-- AUTO-GENERATED:papers-table-start -->"
+    PAPERS_TABLE_END = "<!-- AUTO-GENERATED:papers-table-end -->"
+    papers_text = replace_between(
+        papers_text, PAPERS_TABLE_START, PAPERS_TABLE_END,
+        render_papers_table(papers, bib_entries),
+    )
     papers_text = replace_between(
         papers_text, PAPERS_THEME_START, PAPERS_THEME_END,
-        render_papers_by_theme(papers),
+        render_papers_by_theme(papers, bib_entries),
     )
     papers_text = replace_between(
         papers_text, PAPERS_YEAR_START, PAPERS_YEAR_END,
-        render_papers_by_year(papers),
+        render_papers_by_year(papers, bib_entries),
     )
     DOCS_PAPERS_INDEX.write_text(papers_text, encoding="utf-8")
 
