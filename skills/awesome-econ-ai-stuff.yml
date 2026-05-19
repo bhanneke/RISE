@@ -1,0 +1,202 @@
+pack:
+  slug: awesome-econ-ai-stuff
+  name: 'awesome-econ-ai-stuff (Antonio Mele)'
+  source_url: 'https://meleantonio.github.io/awesome-econ-ai-stuff/'
+  maintainers:
+    - 'Antonio Mele'
+  license: 'Other (see repo)'
+  total_skills: 17
+  last_update: '2026-05-20'
+  related_project: ''
+  compatibility:
+    - claude-code
+    - agnostic
+  notes: 'Curated SKILL.md collection for economists, 8 categories spanning analysis, communication, data, engineering, ideation, literature, theory, writing. 404 stars on github.com/meleantonio/awesome-econ-ai-stuff.'
+
+skills:
+  - slug: python-panel-data
+    name: python-panel-data
+    category: analysis
+    pipeline_stages: [data-analysis]
+    field: econometrics
+    description: 'Panel data analysis with Python using linearmodels and pandas.'
+    source_path: '_skills/analysis/python-panel-data/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/analysis/python-panel-data/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: r-econometrics
+    name: r-econometrics
+    category: analysis
+    pipeline_stages: [data-analysis]
+    field: econometrics
+    description: 'Run IV, DiD, and RDD analyses in R with proper diagnostics.'
+    source_path: '_skills/analysis/r-econometrics/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/analysis/r-econometrics/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: stata-regression
+    name: stata-regression
+    category: analysis
+    pipeline_stages: [data-analysis]
+    field: econometrics
+    description: 'Run regression analyses in Stata with publication-ready output tables.'
+    source_path: '_skills/analysis/stata-regression/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/analysis/stata-regression/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: beamer-presentation
+    name: beamer-presentation
+    category: slides
+    pipeline_stages: [dissemination]
+    field: general
+    description: 'Create academic presentations in Beamer with professional themes.'
+    source_path: '_skills/communication/beamer-presentation/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/communication/beamer-presentation/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: econ-visualization
+    name: econ-visualization
+    category: figures
+    pipeline_stages: [paper-drafting]
+    field: economics
+    description: 'Publication-quality charts and graphs for economics papers.'
+    source_path: '_skills/communication/econ-visualization/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/communication/econ-visualization/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: api-data-fetcher
+    name: api-data-fetcher
+    category: data-handling
+    pipeline_stages: [data-acquisition]
+    field: economics
+    description: 'Fetch economic data from FRED, World Bank, and other APIs.'
+    source_path: '_skills/data/api-data-fetcher/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/data/api-data-fetcher/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: stata-data-cleaning
+    name: stata-data-cleaning
+    category: data-handling
+    pipeline_stages: [data-acquisition, data-analysis]
+    field: economics
+    description: 'Clean and transform messy data in Stata with reproducible workflows.'
+    source_path: '_skills/data/stata-data-cleaning/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/data/stata-data-cleaning/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: code-simplifier
+    name: code-simplifier
+    category: code-gen
+    pipeline_stages: [code-generation]
+    field: general
+    description: 'Streamlines and improves code clarity and consistency.'
+    source_path: '_skills/engineering/code-simplifier/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/engineering/code-simplifier/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: commit-push-pr
+    name: commit-push-pr
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Manages git workflows: commits, pushes, and pull request creation.'
+    source_path: '_skills/engineering/commit-push-pr/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/engineering/commit-push-pr/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: sdd
+    name: sdd
+    category: design
+    pipeline_stages: [research-design]
+    field: general
+    description: 'Spec-driven development framework for structured feature creation.'
+    source_path: '_skills/engineering/sdd/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/engineering/sdd/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: techdebt
+    name: techdebt
+    category: code-gen
+    pipeline_stages: [code-generation]
+    field: general
+    description: 'Identifies and resolves code quality issues and maintenance concerns.'
+    source_path: '_skills/engineering/techdebt/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/engineering/techdebt/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: research-ideation
+    name: research-ideation
+    category: ideation
+    pipeline_stages: [rq-formulation, hypothesis-generation]
+    field: economics
+    description: 'Generate research questions from economic phenomena.'
+    source_path: '_skills/ideation/research-ideation/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/ideation/research-ideation/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: lit-review-assistant
+    name: lit-review-assistant
+    category: literature
+    pipeline_stages: [literature-discovery, literature-synthesis]
+    field: economics
+    description: 'Search, summarize, and synthesize economics literature.'
+    source_path: '_skills/literature/lit-review-assistant/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/literature/lit-review-assistant/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: general-equilibrium-model-builder
+    name: general-equilibrium-model-builder
+    category: modeling
+    pipeline_stages: [formal-modeling]
+    field: economics
+    description: 'Constructs and solves Walrasian equilibrium models.'
+    source_path: '_skills/theory/general-equilibrium-model-builder/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/theory/general-equilibrium-model-builder/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: latex-econ-model
+    name: latex-econ-model
+    category: modeling
+    pipeline_stages: [formal-modeling, paper-drafting]
+    field: economics
+    description: 'Write and typeset economic models in LaTeX with proper notation.'
+    source_path: '_skills/theory/latex-econ-model/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/theory/latex-econ-model/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: academic-paper-writer
+    name: academic-paper-writer
+    category: drafting
+    pipeline_stages: [paper-drafting]
+    field: economics
+    description: 'Draft economics papers with proper structure and academic style.'
+    source_path: '_skills/writing/academic-paper-writer/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/writing/academic-paper-writer/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'
+
+  - slug: latex-tables
+    name: latex-tables
+    category: drafting
+    pipeline_stages: [paper-drafting]
+    field: economics
+    description: 'Generate publication-ready regression tables in LaTeX.'
+    source_path: '_skills/writing/latex-tables/SKILL.md'
+    details_url: 'https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/writing/latex-tables/SKILL.md'
+    provenance: 'awesome-econ-ai-stuff curation 2026-05-20'
+    last_update: '2026'

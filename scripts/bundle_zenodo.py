@@ -39,6 +39,7 @@ INCLUDE = [
     ("papers/",                 "papers/"),         # references.bib + schema.md + pdfs/
     ("docs/papers/notes/",      "papers/notes/"),   # the structured markdown notes
     ("projects/",               "projects/"),       # entire directory
+    ("skills/",                 "skills/"),         # NEW: skill packs + SKILL.md text
     ("docs/concept/",           "docs/concept/"),
     ("docs/assets/",            "docs/assets/"),
 ]

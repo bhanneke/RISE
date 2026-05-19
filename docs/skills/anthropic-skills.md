@@ -18,33 +18,33 @@ license: `MIT` · 8 skills · last update: 2026-05
 
 ### `data-handling` (1)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `xlsx` | — | `data-acquisition` | Excel spreadsheet generation | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `xlsx` | — | `data-acquisition` | Excel spreadsheet generation | [view](anthropic-skills/xlsx.md) | — | — |
 
 ### `drafting` (3)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `doc-coauthoring` | — | `paper-drafting` | Long-document coauthoring workflow | — | — |
-| `docx` | — | `paper-drafting` | Microsoft Word document generation | — | — |
-| `pdf` | — | `paper-drafting` | PDF document generation | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `doc-coauthoring` | — | `paper-drafting` | Long-document coauthoring workflow | [view](anthropic-skills/doc-coauthoring.md) | — | — |
+| `docx` | — | `paper-drafting` | Microsoft Word document generation | [view](anthropic-skills/docx.md) | — | — |
+| `pdf` | — | `paper-drafting` | PDF document generation | [view](anthropic-skills/pdf.md) | — | — |
 
 ### `infra` (1)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `claude-api` | — |  | Build apps with the Claude API + Anthropic SDK | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `claude-api` | — |  | Build apps with the Claude API + Anthropic SDK | [view](anthropic-skills/claude-api.md) | — | — |
 
 ### `meta` (2)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `mcp-builder` | — |  | Build MCP servers (Anthropic spec) | — | — |
-| `skill-creator` | — |  | Meta-skill for building new skills from scratch | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `mcp-builder` | — |  | Build MCP servers (Anthropic spec) | [view](anthropic-skills/mcp-builder.md) | — | — |
+| `skill-creator` | — |  | Meta-skill for building new skills from scratch | [view](anthropic-skills/skill-creator.md) | — | — |
 
 ### `slides` (1)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `pptx` | — | `dissemination` | PowerPoint deck generation | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `pptx` | — | `dissemination` | PowerPoint deck generation | [view](anthropic-skills/pptx.md) | — | — |

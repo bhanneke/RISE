@@ -1,0 +1,1481 @@
+pack:
+  slug: hundredx-os
+  name: '100xOS shared skills'
+  source_url: 'private (Björn Hanneke, 100xOS ecosystem)'
+  maintainers:
+    - 'Björn Hanneke'
+  license: 'private (curator-owned)'
+  total_skills: 133
+  last_update: '2026-05-20'
+  related_project: 'e2er'
+  compatibility:
+    - claude-code
+  notes: '133 skills across 14 categories (base/, causal-inference/, data/, econometrics/, latex/, math/, modeling/, preprocessing/, reasoning/, replication/, review/, synthesis/, theory_lab/, writing/). Consumed by E2ER and other downstream apps in the 100xOS ecosystem.'
+
+skills:
+  - slug: 'base-design-science-researcher'
+    name: 'design-science-researcher'
+    category: design
+    pipeline_stages:
+      - research-design
+    field: economics
+    description: ''
+    source_path: 'base/design-science-researcher.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'base-economist'
+    name: 'economist'
+    category: design
+    pipeline_stages:
+      - research-design
+    field: economics
+    description: ''
+    source_path: 'base/economist.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'base-researcher'
+    name: 'researcher'
+    category: design
+    pipeline_stages:
+      - research-design
+    field: economics
+    description: ''
+    source_path: 'base/researcher.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'causal-inference-judge-designs'
+    name: 'judge-designs'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: 'causal-inference/judge-designs.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'causal-inference-natural-experiments'
+    name: 'natural-experiments'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: 'causal-inference/natural-experiments.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'causal-inference-sensitivity'
+    name: 'sensitivity'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: 'causal-inference/sensitivity.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'causal-inference-shift-share'
+    name: 'shift-share'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: 'causal-inference/shift-share.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'causal-inference-weak-instruments'
+    name: 'weak-instruments'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: 'causal-inference/weak-instruments.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'data-blockchain'
+    name: 'blockchain'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: economics
+    description: ''
+    source_path: 'data/blockchain.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'data-cleaning'
+    name: 'cleaning'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: economics
+    description: ''
+    source_path: 'data/cleaning.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'data-crypto-defi'
+    name: 'crypto-defi'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: economics
+    description: ''
+    source_path: 'data/crypto-defi.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'data-figure-spec'
+    name: 'figure-spec'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: economics
+    description: ''
+    source_path: 'data/figure-spec.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'data-fred-api'
+    name: 'fred-api'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: economics
+    description: ''
+    source_path: 'data/fred-api.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'data-public-finance'
+    name: 'public-finance'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: economics
+    description: ''
+    source_path: 'data/public-finance.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'data-visualization'
+    name: 'visualization'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: economics
+    description: ''
+    source_path: 'data/visualization.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'econometrics-did'
+    name: 'did'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: 'econometrics/did.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'econometrics-event-study-finance'
+    name: 'event-study-finance'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: 'econometrics/event-study-finance.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'econometrics-iv-estimation'
+    name: 'iv-estimation'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: 'econometrics/iv-estimation.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'econometrics-panel-data'
+    name: 'panel-data'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: 'econometrics/panel-data.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'econometrics-rdd'
+    name: 'rdd'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: 'econometrics/rdd.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'econometrics-time-series'
+    name: 'time-series'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: 'econometrics/time-series.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'latex-beamer'
+    name: 'beamer'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: 'latex/beamer.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'latex-bibtex'
+    name: 'bibtex'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: 'latex/bibtex.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'latex-econ-model'
+    name: 'econ-model'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: 'latex/econ-model.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'latex-tables'
+    name: 'tables'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: 'latex/tables.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'math-optimization-verification'
+    name: 'optimization-verification'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'math/optimization-verification.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'math-proof-strategies'
+    name: 'proof-strategies'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'math/proof-strategies.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'modeling-asset-pricing'
+    name: 'asset-pricing'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'modeling/asset-pricing.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'modeling-game-theory'
+    name: 'game-theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'modeling/game-theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'modeling-market-microstructure'
+    name: 'market-microstructure'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'modeling/market-microstructure.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'modeling-option-pricing'
+    name: 'option-pricing'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'modeling/option-pricing.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'modeling-portfolio-theory'
+    name: 'portfolio-theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'modeling/portfolio-theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'modeling-risk-management'
+    name: 'risk-management'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'modeling/risk-management.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'modeling-term-structure'
+    name: 'term-structure'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'modeling/term-structure.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'preprocessing-idea-expansion'
+    name: 'idea-expansion'
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+      - hypothesis-generation
+    field: economics
+    description: ''
+    source_path: 'preprocessing/idea-expansion.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'reasoning-anti-slop'
+    name: 'anti-slop'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'reasoning/anti-slop.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'reasoning-argument-audit'
+    name: 'argument-audit'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'reasoning/argument-audit.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'reasoning-creative-ideation'
+    name: 'creative-ideation'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'reasoning/creative-ideation.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'reasoning-identification-strategy'
+    name: 'identification-strategy'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'reasoning/identification-strategy.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'reasoning-novelty-positioning'
+    name: 'novelty-positioning'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'reasoning/novelty-positioning.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'replication-comparison-evaluation'
+    name: 'comparison-evaluation'
+    category: replication
+    pipeline_stages:
+      - replication
+    field: economics
+    description: ''
+    source_path: 'replication/comparison-evaluation.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'replication-paper-parsing'
+    name: 'paper-parsing'
+    category: replication
+    pipeline_stages:
+      - replication
+    field: economics
+    description: ''
+    source_path: 'replication/paper-parsing.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'replication-replication-report'
+    name: 'replication-report'
+    category: replication
+    pipeline_stages:
+      - replication
+    field: economics
+    description: ''
+    source_path: 'replication/replication-report.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'replication-replication-strategy'
+    name: 'replication-strategy'
+    category: replication
+    pipeline_stages:
+      - replication
+    field: economics
+    description: ''
+    source_path: 'replication/replication-strategy.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'replication-result-extraction'
+    name: 'result-extraction'
+    category: replication
+    pipeline_stages:
+      - replication
+    field: economics
+    description: ''
+    source_path: 'replication/result-extraction.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-beamer'
+    name: 'beamer'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/beamer.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-code'
+    name: 'code'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/code.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-conference-submission'
+    name: 'conference-submission'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/conference-submission.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-consistency-check'
+    name: 'consistency-check'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/consistency-check.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-constructive-feedback'
+    name: 'constructive-feedback'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/constructive-feedback.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-data'
+    name: 'data'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/data.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-econometrics'
+    name: 'econometrics'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/econometrics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-finance'
+    name: 'finance'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/finance.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-latex'
+    name: 'latex'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/latex.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-referee-simulation'
+    name: 'referee-simulation'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/referee-simulation.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-reference-check'
+    name: 'reference-check'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/reference-check.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-technical-review'
+    name: 'technical-review'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/technical-review.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-visual-formatting'
+    name: 'visual-formatting'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/visual-formatting.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'review-writing'
+    name: 'writing'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: 'review/writing.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'synthesis-context-builder'
+    name: 'context-builder'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    field: economics
+    description: ''
+    source_path: 'synthesis/context-builder.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'synthesis-deliverables'
+    name: 'deliverables'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    field: economics
+    description: ''
+    source_path: 'synthesis/deliverables.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-core-cartographer'
+    name: 'cartographer'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/core/cartographer.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-core-evaluator'
+    name: 'evaluator'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/core/evaluator.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-core-phenomenologist'
+    name: 'phenomenologist'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/core/phenomenologist.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-core-scout_director'
+    name: 'scout_director'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/core/scout_director.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-core-synthesizer'
+    name: 'synthesizer'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/core/synthesizer.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier0_is-crowdsourcing'
+    name: 'crowdsourcing'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier0_is/crowdsourcing.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier0_is-digital_innovation'
+    name: 'digital_innovation'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier0_is/digital_innovation.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier0_is-digital_markets'
+    name: 'digital_markets'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier0_is/digital_markets.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier0_is-digital_transformation'
+    name: 'digital_transformation'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier0_is/digital_transformation.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier0_is-is_strategy'
+    name: 'is_strategy'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier0_is/is_strategy.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier0_is-it_governance'
+    name: 'it_governance'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier0_is/it_governance.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier0_is-knowledge_management'
+    name: 'knowledge_management'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier0_is/knowledge_management.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier0_is-platform_economics'
+    name: 'platform_economics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier0_is/platform_economics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier0_is-sociotechnical'
+    name: 'sociotechnical'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier0_is/sociotechnical.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier0_is-technology_acceptance'
+    name: 'technology_acceptance'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier0_is/technology_acceptance.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-auction_theory'
+    name: 'auction_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/auction_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-behavioral_economics'
+    name: 'behavioral_economics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/behavioral_economics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-contract_theory'
+    name: 'contract_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/contract_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-development_economics'
+    name: 'development_economics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/development_economics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-environmental_economics'
+    name: 'environmental_economics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/environmental_economics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-financial_economics'
+    name: 'financial_economics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/financial_economics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-game_theory'
+    name: 'game_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/game_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-industrial_organization'
+    name: 'industrial_organization'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/industrial_organization.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-labor_economics'
+    name: 'labor_economics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/labor_economics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-mechanism_design'
+    name: 'mechanism_design'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/mechanism_design.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-network_economics'
+    name: 'network_economics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/network_economics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier1_economics-public_economics'
+    name: 'public_economics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier1_economics/public_economics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier2_mathematics-category_theory'
+    name: 'category_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier2_mathematics/category_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier2_mathematics-combinatorics'
+    name: 'combinatorics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier2_mathematics/combinatorics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier2_mathematics-dynamical_systems'
+    name: 'dynamical_systems'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier2_mathematics/dynamical_systems.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier2_mathematics-graph_theory'
+    name: 'graph_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier2_mathematics/graph_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier2_mathematics-information_theory'
+    name: 'information_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier2_mathematics/information_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier2_mathematics-measure_theory'
+    name: 'measure_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier2_mathematics/measure_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier2_mathematics-optimization'
+    name: 'optimization'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier2_mathematics/optimization.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier2_mathematics-probability_theory'
+    name: 'probability_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier2_mathematics/probability_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier2_mathematics-topology'
+    name: 'topology'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier2_mathematics/topology.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier3_physics-complexity'
+    name: 'complexity'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier3_physics/complexity.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier3_physics-fluid_dynamics'
+    name: 'fluid_dynamics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier3_physics/fluid_dynamics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier3_physics-network_physics'
+    name: 'network_physics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier3_physics/network_physics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier3_physics-quantum_information'
+    name: 'quantum_information'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier3_physics/quantum_information.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier3_physics-statistical_mechanics'
+    name: 'statistical_mechanics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier3_physics/statistical_mechanics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier3_physics-thermodynamics'
+    name: 'thermodynamics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier3_physics/thermodynamics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier4_life_sciences-ecology'
+    name: 'ecology'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier4_life_sciences/ecology.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier4_life_sciences-epidemiology'
+    name: 'epidemiology'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier4_life_sciences/epidemiology.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier4_life_sciences-evolutionary_biology'
+    name: 'evolutionary_biology'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier4_life_sciences/evolutionary_biology.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier4_life_sciences-neuroscience'
+    name: 'neuroscience'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier4_life_sciences/neuroscience.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier5_cs-computational_complexity'
+    name: 'computational_complexity'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier5_cs/computational_complexity.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier5_cs-cryptography'
+    name: 'cryptography'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier5_cs/cryptography.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier5_cs-distributed_systems'
+    name: 'distributed_systems'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier5_cs/distributed_systems.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier5_cs-formal_verification'
+    name: 'formal_verification'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier5_cs/formal_verification.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier5_cs-machine_learning_theory'
+    name: 'machine_learning_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier5_cs/machine_learning_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier6_social_humanities-anthropology'
+    name: 'anthropology'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier6_social_humanities/anthropology.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier6_social_humanities-design_theory'
+    name: 'design_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier6_social_humanities/design_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier6_social_humanities-linguistics'
+    name: 'linguistics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier6_social_humanities/linguistics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier6_social_humanities-media_studies'
+    name: 'media_studies'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier6_social_humanities/media_studies.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier6_social_humanities-organizational_theory'
+    name: 'organizational_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier6_social_humanities/organizational_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier6_social_humanities-philosophy_of_science'
+    name: 'philosophy_of_science'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier6_social_humanities/philosophy_of_science.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier6_social_humanities-political_science'
+    name: 'political_science'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier6_social_humanities/political_science.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier6_social_humanities-psychology'
+    name: 'psychology'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier6_social_humanities/psychology.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier6_social_humanities-rhetoric'
+    name: 'rhetoric'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier6_social_humanities/rhetoric.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier6_social_humanities-science_technology_studies'
+    name: 'science_technology_studies'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier6_social_humanities/science_technology_studies.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier6_social_humanities-sociology'
+    name: 'sociology'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier6_social_humanities/sociology.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier7_law-intellectual_property'
+    name: 'intellectual_property'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier7_law/intellectual_property.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier7_law-law_economics'
+    name: 'law_economics'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier7_law/law_economics.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'theory_lab-personas-tier7_law-regulatory_theory'
+    name: 'regulatory_theory'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: ''
+    source_path: 'theory_lab/personas/tier7_law/regulatory_theory.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'writing-abstract'
+    name: 'abstract'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: 'writing/abstract.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'writing-discussion'
+    name: 'discussion'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: 'writing/discussion.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'writing-extended-abstract'
+    name: 'extended-abstract'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: 'writing/extended-abstract.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'writing-paper-structure'
+    name: 'paper-structure'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: 'writing/paper-structure.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'writing-personal-style'
+    name: 'personal-style'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: 'writing/personal-style.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'writing-referee-response'
+    name: 'referee-response'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: 'writing/referee-response.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'
+  - slug: 'writing-revision'
+    name: 'revision'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: 'writing/revision.md'
+    details_url: ''
+    provenance: 'local 100xOS shared/skills snapshot 2026-05-20'
+    last_update: '2026-05-20'

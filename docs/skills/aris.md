@@ -20,155 +20,155 @@ license: `MIT` · 80 skills · last update: 2026-05-18
 
 ### `analysis` (1)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `analyze-results` | — | `data-analysis` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `analyze-results` | — | `data-analysis` | — | [view](aris/analyze-results.md) | — | — |
 
 ### `audit` (7)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `citation-audit` | — | `referee-simulation` | — | — | — |
-| `claims-drafting` | — | `referee-simulation` | — | — | — |
-| `experiment-audit` | — | `referee-simulation` | — | — | — |
-| `novelty-check` | — | `referee-simulation` | — | — | — |
-| `paper-claim-audit` | — | `referee-simulation` | — | — | — |
-| `patent-novelty-check` | — | `referee-simulation` | — | — | — |
-| `result-to-claim` | — | `referee-simulation` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `citation-audit` | — | `referee-simulation` | — | [view](aris/citation-audit.md) | — | — |
+| `claims-drafting` | — | `referee-simulation` | — | [view](aris/claims-drafting.md) | — | — |
+| `experiment-audit` | — | `referee-simulation` | — | [view](aris/experiment-audit.md) | — | — |
+| `novelty-check` | — | `referee-simulation` | — | [view](aris/novelty-check.md) | — | — |
+| `paper-claim-audit` | — | `referee-simulation` | — | [view](aris/paper-claim-audit.md) | — | — |
+| `patent-novelty-check` | — | `referee-simulation` | — | [view](aris/patent-novelty-check.md) | — | — |
+| `result-to-claim` | — | `referee-simulation` | — | [view](aris/result-to-claim.md) | — | — |
 
 ### `code-gen` (3)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `experiment-bridge` | — | `code-generation` | — | — | — |
-| `experiment-queue` | — | `code-generation` | — | — | — |
-| `skills-codex` | — | `code-generation` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `experiment-bridge` | — | `code-generation` | — | [view](aris/experiment-bridge.md) | — | — |
+| `experiment-queue` | — | `code-generation` | — | [view](aris/experiment-queue.md) | — | — |
+| `skills-codex` | — | `code-generation` | — | [view](aris/skills-codex.md) | — | — |
 
 ### `design` (3)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `ablation-planner` | — | `research-design` | — | — | — |
-| `experiment-plan` | — | `research-design` | — | — | — |
-| `paper-plan` | — | `research-design` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `ablation-planner` | — | `research-design` | — | [view](aris/ablation-planner.md) | — | — |
+| `experiment-plan` | — | `research-design` | — | [view](aris/experiment-plan.md) | — | — |
+| `paper-plan` | — | `research-design` | — | [view](aris/paper-plan.md) | — | — |
 
 ### `drafting` (26)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `dse-loop` | — | `paper-drafting` | — | — | — |
-| `embodiment-description` | — | `paper-drafting` | — | — | — |
-| `grant-proposal` | — | `paper-drafting` | — | — | — |
-| `interview-cheatsheet` | — | `paper-drafting` | — | — | — |
-| `invention-structuring` | — | `paper-drafting` | — | — | — |
-| `jurisdiction-format` | — | `paper-drafting` | — | — | — |
-| `kill-argument` | — | `paper-drafting` | — | — | — |
-| `monitor-experiment` | — | `paper-drafting` | — | — | — |
-| `paper-compile` | — | `paper-drafting` | — | — | — |
-| `paper-illustration` | — | `paper-drafting` | — | — | — |
-| `paper-illustration-image2` | — | `paper-drafting` | — | — | — |
-| `paper-poster` | — | `paper-drafting` | — | — | — |
-| `paper-write` | — | `paper-drafting` | — | — | — |
-| `paper-writing` | — | `paper-drafting` | — | — | — |
-| `patent-pipeline` | — | `paper-drafting` | — | — | — |
-| `pixel-art` | — | `paper-drafting` | — | — | — |
-| `qzcli` | — | `paper-drafting` | — | — | — |
-| `render-html` | — | `paper-drafting` | — | — | — |
-| `run-experiment` | — | `paper-drafting` | — | — | — |
-| `serverless-modal` | — | `paper-drafting` | — | — | — |
-| `shared-references` | — | `paper-drafting` | — | — | — |
-| `specification-writing` | — | `paper-drafting` | — | — | — |
-| `system-profile` | — | `paper-drafting` | — | — | — |
-| `training-check` | — | `paper-drafting` | — | — | — |
-| `vast-gpu` | — | `paper-drafting` | — | — | — |
-| `writing-systems-papers` | — | `paper-drafting` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `dse-loop` | — | `paper-drafting` | — | [view](aris/dse-loop.md) | — | — |
+| `embodiment-description` | — | `paper-drafting` | — | [view](aris/embodiment-description.md) | — | — |
+| `grant-proposal` | — | `paper-drafting` | — | [view](aris/grant-proposal.md) | — | — |
+| `interview-cheatsheet` | — | `paper-drafting` | — | [view](aris/interview-cheatsheet.md) | — | — |
+| `invention-structuring` | — | `paper-drafting` | — | [view](aris/invention-structuring.md) | — | — |
+| `jurisdiction-format` | — | `paper-drafting` | — | [view](aris/jurisdiction-format.md) | — | — |
+| `kill-argument` | — | `paper-drafting` | — | [view](aris/kill-argument.md) | — | — |
+| `monitor-experiment` | — | `paper-drafting` | — | [view](aris/monitor-experiment.md) | — | — |
+| `paper-compile` | — | `paper-drafting` | — | [view](aris/paper-compile.md) | — | — |
+| `paper-illustration` | — | `paper-drafting` | — | [view](aris/paper-illustration.md) | — | — |
+| `paper-illustration-image2` | — | `paper-drafting` | — | [view](aris/paper-illustration-image2.md) | — | — |
+| `paper-poster` | — | `paper-drafting` | — | [view](aris/paper-poster.md) | — | — |
+| `paper-write` | — | `paper-drafting` | — | [view](aris/paper-write.md) | — | — |
+| `paper-writing` | — | `paper-drafting` | — | [view](aris/paper-writing.md) | — | — |
+| `patent-pipeline` | — | `paper-drafting` | — | [view](aris/patent-pipeline.md) | — | — |
+| `pixel-art` | — | `paper-drafting` | — | [view](aris/pixel-art.md) | — | — |
+| `qzcli` | — | `paper-drafting` | — | [view](aris/qzcli.md) | — | — |
+| `render-html` | — | `paper-drafting` | — | [view](aris/render-html.md) | — | — |
+| `run-experiment` | — | `paper-drafting` | — | [view](aris/run-experiment.md) | — | — |
+| `serverless-modal` | — | `paper-drafting` | — | [view](aris/serverless-modal.md) | — | — |
+| `shared-references` | — | `paper-drafting` | — | — | — | — |
+| `specification-writing` | — | `paper-drafting` | — | [view](aris/specification-writing.md) | — | — |
+| `system-profile` | — | `paper-drafting` | — | [view](aris/system-profile.md) | — | — |
+| `training-check` | — | `paper-drafting` | — | [view](aris/training-check.md) | — | — |
+| `vast-gpu` | — | `paper-drafting` | — | [view](aris/vast-gpu.md) | — | — |
+| `writing-systems-papers` | — | `paper-drafting` | — | [view](aris/writing-systems-papers.md) | — | — |
 
 ### `figures` (4)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `figure-description` | — | `paper-drafting` | — | — | — |
-| `figure-spec` | — | `paper-drafting` | — | — | — |
-| `mermaid-diagram` | — | `paper-drafting` | — | — | — |
-| `paper-figure` | — | `paper-drafting` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `figure-description` | — | `paper-drafting` | — | [view](aris/figure-description.md) | — | — |
+| `figure-spec` | — | `paper-drafting` | — | [view](aris/figure-spec.md) | — | — |
+| `mermaid-diagram` | — | `paper-drafting` | — | [view](aris/mermaid-diagram.md) | — | — |
+| `paper-figure` | — | `paper-drafting` | — | [view](aris/paper-figure.md) | — | — |
 
 ### `ideation` (3)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `idea-creator` | — | `rq-formulation` `hypothesis-generation` | — | — | — |
-| `idea-discovery` | — | `rq-formulation` `hypothesis-generation` | — | — | — |
-| `idea-discovery-robot` | — | `rq-formulation` `hypothesis-generation` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `idea-creator` | — | `rq-formulation` `hypothesis-generation` | — | [view](aris/idea-creator.md) | — | — |
+| `idea-discovery` | — | `rq-formulation` `hypothesis-generation` | — | [view](aris/idea-discovery.md) | — | — |
+| `idea-discovery-robot` | — | `rq-formulation` `hypothesis-generation` | — | [view](aris/idea-discovery-robot.md) | — | — |
 
 ### `infra` (1)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `feishu-notify` | — |  | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `feishu-notify` | — |  | — | [view](aris/feishu-notify.md) | — | — |
 
 ### `literature` (13)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `alphaxiv` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `arxiv` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `deepxiv` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `exa-search` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `gemini-search` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `openalex` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `prior-art-search` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `research-lit` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `research-pipeline` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `research-refine` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `research-refine-pipeline` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `research-wiki` | — | `literature-discovery` `literature-synthesis` | — | — | — |
-| `semantic-scholar` | — | `literature-discovery` `literature-synthesis` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `alphaxiv` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/alphaxiv.md) | — | — |
+| `arxiv` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/arxiv.md) | — | — |
+| `deepxiv` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/deepxiv.md) | — | — |
+| `exa-search` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/exa-search.md) | — | — |
+| `gemini-search` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/gemini-search.md) | — | — |
+| `openalex` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/openalex.md) | — | — |
+| `prior-art-search` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/prior-art-search.md) | — | — |
+| `research-lit` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/research-lit.md) | — | — |
+| `research-pipeline` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/research-pipeline.md) | — | — |
+| `research-refine` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/research-refine.md) | — | — |
+| `research-refine-pipeline` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/research-refine-pipeline.md) | — | — |
+| `research-wiki` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/research-wiki.md) | — | — |
+| `semantic-scholar` | — | `literature-discovery` `literature-synthesis` | — | [view](aris/semantic-scholar.md) | — | — |
 
 ### `meta` (2)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `auto-paper-improvement-loop` | — |  | — | — | — |
-| `meta-optimize` | — |  | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `auto-paper-improvement-loop` | — |  | — | [view](aris/auto-paper-improvement-loop.md) | — | — |
+| `meta-optimize` | — |  | — | [view](aris/meta-optimize.md) | — | — |
 
 ### `modeling` (3)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `formula-derivation` | — | `formal-modeling` | — | — | — |
-| `proof-checker` | — | `formal-modeling` | — | — | — |
-| `proof-writer` | — | `formal-modeling` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `formula-derivation` | — | `formal-modeling` | — | [view](aris/formula-derivation.md) | — | — |
+| `proof-checker` | — | `formal-modeling` | — | [view](aris/proof-checker.md) | — | — |
+| `proof-writer` | — | `formal-modeling` | — | [view](aris/proof-writer.md) | — | — |
 
 ### `review` (8)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `auto-review-loop` | — | `referee-simulation` | — | — | — |
-| `auto-review-loop-llm` | — | `referee-simulation` | — | — | — |
-| `auto-review-loop-minimax` | — | `referee-simulation` | — | — | — |
-| `comm-lit-review` | — | `referee-simulation` | — | — | — |
-| `patent-review` | — | `referee-simulation` | — | — | — |
-| `research-review` | — | `referee-simulation` | — | — | — |
-| `skills-codex-claude-review` | — | `referee-simulation` | — | — | — |
-| `skills-codex-gemini-review` | — | `referee-simulation` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `auto-review-loop` | — | `referee-simulation` | — | [view](aris/auto-review-loop.md) | — | — |
+| `auto-review-loop-llm` | — | `referee-simulation` | — | [view](aris/auto-review-loop-llm.md) | — | — |
+| `auto-review-loop-minimax` | — | `referee-simulation` | — | [view](aris/auto-review-loop-minimax.md) | — | — |
+| `comm-lit-review` | — | `referee-simulation` | — | [view](aris/comm-lit-review.md) | — | — |
+| `patent-review` | — | `referee-simulation` | — | [view](aris/patent-review.md) | — | — |
+| `research-review` | — | `referee-simulation` | — | [view](aris/research-review.md) | — | — |
+| `skills-codex-claude-review` | — | `referee-simulation` | — | [view](aris/skills-codex-claude-review.md) | — | — |
+| `skills-codex-gemini-review` | — | `referee-simulation` | — | [view](aris/skills-codex-gemini-review.md) | — | — |
 
 ### `revision` (1)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `rebuttal` | — | `revision-editing` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `rebuttal` | — | `revision-editing` | — | [view](aris/rebuttal.md) | — | — |
 
 ### `slides` (3)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `paper-slides` | — | `dissemination` | — | — | — |
-| `paper-talk` | — | `dissemination` | — | — | — |
-| `slides-polish` | — | `dissemination` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `paper-slides` | — | `dissemination` | — | [view](aris/paper-slides.md) | — | — |
+| `paper-talk` | — | `dissemination` | — | [view](aris/paper-talk.md) | — | — |
+| `slides-polish` | — | `dissemination` | — | [view](aris/slides-polish.md) | — | — |
 
 ### `submission` (2)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `overleaf-sync` | — | `dissemination` | — | — | — |
-| `resubmit-pipeline` | — | `dissemination` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `overleaf-sync` | — | `dissemination` | — | [view](aris/overleaf-sync.md) | — | — |
+| `resubmit-pipeline` | — | `dissemination` | — | [view](aris/resubmit-pipeline.md) | — | — |

@@ -25,6 +25,44 @@ SKILLS_DIR = REPO_ROOT / "skills"
 DOCS_SKILLS_DIR = REPO_ROOT / "docs" / "skills"
 DOCS_SKILLS_INDEX = DOCS_SKILLS_DIR / "index.md"
 
+
+def copy_skill_details(packs: list[dict]) -> int:
+    """Copy each pack's skills/<pack>/details/<skill>.md into docs/skills/<pack>/.
+
+    Adds a one-line front-matter so MkDocs treats them as navigable pages.
+    Returns the number of detail pages written.
+    """
+    n_total = 0
+    for p in packs:
+        pack_slug = p["pack"]["slug"]
+        pack_name = p["pack"]["name"]
+        src_details = SKILLS_DIR / pack_slug / "details"
+        if not src_details.exists():
+            continue
+        dst_dir = DOCS_SKILLS_DIR / pack_slug
+        dst_dir.mkdir(parents=True, exist_ok=True)
+        # Index of pack-slug → skill metadata
+        skills_by_slug = {s.get("slug"): s for s in (p.get("skills") or [])}
+        for src in sorted(src_details.glob("*.md")):
+            skill_slug = src.stem
+            text = src.read_text(encoding="utf-8")
+            meta = skills_by_slug.get(skill_slug, {})
+            header = (
+                f"<!-- DO NOT EDIT — auto-copied from skills/{pack_slug}/details/{skill_slug}.md -->\n"
+                f"\n# `{meta.get('name', skill_slug)}`\n\n"
+                f"*Pack: [{pack_name}](../{pack_slug}.md)"
+            )
+            if meta.get("category"):
+                header += f" · category `{meta['category']}`"
+            if meta.get("field"):
+                header += f" · field `{meta['field']}`"
+            if meta.get("details_url"):
+                header += f" · [source]({meta['details_url']})"
+            header += "*\n\n---\n\n"
+            (dst_dir / f"{skill_slug}.md").write_text(header + text, encoding="utf-8")
+            n_total += 1
+    return n_total
+
 GITHUB_BASE = "https://github.com/bhanneke/RISE/blob/main"
 
 INDEX_AUTO_START = "<!-- AUTO-GENERATED:skills-start -->"
@@ -101,22 +139,27 @@ def render_pack_page(pack_data: dict[str, Any]) -> str:
     by_cat: dict[str, list[dict]] = defaultdict(list)
     for s in skills:
         by_cat[s.get("category", "unspecified")].append(s)
+    # Determine which detail pages exist for this pack
+    pack_details_dir = SKILLS_DIR / slug / "details"
+    have_details = {f.stem for f in pack_details_dir.glob("*.md")} if pack_details_dir.exists() else set()
+
     for cat in sorted(by_cat.keys()):
         out.append(f"### `{cat}` ({len(by_cat[cat])})")
         out.append("")
-        out.append("| Skill | Field | Stages | Description | Source | Updated |")
-        out.append("|---|---|---|---|---|---|")
+        out.append("| Skill | Field | Stages | Description | Full text | Source | Updated |")
+        out.append("|---|---|---|---|---|---|---|")
         for s in sorted(by_cat[cat], key=lambda x: x.get("slug", "")):
-            slug = s.get("slug", "")
-            name = s.get("name", slug)
+            s_slug = s.get("slug", "")
+            name = s.get("name", s_slug)
             field = s.get("field", "—") or "—"
             stages = " ".join(f"`{x}`" for x in (s.get("pipeline_stages") or []))
             desc = s.get("description", "") or "—"
             details = s.get("details_url", "")
-            details_cell = f"[link]({details})" if details else "—"
+            origin_cell = f"[origin]({details})" if details else "—"
             updated = s.get("last_update", "") or "—"
+            full_cell = f"[view]({slug}/{s_slug}.md)" if s_slug in have_details else "—"
             out.append(
-                f"| `{name}` | {field} | {stages} | {desc} | {details_cell} | {updated} |"
+                f"| `{name}` | {field} | {stages} | {desc} | {full_cell} | {origin_cell} | {updated} |"
             )
         out.append("")
 
@@ -226,16 +269,24 @@ def main():
     packs = load_packs()
     DOCS_SKILLS_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Wipe previous per-pack pages
+    # Wipe previous per-pack pages and per-skill subdirs
     for old in DOCS_SKILLS_DIR.glob("*.md"):
         if old.name == "index.md":
             continue
         old.unlink()
+    for d in DOCS_SKILLS_DIR.iterdir():
+        if d.is_dir():
+            import shutil
+            shutil.rmtree(d)
 
     # Per-pack pages
     for p in packs:
         content = render_pack_page(p)
         (DOCS_SKILLS_DIR / f"{p['pack']['slug']}.md").write_text(content, encoding="utf-8")
+
+    # Per-skill detail pages (copied from skills/<pack>/details/)
+    n_details = copy_skill_details(packs)
+    print(f"Per-skill detail pages: {n_details}")
 
     # Index page
     idx_text = DOCS_SKILLS_INDEX.read_text(encoding="utf-8") if DOCS_SKILLS_INDEX.exists() else ""

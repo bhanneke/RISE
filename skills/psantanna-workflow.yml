@@ -1,0 +1,541 @@
+pack:
+  slug: psantanna-workflow
+  name: "Pedro Sant'Anna's Claude Code Workflow"
+  source_url: 'https://github.com/pedrohcgs/claude-code-my-workflow'
+  maintainers:
+    - "Pedro H. C. Sant'Anna (Emory University, Economics)"
+  license: 'MIT'
+  total_skills: 44
+  last_update: '2026-04-27'
+  related_project: ''
+  compatibility:
+    - claude-code
+  notes: 'A ready-to-fork Claude Code template for academics using LaTeX/Beamer + R. 30 skills + 14 agents. 1,112 stars. Calibrated peer-review pipeline against AER, QJE, JPE, Econometrica, ReStud. Adopted by 15+ research groups.'
+
+skills:
+  - slug: audit-reproducibility
+    name: '/audit-reproducibility'
+    kind: skill
+    category: replication
+    pipeline_stages:
+      - replication
+    field: economics
+    description: ''
+    source_path: '.claude/skills/audit-reproducibility/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/audit-reproducibility/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: checkpoint
+    name: '/checkpoint'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: ''
+    source_path: '.claude/skills/checkpoint/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/checkpoint/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: commit
+    name: '/commit'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: ''
+    source_path: '.claude/skills/commit/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/commit/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: compile-latex
+    name: '/compile-latex'
+    kind: skill
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: '.claude/skills/compile-latex/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/compile-latex/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: context-status
+    name: '/context-status'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: ''
+    source_path: '.claude/skills/context-status/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/context-status/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: create-lecture
+    name: '/create-lecture'
+    kind: skill
+    category: slides
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: ''
+    source_path: '.claude/skills/create-lecture/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/create-lecture/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: data-analysis
+    name: '/data-analysis'
+    kind: skill
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: ''
+    source_path: '.claude/skills/data-analysis/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/data-analysis/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: deep-audit
+    name: '/deep-audit'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/skills/deep-audit/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/deep-audit/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: deploy
+    name: '/deploy'
+    kind: skill
+    category: submission
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: ''
+    source_path: '.claude/skills/deploy/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/deploy/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: devils-advocate
+    name: '/devils-advocate'
+    kind: skill
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/skills/devils-advocate/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/devils-advocate/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: extract-tikz
+    name: '/extract-tikz'
+    kind: skill
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: '.claude/skills/extract-tikz/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/extract-tikz/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: interview-me
+    name: '/interview-me'
+    kind: skill
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+      - hypothesis-generation
+    field: economics
+    description: ''
+    source_path: '.claude/skills/interview-me/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/interview-me/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: learn
+    name: '/learn'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: ''
+    source_path: '.claude/skills/learn/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/learn/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: lit-review
+    name: '/lit-review'
+    kind: skill
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    field: economics
+    description: ''
+    source_path: '.claude/skills/lit-review/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/lit-review/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: new-diagram
+    name: '/new-diagram'
+    kind: skill
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: '.claude/skills/new-diagram/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/new-diagram/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: pedagogy-review
+    name: '/pedagogy-review'
+    kind: skill
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: ''
+    source_path: '.claude/skills/pedagogy-review/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/pedagogy-review/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: permission-check
+    name: '/permission-check'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: ''
+    source_path: '.claude/skills/permission-check/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/permission-check/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: preregister
+    name: '/preregister'
+    kind: skill
+    category: design
+    pipeline_stages:
+      - research-design
+    field: economics
+    description: ''
+    source_path: '.claude/skills/preregister/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/preregister/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: proofread
+    name: '/proofread'
+    kind: skill
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: ''
+    source_path: '.claude/skills/proofread/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/proofread/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: qa-quarto
+    name: '/qa-quarto'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/skills/qa-quarto/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/qa-quarto/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: research-ideation
+    name: '/research-ideation'
+    kind: skill
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+      - hypothesis-generation
+    field: economics
+    description: ''
+    source_path: '.claude/skills/research-ideation/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/research-ideation/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: respond-to-referees
+    name: '/respond-to-referees'
+    kind: skill
+    category: revision
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: ''
+    source_path: '.claude/skills/respond-to-referees/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/respond-to-referees/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: review-paper
+    name: '/review-paper'
+    kind: skill
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/skills/review-paper/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/review-paper/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: review-r
+    name: '/review-r'
+    kind: skill
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/skills/review-r/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/review-r/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: seven-pass-review
+    name: '/seven-pass-review'
+    kind: skill
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/skills/seven-pass-review/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/seven-pass-review/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: slide-excellence
+    name: '/slide-excellence'
+    kind: skill
+    category: slides
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: ''
+    source_path: '.claude/skills/slide-excellence/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/slide-excellence/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: translate-to-quarto
+    name: '/translate-to-quarto'
+    kind: skill
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: '.claude/skills/translate-to-quarto/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/translate-to-quarto/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: validate-bib
+    name: '/validate-bib'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/skills/validate-bib/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/validate-bib/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: verify-claims
+    name: '/verify-claims'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/skills/verify-claims/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/verify-claims/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: visual-audit
+    name: '/visual-audit'
+    kind: skill
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: '.claude/skills/visual-audit/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/visual-audit/SKILL.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: beamer-translator
+    name: 'agent:beamer-translator'
+    kind: agent
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: ''
+    source_path: '.claude/agents/beamer-translator.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/beamer-translator.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: claim-verifier
+    name: 'agent:claim-verifier'
+    kind: agent
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/agents/claim-verifier.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/claim-verifier.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: domain-referee
+    name: 'agent:domain-referee'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/agents/domain-referee.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/domain-referee.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: domain-reviewer
+    name: 'agent:domain-reviewer'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/agents/domain-reviewer.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/domain-reviewer.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: editor
+    name: 'agent:editor'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/agents/editor.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/editor.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: methods-referee
+    name: 'agent:methods-referee'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/agents/methods-referee.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/methods-referee.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: pedagogy-reviewer
+    name: 'agent:pedagogy-reviewer'
+    kind: agent
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: ''
+    source_path: '.claude/agents/pedagogy-reviewer.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/pedagogy-reviewer.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: proofreader
+    name: 'agent:proofreader'
+    kind: agent
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: ''
+    source_path: '.claude/agents/proofreader.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/proofreader.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: quarto-critic
+    name: 'agent:quarto-critic'
+    kind: agent
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/agents/quarto-critic.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/quarto-critic.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: quarto-fixer
+    name: 'agent:quarto-fixer'
+    kind: agent
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: ''
+    source_path: '.claude/agents/quarto-fixer.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/quarto-fixer.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: r-reviewer
+    name: 'agent:r-reviewer'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/agents/r-reviewer.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/r-reviewer.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: slide-auditor
+    name: 'agent:slide-auditor'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/agents/slide-auditor.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/slide-auditor.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: tikz-reviewer
+    name: 'agent:tikz-reviewer'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/agents/tikz-reviewer.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/tikz-reviewer.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: verifier
+    name: 'agent:verifier'
+    kind: agent
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: ''
+    source_path: '.claude/agents/verifier.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/verifier.md'
+    provenance: 'psantanna repo curation 2026-05-20'
+    last_update: '2026-04'

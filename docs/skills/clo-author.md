@@ -20,44 +20,44 @@ license: `none declared` · 14 skills · last update: 2026-05-11
 
 ### `analysis` (1)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `analyze` | — | `data-analysis` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `analyze` | — | `data-analysis` | — | [view](clo-author/analyze.md) | — | — |
 
 ### `drafting` (9)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `careful` | — | `paper-drafting` | — | — | — |
-| `checkpoint` | — | `paper-drafting` | — | — | — |
-| `dashboard` | — | `paper-drafting` | — | — | — |
-| `freeze` | — | `paper-drafting` | — | — | — |
-| `new-project` | — | `paper-drafting` | — | — | — |
-| `revise` | — | `paper-drafting` | — | — | — |
-| `strategize` | — | `paper-drafting` | — | — | — |
-| `tools` | — | `paper-drafting` | — | — | — |
-| `write` | — | `paper-drafting` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `careful` | — | `paper-drafting` | — | [view](clo-author/careful.md) | — | — |
+| `checkpoint` | — | `paper-drafting` | — | [view](clo-author/checkpoint.md) | — | — |
+| `dashboard` | — | `paper-drafting` | — | [view](clo-author/dashboard.md) | — | — |
+| `freeze` | — | `paper-drafting` | — | [view](clo-author/freeze.md) | — | — |
+| `new-project` | — | `paper-drafting` | — | [view](clo-author/new-project.md) | — | — |
+| `revise` | — | `paper-drafting` | — | [view](clo-author/revise.md) | — | — |
+| `strategize` | — | `paper-drafting` | — | [view](clo-author/strategize.md) | — | — |
+| `tools` | — | `paper-drafting` | — | [view](clo-author/tools.md) | — | — |
+| `write` | — | `paper-drafting` | — | [view](clo-author/write.md) | — | — |
 
 ### `ideation` (1)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `discover` | — | `rq-formulation` `hypothesis-generation` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `discover` | — | `rq-formulation` `hypothesis-generation` | — | [view](clo-author/discover.md) | — | — |
 
 ### `review` (1)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `review` | — | `referee-simulation` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `review` | — | `referee-simulation` | — | [view](clo-author/review.md) | — | — |
 
 ### `slides` (1)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `talk` | — | `dissemination` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `talk` | — | `dissemination` | — | [view](clo-author/talk.md) | — | — |
 
 ### `submission` (1)
 
-| Skill | Field | Stages | Description | Source | Updated |
-|---|---|---|---|---|---|
-| `submit` | — | `dissemination` | — | — | — |
+| Skill | Field | Stages | Description | Full text | Source | Updated |
+|---|---|---|---|---|---|---|
+| `submit` | — | `dissemination` | — | [view](clo-author/submit.md) | — | — |
