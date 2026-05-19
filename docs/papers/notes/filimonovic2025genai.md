@@ -61,8 +61,7 @@ benchmarked.
 Adoption is inferred from linguistic markers, which conflates
 "writing with GenAI" with "doing research with GenAI" and risks
 detector-style bias. The quality measure (journal impact factor) is
-crude and lags adoption. Same title as Toner-Rodgers et al. (NBER
-w33753) — bibliographic care needed.
+crude and lags adoption.
 
 ## Key quotes
 

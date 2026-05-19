@@ -1,8 +1,9 @@
 ---
 citekey: brodeur2025reproducibility
-title: 'Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral Sciences'
+title: 'Assessing Reproducibility in Economics Using Standardized Crowd-Sourced Analysis'
 authors:
-  - 'Toner-Rodgers, A.'
+  - 'Brodeur, A.'
+  - 'Sung, S. Y.'
   - 'et al.'
 year: 2025
 venue: 'NBER Working Paper w33753'
@@ -11,7 +12,6 @@ url: 'https://www.nber.org/papers/w33753'
 kind: paper
 themes:
   - replication-infrastructure
-  - research-productivity
   - evaluation-of-ai-research
 methods:
   - empirical
@@ -23,14 +23,10 @@ status: read
 
 ## Summary
 
-NOTE: The PDF retrieved at this citekey is in fact Brodeur, Sung,
-Miguel, Vilhuber and Hoces de la Guardia, "Assessing Reproducibility
-in Economics Using Standardized Crowd-sourced Analysis" (NBER w33753)
-— not the Toner-Rodgers et al. paper of the same title implied by the
-bibliography (see Critique). That paper presents a framework to
-standardise crowd-sourced computational reproductions in economics
-through the Social Science Reproduction Platform (SSRP), and
-summarises the first 487 reproductions uploaded to the platform.
+Brodeur, Sung, Miguel, Vilhuber and Hoces de la Guardia present a
+framework to standardise crowd-sourced computational reproductions in
+economics through the Social Science Reproduction Platform (SSRP),
+and summarise the first 487 reproductions uploaded to the platform.
 
 ## Contribution
 
@@ -60,12 +56,10 @@ whether agentic systems can *raise* the reproducibility rate.
 
 ## Critique / open questions
 
-The Toner-Rodgers et al. NBER w33753 referenced in the bibliography
-appears to be a different paper; references.bib / papers/pdfs/ should
-be reconciled. The 487-reproduction sample is non-representative
-(self-selected SSRP contributors); the "basic definition" of
-reproducibility is the lowest of several bars in the broader
-literature.
+The 487-reproduction sample is non-representative (self-selected
+SSRP contributors); the "basic definition" of reproducibility used
+for the ~30% headline figure is the lowest of several bars in the
+broader literature.
 
 ## Key quotes
 

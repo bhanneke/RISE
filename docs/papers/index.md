@@ -72,7 +72,7 @@ BibTeX record in [`papers/references.bib`](https://github.com/bhanneke/RISE/blob
 - **2024** — Russo Latona, G. et al.. [*The AI Review Lottery: Widespread AI-Assisted Peer Reviews Boost Paper Scores and Acceptance Rates*](notes/russo2024reviewlottery.md) `russo2024reviewlottery`
 - **2024** — Watson, R. T. et al.. [*Extending the Foresight of Phillip Ein-Dor: Causal Knowledge Analytics*](notes/watson2024causal.md) `watson2024causal` · skimmed
 - **2024** — Yoo, Y.. [*Evolving Epistemic Infrastructure: The Role of Scientific Journals in the Age of Generative AI*](notes/yoo2024epistemic.md) `yoo2024epistemic` · skimmed
-- **2025** — Toner-Rodgers, A. et al.. [*Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral Sciences*](notes/brodeur2025reproducibility.md) `brodeur2025reproducibility`
+- **2025** — Brodeur, A. et al.. [*Assessing Reproducibility in Economics Using Standardized Crowd-Sourced Analysis*](notes/brodeur2025reproducibility.md) `brodeur2025reproducibility`
 - **2025** — Chen, Y. et al.. [*Reasoning Models Don't Always Say What They Think*](notes/chen2025reasoning.md) `chen2025reasoning`
 - **2025** — Filimonovic, D. et al.. [*Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral Sciences*](notes/filimonovic2025genai.md) `filimonovic2025genai`
 - **2025** — Gridach, M. et al.. [*Agentic AI for Scientific Discovery: A Survey of Progress, Challenges, and Future Directions*](notes/gridach2025agenticsurvey.md) `gridach2025agenticsurvey` · skimmed
@@ -142,7 +142,7 @@ BibTeX record in [`papers/references.bib`](https://github.com/bhanneke/RISE/blob
 
 ### `replication-infrastructure`
 
-- **2025** — Toner-Rodgers, A. et al.. [*Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral Sciences*](notes/brodeur2025reproducibility.md) `brodeur2025reproducibility`
+- **2025** — Brodeur, A. et al.. [*Assessing Reproducibility in Economics Using Standardized Crowd-Sourced Analysis*](notes/brodeur2025reproducibility.md) `brodeur2025reproducibility`
 
 ### `research-productivity`
 
@@ -152,7 +152,6 @@ BibTeX record in [`papers/references.bib`](https://github.com/bhanneke/RISE/blob
 - **2025** — Cao, S. et al.. [*AI-Powered (Finance) Scholarship*](notes/agrawal2024aiscience.md) `agrawal2024aiscience`
 - **2025** — Bapna, R. et al.. [*Agentic AI and Managers' Analytics Capabilities: An Exploration*](notes/bapna2025analytics.md) `bapna2025analytics`
 - **2025** — Management Science (editorial). [*AI in Peer Review Study*](notes/bick2025rapidadoption.md) `bick2025rapidadoption`
-- **2025** — Toner-Rodgers, A. et al.. [*Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral Sciences*](notes/brodeur2025reproducibility.md) `brodeur2025reproducibility`
 - **2025** — Filimonovic, D. et al.. [*Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral Sciences*](notes/filimonovic2025genai.md) `filimonovic2025genai`
 - **2025** — Kwon, Y. et al.. [*Large Language Models in Academia: Boosting Productivity but Reinforcing Inequality*](notes/kwon2025inequality.md) `kwon2025inequality` · skimmed
 - **2026** — Dell'Acqua, F. et al.. [*Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of Artificial Intelligence on Knowledge Worker Productivity and Quality*](notes/dellacqua2026jagged.md) `dellacqua2026jagged`
@@ -214,7 +213,7 @@ BibTeX record in [`papers/references.bib`](https://github.com/bhanneke/RISE/blob
 - Cao, S. et al.. [*AI-Powered (Finance) Scholarship*](notes/agrawal2024aiscience.md) `agrawal2024aiscience`
 - Bapna, R. et al.. [*Agentic AI and Managers' Analytics Capabilities: An Exploration*](notes/bapna2025analytics.md) `bapna2025analytics`
 - Management Science (editorial). [*AI in Peer Review Study*](notes/bick2025rapidadoption.md) `bick2025rapidadoption`
-- Toner-Rodgers, A. et al.. [*Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral Sciences*](notes/brodeur2025reproducibility.md) `brodeur2025reproducibility`
+- Brodeur, A. et al.. [*Assessing Reproducibility in Economics Using Standardized Crowd-Sourced Analysis*](notes/brodeur2025reproducibility.md) `brodeur2025reproducibility`
 - Chen, Y. et al.. [*Reasoning Models Don't Always Say What They Think*](notes/chen2025reasoning.md) `chen2025reasoning`
 - Filimonovic, D. et al.. [*Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral Sciences*](notes/filimonovic2025genai.md) `filimonovic2025genai`
 - Gopal, R. D. et al.. [*Inventing with Machines: Generative AI and the Evolving Landscape of IS Research*](notes/gopal2025inventing.md) `gopal2025inventing`
