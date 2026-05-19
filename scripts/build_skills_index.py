@@ -275,8 +275,8 @@ def render_index(packs: list[dict[str, Any]]) -> str:
         )
     out.append("")
 
-    # Filterable all-skills table with dropdowns + free-text search
-    out.append("## All skills (filterable)")
+    # Filterable all-skills table with per-column header filters
+    out.append("## All skills")
     out.append("")
 
     # Collect facet values
@@ -285,42 +285,43 @@ def render_index(packs: list[dict[str, Any]]) -> str:
     all_fields = sorted({s.get("field", "—") for p in packs for s in (p.get("skills") or [])})
     all_stages = sorted({st for p in packs for s in (p.get("skills") or []) for st in (s.get("pipeline_stages") or [])})
 
-    def opts(values, label):
-        items = "\n".join(f'    <option value="{v}">{v}</option>' for v in values)
-        return f'<select id="filter-{label}" onchange="applyFilters()">\n  <option value="">all {label}s</option>\n{items}\n</select>'
+    def header_select(col, values):
+        items = "\n".join(f'<option value="{v}">{v}</option>' for v in values)
+        return (f'<select data-filter-col="{col}" onchange="applyFilters()" '
+                f'style="width:100%; padding:0.2em; font-size:0.85em; border:1px solid #ccc; border-radius:3px; background:white; font-weight:normal;">'
+                f'<option value="">— any —</option>{items}</select>')
 
-    out.append(f"""<div style="display:flex; flex-wrap:wrap; gap:0.5em; align-items:center; margin:1em 0;">
-  <input type="text" id="skillFilter" placeholder="🔍 free text search…"
-    style="flex:1; min-width:240px; padding:0.5em; font-size:1em; border:1px solid #ccc; border-radius:4px;"
+    out.append(f"""<div style="margin:1em 0;">
+  <input type="text" id="skillFilter" placeholder="🔍 free-text search across all fields…"
+    style="width:100%; padding:0.5em 0.7em; font-size:1em; border:1px solid #ccc; border-radius:4px;"
     oninput="applyFilters()">
-  {opts(all_packs, "pack")}
-  {opts(all_cats, "category")}
-  {opts(all_fields, "field")}
-  {opts(all_stages, "stage")}
-  <button onclick="resetFilters()" style="padding:0.5em 0.8em;">reset</button>
-  <span id="skillCount" style="margin-left:0.5em; color:#666; font-size:0.9em;"></span>
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5em;">
+    <button onclick="resetFilters()" style="padding:0.3em 0.8em; font-size:0.85em;">reset all</button>
+    <span id="skillCount" style="color:#666; font-size:0.9em;"></span>
+  </div>
 </div>
 
 <script>
 function applyFilters() {{
   var q = (document.getElementById('skillFilter').value || '').toLowerCase().trim();
-  var pack = document.getElementById('filter-pack').value;
-  var cat = document.getElementById('filter-category').value;
-  var field = document.getElementById('filter-field').value;
-  var stage = document.getElementById('filter-stage').value;
+  var facets = {{}};
+  document.querySelectorAll('select[data-filter-col]').forEach(function(sel) {{
+    if (sel.value) facets[sel.dataset.filterCol] = sel.value;
+  }});
   var n_visible = 0, n_total = 0;
   document.querySelectorAll('#skillsTable tbody tr').forEach(function(row) {{
     n_total++;
-    var rowPack = row.dataset.pack || '';
-    var rowCat = row.dataset.category || '';
-    var rowField = row.dataset.field || '';
-    var rowStages = row.dataset.stages || '';
     var matchesText = !q || row.textContent.toLowerCase().includes(q);
-    var matchesPack = !pack || rowPack === pack;
-    var matchesCat = !cat || rowCat === cat;
-    var matchesField = !field || rowField === field;
-    var matchesStage = !stage || rowStages.split(' ').includes(stage);
-    var show = matchesText && matchesPack && matchesCat && matchesField && matchesStage;
+    var matchesFacets = true;
+    for (var col in facets) {{
+      var rowVal = row.dataset[col] || '';
+      if (col === 'stages') {{
+        if (!rowVal.split(' ').includes(facets[col])) {{ matchesFacets = false; break; }}
+      }} else {{
+        if (rowVal !== facets[col]) {{ matchesFacets = false; break; }}
+      }}
+    }}
+    var show = matchesText && matchesFacets;
     row.style.display = show ? '' : 'none';
     if (show) n_visible++;
   }});
@@ -328,33 +329,37 @@ function applyFilters() {{
 }}
 function resetFilters() {{
   document.getElementById('skillFilter').value = '';
-  document.getElementById('filter-pack').value = '';
-  document.getElementById('filter-category').value = '';
-  document.getElementById('filter-field').value = '';
-  document.getElementById('filter-stage').value = '';
+  document.querySelectorAll('select[data-filter-col]').forEach(function(sel) {{ sel.value = ''; }});
   applyFilters();
 }}
 document.addEventListener('DOMContentLoaded', applyFilters);
 </script>
 
 <style>
-select {{ padding:0.4em; border:1px solid #ccc; border-radius:4px; background:white; }}
-#skillsTable {{ font-size:0.9em; }}
-#skillsTable td, #skillsTable th {{ padding:0.4em 0.6em; vertical-align:top; }}
+#skillsTable {{ font-size:0.9em; width:100%; }}
+#skillsTable th {{ vertical-align:top; padding:0.4em 0.5em; background:#f5f5f5; }}
+#skillsTable th .col-label {{ display:block; font-size:0.9em; margin-bottom:0.3em; }}
+#skillsTable td {{ padding:0.4em 0.5em; vertical-align:top; }}
 </style>
-""")
-    out.append('<table id="skillsTable">')
-    out.append("<thead><tr>"
-               "<th>Skill</th><th>Pack</th><th>Field</th><th>Category</th>"
-               "<th>Stages</th><th>Description</th><th>Detail</th><th>Source</th>"
-               "</tr></thead>")
-    out.append("<tbody>")
+
+<div style="overflow-x:auto;">
+<table id="skillsTable">
+<thead><tr>
+<th><span class="col-label">Skill</span></th>
+<th><span class="col-label">Pack</span>{header_select("pack", all_packs)}</th>
+<th><span class="col-label">Field</span>{header_select("field", all_fields)}</th>
+<th><span class="col-label">Category</span>{header_select("category", all_cats)}</th>
+<th><span class="col-label">Stages</span>{header_select("stages", all_stages)}</th>
+<th><span class="col-label">Description</span></th>
+<th><span class="col-label">Detail</span></th>
+<th><span class="col-label">Source</span></th>
+</tr></thead>
+<tbody>""")
     rows = []
     for p in packs:
         pk = p["pack"]
         pack_slug = pk["slug"]
         pack_name = pk["name"]
-        # Determine which detail pages exist
         pack_details_dir = SKILLS_DIR / pack_slug / "details"
         have_details = ({f.stem for f in pack_details_dir.glob("*.md")}
                         if pack_details_dir.exists() else set())
@@ -369,13 +374,14 @@ select {{ padding:0.4em; border:1px solid #ccc; border-radius:4px; background:wh
             desc = s.get("description", "—") or "—"
             source_url = s.get("details_url", "")
             source_cell = f'<a href="{source_url}">↗</a>' if source_url else "—"
-            detail_cell = (f'<a href="{pack_slug}/{s_slug}.md">view</a>'
+            # Use DIRECTORY URL (not .md) so raw HTML <a> resolves correctly
+            detail_cell = (f'<a href="{pack_slug}/{s_slug}/">view</a>'
                            if s_slug in have_details else "—")
             rows.append((cat, name, pack_slug,
                          f'<tr data-pack="{pack_slug}" data-category="{cat}" '
                          f'data-field="{field}" data-stages="{stages_attr}">'
                          f"<td><code>{name}</code></td>"
-                         f'<td><a href="{pack_slug}.md">{pack_name}</a></td>'
+                         f'<td><a href="{pack_slug}/">{pack_name}</a></td>'
                          f"<td>{field}</td>"
                          f"<td><code>{cat}</code></td>"
                          f"<td>{stages_html}</td>"
@@ -386,20 +392,41 @@ select {{ padding:0.4em; border:1px solid #ccc; border-radius:4px; background:wh
     for _, _, _, row_html in sorted(rows):
         out.append(row_html)
     out.append("</tbody></table>")
+    out.append("</div>")
     out.append("")
 
-    # Skills by category across all packs
-    out.append("## Skill count by category (across packs)")
+    # Skills by category — click to filter the table above
+    out.append("## Skill count by category")
+    out.append("")
+    out.append("*Click a category to filter the table above.*")
     out.append("")
     cat_counts: Counter[str] = Counter()
     for p in packs:
         for s in p.get("skills") or []:
             cat_counts[s.get("category", "unspecified")] += 1
-    out.append("| Category | Count |")
-    out.append("|---|---:|")
+    out.append('<table style="font-size:0.95em; max-width:30em;">')
+    out.append("<thead><tr><th>Category</th><th style='text-align:right;'>Count</th></tr></thead>")
+    out.append("<tbody>")
     for cat, n in sorted(cat_counts.items(), key=lambda x: (-x[1], x[0])):
-        out.append(f"| `{cat}` | {n} |")
+        out.append(
+            f'<tr style="cursor:pointer;" onclick="setCategoryFilter(\'{cat}\')">'
+            f'<td><code>{cat}</code></td>'
+            f'<td style="text-align:right;">{n}</td>'
+            f'</tr>'
+        )
+    out.append("</tbody></table>")
     out.append("")
+    out.append("""<script>
+function setCategoryFilter(cat) {
+  var sel = document.querySelector('select[data-filter-col="category"]');
+  if (sel) {
+    sel.value = cat;
+    applyFilters();
+    document.getElementById('skillsTable').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+</script>
+""")
 
     return "\n".join(out)
 
