@@ -1,24 +1,27 @@
 ---
 citekey: riemer2024styleengines
-title: "Conceptualizing Generative AI as Style Engines: Application Archetypes and Implications"
-authors: ["Riemer, K.", "Peter, S."]
+title: 'Conceptualizing Generative AI as Style Engines: Application Archetypes and
+  Implications'
+authors:
+- Riemer, K.
+- Peter, S.
 year: 2024
-venue: "International Journal of Information Management"
-doi: "10.1016/j.ijinfomgt.2024.102824"
-url: "https://doi.org/10.1016/j.ijinfomgt.2024.102824"
-pdf_status: "unavailable — Elsevier IJIM paywall; user-confirmed no access (2026-05-20)"
+venue: International Journal of Information Management
+doi: 10.1016/j.ijinfomgt.2024.102824
+url: https://doi.org/10.1016/j.ijinfomgt.2024.102824
+pdf_status: unavailable — Elsevier IJIM paywall; user-confirmed no access (2026-05-20)
 kind: paper
 themes:
-  - style-engines
-  - is-methodology
-  - sociotechnical
+- style-engines
+- is-methodology
+- sociotechnical
 methods:
-  - conceptual
+- conceptual
 relates_to_projects:
-  - refine-ink
-  - coarse-ink
-  - storm
-  - gpt-researcher
+- refine-ink
+- coarse-ink
+- storm
+- gpt-researcher
 status: read
 rating: 4
 ---
@@ -68,7 +71,3 @@ mechanisms wholesale.
   fully resolve which archetype they fall under.
 - The paper is largely theoretical; empirical predictions derived
   from the framing remain to be tested at scale.
-
-## Key quotes
-
-*To be added on re-read with page references.*

@@ -1,22 +1,22 @@
 ---
 citekey: aral2012itproductivity
-title: 'Information, Technology, and Information Worker Productivity'
+title: Information, Technology, and Information Worker Productivity
 authors:
-  - 'Aral, S.'
-  - 'Brynjolfsson, E.'
-  - 'Van Alstyne, M.'
+- Aral, S.
+- Brynjolfsson, E.
+- Van Alstyne, M.
 year: 2012
-venue: 'Information Systems Research 23(3, Part 2):849-867'
-doi: '10.1287/isre.1110.0408'
-url: ""
+venue: Information Systems Research 23(3, Part 2):849-867
+doi: 10.1287/isre.1110.0408
+url: ''
 kind: paper
 themes:
-  - research-productivity
-  - is-methodology
-  - sociotechnical
+- research-productivity
+- is-methodology
+- sociotechnical
 methods:
-  - empirical
-  - panel-data
+- empirical
+- panel-data
 relates_to_projects: []
 status: read
 ---

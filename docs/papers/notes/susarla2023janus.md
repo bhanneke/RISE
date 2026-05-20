@@ -1,22 +1,23 @@
 ---
 citekey: susarla2023janus
-title: 'The Janus Effect of Generative AI: Charting the Path for Responsible Conduct of Scholarly Activities in Information Systems'
+title: 'The Janus Effect of Generative AI: Charting the Path for Responsible Conduct
+  of Scholarly Activities in Information Systems'
 authors:
-  - 'Susarla, A.'
-  - 'Gopal, R.'
-  - 'Thatcher, J. B.'
-  - 'Sarker, S.'
+- Susarla, A.
+- Gopal, R.
+- Thatcher, J. B.
+- Sarker, S.
 year: 2023
-venue: 'Information Systems Research 34(2) editorial'
-doi: '10.1287/isre.2023.ed.v34.n2'
-url: ""
+venue: Information Systems Research 34(2) editorial
+doi: 10.1287/isre.2023.ed.v34.n2
+url: ''
 kind: editorial
 themes:
-  - is-methodology
-  - sociotechnical
-  - ai-publishing-ecosystems
+- is-methodology
+- sociotechnical
+- ai-publishing-ecosystems
 methods:
-  - editorial
+- editorial
 relates_to_projects: []
 status: read
 ---

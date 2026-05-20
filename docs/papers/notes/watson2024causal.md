@@ -2,21 +2,21 @@
 citekey: watson2024causal
 title: 'Extending the Foresight of Phillip Ein-Dor: Causal Knowledge Analytics'
 authors:
-  - 'Watson, R. T.'
-  - 'Song, Y. A.'
-  - 'Zhao, X.'
-  - 'Webster, J.'
+- Watson, R. T.
+- Song, Y. A.
+- Zhao, X.
+- Webster, J.
 year: 2024
-venue: 'JAIS 25(1):145-157'
-doi: '10.17705/1jais.00871'
-url: ""
+venue: JAIS 25(1):145-157
+doi: 10.17705/1jais.00871
+url: ''
 kind: paper
 themes:
-  - is-methodology
-  - evaluation-of-ai-research
+- is-methodology
+- evaluation-of-ai-research
 methods:
-  - conceptual
-  - methodological
+- conceptual
+- methodological
 relates_to_projects: []
 status: skimmed
 ---
@@ -40,7 +40,3 @@ Methodological piece on *causal knowledge analytics* — building AI-native infr
 ## Critique / open questions
 
 Short tribute-style essay; the abstract sketches the vision without detailing technical mechanisms, datasets, or evaluation of "causal knowledge analytics."
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

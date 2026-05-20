@@ -1,19 +1,20 @@
 ---
 citekey: noy2023experimental
-title: 'Experimental Evidence on the Productivity Effects of Generative Artificial Intelligence'
+title: Experimental Evidence on the Productivity Effects of Generative Artificial
+  Intelligence
 authors:
-  - 'Noy, S.'
-  - 'Zhang, W.'
+- Noy, S.
+- Zhang, W.
 year: 2023
-venue: 'Science 381(6654):187-192'
-doi: '10.1126/science.adh2586'
-url: ""
+venue: Science 381(6654):187-192
+doi: 10.1126/science.adh2586
+url: ''
 kind: paper
 themes:
-  - research-productivity
-  - human-ai-research-collaboration
+- research-productivity
+- human-ai-research-collaboration
 methods:
-  - experimental
+- experimental
 relates_to_projects: []
 status: read
 ---

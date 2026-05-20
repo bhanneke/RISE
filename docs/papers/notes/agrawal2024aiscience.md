@@ -1,26 +1,26 @@
 ---
 citekey: agrawal2024aiscience
-title: 'AI in Science'
+title: AI in Science
 authors:
-  - 'Agrawal, A. K.'
-  - 'McHale, J.'
-  - 'Oettl, A.'
+- Agrawal, A. K.
+- McHale, J.
+- Oettl, A.
 year: 2024
-venue: 'NBER Working Paper w34953'
-doi: ""
-url: 'https://www.nber.org/papers/w34953'
+venue: NBER Working Paper w34953
+doi: ''
+url: https://www.nber.org/papers/w34953
 kind: paper
 themes:
-  - research-productivity
-  - human-ai-research-collaboration
-  - llm-cognition
-  - sociotechnical
+- research-productivity
+- human-ai-research-collaboration
+- llm-cognition
+- sociotechnical
 methods:
-  - conceptual
-  - economic-model
+- conceptual
+- economic-model
 relates_to_projects:
-  - sakana-ai-scientist
-  - kosmos
+- sakana-ai-scientist
+- kosmos
 status: read
 ---
 

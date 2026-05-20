@@ -1,26 +1,26 @@
 ---
 citekey: novymarx2024aifinance
-title: 'AI-Powered (Finance) Scholarship'
+title: AI-Powered (Finance) Scholarship
 authors:
-  - 'Novy-Marx, R.'
-  - 'Velikov, M. Z.'
+- Novy-Marx, R.
+- Velikov, M. Z.
 year: 2024
-venue: 'NBER Working Paper 33363'
-doi: ""
-url: 'https://www.nber.org/papers/w33363'
+venue: NBER Working Paper 33363
+doi: ''
+url: https://www.nber.org/papers/w33363
 kind: paper
 themes:
-  - autonomous-research-agents
-  - research-productivity
-  - evaluation-of-ai-research
-  - hallucination
+- autonomous-research-agents
+- research-productivity
+- evaluation-of-ai-research
+- hallucination
 methods:
-  - empirical
-  - pipeline-demo
+- empirical
+- pipeline-demo
 relates_to_projects:
-  - data-to-paper
-  - sakana-ai-scientist
-  - autoresearchclaw
+- data-to-paper
+- sakana-ai-scientist
+- autoresearchclaw
 status: read
 ---
 

@@ -1,25 +1,26 @@
 ---
 citekey: gartenberg2026morebetter
-title: 'More Versus Better: Artificial Intelligence, Incentives, and the Emerging Crisis in Peer Review'
+title: 'More Versus Better: Artificial Intelligence, Incentives, and the Emerging
+  Crisis in Peer Review'
 authors:
-  - 'Gartenberg, C.'
-  - 'Murray, F.'
-  - 'Hasan, S.'
-  - 'Pierce, L.'
+- Gartenberg, C.
+- Murray, F.
+- Hasan, S.
+- Pierce, L.
 year: 2026
-venue: 'Organization Science 37(3) editorial'
-doi: '10.1287/orsc.2026.ed.v37.n3'
-url: ""
+venue: Organization Science 37(3) editorial
+doi: 10.1287/orsc.2026.ed.v37.n3
+url: ''
 kind: editorial
 themes:
-  - ai-peer-review
-  - ai-publishing-ecosystems
-  - research-productivity
+- ai-peer-review
+- ai-publishing-ecosystems
+- research-productivity
 methods:
-  - editorial
-  - descriptive-statistics
+- editorial
+- descriptive-statistics
 relates_to_projects:
-  - reviewer
+- reviewer
 status: read
 ---
 

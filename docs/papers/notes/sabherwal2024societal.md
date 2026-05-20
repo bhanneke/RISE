@@ -2,17 +2,17 @@
 citekey: sabherwal2024societal
 title: 'The Societal Impacts of Generative Artificial Intelligence: A Balanced Perspective'
 authors:
-  - 'Sabherwal, R.'
-  - 'Grover, V.'
+- Sabherwal, R.
+- Grover, V.
 year: 2024
-venue: 'JAIS 25(1):13-22'
-doi: '10.17705/1jais.00860'
-url: ""
+venue: JAIS 25(1):13-22
+doi: 10.17705/1jais.00860
+url: ''
 kind: paper
 themes:
-  - sociotechnical
+- sociotechnical
 methods:
-  - conceptual
+- conceptual
 relates_to_projects: []
 status: skimmed
 ---
@@ -36,7 +36,3 @@ Sabherwal and Grover (Arkansas) on the macro / societal impacts of GenAI. Backgr
 ## Critique / open questions
 
 Conceptual essay without empirical grounding; the abstract concedes that predicting long-term effects is challenging due to unforeseeable discontinuities, leaving the proposed contingencies untested.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

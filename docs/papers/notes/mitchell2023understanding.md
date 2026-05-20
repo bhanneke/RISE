@@ -1,17 +1,19 @@
 ---
 citekey: mitchell2023understanding
-title: "The Debate over Understanding in AI's Large Language Models"
-authors: ["Mitchell, M.", "Krakauer, D. C."]
+title: The Debate over Understanding in AI's Large Language Models
+authors:
+- Mitchell, M.
+- Krakauer, D. C.
 year: 2023
-venue: "PNAS"
-doi: ""
-url: ""
+venue: PNAS
+doi: ''
+url: ''
 kind: paper
 themes:
-  - llm-cognition
-  - sociotechnical
+- llm-cognition
+- sociotechnical
 methods:
-  - position-paper
+- position-paper
 relates_to_projects: []
 status: read
 rating: 5
@@ -59,7 +61,3 @@ build on.
   the understanding/use distinction further.
 - Operationalization of understanding is invited but not delivered;
   the paper is best read as setting the agenda.
-
-## Key quotes
-
-*To be added on re-read with page references.*

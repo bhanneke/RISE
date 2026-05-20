@@ -1,26 +1,27 @@
 ---
 citekey: tie2025aiscientistsurvey
-title: 'A Survey of AI Scientists'
+title: A Survey of AI Scientists
 authors:
-  - 'Tie, G.'
-  - 'Zhou, P.'
-  - 'Sun, L.'
+- Tie, G.
+- Zhou, P.
+- Sun, L.
 year: 2025
-venue: 'arXiv 2510.23045'
-doi: ""
-url: ""
+venue: arXiv 2510.23045
+doi: ''
+url: https://arxiv.org/abs/2510.23045
 kind: survey
 themes:
-  - autonomous-research-agents
-  - evaluation-of-ai-research
+- autonomous-research-agents
+- evaluation-of-ai-research
 methods:
-  - survey
+- survey
 relates_to_projects:
-  - sakana-ai-scientist
-  - agent-laboratory
-  - kosmos
-  - zochi
+- sakana-ai-scientist
+- agent-laboratory
+- kosmos
+- zochi
 status: read
+arxiv_id: '2510.23045'
 ---
 
 ## Summary

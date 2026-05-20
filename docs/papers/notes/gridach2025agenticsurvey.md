@@ -1,28 +1,30 @@
 ---
 citekey: gridach2025agenticsurvey
-title: 'Agentic AI for Scientific Discovery: A Survey of Progress, Challenges, and Future Directions'
+title: 'Agentic AI for Scientific Discovery: A Survey of Progress, Challenges, and
+  Future Directions'
 authors:
-  - 'Gridach, M.'
-  - 'Nanavati, J.'
-  - 'Zine El Abidine, K.'
-  - 'Mendes, L.'
-  - 'Mack, C.'
+- Gridach, M.
+- Nanavati, J.
+- Zine El Abidine, K.
+- Mendes, L.
+- Mack, C.
 year: 2025
-venue: 'arXiv 2503.08979'
-doi: ""
-url: ""
+venue: arXiv 2503.08979
+doi: ''
+url: https://arxiv.org/abs/2503.08979
 kind: paper
 themes:
-  - autonomous-research-agents
-  - evaluation-of-ai-research
+- autonomous-research-agents
+- evaluation-of-ai-research
 methods:
-  - survey
+- survey
 relates_to_projects:
-  - sakana-ai-scientist
-  - agent-laboratory
-  - robin
-  - kosmos
+- sakana-ai-scientist
+- agent-laboratory
+- robin
+- kosmos
 status: skimmed
+arxiv_id: '2503.08979'
 ---
 
 ## Summary
@@ -44,7 +46,3 @@ Survey of agentic-AI systems for scientific discovery, with explicit taxonomy of
 ## Critique / open questions
 
 Survey scope concentrates on chemistry, biology, and materials science; the abstract does not report a systematic search protocol or coverage of information-systems / social-science agentic research, limiting cross-domain claims.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

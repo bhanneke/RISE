@@ -1,28 +1,30 @@
 ---
 citekey: russo2024reviewlottery
-title: 'The AI Review Lottery: Widespread AI-Assisted Peer Reviews Boost Paper Scores and Acceptance Rates'
+title: 'The AI Review Lottery: Widespread AI-Assisted Peer Reviews Boost Paper Scores
+  and Acceptance Rates'
 authors:
-  - 'Russo Latona, G.'
-  - 'Horta Ribeiro, M.'
-  - 'Davidson, T. R.'
-  - 'Veselovsky, V.'
-  - 'West, R.'
+- Russo Latona, G.
+- Horta Ribeiro, M.
+- Davidson, T. R.
+- Veselovsky, V.
+- West, R.
 year: 2024
-venue: 'arXiv 2405.02150'
-doi: ""
-url: ""
+venue: arXiv 2405.02150
+doi: ''
+url: https://arxiv.org/abs/2405.02150
 kind: preprint
 themes:
-  - ai-peer-review
-  - evaluation-of-ai-research
-  - ai-publishing-ecosystems
+- ai-peer-review
+- evaluation-of-ai-research
+- ai-publishing-ecosystems
 methods:
-  - empirical
-  - quasi-experiment
+- empirical
+- quasi-experiment
 relates_to_projects:
-  - reviewer
-  - marg
+- reviewer
+- marg
 status: read
+arxiv_id: '2405.02150'
 ---
 
 ## Summary

@@ -1,26 +1,27 @@
 ---
 citekey: chen2025reasoning
-title: "Reasoning Models Don't Always Say What They Think"
+title: Reasoning Models Don't Always Say What They Think
 authors:
-  - 'Chen, Y.'
-  - 'et al.'
+- Chen, Y.
+- et al.
 year: 2025
-venue: 'arXiv 2505.05410 (Anthropic Alignment Science Team)'
-doi: ""
-url: ""
+venue: arXiv 2505.05410 (Anthropic Alignment Science Team)
+doi: ''
+url: https://arxiv.org/abs/2505.05410
 kind: preprint
 themes:
-  - reasoning-faithfulness
-  - agentic-reasoning
-  - hallucination
-  - evaluation-of-ai-research
+- reasoning-faithfulness
+- agentic-reasoning
+- hallucination
+- evaluation-of-ai-research
 methods:
-  - empirical
-  - evaluation
+- empirical
+- evaluation
 relates_to_projects:
-  - reviewer
-  - sakana-ai-scientist
+- reviewer
+- sakana-ai-scientist
 status: read
+arxiv_id: '2505.05410'
 ---
 
 ## Summary

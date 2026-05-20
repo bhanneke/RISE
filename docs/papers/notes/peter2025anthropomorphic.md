@@ -1,17 +1,20 @@
 ---
 citekey: peter2025anthropomorphic
-title: "The Benefits and Dangers of Anthropomorphic Conversational Agents"
-authors: ["Peter, S.", "Riemer, K.", "West, J. D."]
+title: The Benefits and Dangers of Anthropomorphic Conversational Agents
+authors:
+- Peter, S.
+- Riemer, K.
+- West, J. D.
 year: 2025
-venue: "PNAS"
-doi: ""
-url: ""
+venue: PNAS
+doi: ''
+url: ''
 kind: paper
 themes:
-  - sociotechnical
-  - llm-cognition
+- sociotechnical
+- llm-cognition
 methods:
-  - position-paper
+- position-paper
 relates_to_projects: []
 status: read
 rating: 4
@@ -63,7 +66,3 @@ for the next rubric version.
 - The paper focuses on conversational interfaces; the implications
   for *artifact-producing* systems (the RISE case) are inferred
   rather than directly studied.
-
-## Key quotes
-
-*To be added on re-read with page references.*

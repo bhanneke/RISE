@@ -1,22 +1,22 @@
 ---
 citekey: acemoglu2026collapse
-title: 'AI, Human Cognition and Knowledge Collapse'
+title: AI, Human Cognition and Knowledge Collapse
 authors:
-  - 'Acemoglu, D.'
-  - 'Kong, D.'
-  - 'Ozdaglar, A. E.'
+- Acemoglu, D.
+- Kong, D.
+- Ozdaglar, A. E.
 year: 2026
-venue: 'SSRN Working Paper 6326698'
-doi: ""
-url: ""
+venue: SSRN Working Paper 6326698
+doi: ''
+url: ''
 kind: paper
 themes:
-  - sociotechnical
-  - evaluation-of-ai-research
-  - llm-cognition
+- sociotechnical
+- evaluation-of-ai-research
+- llm-cognition
 methods:
-  - theory
-  - economic-model
+- theory
+- economic-model
 relates_to_projects: []
 status: read
 ---

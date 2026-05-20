@@ -1,22 +1,22 @@
 ---
 citekey: bick2025rapidadoption
-title: 'The Rapid Adoption of Generative AI'
+title: The Rapid Adoption of Generative AI
 authors:
-  - 'Bick, A.'
-  - 'Blandin, A.'
-  - 'Deming, D. J.'
+- Bick, A.
+- Blandin, A.
+- Deming, D. J.
 year: 2025
-venue: 'Management Science'
-doi: '10.1287/mnsc.2025.02523'
-url: ""
+venue: Management Science
+doi: 10.1287/mnsc.2025.02523
+url: ''
 kind: editorial
 themes:
-  - research-productivity
-  - sociotechnical
-  - ai-publishing-ecosystems
+- research-productivity
+- sociotechnical
+- ai-publishing-ecosystems
 methods:
-  - empirical
-  - survey
+- empirical
+- survey
 relates_to_projects: []
 status: read
 ---

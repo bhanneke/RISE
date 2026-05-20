@@ -1,22 +1,24 @@
 ---
 citekey: park2023generative
-title: "Generative Agents: Interactive Simulacra of Human Behavior"
-authors: ["Park, J. S.", "et al."]
+title: 'Generative Agents: Interactive Simulacra of Human Behavior'
+authors:
+- Park, J. S.
+- et al.
 year: 2023
-venue: "UIST 2023"
-doi: ""
-url: ""
+venue: UIST 2023
+doi: ''
+url: ''
 kind: paper
 themes:
-  - autonomous-research-agents
-  - sociotechnical
-  - llm-cognition
+- autonomous-research-agents
+- sociotechnical
+- llm-cognition
 methods:
-  - simulation
-  - user-study
+- simulation
+- user-study
 relates_to_projects:
-  - sakana-ai-scientist
-  - agent-laboratory
+- sakana-ai-scientist
+- agent-laboratory
 status: read
 rating: 5
 ---
@@ -69,7 +71,3 @@ human author.
   to long-horizon scientific work introduces failure modes (memory
   drift, reflection contamination) not visible in the original
   evaluation.
-
-## Key quotes
-
-*To be added on re-read with page references.*

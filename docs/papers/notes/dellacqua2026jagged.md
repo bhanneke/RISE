@@ -1,28 +1,29 @@
 ---
 citekey: dellacqua2026jagged
-title: 'Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of Artificial Intelligence on Knowledge Worker Productivity and Quality'
+title: 'Navigating the Jagged Technological Frontier: Field Experimental Evidence
+  of the Effects of Artificial Intelligence on Knowledge Worker Productivity and Quality'
 authors:
-  - "Dell'Acqua, F."
-  - 'McFowland III, E.'
-  - 'Mollick, E.'
-  - 'Lifshitz-Assaf, H.'
-  - 'Kellogg, K. C.'
-  - 'Rajendran, S.'
-  - 'Krayer, L.'
-  - 'Candelon, F.'
-  - 'Lakhani, K. R.'
+- Dell'Acqua, F.
+- McFowland III, E.
+- Mollick, E.
+- Lifshitz-Assaf, H.
+- Kellogg, K. C.
+- Rajendran, S.
+- Krayer, L.
+- Candelon, F.
+- Lakhani, K. R.
 year: 2026
-venue: 'Organization Science (Articles in Advance)'
-doi: '10.1287/orsc.2025.21838'
-url: ""
+venue: Organization Science (Articles in Advance)
+doi: 10.1287/orsc.2025.21838
+url: ''
 kind: paper
 themes:
-  - research-productivity
-  - human-ai-research-collaboration
-  - evaluation-of-ai-research
+- research-productivity
+- human-ai-research-collaboration
+- evaluation-of-ai-research
 methods:
-  - field-experiment
-  - preregistered
+- field-experiment
+- preregistered
 relates_to_projects: []
 status: read
 ---

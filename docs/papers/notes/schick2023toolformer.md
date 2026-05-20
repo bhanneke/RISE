@@ -1,23 +1,25 @@
 ---
 citekey: schick2023toolformer
-title: "Toolformer: Language Models Can Teach Themselves to Use Tools"
-authors: ["Schick, T.", "et al."]
+title: 'Toolformer: Language Models Can Teach Themselves to Use Tools'
+authors:
+- Schick, T.
+- et al.
 year: 2023
-venue: "NeurIPS 2023"
-doi: ""
-url: ""
+venue: NeurIPS 2023
+doi: ''
+url: ''
 kind: paper
 themes:
-  - agentic-tool-use
+- agentic-tool-use
 methods:
-  - self-supervised
-  - benchmark
+- self-supervised
+- benchmark
 relates_to_projects:
-  - sakana-ai-scientist
-  - sakana-ai-scientist-v1
-  - paper-qa
-  - aviary
-  - e2er
+- sakana-ai-scientist
+- sakana-ai-scientist-v1
+- paper-qa
+- aviary
+- e2er
 status: read
 rating: 5
 ---
@@ -69,7 +71,3 @@ Sakana lineage) rely on for iterative improvement.
   directly address.
 - The paper predates the multi-agent turn — orchestration of
   *multiple* tool-using agents is out of scope.
-
-## Key quotes
-
-*To be added on re-read with page references.*

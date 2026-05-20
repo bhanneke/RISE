@@ -2,19 +2,20 @@
 citekey: kwon2025inequality
 title: 'Large Language Models in Academia: Boosting Productivity but Reinforcing Inequality'
 authors:
-  - 'Kwon, Y.'
-  - 'Yang, A.'
+- Kwon, Y.
+- Yang, A.
 year: 2025
-venue: 'ICIS 2025 Proceedings'
-doi: ""
-url: "https://aisel.aisnet.org/icis2025/gen_ai/gen_ai/2"
-pdf_status: "unavailable — AISeL AWS WAF blocks automated download; user-confirmed manual fetch also unsuccessful (2026-05-20)"
+venue: ICIS 2025 Proceedings
+doi: ''
+url: https://aisel.aisnet.org/icis2025/gen_ai/gen_ai/2
+pdf_status: unavailable — AISeL AWS WAF blocks automated download; user-confirmed
+  manual fetch also unsuccessful (2026-05-20)
 kind: paper
 themes:
-  - research-productivity
-  - sociotechnical
+- research-productivity
+- sociotechnical
 methods:
-  - empirical
+- empirical
 relates_to_projects: []
 status: skimmed
 ---
@@ -38,7 +39,3 @@ ICIS 2025 paper documenting the *inequality* side of AI-in-academia productivity
 ## Critique / open questions
 
 Sample restricted to computer-science scholars at 194 top U.S. universities, so generalization to other disciplines, ranks of institutions, or non-U.S. settings is unwarranted. LLM "exposure" appears to be inferred from a post-introduction time cut rather than measured individual use, which the abstract does not address.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

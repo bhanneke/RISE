@@ -1,24 +1,26 @@
 ---
 citekey: filimonovic2025genai
-title: 'Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral Sciences'
+title: Can GenAI Improve Academic Performance? Evidence from the Social and Behavioral
+  Sciences
 authors:
-  - 'Filimonovic, D.'
-  - 'Rutzer, C.'
-  - 'Wunsch, C.'
+- Filimonovic, D.
+- Rutzer, C.
+- Wunsch, C.
 year: 2025
-venue: 'arXiv 2510.02408'
-doi: ""
-url: ""
+venue: arXiv 2510.02408
+doi: ''
+url: https://arxiv.org/abs/2510.02408
 kind: preprint
 themes:
-  - research-productivity
-  - human-ai-research-collaboration
-  - evaluation-of-ai-research
+- research-productivity
+- human-ai-research-collaboration
+- evaluation-of-ai-research
 methods:
-  - empirical
-  - difference-in-differences
+- empirical
+- difference-in-differences
 relates_to_projects: []
 status: read
+arxiv_id: '2510.02408'
 ---
 
 ## Summary

@@ -1,21 +1,21 @@
 ---
 citekey: naturePeerReview2025editorial
-title: 'Transparent Peer Review to Be Extended to All Research Papers'
+title: Transparent Peer Review to Be Extended to All Research Papers
 authors:
-  - 'Nature Editorial'
+- Nature Editorial
 year: 2025
-venue: 'Nature, d41586-025-01880-9'
-doi: ""
-url: 'https://www.nature.com/articles/d41586-025-01880-9'
+venue: Nature, d41586-025-01880-9
+doi: ''
+url: https://www.nature.com/articles/d41586-025-01880-9
 kind: editorial
 themes:
-  - ai-peer-review
-  - ai-publishing-ecosystems
-  - sociotechnical
+- ai-peer-review
+- ai-publishing-ecosystems
+- sociotechnical
 methods:
-  - editorial
+- editorial
 relates_to_projects:
-  - reviewer
+- reviewer
 status: read
 ---
 

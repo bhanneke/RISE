@@ -1,21 +1,24 @@
 ---
 citekey: wu2025agenticreasoning
-title: "Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools"
-authors: ["Wu, J.", "et al."]
+title: 'Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with
+  Agentic Tools'
+authors:
+- Wu, J.
+- et al.
 year: 2025
-venue: "ACL (Proceedings, Volume 1: Long Papers)"
-doi: ""
-url: ""
+venue: 'ACL (Proceedings, Volume 1: Long Papers)'
+doi: ''
+url: ''
 kind: paper
 themes:
-  - agentic-reasoning
-  - agentic-tool-use
+- agentic-reasoning
+- agentic-tool-use
 methods:
-  - framework
-  - benchmark
+- framework
+- benchmark
 relates_to_projects:
-  - e2er
-  - sakana-ai-scientist
+- e2er
+- sakana-ai-scientist
 status: read
 rating: 4
 ---
@@ -64,7 +67,3 @@ reference design against which those implementations can be compared.
 - The framework treats tools as black boxes; failure modes specific to
   scientific tools (data-source rate limits, citation drift) are not
   addressed.
-
-## Key quotes
-
-*To be added on re-read with page references.*

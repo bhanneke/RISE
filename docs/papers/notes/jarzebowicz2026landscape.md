@@ -1,30 +1,32 @@
 ---
 citekey: jarzebowicz2026landscape
-title: 'The Landscape of Generative AI in Information Systems: A Synthesis of Secondary Reviews and Research Agendas'
+title: 'The Landscape of Generative AI in Information Systems: A Synthesis of Secondary
+  Reviews and Research Agendas'
 authors:
-  - 'Jarzębowicz, A.'
-  - 'Przybyłek, A.'
-  - 'Estima, J.'
-  - 'Ng, Y. Y.'
-  - 'Swacha, J.'
-  - 'Zielosko, B.'
-  - 'Madeyski, L.'
-  - 'Carroll, N.'
-  - 'et al.'
+- Jarzębowicz, A.
+- Przybyłek, A.
+- Estima, J.
+- Ng, Y. Y.
+- Swacha, J.
+- Zielosko, B.
+- Madeyski, L.
+- Carroll, N.
+- et al.
 year: 2026
-venue: 'arXiv 2603.11842'
-doi: ""
-url: ""
+venue: arXiv 2603.11842
+doi: ''
+url: https://arxiv.org/abs/2603.11842
 kind: survey
 themes:
-  - is-methodology
-  - sociotechnical
-  - ai-publishing-ecosystems
+- is-methodology
+- sociotechnical
+- ai-publishing-ecosystems
 methods:
-  - systematic-review
-  - synthesis
+- systematic-review
+- synthesis
 relates_to_projects: []
 status: read
+arxiv_id: '2603.11842'
 ---
 
 ## Summary

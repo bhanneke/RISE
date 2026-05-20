@@ -1,23 +1,23 @@
 ---
 citekey: brodeur2025reproducibility
-title: 'Assessing Reproducibility in Economics Using Standardized Crowd-Sourced Analysis'
+title: Assessing Reproducibility in Economics Using Standardized Crowd-Sourced Analysis
 authors:
-  - 'Brodeur, A.'
-  - 'Sung, S. Y.'
-  - 'et al.'
+- Brodeur, A.
+- Sung, S. Y.
+- et al.
 year: 2025
-venue: 'NBER Working Paper w33753'
-doi: ""
-url: 'https://www.nber.org/papers/w33753'
+venue: NBER Working Paper w33753
+doi: ''
+url: https://www.nber.org/papers/w33753
 kind: paper
 themes:
-  - replication-infrastructure
-  - evaluation-of-ai-research
+- replication-infrastructure
+- evaluation-of-ai-research
 methods:
-  - empirical
-  - crowd-sourcing
+- empirical
+- crowd-sourcing
 relates_to_projects:
-  - social-science-replicability
+- social-science-replicability
 status: read
 ---
 

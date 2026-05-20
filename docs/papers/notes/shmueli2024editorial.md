@@ -1,22 +1,23 @@
 ---
 citekey: shmueli2024editorial
-title: 'Reimagining the Journal Editorial Process: An AI-Augmented Versus an AI-Driven Future'
+title: 'Reimagining the Journal Editorial Process: An AI-Augmented Versus an AI-Driven
+  Future'
 authors:
-  - 'Shmueli, G.'
-  - 'Ray, S.'
+- Shmueli, G.
+- Ray, S.
 year: 2024
-venue: 'JAIS 25(1)'
-doi: '10.17705/1jais.00864'
-url: ""
+venue: JAIS 25(1)
+doi: 10.17705/1jais.00864
+url: ''
 kind: paper
 themes:
-  - ai-peer-review
-  - is-methodology
+- ai-peer-review
+- is-methodology
 methods:
-  - conceptual
+- conceptual
 relates_to_projects:
-  - ape
-  - reviewer
+- ape
+- reviewer
 status: skimmed
 ---
 
@@ -39,7 +40,3 @@ Two-axis framework — *AI-augmented* (humans driving, AI assisting) vs. *AI-dri
 ## Critique / open questions
 
 Thought experiment without empirical grounding; the two-future dichotomy may oversimplify a continuum, and risks/benefits are asserted rather than measured.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

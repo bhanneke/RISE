@@ -2,23 +2,23 @@
 citekey: drori2024humanloop
 title: 'Human-in-the-Loop AI Reviewing: Feasibility, Opportunities, and Risks'
 authors:
-  - 'Drori, I.'
-  - "Te'eni, D."
+- Drori, I.
+- Te'eni, D.
 year: 2024
-venue: 'JAIS 25(1):98-109'
-doi: '10.17705/1jais.00867'
-url: ""
+venue: JAIS 25(1):98-109
+doi: 10.17705/1jais.00867
+url: ''
 kind: paper
 themes:
-  - ai-peer-review
-  - human-ai-research-collaboration
+- ai-peer-review
+- human-ai-research-collaboration
 methods:
-  - conceptual
-  - design
+- conceptual
+- design
 relates_to_projects:
-  - ape
-  - reviewer
-  - marg
+- ape
+- reviewer
+- marg
 status: skimmed
 ---
 
@@ -41,7 +41,3 @@ Designs an explicit human-in-the-loop architecture for AI-assisted peer review w
 ## Critique / open questions
 
 The abstract reports a demonstration with GPT-4 only, without specifying sample size, venue diversity, or a quantitative agreement metric; conclusions about accuracy are necessarily limited.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

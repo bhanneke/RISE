@@ -1,22 +1,22 @@
 ---
 citekey: kankanhalli2024peerreview
-title: 'Peer Review in the Age of Generative AI'
+title: Peer Review in the Age of Generative AI
 authors:
-  - 'Kankanhalli, A.'
+- Kankanhalli, A.
 year: 2024
-venue: 'JAIS 25(1):76-84'
-doi: '10.17705/1jais.00865'
-url: ""
+venue: JAIS 25(1):76-84
+doi: 10.17705/1jais.00865
+url: ''
 kind: paper
 themes:
-  - ai-peer-review
-  - sociotechnical
+- ai-peer-review
+- sociotechnical
 methods:
-  - editorial
+- editorial
 relates_to_projects:
-  - ape
-  - reviewer
-  - marg
+- ape
+- reviewer
+- marg
 status: skimmed
 ---
 
@@ -39,7 +39,3 @@ JAIS editorial directly engaging how the journal handles GenAI in submissions an
 ## Critique / open questions
 
 Single-author opinion piece without empirical evaluation; claims about pitfalls and implications are not benchmarked against data.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

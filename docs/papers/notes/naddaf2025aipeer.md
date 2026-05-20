@@ -1,22 +1,22 @@
 ---
 citekey: naddaf2025aipeer
-title: 'AI Is Transforming Peer Review — and Many Scientists Are Worried'
+title: AI Is Transforming Peer Review — and Many Scientists Are Worried
 authors:
-  - 'Naddaf, M.'
+- Naddaf, M.
 year: 2025
-venue: 'Nature 639(8056):852-854'
-doi: ""
-url: ""
+venue: Nature 639(8056):852-854
+doi: ''
+url: ''
 kind: paper
 themes:
-  - ai-peer-review
-  - ai-publishing-ecosystems
-  - sociotechnical
+- ai-peer-review
+- ai-publishing-ecosystems
+- sociotechnical
 methods:
-  - journalism
-  - feature
+- journalism
+- feature
 relates_to_projects:
-  - reviewer
+- reviewer
 status: read
 ---
 

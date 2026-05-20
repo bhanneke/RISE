@@ -1,28 +1,29 @@
 ---
 citekey: laban2026llmscorrupt
-title: 'LLMs Corrupt Your Documents When You Delegate'
+title: LLMs Corrupt Your Documents When You Delegate
 authors:
-  - 'Laban, P.'
-  - 'Schnabel, T.'
-  - 'Neville, J.'
+- Laban, P.
+- Schnabel, T.
+- Neville, J.
 year: 2026
-venue: 'arXiv 2604.15597 (Microsoft Research preprint)'
-doi: ""
-url: ""
+venue: arXiv 2604.15597 (Microsoft Research preprint)
+doi: ''
+url: https://arxiv.org/abs/2604.15597
 kind: preprint
 themes:
-  - agentic-tool-use
-  - hallucination
-  - evaluation-of-ai-research
-  - reasoning-faithfulness
+- agentic-tool-use
+- hallucination
+- evaluation-of-ai-research
+- reasoning-faithfulness
 methods:
-  - empirical
-  - benchmark
+- empirical
+- benchmark
 relates_to_projects:
-  - sakana-ai-scientist
-  - data-to-paper
-  - mlgym
+- sakana-ai-scientist
+- data-to-paper
+- mlgym
 status: read
+arxiv_id: '2604.15597'
 ---
 
 ## Summary

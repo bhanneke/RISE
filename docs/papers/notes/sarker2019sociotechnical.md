@@ -1,18 +1,21 @@
 ---
 citekey: sarker2019sociotechnical
-title: "The Sociotechnical Axis of Cohesion for the IS Discipline: Its Historical Legacy and Its Continued Relevance"
-authors: ["Sarker, S.", "et al."]
+title: 'The Sociotechnical Axis of Cohesion for the IS Discipline: Its Historical
+  Legacy and Its Continued Relevance'
+authors:
+- Sarker, S.
+- et al.
 year: 2019
-venue: "MIS Quarterly"
-doi: ""
-url: ""
+venue: MIS Quarterly
+doi: ''
+url: ''
 kind: paper
 themes:
-  - sociotechnical
-  - is-methodology
+- sociotechnical
+- is-methodology
 methods:
-  - position-paper
-  - historical
+- position-paper
+- historical
 relates_to_projects: []
 status: read
 rating: 4
@@ -64,7 +67,3 @@ that emphasis.
 - The defense of the sociotechnical axis is partly disciplinary
   politics; readers outside IS may find the prescriptive claims less
   binding.
-
-## Key quotes
-
-*To be added on re-read with page references.*

@@ -2,18 +2,18 @@
 citekey: jarvenpaa2024theorizing
 title: 'New Frontiers in Information Systems Theorizing: Human-gAI Collaboration'
 authors:
-  - 'Jarvenpaa, S.'
-  - 'Klein, S.'
+- Jarvenpaa, S.
+- Klein, S.
 year: 2024
-venue: 'JAIS 25(1):110-121'
-doi: '10.17705/1jais.00868'
-url: ""
+venue: JAIS 25(1):110-121
+doi: 10.17705/1jais.00868
+url: ''
 kind: paper
 themes:
-  - is-methodology
-  - human-ai-research-collaboration
+- is-methodology
+- human-ai-research-collaboration
 methods:
-  - conceptual
+- conceptual
 relates_to_projects: []
 status: skimmed
 ---
@@ -37,7 +37,3 @@ Jarvenpaa (UT Austin) and Klein (Münster) treat generative AI as a *theorizing 
 ## Critique / open questions
 
 Conceptual essay without empirical demonstration; the operational details of human-gAI theorizing workflows and their effects on theory quality are not evaluated in the abstract.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

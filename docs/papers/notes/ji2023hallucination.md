@@ -1,22 +1,24 @@
 ---
 citekey: ji2023hallucination
-title: "Survey of Hallucination in Natural Language Generation"
-authors: ["Ji, Z.", "et al."]
+title: Survey of Hallucination in Natural Language Generation
+authors:
+- Ji, Z.
+- et al.
 year: 2023
-venue: "ACM Computing Surveys"
-doi: ""
-url: ""
+venue: ACM Computing Surveys
+doi: ''
+url: ''
 kind: survey
 themes:
-  - hallucination
-  - evaluation-of-ai-research
+- hallucination
+- evaluation-of-ai-research
 methods:
-  - survey
+- survey
 relates_to_projects:
-  - paper-qa
-  - open-scholar
-  - storm
-  - gpt-researcher
+- paper-qa
+- open-scholar
+- storm
+- gpt-researcher
 status: read
 rating: 4
 ---
@@ -66,7 +68,3 @@ breakdown.
   not engage with cases (e.g., hypothesis generation) where
   *generating beyond the source* is the point — relevant for RISE
   ideation stages.
-
-## Key quotes
-
-*To be added on re-read with page references.*

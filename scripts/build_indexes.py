@@ -517,14 +517,14 @@ def render_papers_table(papers: list[dict[str, Any]], bib: dict[str, dict[str, s
         themes = " ".join(f"`{t}`" for t in (note.get("themes") or []))
         status = (note.get("status") or "—")
 
-        # Build link cell (raw HTML so it renders inside <td>)
+        # Build link cell — external links open in a new tab
         if doi:
             doi_url = doi if doi.startswith("http") else "https://doi.org/" + doi
-            link = f'<a href="{doi_url}">doi</a>'
+            link = f'<a href="{doi_url}" target="_blank" rel="noopener">doi</a>'
         elif arxiv:
-            link = f'<a href="https://arxiv.org/abs/{arxiv}">arXiv</a>'
+            link = f'<a href="https://arxiv.org/abs/{arxiv}" target="_blank" rel="noopener">arXiv</a>'
         elif entry.get("url"):
-            link = f'<a href="{entry["url"]}">link</a>'
+            link = f'<a href="{entry["url"]}" target="_blank" rel="noopener">link</a>'
         else:
             link = "—"
 
@@ -549,33 +549,85 @@ def render_papers_table(papers: list[dict[str, Any]], bib: dict[str, dict[str, s
             "status": status,
         })
 
+    # Collect per-paper themes for the facet dropdown
+    themes_per_row: dict[str, list[str]] = {}
+    for ck in sorted(bib.keys()):
+        note = notes_by_ck.get(ck, {})
+        themes_per_row[ck] = note.get("themes") or []
+
     n_total = len(rows)
     n_with_note = sum(1 for r in rows if r["status"] != "—")
     n_read = sum(1 for r in rows if r["status"] == "read")
 
+    # Distinct values for per-column filter dropdowns
+    all_years   = sorted({r["year"] for r in rows if r["year"]}, reverse=True)
+    all_venues  = sorted({r["venue"] for r in rows if r["venue"]})
+    all_themes  = sorted({t for ts in themes_per_row.values() for t in ts})
+    all_status  = sorted({r["status"] for r in rows if r["status"]})
+
+    def header_select(col, values):
+        items = "\n".join(f'<option value="{v}">{v}</option>' for v in values)
+        return (f'<select data-filter-col="{col}" onchange="applyPaperFilters()" '
+                f'style="width:100%; padding:0.2em; font-size:0.85em; '
+                f'border:1px solid #ccc; border-radius:3px; background:white; font-weight:normal;">'
+                f'<option value="">— any —</option>{items}</select>')
+
     out: list[str] = []
     out.append(
         f"*{n_total} bibliographic entries; {n_with_note} have curator notes "
-        f"({n_read} fully read).*"
+        f"({n_read} fully read). Filter via the column headers or the search box.*"
     )
     out.append("")
 
-    # JS-powered filter: search box that filters rows in the table below
-    out.append("""<input type="text" id="paperFilter" placeholder="🔍 filter by author / title / venue / theme / year / citekey…"
-  style="width:100%; padding:0.5em; margin:1em 0; font-size:1em; border:1px solid #ccc; border-radius:4px;"
-  oninput="filterPapers(this.value)">
+    # Global text search + reset
+    out.append("""<div style="margin:1em 0; display:flex; gap:0.5em; align-items:center;">
+  <input type="text" id="paperFilter" placeholder="🔍 search author / title / venue / theme / citekey…"
+    style="flex:1; padding:0.5em; font-size:1em; border:1px solid #ccc; border-radius:4px;"
+    oninput="applyPaperFilters()">
+  <button type="button" onclick="resetPaperFilters()"
+    style="padding:0.5em 1em; border:1px solid #ccc; border-radius:4px; background:#f5f5f5; cursor:pointer;">
+    Reset
+  </button>
+  <span id="paperCount" style="white-space:nowrap; color:#666; font-size:0.9em;"></span>
+</div>
 
 <script>
-function filterPapers(q) {
-  q = q.toLowerCase().trim();
-  document.querySelectorAll('#papersTable tbody tr').forEach(function(row) {
-    row.style.display = (!q || row.textContent.toLowerCase().includes(q)) ? '' : 'none';
+function applyPaperFilters() {
+  var q = (document.getElementById('paperFilter').value || '').toLowerCase().trim();
+  var sels = document.querySelectorAll('#papersTable select[data-filter-col]');
+  var facets = {};
+  sels.forEach(function(s){ if (s.value) facets[s.dataset.filterCol] = s.value; });
+  var rows = document.querySelectorAll('#papersTable tbody tr');
+  var shown = 0;
+  rows.forEach(function(row){
+    var ok = true;
+    Object.keys(facets).forEach(function(col){
+      var cell = row.getAttribute('data-' + col) || '';
+      if (col === 'themes') {
+        if (cell.split('|').indexOf(facets[col]) === -1) ok = false;
+      } else if (cell !== facets[col]) {
+        ok = false;
+      }
+    });
+    if (ok && q) {
+      if (row.textContent.toLowerCase().indexOf(q) === -1) ok = false;
+    }
+    row.style.display = ok ? '' : 'none';
+    if (ok) shown++;
   });
+  var c = document.getElementById('paperCount');
+  if (c) c.textContent = shown + ' / ' + rows.length + ' papers';
 }
+function resetPaperFilters() {
+  document.getElementById('paperFilter').value = '';
+  document.querySelectorAll('#papersTable select[data-filter-col]').forEach(function(s){ s.value = ''; });
+  applyPaperFilters();
+}
+document.addEventListener('DOMContentLoaded', applyPaperFilters);
 </script>
 """)
 
-    # Build the HTML table directly (Markdown tables don't get IDs easily)
+    # Build the HTML table directly
     out.append('<table id="papersTable" markdown>')
     out.append("<thead>")
     out.append("<tr>"
@@ -583,11 +635,25 @@ function filterPapers(q) {
                "<th>Venue</th><th>Link</th><th>Themes</th>"
                "<th>Citekey</th><th>Note</th>"
                "</tr>")
+    # Filter row inside thead
+    out.append("<tr>"
+               f"<th>{header_select('year', all_years)}</th>"
+               "<th></th>"
+               "<th></th>"
+               f"<th>{header_select('venue', all_venues)}</th>"
+               "<th></th>"
+               f"<th>{header_select('themes', all_themes)}</th>"
+               "<th></th>"
+               f"<th>{header_select('status', all_status)}</th>"
+               "</tr>")
     out.append("</thead>")
     out.append("<tbody markdown>")
     for r in sorted(rows, key=lambda x: (x["year"], x["authors"])):
+        theme_attr = "|".join(themes_per_row.get(r["ck"], []))
         out.append(
-            f"<tr><td>{r['year']}</td>"
+            f'<tr data-year="{r["year"]}" data-venue="{r["venue"]}" '
+            f'data-themes="{theme_attr}" data-status="{r["status"]}">'
+            f"<td>{r['year']}</td>"
             f"<td>{r['authors']}</td>"
             f"<td>{r['title_cell']}</td>"
             f"<td>{r['venue']}</td>"

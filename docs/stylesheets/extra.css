@@ -1,0 +1,39 @@
+/* Widen the main content grid so big filterable tables don't get cut off. */
+.md-grid { max-width: 1500px; }
+
+/* Filterable tables: allow horizontal scroll if a viewport is still too narrow,
+   and let columns size to their content rather than forcing equal widths. */
+table#papersTable,
+table#skillsTable,
+table.filter-table {
+  width: 100%;
+  table-layout: auto;
+  font-size: 0.9em;
+}
+table#papersTable th,
+table#papersTable td,
+table#skillsTable th,
+table#skillsTable td {
+  padding: 0.4em 0.5em;
+  vertical-align: top;
+  word-wrap: break-word;
+}
+
+/* Wrap any oversized table in a horizontally scrollable container.
+   MkDocs Material does this by default for markdown tables, but our
+   raw-HTML tables need an explicit overflow wrapper. */
+.md-typeset table#papersTable,
+.md-typeset table#skillsTable {
+  display: table;
+  overflow-x: auto;
+}
+
+/* Sticky header filters look better when the row stays visible while scrolling. */
+table#papersTable thead th,
+table#skillsTable thead th {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 2;
+  border-bottom: 2px solid #ccc;
+}

@@ -2,21 +2,21 @@
 citekey: weber2024roboreviewer
 title: 'The Other Reviewer: RoboReviewer'
 authors:
-  - 'Weber, R.'
+- Weber, R.
 year: 2024
-venue: 'JAIS 25(1):85-97'
-doi: '10.17705/1jais.00866'
-url: ""
+venue: JAIS 25(1):85-97
+doi: 10.17705/1jais.00866
+url: ''
 kind: paper
 themes:
-  - ai-peer-review
-  - sociotechnical
+- ai-peer-review
+- sociotechnical
 methods:
-  - conceptual
+- conceptual
 relates_to_projects:
-  - ape
-  - reviewer
-  - marg
+- ape
+- reviewer
+- marg
 status: skimmed
 ---
 
@@ -39,7 +39,3 @@ Ron Weber — long-time MISQ EIC — sketches a 'RoboReviewer' role in scholarly
 ## Critique / open questions
 
 Single-author opinion piece without empirical evaluation; marketplace dynamics are speculative and the proposed automation challenges are not tested.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

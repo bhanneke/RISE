@@ -1,18 +1,19 @@
 ---
 citekey: avital2024decentralization
-title: 'Digital Transformation of Academic Publishing: A Call for the Decentralization and Democratization of Academic Journals'
+title: 'Digital Transformation of Academic Publishing: A Call for the Decentralization
+  and Democratization of Academic Journals'
 authors:
-  - 'Avital, M.'
+- Avital, M.
 year: 2024
-venue: 'JAIS 25(1):172-181'
-doi: '10.17705/1jais.00873'
-url: ""
+venue: JAIS 25(1):172-181
+doi: 10.17705/1jais.00873
+url: ''
 kind: paper
 themes:
-  - sociotechnical
-  - ai-publishing-ecosystems
+- sociotechnical
+- ai-publishing-ecosystems
 methods:
-  - conceptual
+- conceptual
 relates_to_projects: []
 status: skimmed
 ---
@@ -36,7 +37,3 @@ Avital (CBS) argues that academic publishing should be decentralized — relevan
 ## Critique / open questions
 
 Single-author opinion piece without empirical evaluation or detailed technical design; the feasibility of the proposed blockchain-plus-AI two-pronged strategy is asserted rather than demonstrated.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

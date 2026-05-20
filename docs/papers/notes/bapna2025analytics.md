@@ -1,25 +1,25 @@
 ---
 citekey: bapna2025analytics
-title: "Agentic AI and Managers' Analytics Capabilities: An Exploration"
+title: 'Agentic AI and Managers'' Analytics Capabilities: An Exploration'
 authors:
-  - 'Bapna, R.'
-  - 'Bapna, S.'
-  - 'Kumar, P.'
-  - 'Pamuru, V.'
-  - 'Umyarov, A.'
-  - 'Yang, M.'
+- Bapna, R.
+- Bapna, S.
+- Kumar, P.
+- Pamuru, V.
+- Umyarov, A.
+- Yang, M.
 year: 2025
-venue: 'SSRN Working Paper 5293722'
-doi: ""
-url: ""
+venue: SSRN Working Paper 5293722
+doi: ''
+url: ''
 kind: paper
 themes:
-  - research-productivity
-  - human-ai-research-collaboration
-  - agentic-tool-use
+- research-productivity
+- human-ai-research-collaboration
+- agentic-tool-use
 methods:
-  - empirical
-  - field-experiment
+- empirical
+- field-experiment
 relates_to_projects: []
 status: read
 ---

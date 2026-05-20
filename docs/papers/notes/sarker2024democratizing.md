@@ -1,27 +1,28 @@
 ---
 citekey: sarker2024democratizing
-title: 'Democratizing Knowledge Creation Through Human-AI Collaboration in Academic Peer Review'
+title: Democratizing Knowledge Creation Through Human-AI Collaboration in Academic
+  Peer Review
 authors:
-  - 'Sarker, S.'
-  - 'Susarla, A.'
-  - 'Gopal, R.'
-  - 'Thatcher, J. B.'
+- Sarker, S.
+- Susarla, A.
+- Gopal, R.
+- Thatcher, J. B.
 year: 2024
-venue: 'JAIS 25(1):158-171'
-doi: '10.17705/1jais.00872'
-url: ""
+venue: JAIS 25(1):158-171
+doi: 10.17705/1jais.00872
+url: ''
 kind: paper
 themes:
-  - ai-peer-review
-  - is-methodology
-  - human-ai-research-collaboration
+- ai-peer-review
+- is-methodology
+- human-ai-research-collaboration
 methods:
-  - editorial
-  - conceptual
+- editorial
+- conceptual
 relates_to_projects:
-  - ape
-  - reviewer
-  - marg
+- ape
+- reviewer
+- marg
 status: skimmed
 ---
 
@@ -44,7 +45,3 @@ Senior-scholar JAIS editorial (Sarker is editor-in-chief; Gopal, Thatcher, Susar
 ## Critique / open questions
 
 Opinion piece without empirical evaluation; claims about democratization and bottlenecks are speculative and not tested against data in the abstract.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

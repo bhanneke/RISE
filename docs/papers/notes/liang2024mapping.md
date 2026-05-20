@@ -1,26 +1,27 @@
 ---
 citekey: liang2024mapping
-title: 'Mapping the Increasing Use of LLMs in Scientific Papers'
+title: Mapping the Increasing Use of LLMs in Scientific Papers
 authors:
-  - 'Liang, W.'
-  - 'Zhang, Y.'
-  - 'Wu, Z.'
-  - 'Lepp, H.'
-  - 'Ji, W.'
-  - 'Zhao, X.'
-  - 'et al.'
+- Liang, W.
+- Zhang, Y.
+- Wu, Z.
+- Lepp, H.
+- Ji, W.
+- Zhao, X.
+- et al.
 year: 2024
-venue: 'arXiv:2404.01268'
-doi: ""
-url: ""
+venue: arXiv:2404.01268
+doi: ''
+url: https://arxiv.org/abs/2404.01268
 kind: paper
 themes:
-  - research-productivity
-  - evaluation-of-ai-research
+- research-productivity
+- evaluation-of-ai-research
 methods:
-  - empirical
+- empirical
 relates_to_projects: []
 status: read
+arxiv_id: '2404.01268'
 ---
 
 ## Summary

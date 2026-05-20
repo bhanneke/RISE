@@ -1,29 +1,31 @@
 ---
 citekey: collu2026misleading
-title: 'Misleading Large Language Models Used (or Misused) in Scientific Peer-Reviewing via Hidden Prompt-Injection Attacks'
+title: Misleading Large Language Models Used (or Misused) in Scientific Peer-Reviewing
+  via Hidden Prompt-Injection Attacks
 authors:
-  - 'Collu, M. G.'
-  - 'Salviati, U.'
-  - 'Confalonieri, R.'
-  - 'Conti, M.'
-  - 'Apruzzese, G.'
+- Collu, M. G.
+- Salviati, U.
+- Confalonieri, R.
+- Conti, M.
+- Apruzzese, G.
 year: 2026
-venue: 'arXiv:2508.20863'
-doi: ""
-url: ""
+venue: arXiv:2508.20863
+doi: ''
+url: https://arxiv.org/abs/2508.20863
 kind: paper
 themes:
-  - ai-peer-review
-  - hallucination
-  - sociotechnical
+- ai-peer-review
+- hallucination
+- sociotechnical
 methods:
-  - empirical
-  - experimental
+- empirical
+- experimental
 relates_to_projects:
-  - reviewer
-  - marg
-  - ape
+- reviewer
+- marg
+- ape
 status: read
+arxiv_id: '2508.20863'
 ---
 
 ## Summary

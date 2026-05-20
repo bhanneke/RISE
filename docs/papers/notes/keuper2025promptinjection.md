@@ -1,23 +1,24 @@
 ---
 citekey: keuper2025promptinjection
-title: 'Prompt Injection Attacks on LLM Generated Reviews of Scientific Publications'
+title: Prompt Injection Attacks on LLM Generated Reviews of Scientific Publications
 authors:
-  - 'Keuper, J.'
+- Keuper, J.
 year: 2025
-venue: 'arXiv:2509.10248'
-doi: ""
-url: ""
+venue: arXiv:2509.10248
+doi: ''
+url: https://arxiv.org/abs/2509.10248
 kind: paper
 themes:
-  - ai-peer-review
-  - hallucination
+- ai-peer-review
+- hallucination
 methods:
-  - empirical
+- empirical
 relates_to_projects:
-  - reviewer
-  - marg
-  - ape
+- reviewer
+- marg
+- ape
 status: read
+arxiv_id: '2509.10248'
 ---
 
 ## Summary

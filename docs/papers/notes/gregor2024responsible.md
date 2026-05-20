@@ -1,19 +1,19 @@
 ---
 citekey: gregor2024responsible
-title: 'Responsible Artificial Intelligence and Journal Publishing'
+title: Responsible Artificial Intelligence and Journal Publishing
 authors:
-  - 'Gregor, S.'
+- Gregor, S.
 year: 2024
-venue: 'JAIS 25(1):48-60'
-doi: '10.17705/1jais.00863'
-url: ""
+venue: JAIS 25(1):48-60
+doi: 10.17705/1jais.00863
+url: ''
 kind: paper
 themes:
-  - ai-peer-review
-  - sociotechnical
-  - is-methodology
+- ai-peer-review
+- sociotechnical
+- is-methodology
 methods:
-  - conceptual
+- conceptual
 relates_to_projects: []
 status: skimmed
 ---
@@ -37,7 +37,3 @@ Shirley Gregor (ANU) on responsible-AI principles applied to journal publishing.
 ## Critique / open questions
 
 Conceptual framework without empirical validation; the AI-PGM is presented as modifiable as AI develops but the abstract does not report tests of its usefulness in practice.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

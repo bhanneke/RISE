@@ -1,20 +1,20 @@
 ---
 citekey: alavi2024kmperspective
-title: 'A Knowledge Management Perspective of Generative Artificial Intelligence'
+title: A Knowledge Management Perspective of Generative Artificial Intelligence
 authors:
-  - 'Alavi, M.'
-  - 'Leidner, D. E.'
-  - 'Mousavi, R.'
+- Alavi, M.
+- Leidner, D. E.
+- Mousavi, R.
 year: 2024
-venue: 'JAIS 25(1):1-12'
-doi: '10.17705/1jais.00859'
-url: ""
+venue: JAIS 25(1):1-12
+doi: 10.17705/1jais.00859
+url: ''
 kind: paper
 themes:
-  - sociotechnical
-  - is-methodology
+- sociotechnical
+- is-methodology
 methods:
-  - conceptual
+- conceptual
 relates_to_projects: []
 status: skimmed
 ---
@@ -38,7 +38,3 @@ Alavi and Leidner — foundational KM scholars — frame GenAI through the KM le
 ## Critique / open questions
 
 Conceptual editorial without empirical study; the proposed balanced-integration prescription is normative and not benchmarked against organizational outcomes.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

@@ -2,27 +2,27 @@
 citekey: gopal2025inventing
 title: 'Inventing with Machines: Generative AI and the Evolving Landscape of IS Research'
 authors:
-  - 'Gopal, R. D.'
-  - 'Li, J.'
-  - 'Riemer, K.'
-  - 'Sarker, S.'
-  - 'Singh, P. V.'
-  - 'Susarla, A.'
-  - 'Bichler, M.'
-  - 'Thatcher, J. B.'
+- Gopal, R. D.
+- Li, J.
+- Riemer, K.
+- Sarker, S.
+- Singh, P. V.
+- Susarla, A.
+- Bichler, M.
+- Thatcher, J. B.
 year: 2025
-venue: 'Information Systems Research 36(4):1949-1967'
-doi: '10.1287/isre.2025.editorial.v36.n4'
-url: ""
+venue: Information Systems Research 36(4):1949-1967
+doi: 10.1287/isre.2025.editorial.v36.n4
+url: ''
 kind: editorial
 themes:
-  - is-methodology
-  - human-ai-research-collaboration
-  - autonomous-research-agents
-  - sociotechnical
+- is-methodology
+- human-ai-research-collaboration
+- autonomous-research-agents
+- sociotechnical
 relates_to_projects: []
 methods:
-  - editorial
+- editorial
 status: read
 ---
 

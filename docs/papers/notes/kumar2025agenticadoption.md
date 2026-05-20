@@ -1,26 +1,27 @@
 ---
 citekey: kumar2025agenticadoption
-title: 'Agentic Artificial Intelligence as a New Frontier in Information Systems: Promise, Peril, and Research Opportunities'
+title: 'Agentic Artificial Intelligence as a New Frontier in Information Systems:
+  Promise, Peril, and Research Opportunities'
 authors:
-  - 'Kumar, N.'
-  - 'Wei, X.'
-  - 'Zhang, H.'
+- Kumar, N.
+- Wei, X.
+- Zhang, H.
 year: 2026
-venue: 'Information & Management 63(7):104317'
-doi: '10.1016/j.im.2026.104317'
-url: ""
+venue: Information & Management 63(7):104317
+doi: 10.1016/j.im.2026.104317
+url: ''
 kind: paper
 themes:
-  - autonomous-research-agents
-  - is-methodology
-  - sociotechnical
+- autonomous-research-agents
+- is-methodology
+- sociotechnical
 methods:
-  - conceptual
-  - framework
+- conceptual
+- framework
 relates_to_projects:
-  - e2er
-  - sakana-ai-scientist
-  - agent-laboratory
+- e2er
+- sakana-ai-scientist
+- agent-laboratory
 status: read
 ---
 

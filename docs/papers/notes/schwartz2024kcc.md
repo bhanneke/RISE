@@ -1,20 +1,20 @@
 ---
 citekey: schwartz2024kcc
-title: 'AI for Knowledge Creation, Curation, and Consumption in Context'
+title: AI for Knowledge Creation, Curation, and Consumption in Context
 authors:
-  - 'Schwartz, D.'
-  - "Te'eni, D."
+- Schwartz, D.
+- Te'eni, D.
 year: 2024
-venue: 'JAIS 25(1):37-47'
-doi: '10.17705/1jais.00862'
-url: ""
+venue: JAIS 25(1):37-47
+doi: 10.17705/1jais.00862
+url: ''
 kind: editorial
 themes:
-  - is-methodology
-  - human-ai-research-collaboration
-  - ai-publishing-ecosystems
+- is-methodology
+- human-ai-research-collaboration
+- ai-publishing-ecosystems
 methods:
-  - editorial
+- editorial
 relates_to_projects: []
 status: read
 ---

@@ -1,19 +1,20 @@
 ---
 citekey: yoo2024epistemic
-title: 'Evolving Epistemic Infrastructure: The Role of Scientific Journals in the Age of Generative AI'
+title: 'Evolving Epistemic Infrastructure: The Role of Scientific Journals in the
+  Age of Generative AI'
 authors:
-  - 'Yoo, Y.'
+- Yoo, Y.
 year: 2024
-venue: 'JAIS 25(1):137-144'
-doi: '10.17705/1jais.00870'
-url: ""
+venue: JAIS 25(1):137-144
+doi: 10.17705/1jais.00870
+url: ''
 kind: paper
 themes:
-  - is-methodology
-  - sociotechnical
-  - evaluation-of-ai-research
+- is-methodology
+- sociotechnical
+- evaluation-of-ai-research
 methods:
-  - conceptual
+- conceptual
 relates_to_projects: []
 status: skimmed
 ---
@@ -37,7 +38,3 @@ Yoo (Case Western) frames scientific journals as *epistemic infrastructure* and 
 ## Critique / open questions
 
 Single-author opinion piece with no empirical evaluation; proposed constructs (decentralization, deferred/temporary binding) are not operationalized or tested.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

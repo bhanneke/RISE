@@ -1,0 +1,283 @@
+pack:
+  slug: claudeblattman
+  name: 'claudeblattman (Chris Blattman)'
+  source_url: 'https://github.com/chrisblattman/claudeblattman'
+  maintainers:
+    - "Chris Blattman (University of Chicago, Harris School of Public Policy)"
+  license: 'MIT'
+  total_skills: 23
+  last_update: '2026-04-30'
+  related_project: ''
+  compatibility:
+    - claude-code
+  notes: 'Claude Code for academics — skills, agents, and setup guides. 367 stars MIT. Listed as a community extension by Pedro Santanna. Mix of research-specific skills (deep-research, proposal-write, review-plan, methodology review) and personal-workflow skills (morning-brief, schedule-query).'
+
+skills:
+  - slug: announcement-digest
+    name: '/announcement-digest'
+    kind: skill
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    field: general
+    description: "Triage and digest announcements / newsletters / Slack-equivalent feeds"
+    source_path: 'skills/announcement-digest.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/announcement-digest.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: checkin
+    name: '/checkin'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: "Daily check-in / status update with Claude"
+    source_path: 'skills/checkin.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/checkin.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: council
+    name: '/council'
+    kind: skill
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+      - hypothesis-generation
+    field: general
+    description: "Convene a multi-perspective 'council' on an open question"
+    source_path: 'skills/council.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/council.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: deep-research
+    name: '/deep-research'
+    kind: skill
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    field: social-sciences
+    description: "Multi-agent deep research with paste-loop UX and subagent template"
+    source_path: 'skills/deep-research.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/deep-research.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: done
+    name: '/done'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: "Mark work complete + update tracking"
+    source_path: 'skills/done.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/done.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: dr-synthesize
+    name: '/dr-synthesize'
+    kind: skill
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    field: social-sciences
+    description: "Synthesize results from a deep-research run"
+    source_path: 'skills/dr-synthesize.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/dr-synthesize.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: goals-review
+    name: '/goals-review'
+    kind: skill
+    category: design
+    pipeline_stages:
+      - research-design
+    field: general
+    description: "Periodic review of personal/research goals"
+    source_path: 'skills/goals-review.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/goals-review.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: morning-brief
+    name: '/morning-brief'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: "Daily morning briefing template"
+    source_path: 'skills/morning-brief.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/morning-brief.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: post-meeting
+    name: '/post-meeting'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: "Post-meeting summary + action items"
+    source_path: 'skills/post-meeting.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/post-meeting.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: pre-meeting-brief
+    name: '/pre-meeting-brief'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: "Pre-meeting brief generation"
+    source_path: 'skills/pre-meeting-brief.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/pre-meeting-brief.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: prompt-only
+    name: '/prompt-only'
+    kind: skill
+    category: meta
+    pipeline_stages: []
+    field: general
+    description: "Skill that only produces a prompt (no execution)"
+    source_path: 'skills/prompt-only.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/prompt-only.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: prompt-refine
+    name: '/prompt-refine'
+    kind: skill
+    category: meta
+    pipeline_stages: []
+    field: general
+    description: "Iteratively refine a prompt"
+    source_path: 'skills/prompt-refine.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/prompt-refine.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: prompt
+    name: '/prompt'
+    kind: skill
+    category: meta
+    pipeline_stages: []
+    field: general
+    description: "Build a prompt from scratch with formatting-core"
+    source_path: 'skills/prompt.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/prompt.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: proposal-revise
+    name: '/proposal-revise'
+    kind: skill
+    category: revision
+    pipeline_stages:
+      - revision-editing
+    field: social-sciences
+    description: "Revise an existing grant or research proposal"
+    source_path: 'skills/proposal-revise.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/proposal-revise.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: proposal-write
+    name: '/proposal-write'
+    kind: skill
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: social-sciences
+    description: "Draft a grant or research proposal"
+    source_path: 'skills/proposal-write.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/proposal-write.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: review-plan
+    name: '/review-plan'
+    kind: skill
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: general
+    description: "Review a research plan with structured feedback"
+    source_path: 'skills/review-plan.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/review-plan.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: schedule-query
+    name: '/schedule-query'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: "Query and reason about a calendar / schedule"
+    source_path: 'skills/schedule-query.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/schedule-query.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: setup-project-management
+    name: '/setup-project-management'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: "Bootstrap a project-management workspace"
+    source_path: 'skills/setup-project-management.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/setup-project-management.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: tax-guide
+    name: '/tax-guide'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: "Personal tax-related Q&A"
+    source_path: 'skills/tax-guide.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/tax-guide.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: tips-bookmarks
+    name: '/tips-bookmarks'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: "Save and retrieve tips / bookmarks"
+    source_path: 'skills/tips-bookmarks.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/tips-bookmarks.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: proposal-critic-agent
+    name: 'agent:proposal-critic-agent'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: social-sciences
+    description: "Critic agent for grant/research proposals"
+    source_path: 'agents/proposal-critic-agent.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/agents/proposal-critic-agent.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: review-methodology
+    name: 'agent:review-methodology'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: social-sciences
+    description: "Methodology review agent"
+    source_path: 'agents/review-methodology.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/agents/review-methodology.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'
+  - slug: review-writing
+    name: 'agent:review-writing'
+    kind: agent
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: general
+    description: "Writing-quality review agent"
+    source_path: 'agents/review-writing.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/agents/review-writing.md'
+    provenance: 'claudeblattman repo curation 2026-05-20'
+    last_update: '2026-04'

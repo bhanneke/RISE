@@ -1,28 +1,28 @@
 ---
 citekey: maynez2020faithfulness
-title: 'On Faithfulness and Factuality in Abstractive Summarization'
+title: On Faithfulness and Factuality in Abstractive Summarization
 authors:
-  - 'Maynez, J.'
-  - 'Narayan, S.'
-  - 'Bohnet, B.'
-  - 'McDonald, R.'
+- Maynez, J.
+- Narayan, S.
+- Bohnet, B.
+- McDonald, R.
 year: 2020
-venue: 'Proceedings of ACL 2020'
-doi: ""
-url: ""
+venue: Proceedings of ACL 2020
+doi: ''
+url: ''
 kind: paper
 themes:
-  - hallucination
-  - reasoning-faithfulness
-  - evaluation-of-ai-research
+- hallucination
+- reasoning-faithfulness
+- evaluation-of-ai-research
 methods:
-  - empirical
-  - human-evaluation
+- empirical
+- human-evaluation
 relates_to_projects:
-  - storm
-  - autosurvey
-  - surveyx
-  - paper-qa
+- storm
+- autosurvey
+- surveyx
+- paper-qa
 status: read
 ---
 

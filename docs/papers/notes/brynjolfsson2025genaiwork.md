@@ -1,21 +1,21 @@
 ---
 citekey: brynjolfsson2025genaiwork
-title: 'Generative AI at Work'
+title: Generative AI at Work
 authors:
-  - 'Brynjolfsson, E.'
-  - 'Li, D.'
-  - 'Raymond, L.'
+- Brynjolfsson, E.
+- Li, D.
+- Raymond, L.
 year: 2025
-venue: 'Quarterly Journal of Economics'
-doi: '10.1093/qje/qjae044'
-url: ""
+venue: Quarterly Journal of Economics
+doi: 10.1093/qje/qjae044
+url: ''
 kind: paper
 themes:
-  - research-productivity
-  - human-ai-research-collaboration
-  - sociotechnical
+- research-productivity
+- human-ai-research-collaboration
+- sociotechnical
 methods:
-  - empirical
+- empirical
 relates_to_projects: []
 status: read
 ---

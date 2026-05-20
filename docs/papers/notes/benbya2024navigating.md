@@ -1,21 +1,22 @@
 ---
 citekey: benbya2024navigating
-title: 'Navigating Generative Artificial Intelligence Promises and Perils for Knowledge and Creative Work'
+title: Navigating Generative Artificial Intelligence Promises and Perils for Knowledge
+  and Creative Work
 authors:
-  - 'Benbya, H.'
-  - 'Strich, F.'
-  - 'Tamm, T.'
+- Benbya, H.
+- Strich, F.
+- Tamm, T.
 year: 2024
-venue: 'JAIS 25(1):23-36'
-doi: '10.17705/1jais.00861'
-url: ""
+venue: JAIS 25(1):23-36
+doi: 10.17705/1jais.00861
+url: ''
 kind: paper
 themes:
-  - sociotechnical
-  - research-productivity
+- sociotechnical
+- research-productivity
 methods:
-  - conceptual
-  - review
+- conceptual
+- review
 relates_to_projects: []
 status: skimmed
 ---
@@ -39,7 +40,3 @@ Promises-and-perils synthesis specifically for *knowledge and creative work* —
 ## Critique / open questions
 
 Editorial without empirical evaluation; the abstract does not specify a systematic review protocol, so the breadth and selection of "opportunities and challenges" are not transparent.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

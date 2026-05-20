@@ -1,26 +1,27 @@
 ---
 citekey: ngwenyama2024literature
-title: 'Should We Collaborate with AI to Conduct Literature Reviews? Changing Epistemic Values in a Flattening World'
+title: Should We Collaborate with AI to Conduct Literature Reviews? Changing Epistemic
+  Values in a Flattening World
 authors:
-  - 'Ngwenyama, O.'
-  - 'Rowe, F.'
+- Ngwenyama, O.
+- Rowe, F.
 year: 2024
-venue: 'JAIS 25(1):122-136'
-doi: '10.17705/1jais.00869'
-url: ""
+venue: JAIS 25(1):122-136
+doi: 10.17705/1jais.00869
+url: ''
 kind: paper
 themes:
-  - is-methodology
-  - human-ai-research-collaboration
-  - evaluation-of-ai-research
+- is-methodology
+- human-ai-research-collaboration
+- evaluation-of-ai-research
 methods:
-  - conceptual
-  - critical
+- conceptual
+- critical
 relates_to_projects:
-  - storm
-  - open-scholar
-  - paper-qa
-  - gpt-researcher
+- storm
+- open-scholar
+- paper-qa
+- gpt-researcher
 status: skimmed
 ---
 
@@ -43,7 +44,3 @@ Critical conceptual paper questioning whether AI-assisted literature review chan
 ## Critique / open questions
 
 Conceptual piece without empirical comparison of AI-assisted vs. human-only reviews; claims about quality compromise and the relative merits of expert systems are not benchmarked.
-
-## Key quotes
-
-*Verbatim quotes deferred — abstract retrieved via Crossref/arXiv API; consult the source PDF at the DOI/arXiv URL in front-matter.*

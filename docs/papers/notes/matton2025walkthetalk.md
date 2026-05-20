@@ -1,27 +1,27 @@
 ---
 citekey: matton2025walkthetalk
-title: 'Walk the Talk? Measuring the Faithfulness of Large Language Model Explanations'
+title: Walk the Talk? Measuring the Faithfulness of Large Language Model Explanations
 authors:
-  - 'Matton, K.'
-  - 'Ness, R. O.'
-  - 'Guttag, J.'
-  - 'Kıcıman, E.'
+- Matton, K.
+- Ness, R. O.
+- Guttag, J.
+- Kıcıman, E.
 year: 2025
-venue: 'ICLR 2025'
-doi: ""
-url: ""
+venue: ICLR 2025
+doi: ''
+url: ''
 kind: paper
 themes:
-  - reasoning-faithfulness
-  - hallucination
-  - evaluation-of-ai-research
+- reasoning-faithfulness
+- hallucination
+- evaluation-of-ai-research
 methods:
-  - empirical
-  - causal-inference
-  - benchmark
+- empirical
+- causal-inference
+- benchmark
 relates_to_projects:
-  - reviewer
-  - sakana-ai-scientist
+- reviewer
+- sakana-ai-scientist
 status: read
 ---
 

@@ -1,35 +1,37 @@
 ---
 citekey: liang2024monitoring
-title: 'Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews'
+title: 'Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT
+  on AI Conference Peer Reviews'
 authors:
-  - 'Liang, W.'
-  - 'Izzo, Z.'
-  - 'Zhang, Y.'
-  - 'Lepp, H.'
-  - 'Cao, H.'
-  - 'Zhao, X.'
-  - 'Chen, L.'
-  - 'Ye, H.'
-  - 'Liu, S.'
-  - 'Huang, Z.'
-  - 'McFarland, D. A.'
-  - 'Zou, J. Y.'
+- Liang, W.
+- Izzo, Z.
+- Zhang, Y.
+- Lepp, H.
+- Cao, H.
+- Zhao, X.
+- Chen, L.
+- Ye, H.
+- Liu, S.
+- Huang, Z.
+- McFarland, D. A.
+- Zou, J. Y.
 year: 2024
-venue: 'arXiv:2403.07183'
-doi: ""
-url: ""
+venue: arXiv:2403.07183
+doi: ''
+url: https://arxiv.org/abs/2403.07183
 kind: paper
 themes:
-  - ai-peer-review
-  - evaluation-of-ai-research
-  - sociotechnical
+- ai-peer-review
+- evaluation-of-ai-research
+- sociotechnical
 methods:
-  - empirical
+- empirical
 relates_to_projects:
-  - reviewer
-  - marg
-  - ape
+- reviewer
+- marg
+- ape
 status: read
+arxiv_id: '2403.07183'
 ---
 
 ## Summary

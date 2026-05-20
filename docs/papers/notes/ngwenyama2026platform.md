@@ -1,21 +1,22 @@
 ---
 citekey: ngwenyama2026platform
-title: "Platform Capture of Scientific Knowledge Production: Publishers' Dominance, Generative AI and Subsumption of Academic Labor"
+title: 'Platform Capture of Scientific Knowledge Production: Publishers'' Dominance,
+  Generative AI and Subsumption of Academic Labor'
 authors:
-  - 'Ngwenyama, O.'
-  - 'Klein, S.'
-  - 'Rowe, F.'
+- Ngwenyama, O.
+- Klein, S.
+- Rowe, F.
 year: 2026
-venue: 'European Journal of Information Systems 35(1)'
-doi: '10.1080/0960085X.2026.2642660'
-url: ""
+venue: European Journal of Information Systems 35(1)
+doi: 10.1080/0960085X.2026.2642660
+url: ''
 kind: paper
 themes:
-  - sociotechnical
-  - ai-publishing-ecosystems
+- sociotechnical
+- ai-publishing-ecosystems
 methods:
-  - case-study
-  - critical
+- case-study
+- critical
 relates_to_projects: []
 status: read
 ---
