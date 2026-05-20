@@ -43,7 +43,7 @@
 
 Arch C self-contained: the canonical implementation lives at `skills/render-html/scripts/render_html.py` (this SKILL's own `scripts/` subdirectory), together with its templates at `skills/render-html/scripts/templates/{academic,dashboard}.html`. The helper is new — no legacy `tools/` shim exists.
 
-Resolve `$RENDER_HTML` with the hybrid chain (Layer 0 prefers the self-contained location for the owning SKILL; Layers 1-3 are the shared-runtime chain documented in [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2, **Policy A — skill-local gate**):
+Resolve `$RENDER_HTML` with the hybrid chain (Layer 0 prefers the self-contained location for the owning SKILL; Layers 1-3 are the shared-runtime chain documented in `shared-references/integration-contract.md` §2, **Policy A — skill-local gate**):
 
 ```bash
 ## Layer 0: self-contained (CC 1.0+ exposes $CLAUDE_SKILL_DIR).
@@ -244,7 +244,7 @@ Verdict rules:
 **Markdown subset** (chosen to match what ARIS workflows actually emit):
 
 - Headings `#`/`##`/`###`/`####` with auto-generated IDs for TOC
-- Paragraphs, bold `**x**`, italic `*x*` / `_x_`, inline code `` `x` ``, strikethrough `~~x~~`, links `[t](url)`, images `![a](url)`
+- Paragraphs, bold `**x**`, italic `*x*` / `_x_`, inline code `` `x` ``, strikethrough `~~x~~`, links `t`, images `!a`
 - Unordered/ordered lists with 2-space nested indentation
 - Code blocks with optional language (` ```python `) — gets `<pre><code class="language-python">` for highlight.js
 - ASCII-art code blocks (heuristic: many box-drawing chars) → `<pre class="diagram">` with a distinct cream-yellow background

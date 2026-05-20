@@ -15,7 +15,7 @@ Search topic or arXiv paper ID: $ARGUMENTS
 - **PAPER_DIR** - Local directory to save downloaded PDFs. Default: `papers/` in the current project directory.
 - **MAX_RESULTS = 10** - Default number of search results.
 - **ARXIV_FETCHER** — canonical name `arxiv_fetch.py`, resolved per
-  [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2
+  `shared-references/integration-contract.md` §2
   (Policy D1 — primary + fallback cascade). If unresolved (canonical
   chain exhausted), fall back to the inline Python alternative
   documented in Step 2.
@@ -43,7 +43,7 @@ If the argument matches an arXiv ID pattern (`YYMM.NNNNN` or `category/NNNNNNN`)
 #### Step 2: Search arXiv
 
 Resolve `$ARXIV_FETCHER` via the canonical strict-safe chain (see
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2):
+`shared-references/integration-contract.md` §2):
 
 ```bash
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
@@ -185,7 +185,7 @@ For each paper (downloaded or fetched by API):
 **Required when `research-wiki/` exists in the project**; skip silently
 otherwise. When the wiki dir exists, resolve `$WIKI_SCRIPT` per the
 canonical chain at
-[`shared-references/wiki-helper-resolution.md`](../shared-references/wiki-helper-resolution.md)
+`shared-references/wiki-helper-resolution.md`
 (Variant B — warn-and-skip), then ingest every paper returned by this
 invocation:
 
@@ -211,7 +211,7 @@ fi
 The helper handles metadata fetch, slug, dedup, page creation, index
 rebuild, and log append in a single call — **do not handwrite
 `papers/<slug>.md`**. See
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md)
+`shared-references/integration-contract.md`
 for the canonical-helper rule. Missed ingests can be backfilled later
 with `python3 "$WIKI_SCRIPT" sync research-wiki/ --arxiv-ids <id1>,<id2>,...`
 after resolving `$WIKI_SCRIPT` as above.

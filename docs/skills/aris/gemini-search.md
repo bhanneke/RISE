@@ -202,7 +202,7 @@ Format results as a structured table:
 ```
 | # | Title | Venue | Year | Code | Summary |
 |---|-------|-------|------|------|---------|
-| 1 | ... | NeurIPS 2024 | 2024 | [GitHub](url) | ... |
+| 1 | ... | NeurIPS 2024 | 2024 | GitHub | ... |
 | 2 | ... | IEEE TWC | 2023 | No | ... |
 ```
 

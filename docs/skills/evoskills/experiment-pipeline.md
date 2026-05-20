@@ -79,7 +79,7 @@ Within every stage, repeat this cycle for each attempt:
 
 **Output**: `/experiments/stage1_baseline/` containing results, config, and verified baseline code.
 
-See [references/stage-protocols.md](references/stage-protocols.md) for detailed initial implementation checklists.
+See references/stage-protocols.md for detailed initial implementation checklists.
 
 ### Stage 2: Hyperparameter Tuning
 
@@ -103,7 +103,7 @@ See [references/stage-protocols.md](references/stage-protocols.md) for detailed 
 
 **Output**: `/experiments/stage2_tuning/` containing tuning logs, final config, and stability verification.
 
-See [references/attempt-budget-guide.md](references/attempt-budget-guide.md) for budget rationale and adjustment rules.
+See references/attempt-budget-guide.md for budget rationale and adjustment rules.
 
 ### Stage 3: Proposed Method
 
@@ -160,7 +160,7 @@ The `evo-memory` skill will classify the failure as:
 
 **Output**: `/experiments/stage4_ablation/` containing ablation results table, per-component analysis.
 
-See [references/stage-protocols.md](references/stage-protocols.md) for detailed ablation design patterns.
+See references/stage-protocols.md for detailed ablation design patterns.
 
 ### Integrating experiment-craft for Diagnosis
 
@@ -189,7 +189,7 @@ For each attempt, record:
 - **Result**: Metrics and observations
 - **Analysis**: Whether the hypothesis was confirmed or refuted, and what you learned
 
-See [references/code-trajectory-logging.md](references/code-trajectory-logging.md) for the full logging format and how logs feed into `evo-memory`.
+See references/code-trajectory-logging.md for the full logging format and how logs feed into `evo-memory`.
 
 ### Counterintuitive Pipeline Rules
 
@@ -250,8 +250,8 @@ Refer to the **paper-writing** skill:
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
-| Per-stage checklists and patterns | [stage-protocols.md](references/stage-protocols.md) | Detailed guidance for each stage |
-| Budget rationale and adjustment | [attempt-budget-guide.md](references/attempt-budget-guide.md) | When budgets feel too tight or too loose |
-| Code trajectory logging format | [code-trajectory-logging.md](references/code-trajectory-logging.md) | Recording attempts for evo-memory |
-| Stage log template | [stage-log-template.md](assets/stage-log-template.md) | Logging a single stage's progress |
-| Pipeline tracker template | [pipeline-tracker-template.md](assets/pipeline-tracker-template.md) | Tracking the full 4-stage pipeline |
+| Per-stage checklists and patterns | stage-protocols.md | Detailed guidance for each stage |
+| Budget rationale and adjustment | attempt-budget-guide.md | When budgets feel too tight or too loose |
+| Code trajectory logging format | code-trajectory-logging.md | Recording attempts for evo-memory |
+| Stage log template | stage-log-template.md | Logging a single stage's progress |
+| Pipeline tracker template | pipeline-tracker-template.md | Tracking the full 4-stage pipeline |

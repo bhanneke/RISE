@@ -25,7 +25,7 @@ This skill is the **published venue** counterpart to `/arxiv`:
 
 - **MAX_RESULTS = 10** — Default number of search results.
 - **S2_FETCHER** — canonical name `semantic_scholar_fetch.py`, resolved per
-  [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2
+  `shared-references/integration-contract.md` §2
   (Policy D1 — primary + fallback cascade). If unresolved (canonical
   chain exhausted), fall back to the inline Python alternative
   documented in Step 2.
@@ -66,7 +66,7 @@ If the argument matches a DOI pattern (`10.XXXX/...`), a Semantic Scholar ID (40
 #### Step 2: Search Papers
 
 Resolve `$S2_FETCHER` via the canonical strict-safe chain (see
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2):
+`shared-references/integration-contract.md` §2):
 
 ```bash
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
@@ -168,7 +168,7 @@ For each paper (or top 5 if many results):
 **Required when `research-wiki/` exists in the project**; skip silently
 otherwise. When the wiki dir exists, resolve `$WIKI_SCRIPT` per the
 canonical chain at
-[`shared-references/wiki-helper-resolution.md`](../shared-references/wiki-helper-resolution.md)
+`shared-references/wiki-helper-resolution.md`
 (Variant B — warn-and-skip). For results with an `externalIds.ArXiv`
 field, use `--arxiv-id`; for venue-only papers (no arXiv mirror —
 common for IEEE/ACM), fall back to manual metadata:
@@ -198,7 +198,7 @@ fi
 
 The helper handles slug / dedup / page / index / log — **do not
 handwrite `papers/<slug>.md`**. See
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md).
+`shared-references/integration-contract.md`.
 Backfill with `/research-wiki sync --arxiv-ids <id1>,<id2>,...` for
 arXiv-available papers.
 

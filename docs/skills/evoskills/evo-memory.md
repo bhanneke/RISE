@@ -43,7 +43,7 @@ Records what you've learned about research DIRECTIONS — which areas are promis
 
 **How it's used**: `research-ideation` reads M_I at the start of Step 0. The paper uses embedding-based retrieval with cosine similarity, selecting the top-k_I most similar items (k_I=2 in experiments). Feasible directions from prior cycles can seed new tree branches. Unsuccessful directions are used during pruning — fundamental failures are pruned; implementation failures may be retried.
 
-See [assets/ideation-memory-template.md](assets/ideation-memory-template.md) for the template.
+See assets/ideation-memory-template.md for the template.
 
 #### Experimentation Memory (M_E)
 
@@ -66,7 +66,7 @@ The paper defines M_E as storing "reusable data processing and model training st
 
 **How it's used**: `experiment-pipeline` reads M_E at the start of each cycle. The paper uses embedding-based retrieval with cosine similarity, selecting the top-k_E most similar items (k_E=1 in experiments). Relevant strategies from prior cycles inform hyperparameter choices, data processing decisions, and debugging approaches, reducing the number of attempts needed.
 
-See [assets/experiment-memory-template.md](assets/experiment-memory-template.md) for the template.
+See assets/experiment-memory-template.md for the template.
 
 ### Three Evolution Mechanisms
 
@@ -76,7 +76,7 @@ See [assets/experiment-memory-template.md](assets/experiment-memory-template.md)
 
 **Purpose**: Extract promising research directions from the tournament results and store them in M_I for future cycles.
 
-**Paper Prompt**: Use the IDE prompt from [references/paper-prompts.md](references/paper-prompts.md) as the primary extraction mechanism. Fill in `{user_goal}` from the original research direction and `{top_ranked_ideas}` from `/direction-summary.md`, then reason through the prompt step by step. The output (DIRECTION SUMMARY with Title, Core idea, Why promising, Requirements, Validation plan) feeds directly into the steps below.
+**Paper Prompt**: Use the IDE prompt from references/paper-prompts.md as the primary extraction mechanism. Fill in `{user_goal}` from the original research direction and `{top_ranked_ideas}` from `/direction-summary.md`, then reason through the prompt step by step. The output (DIRECTION SUMMARY with Title, Core idea, Why promising, Requirements, Validation plan) feeds directly into the steps below.
 
 **Process**:
 1. Read current M_I from `/memory/ideation-memory.md`
@@ -88,7 +88,7 @@ See [assets/experiment-memory-template.md](assets/experiment-memory-template.md)
 
 **Key principle**: Store directions, not ideas. A direction like "contrastive learning for structured data" can spawn many specific ideas across future cycles. A specific idea like "SimCLR with graph augmentations on molecular datasets" is too narrow to be reusable.
 
-See [references/ide-protocol.md](references/ide-protocol.md) for the full process.
+See references/ide-protocol.md for the full process.
 
 #### IVE — Idea Validation Evolution
 
@@ -98,7 +98,7 @@ See [references/ide-protocol.md](references/ide-protocol.md) for the full proces
 
 **Purpose**: Classify WHY the method failed and update M_I accordingly. This is the most critical evolution mechanism because it prevents future cycles from repeating dead-end directions.
 
-**Paper Prompt**: Use the IVE prompt from [references/paper-prompts.md](references/paper-prompts.md) as the primary classification mechanism. Fill in `{research_proposal}` from `/research-proposal.md` and `{execution_report}` from the stage trajectory logs, then reason through the prompt step by step. The prompt classifies the failure as FAILED(NoExecutableWithinBudget), FAILED(WorseThanBaseline), or NOT_FAILED.
+**Paper Prompt**: Use the IVE prompt from references/paper-prompts.md as the primary classification mechanism. Fill in `{research_proposal}` from `/research-proposal.md` and `{execution_report}` from the stage trajectory logs, then reason through the prompt step by step. The prompt classifies the failure as FAILED(NoExecutableWithinBudget), FAILED(WorseThanBaseline), or NOT_FAILED.
 
 **After running the paper prompt**:
 - **FAILED(NoExecutableWithinBudget)** → Implementation failure (retryable). Record as "retry with fixes" in M_I.
@@ -116,7 +116,7 @@ If 3+ answers point to one type, classify as that type. If split, classify as im
 
 **Retry escalation rule**: If a direction has been classified as "implementation failure" 3 times across different cycles, escalate to a careful re-evaluation — three separate implementation failures may indicate the direction is harder than it appears. Consider reclassifying as fundamental.
 
-See [references/ive-protocol.md](references/ive-protocol.md) for the full process and worked examples.
+See references/ive-protocol.md for the full process and worked examples.
 
 #### ESE — Experiment Strategy Evolution
 
@@ -124,7 +124,7 @@ See [references/ive-protocol.md](references/ive-protocol.md) for the full proces
 
 **Purpose**: Distill reusable strategies from the successful experiment run and store them in M_E for future cycles.
 
-**Paper Prompt**: Use the ESE prompt from [references/paper-prompts.md](references/paper-prompts.md) as the primary extraction mechanism. Fill in `{research_proposal}` from `/research-proposal.md` and `{trajectories}` from all 4 stage trajectory logs, then reason through the prompt step by step. The prompt outputs DATA SUMMARY and MODEL SUMMARY, which map to our Data Processing Strategies and Model Training Strategies sections.
+**Paper Prompt**: Use the ESE prompt from references/paper-prompts.md as the primary extraction mechanism. Fill in `{research_proposal}` from `/research-proposal.md` and `{trajectories}` from all 4 stage trajectory logs, then reason through the prompt step by step. The prompt outputs DATA SUMMARY and MODEL SUMMARY, which map to our Data Processing Strategies and Model Training Strategies sections.
 
 **Process**:
 1. Run the paper's ESE prompt (see above), reasoning through it step by step
@@ -141,7 +141,7 @@ See [references/ive-protocol.md](references/ive-protocol.md) for the full proces
 
 **Generalization guidelines**: A strategy is broadly applicable if it addresses a general challenge (training instability, overfitting, slow convergence) rather than a domain-specific characteristic. When in doubt, record the context alongside the strategy and let future users judge applicability.
 
-See [references/ese-protocol.md](references/ese-protocol.md) for the full process.
+See references/ese-protocol.md for the full process.
 
 ### Reading Memory at Cycle Start
 
@@ -191,7 +191,7 @@ After each evolution mechanism triggers, generate a report saved to `/memory/evo
 - Why (evidence from the triggering cycle)
 - Expected impact on future cycles
 
-See [assets/evolution-report-template.md](assets/evolution-report-template.md) for the template.
+See assets/evolution-report-template.md for the template.
 
 ### Counterintuitive Memory Rules
 
@@ -225,11 +225,11 @@ How evo-memory connects to other skills in the pipeline:
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
-| IDE process details | [ide-protocol.md](references/ide-protocol.md) | After completing research-ideation |
-| IVE process details | [ive-protocol.md](references/ive-protocol.md) | After experiment-pipeline failure (no executable code or method underperforms) |
-| ESE process details | [ese-protocol.md](references/ese-protocol.md) | After experiment-pipeline succeeds |
-| Paper's actual prompts | [paper-prompts.md](references/paper-prompts.md) | Reference for exact IDE/IVE/ESE prompt design |
-| Memory data structures | [memory-schema.md](references/memory-schema.md) | Understanding M_I and M_E formats |
-| Ideation memory template | [ideation-memory-template.md](assets/ideation-memory-template.md) | Initializing M_I |
-| Experiment memory template | [experiment-memory-template.md](assets/experiment-memory-template.md) | Initializing M_E |
-| Evolution report template | [evolution-report-template.md](assets/evolution-report-template.md) | Documenting memory updates |
+| IDE process details | ide-protocol.md | After completing research-ideation |
+| IVE process details | ive-protocol.md | After experiment-pipeline failure (no executable code or method underperforms) |
+| ESE process details | ese-protocol.md | After experiment-pipeline succeeds |
+| Paper's actual prompts | paper-prompts.md | Reference for exact IDE/IVE/ESE prompt design |
+| Memory data structures | memory-schema.md | Understanding M_I and M_E formats |
+| Ideation memory template | ideation-memory-template.md | Initializing M_I |
+| Experiment memory template | experiment-memory-template.md | Initializing M_E |
+| Evolution report template | evolution-report-template.md | Documenting memory updates |

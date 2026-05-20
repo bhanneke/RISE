@@ -8,7 +8,7 @@
 
 ## /verify-claims — Chain-of-Verification on a Draft
 
-Fact-check a draft using the **Post-Flight Verification protocol** ([`.claude/rules/post-flight-verification.md`](../../rules/post-flight-verification.md)).
+Fact-check a draft using the **Post-Flight Verification protocol** (`.claude/rules/post-flight-verification.md`).
 
 **Input:** `$ARGUMENTS` — path to a file containing the draft (markdown, .qmd, .tex, .md) or a shorthand pointer. Optional flags:
 
@@ -122,6 +122,6 @@ Expected output (abridged):
 
 ### Cross-references
 
-- [`.claude/agents/claim-verifier.md`](../../agents/claim-verifier.md) — the forked verifier.
-- [`.claude/rules/post-flight-verification.md`](../../rules/post-flight-verification.md) — the protocol.
+- `.claude/agents/claim-verifier.md` — the forked verifier.
+- `.claude/rules/post-flight-verification.md` — the protocol.
 - MEMORY.md `[LEARN:pattern]` on Chain-of-Verification vs critic-fixer vs cross-artifact review.

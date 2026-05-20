@@ -102,7 +102,7 @@ JSONL=~/research-archive/INDEX.jsonl
 
 REL_PATH="${SYNTH_PATH/#$HOME\//~/}"
 
-echo "| $DATE | $TOPIC | synthesis | — | $PROJECT | [$(basename "$SYNTH_PATH")]($REL_PATH) |" >> "$INDEX"
+echo "| $DATE | $TOPIC | synthesis | — | $PROJECT | $(basename "$SYNTH_PATH") |" >> "$INDEX"
 
 jq -nc \
   --arg date "$DATE" --arg topic "$TOPIC" --arg project "$PROJECT" \

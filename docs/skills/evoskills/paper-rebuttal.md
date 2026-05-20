@@ -81,7 +81,7 @@ Your champion argues on your behalf in the AC discussion, often using your exact
 3. Flag **contradictions between reviewers** — if R1 says "limited novelty" but R2 says "interesting approach," your champion can use this
 4. Lead with **strengths before weaknesses** — remind the AC what your paper does well
 
-See [references/rebuttal-tactics.md](references/rebuttal-tactics.md) for the full 18 tactical rules.
+See references/rebuttal-tactics.md for the full 18 tactical rules.
 
 ### Step 3: Write the Rebuttal
 
@@ -99,7 +99,7 @@ For each concern, follow this three-part structure:
 2. **Respond**: Provide your answer — evidence, clarification, new experiment results
 3. **Action**: State what you changed in the revision (specific section/table/figure)
 
-Use a fillable template at [assets/rebuttal-template.md](assets/rebuttal-template.md).
+Use a fillable template at assets/rebuttal-template.md.
 
 #### The Neutral Third-Party Test
 
@@ -153,5 +153,5 @@ This skill picks up where `paper-review` leaves off. If you used `paper-review` 
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
-| 18 tactical rules | [rebuttal-tactics.md](references/rebuttal-tactics.md) | Detailed writing guidance for structure, content, tone |
-| Rebuttal template | [rebuttal-template.md](assets/rebuttal-template.md) | Starting a new rebuttal document |
+| 18 tactical rules | rebuttal-tactics.md | Detailed writing guidance for structure, content, tone |
+| Rebuttal template | rebuttal-template.md | Starting a new rebuttal document |

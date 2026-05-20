@@ -201,7 +201,7 @@ Do **NOT** `git add` / `git commit` / `git push`. Report:
 After the tutorial passes, optionally append a row to `docs/tutorials/README.md`:
 
 ```
-| **<Topic> 面试 Cheat Sheet** | [`<slug>_tutorial.md`](<slug>_tutorial.md) | [`<slug>_tutorial.html`](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/<slug>_tutorial.html) | <one-line topic list> |
+| **<Topic> 面试 Cheat Sheet** | `<slug>_tutorial.md` | [`<slug>_tutorial.html`](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/<slug>_tutorial.html) | <one-line topic list> |
 ```
 
 Suggest the row to the user but let them edit it in themselves if they want to curate.

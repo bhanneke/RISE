@@ -123,7 +123,7 @@ truth for the wiki schema.)
 Add a paper to the wiki. This subcommand is thin wrapping around
 `python3 "$WIKI_SCRIPT" ingest_paper …`, which is the single
 implementation of paper ingest in ARIS (per
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md)
+`shared-references/integration-contract.md`
 — one helper, no copies). The helper does all of:
 
 1. **Fetch metadata** — queries the arXiv Atom API when `--arxiv-id` is given
@@ -302,7 +302,7 @@ Last updated: 2026-04-07T10:12:00Z
 ### Integration with Existing Workflows
 
 All paper-reading skills follow the same **integration contract** (see
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md)):
+`shared-references/integration-contract.md`):
 
 - single predicate — `[ -d research-wiki/ ]`
 - single canonical helper — `python3 "$WIKI_SCRIPT" ingest_paper …` after resolving `$WIKI_SCRIPT` via the chain at the top of this SKILL

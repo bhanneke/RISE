@@ -30,7 +30,7 @@ This catches four classes of bug that agent-based audits have historically misse
 
 1. Frontmatter `allowed-tools` ↔ body tool-invocation parity (e.g. body spawns `Task` but `Task` not in `allowed-tools` — the v1.7.0 PR #92 miss).
 2. `argument-hint` ↔ body flag parity (flags documented but not advertised, or vice versa).
-3. Internal markdown anchors resolve (no broken `[text](path#anchor)` links — the `#category-11-numerical-discipline` miss on PR #87).
+3. Internal markdown anchors resolve (no broken `text` links — the `#category-11-numerical-discipline` miss on PR #87).
 4. Rule `paths:` ↔ skill implementation parity (rule claims skill follows protocol but skill body has none of the protocol keywords — the `/interview-me` miss on PR #92).
 
 If Phase 0 reports P0 or P1 findings, fix them (or tune the regex if they are false positives) **before** launching the 4 agents. The mechanical layer is cheaper and more precise than agent prompts for these classes.

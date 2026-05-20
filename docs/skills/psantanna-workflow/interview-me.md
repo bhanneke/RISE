@@ -106,7 +106,7 @@ Once you have enough information (typically 5-8 exchanges), produce a **Research
 
 ### Post-Flight Verification (mandatory, CoVe — applies when the spec cites prior work)
 
-The research spec's **Motivation** and **Contribution** sections typically reference prior papers by author + year. Those citations are hallucination-prone. Before saving the spec, run the Post-Flight Verification protocol from [`.claude/rules/post-flight-verification.md`](../../rules/post-flight-verification.md) if the spec contains any citations.
+The research spec's **Motivation** and **Contribution** sections typically reference prior papers by author + year. Those citations are hallucination-prone. Before saving the spec, run the Post-Flight Verification protocol from `.claude/rules/post-flight-verification.md` if the spec contains any citations.
 
 #### Steps (skip if the spec cites zero papers)
 
@@ -125,7 +125,7 @@ The research spec's **Motivation** and **Contribution** sections typically refer
 
 ### Decision records (when tradeoffs surface)
 
-If during the interview the researcher explicitly chose among alternatives — identification strategy (DiD vs IV vs RDD), data source (admin vs survey), outcome measure, sample scope, etc. — also write an ADR-style **decision record** for each choice. Use [`templates/decision-record.md`](../../../templates/decision-record.md) and save to `quality_reports/decisions/YYYY-MM-DD_[short-topic].md`. Required fields: Status / Problem / Options considered / Decision + rationale / Consequences / Rejected alternatives.
+If during the interview the researcher explicitly chose among alternatives — identification strategy (DiD vs IV vs RDD), data source (admin vs survey), outcome measure, sample scope, etc. — also write an ADR-style **decision record** for each choice. Use `templates/decision-record.md` and save to `quality_reports/decisions/YYYY-MM-DD_[short-topic].md`. Required fields: Status / Problem / Options considered / Decision + rationale / Consequences / Rejected alternatives.
 
 Skip the ADR if the interview produced a single uncontested direction — ADRs are for *decisions with live alternatives*, not for announcing the default path.
 

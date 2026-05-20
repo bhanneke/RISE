@@ -36,7 +36,7 @@
 1. SMARTS patterns: `pattern = Chem.MolFromSmarts('[OH]')`
 2. Check match: `mol.HasSubstructMatch(pattern)`
 3. Get all matches: `mol.GetSubstructMatches(pattern)`
-4. Common SMARTS: `[#6](=O)[OH]` (carboxylic acid), `[NH2]` (primary amine)
+4. Common SMARTS: `#6[OH]` (carboxylic acid), `[NH2]` (primary amine)
 5. Filter compound libraries by functional group presence
 
 #### Property Calculation Patterns

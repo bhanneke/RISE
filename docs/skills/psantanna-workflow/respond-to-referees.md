@@ -89,7 +89,7 @@ Write the output to `response-to-referees.md` (matching the template filename) o
 
 #### Step 5.5: Post-Flight Verification (MANDATORY, CoVe)
 
-The response document's most hallucination-prone content is the set of "we added X on page Y" claims. Hallucinating these gets a paper desk-rejected on sight. Before declaring the response document final, run the Post-Flight Verification protocol from [`.claude/rules/post-flight-verification.md`](../../rules/post-flight-verification.md).
+The response document's most hallucination-prone content is the set of "we added X on page Y" claims. Hallucinating these gets a paper desk-rejected on sight. Before declaring the response document final, run the Post-Flight Verification protocol from `.claude/rules/post-flight-verification.md`.
 
 **Steps:**
 
@@ -126,7 +126,7 @@ If everything is covered, the final message should say `All concerns addressed o
 
 ### Pre-submission rehearsal
 
-**Tip.** Before drafting your response, consider running `/review-paper --peer --r2 <journal>` on the *revised* manuscript first. It simulates the next referee round against your revisions — catching the "Resolved / Partial / Not addressed" classification mistakes before the real referee does. See [`.claude/skills/review-paper/SKILL.md`](../review-paper/SKILL.md).
+**Tip.** Before drafting your response, consider running `/review-paper --peer --r2 <journal>` on the *revised* manuscript first. It simulates the next referee round against your revisions — catching the "Resolved / Partial / Not addressed" classification mistakes before the real referee does. See `.claude/skills/review-paper/SKILL.md`.
 
 ### Cross-References
 

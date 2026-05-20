@@ -23,7 +23,7 @@ Scaffold a diagram from `templates/tikz-snippets/`, check it against the prevent
 ls -1 templates/tikz-snippets/*.tex
 ```
 
-Current gallery (see [`templates/tikz-snippets/README.md`](../../../templates/tikz-snippets/README.md) for descriptions):
+Current gallery (see `templates/tikz-snippets/README.md` for descriptions):
 
 - `dag-basic` — 3-node causal DAG (X → Y with confounder U)
 - `dag-mediation` — X → M → Y with direct path
@@ -59,7 +59,7 @@ Ask the user what the diagram should show. Edit `$DST` with the `Edit` tool:
 1. Update the comment block at the top so the **intent sentence** matches the user's goal.
 2. Update the **coordinate map** comment if coordinates change.
 3. Rename nodes and edit labels. Keep node style (`dag-node`, `flow-node`, etc.) unless the meaning actually changes.
-4. **Do not** add a bare `scale=X` to the tikzpicture options. Coordinates shrink, text does not — collisions follow. Allowed forms: `scale=X, every node/.style={scale=X}` or `scale=X, transform shape`. See [`tikz-prevention.md` P3](../../rules/tikz-prevention.md) for the full rule and `tikz-visual-quality.md` for the `scale=1.1` convention.
+4. **Do not** add a bare `scale=X` to the tikzpicture options. Coordinates shrink, text does not — collisions follow. Allowed forms: `scale=X, every node/.style={scale=X}` or `scale=X, transform shape`. See `tikz-prevention.md` P3 for the full rule and `tikz-visual-quality.md` for the `scale=1.1` convention.
 5. **Every** new edge label must carry a directional keyword (`above`, `below`, `left`, `right`, `above left`, etc.). `midway` alone is a path position, not a direction — P4 violation.
 
 #### Step 4: Prevention pre-check (MANDATORY)
@@ -89,7 +89,7 @@ Check exit code and `*.pdf` file size. If compile fails, read `/tmp/tikz-compile
 
 #### Step 6: Visual review via tikz-reviewer
 
-Spawn the `tikz-reviewer` agent with `Task` (`subagent_type=tikz-reviewer`). Pass the `.tex` source and the compiled `.pdf` path. The reviewer is now required to cite the pass and formula from [`tikz-measurement.md`](../../rules/tikz-measurement.md) for every CRITICAL/MAJOR finding — vague reports are rejected.
+Spawn the `tikz-reviewer` agent with `Task` (`subagent_type=tikz-reviewer`). Pass the `.tex` source and the compiled `.pdf` path. The reviewer is now required to cite the pass and formula from `tikz-measurement.md` for every CRITICAL/MAJOR finding — vague reports are rejected.
 
 Loop:
 
@@ -133,8 +133,8 @@ Writing TikZ from scratch reliably produces collisions because the author cannot
 
 ### Cross-references
 
-- [`.claude/rules/tikz-prevention.md`](../../rules/tikz-prevention.md) — the P1–P6 authoring rules.
-- [`.claude/rules/tikz-measurement.md`](../../rules/tikz-measurement.md) — the six-pass protocol with formulas the reviewer cites.
-- [`.claude/rules/tikz-visual-quality.md`](../../rules/tikz-visual-quality.md) — general visual standards.
-- [`.claude/skills/extract-tikz/SKILL.md`](../extract-tikz/SKILL.md) — for pulling TikZ out of an existing Beamer deck instead of creating new.
-- [`templates/tikz-snippets/README.md`](../../../templates/tikz-snippets/README.md) — gallery inventory and adaptation guide.
+- `.claude/rules/tikz-prevention.md` — the P1–P6 authoring rules.
+- `.claude/rules/tikz-measurement.md` — the six-pass protocol with formulas the reviewer cites.
+- `.claude/rules/tikz-visual-quality.md` — general visual standards.
+- `.claude/skills/extract-tikz/SKILL.md` — for pulling TikZ out of an existing Beamer deck instead of creating new.
+- `templates/tikz-snippets/README.md` — gallery inventory and adaptation guide.

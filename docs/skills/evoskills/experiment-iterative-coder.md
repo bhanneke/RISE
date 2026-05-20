@@ -124,7 +124,7 @@ Evaluate on: correctness (does the code do what was asked?), completeness (all r
 - Only claim composite ≥ 0.85 if BOTH lint and tests pass AND implementation is complete
 - Deductions: missing error handling for obvious cases (−0.1), hardcoded absolute paths (−0.05)
 
-See [references/evaluation-protocol.md](references/evaluation-protocol.md) for detailed scoring edge cases.
+See references/evaluation-protocol.md for detailed scoring edge cases.
 
 #### Step 5: Decide
 
@@ -137,7 +137,7 @@ See [references/evaluation-protocol.md](references/evaluation-protocol.md) for d
 
 **CRITICAL: Append to `/artifacts/iteration_log.md` after every iteration.**
 
-Use the template at [assets/iteration-log-template.md](assets/iteration-log-template.md):
+Use the template at assets/iteration-log-template.md:
 
 ```markdown
 ### Iteration {N} (Phase {M}/{T})
@@ -195,5 +195,5 @@ Report to the main agent → main agent continues pipeline (data-analysis, writi
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
-| Scoring rules and edge cases | [evaluation-protocol.md](references/evaluation-protocol.md) | When scoring edge cases arise (partial tests, missing tools) |
-| Iteration log template | [iteration-log-template.md](assets/iteration-log-template.md) | Every iteration (Step 6) |
+| Scoring rules and edge cases | evaluation-protocol.md | When scoring edge cases arise (partial tests, missing tools) |
+| Iteration log template | iteration-log-template.md | Every iteration (Step 6) |

@@ -46,3 +46,8 @@ The tasks are short mid-level writing exercises rather than scientific research,
 > "Our results show that ChatGPT substantially raises average productivity: time taken decreases by 0.8 SDs and output quality rises by 0.4 SDs. Inequality between workers decreases, as ChatGPT compresses the productivity distribution by benefiting low-ability workers more."
 
 > "ChatGPT mostly substitutes for worker effort rather than complementing worker skills, and restructures tasks towards idea-generation and editing and away from rough-drafting."
+
+## Files
+
+- Main paper: `papers/pdfs/noy2023experimental.pdf`
+- Supplementary materials: `papers/pdfs/noy2023experimental_supp.pdf` (preregistration, full task list, additional robustness analyses; part of the same Science publication, no separate bib entry)

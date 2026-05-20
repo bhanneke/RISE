@@ -26,9 +26,40 @@ DOCS_SKILLS_DIR = REPO_ROOT / "docs" / "skills"
 DOCS_SKILLS_INDEX = DOCS_SKILLS_DIR / "index.md"
 
 
+_MD_LINK_RE = re.compile(r"\[([^\]\n]+)\]\(([^)\n]+)\)")
+
+
+def _strip_broken_relative_links(text: str) -> tuple[str, int]:
+    """Strip relative markdown links from bundled SKILL.md text.
+
+    Upstream SKILL.md files reference sibling files (references/, assets/,
+    rules/, templates/, agents/, examples/) and other skills via relative
+    paths. We don't bundle those files, so the links 404 on the live site.
+    Keep absolute (http/https/mailto) and pure-anchor (#foo) links; drop the
+    wrapper on everything else, preserving the visible label.
+
+    Returns (new_text, n_stripped).
+    """
+    stripped = 0
+
+    def repl(m: re.Match) -> str:
+        nonlocal stripped
+        label, target = m.group(1), m.group(2).strip()
+        if target.startswith(("http://", "https://", "mailto:", "#")):
+            return m.group(0)
+        # Image links survive on absolute URLs above; relative image refs
+        # would have leading "!" outside the match, so a plain link wrapper
+        # here is safe to flatten.
+        stripped += 1
+        return label
+
+    return _MD_LINK_RE.sub(repl, text), stripped
+
+
 def copy_skill_details(packs: list[dict]) -> int:
     """Build marketplace-style per-skill pages from skills/<pack>/details/."""
     n_total = 0
+    n_links_stripped = 0
     for p in packs:
         pack = p["pack"]
         pack_slug = pack["slug"]
@@ -52,6 +83,12 @@ def copy_skill_details(packs: list[dict]) -> int:
                 end = text.find("\n---\n", 4)
                 if end != -1:
                     text = text[end + 5:].lstrip("\n")
+
+            # Strip relative markdown links pointing at sibling files we don't
+            # bundle (references/, assets/, rules/, templates/, …). See
+            # _strip_broken_relative_links for rationale.
+            text, n_stripped = _strip_broken_relative_links(text)
+            n_links_stripped += n_stripped
 
             # Demote SKILL.md's H1 to H2 — the page already has its own H1.
             text_lines = text.splitlines()
@@ -142,6 +179,8 @@ def copy_skill_details(packs: list[dict]) -> int:
             )
             (dst_dir / f"{skill_slug}.md").write_text(page, encoding="utf-8")
             n_total += 1
+    if n_links_stripped:
+        print(f"Relative links stripped: {n_links_stripped}")
     return n_total
 
 GITHUB_BASE = "https://github.com/bhanneke/RISE/blob/main"

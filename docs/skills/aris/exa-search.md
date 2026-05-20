@@ -26,7 +26,7 @@ Use Exa when you need results beyond academic databases, or when you want conten
 ### Constants
 
 - **EXA_FETCHER** — canonical name `exa_search.py`, resolved per
-  [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2
+  `shared-references/integration-contract.md` §2
   (Policy D1 — standalone `/exa-search` has no documented fallback,
   so unresolved helper terminates with an explicit error).
 - **MAX_RESULTS = 10** — Default number of results to return.
@@ -78,7 +78,7 @@ Parse `$ARGUMENTS` for:
 #### Step 2: Locate Script
 
 Resolve `$EXA_FETCHER` via the canonical strict-safe chain (see
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2).
+`shared-references/integration-contract.md` §2).
 Policy D1 cascade: there is no native inline fallback for Exa
 (retrieval requires the `exa-py` SDK + API key, which lives in the
 fetcher), so unresolved helper means the SKILL cannot produce its
@@ -162,7 +162,7 @@ the wiki is for papers only.
 
 When the predicates hold, resolve `$WIKI_SCRIPT` per the canonical
 chain at
-[`shared-references/wiki-helper-resolution.md`](../shared-references/wiki-helper-resolution.md)
+`shared-references/wiki-helper-resolution.md`
 (Variant B — warn-and-skip). For each research paper hit, try to
 recover an arXiv ID from the URL (`arxiv.org/abs/<id>`); if present,
 use `--arxiv-id`. Otherwise fall back to manual metadata:
@@ -190,7 +190,7 @@ if [ -d research-wiki/ ] and query category was "research paper":
 
 The helper handles slug / dedup / page / index / log — **do not
 handwrite `papers/<slug>.md`**. See
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md).
+`shared-references/integration-contract.md`.
 
 ### Key Rules
 - Always check that `EXA_API_KEY` is set before searching

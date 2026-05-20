@@ -73,7 +73,7 @@ Based on the confirmed cause:
 - Verify the fix works on the original failure cases
 - Check that the fix doesn't break previously working cases
 
-See [references/debugging-methodology.md](references/debugging-methodology.md) for detailed branching logic and a cause taxonomy.
+See references/debugging-methodology.md for detailed branching logic and a cause taxonomy.
 
 ### Counterintuitive Experiment Rules
 
@@ -87,7 +87,7 @@ Prioritize these rules during experimental work:
 
 ### Experiment Logging
 
-Every experiment should be logged with five sections. Use the template at [assets/experiment-log-template.md](assets/experiment-log-template.md).
+Every experiment should be logged with five sections. Use the template at assets/experiment-log-template.md.
 
 | Section | What to Record |
 |---------|---------------|
@@ -124,5 +124,5 @@ When experiments succeed and you have a complete set of results, pass these arti
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
-| Debugging methodology | [debugging-methodology.md](references/debugging-methodology.md) | Diagnosing why experiments fail |
-| Experiment log template | [experiment-log-template.md](assets/experiment-log-template.md) | Recording experiment details |
+| Debugging methodology | debugging-methodology.md | Diagnosing why experiments fail |
+| Experiment log template | experiment-log-template.md | Recording experiment details |

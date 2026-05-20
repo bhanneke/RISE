@@ -10,7 +10,7 @@
 
 Extract TikZ diagrams from the Beamer source, compile to multi-page PDF, and convert each page to SVG for use in Quarto slides.
 
-> **Creating a brand-new diagram instead of extracting?** Use [`/new-diagram`](../new-diagram/SKILL.md) — it scaffolds from `templates/tikz-snippets/` with the prevention rules pre-applied.
+> **Creating a brand-new diagram instead of extracting?** Use `/new-diagram` — it scaffolds from `templates/tikz-snippets/` with the prevention rules pre-applied.
 
 ### Steps
 
@@ -26,7 +26,7 @@ Extract TikZ diagrams from the Beamer source, compile to multi-page PDF, and con
 
 #### Step 1: Prevention pre-check (MANDATORY — halt on violation)
 
-Before compiling, verify every `\begin{tikzpicture}` block in `Figures/$ARGUMENTS/extract_tikz.tex` satisfies the prevention rules in [`.claude/rules/tikz-prevention.md`](../../rules/tikz-prevention.md). The pre-check is a small Python script shared with `/new-diagram` so both skills enforce identical behavior:
+Before compiling, verify every `\begin{tikzpicture}` block in `Figures/$ARGUMENTS/extract_tikz.tex` satisfies the prevention rules in `.claude/rules/tikz-prevention.md`. The pre-check is a small Python script shared with `/new-diagram` so both skills enforce identical behavior:
 
 ```bash
 python3 scripts/check-tikz-prevention.py "Figures/$ARGUMENTS/extract_tikz.tex"
@@ -82,7 +82,7 @@ cd ../..
 
 #### Step 8: Visual Quality Review (tikz-reviewer)
 
-Spawn the **tikz-reviewer** agent (via `Task` with `subagent_type=tikz-reviewer`) on the TikZ source blocks to catch label overlaps, geometric errors, and visual inconsistencies. The reviewer cites specific passes and formulas from [`.claude/rules/tikz-measurement.md`](../../rules/tikz-measurement.md). If it returns **NEEDS REVISION** or **REJECTED**, loop:
+Spawn the **tikz-reviewer** agent (via `Task` with `subagent_type=tikz-reviewer`) on the TikZ source blocks to catch label overlaps, geometric errors, and visual inconsistencies. The reviewer cites specific passes and formulas from `.claude/rules/tikz-measurement.md`. If it returns **NEEDS REVISION** or **REJECTED**, loop:
 
 1. Apply the recommended fixes to the Beamer `.tex` source (single source of truth).
 2. Re-copy the updated block to `extract_tikz.tex`.

@@ -109,7 +109,7 @@ Generate structured research questions, testable hypotheses, and empirical strat
 
 ### Post-Flight Verification (mandatory, CoVe)
 
-Before returning the ideation report, run the Post-Flight Verification protocol from [`.claude/rules/post-flight-verification.md`](../../rules/post-flight-verification.md). Research ideation is hallucination-prone in three specific ways:
+Before returning the ideation report, run the Post-Flight Verification protocol from `.claude/rules/post-flight-verification.md`. Research ideation is hallucination-prone in three specific ways:
 
 1. **Negative-literature claims** — "no prior work studies X" is frequently wrong.
 2. **Dataset structure claims** — "The CPS contains field `educ_attain`" can be confidently wrong about variable names, coverage years, or restricted-access status.

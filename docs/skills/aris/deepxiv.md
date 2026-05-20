@@ -25,7 +25,7 @@ Use DeepXiv when you want to avoid loading full papers too early.
 ### Constants
 
 - **DEEPXIV_FETCHER** — canonical name `deepxiv_fetch.py`, resolved per
-  [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2
+  `shared-references/integration-contract.md` §2
   (Policy D1 — primary + fallback cascade). If unresolved (canonical
   chain exhausted), fall back to the raw `deepxiv` CLI (documented per
   command below).
@@ -71,7 +71,7 @@ If the main argument looks like an arXiv ID and no explicit mode is given, defau
 #### Step 2: Locate the Adapter
 
 Resolve `$DEEPXIV_FETCHER` via the canonical strict-safe chain (see
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2).
+`shared-references/integration-contract.md` §2).
 Policy D1 cascade: the resolved adapter is preferred; if unresolved
 (canonical chain exhausted), fall back to raw `deepxiv` CLI commands
 documented in Step 3.
@@ -217,7 +217,7 @@ Do not jump to full-paper reads when a brief or one section answers the question
 **Required when `research-wiki/` exists in the project**; skip silently
 otherwise. When the wiki dir exists, resolve `$WIKI_SCRIPT` per the
 canonical chain at
-[`shared-references/wiki-helper-resolution.md`](../shared-references/wiki-helper-resolution.md)
+`shared-references/wiki-helper-resolution.md`
 (Variant B — warn-and-skip). Ingest papers that were meaningfully
 read (brief / head / section / full) during this invocation — mere
 `search` hits without a depth read do not need ingestion:
@@ -243,7 +243,7 @@ fi
 
 The helper handles metadata / slug / dedup / page / index / log in one
 call — **do not handwrite `papers/<slug>.md`**. See
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md).
+`shared-references/integration-contract.md`.
 Backfill missed ingests with
 `python3 "$WIKI_SCRIPT" sync research-wiki/ --arxiv-ids <id1>,<id2>,...`
 after resolving `$WIKI_SCRIPT` as above.

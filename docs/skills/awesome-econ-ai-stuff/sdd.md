@@ -89,4 +89,4 @@ Use IDs like `[REQ-001]`; add a **Properties (Invariants)** section for universa
 
 ### Additional Resources
 
-- For full framework detail (workflow, refinement, iteration triggers), see [reference.md](reference.md).
+- For full framework detail (workflow, refinement, iteration triggers), see reference.md.

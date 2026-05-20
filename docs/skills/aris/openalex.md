@@ -35,7 +35,7 @@ Use OpenAlex when you want:
 - **MAX_RESULTS = 10** — Default number of results. Override with `— max: 20`.
 - **DEFAULT_SORT = relevance** — Sort by relevance. Override with `— sort: citations` or `— sort: date`.
 - **OPENALEX_FETCHER** — canonical name `openalex_fetch.py`, resolved per
-  [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2
+  `shared-references/integration-contract.md` §2
   (Policy D1 — standalone `/openalex` has no documented inline fallback,
   so unresolved helper terminates with an explicit error).
 
@@ -100,7 +100,7 @@ Parse `$ARGUMENTS` for:
 #### Step 2: Locate Script
 
 Resolve `$OPENALEX_FETCHER` via the canonical strict-safe chain (see
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2).
+`shared-references/integration-contract.md` §2).
 Policy D1: there is no native inline fallback for OpenAlex
 (retrieval requires the `requests` SDK + optional API key — the
 fetcher script encapsulates pagination, throttling, and per-source

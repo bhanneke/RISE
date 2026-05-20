@@ -143,7 +143,7 @@ See `shared-references/experiment-integrity.md` for the full integrity protocol.
 
 If `research-wiki/` exists, resolve `$WIKI_SCRIPT` per the canonical
 chain documented in
-[`shared-references/wiki-helper-resolution.md`](../shared-references/wiki-helper-resolution.md)
+`shared-references/wiki-helper-resolution.md`
 (Variant B — warn-and-skip for caller skills). The verdict / claim
 status / idea-outcome page edits below run on raw markdown and don't
 need the helper, but edges, query-pack rebuild, and the log line do.

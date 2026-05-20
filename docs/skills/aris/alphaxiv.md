@@ -129,7 +129,7 @@ If the user only asks for one specific detail, answer it directly — skip the f
 **Required when `research-wiki/` exists in the project**; skip silently
 otherwise. When the wiki dir exists, resolve `$WIKI_SCRIPT` per the
 canonical chain at
-[`shared-references/wiki-helper-resolution.md`](../shared-references/wiki-helper-resolution.md)
+`shared-references/wiki-helper-resolution.md`
 (Variant B — warn-and-skip), then ingest the single paper that was read:
 
 ```bash
@@ -151,7 +151,7 @@ fi
 
 The helper handles metadata fetch, slug, dedup, page creation, index
 rebuild, and log append — **do not handwrite `papers/<slug>.md`**. See
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md).
+`shared-references/integration-contract.md`.
 If wiki was not present at read time (or the helper was unreachable),
 the user can backfill via
 `python3 "$WIKI_SCRIPT" sync research-wiki/ --arxiv-ids <id>` after

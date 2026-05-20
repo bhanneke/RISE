@@ -60,23 +60,23 @@ Step 7: Prepare backup / Q&A slides
 
 #### Step 2: Draft Narrative Arc
 
-Use the outline template at [assets/talk-outline-template.md](assets/talk-outline-template.md) to plan your talk before making any slides. The outline forces you to articulate your key takeaway and narrative arc.
+Use the outline template at assets/talk-outline-template.md to plan your talk before making any slides. The outline forces you to articulate your key takeaway and narrative arc.
 
 #### Step 3: Design Slide Structure
 
-Break your outline into sections with claim-style headers. See [talk-structure.md](references/talk-structure.md) for two complete talk structures and section-by-section guidance.
+Break your outline into sections with claim-style headers. See talk-structure.md for two complete talk structures and section-by-section guidance.
 
 #### Step 4: Create Individual Slides
 
-One idea per slide. Follow the 10 design rules in [slide-design.md](references/slide-design.md) for visual hierarchy and layout.
+One idea per slide. Follow the 10 design rules in slide-design.md for visual hierarchy and layout.
 
 #### Step 5: Build the .pptx File
 
-Use [slide-creation.md](references/slide-creation.md) for practical `.pptx` creation — color palettes, layout code, charts, tables, figures, and QA workflow.
+Use slide-creation.md for practical `.pptx` creation — color palettes, layout code, charts, tables, figures, and QA workflow.
 
 #### Step 6: Rehearse and Time
 
-See [references/delivery-and-qa.md](references/delivery-and-qa.md) for the rehearsal protocol, delivery principles, and Q&A preparation.
+See references/delivery-and-qa.md for the rehearsal protocol, delivery principles, and Q&A preparation.
 
 #### Step 7: Prepare Backup Slides
 
@@ -101,13 +101,13 @@ If you used other EvoSkills earlier in the pipeline, pull these artifacts direct
 | `paper-writing` | Finalized figures and tables | Method + results slides |
 | `paper-review` | Anticipated reviewer concerns | Backup Q&A slides |
 
-See [slide-creation.md](references/slide-creation.md) for detailed layout patterns using each artifact.
+See slide-creation.md for detailed layout patterns using each artifact.
 
 ---
 
 ### Counterintuitive Presentation Rules
 
-> For the 10 design rules (one idea per slide, claim-style titles, max 6 elements, etc.), see [slide-design.md](references/slide-design.md). The rules below are higher-level mindset shifts.
+> For the 10 design rules (one idea per slide, claim-style titles, max 6 elements, etc.), see slide-design.md. The rules below are higher-level mindset shifts.
 
 #### 1. Your slides are not your paper
 
@@ -131,8 +131,8 @@ Use related work to BUILD your problem motivation, not to show you have read pap
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
-| Talk structures | [talk-structure.md](references/talk-structure.md) | Organizing the narrative arc |
-| Slide design | [slide-design.md](references/slide-design.md) | Visual design and layout rules |
-| Slide creation | [slide-creation.md](references/slide-creation.md) | Building .pptx files with code |
-| Delivery and Q&A | [delivery-and-qa.md](references/delivery-and-qa.md) | Rehearsal, timing, Q&A preparation |
-| Talk outline template | [talk-outline-template.md](assets/talk-outline-template.md) | Starting a new presentation |
+| Talk structures | talk-structure.md | Organizing the narrative arc |
+| Slide design | slide-design.md | Visual design and layout rules |
+| Slide creation | slide-creation.md | Building .pptx files with code |
+| Delivery and Q&A | delivery-and-qa.md | Rehearsal, timing, Q&A preparation |
+| Talk outline template | talk-outline-template.md | Starting a new presentation |

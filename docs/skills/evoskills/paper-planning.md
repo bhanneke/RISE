@@ -41,7 +41,7 @@ Prioritize these counterintuitive rules before regular planning:
 4. **Allocate compute to stress tests, not only benchmarks**: A single convincing stress-test figure often contributes more than multiple small benchmark gains.
 5. **Plan a fallback narrative now**: If SOTA gain is marginal, predefine a secondary value proposition (efficiency, robustness, fewer assumptions, wider applicability).
 
-See [references/counterintuitive-planning.md](references/counterintuitive-planning.md)
+See references/counterintuitive-planning.md
 
 ---
 
@@ -82,7 +82,7 @@ The pipeline figure sketch serves as the paper's visual backbone:
 - It identifies the novel modules vs. standard components
 - It determines subsection structure for the Method section
 
-See [references/story-design.md](references/story-design.md)
+See references/story-design.md
 
 ---
 
@@ -110,11 +110,11 @@ Plan experiments **before** writing to avoid discovering gaps late.
 - [ ] Plan design-choice tables (hyperparameters, input quality, alternatives)
 - [ ] Plan demo scenarios (challenging data to showcase upper limit)
 
-See [references/experiment-planning.md](references/experiment-planning.md)
+See references/experiment-planning.md
 
 #### Experiment Plan Template
 
-Use the template at [assets/experiment-plan-template.md](assets/experiment-plan-template.md) to organize your experiment plan.
+Use the template at assets/experiment-plan-template.md to organize your experiment plan.
 
 ---
 
@@ -138,7 +138,7 @@ The teaser (usually Figure 1) shows the key result at a glance:
 
 #### Visual Quality Matters
 
-Visual polish directly influences review outcomes. See [references/figure-design.md](references/figure-design.md) for the full visual quality guide (pipeline figures, tables, typography)
+Visual polish directly influences review outcomes. See references/figure-design.md for the full visual quality guide (pipeline figures, tables, typography)
 
 ---
 
@@ -157,7 +157,7 @@ Start writing **at least 1 month** before the deadline.
 
 > Critical: By the end of Week 3, you must send the Introduction and Method drafts to your advisor — otherwise the advisor likely will not have enough time to finish reviewing the paper.
 
-See [references/timeline-4week.md](references/timeline-4week.md) for the detailed schedule and progress tracking template.
+See references/timeline-4week.md for the detailed schedule and progress tracking template.
 
 ---
 
@@ -181,12 +181,12 @@ When planning is complete, pass these artifacts to `paper-writing`:
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
-| Story design | [story-design.md](references/story-design.md) | Starting a new paper |
-| Experiment planning | [experiment-planning.md](references/experiment-planning.md) | Before running experiments |
-| Timeline | [timeline-4week.md](references/timeline-4week.md) | Setting up a writing schedule |
-| Figure design | [figure-design.md](references/figure-design.md) | Designing pipeline/teaser figures |
-| Experiment plan template | [experiment-plan-template.md](assets/experiment-plan-template.md) | Creating a structured experiment plan |
-| Counterintuitive strategy | [counterintuitive-planning.md](references/counterintuitive-planning.md) | Increasing acceptance odds with non-obvious planning choices |
+| Story design | story-design.md | Starting a new paper |
+| Experiment planning | experiment-planning.md | Before running experiments |
+| Timeline | timeline-4week.md | Setting up a writing schedule |
+| Figure design | figure-design.md | Designing pipeline/teaser figures |
+| Experiment plan template | experiment-plan-template.md | Creating a structured experiment plan |
+| Counterintuitive strategy | counterintuitive-planning.md | Increasing acceptance odds with non-obvious planning choices |
 
 ### Handoff to Presentation
 

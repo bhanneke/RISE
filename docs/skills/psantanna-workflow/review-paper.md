@@ -26,7 +26,7 @@ Produce a thorough, constructive review of an academic manuscript — the kind o
 - `--no-novelty-check` — skip editor's WebSearch novelty probe (default is ON).
 - `--no-cross-artifact` — skip auto-invocation of `/review-r` + `/audit-reproducibility` on referenced scripts.
 
-> **Already received referee comments?** Use [`/respond-to-referees`](../respond-to-referees/SKILL.md) instead. That skill cross-references each referee concern against the revised manuscript and drafts a complete response document.
+> **Already received referee comments?** Use `/respond-to-referees` instead. That skill cross-references each referee concern against the revised manuscript and drafts a complete response document.
 
 ---
 
@@ -38,7 +38,7 @@ One comprehensive review report. Fast, low token cost, suitable for early drafts
 
 #### Adversarial mode (`--adversarial`)
 
-Iterative critic-fixer loop modeled on [`/qa-quarto`](../qa-quarto/SKILL.md). The critic identifies issues, the fixer proposes and applies edits (with user approval), and the critic re-audits. Loops until APPROVED or max 5 rounds.
+Iterative critic-fixer loop modeled on `/qa-quarto`. The critic identifies issues, the fixer proposes and applies edits (with user approval), and the critic re-audits. Loops until APPROVED or max 5 rounds.
 
 Use when: preparing a pre-submission draft, responding to a journal-desk rejection with substantive revisions, or after your own major rewrite. Costs more tokens but produces a manuscript the critic has signed off on.
 
@@ -84,7 +84,7 @@ This mode is materially different from `--adversarial`: adversarial runs the sam
    - `/review-r` on each referenced script (forked subagent, results to `quality_reports/cross_artifact_[paper]/review_r_*.md`)
    - `/audit-reproducibility` on the manuscript + outputs dir (results to `quality_reports/cross_artifact_[paper]/reproducibility.md`)
 
-   Merge critical cross-artifact findings (code bug invalidates paper claim, reproducibility FAIL) into a new "Cross-Artifact Findings" section at the top of the paper review report. See [`.claude/rules/cross-artifact-review.md`](../../rules/cross-artifact-review.md) for the full protocol.
+   Merge critical cross-artifact findings (code bug invalidates paper claim, reproducibility FAIL) into a new "Cross-Artifact Findings" section at the top of the paper review report. See `.claude/rules/cross-artifact-review.md` for the full protocol.
 
 7. **If `--adversarial` is in `$ARGUMENTS`:** invoke the critic-fixer loop defined in the next section. Otherwise stop here.
 
@@ -217,7 +217,7 @@ These are the tough questions a top referee would likely raise:
 
 **Only runs if `--adversarial` is in `$ARGUMENTS`.**
 
-Pattern adapted from [`/qa-quarto`](../qa-quarto/SKILL.md), which uses the same loop to iterate on slide quality. Papers get it now because the single-pass review leaves authors doing manual fix-and-resubmit cycles.
+Pattern adapted from `/qa-quarto`, which uses the same loop to iterate on slide quality. Papers get it now because the single-pass review leaves authors doing manual fix-and-resubmit cycles.
 
 #### Flow
 
@@ -315,7 +315,7 @@ Unless `--no-cross-artifact` is set, auto-invoke `/audit-reproducibility` on the
 
 Reports: `quality_reports/cross_artifact_[paper]/reproducibility.md`.
 
-**Novelty-probe Post-Flight (new in v1.7.0).** The editor's novelty probe uses `WebSearch` to check whether the paper's contribution has been made before. WebSearch results can be hallucinated — fabricated prior work, misattributed findings, wrong years. Before the editor's desk review incorporates novelty-probe claims into its decision, those claims must pass Post-Flight Verification per [`.claude/rules/post-flight-verification.md`](../../rules/post-flight-verification.md):
+**Novelty-probe Post-Flight (new in v1.7.0).** The editor's novelty probe uses `WebSearch` to check whether the paper's contribution has been made before. WebSearch results can be hallucinated — fabricated prior work, misattributed findings, wrong years. Before the editor's desk review incorporates novelty-probe claims into its decision, those claims must pass Post-Flight Verification per `.claude/rules/post-flight-verification.md`:
 
 1. The editor collects novelty-probe claims (e.g., "Smith 2022 already showed this exact result").
 2. Spawn `claim-verifier` via `Task` with `subagent_type=claim-verifier` and `context=fork`, passing the claims + verification questions + candidate source URLs. Forked fresh context is the CoVe independence trick.

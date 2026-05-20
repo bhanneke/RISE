@@ -47,7 +47,7 @@ unchanged.
 Resolve `$FIGURE_RENDERER` with the hybrid chain (layer 0 prefers the
 self-contained location for the owning SKILL; layers 1-3 are the
 shared-runtime chain documented in
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2,
+`shared-references/integration-contract.md` §2,
 Policy A — skill-local gate):
 
 ```bash

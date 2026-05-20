@@ -57,15 +57,15 @@ Key pages to review:
 
 **Load framework documentation:**
 
-- **MCP Best Practices**: [📋 View Best Practices](./reference/mcp_best_practices.md) - Core guidelines
+- **MCP Best Practices**: 📋 View Best Practices - Core guidelines
 
 **For TypeScript (recommended):**
 - **TypeScript SDK**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
-- [⚡ TypeScript Guide](./reference/node_mcp_server.md) - TypeScript patterns and examples
+- ⚡ TypeScript Guide - TypeScript patterns and examples
 
 **For Python:**
 - **Python SDK**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
-- [🐍 Python Guide](./reference/python_mcp_server.md) - Python patterns and examples
+- 🐍 Python Guide - Python patterns and examples
 
 #### 1.4 Plan Your Implementation
 
@@ -82,8 +82,8 @@ Prioritize comprehensive API coverage. List endpoints to implement, starting wit
 #### 2.1 Set Up Project Structure
 
 See language-specific guides for project setup:
-- [⚡ TypeScript Guide](./reference/node_mcp_server.md) - Project structure, package.json, tsconfig.json
-- [🐍 Python Guide](./reference/python_mcp_server.md) - Module organization, dependencies
+- ⚡ TypeScript Guide - Project structure, package.json, tsconfig.json
+- 🐍 Python Guide - Module organization, dependencies
 
 #### 2.2 Implement Core Infrastructure
 
@@ -154,7 +154,7 @@ See language-specific guides for detailed testing approaches and quality checkli
 
 After implementing your MCP server, create comprehensive evaluations to test its effectiveness.
 
-**Load [✅ Evaluation Guide](./reference/evaluation.md) for complete evaluation guidelines.**
+**Load ✅ Evaluation Guide for complete evaluation guidelines.**
 
 #### 4.1 Understand Evaluation Purpose
 
@@ -203,7 +203,7 @@ Load these resources as needed during development:
 
 #### Core MCP Documentation (Load First)
 - **MCP Protocol**: Start with sitemap at `https://modelcontextprotocol.io/sitemap.xml`, then fetch specific pages with `.md` suffix
-- [📋 MCP Best Practices](./reference/mcp_best_practices.md) - Universal MCP guidelines including:
+- 📋 MCP Best Practices - Universal MCP guidelines including:
   - Server and tool naming conventions
   - Response format guidelines (JSON vs Markdown)
   - Pagination best practices
@@ -215,14 +215,14 @@ Load these resources as needed during development:
 - **TypeScript SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
 
 #### Language-Specific Implementation Guides (Load During Phase 2)
-- [🐍 Python Implementation Guide](./reference/python_mcp_server.md) - Complete Python/FastMCP guide with:
+- 🐍 Python Implementation Guide - Complete Python/FastMCP guide with:
   - Server initialization patterns
   - Pydantic model examples
   - Tool registration with `@mcp.tool`
   - Complete working examples
   - Quality checklist
 
-- [⚡ TypeScript Implementation Guide](./reference/node_mcp_server.md) - Complete TypeScript guide with:
+- ⚡ TypeScript Implementation Guide - Complete TypeScript guide with:
   - Project structure
   - Zod schema patterns
   - Tool registration with `server.registerTool`
@@ -230,7 +230,7 @@ Load these resources as needed during development:
   - Quality checklist
 
 #### Evaluation Guide (Load During Phase 4)
-- [✅ Evaluation Guide](./reference/evaluation.md) - Complete evaluation creation guide with:
+- ✅ Evaluation Guide - Complete evaluation creation guide with:
   - Question creation guidelines
   - Answer verification strategies
   - XML format specifications

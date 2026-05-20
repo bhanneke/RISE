@@ -127,7 +127,7 @@ Row 7 (legs):         2+2 pixels — with gap in middle
 #### Step 4: Finalize
 - Ensure no personal info in the SVG
 - Clean up: remove unused defs, tighten viewBox
-- Suggest adding to README: `![Alt text](filename.svg)`
+- Suggest adding to README: `!Alt text`
 
 ### Common Pitfalls
 - **Arrow direction**: `orient="auto"` follows line direction. Line going right→left = arrowhead points left

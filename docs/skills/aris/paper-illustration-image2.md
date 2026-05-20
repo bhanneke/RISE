@@ -76,7 +76,7 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
 - **TEXT_LANGUAGE = `English`** — Default figure text language unless the user requests otherwise
 - **NATIVE_IMAGE_REQUIREMENT = `strict`** — Accept only native `imageGeneration` output; reject shell/Python fallbacks
 - **IMAGE2_HELPER** — canonical name `paper_illustration_image2.py`, resolved
-  per [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2
+  per `shared-references/integration-contract.md` §2
   (Policy A — skill-local gate). Phase 3.2 (Arch C) moved the canonical
   implementation into `skills/paper-illustration-image2/scripts/`;
   `tools/paper_illustration_image2.py` remains as an `os.execv` shim so

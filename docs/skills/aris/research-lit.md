@@ -485,7 +485,7 @@ ARXIV_FETCHER=".aris/tools/arxiv_fetch.py"
 Before analysis, run pre-search verification on **all** candidate papers
 collected from Steps 0a-1 to filter out LLM-fabricated arXiv IDs / DOIs /
 titles. Helper: `verify_papers.py` (canonical name; resolved per
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2,
+`shared-references/integration-contract.md` §2,
 Policy D1 — primary helper with degraded-output fallback). If the
 helper is unresolved on this machine, the SKILL emits a fallback
 `verified_papers.json` tagging every candidate `[UNVERIFIED]` so
@@ -559,7 +559,7 @@ fi
 ```
 
 **Mandatory output rules** (see
-[`shared-references/citation-discipline.md`](../shared-references/citation-discipline.md)
+`shared-references/citation-discipline.md`
 § Pre-Search Verification Protocol for the full contract):
 
 - Tag every paper in the analyzed list with its status: `✅ verified (via
@@ -623,13 +623,13 @@ If Zotero BibTeX was exported, include a `references.bib` snippet for direct use
 
 **Required when `research-wiki/` exists.** Skip entirely (no action, no
 error) if the directory is absent. Per
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md),
+`shared-references/integration-contract.md`,
 this step follows the canonical ingest contract — business logic lives
 in `tools/research_wiki.py`, not in this prose.
 
 When `research-wiki/` exists, resolve `$WIKI_SCRIPT` per the canonical
 chain documented in
-[`shared-references/wiki-helper-resolution.md`](../shared-references/wiki-helper-resolution.md)
+`shared-references/wiki-helper-resolution.md`
 (Variant B — warn-and-skip):
 
 ```bash

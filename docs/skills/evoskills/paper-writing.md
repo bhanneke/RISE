@@ -60,7 +60,7 @@ Apply these rules when aiming for higher acceptance probability:
 6. **Declare scope boundaries explicitly**: One sentence in Introduction and Conclusion stating what your method targets reduces reviewer fear of hidden assumptions.
 7. **Show one failure case**: Include one representative failure with diagnosis — it signals competence, not weakness.
 
-See [references/counterintuitive-writing.md](references/counterintuitive-writing.md) for all 7 tactics with before/after examples.
+See references/counterintuitive-writing.md for all 7 tactics with before/after examples.
 
 ### Section Quick Reference
 
@@ -73,7 +73,7 @@ Answer these questions before drafting:
 4. What is our technical advantage / new insight?
 
 Three template versions: challenge-first, insight-bridge, multi-contribution.
-See [references/abstract-templates.md](references/abstract-templates.md)
+See references/abstract-templates.md
 
 #### Introduction
 
@@ -82,7 +82,7 @@ See [references/abstract-templates.md](references/abstract-templates.md)
 - Forward: (1) Task → (2) Previous methods → challenge → (3) Our contributions → (4) Technical advantages and insights
 
 Four ways to introduce the task, three ways to present challenges, four ways to describe the pipeline.
-See [references/introduction-templates.md](references/introduction-templates.md)
+See references/introduction-templates.md
 
 **Anti-pattern**: Never write "here is a naive solution, then our improvement" — this makes the work appear incremental.
 
@@ -94,7 +94,7 @@ Every pipeline module needs three elements:
 3. **Technical advantages** — Why this module works well
 
 Start with an Overview paragraph (setting + core contribution + section roadmap), then one subsection per module.
-See [references/method-templates.md](references/method-templates.md)
+See references/method-templates.md
 
 #### Experiments
 
@@ -104,7 +104,7 @@ Three key questions to answer:
 3. How to showcase the method's upper limit → demos on challenging data
 
 Ablation studies need: one big table (core contributions) + several small tables (design choices, hyperparameters).
-See [references/experiments-guide.md](references/experiments-guide.md)
+See references/experiments-guide.md
 
 #### Related Work
 
@@ -113,7 +113,7 @@ Three-step process:
 2. Determine topics based on research direction and algorithm techniques
 3. Organize writing plan based on listed papers
 
-See [references/related-work-guide.md](references/related-work-guide.md)
+See references/related-work-guide.md
 
 #### Conclusion
 
@@ -128,7 +128,7 @@ For page-limited venues, decide what goes in main paper vs. supplementary:
 - Implementation details, extra ablations, full visual galleries go in supplementary
 - Reference supplementary at the point of need, not as a blanket statement
 
-See [references/supplementary-guide.md](references/supplementary-guide.md)
+See references/supplementary-guide.md
 
 ### Core Writing Principles
 
@@ -140,11 +140,11 @@ See [references/supplementary-guide.md](references/supplementary-guide.md)
 6. **Reverse-outlining** — After writing, extract the outline from paragraphs; check if the flow is smooth
 7. **Iterate relentlessly** — Polish repeatedly, asking whether readers can follow
 
-See [references/writing-principles.md](references/writing-principles.md)
+See references/writing-principles.md
 
 ### Key Insight
 
-Visual polish directly influences review outcomes. See the `paper-planning` skill's [figure-design.md](../paper-planning/references/figure-design.md) for the full visual quality guide.
+Visual polish directly influences review outcomes. See the `paper-planning` skill's figure-design.md for the full visual quality guide.
 
 ### Paper Title Guidelines
 
@@ -155,8 +155,8 @@ Visual polish directly influences review outcomes. See the `paper-planning` skil
 
 ### LaTeX Assets
 
-- [assets/paper-skeleton.tex](assets/paper-skeleton.tex) — Annotated LaTeX skeleton with section structure
-- [assets/table-style.tex](assets/table-style.tex) — Booktabs table macros with color highlighting
+- assets/paper-skeleton.tex — Annotated LaTeX skeleton with section structure
+- assets/table-style.tex — Booktabs table macros with color highlighting
 
 ### Handoff to Review
 
@@ -174,12 +174,12 @@ Before invoking `paper-review`, verify this checklist:
 
 | Section | Reference File | When to Load |
 |---------|---------------|--------------|
-| Abstract | [abstract-templates.md](references/abstract-templates.md) | Step 9: Writing abstract |
-| Introduction | [introduction-templates.md](references/introduction-templates.md) | Step 2: Story design |
-| Method | [method-templates.md](references/method-templates.md) | Step 3: Writing method |
-| Experiments | [experiments-guide.md](references/experiments-guide.md) | Step 5: Writing experiments |
-| Related Work | [related-work-guide.md](references/related-work-guide.md) | Step 7: Writing related work |
-| Writing Principles | [writing-principles.md](references/writing-principles.md) | Any time during writing |
-| Supplementary | [supplementary-guide.md](references/supplementary-guide.md) | Deciding main vs. supplementary content |
-| Counterintuitive strategy | [counterintuitive-writing.md](references/counterintuitive-writing.md) | Improving reviewer trust and novelty perception |
-| Writing Practice | [writing-practice.md](references/writing-practice.md) | Building writing ability through deliberate practice |
+| Abstract | abstract-templates.md | Step 9: Writing abstract |
+| Introduction | introduction-templates.md | Step 2: Story design |
+| Method | method-templates.md | Step 3: Writing method |
+| Experiments | experiments-guide.md | Step 5: Writing experiments |
+| Related Work | related-work-guide.md | Step 7: Writing related work |
+| Writing Principles | writing-principles.md | Any time during writing |
+| Supplementary | supplementary-guide.md | Deciding main vs. supplementary content |
+| Counterintuitive strategy | counterintuitive-writing.md | Improving reviewer trust and novelty perception |
+| Writing Practice | writing-practice.md | Building writing ability through deliberate practice |

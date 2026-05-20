@@ -8,7 +8,7 @@
 
 ## Audit Reproducibility
 
-Compare numeric claims in a manuscript (point estimates, standard errors, p-values, counts) against the actual outputs produced by the analysis pipeline. Report PASS / FAIL per claim against the tolerance thresholds defined in [`.claude/rules/replication-protocol.md`](../../rules/replication-protocol.md).
+Compare numeric claims in a manuscript (point estimates, standard errors, p-values, counts) against the actual outputs produced by the analysis pipeline. Report PASS / FAIL per claim against the tolerance thresholds defined in `.claude/rules/replication-protocol.md`.
 
 **Core principle:** If the paper says `ATT = -1.632 (0.584)` and the code produces `-1.628 (0.591)`, we verify — **numerically** — that the difference is within the documented tolerance. No more "looks close enough" eyeballing.
 
@@ -28,7 +28,7 @@ Compare numeric claims in a manuscript (point estimates, standard errors, p-valu
 
 #### Phase 0: Pre-flight
 
-1. Read [`replication-protocol.md`](../../rules/replication-protocol.md) for the tolerance thresholds currently in effect.
+1. Read `replication-protocol.md` for the tolerance thresholds currently in effect.
 2. Verify the outputs directory exists and is non-empty. If empty or stale (older than the manuscript), prompt the user to re-run their pipeline (e.g., `Rscript scripts/R/00_run_all.R`) before auditing.
 3. Ensure a `sessionInfo.txt` or equivalent environment capture exists in the outputs dir.
 
@@ -155,9 +155,9 @@ Write `quality_reports/reproducibility_audit_[manuscript-name].md`:
 
 ### Cross-references
 
-- [`.claude/rules/replication-protocol.md`](../../rules/replication-protocol.md) — the tolerance contract.
-- [`.claude/skills/review-r/SKILL.md`](../review-r/SKILL.md) — catches code-style issues; this skill catches NUMERICAL reproducibility.
-- [`.claude/skills/review-paper/SKILL.md`](../review-paper/SKILL.md) — content review; pair with this skill for a full pre-submission audit.
+- `.claude/rules/replication-protocol.md` — the tolerance contract.
+- `.claude/skills/review-r/SKILL.md` — catches code-style issues; this skill catches NUMERICAL reproducibility.
+- `.claude/skills/review-paper/SKILL.md` — content review; pair with this skill for a full pre-submission audit.
 
 ### What this skill does NOT do
 

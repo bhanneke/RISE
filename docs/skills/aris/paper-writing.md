@@ -123,7 +123,7 @@ echo "<resolved-level>" > paper/.aris/assurance.txt   # draft or submission
   sub-audit must emit its JSON artifact (PASS / WARN / FAIL / NOT_APPLICABLE /
   BLOCKED / ERROR) — never silent-skip. Phase 6 runs
   `verify_paper_audits.sh` (canonical name; resolved per
-  [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2);
+  `shared-references/integration-contract.md` §2);
   a non-zero exit blocks the Final Report.
 
 **Escape hatch:** a user wanting the old "beast = depth-only, no audit gate"
@@ -235,7 +235,7 @@ If `— style-ref: <source>` was passed and the helper succeeded above, append `
 ```
 - Claude plans → Codex native image generation renders → Claude reviews (same multi-stage workflow as `gemini`, different renderer)
 - Best for: users who want a GPT-image-style renderer without needing `GEMINI_API_KEY`; uses your existing Codex / ChatGPT Plus/Pro quota
-- Output: `figures/ai_generated/figure_final.png` + `latex_include.tex` + `review_log.json` (emitted via the `/paper-illustration-image2` SKILL's `finalize` step, which delegates to the canonical `paper_illustration_image2.py` helper resolved per [integration-contract §2](../shared-references/integration-contract.md#2-canonical-helper--one-implementation-not-copy-pasted))
+- Output: `figures/ai_generated/figure_final.png` + `latex_include.tex` + `review_log.json` (emitted via the `/paper-illustration-image2` SKILL's `finalize` step, which delegates to the canonical `paper_illustration_image2.py` helper resolved per integration-contract §2)
 - **Prerequisites** (beyond ARIS's standard Claude Code + Codex coexistence): the local Codex app-server must be signed in (`codex debug app-server send-message-v2 "ping"` succeeds), and the dedicated MCP bridge must be registered — see `mcp-servers/codex-image2/README.md` for the one-time `claude mcp add` command. Delegate the preflight to `/paper-illustration-image2` (which resolves the helper via the canonical chain), or invoke the helper directly via the shim at `tools/paper_illustration_image2.py preflight --workspace .` to confirm before relying on this path.
 - **Experimental**: this renderer shells through the Codex debug app-server, which Codex documents as an unstable surface. Prefer `figurespec` or `gemini` for production submission flows until `codex-image2` stabilizes.
 
@@ -572,7 +572,7 @@ Order:
 #### Running the verifier
 
 Resolve `$AUDIT_VERIFIER` via the canonical strict-safe chain (see
-[`shared-references/integration-contract.md`](../shared-references/integration-contract.md)
+`shared-references/integration-contract.md`
 §2, Policy A — gate). Under `assurance: submission` the verifier is
 load-bearing: if the helper is unresolved the SKILL aborts the Final
 Report rather than producing an unverified `submission-ready` claim.
@@ -688,9 +688,9 @@ or directly if `assurance=draft`)
 ### Output Protocols
 
 > Follow these shared protocols for all output files:
-> - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
-> - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
-> - **[Output Language Protocol](../shared-references/output-language.md)** — note: paper-writing always outputs English LaTeX for venue submission
+> - **Output Versioning Protocol** — write timestamped file first, then copy to fixed name
+> - **Output Manifest Protocol** — log every output to MANIFEST.md
+> - **Output Language Protocol** — note: paper-writing always outputs English LaTeX for venue submission
 
 ### Key Rules
 

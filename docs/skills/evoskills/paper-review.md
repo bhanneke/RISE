@@ -44,7 +44,7 @@ Run this protocol before final polishing:
 4. **Promote one explicit limitation**: Move one meaningful limitation from hidden notes into the paper; transparency can increase confidence.
 5. **Attack your novelty claim**: Ask "Could a strong PhD derive this in one afternoon?" If yes, narrow and sharpen the novelty statement.
 
-See [references/counterintuitive-review.md](references/counterintuitive-review.md)
+See references/counterintuitive-review.md
 
 ---
 
@@ -201,6 +201,6 @@ Your self-review artifacts (reject-first simulation, claim-evidence audit, prebu
 
 ---
 
-See [references/review-checklist.md](references/review-checklist.md) for an expanded version of the 5-aspect checklist with more detailed sub-questions.
+See references/review-checklist.md for an expanded version of the 5-aspect checklist with more detailed sub-questions.
 
-For adversarial stress testing and reject-risk thresholds, see [references/counterintuitive-review.md](references/counterintuitive-review.md).
+For adversarial stress testing and reject-risk thresholds, see references/counterintuitive-review.md.
