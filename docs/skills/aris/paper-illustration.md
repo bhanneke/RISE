@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-illustration/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-illustration/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-illustration
-description: "Generate publication-quality AI illustrations for academic papers using Gemini image generation. Creates architecture diagrams, method illustrations with Claude-supervised iterative refinement loop. Use when user says \"生成图表\", \"画架构图\", \"AI绘图\", \"paper illustration\", \"generate diagram\", or needs visual figures for papers."
-argument-hint: "[description-or-method-file] [— style-ref: <source>]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply, WebSearch
----
-
-# Paper Illustration: Multi-Stage Claude-Supervised Figure Generation
+## Paper Illustration: Multi-Stage Claude-Supervised Figure Generation
 
 Generate publication-quality illustrations using a **multi-stage workflow** with **Claude as the STRICT supervisor/reviewer**.
 
-## Core Design Philosophy
+### Core Design Philosophy
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
@@ -83,7 +64,7 @@ Generate publication-quality illustrations using a **multi-stage workflow** with
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
-## Constants
+### Constants
 
 - **IMAGE_MODEL = `gemini-3-pro-image-preview`** — Paperbanana (Nano Banana Pro) for image rendering
 - **REASONING_MODEL = `gemini-3-pro-preview`** — Gemini for layout optimization and style checking
@@ -92,16 +73,16 @@ Generate publication-quality illustrations using a **multi-stage workflow** with
 - **OUTPUT_DIR = `figures/ai_generated/`** — Output directory
 - **API_KEY_ENV = `GEMINI_API_KEY`** — Environment variable
 
-## Optional: Style reference (`— style-ref: <source>`, opt-in)
+### Optional: Style reference (`— style-ref: <source>`, opt-in)
 
 Lets the user steer **structural** figure conventions (caption length, panel-count distribution, figure-to-table ratio in the parent paper) toward a reference paper. **Default OFF — when the user does not pass `— style-ref`, do nothing differently from before.**
 
 Only when `— style-ref: <source>` appears in `$ARGUMENTS`, run the helper FIRST, before generating prompts:
 
 ```bash
-# Resolve $STYLE_HELPER via the canonical strict-safe chain (see
-# shared-references/integration-contract.md §2). Policy A — gate:
-# unresolved helper means --style-ref cannot be satisfied, so abort.
+## Resolve $STYLE_HELPER via the canonical strict-safe chain (see
+## shared-references/integration-contract.md §2). Policy A — gate:
+## unresolved helper means --style-ref cannot be satisfied, so abort.
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -133,24 +114,24 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 - **Never copy figure content, color palettes, or specific design elements** from anything reachable through the cache. The visual design comes from the user's prompt, not the reference.
 - **Never pass `— style-ref` (or the cache contents) to the Claude vision-checker / Gemini reasoning-checker sub-agents** when they score the generated image — the image must be judged on its own merits.
 
-## CVPR/ICLR/NeurIPS Top-Tier Conference Style Guide
+### CVPR/ICLR/NeurIPS Top-Tier Conference Style Guide
 
 **What "CVPR Style" Actually Means:**
 
-### Visual Standards
+#### Visual Standards
 - **Clean white background** — No decorative patterns or gradients (unless subtle)
 - **Sans-serif fonts** — Arial, Helvetica, or Computer Modern; minimum 14pt
 - **Subtle color palette** — Not rainbow colors; use 3-5 coordinated colors
 - **Print-friendly** — Must be readable in grayscale (many reviewers print papers)
 - **Professional borders** — Thin (2-3px), solid colors, not flashy
 
-### Layout Standards
+#### Layout Standards
 - **Horizontal flow** — Left-to-right is the standard for pipelines
 - **Clear grouping** — Use subtle background boxes to group related modules
 - **Consistent sizing** — Similar components should have similar sizes
 - **Balanced whitespace** — Not cramped, not sparse
 
-### Arrow Standards (MOST CRITICAL)
+#### Arrow Standards (MOST CRITICAL)
 - **Thick strokes** — 4-6px minimum (thin arrows disappear when printed)
 - **Clear arrowheads** — Large, filled triangular heads
 - **Dark colors** — Black or dark gray (#333333); avoid colored arrows
@@ -158,7 +139,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 - **No crossings** — Reorganize layout to avoid arrow crossings
 - **CORRECT DIRECTION** — Arrows must point to the RIGHT target!
 
-### Visual Appeal (科研风格 - Professional Academic Style)
+#### Visual Appeal (科研风格 - Professional Academic Style)
 
 **目标：既不保守也不花哨，找到平衡点**
 
@@ -195,7 +176,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 - **打印友好**（灰度模式下也能清晰辨认）
 - 像**精心设计**的学术图表，而不是PPT模板
 
-### What to AVOID (CRITICAL)
+#### What to AVOID (CRITICAL)
 - ❌ Rainbow color schemes (too many colors)
 - ❌ Thin, hairline arrows (arrows must be THICK)
 - ❌ Unlabeled connections
@@ -204,7 +185,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 - ❌ Small text that's unreadable when printed
 - ❌ **WRONG arrow directions** — This is UNACCEPTABLE!
 
-## Scope
+### Scope
 
 | Figure Type | Quality | Examples |
 |-------------|---------|----------|
@@ -214,12 +195,12 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 
 **Not for:** Statistical plots (use `/paper-figure`), photo-realistic images
 
-## Workflow: MUST EXECUTE ALL STEPS
+### Workflow: MUST EXECUTE ALL STEPS
 
-### Step 0: Pre-flight Check
+#### Step 0: Pre-flight Check
 
 ```bash
-# Check API key
+## Check API key
 if [ -z "$GEMINI_API_KEY" ]; then
     echo "ERROR: GEMINI_API_KEY not set"
     echo "Get your key from: https://aistudio.google.com/app/apikey"
@@ -227,11 +208,11 @@ if [ -z "$GEMINI_API_KEY" ]; then
     exit 1
 fi
 
-# Create output directory
+## Create output directory
 mkdir -p figures/ai_generated
 ```
 
-### Step 1: Claude Plans the Figure (YOU ARE HERE)
+#### Step 1: Claude Plans the Figure (YOU ARE HERE)
 
 **CRITICAL: Claude must first analyze the user's request and create a detailed prompt.**
 
@@ -248,8 +229,8 @@ Claude's task:
 ```
 Create a PROFESSIONAL, VISUALLY APPEALING publication-quality academic diagram following CVPR/ICLR/NeurIPS standards.
 
-## Visual Style: 科研风格 (Academic Professional Style)
-### 目标：平衡 — 既不保守也不花哨
+### Visual Style: 科研风格 (Academic Professional Style)
+#### 目标：平衡 — 既不保守也不花哨
 
 #### DO (应该有):
 - **Subtle gradients** — 同色系淡雅渐变（如 #2563EB → #3B82F6），不是多色炫彩
@@ -270,10 +251,10 @@ Create a PROFESSIONAL, VISUALLY APPEALING publication-quality academic diagram f
 #### 理想效果：
 像顶会论文中精心设计的架构图 — 专业、清晰、有适度的视觉吸引力
 
-## Figure Type
+### Figure Type
 [Architecture Diagram / Pipeline / Comparison / etc.]
 
-## Components to Include (BE SPECIFIC ABOUT CONTENT)
+### Components to Include (BE SPECIFIC ABOUT CONTENT)
 1. [Component 1]:
    - Label: "[exact text]"
    - Sub-label: "[smaller text below]"
@@ -281,21 +262,21 @@ Create a PROFESSIONAL, VISUALLY APPEALING publication-quality academic diagram f
    - Style: [border color, fill, internal structure]
 2. [Component 2]: ...
 
-## Layout
+### Layout
 - Direction: [left-to-right / top-to-bottom]
 - Spacing: [tight / normal / loose]
 - Grouping: [how components should be grouped]
 
-## Connections (BE EXPLICIT ABOUT DIRECTION)
+### Connections (BE EXPLICIT ABOUT DIRECTION)
 EXACT arrow specifications:
 1. [Component A] → [Component B]: Arrow goes FROM A TO B, label it "[data type]"
 2. [Component C] → [Component D]: Arrow goes FROM C TO D, label it "[data type]"
 ...
 VERIFY: Each arrow must point to the CORRECT target!
 
-## Style Requirements (CVPR/ICLR/NeurIPS Standard)
+### Style Requirements (CVPR/ICLR/NeurIPS Standard)
 
-### Visual Style
+#### Visual Style
 - Color palette: Professional academic colors
   - Inputs: Green (#10B981)
   - Encoders: Blue (#2563EB)
@@ -307,7 +288,7 @@ VERIFY: Each arrow must point to the CORRECT target!
 - Subtle shadows for depth effect
 - Print-friendly (must work in grayscale)
 
-### CRITICAL: Arrow & Data Flow Requirements
+#### CRITICAL: Arrow & Data Flow Requirements
 1. **ALL arrows must be VERY THICK** - minimum 5-6px stroke width
 2. **ALL arrows must have CLEAR arrowheads** - large, visible triangular heads
 3. **ALL arrows must be BLACK or DARK GRAY** - not colored
@@ -315,25 +296,25 @@ VERIFY: Each arrow must point to the CORRECT target!
 5. **VERIFY arrow direction** - each arrow MUST point to the correct target
 6. **No ambiguous connections** - every arrow should have a clear source and destination
 
-### Logic Clarity Requirements
+#### Logic Clarity Requirements
 1. **Data flow must be immediately obvious** - viewer should understand the pipeline in 5 seconds
 2. **No crossing arrows** - reorganize layout to avoid arrow crossings
 3. **Consistent direction** - maintain left-to-right or top-to-bottom flow throughout
 4. **Group related components** - use subtle background boxes or spacing to group modules
 5. **Clear hierarchy** - main components larger, sub-components smaller
 
-## Additional Requirements
+### Additional Requirements
 [Any specific requirements from user]
 ```
 
-### Step 2: Gemini Layout Optimization (gemini-3-pro)
+#### Step 2: Gemini Layout Optimization (gemini-3-pro)
 
 **Claude sends the initial prompt to Gemini (gemini-3-pro) for layout optimization.**
 
 ```bash
 #!/bin/bash
-# Step 2: Optimize layout using Gemini gemini-3-pro
-# This step refines component positioning and spacing
+## Step 2: Optimize layout using Gemini gemini-3-pro
+## This step refines component positioning and spacing
 
 set -e
 
@@ -343,10 +324,10 @@ mkdir -p "$OUTPUT_DIR"
 API_KEY="${GEMINI_API_KEY}"
 URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent?key=$API_KEY"
 
-# The initial prompt from Claude
+## The initial prompt from Claude
 INITIAL_PROMPT='[Claude fills in the detailed prompt here]'
 
-# Layout optimization request
+## Layout optimization request
 LAYOUT_REQUEST="You are an expert in academic figure layout design for CVPR/NeurIPS papers.
 
 Analyze this figure request and provide an OPTIMIZED LAYOUT DESCRIPTION:
@@ -362,7 +343,7 @@ Provide:
 
 Output a DETAILED layout specification that will be used for rendering."
 
-# Build JSON payload
+## Build JSON payload
 python3 << PYTHON
 import json
 payload = {
@@ -373,13 +354,13 @@ with open("/tmp/gemini_layout_request.json", "w") as f:
 print("Layout request created")
 PYTHON
 
-# Call Gemini gemini-3-pro-preview for layout optimization (DIRECT connection, no proxy)
+## Call Gemini gemini-3-pro-preview for layout optimization (DIRECT connection, no proxy)
 RESPONSE=$(curl -s --max-time 90 \
   -X POST "$URL" \
   -H 'Content-Type: application/json' \
   -d @/tmp/gemini_layout_request.json)
 
-# Extract layout description
+## Extract layout description
 LAYOUT_DESCRIPTION=$(echo "$RESPONSE" | python3 -c "
 import sys, json
 data = json.load(sys.stdin)
@@ -394,21 +375,21 @@ echo "$LAYOUT_DESCRIPTION"
 echo "$LAYOUT_DESCRIPTION" > "$OUTPUT_DIR/layout_description.txt"
 ```
 
-### Step 3: Gemini Style Verification (gemini-3-pro)
+#### Step 3: Gemini Style Verification (gemini-3-pro)
 
 **Claude sends the optimized layout to Gemini for CVPR/NeurIPS style verification.**
 
 ```bash
 #!/bin/bash
-# Step 3: Verify and enhance style compliance using Gemini gemini-3-pro
+## Step 3: Verify and enhance style compliance using Gemini gemini-3-pro
 
 API_KEY="${GEMINI_API_KEY}"
 URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent?key=$API_KEY"
 
-# Read layout from previous step
+## Read layout from previous step
 LAYOUT=$(cat figures/ai_generated/layout_description.txt)
 
-# Style verification request
+## Style verification request
 STYLE_REQUEST="You are a CVPR/NeurIPS paper figure reviewer specializing in visual standards.
 
 Review and ENHANCE this figure specification for top-tier conference compliance:
@@ -425,7 +406,7 @@ Ensure compliance with:
 
 Output an ENHANCED figure specification with explicit style instructions for rendering."
 
-# Build JSON payload
+## Build JSON payload
 python3 << PYTHON
 import json
 payload = {
@@ -436,13 +417,13 @@ with open("/tmp/gemini_style_request.json", "w") as f:
 print("Style request created")
 PYTHON
 
-# Call Gemini gemini-3-pro-preview for style verification (DIRECT connection, no proxy)
+## Call Gemini gemini-3-pro-preview for style verification (DIRECT connection, no proxy)
 RESPONSE=$(curl -s --max-time 90 \
   -X POST "$URL" \
   -H 'Content-Type: application/json' \
   -d @/tmp/gemini_style_request.json)
 
-# Extract style-enhanced specification
+## Extract style-enhanced specification
 STYLE_SPEC=$(echo "$RESPONSE" | python3 -c "
 import sys, json
 data = json.load(sys.stdin)
@@ -457,15 +438,15 @@ echo "$STYLE_SPEC"
 echo "$STYLE_SPEC" > "figures/ai_generated/style_spec.txt"
 ```
 
-### Step 4: Paperbanana Image Rendering (gemini-3-pro-image-preview)
+#### Step 4: Paperbanana Image Rendering (gemini-3-pro-image-preview)
 
 **Claude sends the optimized, style-verified specification to Paperbanana for rendering.**
 
 ```bash
 #!/bin/bash
-# Step 4: Render image using Paperbanana (gemini-3-pro-image-preview)
-# Internal codename: Nano Banana Pro
-# Use DIRECT connection (no proxy) - proxy causes SSL errors
+## Step 4: Render image using Paperbanana (gemini-3-pro-image-preview)
+## Internal codename: Nano Banana Pro
+## Use DIRECT connection (no proxy) - proxy causes SSL errors
 
 set -e
 
@@ -475,10 +456,10 @@ mkdir -p "$OUTPUT_DIR"
 API_KEY="${GEMINI_API_KEY}"
 URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent?key=$API_KEY"
 
-# Read the style-enhanced specification from previous step
+## Read the style-enhanced specification from previous step
 STYLE_SPEC=$(cat figures/ai_generated/style_spec.txt)
 
-# Add rendering instructions
+## Add rendering instructions
 RENDER_PROMPT="Render a publication-quality academic diagram based on this specification:
 
 $STYLE_SPEC
@@ -489,7 +470,7 @@ RENDERING REQUIREMENTS:
 - Ensure all elements are properly aligned and spaced
 - The diagram should be immediately understandable at a glance"
 
-# Build JSON payload using Python for proper escaping
+## Build JSON payload using Python for proper escaping
 python3 << PYTHON
 import json
 payload = {
@@ -501,20 +482,20 @@ with open("/tmp/gemini_request.json", "w") as f:
 print("JSON payload created")
 PYTHON
 
-# Call Paperbanana API WITHOUT proxy (direct connection works better)
+## Call Paperbanana API WITHOUT proxy (direct connection works better)
 RESPONSE=$(curl -s --max-time 180 \
   -X POST "$URL" \
   -H 'Content-Type: application/json' \
   -d @/tmp/gemini_request.json)
 
-# Check for error
+## Check for error
 if echo "$RESPONSE" | grep -q '"error"'; then
     echo "API Error:"
     echo "$RESPONSE" | python3 -m json.tool 2>/dev/null || echo "$RESPONSE"
     exit 1
 fi
 
-# Extract and save image
+## Extract and save image
 echo "$RESPONSE" | python3 << 'PYTHON'
 import sys, json, base64
 from pathlib import Path
@@ -543,7 +524,7 @@ except Exception as e:
 PYTHON
 ```
 
-### Step 5: Claude STRICT Visual Review & Scoring (MANDATORY)
+#### Step 5: Claude STRICT Visual Review & Scoring (MANDATORY)
 
 **Claude MUST read the generated image and perform a STRICT review:**
 
@@ -555,18 +536,18 @@ PYTHON
 **STRICT Review Template:**
 
 ```markdown
-## Claude's STRICT Review of Figure v{N}
+### Claude's STRICT Review of Figure v{N}
 
-### What I See
+#### What I See
 [Describe the generated image in DETAIL - every block, every arrow]
 
-### Strengths
+#### Strengths
 - [Strength 1]
 - [Strength 2]
 
-### ═══════════════════════════════════════════════════════════════
-### STRICT VERIFICATION CHECKLIST (ALL must pass for score ≥ 9)
-### ═══════════════════════════════════════════════════════════════
+#### ═══════════════════════════════════════════════════════════════
+#### STRICT VERIFICATION CHECKLIST (ALL must pass for score ≥ 9)
+#### ═══════════════════════════════════════════════════════════════
 
 #### A. Arrow Correctness Verification (CRITICAL - any failure = score ≤ 6)
 Check EACH arrow:
@@ -624,16 +605,16 @@ Check EACH block:
 - [ ] Font readable
 - [ ] Print-friendly (grayscale test)
 
-### ═══════════════════════════════════════════════════════════════
+#### ═══════════════════════════════════════════════════════════════
 
-### Issues Found (BE SPECIFIC)
+#### Issues Found (BE SPECIFIC)
 1. [Issue 1]: [EXACTLY what is wrong] → [How to fix]
 2. [Issue 2]: [EXACTLY what is wrong] → [How to fix]
 3. [Issue 3]: [EXACTLY what is wrong] → [How to fix]
 
-### Score: X/10
+#### Score: X/10
 
-### STRICT Score Breakdown Guide:
+#### STRICT Score Breakdown Guide:
 - **10**: Perfect. No issues. Publication-ready masterpiece. 视觉风格完美平衡。
 - **9**: Excellent. Minor issues that don't affect understanding. 可以直接使用。
 - **8**: Good but has noticeable issues. 视觉上太平淡或太花哨都需要改进。
@@ -641,19 +622,19 @@ Check EACH block:
 - **6**: Has arrow direction errors (箭头指向错误) OR missing major components.
 - **1-5**: Major issues. Unacceptable.
 
-### Visual Style Scoring (视觉风格评分):
+#### Visual Style Scoring (视觉风格评分):
 - **太花哨 (Too flashy)**: 重阴影、发光效果、彩虹配色 → score ≤ 7
 - **太平淡 (Too plain)**: 纯黑白方块、无任何视觉设计 → score ≤ 8
 - **恰到好处 (Balanced)**: 适度渐变、圆角、清晰层次 → score 9-10
 
-### Verdict
+#### Verdict
 [ ] ACCEPT (score ≥ 9 AND all critical checks pass)
 [ ] REFINE (score < 9 OR any critical check fails)
 
 **If REFINE: List the EXACT issues that must be fixed**
 ```
 
-### Step 6: Decision Point
+#### Step 6: Decision Point
 
 ```
 IF score >= 9 AND all critical checks pass:
@@ -666,40 +647,40 @@ ELSE:
     → Ask user if they want to continue or accept
 ```
 
-### Step 7: Generate Improvement Prompt (for refinement)
+#### Step 7: Generate Improvement Prompt (for refinement)
 
 **Claude generates TARGETED improvement prompt with EXACT issues:**
 
 ```
 Refine this academic diagram. This is iteration {N}.
 
-## ═══════════════════════════════════════════════════════════════
-## CRITICAL: Fix These EXACT Issues (from previous review)
-## ═══════════════════════════════════════════════════════════════
+### ═══════════════════════════════════════════════════════════════
+### CRITICAL: Fix These EXACT Issues (from previous review)
+### ═══════════════════════════════════════════════════════════════
 
-### Arrow Direction Errors (MUST FIX):
+#### Arrow Direction Errors (MUST FIX):
 1. [EXACT issue]: Arrow from [A] to [B] is pointing to wrong target. It should point to [C] instead.
 2. [EXACT issue]: ...
 
-### Missing Arrow Labels (MUST FIX):
+#### Missing Arrow Labels (MUST FIX):
 1. Arrow from [A] to [B] is missing label "[data type]"
 2. ...
 
-### Block Content Issues (MUST FIX):
+#### Block Content Issues (MUST FIX):
 1. Block "[Name]" has wrong label. Should be "[correct label]"
 2. ...
 
-### Visual Appeal Issues (SHOULD FIX):
+#### Visual Appeal Issues (SHOULD FIX):
 1. Blocks are too plain. Add [gradients/shadows/internal structure]
 2. ...
 
-## Keep These Good Elements:
+### Keep These Good Elements:
 - [What to preserve from previous version]
 
-## Generate the improved figure with ALL issues fixed.
+### Generate the improved figure with ALL issues fixed.
 ```
 
-### Step 8: Final Output
+#### Step 8: Final Output
 
 When figure is accepted (score ≥ 9):
 
@@ -713,7 +694,7 @@ When figure is accepted (score ≥ 9):
 \end{figure*}
 ```
 
-## Key Rules (MUST FOLLOW - STRICT)
+### Key Rules (MUST FOLLOW - STRICT)
 
 1. **NEVER skip the review step** — Always read and STRICTLY score the image
 2. **NEVER accept score < 9** — Keep refining until excellence
@@ -728,7 +709,7 @@ When figure is accepted (score ≥ 9):
 11. **USE MULTI-STAGE WORKFLOW** — Claude → Gemini Layout → Gemini Style → Paperbanana → Claude Review
 12. **USE CORRECT MODELS** — gemini-3-pro for reasoning, gemini-3-pro-image-preview for rendering
 
-## Output Structure
+### Output Structure
 
 ```
 figures/ai_generated/
@@ -742,7 +723,7 @@ figures/ai_generated/
 └── review_log.json         # All review scores and STRICT feedback
 ```
 
-## Model Summary
+### Model Summary
 
 | Stage | Model | Purpose |
 |-------|-------|---------|
@@ -751,33 +732,3 @@ figures/ai_generated/
 | Step 3 | gemini-3-pro | CVPR/NeurIPS style verification |
 | Step 4 | gemini-3-pro-image-preview (Paperbanana) | High-quality image rendering |
 | Step 5 | Claude | STRICT visual review and scoring |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-illustration/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/paper-illustration/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

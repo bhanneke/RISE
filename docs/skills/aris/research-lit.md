@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/research-lit/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/research-lit/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: research-lit
-description: Search and analyze research papers, find related work, summarize key ideas. Use when user says "find papers", "related work", "literature review", "what does this paper say", or needs to understand academic papers.
-argument-hint: [paper-topic-or-url]
-allowed-tools: Bash(*), Read, Glob, Grep, WebSearch, WebFetch, Write, Agent, mcp__zotero__*, mcp__obsidian-vault__*
----
-
-# Research Literature Review
+## Research Literature Review
 
 Research topic: $ARGUMENTS
 
-## Constants
+### Constants
 
 
 - **REVIEWER_BACKEND = `codex`** — Default: Codex MCP (xhigh). Override with `— reviewer: oracle-pro` for GPT-5.4 Pro via Oracle MCP. See `shared-references/reviewer-routing.md`.
@@ -52,11 +33,11 @@ Research topic: $ARGUMENTS
 > - `/research-lit "topic" — arxiv download: true` — download top relevant arXiv PDFs
 > - `/research-lit "topic" — arxiv download: true, max download: 10` — download up to 10 PDFs
 
-## Data Sources
+### Data Sources
 
 This skill checks multiple sources **in priority order**. All are optional — if a source is not configured or not requested, skip it silently.
 
-### Source Selection
+#### Source Selection
 
 Parse `$ARGUMENTS` for a `— sources:` directive:
 - **If `— sources:` is specified**: Only search the listed sources (comma-separated). Valid values: `zotero`, `obsidian`, `local`, `web`, `semantic-scholar`, `deepxiv`, `exa`, `gemini`, `openalex`, `all`.
@@ -83,7 +64,7 @@ Examples:
 /research-lit "topic" — sources: semantic-scholar, openalex         → S2 + OpenAlex (complementary metadata)
 ```
 
-### Source Table
+#### Source Table
 
 | Priority | Source | ID | How to detect | What it provides |
 |----------|--------|----|---------------|-----------------|
@@ -99,9 +80,9 @@ Examples:
 
 > **Graceful degradation**: If no MCP servers are configured, the skill works exactly as before (local PDFs + web search). Zotero and Obsidian are pure additions.
 
-## Workflow
+### Workflow
 
-### Step 0a: Search Zotero Library (if available)
+#### Step 0a: Search Zotero Library (if available)
 
 **Skip this step entirely if Zotero MCP is not configured.**
 
@@ -119,7 +100,7 @@ Try calling a Zotero MCP tool (e.g., search). If it succeeds:
 
 > 📚 Zotero annotations are gold — they show what the user personally highlighted as important, which is far more valuable than generic summaries.
 
-### Step 0b: Search Obsidian Vault (if available)
+#### Step 0b: Search Obsidian Vault (if available)
 
 **Skip this step entirely if Obsidian MCP is not configured.**
 
@@ -137,7 +118,7 @@ Try calling an Obsidian MCP tool (e.g., search). If it succeeds:
 
 > 📝 Obsidian notes represent the user's **processed understanding** — more valuable than raw paper content for understanding their perspective.
 
-### Step 0c: Scan Local Paper Library
+#### Step 0c: Scan Local Paper Library
 
 Before searching online, check if the user already has relevant papers locally:
 
@@ -159,7 +140,7 @@ Before searching online, check if the user already has relevant papers locally:
 
 > 📚 If no local papers are found, skip to Step 1. If the user has a comprehensive local collection, the external search can be more targeted (focus on what's missing).
 
-### Step 1: Search (external)
+#### Step 1: Search (external)
 - Use WebSearch to find recent papers on the topic
 - Check arXiv, Semantic Scholar, Google Scholar
 - Focus on papers from last 2 years unless studying foundational work
@@ -190,7 +171,7 @@ source contributes to the multi-source aggregate; warn-and-continue
 on failure, never abort the whole aggregate):
 
 ```bash
-# Canonical strict-safe resolver (see shared-references/integration-contract.md §2).
+## Canonical strict-safe resolver (see shared-references/integration-contract.md §2).
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -231,12 +212,12 @@ The arXiv API returns structured metadata (title, abstract, full author list, ca
 When the user explicitly requests `— sources: semantic-scholar` (or `— sources: web, semantic-scholar`), search for published venue papers beyond arXiv:
 
 ```bash
-# Re-resolve $ARIS_REPO (SKILL bash blocks may run in separate shells).
+## Re-resolve $ARIS_REPO (SKILL bash blocks may run in separate shells).
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
 fi
-# Resolve $S2_FETCHER (Policy D2 — warn-and-skip on missing).
+## Resolve $S2_FETCHER (Policy D2 — warn-and-skip on missing).
 S2_FETCHER=".aris/tools/semantic_scholar_fetch.py"
 [ -f "$S2_FETCHER" ] || S2_FETCHER="tools/semantic_scholar_fetch.py"
 [ -f "$S2_FETCHER" ] || { [ -n "${ARIS_REPO:-}" ] && S2_FETCHER="$ARIS_REPO/tools/semantic_scholar_fetch.py"; }
@@ -269,12 +250,12 @@ If `$S2_FETCHER` is empty (canonical chain exhausted), skip silently — D2 mult
 When the user explicitly requests `— sources: deepxiv` (or includes `deepxiv` in a combined source list), use the DeepXiv adapter for progressive retrieval:
 
 ```bash
-# Re-resolve $ARIS_REPO (SKILL bash blocks may run in separate shells).
+## Re-resolve $ARIS_REPO (SKILL bash blocks may run in separate shells).
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
 fi
-# Resolve $DEEPXIV_FETCHER (Policy D2 — warn-and-skip on missing).
+## Resolve $DEEPXIV_FETCHER (Policy D2 — warn-and-skip on missing).
 DEEPXIV_FETCHER=".aris/tools/deepxiv_fetch.py"
 [ -f "$DEEPXIV_FETCHER" ] || DEEPXIV_FETCHER="tools/deepxiv_fetch.py"
 [ -f "$DEEPXIV_FETCHER" ] || { [ -n "${ARIS_REPO:-}" ] && DEEPXIV_FETCHER="$ARIS_REPO/tools/deepxiv_fetch.py"; }
@@ -312,12 +293,12 @@ If `$DEEPXIV_FETCHER` is empty or the `deepxiv` CLI is unavailable, skip this so
 When the user explicitly requests `— sources: exa` (or includes `exa` in a combined source list), use the Exa tool for broad AI-powered web search with content extraction:
 
 ```bash
-# Re-resolve $ARIS_REPO (SKILL bash blocks may run in separate shells).
+## Re-resolve $ARIS_REPO (SKILL bash blocks may run in separate shells).
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
 fi
-# Resolve $EXA_FETCHER (Policy D2 — warn-and-skip on missing).
+## Resolve $EXA_FETCHER (Policy D2 — warn-and-skip on missing).
 EXA_FETCHER=".aris/tools/exa_search.py"
 [ -f "$EXA_FETCHER" ] || EXA_FETCHER="tools/exa_search.py"
 [ -f "$EXA_FETCHER" ] || { [ -n "${ARIS_REPO:-}" ] && EXA_FETCHER="$ARIS_REPO/tools/exa_search.py"; }
@@ -400,21 +381,21 @@ If both MCP and CLI are unavailable, skip this source gracefully and continue wi
 When the user explicitly requests `— sources: openalex` (or includes `openalex` in a combined source list), use OpenAlex API for comprehensive academic metadata:
 
 ```bash
-# Re-resolve $ARIS_REPO (SKILL bash blocks may run in separate shells).
+## Re-resolve $ARIS_REPO (SKILL bash blocks may run in separate shells).
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
 fi
-# Resolve $OPENALEX_FETCHER (Policy D2 — warn-and-skip on missing).
+## Resolve $OPENALEX_FETCHER (Policy D2 — warn-and-skip on missing).
 OPENALEX_FETCHER=".aris/tools/openalex_fetch.py"
 [ -f "$OPENALEX_FETCHER" ] || OPENALEX_FETCHER="tools/openalex_fetch.py"
 [ -f "$OPENALEX_FETCHER" ] || { [ -n "${ARIS_REPO:-}" ] && OPENALEX_FETCHER="$ARIS_REPO/tools/openalex_fetch.py"; }
 [ -f "$OPENALEX_FETCHER" ] || OPENALEX_FETCHER=""
 
-# Preflight: skip OpenAlex silently if the helper is unresolved OR the
-# `requests` Python package is missing. Both checks must pass before
-# the script is invoked, so users without `requests` installed never see
-# a stack trace from a default `/research-lit` run.
+## Preflight: skip OpenAlex silently if the helper is unresolved OR the
+## `requests` Python package is missing. Both checks must pass before
+## the script is invoked, so users without `requests` installed never see
+## a stack trace from a default `/research-lit` run.
 if [ -z "$OPENALEX_FETCHER" ] || ! python3 -c "import requests" >/dev/null 2>&1; then
   echo "OpenAlex source not available (openalex_fetch.py unresolved or 'requests' module missing); skipping." >&2
 else
@@ -481,7 +462,7 @@ web") and proceed.
 
 After all sources are searched and papers are ranked by relevance:
 ```bash
-# Re-resolve $ARXIV_FETCHER (SKILL bash blocks may run in separate shells).
+## Re-resolve $ARXIV_FETCHER (SKILL bash blocks may run in separate shells).
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -491,7 +472,7 @@ ARXIV_FETCHER=".aris/tools/arxiv_fetch.py"
 [ -f "$ARXIV_FETCHER" ] || { [ -n "${ARIS_REPO:-}" ] && ARXIV_FETCHER="$ARIS_REPO/tools/arxiv_fetch.py"; }
 [ -f "$ARXIV_FETCHER" ] || ARXIV_FETCHER=""
 
-# Download top N most relevant arXiv papers; skip silently if helper unresolved.
+## Download top N most relevant arXiv papers; skip silently if helper unresolved.
 [ -n "$ARXIV_FETCHER" ] && python3 "$ARXIV_FETCHER" download ARXIV_ID --dir papers/
 ```
 - Only download papers ranked in the top ARXIV_MAX_DOWNLOAD by relevance
@@ -499,7 +480,7 @@ ARXIV_FETCHER=".aris/tools/arxiv_fetch.py"
 - 1-second delay between downloads (rate limiting)
 - Verify each PDF > 10 KB
 
-### Step 1.5: Verify Candidate Papers (anti-hallucination, mandatory)
+#### Step 1.5: Verify Candidate Papers (anti-hallucination, mandatory)
 
 Before analysis, run pre-search verification on **all** candidate papers
 collected from Steps 0a-1 to filter out LLM-fabricated arXiv IDs / DOIs /
@@ -512,7 +493,7 @@ downstream analysis proceeds with audit-visible degraded output
 rather than silently dropping candidates.
 
 ```bash
-# 1. Resolve $VERIFY_PAPERS via the canonical strict-safe chain (§2).
+## 1. Resolve $VERIFY_PAPERS via the canonical strict-safe chain (§2).
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -522,9 +503,9 @@ VERIFY_PAPERS=".aris/tools/verify_papers.py"
 [ -f "$VERIFY_PAPERS" ] || { [ -n "${ARIS_REPO:-}" ] && VERIFY_PAPERS="$ARIS_REPO/tools/verify_papers.py"; }
 [ -f "$VERIFY_PAPERS" ] || VERIFY_PAPERS=""
 
-# 2. Emit candidates as JSON. Verification scratch lives under .aris/
-#    (NOT under research-wiki/ — Step 6's wiki ingest predicate is
-#    "research-wiki/ exists", and we must not trip it from Step 1.5).
+## 2. Emit candidates as JSON. Verification scratch lives under .aris/
+##    (NOT under research-wiki/ — Step 6's wiki ingest predicate is
+##    "research-wiki/ exists", and we must not trip it from Step 1.5).
 mkdir -p .aris/verify-papers
 cat > .aris/verify-papers/candidate_papers.json <<'JSON'
 [
@@ -534,11 +515,11 @@ cat > .aris/verify-papers/candidate_papers.json <<'JSON'
 ]
 JSON
 
-# 3. Run 3-layer verification (arXiv batch → CrossRef → Semantic Scholar fuzzy).
-#    Policy D1: when the helper is unresolved OR its invocation fails, emit
-#    a degraded verified set tagging everything [UNVERIFIED] so the user
-#    can audit search quality. If python3 itself is missing, we BLOCK
-#    rather than hand-roll JSON in shell.
+## 3. Run 3-layer verification (arXiv batch → CrossRef → Semantic Scholar fuzzy).
+##    Policy D1: when the helper is unresolved OR its invocation fails, emit
+##    a degraded verified set tagging everything [UNVERIFIED] so the user
+##    can audit search quality. If python3 itself is missing, we BLOCK
+##    rather than hand-roll JSON in shell.
 verify_ok=false
 if [ -n "$VERIFY_PAPERS" ]; then
   if python3 "$VERIFY_PAPERS" \
@@ -573,8 +554,8 @@ with open('.aris/verify-papers/verified_papers.json', 'w') as f:
 PY
 fi
 
-# 4. Read verdict + per-paper status from .aris/verify-papers/verified_papers.json;
-#    surface warnings to the user.
+## 4. Read verdict + per-paper status from .aris/verify-papers/verified_papers.json;
+##    surface warnings to the user.
 ```
 
 **Mandatory output rules** (see
@@ -596,7 +577,7 @@ fi
 Optional: set `ARIS_VERIFY_EMAIL=you@institution.edu` in your shell to lift
 CrossRef rate limits to the polite pool.
 
-### Step 2: Analyze Each Paper
+#### Step 2: Analyze Each Paper
 For **every** paper in `.aris/verify-papers/verified_papers.json`
 (verified, unverified, `verify_pending`, and `error` alike — see
 Retention rule above), extract:
@@ -615,13 +596,13 @@ Retention rule above), extract:
   Show the status in the analyzed table — never silently drop a
   paper because its status is anything other than `verified`.
 
-### Step 3: Synthesize
+#### Step 3: Synthesize
 - Group papers by approach/theme
 - Identify consensus vs disagreements in the field
 - Find gaps that our work could fill
 - If Obsidian notes exist, incorporate the user's own insights into the synthesis
 
-### Step 4: Output
+#### Step 4: Output
 Present as a structured literature table:
 
 ```
@@ -633,12 +614,12 @@ Plus a narrative summary of the landscape (3-5 paragraphs).
 
 If Zotero BibTeX was exported, include a `references.bib` snippet for direct use in paper writing.
 
-### Step 5: Save (if requested)
+#### Step 5: Save (if requested)
 - Save paper PDFs to `literature/` or `papers/`
 - Update related work notes in project memory
 - If Obsidian is available, optionally create a literature review note in the vault
 
-### Step 6: Update Research Wiki
+#### Step 6: Update Research Wiki
 
 **Required when `research-wiki/` exists.** Skip entirely (no action, no
 error) if the directory is absent. Per
@@ -699,40 +680,10 @@ python3 "$WIKI_SCRIPT" ingest_paper research-wiki/ \
     --venue "<venue>" [--external-id-doi "<doi>"] [--thesis "..."]
 ```
 
-## Key Rules
+### Key Rules
 - Always include paper citations (authors, year, venue)
 - Distinguish between peer-reviewed and preprints
 - Be honest about limitations of each paper
 - Note if a paper directly competes with or supports our approach
 - **Never fail because a MCP server is not configured** — always fall back gracefully to the next data source
 - Zotero/Obsidian tools may have different names depending on how the user configured the MCP server (e.g., `mcp__zotero__search` or `mcp__zotero-mcp__search_items`). Try the most common patterns and adapt.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/research-lit/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/research-lit/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

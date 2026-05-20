@@ -4,35 +4,13 @@
 
 Navigate literature with persistent memory
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/paper-navigator/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/paper-navigator/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-navigator
-description: "Find, read, download, and locally cache academic papers. Disambiguate ambiguous queries, discover via keyword search / citation traversal / recommendations / arXiv monitoring / trending / GitHub search, evaluate (TLDR, citations, code, SOTA), read using a 3-level strategy, and save PDFs to a local library for offline reuse. Use when finding a specific paper, listing papers on a topic, tracking recent advances, finding a baseline with code, reading or downloading a paper by URL, searching the local PDF library, or collecting a corpus for survey/ideation. Trigger phrases include: find/search papers, related work, citation analysis, latest research, download paper, save paper, my local library. Do NOT use for generating survey reports (use research-survey), generating research ideas (use research-ideation), writing a Related Work section (use paper-writing), comparing/ranking ideas (use research-ideation), or planning paper structure (use paper-planning)."
-allowed-tools: "write_file edit_file read_file think_tool execute"
-metadata:
-  author: EvoScientist
-  version: '2.4.5'
-  tags: [core, research, search, literature, download, local-library]
----
-
-# Paper Navigator
+## Paper Navigator
 
 Find and read academic papers. The skill routes by **intent** into three branches; cost should match intent.
 
-## Core Principles (apply to every branch)
+### Core Principles (apply to every branch)
 
 These four rules override branch-specific instructions when they conflict — they exist because every paper-search failure mode reduces to one of them.
 
@@ -57,7 +35,7 @@ For the **query-design rules** (3-6 words, English-only, no formal words, banned
 Paper Card  Paper Table  references/iterative-collection.md
 ```
 
-## Intent Router
+### Intent Router
 
 | User signal | Branch | Typical cost | Section |
 |---|---|---|---|
@@ -71,7 +49,7 @@ If the query is ambiguous (project nickname, codename, single capitalized word w
 
 ---
 
-## Branch 0 — LOCAL-FIRST (run before any external search)
+### Branch 0 — LOCAL-FIRST (run before any external search)
 
 Why this exists: repeat queries on already-seen papers should not burn API quota. If the user has a local library at `$PAPERS_DIR` (default `~/papers/`), a previous download already has the answer.
 
@@ -86,7 +64,7 @@ Why this exists: repeat queries on already-seen papers should not burn API quota
 
 ---
 
-## Branch 1 — POINT
+### Branch 1 — POINT
 
 User has a specific paper in mind, or wants to read a known paper.
 
@@ -109,7 +87,7 @@ TLDR: <one sentence>
 
 ---
 
-## Branch 2 — LIST
+### Branch 2 — LIST
 
 User wants a manageable list (≤~10) on a topic. One search round, no iterative loop.
 
@@ -146,7 +124,7 @@ One follow-up call only. If still insufficient, propose Branch 3 escalation to t
 
 ---
 
-## Branch 3 — ITERATIVE
+### Branch 3 — ITERATIVE
 
 Multi-round collection with explicit state machine. **Read `references/iterative-collection.md` and execute its 5 states (S1 DECOMPOSE → S2 MULTI_SEARCH → S3 CITATION_EXPAND → S4 GAP_CHECK → S5 FINALIZE).** Use TodoWrite to track state progress.
 
@@ -169,7 +147,7 @@ After collection completes, hand off:
 
 ---
 
-## Tool Cheat Sheet
+### Tool Cheat Sheet
 
 | Need | Script | Notes |
 |---|---|---|
@@ -201,7 +179,7 @@ All scripts output Markdown to stdout, accept `--json` and `--limit`. Paper IDs 
 
 **Rate limits & query design** — when hit by 429 or designing multi-query searches, read `references/search-principles.md`. Built-in retries use 3s/6s/12s/24s/48s exponential backoff. A global S2 pacer enforces a 3s interval when no API key is set; a cross-process arXiv pacer enforces 3s between arXiv API request starts across concurrent agents.
 
-### No-S2-key Operating Mode (`$S2_API_KEY` unset)
+#### No-S2-key Operating Mode (`$S2_API_KEY` unset)
 
 Why this section exists: without an S2 API key, each S2 call costs ~10s after exponential backoff vs ~1.5s with a key. Heavy S2-dependent workflows become unusable.
 
@@ -226,7 +204,7 @@ Why this section exists: without an S2 API key, each S2 call costs ~10s after ex
 
 ---
 
-## Output Formats
+### Output Formats
 
 - **Paper Card** (Branch 1) — defined above
 - **Paper Table** (Branch 2/3) — defined above
@@ -234,7 +212,7 @@ Why this section exists: without an S2 API key, each S2 call costs ~10s after ex
 
 ---
 
-## Reference Files
+### Reference Files
 
 | File | Read when |
 |---|---|
@@ -247,33 +225,3 @@ Why this section exists: without an S2 API key, each S2 call costs ~10s after ex
 | `references/arxiv-categories.md` | Picking arXiv category codes |
 
 Reference files are self-contained. Do not chain between references — if a sub-task spans two refs, return to this SKILL.md and re-route.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/paper-navigator/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/paper-navigator/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

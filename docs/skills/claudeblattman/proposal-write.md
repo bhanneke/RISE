@@ -4,28 +4,16 @@
 
 Draft a grant or research proposal
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> social-sciences</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/proposal-write.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/proposal-write/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/proposal-write.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Write Proposal
+## Write Proposal
 *v3.4 — Added donor intelligence context (meeting transcripts + Gmail) to Step 3*
 *v3.x — Auto-loaded project context, donor profile lookup, template gate as the single hard stop*
 *v3.0 — Restructured to Input Checklist → Auto-Gather Context → Donor Profile → Context Brief → Analyze → Draft*
 
 Draft a funding proposal from structured inputs, using a project's voice pack, project context, and donor intelligence. Use when drafting funding proposals, LOIs, or project summaries for grant applications.
 
-## Overview
+### Overview
 
 This skill produces a first draft of a funding proposal in markdown. The flow: **Input Checklist → Auto-Gather Context → Donor Profile → Context Brief → Analyze & Plan → Draft → Save → Update Donor Profile → Log.**
 
@@ -33,7 +21,7 @@ The voice pack loads automatically. Context gathering runs automatically after t
 
 **Pre-approved tools:** Google Workspace MCP and filesystem reads. Call them directly — no Task agents.
 
-## Voice Pack (Optional)
+### Voice Pack (Optional)
 
 If you maintain a voice pack with your writing style:
 
@@ -44,9 +32,9 @@ If you maintain a voice pack with your writing style:
 
 Create these files with your own writing style preferences: sentence length, active vs. passive voice, hedging rules, formatting conventions. If not found, the skill warns and continues with general academic voice rules.
 
-## Instructions
+### Instructions
 
-### Step 1: Input Checklist (start here — this is the skill's primary value)
+#### Step 1: Input Checklist (start here — this is the skill's primary value)
 
 **Present this checklist immediately and collect all inputs before proceeding.** This catches missing documents early — the single most important thing this skill does.
 
@@ -80,7 +68,7 @@ AUTO-LOADED (skill finds these automatically):
 
 **For items provided as file paths**, read them immediately.
 
-### Step 2: Auto-Gather Context
+#### Step 2: Auto-Gather Context
 
 After collecting checklist inputs, automatically gather project context. Each source has a word budget to prevent context window bloat. **Total cap: ~8,000 words of gathered context.**
 
@@ -99,7 +87,7 @@ Skip this step if the user passes `skipcontext`.
 
 **Graceful degradation:** If any source is unavailable (no Google Doc configured, no prior submissions found, MCP fails), note it and continue. Never block on a missing optional source.
 
-### Step 3: Donor Profile Lookup
+#### Step 3: Donor Profile Lookup
 
 1. Check for a donor profile at `~/.claude-assistant/donors/[funder-slug].md`
 2. **If found:** Read it. Display "What They Value" and "What to Avoid" to the user. Check freshness — if `next_review_date` has passed, display: "Donor profile for [funder] may be outdated (last reviewed [date]). Proceeding with current info — consider running `/donor-profile [funder] refresh` after this session."
@@ -107,7 +95,7 @@ Skip this step if the user passes `skipcontext`.
 
 Do NOT do web research mid-workflow. The `/donor-profile` skill handles that separately.
 
-### Step 3b: Donor Interaction History (if profile found)
+#### Step 3b: Donor Interaction History (if profile found)
 
 If a donor profile was found in Step 3, also search for recent interactions to add context:
 
@@ -120,7 +108,7 @@ Add findings to the Context Brief under a "Donor Interactions" row. This is pass
 
 **Skip Step 3b if:** no profile found, `skipcontext` flag passed, or no meeting/email integrations available.
 
-### Step 4: Context Brief
+#### Step 4: Context Brief
 
 After gathering context, present a summary. Skip if the user passes `skipbrief` (but the template gate below still fires).
 
@@ -151,7 +139,7 @@ Gaps that would improve the proposal:
 
 This is the single hard stop in the workflow. Everything else is informational.
 
-### Step 5: Parse Arguments
+#### Step 5: Parse Arguments
 
 Read `$ARGUMENTS` and conversation context for:
 - Funder name (required)
@@ -164,7 +152,7 @@ Read `$ARGUMENTS` and conversation context for:
 - `skipbrief` — bypass context brief display (Step 4), but template gate still fires
 - `profile:create` — redirect to `/donor-profile [funder]` instead of writing
 
-### Step 6: Analyze and Plan
+#### Step 6: Analyze and Plan
 
 **If the user is in plan mode or enters plan mode:** This step happens naturally through plan mode. The skill complements plan mode — don't duplicate what plan mode already does. Focus on: mapping template sections to content, noting word/page limits, and identifying the 2-3 strongest arguments for this funder (informed by the donor profile).
 
@@ -194,7 +182,7 @@ New evidence since last submission:
 
 Wait for user confirmation on the reviewer analysis before drafting. This is the one strategic alignment point worth pausing for.
 
-### Step 7: Draft the Proposal
+#### Step 7: Draft the Proposal
 
 **Structure:** Follow the application template if provided. If no template, use:
 
@@ -232,15 +220,15 @@ Wait for user confirmation on the reviewer analysis before drafting. This is the
 - Name specific cost drivers
 - Link costs to outputs, not activities
 
-### Step 8: Save and Brief
+#### Step 8: Save and Brief
 
 Save the draft to: `05_Submissions/Grants/[Funder]_[Year]_Draft.md`
 
 File header:
 
 ```markdown
-# [Full Proposal Title]
-## DRAFT — [Date]
+## [Full Proposal Title]
+### DRAFT — [Date]
 
 **PI:** [Name] ([Institution])
 **Co-PIs:** [Names] ([Institutions])
@@ -250,7 +238,7 @@ File header:
 **Deadline:** [Date]
 
 
-## Revision Notes
+### Revision Notes
 
 **Draft created:** [date] by `/proposal-write`
 **Context sources read:**
@@ -286,7 +274,7 @@ Next steps:
 5. Run /review-writing on the full draft for voice/clarity check
 ```
 
-### Step 9: Update Donor Profile
+#### Step 9: Update Donor Profile
 
 After saving the draft, add a Submission History entry to the donor profile:
 - Date: today
@@ -304,7 +292,7 @@ If yes, read the project's PROJECT_INDEX.md and add/update the funder row with S
 
 If no donor profile exists, skip this step (don't create one mid-workflow).
 
-### Step 10: Performance Logging
+#### Step 10: Performance Logging
 
 Append a row to your skill-performance log (skip if log directory not found):
 
@@ -312,7 +300,7 @@ Append a row to your skill-performance log (skip if log directory not found):
 [date],write-proposal,[approx tool calls],[brief notes: funder, sources gathered, dryrun/full]
 ```
 
-## Arguments
+### Arguments
 
 `$ARGUMENTS` — natural language is fine. Common flags:
 - Funder name (required)
@@ -328,7 +316,7 @@ Append a row to your skill-performance log (skip if log directory not found):
 - `skipbrief` — bypass context brief display
 - `profile:create` — redirect to `/donor-profile [funder]`
 
-## Examples
+### Examples
 
 ```
 /proposal-write "Example Foundation" deadline:2026-06-01
@@ -338,7 +326,7 @@ Append a row to your skill-performance log (skip if log directory not found):
 /proposal-write "Foundation Z" dryrun
 ```
 
-## Error Handling
+### Error Handling
 
 - If no funder name: "Usage: /proposal-write <funder> [options]. Funder name is required."
 - If no application template: **HARD STOP** — template gate fires (see Step 4)
@@ -349,7 +337,7 @@ Append a row to your skill-performance log (skip if log directory not found):
 
 ---
 
-## Customization Points
+### Customization Points
 
 **To set up this skill for your workflow:**
 
@@ -362,33 +350,3 @@ Append a row to your skill-performance log (skip if log directory not found):
 4. **Word budgets** (Step 2): The context-gathering word budgets (8,000 total) are calibrated for long proposals. For LOIs or short applications, reduce budgets proportionally.
 
 5. **Donor interaction integrations** (Step 3b): The meeting-search step assumes a meeting-notes MCP. If you don't have one, the step skips silently. The Gmail search also degrades gracefully.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/proposal-write.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>social-sciences</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/proposal-write.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/proposal-write/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,33 +4,15 @@
 
 Microsoft Word document generation
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../anthropic-skills/">Anthropic Skills (foundational)</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/anthropics/skills/contents/skills/docx/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/anthropic-skills/docx/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/anthropics/skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## DOCX creation, editing, and analysis
 
----
-
----
-name: docx
-description: "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation."
-license: Proprietary. LICENSE.txt has complete terms
----
-
-# DOCX creation, editing, and analysis
-
-## Overview
+### Overview
 
 A .docx file is a ZIP archive containing XML files.
 
-## Quick Reference
+### Quick Reference
 
 | Task | Approach |
 |------|----------|
@@ -38,7 +20,7 @@ A .docx file is a ZIP archive containing XML files.
 | Create new document | Use `docx-js` - see Creating New Documents below |
 | Edit existing document | Unpack → edit XML → repack - see Editing Existing Documents below |
 
-### Converting .doc to .docx
+#### Converting .doc to .docx
 
 Legacy `.doc` files must be converted before editing:
 
@@ -46,24 +28,24 @@ Legacy `.doc` files must be converted before editing:
 python scripts/office/soffice.py --headless --convert-to docx document.doc
 ```
 
-### Reading Content
+#### Reading Content
 
 ```bash
-# Text extraction with tracked changes
+## Text extraction with tracked changes
 pandoc --track-changes=all document.docx -o output.md
 
-# Raw XML access
+## Raw XML access
 python scripts/office/unpack.py document.docx unpacked/
 ```
 
-### Converting to Images
+#### Converting to Images
 
 ```bash
 python scripts/office/soffice.py --headless --convert-to pdf document.docx
 pdftoppm -jpeg -r 150 document.pdf page
 ```
 
-### Accepting Tracked Changes
+#### Accepting Tracked Changes
 
 To produce a clean document with all tracked changes accepted (requires LibreOffice):
 
@@ -73,11 +55,11 @@ python scripts/accept_changes.py input.docx output.docx
 
 ---
 
-## Creating New Documents
+### Creating New Documents
 
 Generate .docx files with JavaScript, then validate. Install: `npm install -g docx`
 
-### Setup
+#### Setup
 ```javascript
 const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, ImageRun,
         Header, Footer, AlignmentType, PageOrientation, LevelFormat, ExternalHyperlink,
@@ -91,13 +73,13 @@ const doc = new Document({ sections: [{ children: [/* content */] }] });
 Packer.toBuffer(doc).then(buffer => fs.writeFileSync("doc.docx", buffer));
 ```
 
-### Validation
+#### Validation
 After creating the file, validate it. If validation fails, unpack, fix the XML, and repack.
 ```bash
 python scripts/office/validate.py doc.docx
 ```
 
-### Page Size
+#### Page Size
 
 ```javascript
 // CRITICAL: docx-js defaults to A4, not US Letter
@@ -133,7 +115,7 @@ size: {
 // Content width = 15840 - left margin - right margin (uses the long edge)
 ```
 
-### Styles (Override Built-in Headings)
+#### Styles (Override Built-in Headings)
 
 Use Arial as the default font (universally supported). Keep titles black for readability.
 
@@ -159,7 +141,7 @@ const doc = new Document({
 });
 ```
 
-### Lists (NEVER use unicode bullets)
+#### Lists (NEVER use unicode bullets)
 
 ```javascript
 // ❌ WRONG - never manually insert bullet characters
@@ -193,7 +175,7 @@ const doc = new Document({
 // Different reference = restarts (1,2,3 then 1,2,3)
 ```
 
-### Tables
+#### Tables
 
 **CRITICAL: Tables need dual widths** - set both `columnWidths` on the table AND `width` on each cell. Without both, tables render incorrectly on some platforms.
 
@@ -240,7 +222,7 @@ columnWidths: [7000, 2360]  // Must sum to table width
 - Cell `margins` are internal padding - they reduce content area, not add to cell width
 - For full-width tables: use content width (page width minus left and right margins)
 
-### Images
+#### Images
 
 ```javascript
 // CRITICAL: type parameter is REQUIRED
@@ -254,7 +236,7 @@ new Paragraph({
 })
 ```
 
-### Page Breaks
+#### Page Breaks
 
 ```javascript
 // CRITICAL: PageBreak must be inside a Paragraph
@@ -264,7 +246,7 @@ new Paragraph({ children: [new PageBreak()] })
 new Paragraph({ pageBreakBefore: true, children: [new TextRun("New page")] })
 ```
 
-### Hyperlinks
+#### Hyperlinks
 
 ```javascript
 // External link
@@ -287,7 +269,7 @@ new Paragraph({ children: [new InternalHyperlink({
 })]})
 ```
 
-### Footnotes
+#### Footnotes
 
 ```javascript
 const doc = new Document({
@@ -308,7 +290,7 @@ const doc = new Document({
 });
 ```
 
-### Tab Stops
+#### Tab Stops
 
 ```javascript
 // Right-align text on same line (e.g., date opposite a title)
@@ -336,7 +318,7 @@ new Paragraph({
 })
 ```
 
-### Multi-Column Layouts
+#### Multi-Column Layouts
 
 ```javascript
 // Equal-width columns
@@ -369,14 +351,14 @@ sections: [{
 
 Force a column break with a new section using `type: SectionType.NEXT_COLUMN`.
 
-### Table of Contents
+#### Table of Contents
 
 ```javascript
 // CRITICAL: Headings must use HeadingLevel ONLY - no custom styles
 new TableOfContents("Table of Contents", { hyperlink: true, headingStyleRange: "1-3" })
 ```
 
-### Headers/Footers
+#### Headers/Footers
 
 ```javascript
 sections: [{
@@ -395,7 +377,7 @@ sections: [{
 }]
 ```
 
-### Critical Rules for docx-js
+#### Critical Rules for docx-js
 
 - **Set page size explicitly** - docx-js defaults to A4; use US Letter (12240 x 15840 DXA) for US documents
 - **Landscape: pass portrait dimensions** - docx-js swaps width/height internally; pass short edge as `width`, long edge as `height`, and set `orientation: PageOrientation.LANDSCAPE`
@@ -415,17 +397,17 @@ sections: [{
 
 ---
 
-## Editing Existing Documents
+### Editing Existing Documents
 
 **Follow all 3 steps in order.**
 
-### Step 1: Unpack
+#### Step 1: Unpack
 ```bash
 python scripts/office/unpack.py document.docx unpacked/
 ```
 Extracts XML, pretty-prints, merges adjacent runs, and converts smart quotes to XML entities (`&#x201C;` etc.) so they survive editing. Use `--merge-runs false` to skip run merging.
 
-### Step 2: Edit XML
+#### Step 2: Edit XML
 
 Edit files in `unpacked/word/`. See XML Reference below for patterns.
 
@@ -453,7 +435,7 @@ python scripts/comment.py unpacked/ 0 "Text" --author "Custom Author"  # custom 
 ```
 Then add markers to document.xml (see Comments in XML Reference).
 
-### Step 3: Pack
+#### Step 3: Pack
 ```bash
 python scripts/office/pack.py unpacked/ output.docx --original document.docx
 ```
@@ -466,22 +448,22 @@ Validates with auto-repair, condenses XML, and creates DOCX. Use `--validate fal
 **Auto-repair won't fix:**
 - Malformed XML, invalid element nesting, missing relationships, schema violations
 
-### Common Pitfalls
+#### Common Pitfalls
 
 - **Replace entire `<w:r>` elements**: When adding tracked changes, replace the whole `<w:r>...</w:r>` block with `<w:del>...<w:ins>...` as siblings. Don't inject tracked change tags inside a run.
 - **Preserve `<w:rPr>` formatting**: Copy the original run's `<w:rPr>` block into your tracked change runs to maintain bold, font size, etc.
 
 ---
 
-## XML Reference
+### XML Reference
 
-### Schema Compliance
+#### Schema Compliance
 
 - **Element order in `<w:pPr>`**: `<w:pStyle>`, `<w:numPr>`, `<w:spacing>`, `<w:ind>`, `<w:jc>`, `<w:rPr>` last
 - **Whitespace**: Add `xml:space="preserve"` to `<w:t>` with leading/trailing spaces
 - **RSIDs**: Must be 8-digit hex (e.g., `00AB1234`)
 
-### Tracked Changes
+#### Tracked Changes
 
 **Insertion:**
 ```xml
@@ -547,7 +529,7 @@ Without the `<w:del/>` in `<w:pPr><w:rPr>`, accepting changes leaves an empty pa
 </w:ins>
 ```
 
-### Comments
+#### Comments
 
 After running `comment.py` (see Step 2), add markers to document.xml. For replies, use `--parent` flag and nest markers inside the parent's.
 
@@ -573,7 +555,7 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
 <w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="1"/></w:r>
 ```
 
-### Images
+#### Images
 
 1. Add image file to `word/media/`
 2. Add relationship to `word/_rels/document.xml.rels`:
@@ -602,39 +584,9 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
 
 ---
 
-## Dependencies
+### Dependencies
 
 - **pandoc**: Text extraction
 - **docx**: `npm install -g docx` (new documents)
 - **LibreOffice**: PDF conversion (auto-configured for sandboxed environments via `scripts/office/soffice.py`)
 - **Poppler**: `pdftoppm` for images
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/anthropics/skills/contents/skills/docx/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>anthropics/skills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../anthropic-skills.md">Anthropic Skills (foundational)</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/anthropics/skills">⭐ anthropics/skills</a><br><img src="https://img.shields.io/github/stars/anthropics/skills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/anthropics/skills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/anthropic-skills/docx/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/anthropic-skills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/modeling/market-microstructure.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Market Microstructure
 
----
-
-# Market Microstructure
-
-## Overview
+### Overview
 
 Market microstructure studies how the mechanics of trading — order flow, dealer behavior, information asymmetry, and market design — affect price formation, liquidity, and transaction costs. It bridges financial theory (efficient markets, rational expectations) with the institutional reality of how markets operate.
 
-## Liquidity Measures
+### Liquidity Measures
 
-### Bid-Ask Spread
+#### Bid-Ask Spread
 
 The most direct measure of transaction costs and a proxy for information asymmetry.
 
@@ -38,13 +26,13 @@ The most direct measure of transaction costs and a proxy for information asymmet
 
 **Realized spread**: 2 * D * (Trade Price - Midpoint_{t+delta}) / Midpoint. Measures the dealer's revenue after a time interval delta. The difference between effective and realized spread is the price impact component.
 
-### Trade Classification
+#### Trade Classification
 
 **Lee-Ready (1991)**: Classify trades as buyer- or seller-initiated.
 1. If trade price > midpoint → buy. If < midpoint → sell.
 2. If at midpoint → use tick test: if price > previous price → buy (uptick), if < → sell.
 
-### Amihud (2002) Illiquidity Ratio
+#### Amihud (2002) Illiquidity Ratio
 
 ILLIQ_i = (1/D_i) * Sum(|R_id| / DVOL_id)
 
@@ -64,7 +52,7 @@ def amihud_illiquidity(returns, dollar_volume, min_days=15):
     return ratio.mean() * 1e6  # scale for readability
 ```
 
-### Roll (1984) Effective Spread Estimate
+#### Roll (1984) Effective Spread Estimate
 
 Estimated from serial covariance of price changes:
 
@@ -73,7 +61,7 @@ Spread_Roll = 2 * sqrt(-Cov(Delta_P_t, Delta_P_{t-1}))
 - Only valid when serial covariance is negative.
 - Assumes bid-ask bounce is the sole source of negative autocorrelation.
 
-### Corwin-Schultz (2012) High-Low Spread Estimator
+#### Corwin-Schultz (2012) High-Low Spread Estimator
 
 Estimates effective spread from daily high and low prices:
 
@@ -81,7 +69,7 @@ S = (2 * (exp(alpha) - 1)) / (1 + exp(alpha))
 
 where alpha is derived from the ratio of two-day and one-day high-low ranges. Intuition: the high (low) is more likely to be a buy (sell), so the high-low range reflects both volatility and the spread.
 
-### Pastor-Stambaugh (2003) Liquidity Factor
+#### Pastor-Stambaugh (2003) Liquidity Factor
 
 Measures return reversal following high-volume days (a signed volume effect):
 
@@ -91,9 +79,9 @@ r_{i,t+1}^e = theta_i + phi_i * r_{i,t} + gamma_i * sign(r_{i,t}^e) * v_{i,t} + 
 - Aggregate the gammas into a market-wide liquidity measure.
 - Innovations in aggregate liquidity are a priced risk factor.
 
-## Information Asymmetry Models
+### Information Asymmetry Models
 
-### Kyle (1985) Model
+#### Kyle (1985) Model
 
 Single informed trader, noise traders, and a market maker.
 
@@ -104,7 +92,7 @@ Delta_P = lambda * (Order Flow)
 - lambda = sigma_v / (2 * sigma_u) where sigma_v = std of asset value innovation, sigma_u = std of noise trading.
 - Higher lambda = more information asymmetry and less liquidity.
 
-### Estimation of Price Impact (Kyle Lambda)
+#### Estimation of Price Impact (Kyle Lambda)
 
 Regress price changes on signed order flow:
 
@@ -115,20 +103,20 @@ where OF = sum of signed trades (buyer-initiated minus seller-initiated volume).
 ```python
 import statsmodels.api as sm
 
-# Using 5-minute intervals
+## Using 5-minute intervals
 model = sm.OLS(price_changes, sm.add_constant(signed_order_flow)).fit(cov_type='HAC',
     cov_kwds={'maxlags': 5})
 kyle_lambda = model.params[1]
 ```
 
-### Glosten-Milgrom (1985)
+#### Glosten-Milgrom (1985)
 
 Sequential trade model with Bayesian updating.
 - Market maker sets bid and ask to break even in expectation.
 - Spread reflects adverse selection cost (informed traders) offset by profits from noise traders.
 - Wider spread when information asymmetry is higher.
 
-### PIN Model (Easley-Kiefer-O'Hara-Paperman, 1996)
+#### PIN Model (Easley-Kiefer-O'Hara-Paperman, 1996)
 
 Probability of Informed Trading:
 
@@ -142,25 +130,25 @@ PIN = (alpha * mu) / (alpha * mu + 2 * epsilon)
 High PIN → high information asymmetry.
 
 ```python
-# PIN estimation requires MLE on the likelihood:
-# L = Product over days of:
-#   (1-alpha)*P(B|eps)*P(S|eps) + alpha*delta*P(B|eps+mu)*P(S|eps) + alpha*(1-delta)*P(B|eps)*P(S|eps+mu)
-# where P(.) are Poisson probabilities
-# Typically use numerical optimization (e.g., scipy.optimize.minimize)
+## PIN estimation requires MLE on the likelihood:
+## L = Product over days of:
+##   (1-alpha)*P(B|eps)*P(S|eps) + alpha*delta*P(B|eps+mu)*P(S|eps) + alpha*(1-delta)*P(B|eps)*P(S|eps+mu)
+## where P(.) are Poisson probabilities
+## Typically use numerical optimization (e.g., scipy.optimize.minimize)
 ```
 
-### VPIN (Volume-Synchronized PIN)
+#### VPIN (Volume-Synchronized PIN)
 
 Real-time version of PIN using volume buckets instead of time intervals. Bulk-classifies trades using the BVC (Bulk Volume Classification) algorithm. Easier to compute than traditional PIN.
 
-## Bid-Ask Spread Decomposition
+### Bid-Ask Spread Decomposition
 
 The spread has three components:
 1. **Order processing costs**: physical costs of executing trades.
 2. **Inventory holding costs**: compensation for bearing inventory risk.
 3. **Adverse selection costs**: protection against informed traders.
 
-### Huang-Stoll (1997) Decomposition
+#### Huang-Stoll (1997) Decomposition
 
 Decomposes the effective spread into:
 - Adverse selection component (pi)
@@ -169,15 +157,15 @@ Decomposes the effective spread into:
 
 Using a regression of trade-to-trade price changes on trade indicators.
 
-### Lin-Sanger-Booth (1995)
+#### Lin-Sanger-Booth (1995)
 
 Decomposes the effective half-spread:
 - Adverse selection = lambda = permanent price impact of a trade.
 - Transitory component = 1 - lambda = temporary price effect (reverts).
 
-## Realized Volatility and High-Frequency Data
+### Realized Volatility and High-Frequency Data
 
-### Realized Variance
+#### Realized Variance
 
 RV_t = Sum(r_{t,i}^2) for i = 1 to M
 
@@ -186,13 +174,13 @@ where r_{t,i} are intraday returns sampled at frequency 1/M (e.g., 5-minute retu
 - Consistent estimator of integrated variance as sampling frequency increases.
 - But: microstructure noise (bid-ask bounce) biases RV upward at high frequencies.
 
-### Optimal Sampling Frequency
+#### Optimal Sampling Frequency
 - **Signature plot**: Plot RV as a function of sampling frequency. RV increases at very high frequencies (noise) and stabilizes at moderate frequencies.
 - **5-minute rule of thumb**: 5-minute sampling often balances noise and information.
 - **Kernel-based estimators**: Barndorff-Nielsen et al. (2008) realized kernel handles noise.
 - **Two-scale estimator**: Zhang-Mykland-Ait-Sahalia (2005) — combines fast and slow scale RV.
 
-### Realized Volatility Variants
+#### Realized Volatility Variants
 
 **Bipower variation**: BV = (pi/2) * Sum(|r_{t,i}| * |r_{t,i-1}|). Robust to jumps.
 
@@ -211,26 +199,26 @@ def bipower_variation(intraday_returns):
     return (np.pi / 2) * np.sum(abs_ret[1:] * abs_ret[:-1])
 ```
 
-## Market Design and Structure
+### Market Design and Structure
 
-### Order Types
+#### Order Types
 - **Market order**: execute immediately at best available price. Demands liquidity.
 - **Limit order**: execute only at specified price or better. Supplies liquidity.
 - **Stop order**: becomes market order when price reaches trigger.
 
-### Market Types
+#### Market Types
 - **Continuous limit order book (CLOB)**: orders match continuously (most equity exchanges).
 - **Call auction**: orders accumulate and clear at a single price (opening/closing auctions).
 - **Dealer market**: quotes provided by designated market makers (OTC bonds, forex).
 - **Dark pools**: non-displayed liquidity venues for institutional block trades.
 
-### Market Quality Metrics
+#### Market Quality Metrics
 - Depth: volume available at best bid and ask.
 - Resilience: speed at which depth replenishes after a large trade.
 - Tightness: bid-ask spread.
 - Immediacy: speed of execution.
 
-## Practical Checklist
+### Practical Checklist
 
 1. Choose liquidity measure appropriate to data availability:
    - Daily data only: Amihud, Roll, Corwin-Schultz.
@@ -245,7 +233,7 @@ def bipower_variation(intraday_returns):
 9. Account for intraday patterns (U-shaped spread pattern: wider at open/close).
 10. Discuss whether results are driven by market microstructure artifacts vs genuine economic effects.
 
-## Key References
+### Key References
 
 - Kyle, A.S. (1985). Continuous auctions and insider trading. Econometrica.
 - Glosten, L.R. and Milgrom, P.R. (1985). Bid, ask and transaction prices. Journal of Financial Economics.
@@ -257,28 +245,3 @@ def bipower_variation(intraday_returns):
 - Corwin, S.A. and Schultz, P. (2012). A simple way to estimate bid-ask spreads from daily high and low prices. Journal of Finance.
 - Huang, R.D. and Stoll, H.R. (1997). The components of the bid-ask spread. Review of Financial Studies.
 - O'Hara, M. (1995). Market Microstructure Theory. Blackwell.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/modeling/market-microstructure.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/modeling-market-microstructure/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

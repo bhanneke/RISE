@@ -4,31 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/research-refine/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/research-refine/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: research-refine
-description: 'Turn a vague research direction into a problem-anchored, elegant, frontier-aware, implementation-oriented method plan via iterative GPT-5.4 review. Use when the user says "refine my approach", "帮我细化方案", "decompose this problem", "打磨idea", "refine research plan", "细化研究方案", or wants a concrete research method that stays simple, focused, and top-venue ready instead of a vague or overbuilt idea.'
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Research Refine: Problem-Anchored, Elegant, Frontier-Aware Plan Refinement
+## Research Refine: Problem-Anchored, Elegant, Frontier-Aware Plan Refinement
 
 Refine and concretize: **$ARGUMENTS**
 
-## Overview
+### Overview
 
 Use this skill when the research problem is already visible but the technical route is still fuzzy. The goal is not to produce a bloated proposal or a benchmark shopping list. The goal is to turn a vague direction into a **problem -> focused method -> minimal validation** document that is concrete enough to implement, elegant enough to feel paper-worthy, and current enough to resonate in the foundation-model era.
 
@@ -51,7 +33,7 @@ User input (PROBLEM + vague APPROACH)
   -> Optional handoff: /experiment-plan for a detailed execution-ready experiment roadmap
 ```
 
-## Constants
+### Constants
 
 - **REVIEWER_MODEL = `gpt-5.5`** — Reviewer model used via Codex MCP.
 - **MAX_ROUNDS = 5** — Maximum review-revise rounds.
@@ -64,7 +46,7 @@ User input (PROBLEM + vague APPROACH)
 
 > Override via argument if needed, e.g. `/research-refine "problem | approach" -- max rounds: 3, threshold: 9`.
 
-## State Persistence (Checkpoint Recovery)
+### State Persistence (Checkpoint Recovery)
 
 Long-running refinement sessions may fail mid-way (e.g., API timeout, context compaction, or session interruption). To avoid losing completed work, persist state to `refine-logs/REFINE_STATE.json` after each phase boundary:
 
@@ -96,7 +78,7 @@ Long-running refinement sessions may fail mid-way (e.g., API timeout, context co
 - **Write after each phase completes** (not before). Overwrite each time — only the latest state matters.
 - **On completion** (Phase 5 finished), set `"status": "completed"`.
 
-## Output Structure
+### Output Structure
 
 ```
 refine-logs/
@@ -115,9 +97,9 @@ refine-logs/
 
 Every `round-N-refinement.md` must contain a **full anchored proposal**, not just incremental fixes.
 
-## Workflow
+### Workflow
 
-### Initialization (Checkpoint Recovery)
+#### Initialization (Checkpoint Recovery)
 
 Before starting any phase, check whether a previous run left a checkpoint:
 
@@ -143,7 +125,7 @@ Before starting any phase, check whether a previous run left a checkpoint:
 
 3. **On fresh start**, ensure `refine-logs/` directory exists and proceed to Phase 0.
 
-### Phase 0: Freeze the Problem Anchor
+#### Phase 0: Freeze the Problem Anchor
 
 Before proposing anything, extract the user's immutable bottom-line problem. This anchor must be copied verbatim into every proposal and every refinement round.
 
@@ -159,7 +141,7 @@ If later reviewer feedback would change the problem being solved, mark that as *
 
 **Checkpoint:** Write `refine-logs/REFINE_STATE.json` with `{"phase": "anchor", "round": 0, "threadId": null, "last_score": null, "last_verdict": null, "status": "in_progress", "timestamp": "<now>"}`.
 
-### Phase 1: Build the Initial Proposal
+#### Phase 1: Build the Initial Proposal
 
 #### Step 1.1: Scan Grounding Material
 
@@ -244,88 +226,88 @@ Save to `refine-logs/round-0-initial-proposal.md`.
 Use this structure:
 
 ```markdown
-# Research Proposal: [Title]
+## Research Proposal: [Title]
 
-## Problem Anchor
+### Problem Anchor
 - Bottom-line problem:
 - Must-solve bottleneck:
 - Non-goals:
 - Constraints:
 - Success condition:
 
-## Technical Gap
+### Technical Gap
 [Why current methods fail, why naive bigger systems are not enough, and what mechanism is missing]
 
-## Method Thesis
+### Method Thesis
 - One-sentence thesis:
 - Why this is the smallest adequate intervention:
 - Why this route is timely in the foundation-model era:
 
-## Contribution Focus
+### Contribution Focus
 - Dominant contribution:
 - Optional supporting contribution:
 - Explicit non-contributions:
 
-## Proposed Method
-### Complexity Budget
+### Proposed Method
+#### Complexity Budget
 - Frozen / reused backbone:
 - New trainable components:
 - Tempting additions intentionally not used:
 
-### System Overview
+#### System Overview
 [Step-by-step pipeline or ASCII graph]
 
-### Core Mechanism
+#### Core Mechanism
 - Input / output:
 - Architecture or policy:
 - Training signal / loss:
 - Why this is the main novelty:
 
-### Optional Supporting Component
+#### Optional Supporting Component
 - Only include if truly necessary:
 - Input / output:
 - Training signal / loss:
 - Why it does not create contribution sprawl:
 
-### Modern Primitive Usage
+#### Modern Primitive Usage
 - Which LLM / VLM / Diffusion / RL-era primitive is used:
 - Exact role in the pipeline:
 - Why it is more natural than an old-school alternative:
 
-### Integration into Base Generator / Downstream Pipeline
+#### Integration into Base Generator / Downstream Pipeline
 [Where the new method attaches, what is frozen, what is trainable, inference order]
 
-### Training Plan
+#### Training Plan
 [Stagewise or joint training, losses, data construction, pseudo-labels, schedules]
 
-### Failure Modes and Diagnostics
+#### Failure Modes and Diagnostics
 - [Failure mode]:
 - [How to detect]:
 - [Fallback or mitigation]:
 
-### Novelty and Elegance Argument
+#### Novelty and Elegance Argument
 [Closest work, exact difference, why this is a focused mechanism-level contribution rather than a module pile-up]
 
-## Claim-Driven Validation Sketch
-### Claim 1: [Main claim]
+### Claim-Driven Validation Sketch
+#### Claim 1: [Main claim]
 - Minimal experiment:
 - Baselines / ablations:
 - Metric:
 - Expected evidence:
 
-### Claim 2: [Optional]
+#### Claim 2: [Optional]
 - Minimal experiment:
 - Baselines / ablations:
 - Metric:
 - Expected evidence:
 
-## Experiment Handoff Inputs
+### Experiment Handoff Inputs
 - Must-prove claims:
 - Must-run ablations:
 - Critical datasets / metrics:
 - Highest-risk assumptions:
 
-## Compute & Timeline Estimate
+### Compute & Timeline Estimate
 - Estimated GPU-hours:
 - Data / annotation cost:
 - Timeline:
@@ -333,7 +315,7 @@ Use this structure:
 
 **Checkpoint:** Update `refine-logs/REFINE_STATE.json` with `{"phase": "proposal", "round": 0, ...}`.
 
-### Phase 2: External Method Review (Round 1)
+#### Phase 2: External Method Review (Round 1)
 
 Send the full proposal to GPT-5.4 for an **elegance-first, frontier-aware, method-first** review. The reviewer should spend most of the critique budget on the method itself, not on expanding the experiment menu.
 
@@ -410,7 +392,7 @@ Save review to `refine-logs/round-1-review.md` with the raw response in a `<deta
 
 **Checkpoint:** Update `refine-logs/REFINE_STATE.json` with `{"phase": "review", "round": 1, "threadId": "<saved>", "last_score": <parsed>, "last_verdict": "<parsed>", ...}`.
 
-### Phase 3: Parse Feedback and Revise the Method
+#### Phase 3: Parse Feedback and Revise the Method
 
 #### Step 3.1: Parse the Review
 
@@ -433,7 +415,7 @@ Extract:
 Update `refine-logs/score-history.md`:
 
 ```markdown
-# Score Evolution
+## Score Evolution
 
 | Round | Problem Fidelity | Method Specificity | Contribution Quality | Frontier Leverage | Feasibility | Validation Focus | Venue Readiness | Overall | Verdict |
 |-------|------------------|--------------------|----------------------|-------------------|-------------|------------------|-----------------|---------|---------|
@@ -476,43 +458,43 @@ Do **not** add multiple parallel contributions just to chase score. If the revie
 Save to `refine-logs/round-N-refinement.md`:
 
 ```markdown
-# Round N Refinement
+## Round N Refinement
 
-## Problem Anchor
+### Problem Anchor
 [Copy verbatim from round 0]
 
-## Anchor Check
+### Anchor Check
 - Original bottleneck:
 - Why the revised method still addresses it:
 - Reviewer suggestions rejected as drift:
 
-## Simplicity Check
+### Simplicity Check
 - Dominant contribution after revision:
 - Components removed or merged:
 - Reviewer suggestions rejected as unnecessary complexity:
 - Why the remaining mechanism is still the smallest adequate route:
 
-## Changes Made
+### Changes Made
 
-### 1. [Method section changed]
+#### 1. [Method section changed]
 - Reviewer said:
 - Action:
 - Reasoning:
 - Impact on core method:
 
-### 2. [Novelty / modernity / feasibility / validation change]
+#### 2. [Novelty / modernity / feasibility / validation change]
 - Reviewer said:
 - Action:
 - Reasoning:
 - Impact on core method:
 
-## Revised Proposal
+### Revised Proposal
 [Full updated proposal from Problem Anchor through Claim-Driven Validation Sketch]
 ```
 
 **Checkpoint:** Update `refine-logs/REFINE_STATE.json` with `{"phase": "refine", "round": N, ...}`.
 
-### Phase 4: Re-evaluation (Round 2+)
+#### Phase 4: Re-evaluation (Round 2+)
 
 Send the revised proposal back to GPT-5.4 in the **same thread**:
 
@@ -558,14 +540,14 @@ Then return to Phase 3 until:
 - **Overall score >= SCORE_THRESHOLD** and verdict is READY and no unresolved drift
 - or **MAX_ROUNDS reached**
 
-### Phase 5: Final Report and Logs
+#### Phase 5: Final Report and Logs
 
 #### Step 5.1: Write `refine-logs/REVIEW_SUMMARY.md`
 
 This file is the high-level round-by-round review record. It should answer: each round was trying to solve what, what changed, what got resolved, and what remained.
 
 ```markdown
-# Review Summary
+## Review Summary
 
 **Problem**: [user's problem]
 **Initial Approach**: [user's vague approach]
@@ -574,24 +556,24 @@ This file is the high-level round-by-round review record. It should answer: each
 **Final Score**: X / 10
 **Final Verdict**: [READY / REVISE / RETHINK]
 
-## Problem Anchor
+### Problem Anchor
 [Verbatim anchor used across all rounds]
 
-## Round-by-Round Resolution Log
+### Round-by-Round Resolution Log
 
 | Round | Main Reviewer Concerns | What This Round Simplified / Modernized | Solved? | Remaining Risk |
 |-------|-------------------------|------------------------------------------|---------|----------------|
 | 1     | [top issues from review] | [main method changes]                    | [yes / partial / no] | [if any] |
 | 2     | ...                     | ...                                      | ...     | ...            |
 
-## Overall Evolution
+### Overall Evolution
 - [How the method became more concrete]
 - [How the dominant contribution became more focused]
 - [How unnecessary complexity was removed]
 - [How modern technical leverage improved or stayed intentionally minimal]
 - [How drift was avoided or corrected]
 
-## Final Status
+### Final Status
 - Anchor status: [preserved / corrected / unresolved]
 - Focus status: [tight / slightly broad / still diffuse]
 - Modernity status: [appropriately frontier-aware / intentionally conservative / still old-school]
@@ -604,7 +586,7 @@ This file is the high-level round-by-round review record. It should answer: each
 This file is the clean final version document. It should contain only the final proposal itself, without review chatter, round history, or raw reviewer output.
 
 ```markdown
-# Research Proposal: [Title]
+## Research Proposal: [Title]
 
 [Paste the final refined proposal only]
 ```
@@ -614,7 +596,7 @@ If the final verdict is not READY, still write the best current final version he
 #### Step 5.3: Write `refine-logs/REFINEMENT_REPORT.md`
 
 ```markdown
-# Refinement Report
+## Refinement Report
 
 **Problem**: [user's problem]
 **Initial Approach**: [user's vague approach]
@@ -623,44 +605,44 @@ If the final verdict is not READY, still write the best current final version he
 **Final Score**: X / 10
 **Final Verdict**: [READY / REVISE / RETHINK]
 
-## Problem Anchor
+### Problem Anchor
 [Verbatim anchor used across all rounds]
 
-## Output Files
+### Output Files
 - Review summary: `refine-logs/REVIEW_SUMMARY.md`
 - Final proposal: `refine-logs/FINAL_PROPOSAL.md`
 
-## Score Evolution
+### Score Evolution
 
 | Round | Problem Fidelity | Method Specificity | Contribution Quality | Frontier Leverage | Feasibility | Validation Focus | Venue Readiness | Overall | Verdict |
 |-------|------------------|--------------------|----------------------|-------------------|-------------|------------------|-----------------|---------|---------|
 | 1     | ...              | ...                | ...                  | ...               | ...         | ...              | ...             | ...     | ...     |
 
-## Round-by-Round Review Record
+### Round-by-Round Review Record
 
 | Round | Main Reviewer Concerns | What Was Changed | Result |
 |-------|-------------------------|------------------|--------|
 | 1     | [top issues]            | [main fixes]     | [resolved / partial / unresolved] |
 | 2     | ...                     | ...              | ...    |
 
-## Final Proposal Snapshot
+### Final Proposal Snapshot
 - Canonical clean version lives in `refine-logs/FINAL_PROPOSAL.md`
 - Summarize the final thesis in 3-5 bullets here
 
-## Method Evolution Highlights
+### Method Evolution Highlights
 1. [Most important simplification or focusing move]
 2. [Most important mechanism upgrade]
 3. [Most important modernization or justification for staying simple]
 
-## Pushback / Drift Log
+### Pushback / Drift Log
 | Round | Reviewer Said | Author Response | Outcome |
 |-------|---------------|-----------------|---------|
 | 1     | [criticism]   | [pushback + anchor / evidence] | [accepted / rejected] |
 
-## Remaining Weaknesses
+### Remaining Weaknesses
 [Honest unresolved issues]
 
-## Raw Reviewer Responses
+### Raw Reviewer Responses
 
 <details>
 <summary>Round 1 Review</summary>
@@ -671,7 +653,7 @@ If the final verdict is not READY, still write the best current final version he
 
 ...
 
-## Next Steps
+### Next Steps
 - If READY: proceed to `/experiment-plan` for a full experiment roadmap, then `/run-experiment`
 - If REVISE: manually address the remaining mechanism weaknesses, then re-run `/research-refine`
 - If RETHINK: revisit the core mechanism, possibly with `/idea-creator`
@@ -712,14 +694,14 @@ Suggested next step: /experiment-plan
 
 **Checkpoint:** Update `refine-logs/REFINE_STATE.json` with `{"phase": "done", "status": "completed", ...}`.
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 
@@ -737,7 +719,7 @@ Suggested next step: /experiment-plan
 - **Be specific about compute and data assumptions.** Vague "we'll train a model" is not enough.
 - **Document everything.** Save every raw review, every anchor check, every simplicity check, and every major method change.
 
-## Composing with Other Skills
+### Composing with Other Skills
 
 This skill sits between idea discovery and execution:
 
@@ -760,33 +742,3 @@ Typical flow:
 6. Later loops operate on results, not just ideas
 
 This skill also works standalone if you already know the problem and just need the method to become concrete.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/research-refine/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/research-refine/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

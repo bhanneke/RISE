@@ -4,46 +4,27 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/proof-writer/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/proof-writer/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: proof-writer
-description: Writes rigorous mathematical proofs for ML/AI theory. Use when asked to prove a theorem, lemma, proposition, or corollary, fill in missing proof steps, formalize a proof sketch, 补全证明, 写证明, 证明某个命题, or determine whether a claimed proof can actually be completed under the stated assumptions.
-argument-hint: [theorem-statement-and-assumptions]
-allowed-tools: Read, Write, Edit, Grep, Glob
----
-
-# Proof Write: Rigorous Theorem / Lemma Drafting
+## Proof Write: Rigorous Theorem / Lemma Drafting
 
 Write a mathematically honest proof package, not a polished fake proof.
 
-## Constants
+### Constants
 
 - DEFAULT_PROOF_DOC = `PROOF_PACKAGE.md` in project root
 - STATUS = `PROVABLE AS STATED | PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION | NOT CURRENTLY JUSTIFIED`
 
-## Context: $ARGUMENTS
+### Context: $ARGUMENTS
 
-## Goal
+### Goal
 
 Produce exactly one of:
 1. a complete proof of the original claim
 2. a corrected claim plus a proof of the corrected claim
 3. a blockage report explaining why the claim is not currently justified
 
-## Inputs
+### Inputs
 
 Extract and normalize:
 - exact theorem / lemma / proposition / corollary statement
@@ -55,9 +36,9 @@ Extract and normalize:
 
 If notation or assumptions are ambiguous, state the exact interpretation you are using before proving anything.
 
-## Workflow
+### Workflow
 
-### Step 1: Gather Proof Context
+#### Step 1: Gather Proof Context
 Determine the target proof file with this priority:
 1. a file path explicitly specified by the user
 2. a proof draft already referenced in local notes or theorem files
@@ -74,7 +55,7 @@ Extract:
 - proof sketch or partial proof
 - nearby lemmas that the draft may depend on
 
-### Step 2: Normalize the Claim
+#### Step 2: Normalize the Claim
 Restate:
 - the exact claim being proved
 - all assumptions, separately from conclusions
@@ -89,7 +70,7 @@ Identify:
 Preserve the user's original theorem statement unless a change is explicitly required.
 If you use a stronger normalization or cleaner internal formulation only to make the proof easier, keep that as an internal proof device rather than silently replacing the original claim.
 
-### Step 3: Feasibility Triage
+#### Step 3: Feasibility Triage
 Before writing a proof, classify the claim into exactly one status:
 - `PROVABLE AS STATED`
 - `PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION`
@@ -104,7 +85,7 @@ Check explicitly:
 If the claim is not provable as stated, do NOT fabricate a proof.
 Do NOT silently strengthen assumptions or narrow the theorem's scope just to make the proof work.
 
-### Step 4: Build a Dependency Map
+#### Step 4: Build a Dependency Map
 Choose a proof strategy, for example:
 - direct
 - contradiction
@@ -123,7 +104,7 @@ Then write a dependency map:
 
 If one step is substantial, isolate it as a lemma instead of burying it in one sentence.
 
-### Step 5: Write the Proof Document
+#### Step 5: Write the Proof Document
 Write to the chosen target proof file.
 
 If the target proof file already exists:
@@ -154,7 +135,7 @@ Mathematical rigor requirements:
 - never write math in plain text
 - if the proof uses an equivalent normalization that is stronger in appearance than the user's original theorem statement, label it explicitly as a proof device and keep the original claim separate
 
-### Step 6: Final Verification
+#### Step 6: Final Verification
 Before finishing the target proof file, verify:
 - the theorem statement exactly matches what was actually shown
 - every assumption used is stated
@@ -166,73 +147,73 @@ Before finishing the target proof file, verify:
 
 If a key step still cannot be justified, downgrade the status and write a blockage report instead of forcing a proof.
 
-## Required File Structure
+### Required File Structure
 
 Write the target proof file using this structure:
 
 ```md
-# Proof Package
+## Proof Package
 
-## Claim
+### Claim
 [exact statement]
 
-## Status
+### Status
 PROVABLE AS STATED / PROVABLE AFTER WEAKENING / NOT CURRENTLY JUSTIFIED
 
-## Assumptions
+### Assumptions
 - ...
 
-## Notation
+### Notation
 - ...
 
-## Proof Strategy
+### Proof Strategy
 [chosen approach and why]
 
-## Dependency Map
+### Dependency Map
 1. Main claim depends on ...
 2. Lemma A depends on ...
 3. Step k uses ...
 
-## Proof
+### Proof
 Step 1. ...
 Step 2. ...
 ...
 Therefore the claim follows. ∎
 
-## Corrections or Missing Assumptions
+### Corrections or Missing Assumptions
 - [only if needed]
 
-## Open Risks
+### Open Risks
 - [remaining fragile points, if any]
 ```
 
-## Output Modes
+### Output Modes
 
-### If the claim is provable as stated
+#### If the claim is provable as stated
 Write the full file structure above with a complete proof.
 
-### If the original claim is too strong
+#### If the original claim is too strong
 Write:
 - why the original statement is not justified
 - the corrected claim
 - the minimal extra assumption if one exists
 - a proof of the corrected claim
 
-### If the proof cannot be completed honestly
+#### If the proof cannot be completed honestly
 Write:
 - `Status: NOT CURRENTLY JUSTIFIED`
 - the exact blocker: missing lemma, invalid implication, hidden assumption, or counterexample direction
 - what extra assumption, lemma, or derivation would be needed to finish the proof
 - a corrected weaker statement if one is available
 
-## Chat Response
+### Chat Response
 
 After writing the target proof file, respond briefly with:
 - status
 - whether the original claim survived unchanged
 - what file was updated
 
-## Key Rules
+### Key Rules
 
 - Never fabricate a missing proof step.
 - Prefer weakening the claim over overclaiming.
@@ -241,33 +222,3 @@ After writing the target proof file, respond briefly with:
 - If the statement is false as written, say so explicitly and give a counterexample or repaired statement.
 - If uncertainty remains, mark it explicitly in `Open Risks`; do not hide it inside polished prose.
 - Correctness matters more than brevity.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/proof-writer/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/proof-writer/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

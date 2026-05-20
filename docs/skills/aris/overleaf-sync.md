@@ -4,28 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>submission</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>dissemination</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/overleaf-sync/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/overleaf-sync/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: overleaf-sync
-description: "Two-way sync between a local paper directory and an Overleaf project via the Overleaf Git bridge (Premium feature). Lets you keep ARIS audit/edit workflows on the local copy while collaborators edit in the Overleaf web UI. Token never touches the agent — user does the one-time auth via macOS Keychain. Use when user says \"同步 overleaf\", \"overleaf sync\", \"推送到 overleaf\", \"connect overleaf\", \"Overleaf 桥接\", \"pull overleaf\", \"push overleaf\", or wants to bridge their ARIS paper directory with an Overleaf project."
-argument-hint: [setup <project-id> | pull | push | status]
-allowed-tools: Bash(*), Read, Grep, Glob, Edit, Write
----
-
-# Overleaf Sync
+## Overleaf Sync
 
 Bridge a local paper directory with an Overleaf project so that:
 
@@ -34,19 +15,19 @@ Bridge a local paper directory with an Overleaf project so that:
 
 This uses the official **Overleaf Git bridge** (Premium feature). The agent **never sees your authentication token** — you do the one-time auth manually so the token lives in macOS Keychain, not in chat history or `.git/config`.
 
-## When to Use This Skill
+### When to Use This Skill
 
 - You want to use Overleaf as the editing surface (better collaboration, shared with team) but still run ARIS pipelines locally
 - You want to take an existing local ARIS paper and push it to Overleaf for a co-author to edit
 - A collaborator made changes in Overleaf and you want to pull + diff them before continuing local work
 
-## Constants
+### Constants
 
 - **CLONE_DIR_DEFAULT** = `paper-overleaf` (sibling of existing `paper/`, NOT inside `paper/`)
 - **CREDENTIAL_HELPER** = `osxkeychain` (macOS) / `manager` (Windows) / `cache` (Linux fallback)
 - **TOKEN_HANDLING** = **NEVER write token to disk, env var, or chat**. User pastes it once into the terminal credential prompt; the OS keychain stores it from then on.
 
-## Architecture
+### Architecture
 
 ```
 ┌─────────────────┐       git pull/push      ┌─────────────────┐
@@ -59,9 +40,9 @@ The `paper-overleaf/` directory is a **git clone of the Overleaf project**. The 
 
 **Single-source-of-truth rule**: at any given time, treat *one* of them as authoritative for active editing. Switch directions explicitly with `pull` or `push`, and run a `status` check before either to surface unexpected divergence.
 
-## Sub-commands
+### Sub-commands
 
-### `setup <project-id>` — one-time
+#### `setup <project-id>` — one-time
 
 Sets up the bridge for a new Overleaf project. **The user runs this in their own terminal, never through the agent.** The skill ships with a hardened setup script that:
 
@@ -94,12 +75,12 @@ bash <ARIS_REPO>/tools/overleaf_audit.sh .   # must report "Audit clean"
 
 If `paper-overleaf/` exists but is empty (new Overleaf project), the agent then mirrors local `paper/` into it (see `push` workflow).
 
-### `pull` — before each editing session
+#### `pull` — before each editing session
 
 ```bash
 cd paper-overleaf && git pull --ff-only
 
-# Show what changed since last pull
+## Show what changed since last pull
 LAST=$(git rev-parse HEAD@{1})
 git diff --stat $LAST..HEAD
 git diff $LAST..HEAD -- 'sec/*.tex'        # detailed view for prose changes
@@ -126,20 +107,20 @@ For each diff hunk, decide one of:
 After deciding per-hunk:
 
 ```bash
-# Sync only the files the user approved into local paper/
+## Sync only the files the user approved into local paper/
 rsync -av paper-overleaf/sec/0.abstract.tex paper/sec/0.abstract.tex
-# (or use Edit tool for surgical changes that skip half-sentences)
+## (or use Edit tool for surgical changes that skip half-sentences)
 ```
 
-### `push` — after local editing
+#### `push` — after local editing
 
 Use after ARIS skills have edited `paper/` and you want collaborators on Overleaf to see the changes.
 
 ```bash
-# 1. Always pull first to surface remote drift
+## 1. Always pull first to surface remote drift
 cd paper-overleaf && git pull --ff-only
 
-# 2. If pull was a no-op, sync local paper → paper-overleaf
+## 2. If pull was a no-op, sync local paper → paper-overleaf
 rsync -av --delete \
   --exclude='.git' --exclude='.DS_Store' \
   --exclude='*.aux' --exclude='*.log' --exclude='*.bbl' --exclude='*.blg' \
@@ -147,11 +128,11 @@ rsync -av --delete \
   --exclude='*.synctex.gz' --exclude='*.toc' \
   paper/ paper-overleaf/
 
-# 3. Show what would be pushed
+## 3. Show what would be pushed
 git status --short
 git diff --stat
 
-# 4. Commit + push
+## 4. Commit + push
 git add -A
 git commit -m "<descriptive message — what ARIS changed and why>"
 git push
@@ -165,7 +146,7 @@ git push
 
 **Confirmation gate**: `push` writes to a shared resource. ALWAYS show the user `git diff --stat` (and a representative hunk for prose changes) before running `git push`. Wait for explicit confirmation unless the user said `auto: true` upfront.
 
-### `status` — diagnostic
+#### `status` — diagnostic
 
 ```bash
 cd paper-overleaf
@@ -189,7 +170,7 @@ Three-way state assessment:
 | No  | Yes | Local ARIS edits unsynced | Run `push` |
 | Yes | Yes | Diverged — needs merge | Stop, surface to user, do NOT auto-resolve |
 
-## Conflict Resolution
+### Conflict Resolution
 
 If `git pull --ff-only` fails because of true divergence:
 
@@ -198,7 +179,7 @@ If `git pull --ff-only` fails because of true divergence:
 3. Show the user `git log origin/master ^HEAD` (their Overleaf commits) and `git log HEAD ^origin/master` (local ARIS commits).
 4. Ask the user which side to take per file, or to manually merge in Overleaf and then re-pull.
 
-## Token Security — Defense in Depth
+### Token Security — Defense in Depth
 
 Behavioral rules alone are not enough — the next agent reading this skill might forget them. The skill therefore relies on **technical guards** that hold even if the agent misbehaves:
 
@@ -217,7 +198,7 @@ Behavioral rules (still apply, but secondary):
 - **Never** include a token in a `git remote -v` URL — strip it after clone.
 - On `401 Unauthorized` from push/pull, tell the user the keychain entry expired and to re-run `overleaf_setup.sh`. Do **not** ask for a fresh token.
 
-## Mutual-Exclusion Rule
+### Mutual-Exclusion Rule
 
 The single biggest source of pain in two-way sync is **simultaneous editing on both sides**.
 
@@ -226,45 +207,15 @@ The single biggest source of pain in two-way sync is **simultaneous editing on b
 
 When in doubt, run `status` first.
 
-## Output Contract
+### Output Contract
 
 - `paper-overleaf/` directory at repo root, git clone of Overleaf project (origin URL has NO token)
 - `paper/` directory unchanged in role — still the ARIS working copy
 - Each `pull`/`push` operation: a one-line summary back to the user (commits pulled / pushed, file count, link to Overleaf project URL)
 
-## See Also
+### See Also
 
 - `/paper-claim-audit` — re-run after pulling Overleaf changes that touch numbers
 - `/citation-audit` — re-run after pulling Overleaf changes that add/edit `\cite{...}`
 - `/paper-compile` — local LaTeX build; Overleaf compiles independently in the cloud
 - Overleaf Git bridge docs: https://www.overleaf.com/learn/how-to/Using_Git_and_GitHub
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/overleaf-sync/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>submission</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>dissemination</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/overleaf-sync/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

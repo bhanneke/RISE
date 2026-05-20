@@ -4,38 +4,19 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-poster/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-poster/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-poster
-description: "Generate a conference poster (article + tcbposter LaTeX → A0/A1 PDF + editable PPTX + SVG) from a compiled paper. Use when user says \"做海报\", \"制作海报\", \"conference poster\", \"make poster\", \"生成poster\", \"poster session\", or wants to create a poster for a conference presentation."
-argument-hint: "[paper-directory-or-venue] [— style-ref: <source>]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Paper Poster: From Paper to Conference Poster
+## Paper Poster: From Paper to Conference Poster
 
 Generate a conference poster from: **$ARGUMENTS**
 
-## Context
+### Context
 
 This skill runs **after** Workflow 3 (`/paper-writing`). It takes a compiled paper and generates a print-ready poster for conference poster sessions. The poster extracts key content from the paper — it does **not** dump the full paper text onto a poster.
 
 Unlike papers (dense prose, 8-15 pages), posters are **visual-first**: one page, 4 columns, bullet points only, figures dominant. A good poster tells the story in 60 seconds.
 
-## Constants
+### Constants
 
 - **VENUE = `NeurIPS`** — Target venue, determines color scheme. Supported: `NeurIPS`, `ICML`, `ICLR`, `AAAI`, `ACL`, `EMNLP`, `CVPR`, `ECCV`, `GENERIC`. Override via argument (e.g., `/paper-poster "— venue: ICML"`).
 - **POSTER_SIZE = `A0`** — Paper size. Options: `A0` (841x1189mm, default), `A1` (594x841mm).
@@ -50,16 +31,16 @@ Unlike papers (dense prose, 8-15 pages), posters are **visual-first**: one page,
 
 > 💡 Override: `/paper-poster "paper/" — venue: CVPR, size: A1, orientation: portrait, columns: 3`
 
-## Optional: Style reference (`— style-ref: <source>`, opt-in)
+### Optional: Style reference (`— style-ref: <source>`, opt-in)
 
 Lets the user steer the poster's **structural** layout (panel-to-text ratio, figure density, caption length) toward a reference paper. **Default OFF — when the user does not pass `— style-ref`, do nothing differently from before.**
 
 Only when `— style-ref: <source>` appears in `$ARGUMENTS`, run the helper FIRST:
 
 ```bash
-# Resolve $STYLE_HELPER via the canonical strict-safe chain (see
-# shared-references/integration-contract.md §2). Policy A — gate:
-# unresolved helper means --style-ref cannot be satisfied, so abort.
+## Resolve $STYLE_HELPER via the canonical strict-safe chain (see
+## shared-references/integration-contract.md §2). Policy A — gate:
+## unresolved helper means --style-ref cannot be satisfied, so abort.
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -91,7 +72,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 - **Never copy poster content, design elements, slogans, or section names verbatim** from anything reachable through the cache.
 - **Never pass `— style-ref` (or the cache contents) to the GPT-5.4 reviewer sub-agent** — the reviewer must judge the poster's clarity on its own merits.
 
-## Venue Color Schemes
+### Venue Color Schemes
 
 Use **deep, saturated** colors for primary — pastel/light colors wash out on large posters viewed from distance. Each venue uses a **3-color system**: primary (dark, for title bar), secondary (medium, for section headers), accent (contrast, for highlights).
 
@@ -109,7 +90,7 @@ Use **deep, saturated** colors for primary — pastel/light colors wash out on l
 
 > ⚠️ **Color lesson**: Never use light/pastel colors (e.g., `#8B5CF6`) as primary — they look washed out on A0 posters. Always use the darkest shade as primary for the title bar.
 
-## State Persistence (Compact Recovery)
+### State Persistence (Compact Recovery)
 
 Poster generation can be long. Persist state to `poster/POSTER_STATE.json` after each phase:
 
@@ -129,13 +110,13 @@ Poster generation can be long. Persist state to `poster/POSTER_STATE.json` after
 
 **On startup**: if `POSTER_STATE.json` exists with `"status": "in_progress"` and within 24h → resume from saved phase. Otherwise → fresh start.
 
-## Critical LaTeX Architecture Decisions
+### Critical LaTeX Architecture Decisions
 
 > ⚠️ **MUST use `article` class, NEVER `beamer` class.** The beamer class consumes too many TeX grouping levels for its overlay/mode system. Combined with tcbposter's `enhanced` style on 8+ posterboxes, this triggers `! TeX capacity exceeded, sorry [grouping levels=255]`. The article class + geometry package for custom page size is the correct approach. This was validated through 5 failed compilation attempts with beamer before switching to article.
 
 > ⚠️ **NEVER use `adjustbox` package.** It may not be installed in minimal TeX distributions. Use plain `\includegraphics[width=0.96\linewidth]{file}` instead. Do NOT use `max height` option (requires adjustbox).
 
-### Template Foundation
+#### Template Foundation
 
 ```latex
 \documentclass{article}
@@ -157,13 +138,13 @@ Poster generation can be long. Persist state to `poster/POSTER_STATE.json` after
 
 > ⚠️ **Use `[table]{xcolor}`** not plain `{xcolor}` — needed for `\rowcolor` in benchmark tables. The `colortbl` package is loaded automatically by this option.
 
-## tcbposter Layout Rules (Critical)
+### tcbposter Layout Rules (Critical)
 
 > ⚠️ **The #1 cause of poster failures is content overflow.** tcbposter uses a fixed grid — content that exceeds the box is **silently clipped** with no compilation error. You will NOT see any warning; the poster will simply be cut off.
 
 > ⚠️ **The #2 cause is large whitespace gaps.** Using too few rows (e.g., `rows=5`) creates ~168mm per row on A0 landscape. If title text only needs 120mm, the remaining 48mm is wasted whitespace. Solution: use `rows=20` for fine-grained control (~42mm per row).
 
-### Grid System: `rows=20` (Critical)
+#### Grid System: `rows=20` (Critical)
 
 Use `rows=20` for A0 landscape. Each row ≈ 42mm, giving precise control over section heights.
 
@@ -177,7 +158,7 @@ Use `rows=20` for A0 landscape. Each row ≈ 42mm, giving precise control over s
 
 **Key principle**: Always use `between=rowN and rowM` syntax (not `below=name`) for precise vertical placement. The `below=` syntax lets tcolorbox auto-place, which often leaves unwanted gaps.
 
-### Row Count Guidance
+#### Row Count Guidance
 
 | Poster Size | Orientation | Recommended rows | Columns | Row height |
 |-------------|-------------|:---:|:---:|:---:|
@@ -186,7 +167,7 @@ Use `rows=20` for A0 landscape. Each row ≈ 42mm, giving precise control over s
 | A1 | landscape | 16 | 3 | ~37mm |
 | A1 | portrait | 20 | 2 | ~30mm |
 
-### Portrait A0 Layout (3 columns, rows=20)
+#### Portrait A0 Layout (3 columns, rows=20)
 
 > ⚠️ **Portrait A0 posters use 2-3 columns, NEVER 4.** Research consensus: "Two columns is typical for a poster with a portrait orientation" (Colin Purrington, NYU poster guides). At 841mm width, 4 columns give only ~195mm per column — too narrow for readable text at poster-session distance. **3 columns (~260mm each) is the recommended default** for content-rich papers. Use 2 columns for simpler posters or when figures need more horizontal space.
 
@@ -222,7 +203,7 @@ For portrait posters (841x1189mm), use a **3-column, 3-row-band** layout:
 
 > ⚠️ **Use `spacing=0mm`** for tight layouts. Card separation is handled by card styles (left accent stripe, drop shadow), not grid spacing. Grid spacing > 2mm creates visible gaps between rows.
 
-### Modern Card Design System (Left Accent Stripe)
+#### Modern Card Design System (Left Accent Stripe)
 
 Instead of rounded boxes with colored headers, use a **left accent stripe** design. This is cleaner, more modern, and avoids the "PowerPoint box" look.
 
@@ -267,7 +248,7 @@ Define **4 card styles** using the venue's 3-color system:
 
 > ⚠️ **Card backgrounds must NOT be pure white (#FFFFFF).** Use subtle tints matching the card's color family. Pure white cards on a tinted poster background look disconnected. The tint should be barely visible but adds cohesion.
 
-### Figure + Caption Macro
+#### Figure + Caption Macro
 
 Define a consistent macro for all figures to ensure uniform spacing:
 
@@ -281,7 +262,7 @@ Define a consistent macro for all figures to ensure uniform spacing:
 
 > ⚠️ **Inconsistent figure-text spacing** is the #1 visual flaw in generated posters. The `\posterfig` macro enforces uniform 3mm gap + 2mm bottom padding across all figures.
 
-### Content Colorbox Intensity
+#### Content Colorbox Intensity
 
 Inside cards, use `\colorbox{color!N}` for highlighted blocks. The intensity `N` must be **18-25%** (not 8-12% which is too faint):
 
@@ -297,7 +278,7 @@ Inside cards, use `\colorbox{color!N}` for highlighted blocks. The intensity `N`
 
 Similarly, `\rowcolor` in tables should use 15% intensity: `\rowcolor{primary!15}`.
 
-### Font Size Rules (A0 at article class — NO scale factor)
+#### Font Size Rules (A0 at article class — NO scale factor)
 
 > ⚠️ **Critical**: When using `article` class (not beamerposter), there is NO automatic scale factor. All font sizes are literal. A poster viewed from 1.5m needs much larger fonts than you think.
 
@@ -317,7 +298,7 @@ Similarly, `\rowcolor` in tables should use 15% intensity: `\rowcolor{primary!15
 
 > ⚠️ **Lesson learned from testing**: Body text at 20pt on A0 is unreadable from more than 0.5m. 34pt is the minimum for comfortable reading at poster-session distance.
 
-### Content Budget
+#### Content Budget
 
 **Total target: 300-500 words** (excluding figure captions and stat callout numbers).
 
@@ -345,7 +326,7 @@ Similarly, `\rowcolor` in tables should use 15% intensity: `\rowcolor{primary!15
 - Numbers > words: "**42% less memory**" not "reduces memory usage by 42 percent"
 - Colorbox labels: "**vs. Depth:** 4L CoE ≈ 12L MoE, **42% less memory**" (one line)
 
-### Recommended 4-Column IMRAD Layout
+#### Recommended 4-Column IMRAD Layout
 
 ```
 ┌──────────────────────────────────────────────────────────┐
@@ -366,9 +347,9 @@ Similarly, `\rowcolor` in tables should use 15% intensity: `\rowcolor{primary!15
 └──────────┴──────────┴──────────┴──────────┘
 ```
 
-## Workflow
+### Workflow
 
-### Phase 0: Input Validation & Setup
+#### Phase 0: Input Validation & Setup
 
 1. **Check prerequisites**:
    ```bash
@@ -453,7 +434,7 @@ Similarly, `\rowcolor` in tables should use 15% intensity: `\rowcolor{primary!15
 
 8. **Check for resume**: read `poster/POSTER_STATE.json` if it exists
 
-### Phase 1: Content Extraction
+#### Phase 1: Content Extraction
 
 Read each section from `paper/sections/*.tex` and extract poster-appropriate content:
 
@@ -492,7 +473,7 @@ Proceed with this layout? Or adjust content selection?
 
 **State**: Write `POSTER_STATE.json` with `phase: 1`.
 
-### Phase 2: Figure Selection & Layout
+#### Phase 2: Figure Selection & Layout
 
 1. **Inventory** all figures in `paper/figures/`:
    ```bash
@@ -514,7 +495,7 @@ Proceed with this layout? Or adjust content selection?
    - **Col 3**: Architecture (fig) + Result 1 (fig + stat table)
    - **Col 4**: Result 2 (fig + stat table) + Ablation + Conclusion
 
-### Phase 3: Generate Poster LaTeX
+#### Phase 3: Generate Poster LaTeX
 
 Create `poster/main.tex` using **article class + geometry + tcbposter**.
 
@@ -694,7 +675,7 @@ Compile now?
 
 **State**: Write `POSTER_STATE.json` with `phase: 3`.
 
-### Phase 4: Compile Poster
+#### Phase 4: Compile Poster
 
 ```bash
 cd poster && latexmk -pdf -interaction=nonstopmode main.tex
@@ -720,7 +701,7 @@ tlmgr install type1cm pdfcol tikzfill
 **Verification**:
 ```bash
 pdfinfo poster/main.pdf
-# Check: Pages: 1, Page size: ~3370.39 x 2383.94 pts (A0 landscape)
+## Check: Pages: 1, Page size: ~3370.39 x 2383.94 pts (A0 landscape)
 ```
 
 **Visual inspection** after compilation:
@@ -729,7 +710,7 @@ pdfinfo poster/main.pdf
 3. Figures are fully visible, not cut off
 4. Text is readable (zoom to 100% = actual A0 size)
 
-### Phase 5: Visual Review via Claude + Gemini (Iterative Refinement)
+#### Phase 5: Visual Review via Claude + Gemini (Iterative Refinement)
 
 > This phase uses **Claude visual assessment** on rendered poster images to iteratively refine layout, readability, and visual hierarchy — similar to the `paper-illustration` skill's review loop.
 
@@ -806,21 +787,21 @@ For poster elements that need custom illustrations (e.g., hero architecture diag
 Append all iteration scores and feedback to `poster/POSTER_VISUAL_REVIEW.md`:
 
 ```markdown
-# Visual Review Log
+## Visual Review Log
 
-## Iteration 1 — Score: 7/10
+### Iteration 1 — Score: 7/10
 - Issue 1: Title font too small (72pt → should be 84pt+)
 - Issue 2: Results figure clipped at bottom
 - Issue 3: Stat banner numbers not prominent enough
 - Fixes applied: [list of changes]
 
-## Iteration 2 — Score: 9/10
+### Iteration 2 — Score: 9/10
 - All critical checks pass
 - Minor: References column slightly shorter than others
 - Decision: PASS — print-ready
 ```
 
-### Phase 6: Codex MCP Review
+#### Phase 6: Codex MCP Review
 
 Send the poster content plan + key LaTeX sections to GPT-5.4 xhigh for review.
 
@@ -858,7 +839,7 @@ Save review to `poster/POSTER_REVIEW.md`.
 
 > ⚠️ **Important**: After applying review fixes, proceed to Phase 6 only when the poster is finalized. PPTX and SVG must be generated from the **final** LaTeX/PDF — never from an intermediate version.
 
-### Phase 7: Editable Format Export
+#### Phase 7: Editable Format Export
 
 > ⚠️ **Generate PPTX and SVG only AFTER all revisions are complete.** This phase runs last (after review fixes) to ensure all formats contain identical content.
 
@@ -896,7 +877,7 @@ def add_image(left, top, w, filename):
 
 ```bash
 cd poster && python3 generate_pptx.py
-# Output: poster/poster.pptx
+## Output: poster/poster.pptx
 ```
 
 #### 6.2 SVG (for Adobe Illustrator)
@@ -904,7 +885,7 @@ cd poster && python3 generate_pptx.py
 Convert the compiled PDF to editable SVG. **Preferred method: PyMuPDF** (always available via pip, no brew/system install needed):
 
 ```python
-# Preferred: PyMuPDF (pip install pymupdf) — always works, no system deps
+## Preferred: PyMuPDF (pip install pymupdf) — always works, no system deps
 python3 -c "import fitz" 2>/dev/null || pip install pymupdf
 python3 -c "
 import fitz
@@ -919,10 +900,10 @@ print('SVG saved')
 ```
 
 ```bash
-# Fallback 1: pdf2svg (if installed)
+## Fallback 1: pdf2svg (if installed)
 which pdf2svg && pdf2svg poster/main.pdf poster/poster.svg
 
-# Fallback 2: inkscape
+## Fallback 2: inkscape
 which inkscape && inkscape poster/main.pdf --export-type=svg --export-filename=poster/poster.svg
 ```
 
@@ -950,16 +931,16 @@ doc = fitz.open('poster/main.pdf')
 page = doc[0]
 pw, ph = page.rect.width, page.rect.height
 
-# A0 dimensions in mm (adjust for portrait/A1)
+## A0 dimensions in mm (adjust for portrait/A1)
 W_mm, H_mm = 1189, 841  # landscape
-# W_mm, H_mm = 841, 1189  # portrait
+## W_mm, H_mm = 841, 1189  # portrait
 
 def pts_to_mm(x, y):
     return x / pw * W_mm, y / ph * H_mm
 
-# ── Define regions from tcbposter grid ──
-# Format: name → (col_0based, row_start, col_span, row_end)
-# rows=20, columns=4 for landscape (3 for portrait)
+## ── Define regions from tcbposter grid ──
+## Format: name → (col_0based, row_start, col_span, row_end)
+## rows=20, columns=4 for landscape (3 for portrait)
 COLS = 4
 row_h = ph / 20
 col_w = pw / COLS
@@ -981,13 +962,13 @@ regions = {
     "takeaways":    (3, 15, 1, 20),
 }
 
-# ── Create PPTX ──
+## ── Create PPTX ──
 prs = Presentation()
 prs.slide_width = Mm(W_mm)
 prs.slide_height = Mm(H_mm)
 slide = prs.slides.add_slide(prs.slide_layouts[6])
 
-# Set background
+## Set background
 bg = slide.background
 bg.fill.solid()
 bg.fill.fore_color.rgb = RGBColor(0xF5, 0xF3, 0xFF)  # venue bg color
@@ -1027,45 +1008,45 @@ shutil.rmtree(tmpdir)
 
 > 💡 **Tip**: To edit text in `poster_components.pptx`, add a text box on top of the card image and type your replacement text. The image underneath can be deleted or kept as reference.
 
-### Phase 8: Poster Speech Script
+#### Phase 8: Poster Speech Script
 
 Generate `poster/POSTER_SPEECH.md` — a complete script for presenting the poster at a poster session.
 
 **Structure**:
 
 ```markdown
-# Poster Presentation Script
+## Poster Presentation Script
 
 **Paper**: [title]
 **Venue**: [VENUE] [YEAR]
 **Estimated time**: 2-3 minutes (quick walkthrough)
 
-## Opening (15 seconds)
+### Opening (15 seconds)
 "Hi, thanks for stopping by! Let me give you a quick overview of our work..."
 
-## Motivation (30 seconds)
+### Motivation (30 seconds)
 [2-3 sentences explaining the problem and why it matters]
 
-## Method (45 seconds)
+### Method (45 seconds)
 [3-4 sentences walking through the hero figure and key approach]
 
-## Key Results (30 seconds)
+### Key Results (30 seconds)
 [2-3 sentences highlighting headline numbers from figures]
 
-## Takeaway (15 seconds)
+### Takeaway (15 seconds)
 [1-2 sentences summarizing the contribution]
 
-## Closing
+### Closing
 "Happy to discuss any questions! Here's a QR code for the paper and code."
 
 ---
 
-## Anticipated Q&A
+### Anticipated Q&A
 
-### Q1-Q5: [Most likely questions + suggested answers]
+#### Q1-Q5: [Most likely questions + suggested answers]
 ```
 
-### Final Output Summary
+#### Final Output Summary
 
 ```
 📋 Poster generation complete:
@@ -1092,21 +1073,21 @@ Next steps:
 4. Print at A0 (300 DPI recommended)
 ```
 
-## Key Rules
+### Key Rules
 
-### Architecture
+#### Architecture
 - **MUST use article class, NEVER beamer.** Beamer + tcbposter with 8+ enhanced boxes triggers `grouping levels=255` overflow. This is an architectural constraint, not fixable by style tweaks.
 - **NEVER use adjustbox package.** Use plain `\includegraphics[width=...]` only.
 - **NEVER use `\usepackage[most]{tcolorbox}`.** It pulls `listingsutf8.sty` which may not be installed. Use `\tcbuselibrary{poster,skins,fitting}` explicitly.
 - **Use `[table]{xcolor}`** not `{xcolor}` — needed for `\rowcolor` in tables.
 
-### Layout
+#### Layout
 - **`rows=20` and `spacing=0mm`** for tight layout. Card separation via left accent stripe + drop shadow, not grid spacing.
 - **Use `between=rowN and rowM` positioning.** Not `below=name` which leaves auto-sized gaps.
 - **All columns in a row band share identical row boundaries.** Never mix `row6-row11` in col 1 with `row6-row10` in col 2.
 - **Adjust row distribution to match content density.** After trimming text, reduce row allocation proportionally. Cards with `valign=top` show all whitespace at the bottom.
 
-### Content
+#### Content
 - **Less text is more.** Target 300-500 words total. Each bullet: 5-8 words max. If it reads like a sentence, it's too long.
 - **Do NOT fabricate data.** All numbers must come from `paper/sections/*.tex`.
 - **No abstract paragraph.** Replace with stat banner (3-4 big-number callout boxes).
@@ -1115,32 +1096,32 @@ Next steps:
 - **References: author (year). Short title. *Venue*** — no full titles.
 - **De-AI polish**: Remove watch words (delve, pivotal, underscore, noteworthy, leverage, facilitate, harness).
 
-### Color & Design
+#### Color & Design
 - **Card backgrounds must NOT be pure white.** Use subtle tints (e.g., `#FFF5F3`, `#F0F4FF`) that match each card's color family.
 - **Poster background should be tinted** (e.g., `#EDD5D5` for ICML red theme), not white or near-white.
 - **Colorbox intensity: 18-25%**, not 8-12%. Faint colorboxes are invisible on print.
 - **Left accent stripe card design** (`borderline west={5pt}{0pt}{color}`) — cleaner than rounded colored boxes.
 - **4 card styles** (redcard/bluecard/darkcard/highlightcard) create visual rhythm across the poster.
 
-### Equations
+#### Equations
 - **Use `$\displaystyle ...$` inside colorboxes**, NOT `\[...\]`. Display math adds margins causing overfull hbox.
 - **Reduce equation font to 26-28pt** inside narrow colorboxes.
 - **Wrap equations in `\centering` + `\parbox{0.92\linewidth}`** for proper alignment.
 
-### Export
+#### Export
 - **Copy figures, never symlink.** `cp` not `ln -sf`. pdflatex can't follow symlinks.
 - **Convert PDF figures to PNG for PPTX.** python-pptx cannot embed PDFs. Use `pdf2image` at 300 DPI.
 - **SVG via PyMuPDF** (`fitz.Page.get_svg_image()`) — works everywhere, no system deps needed.
 - **PPTX/SVG last.** Generate editable exports only after ALL LaTeX revisions are finalized.
 - **Large file handling**: If the Write tool fails due to file size, use Bash (`cat << 'EOF' > file`) silently.
 
-### Misc
+#### Misc
 - **Do NOT hallucinate citations.** Use only references from the paper's bibliography.
 - **Include QR code placeholder** or code link for paper/code repository.
 - **Font size minimums (article class)**: Title ≥84pt, section headers ≥40pt, body ≥34pt, captions ≥26pt, references ≥30pt, stat numbers ≥66pt.
 - **Feishu notifications are optional.** If `~/.claude/feishu.json` exists, send notifications. Otherwise skip.
 
-## Parameter Pass-Through
+### Parameter Pass-Through
 
 Parameters can be passed inline with `—` separator:
 
@@ -1156,33 +1137,3 @@ Parameters can be passed inline with `—` separator:
 | `columns` | 4 | Number of content columns |
 | `engine` | pdflatex | LaTeX engine (pdflatex/xelatex) |
 | `auto proceed` | false | Skip checkpoints |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-poster/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/paper-poster/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,61 +4,49 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/modeling/game-theory.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Game Theory for Platform Economics & IS Research
 
----
-
-# Game Theory for Platform Economics & IS Research
-
-## Scope
+### Scope
 
 This skill covers game theory as used in IS and platform economics research:
 strategic interaction in platform markets, mechanism design for digital systems,
 auction theory, and computational methods for verifying equilibria.
 
-## Core Concepts
+### Core Concepts
 
-### Normal Form Game
+#### Normal Form Game
 - Players N, strategy sets S_i, payoff functions u_i(s_1, ..., s_n)
 - Nash equilibrium: no player can unilaterally improve payoff
 - Mixed strategy NE: players randomize; indifference across support
 
-### Solution Concepts (strongest to weakest)
+#### Solution Concepts (strongest to weakest)
 1. Dominant strategy equilibrium
 2. Iterated elimination of dominated strategies
 3. Nash equilibrium (pure or mixed)
 4. Subgame perfect equilibrium (sequential games)
 5. Perfect Bayesian equilibrium (incomplete information)
 
-## Platform-Relevant Models
+### Platform-Relevant Models
 
-### Two-Sided Markets
+#### Two-Sided Markets
 - Platform sets fees (f_b, f_s) to buyers and sellers
 - Network effects: utility increases with participation on the other side
 - Key trade-off: subsidize one side to attract the other (Rochet-Tirole 2003)
 - Equilibrium: solve for participation thresholds on each side given fees
 
-### Platform Competition
+#### Platform Competition
 - Cournot/Bertrand adapted for platforms: compete on fees, features, or quality
 - Multi-homing vs single-homing affects competitive dynamics
 - Winner-take-all vs market sharing depends on differentiation and multi-homing
 
-### Token Mechanism Design
+#### Token Mechanism Design
 - Token as coordination device: participation thresholds, staking equilibria
 - ICO/token sale as mechanism: price discovery, adverse selection
 - Governance tokens: voting games, delegation, whale capture
 
-## Mechanism Design
+### Mechanism Design
 
 - **Social choice function** f: type profiles -> outcomes
 - **Revelation principle**: any implementable outcome achievable by direct
@@ -70,27 +58,27 @@ auction theory, and computational methods for verifying equilibria.
 - **VCG mechanism**: DSIC for efficient allocation; each agent pays
   externality imposed on others
 
-### Key Impossibility Results
+#### Key Impossibility Results
 - Gibbard-Satterthwaite: with 3+ alternatives, only DSIC+onto mechanism is
   dictatorship
 - Myerson-Satterthwaite: no efficient+IC+IR+budget-balanced bilateral trade
 
-## Auction Theory
+### Auction Theory
 
-### Standard Formats
+#### Standard Formats
 - **First-price sealed-bid**: b(v) = v - integral [F(t)/F(v)]^(n-1) dt
 - **Second-price (Vickrey)**: b(v) = v (dominant strategy)
 - **All-pay**: b(v) = integral t*(n-1)*F(t)^(n-2)*f(t) dt
 - Revenue equivalence: same expected revenue across standard formats (IPV)
 
-### Relevance for IS
+#### Relevance for IS
 - NFT auctions, DeFi liquidation auctions, ad auctions
 - Combinatorial auctions for spectrum/cloud resources
 - Dynamic pricing as mechanism
 
-## Computational Methods
+### Computational Methods
 
-### Nash Equilibrium Computation
+#### Nash Equilibrium Computation
 
 **Support enumeration (2-player, small games):**
 Enumerate support pairs, solve indifference conditions, verify no profitable
@@ -108,7 +96,7 @@ complements. Does NOT converge for all games.
 **Backward induction:** Recursive solution for finite extensive-form games
 with perfect information.
 
-### Verification Checklist
+#### Verification Checklist
 
 For any computed equilibrium, verify:
 1. **Best response**: no unilateral deviation improves payoff
@@ -116,33 +104,8 @@ For any computed equilibrium, verify:
 3. **Support condition**: strategies in support yield equal expected payoffs
 4. **Indifference**: strategies outside support yield weakly lower payoffs
 
-### Common Pitfalls
+#### Common Pitfalls
 - Multiple equilibria: always search for all NE
 - Numerical precision: use tolerance (1e-8) for equality checks
 - Mixed strategies: ensure probabilities sum to 1
 - Dynamic games: verify subgame perfection in ALL subgames
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/modeling/game-theory.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/modeling-game-theory/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

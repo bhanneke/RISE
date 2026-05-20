@@ -4,31 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/comm-lit-review/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/comm-lit-review/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: comm-lit-review-claude-single
-description: Communications-domain literature review with Claude-style knowledge-base-first retrieval. Use when the task is about communications, wireless, networking, satellite/NTN, Wi-Fi, cellular, transport protocols, congestion control, routing, scheduling, MAC/PHY, rate adaptation, channel estimation, beamforming, or communication-system research and the user wants papers, related work, a survey, or a landscape summary. Search Zotero, Obsidian, and local paper folders first when available, then search IEEE Xplore, ScienceDirect, ACM Digital Library, and broader web in that order.
-allowed-tools: Bash(*), Read, Glob, Grep, WebSearch, WebFetch, Write, Agent, mcp__zotero__*, mcp__obsidian-vault__*
----
-
-# Comm Lit Review Claude Single
+## Comm Lit Review Claude Single
 
 Research topic: $ARGUMENTS
 
-## Purpose
+### Purpose
 
 Use this skill for communications-domain literature review when the topic is about:
 
@@ -43,7 +25,7 @@ Use this skill for communications-domain literature review when the topic is abo
 
 If the center of gravity is generic ML architecture research, pure control theory without communications literature, or software/API documentation rather than papers, fall back to a general literature skill.
 
-## Constants
+### Constants
 
 - **PAPER_LIBRARY**: Check local PDFs in this order:
   1. `papers/` in the current project
@@ -51,7 +33,7 @@ If the center of gravity is generic ML architecture research, pure control theor
   3. Custom path specified by the user in `CLAUDE.md` under `## Paper Library`
 - **MAX_LOCAL_PAPERS = 20**: Maximum number of local PDFs to scan. If there are more, prioritize by filename and first-page relevance.
 
-## Source Selection
+### Source Selection
 
 Parse `$ARGUMENTS` for a `— sources:` directive.
 
@@ -78,7 +60,7 @@ Valid source values:
 
 If `all` is specified, interpret it as the full default source set.
 
-## Retrieval Order
+### Retrieval Order
 
 This is a knowledge-base-first skill. Search in this order unless the user overrides it:
 
@@ -96,7 +78,7 @@ Graceful degradation rules:
 - Skip it silently.
 - Continue to the next source.
 
-## External Search Policy
+### External Search Policy
 
 For external search:
 
@@ -119,11 +101,11 @@ Time-window policy:
   - `foundational`: before 2022
   - `recent`: 2022 to present
 
-## Venue Priority
+### Venue Priority
 
 Within each database tier, search venue tiers in this order.
 
-### Tier A
+#### Tier A
 
 Journals:
 
@@ -140,7 +122,7 @@ Conferences:
 - `ACM CoNEXT`
 - `IEEE INFOCOM`
 
-### Tier B
+#### Tier B
 
 Journals:
 
@@ -160,7 +142,7 @@ Conferences:
 - `IEEE PIMRC`
 - `ACM MobiHoc`
 
-### Tier C
+#### Tier C
 
 - other relevant IEEE journals and transactions
 - other relevant Elsevier journals
@@ -176,9 +158,9 @@ Usage rules:
 - by default this is a soft priority, not a hard whitelist
 - if the user says `only top venues`, `top journals only`, or `top conferences only`, treat Tier A as a hard filter
 
-## Workflow
+### Workflow
 
-### Step 0a: Search Zotero Library
+#### Step 0a: Search Zotero Library
 
 Skip this step if Zotero MCP is not configured or `zotero` is not enabled.
 
@@ -189,7 +171,7 @@ If available:
 3. pull user annotations, tags, or collections when present
 4. treat these as high-priority evidence because they reflect the user's existing library
 
-### Step 0b: Search Obsidian Vault
+#### Step 0b: Search Obsidian Vault
 
 Skip this step if Obsidian MCP is not configured or `obsidian` is not enabled.
 
@@ -199,7 +181,7 @@ If available:
 2. collect summaries, wikilinks, tags, and paper references
 3. treat these notes as the user's processed understanding of the topic
 
-### Step 0c: Scan Local Paper Library
+#### Step 0c: Scan Local Paper Library
 
 Run this step if `local` is enabled.
 
@@ -209,7 +191,7 @@ Run this step if `local` is enabled.
 4. extract title, authors, year, problem, method, and relevance
 5. use local hits to guide and de-duplicate later external search
 
-### Step 1: Search External Primary Sources
+#### Step 1: Search External Primary Sources
 
 Use a layered search strategy. For communications topics, avoid random blog posts or tertiary summaries.
 
@@ -232,7 +214,7 @@ Within each database tier:
 2. widen to Tier B if needed
 3. widen to Tier C if still sparse
 
-### Step 2: Extract Paper-Level Facts
+#### Step 2: Extract Paper-Level Facts
 
 For each relevant paper, capture:
 
@@ -253,7 +235,7 @@ Favor concrete numbers, assumptions, and problem definitions over generic paraph
 
 Do not collapse transport-layer rate control and PHY/MAC rate adaptation into one bucket without saying so explicitly.
 
-## Synthesis Rules
+### Synthesis Rules
 
 Group papers by technical axis rather than by search order. Common groupings:
 
@@ -274,7 +256,7 @@ When useful, explicitly separate:
 
 If evidence is weak, say so instead of smoothing it over.
 
-## Output
+### Output
 
 Use a literature table with these columns:
 
@@ -305,7 +287,7 @@ End with `Practical Takeaway`:
 - likely saturated direction
 - promising open direction
 
-## Key Rules
+### Key Rules
 
 - Never fail because Zotero or Obsidian MCP is missing.
 - Prefer user-owned sources first when available, but do not let them replace external validation.
@@ -315,33 +297,3 @@ End with `Practical Takeaway`:
 - Treat venue tiers as soft ranking by default and hard constraint only when the user explicitly asks for top-only search.
 - Do not pretend a preprint is peer reviewed.
 - If the topic spans multiple layers, say that the literature itself is split across layers.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/comm-lit-review/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/comm-lit-review/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

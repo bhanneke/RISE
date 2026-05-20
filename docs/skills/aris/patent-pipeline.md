@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/patent-pipeline/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/patent-pipeline/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: patent-pipeline
-description: "Full patent drafting pipeline from invention description to jurisdiction-formatted filing documents. Supports CN (CNIPA), US (USPTO), EP (EPO). Supports invention patents and utility models. Use when user says \"写专利\", \"patent pipeline\", \"专利申请\", \"draft patent\", \"写权利要求书\", or wants to draft a complete patent application."
-argument-hint: [invention-description — jurisdiction]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill, mcp__codex__codex
----
-
-# Patent Pipeline: From Invention to Filing
+## Patent Pipeline: From Invention to Filing
 
 Draft a complete patent application based on: **$ARGUMENTS**
 
-## Overview
+### Overview
 
 This skill orchestrates the full patent drafting lifecycle -- from prior art search through jurisdiction-formatted filing documents. It chains sub-skills into a patent-specific pipeline:
 
@@ -54,7 +35,7 @@ This skill orchestrates the full patent drafting lifecycle -- from prior art sea
 
 Patents are about **protecting inventions** (legal scope), not publishing results (academic contribution). This skill handles the unique requirements of patent drafting: prior art analysis, claims hierarchy design, specification writing with enablement support, embodiment descriptions, and jurisdiction-specific formatting.
 
-## Constants
+### Constants
 
 - **JURISDICTION = `CN`** — Target patent jurisdiction. Options: `CN` (CNIPA), `US` (USPTO), `EP` (EPO), `ALL` (generate all three). Override via argument (e.g., `/patent-pipeline "invention — US"`).
 - **PATENT_TYPE = `invention`** — `invention` (发明专利, 20 year protection) or `utility_model` (实用新型, CN only, 10 year protection, apparatus claims only). Override via argument.
@@ -67,9 +48,9 @@ Patents are about **protecting inventions** (legal scope), not publishing result
 
 > Override defaults via arguments: `/patent-pipeline "invention — US, utility model"` or `/patent-pipeline "invention — ALL, language: Chinese"`.
 
-## Patent Type Specifications
+### Patent Type Specifications
 
-### Invention Patent (发明专利)
+#### Invention Patent (发明专利)
 
 | Field | Detail |
 |-------|--------|
@@ -80,7 +61,7 @@ Patents are about **protecting inventions** (legal scope), not publishing result
 | **Timeline** | 2-4 years to grant (CN); 2-3 years (US); 3-5 years (EP) |
 | **Claims** | Method + system + product claims allowed |
 
-### Utility Model (实用新型) — CN Only
+#### Utility Model (实用新型) — CN Only
 
 | Field | Detail |
 |-------|--------|
@@ -92,7 +73,7 @@ Patents are about **protecting inventions** (legal scope), not publishing result
 | **Claims** | Apparatus/device claims only. NO method claims. |
 | **Restriction** | CN jurisdiction only |
 
-## State Persistence (Compact Recovery)
+### State Persistence (Compact Recovery)
 
 Patent drafting is a long task that may trigger context compaction. Persist state to `patent/PATENT_STATE.json` after each phase:
 
@@ -117,9 +98,9 @@ Patent drafting is a long task that may trigger context compaction. Persist stat
 
 On completion, set `"status": "completed"`.
 
-## Workflow
+### Workflow
 
-### Phase 0: Input Parsing & Context Gathering
+#### Phase 0: Input Parsing & Context Gathering
 
 Parse `$ARGUMENTS` to extract:
 
@@ -145,7 +126,7 @@ If insufficient context exists:
 
 **If the input is conversational** (not a structured brief), parse the description into the invention brief structure and write `patent/INVENTION_BRIEF.md` for downstream phases.
 
-### Phase 1: Prior Art Search & Novelty Assessment
+#### Phase 1: Prior Art Search & Novelty Assessment
 
 #### 1.1 Prior Art Search
 
@@ -189,7 +170,7 @@ Options:
 
 **State**: Write `PATENT_STATE.json` with `phase: 1`.
 
-### Phase 2: Invention Structuring & Claims Design
+#### Phase 2: Invention Structuring & Claims Design
 
 #### 2.1 Structure the Invention
 
@@ -233,7 +214,7 @@ Options:
 
 **State**: Write `PATENT_STATE.json` with `phase: 2`.
 
-### Phase 3: Specification Writing
+#### Phase 3: Specification Writing
 
 Invoke `/specification-writing`:
 
@@ -261,7 +242,7 @@ Ready to proceed to review?
 
 **State**: Write `PATENT_STATE.json` with `phase: 3`.
 
-### Phase 4: Patent Review
+#### Phase 4: Patent Review
 
 Invoke `/patent-review`:
 
@@ -273,7 +254,7 @@ This runs 2 rounds of examiner-style review via GPT-5.4 xhigh. The examiner eval
 
 **State**: Write `PATENT_STATE.json` with `phase: 4` and review score.
 
-### Phase 5: Jurisdiction Formatting & Output
+#### Phase 5: Jurisdiction Formatting & Output
 
 Invoke `/jurisdiction-format`:
 
@@ -300,16 +281,16 @@ This compiles the application into the target jurisdiction format(s).
 #### Final Report
 
 ```markdown
-## Patent Pipeline Complete
+### Patent Pipeline Complete
 
-### Application Summary
+#### Application Summary
 - Title: [invention title]
 - Jurisdiction: [CN/US/EP/ALL]
 - Patent Type: [Invention / Utility Model]
 - Language: [Chinese/English]
 - Total Claims: [X] independent + [Y] dependent
 
-### Pipeline Scores
+#### Pipeline Scores
 | Phase | Score |
 |-------|-------|
 | Prior Art Search | [completeness assessment] |
@@ -318,10 +299,10 @@ This compiles the application into the target jurisdiction format(s).
 | Examiner Review Round 2 | [Y]/10 |
 | Final | [Z]/10 |
 
-### Output Files
+#### Output Files
 [Table of all generated files with paths]
 
-### Next Steps
+#### Next Steps
 - [ ] Have a patent attorney review the application
 - [ ] Conduct professional prior art search (this tool's search is preliminary)
 - [ ] Prepare formal drawings (if user figures need professional rendering)
@@ -332,7 +313,7 @@ This compiles the application into the target jurisdiction format(s).
 
 **State**: Write `PATENT_STATE.json` with `phase: 5, status: "completed"`.
 
-## Key Rules
+### Key Rules
 
 - Never fabricate prior art references, patent numbers, or citations.
 - Claims must be supported by the specification (written description requirement).
@@ -345,7 +326,7 @@ This compiles the application into the target jurisdiction format(s).
 - Consistent terminology is mandatory -- same word for the same concept throughout.
 - If `mcp__codex__codex` is not available (no OpenAI API key), skip external cross-model review and note it in the output. The pipeline must not fail due to missing reviewer access.
 
-## Composing with Other Workflows
+### Composing with Other Workflows
 
 The patent pipeline can start from multiple entry points:
 
@@ -359,36 +340,6 @@ User describes invention directly ──→ /patent-pipeline
 /auto-review-loop produces strong results ──→ /patent-pipeline (patent the method)
 ```
 
-## Acknowledgements
+### Acknowledgements
 
 Built on the ARIS (Auto-claude-code-research-in-sleep) skill architecture. Patent writing principles adapted from MPEP (US), CN Patent Examination Guidelines (CN), and EPO Guidelines for Examination (EP).
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/patent-pipeline/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/patent-pipeline/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

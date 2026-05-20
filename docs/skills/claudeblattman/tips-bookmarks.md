@@ -4,35 +4,23 @@
 
 Save and retrieve tips / bookmarks
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/tips-bookmarks.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/tips-bookmarks/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/tips-bookmarks.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Tips Bookmarks
+## Tips Bookmarks
 *v1.0 — Initial build.*
 
 Pull X/Twitter bookmarks via `twitter-cli` and feed new ones into a tips pipeline log. Replaces the manual copy-paste-email loop for surfacing AI/dev tips you've bookmarked but haven't acted on.
 
 Designed to run independently from a Gmail-based curate skill (e.g., `/tips-curate`) — a Twitter auth failure never blocks email-based tips processing, and vice versa.
 
-## CRITICAL: No Permission Prompts
+### CRITICAL: No Permission Prompts
 
 **Do NOT use Task agents or ToolSearch.** All required tools are pre-approved. Call them directly:
 
 - Bash (for `twitter bookmarks --json`)
 - Read, Edit, Write (for the state file and the tips log)
 
-## Arguments
+### Arguments
 
 `$ARGUMENTS` can include:
 
@@ -40,9 +28,9 @@ Designed to run independently from a Gmail-based curate skill (e.g., `/tips-cura
 - `limit:N` — Max new bookmarks to process (default: 10)
 - `init` — First-run initialization: mark all current bookmarks as seen, process only the 10 most recent
 
-## Instructions
+### Instructions
 
-### Step 0: Pre-Checks
+#### Step 0: Pre-Checks
 
 1. **Test twitter-cli auth:**
    ```bash
@@ -57,7 +45,7 @@ Designed to run independently from a Gmail-based curate skill (e.g., `/tips-cura
 
 3. **Read tips log for dedup:** Read `~/.claude-assistant/tips/collected-tips-log.md` and note existing URLs (to avoid duplicates from both Twitter and email paths).
 
-### Step 1: Fetch Bookmarks
+#### Step 1: Fetch Bookmarks
 
 ```bash
 twitter bookmarks --json 2>/dev/null
@@ -91,7 +79,7 @@ Parse the JSON. The structure is:
 - If zero new bookmarks: report "No new bookmarks since last run ([last_run date])." and **stop**.
 - Take up to `limit:N` (default 10) new bookmarks for processing.
 
-### Step 2: Assess & Classify
+#### Step 2: Assess & Classify
 
 For each new bookmark, apply the same classification taxonomy as a sibling Gmail-based curate skill:
 
@@ -114,7 +102,7 @@ For each new bookmark, apply the same classification taxonomy as a sibling Gmail
 
 **Enrichment:** If a bookmark has non-X URLs in its `urls` array, attempt WebFetch for additional context. If WebFetch fails, classify based on tweet text alone.
 
-### Step 3: Present Recommendations
+#### Step 3: Present Recommendations
 
 ```
 ────────────────────
@@ -142,7 +130,7 @@ Which to save? (e.g., "save 1,2" / "save all recommended" / "skip all")
 
 **Wait for the user's response before proceeding.**
 
-### Step 4: Save Approved Items
+#### Step 4: Save Approved Items
 
 Based on the user's response:
 
@@ -169,7 +157,7 @@ Based on the user's response:
    [K] remaining in current bookmark fetch not yet processed.
    ```
 
-### Step 5: Log Performance
+#### Step 5: Log Performance
 
 ```bash
 echo "$(date +%Y-%m-%d),tips-bookmarks,TOOL_CALLS,NOTES" >> ~/.claude-assistant/logs/skill-performance.csv
@@ -177,7 +165,7 @@ echo "$(date +%Y-%m-%d),tips-bookmarks,TOOL_CALLS,NOTES" >> ~/.claude-assistant/
 
 Replace TOOL_CALLS with exact count. Replace NOTES with volume info (e.g., "50-fetched-8-new-3-saved").
 
-## State File Schema
+### State File Schema
 
 `~/.claude-assistant/state/twitter-bookmarks-seen.json`:
 ```json
@@ -190,7 +178,7 @@ Replace TOOL_CALLS with exact count. Replace NOTES with volume info (e.g., "50-f
 
 Prune `seen_ids` older than 90 days only if the list exceeds 1000 entries (bookmark IDs are small; no urgency to prune).
 
-## Error Handling
+### Error Handling
 
 | Condition | Behavior |
 |-----------|----------|
@@ -200,7 +188,7 @@ Prune `seen_ids` older than 90 days only if the list exceeds 1000 entries (bookm
 | Zero new bookmarks | Report "no new bookmarks" with last_run date, stop |
 | WebFetch fails on URL | Classify from tweet text alone |
 
-## Examples
+### Examples
 
 ```
 /tips-bookmarks init        # First run: initialize state, process 10 most recent
@@ -209,7 +197,7 @@ Prune `seen_ids` older than 90 days only if the list exceeds 1000 entries (bookm
 /tips-bookmarks limit:5     # Process at most 5 new bookmarks
 ```
 
-## Customization Points
+### Customization Points
 
 - **State file location:** Default `~/.claude-assistant/state/twitter-bookmarks-seen.json`. Adjust to wherever you keep small per-skill state files.
 - **Tips log location:** Default `~/.claude-assistant/tips/collected-tips-log.md`. Match to whatever path your `/tips-curate` (or equivalent) uses, so both Twitter and email paths feed the same log.
@@ -217,32 +205,3 @@ Prune `seen_ids` older than 90 days only if the list exceeds 1000 entries (bookm
 - **Tag vocabulary:** Defined inline in Step 2. Add or remove tags so they line up with your tips log's existing tag conventions.
 - **Default `limit`:** 10 new bookmarks per run. Lower it (e.g., 5) for noisier feeds; raise it for sparser ones.
 - **`twitter-cli` binary:** Assumes a `twitter` CLI on `$PATH` that accepts `bookmarks --json`. Substitute any equivalent CLI that emits the same JSON shape (id, text, author, urls, articleTitle, quotedTweet).
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/tips-bookmarks.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>infra</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/tips-bookmarks.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/tips-bookmarks/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

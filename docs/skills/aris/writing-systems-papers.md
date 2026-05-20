@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/writing-systems-papers/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/writing-systems-papers/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: writing-systems-papers
-description: "Paragraph-level structural blueprint for 10-12 page systems papers targeting OSDI, SOSP, ASPLOS, NSDI, and EuroSys. Provides page allocation, paragraph templates, and writing patterns. Use when user says \"写系统论文\", \"systems paper structure\", \"OSDI paper\", \"SOSP paper\", or wants fine-grained structural guidance for a systems conference submission."
-argument-hint: [venue-or-section]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Writing Systems Papers: Paragraph-Level Blueprint
+## Writing Systems Papers: Paragraph-Level Blueprint
 
 Structural guidance for **$ARGUMENTS**
 
-## Relationship to Other ARIS Skills
+### Relationship to Other ARIS Skills
 
 - **paper-write**: General paper generation workflow with citation verification. This skill complements it with systems-specific structural blueprints.
 - **paper-slides**: Conference presentation generation (Beamer+PPTX). Already covers talks — no overlap.
@@ -39,7 +20,7 @@ Structural guidance for **$ARGUMENTS**
 
 ---
 
-## Page Allocation: 12-Page Systems Paper
+### Page Allocation: 12-Page Systems Paper
 
 | Section | Pages | Key Content |
 |---------|-------|-------------|
@@ -54,9 +35,9 @@ Structural guidance for **$ARGUMENTS**
 
 ---
 
-## Section Blueprints
+### Section Blueprints
 
-### Abstract (5 sentences)
+#### Abstract (5 sentences)
 
 ```text
 S1: Problem context and importance
@@ -68,7 +49,7 @@ S5: Impact or availability
 
 Sources: Levin & Redell — "Can you state the new idea concisely?"; Irene Zhang — "abstract cannot use terms introduced in the paper."
 
-### S1 Introduction (1.5–2 pages)
+#### S1 Introduction (1.5–2 pages)
 
 1. **Problem** (~0.5p) — Domain + concrete numbers + why it matters
 2. **Gap analysis** (~0.5p) — G1–Gn: specific shortcomings with evidence
@@ -77,12 +58,12 @@ Sources: Levin & Redell — "Can you state the new idea concisely?"; Irene Zhang
 
 Pattern: hzwer Move 1 (territory) → Move 2 (niche) → Move 3 (occupy).
 
-### S2 Background & Motivation (1–1.5 pages)
+#### S2 Background & Motivation (1–1.5 pages)
 
 1. **Technical background** (~0.5p) — Define-before-use (Gernot Heiser)
 2. **Observations** (~0.5–1p) — O1, O2, O3 from production data → design insights
 
-### S3 Design (3–4 pages)
+#### S3 Design (3–4 pages)
 
 1. **Architecture overview** (~0.5p) — Diagram first (Yi Ding: "draw a picture first")
 2. **Module details** (~2–2.5p) — Per module: choice, alternatives, why
@@ -90,11 +71,11 @@ Pattern: hzwer Move 1 (territory) → Move 2 (niche) → Move 3 (occupy).
 
 Rule: "Every design choice must discuss alternatives" (Irene Zhang).
 
-### S4 Implementation (0.5–1 page)
+#### S4 Implementation (0.5–1 page)
 
 Language, LOC, framework, key engineering decisions. Keep concise.
 
-### S5 Evaluation (3–4 pages)
+#### S5 Evaluation (3–4 pages)
 
 1. **Setup** (~0.5p) — Hardware, baselines, workloads, metrics
 2. **End-to-end** (~1–1.5p) — X vs baselines for Y on Z
@@ -106,37 +87,37 @@ Language, LOC, framework, key engineering decisions. Keep concise.
 - Conclusion (section closing)
 - Caption (figure caption)
 
-### S6 Related Work (1 page)
+#### S6 Related Work (1 page)
 
 Group by methodology. For each group: what they do, limitation, how we differ.
 
-### S7 Conclusion (0.5 page)
+#### S7 Conclusion (0.5 page)
 
 Three sentences: problem, solution, result. No new information.
 
 ---
 
-## Writing Patterns
+### Writing Patterns
 
-### Pattern 1: Gap Analysis
+#### Pattern 1: Gap Analysis
 Enumerate G1–Gn in intro → A1–An in design → verify in evaluation.
 *Example*: Lucid (ASPLOS'23) — 5 gaps mapped to 5 answers.
 
-### Pattern 2: Observation-Driven
+#### Pattern 2: Observation-Driven
 O1–O3 from production data → insights → design components.
 *Example*: GFS (arXiv 2025) — 3 observations drive 3 components.
 
-### Pattern 3: Contribution List
+#### Pattern 3: Contribution List
 Numbered contributions in intro, each with §N cross-reference.
 *Example*: Blox (EuroSys'24) — 7 contributions; Sia (SOSP'23) — 5 contributions.
 
-### Pattern 4: Thesis Formula
+#### Pattern 4: Thesis Formula
 "X is better for Y in Z" structures the entire paper.
 Combine with other patterns for maximum impact.
 
 ---
 
-## Conference Differences
+### Conference Differences
 
 > Always verify against current CFP — rules change yearly.
 
@@ -152,7 +133,7 @@ Based on 2025/2026 CFPs.
 
 ---
 
-## Workflow
+### Workflow
 
 ```text
 1. Determine venue and page limit
@@ -172,7 +153,7 @@ Based on 2025/2026 CFPs.
 
 ---
 
-## Quick Self-Check
+### Quick Self-Check
 
 - [ ] Thesis follows "X is better for Y in Z"
 - [ ] 3–5 numbered contributions with §N references
@@ -185,7 +166,7 @@ Based on 2025/2026 CFPs.
 
 ---
 
-## Academic Integrity
+### Academic Integrity
 
 - Never fabricate observations, traces, or experimental results
 - Never generate citations from memory — use /paper-write citation workflow
@@ -194,7 +175,7 @@ Based on 2025/2026 CFPs.
 
 ---
 
-## Authoritative Sources
+### Authoritative Sources
 
 1. Levin & Redell — "How (and How Not) to Write a Good Systems Paper" (USENIX)
 2. Irene Zhang — "Hints on how to write an SOSP paper"
@@ -202,33 +183,3 @@ Based on 2025/2026 CFPs.
 4. Timothy Roscoe — "Writing reviews for systems conferences"
 5. Yi Ding — "How to write good systems papers?"
 6. hzwer & DingXiaoH — WritingAIPaper (GitHub)
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/writing-systems-papers/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/writing-systems-papers/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,40 +4,21 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/pixel-art/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/pixel-art/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: pixel-art
-description: Generate pixel art SVG illustrations for READMEs, docs, or slides. Use when user says "画像素图", "pixel art", "make an SVG illustration", "README hero image", or wants a cute visual.
-argument-hint: [description of what to draw]
-allowed-tools: Write, Edit, Read, Bash(open *)
----
-
-# Pixel Art SVG Generator
+## Pixel Art SVG Generator
 
 Create a pixel art SVG illustration: $ARGUMENTS
 
-## Design Principles
+### Design Principles
 
-### Pixel Grid
+#### Pixel Grid
 - Each "pixel" is a `<rect>` with width/height of 7px
 - Grid spacing: 7px (no gaps between pixels)
 - Characters are typically 8-10 pixels wide, 8-12 pixels tall
 - Use `<g transform="translate(x,y)">` to position and reuse character groups
 
-### Color Palette
+#### Color Palette
 Keep it simple — 3-5 colors per character:
 - **Skin**: `#FFDAB9` (light), `#E8967A` / `#D4956A` (blush/shadow)
 - **Eyes**: `#333`
@@ -46,7 +27,7 @@ Keep it simple — 3-5 colors per character:
 - **Shoes/pants**: `#444`
 - **Accessories**: `#555` (glasses frames), `#FFD700` (crown)
 
-### Character Template (7px grid)
+#### Character Template (7px grid)
 ```
 Row 0 (hair top):     4 pixels centered
 Row 1 (hair):         6 pixels wide
@@ -58,7 +39,7 @@ Row 6 (body):         6 pixels — all shirt
 Row 7 (legs):         2+2 pixels — with gap in middle
 ```
 
-### Scene Composition
+#### Scene Composition
 
 #### Chat Dialogue Layout (like our hero image)
 - Two characters on left/right sides, vertically centered
@@ -78,7 +59,7 @@ Row 7 (legs):         2+2 pixels — with gap in middle
 - Optional: ground line, background elements
 - Keep viewBox tight — no wasted space
 
-### SVG Structure
+#### SVG Structure
 ```xml
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 W H" font-family="monospace">
   <defs>
@@ -94,7 +75,7 @@ Row 7 (legs):         2+2 pixels — with gap in middle
 </svg>
 ```
 
-### Chat Bubble Recipe
+#### Chat Bubble Recipe
 ```xml
 <!-- Blue bubble (left character speaks) -->
 <rect x="110" y="29" width="280" height="26" fill="#e8f4fd" stroke="#4a9eda" stroke-width="1.5" rx="8"/>
@@ -111,7 +92,7 @@ Row 7 (legs):         2+2 pixels — with gap in middle
 <text x="503" y="88" font-size="13px">🤔 Response here</text>
 ```
 
-### Arrow Recipe
+#### Arrow Recipe
 ```xml
 <defs>
   <marker id="ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
@@ -124,64 +105,34 @@ Row 7 (legs):         2+2 pixels — with gap in middle
 <line x1="488" y1="84" x2="420" y2="84" stroke="#da8a4a" stroke-width="2" marker-end="url(#ar-o)"/>
 ```
 
-## Workflow
+### Workflow
 
-### Step 1: Understand the Request
+#### Step 1: Understand the Request
 - What characters/objects to draw?
 - What's the scene? (dialogue, portrait, group, diagram)
 - What colors/brand to match?
 - What size? (compact for badge, wide for README hero)
 
-### Step 2: Generate SVG
+#### Step 2: Generate SVG
 - Write to a temp file or project directory
 - Open with `open <file.svg>` for preview
 - Keep viewBox tight — measure actual content bounds
 
-### Step 3: Iterate with User
+#### Step 3: Iterate with User
 - User provides feedback on screenshot
 - Common fixes: overlap, arrow direction, spacing, sizing
 - Use `Edit` for small tweaks, `Write` for major redesigns
 - Typical: 2-4 iterations to get it right
 
-### Step 4: Finalize
+#### Step 4: Finalize
 - Ensure no personal info in the SVG
 - Clean up: remove unused defs, tighten viewBox
 - Suggest adding to README: `![Alt text](filename.svg)`
 
-## Common Pitfalls
+### Common Pitfalls
 - **Arrow direction**: `orient="auto"` follows line direction. Line going right→left = arrowhead points left
 - **Bubble overlap**: keep 38-44px vertical spacing between rows
 - **Text overflow**: monospace 13px ≈ 7.8px/char, emoji ≈ 14px. Measure before setting bubble width
 - **Character overlap with bubbles**: keep character x-zone and bubble x-zone separated by ≥10px
 - **viewBox too large**: match viewBox to actual content, add ~10px padding
 - **Tail stroke artifact**: always add a small `<rect>` at the bubble-tail junction to cover the stroke line
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/pixel-art/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/pixel-art/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

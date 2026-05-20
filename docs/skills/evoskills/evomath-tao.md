@@ -4,38 +4,16 @@
 
 Mathematical derivation skill in the spirit of Tao-style proof reasoning
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/evomath-tao/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/evomath-tao/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: evomath-tao
-description: "Use this skill whenever the user submits a non-trivial mathematical claim that needs a rigorous proof or audit. Trigger on IMO/Putnam/USAMO/Olympiad-style problems, ML/AI theoretical statements, research conjectures, suspected-false claims, multi-step proofs the user already failed on, proof drafts with possible hidden assumptions, or any request containing 'prove rigorously', 'verify this', 'is this true', 'find the gap', 'audit my proof', 'find a counterexample', or 'use EvoMath' that targets a mathematical claim. Activate also when the problem requires more than three reasoning steps. Do NOT use for single-step calculations, definition lookups, textbook exercises with a known recipe, code analysis tasks, literature survey questions, pure symbolic manipulation, or non-mathematical applications of those trigger phrases (e.g., 'is it true that GPT-4 can solve math?', 'verify this LaTeX syntax'); hand those back instead."
-allowed-tools: "write_file edit_file read_file think_tool execute"
-metadata:
-  author: EvoScientist
-  version: '1.0.0'
-  tags: [core, math, proof, olympiad, research]
----
-
-# EvoMath (Tao-style)
+## EvoMath (Tao-style)
 
 EvoMath is a lightweight proof workflow for contest-style mathematical
 reasoning. Its job is to produce a rigorous proof, a verified counterexample, a
 useful partial result, or a clear handoff. Keep the process small; do not run a
 heavy audit pipeline by default.
 
-## Methodology Anchor — Terence Tao's Research-Math Practice
+### Methodology Anchor — Terence Tao's Research-Math Practice
 
 This skill operationalizes the way Terence Tao approaches research mathematics:
 
@@ -48,7 +26,7 @@ This skill operationalizes the way Terence Tao approaches research mathematics:
 
 Every phase below is a concrete operationalization of one or more of these principles.
 
-## Operating Rules
+### Operating Rules
 
 - Use Markdown notes for handoff between steps. Do not require JSON/YAML unless
   a script explicitly asks for it.
@@ -78,7 +56,7 @@ If filesystem access is not available, keep the same Markdown sections inline in
 the conversation. In that case run the validators by mentally checking the same
 required fields the script checks — the discipline is the same.
 
-## Fast Exit
+### Fast Exit
 
 Do not use EvoMath for single calculations, definition lookups, symbolic
 manipulation, or answer-only requests with no proof obligation. Give the direct
@@ -87,11 +65,11 @@ answer instead. No TodoWrite list is needed for a Fast Exit.
 If the statement has a blocking ambiguity that changes truth value, ask one
 specific clarification question before solving.
 
-## Execution Protocol (TodoWrite + Validation)
+### Execution Protocol (TodoWrite + Validation)
 
 For any problem that passes the Fast Exit Gate, follow this protocol.
 
-### 1. Create the 5-step todo list
+#### 1. Create the 5-step todo list
 
 Before doing any solving work, call TodoWrite with these five items in this
 order. Each item names its primary reference file:
@@ -108,7 +86,7 @@ order. Each item names its primary reference file:
 5. **Reflect** — read `references/claim-memory.md` only when deep reflection is
    triggered (see "Deep Reflection Triggers" below).
 
-### 2. Per-step discipline
+#### 2. Per-step discipline
 
 For each step in order:
 
@@ -126,7 +104,7 @@ For each step in order:
    based on the printed failure messages and re-run the validator. Do not mark
    completed until the validator exits 0.
 
-### 3. PROVED gate
+#### 3. PROVED gate
 
 If your final-status is `PROVED`, you MUST additionally run:
 
@@ -139,7 +117,7 @@ This verifies that the 10-item PROVED Self-Check Checklist (see
 If this fails, downgrade final-status to CONJECTURED or HANDED_OFF and revise
 the answer.
 
-### 4. Deep Reflection Triggers
+#### 4. Deep Reflection Triggers
 
 Step 5 (Reflect) has two modes:
 
@@ -156,7 +134,7 @@ Step 5 (Reflect) has two modes:
   `references/claim-memory.md` and update L2/L3 memory in
   `.evomath/session-memory.md`.
 
-### 5. Fallback when filesystem is unavailable
+#### 5. Fallback when filesystem is unavailable
 
 If you cannot run scripts, keep the same TodoWrite discipline:
 - Still create the 5-item list and march through it.
@@ -164,9 +142,9 @@ If you cannot run scripts, keep the same TodoWrite discipline:
 - Substitute mental validation for the script call — check the same required
   fields the validator would check.
 
-## Workflow
+### Workflow
 
-### 1. Plan Briefly
+#### 1. Plan Briefly
 
 Write a short Markdown plan:
 
@@ -183,7 +161,7 @@ For "determine all" problems, include both:
 
 For a simple problem, one root subgoal is enough.
 
-### 2. Try Candidates
+#### 2. Try Candidates
 
 **Mode dispatch** (decide before generating):
 
@@ -242,7 +220,7 @@ Attempts** so it is not repeated.
 Use `references/angles-by-type.md` only when you are out of ideas for a problem
 type. Do not load it by default.
 
-### 3. Assemble
+#### 3. Assemble
 
 Turn the accepted claims into a clean proof or refutation.
 
@@ -255,7 +233,7 @@ Rules:
 - If a required subgoal remains unsolved, stop pretending the proof is complete:
   output a partial result or handoff.
 
-### 4. Audit
+#### 4. Audit
 
 Audit only the clean proof, not the exploration notes.
 
@@ -277,7 +255,7 @@ For ordinary use, one careful local audit is enough. Use the heavier
 `references/phase-4-audit.md` protocol only when the user asks for strict
 multi-reviewer audit or when the result is high-risk.
 
-### 5. Reflect
+#### 5. Reflect
 
 After the final answer, add a short reflection note. It should be compact:
 
@@ -289,7 +267,7 @@ Per-problem memory resets at the next problem. Cross-problem memory is optional:
 write only compact strategy/failure summaries to `.evomath/session-memory.json`
 when file access is available. If not written, say `memory-persisted: false`.
 
-## Status Labels
+### Status Labels
 
 Use exactly one:
 
@@ -303,29 +281,29 @@ Use exactly one:
 
 Exactly one of these five labels must appear in every final answer. See `references/confidence-rules.md` for award conditions and promotion rules.
 
-## Final Answer Shape
+### Final Answer Shape
 
 Use Markdown, not a rigid schema:
 
 ```markdown
 final-status: PROVED
 
-## Result
+### Result
 <answer>
 
-## Proof / Report
+### Proof / Report
 <clean proof, refutation, audit report, partial result, or handoff>
 
-## Audit
+### Audit
 - audits-run:
 - critical-issues:
 - remaining-gaps:
 
-## Proof Artifact
+### Proof Artifact
 - verified claims:
 - negative attempts:
 
-## Reflection
+### Reflection
 - memory-persisted:
 - storage-location:
 - proposed-memory-updates:
@@ -334,7 +312,7 @@ final-status: PROVED
 For proof-audit requests, lead with findings ordered by severity, then give the
 verdict and suggested repair.
 
-## Optional Helpers
+### Optional Helpers
 
 - `scripts/evomath_workspace.py`:
   - `init`         creates the five Markdown state files.
@@ -354,33 +332,3 @@ verdict and suggested repair.
 - `references/model-tier.md`: per-tier parameter table (Haiku / Sonnet /
   Opus). Read once at the start of Phase 0 to set K, internal-rounds, audit
   passes, and abstain thresholds for the active model.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/evomath-tao/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/evomath-tao/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

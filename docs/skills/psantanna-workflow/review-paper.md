@@ -4,28 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/review-paper/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/review-paper/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/review-paper/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: review-paper
-description: Comprehensive manuscript review with three modes: single-pass (default), --adversarial critic-fixer loop, and --peer [journal] simulated peer-review pipeline (editor + 2 dispositioned referees + editorial decision, calibrated to a target journal). R&R continuation via --peer --r2/--r3; hostile-editor stress test via --peer --stress. Auto-invokes /review-r + /audit-reproducibility on referenced scripts unless --no-cross-artifact.
-argument-hint: "[paper path] [--adversarial | --peer <journal> [--r2 | --r3 | --stress] [--no-novelty-check]] [--no-cross-artifact]"
-allowed-tools: ["Read", "Grep", "Glob", "Write", "Edit", "Bash", "Task"]
----
-
-# Manuscript Review
+## Manuscript Review
 
 Produce a thorough, constructive review of an academic manuscript — the kind of report a top-journal referee would write.
 
@@ -49,19 +30,19 @@ Produce a thorough, constructive review of an academic manuscript — the kind o
 
 ---
 
-## Modes
+### Modes
 
-### Default mode (single-pass)
+#### Default mode (single-pass)
 
 One comprehensive review report. Fast, low token cost, suitable for early drafts where the author wants feedback and will iterate manually.
 
-### Adversarial mode (`--adversarial`)
+#### Adversarial mode (`--adversarial`)
 
 Iterative critic-fixer loop modeled on [`/qa-quarto`](../qa-quarto/SKILL.md). The critic identifies issues, the fixer proposes and applies edits (with user approval), and the critic re-audits. Loops until APPROVED or max 5 rounds.
 
 Use when: preparing a pre-submission draft, responding to a journal-desk rejection with substantive revisions, or after your own major rewrite. Costs more tokens but produces a manuscript the critic has signed off on.
 
-### Peer-review mode (`--peer <JOURNAL>`)
+#### Peer-review mode (`--peer <JOURNAL>`)
 
 Simulated editorial pipeline: **editor desk review → referee selection → 2 blind referees with different dispositions → editorial synthesis**. Calibrated to a target journal from `.claude/references/journal-profiles.md`. Use when: pre-submission dress rehearsal, choosing between target journals, R&R planning.
 
@@ -82,7 +63,7 @@ This mode is materially different from `--adversarial`: adversarial runs the sam
 ---
 
 
-## Steps (both modes)
+### Steps (both modes)
 
 1. **Locate and read the manuscript.** First strip flags (`--adversarial`, `--no-cross-artifact`) from `$ARGUMENTS` to get the bare manuscript path. Check:
    - Direct path (bare path from step 1)
@@ -109,43 +90,43 @@ This mode is materially different from `--adversarial`: adversarial runs the sam
 
 ---
 
-## Review Dimensions
+### Review Dimensions
 
-### 1. Argument Structure
+#### 1. Argument Structure
 - Is the research question clearly stated?
 - Does the introduction motivate the question effectively?
 - Is the logical flow sound (question → method → results → conclusion)?
 - Are the conclusions supported by the evidence?
 - Are limitations acknowledged?
 
-### 2. Identification Strategy
+#### 2. Identification Strategy
 - Is the causal claim credible?
 - What are the key identifying assumptions? Are they stated explicitly?
 - Are there threats to identification (omitted variables, reverse causality, measurement error)?
 - Are robustness checks adequate?
 - Is the estimator appropriate for the research design?
 
-### 3. Econometric Specification
+#### 3. Econometric Specification
 - Correct standard errors (clustered? robust? bootstrap?)?
 - Appropriate functional form?
 - Sample selection issues?
 - Multiple testing concerns?
 - Are point estimates economically meaningful (not just statistically significant)?
 
-### 4. Literature Positioning
+#### 4. Literature Positioning
 - Are the key papers cited?
 - Is prior work characterized accurately?
 - Is the contribution clearly differentiated from existing work?
 - Any missing citations that a referee would flag?
 
-### 5. Writing Quality
+#### 5. Writing Quality
 - Clarity and concision
 - Academic tone
 - Consistent notation throughout
 - Abstract effectively summarizes the paper
 - Tables and figures are self-contained (clear labels, notes, sources)
 
-### 6. Presentation
+#### 6. Presentation
 - Are tables and figures well-designed?
 - Is notation consistent throughout?
 - Are there any typos, grammatical errors, or formatting issues?
@@ -153,30 +134,30 @@ This mode is materially different from `--adversarial`: adversarial runs the sam
 
 ---
 
-## Output Format
+### Output Format
 
 ```markdown
-# Manuscript Review: [Paper Title]
+## Manuscript Review: [Paper Title]
 
 **Date:** [YYYY-MM-DD]
 **Reviewer:** review-paper skill
 **File:** [path to manuscript]
 
-## Summary Assessment
+### Summary Assessment
 
 **Overall recommendation:** [Strong Accept / Accept / Revise & Resubmit / Reject]
 
 [2-3 paragraph summary: main contribution, strengths, and key concerns]
 
-## Strengths
+### Strengths
 
 1. [Strength 1]
 2. [Strength 2]
 3. [Strength 3]
 
-## Major Concerns
+### Major Concerns
 
-### MC1: [Title]
+#### MC1: [Title]
 - **Dimension:** [Identification / Econometrics / Argument / Literature / Writing / Presentation]
 - **Issue:** [Specific description]
 - **Suggestion:** [How to address it]
@@ -184,29 +165,29 @@ This mode is materially different from `--adversarial`: adversarial runs the sam
 
 [Repeat for each major concern]
 
-## Minor Concerns
+### Minor Concerns
 
-### mc1: [Title]
+#### mc1: [Title]
 - **Issue:** [Description]
 - **Suggestion:** [Fix]
 
 [Repeat]
 
-## Referee Objections
+### Referee Objections
 
 These are the tough questions a top referee would likely raise:
 
-### RO1: [Question]
+#### RO1: [Question]
 **Why it matters:** [Why this could be fatal]
 **How to address it:** [Suggested response or additional analysis]
 
 [Repeat for 3-5 objections]
 
-## Specific Comments
+### Specific Comments
 
 [Line-by-line or section-by-section comments, if any]
 
-## Summary Statistics
+### Summary Statistics
 
 | Dimension | Rating (1-5) |
 |-----------|-------------|
@@ -221,7 +202,7 @@ These are the tough questions a top referee would likely raise:
 
 ---
 
-## Principles
+### Principles
 
 - **Be constructive.** Every criticism should come with a suggestion.
 - **Be specific.** Reference exact sections, equations, tables.
@@ -232,13 +213,13 @@ These are the tough questions a top referee would likely raise:
 
 ---
 
-## Adversarial Mode — Critic-Fixer Loop
+### Adversarial Mode — Critic-Fixer Loop
 
 **Only runs if `--adversarial` is in `$ARGUMENTS`.**
 
 Pattern adapted from [`/qa-quarto`](../qa-quarto/SKILL.md), which uses the same loop to iterate on slide quality. Papers get it now because the single-pass review leaves authors doing manual fix-and-resubmit cycles.
 
-### Flow
+#### Flow
 
 ```
 Phase 0: Pre-flight
@@ -274,13 +255,13 @@ Phase 3: Re-audit
      → Jump back to Phase 1.
 ```
 
-### Iteration limits
+#### Iteration limits
 
 - **Max 5 rounds.** After round 5, halt regardless of verdict.
 - **Fix round limits:** if the same Concern label appears in rounds N and N+2, flag as "author disagreement" and let the user decide (keep-as-is with rationale vs. another fix attempt).
 - **Budget escape:** if token cost across all rounds exceeds ~200k, warn and let the user cap further rounds.
 
-### Stopping criteria
+#### Stopping criteria
 
 | Condition | Action |
 |---|---|
@@ -289,18 +270,18 @@ Phase 3: Re-audit
 | User approves zero fixes in a round | HALTED — user signals "I disagree with this review" |
 | Compile fails after applied fixes | ROLLED BACK to pre-round-N snapshot, report compile error, user decides |
 
-### Final report
+#### Final report
 
 After the loop ends, write `quality_reports/paper_review_[sanitized_name]_FINAL.md`:
 
 ```markdown
-# Final Review: [Paper Title]
+## Final Review: [Paper Title]
 
 **Rounds:** N
 **Verdict:** APPROVED | HALTED (max rounds) | HALTED (user override) | ROLLED BACK
 **Token cost estimate:** ~XXk
 
-## Round Summary
+### Round Summary
 | Round | Major Concerns | Fatal Objections | Status |
 |---|---|---|---|
 | 1 | 7 | 2 | Fixed 5, deferred 2 |
@@ -308,17 +289,17 @@ After the loop ends, write `quality_reports/paper_review_[sanitized_name]_FINAL.
 | ... | ... | ... | ...         |
 | N | 0 | 0 | APPROVED        |
 
-## Changes Applied
+### Changes Applied
 [link to git diff between the pre-round-1 snapshot and HEAD]
 
-## Remaining Concerns (if HALTED)
+### Remaining Concerns (if HALTED)
 [list with severity + rationale]
 
-## Next Steps
+### Next Steps
 [recommended action: submit / one more pass / substantial revision]
 ```
 
-### When NOT to use adversarial mode
+#### When NOT to use adversarial mode
 
 - Early exploratory drafts (the loop forces premature polish on ideas still being shaped)
 - Papers you don't yet have compilable source for (can't verify edits)
@@ -326,9 +307,9 @@ After the loop ends, write `quality_reports/paper_review_[sanitized_name]_FINAL.
 
 ---
 
-## `--peer [journal]` workflow detail
+### `--peer [journal]` workflow detail
 
-### Phase 0: Cross-artifact pre-flight (runs BEFORE desk review in --peer mode)
+#### Phase 0: Cross-artifact pre-flight (runs BEFORE desk review in --peer mode)
 
 Unless `--no-cross-artifact` is set, auto-invoke `/audit-reproducibility` on the manuscript + its outputs directory *first*. Any reproducibility FAIL becomes desk-reject-worthy evidence the editor can cite. See `.claude/rules/cross-artifact-review.md`.
 
@@ -345,7 +326,7 @@ Opt-out: `--no-novelty-check` already skips the probe entirely. If the probe run
 **Pre-Flight Report (required before Phase 1).** Before spawning the editor, output a Pre-Flight Report so the user can verify the inputs are read correctly:
 
 ```markdown
-## Pre-Flight Report — /review-paper --peer
+### Pre-Flight Report — /review-paper --peer
 
 **Manuscript:** [path] — [page count, last modified]
 **Target journal:** [JOURNAL_SHORT] → [full name from `.claude/references/journal-profiles.md`]
@@ -357,7 +338,7 @@ Opt-out: `--no-novelty-check` already skips the probe entirely. If the probe run
 
 If the manuscript path doesn't exist, the target journal isn't in `.claude/references/journal-profiles.md`, or a cross-artifact script is missing, stop and surface the issue before proceeding.
 
-### Phase 1: Editor desk review
+#### Phase 1: Editor desk review
 
 Spawn forked subagent `editor` with the manuscript path and `--peer <JOURNAL>` context. Editor:
 - Reads journal profile from `.claude/references/journal-profiles.md` → states "Calibrated to: [journal]".
@@ -367,11 +348,11 @@ Spawn forked subagent `editor` with the manuscript path and `--peer <JOURNAL>` c
 
 Report: `quality_reports/peer_review_[paper]/desk_review.md`.
 
-### Phase 1b: Referee selection (inside editor)
+#### Phase 1b: Referee selection (inside editor)
 
 Editor draws 2 DIFFERENT dispositions from journal's Referee-pool weights and assigns each referee 1 critical + 1 constructive peeve (stress mode: 2 critical + 1 constructive). Appended to `desk_review.md`.
 
-### Phase 2: Two parallel referees, blind to each other
+#### Phase 2: Two parallel referees, blind to each other
 
 Spawn in parallel:
 - Forked subagent `domain-referee` with disposition D1, peeves P1 → `referee_domain.md`.
@@ -379,13 +360,13 @@ Spawn in parallel:
 
 Each referee must include "What would change my mind: [specific ask]" on every MAJOR concern.
 
-### Phase 3: Editor synthesis
+#### Phase 3: Editor synthesis
 
 Read both referee reports. Classify each MAJOR concern as FATAL / ADDRESSABLE / TASTE. Produce editorial decision using the decision rule table in `editor.md`.
 
 Report: `quality_reports/peer_review_[paper]/editorial_decision.md`.
 
-### Phase 4: Summary
+#### Phase 4: Summary
 
 Tell the user:
 - Final decision (Accept / Minor / Major / Reject / Desk Reject)
@@ -394,7 +375,7 @@ Tell the user:
 
 ---
 
-## Output layout for `--peer` mode
+### Output layout for `--peer` mode
 
 ```
 quality_reports/
@@ -411,39 +392,9 @@ quality_reports/
 
 ---
 
-## Field adaptation
+### Field adaptation
 
 The shipped `journal-profiles.md` covers 5 econ journals (AER, QJE, JPE, ECMA, ReStud). For other fields (finance, political science, biology, CS, etc.), copy `templates/journal-profile-template.md` into a new section of `journal-profiles.md` and fill in the schema. See the "Field adaptation" section at the end of `journal-profiles.md` for detailed guidance. The pipeline itself is field-agnostic; only the calibration data changes.
 
 For non-econ paper types in `methods-referee.md`, extend the paper-type list (e.g., biology: `observational / experimental / computational / review`).
 
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/review-paper/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>pedrohcgs/claude-code-my-workflow</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../psantanna-workflow.md">Pedro Sant'Anna's Claude Code Workflow</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow">⭐ pedrohcgs/claude-code-my-workflow</a><br><img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/review-paper/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/psantanna-workflow/review-paper/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/psantanna-workflow.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,35 +4,23 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/causal-inference/sensitivity.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Sensitivity Analysis for Causal Inference
 
----
-
-# Sensitivity Analysis for Causal Inference
-
-## Motivation
+### Motivation
 
 No observational study can prove that unobserved confounding is absent. Sensitivity analysis asks: how large would unobserved confounding need to be to overturn the estimated causal effect? This shifts the question from "is there confounding?" (unanswerable) to "how much confounding would be needed?" (quantifiable and interpretable).
 
-## Oster (2019) Method: Selection on Unobservables
+### Oster (2019) Method: Selection on Unobservables
 
-### Framework
+#### Framework
 
 Oster extends the Altonji, Elder, and Taber (2005) idea that the degree of selection on observables provides information about the likely degree of selection on unobservables.
 
 The central assumption: if the observed controls capture a representative proportion of the total selection, then the relationship between observed control inclusion and coefficient movements is informative about omitted variable bias.
 
-### The Delta Parameter
+#### The Delta Parameter
 
 Oster defines delta as the ratio of selection on unobservables to selection on observables:
 
@@ -43,7 +31,7 @@ delta = [Cov(unobservables, treatment) / Var(unobservables)] / [Cov(observables,
 - delta = 1: selection on unobservables equals selection on observables (the "proportional selection" assumption).
 - delta > 1: unobservables are more important than observables for selection.
 
-### Computing Bounds
+#### Computing Bounds
 
 Oster provides a formula for bias-adjusted treatment effects as a function of delta and R_max (the R-squared that would obtain if all confounders were included).
 
@@ -54,27 +42,27 @@ Oster provides a formula for bias-adjusted treatment effects as a function of de
 
 **Output**: The bias-adjusted beta* for a given (delta, R_max) pair. Or equivalently, the value of delta at which beta* = 0 (the "identified set" includes zero).
 
-### Reporting
+#### Reporting
 
 1. Report the controlled coefficient beta_hat and R_hat.
 2. Compute beta* assuming delta = 1 and R_max = 2.2 * R_hat. If beta* has the same sign as beta_hat and is non-trivial in magnitude, the result is robust to proportional selection.
 3. Compute the value of delta that sets beta* = 0. If delta > 1, unobservables would need to be more important than observables to explain away the result.
 4. Show how beta* varies as delta ranges from 0 to 2 and as R_max varies.
 
-### Limitations
+#### Limitations
 
 - The proportional selection assumption (delta = 1) may not hold if researchers strategically include the strongest controls.
 - R_max is unknown and the bound is sensitive to its choice.
 - The method assumes linearity in the confounding structure.
 - Does not account for nonlinear confounding or interaction effects.
 
-## Altonji, Elder, and Taber (2005) — The Original Approach
+### Altonji, Elder, and Taber (2005) — The Original Approach
 
-### Idea
+#### Idea
 
 If the set of observed controls is chosen randomly from the full set of relevant variables, then the covariance of the treatment with observed controls should be informative about the covariance of the treatment with unobserved confounders.
 
-### Implementation
+#### Implementation
 
 Compare the treatment effect from a regression with no controls to one with a rich set of controls. If adding controls changes the coefficient only slightly, this suggests omitted variables are unlikely to generate large bias.
 
@@ -82,26 +70,26 @@ Formally, under the "equal selection" assumption:
 - The bias from unobservables equals the coefficient shift from adding observables.
 - The bias-adjusted estimate is 2 * beta_controlled - beta_uncontrolled.
 
-### Comparison with Oster
+#### Comparison with Oster
 
 Oster (2019) generalizes this by:
 1. Allowing delta != 1 (unequal selection on observables vs unobservables).
 2. Incorporating R-squared changes (movements in R-squared constrain the possible degree of omitted variable bias).
 3. Providing a continuous sensitivity parameter rather than a binary "equal selection" assumption.
 
-## Conley, Hansen, and Rossi (2012) — Plausibly Exogenous Instruments
+### Conley, Hansen, and Rossi (2012) — Plausibly Exogenous Instruments
 
-### Problem
+#### Problem
 
 The exclusion restriction in IV requires that the instrument affects the outcome only through the endogenous variable. This is untestable in the just-identified case. Conley et al. relax this assumption to allow for "plausibly exogenous" instruments that may have a small direct effect on the outcome.
 
-### Model
+#### Model
 
 Y = X * beta + Z * gamma + epsilon
 
 where gamma is the direct effect of the instrument Z on the outcome. The standard exclusion restriction sets gamma = 0. Conley et al. allow gamma to be non-zero but bounded.
 
-### Approaches
+#### Approaches
 
 **1. Union of confidence intervals (UCI)**: Assume gamma lies in a known interval [gamma_L, gamma_U]. For each gamma in this interval, compute the IV estimate of beta. Report the union of all confidence intervals across the range.
 
@@ -109,7 +97,7 @@ where gamma is the direct effect of the instrument Z on the outcome. The standar
 
 **3. Prior specification**: Use a Bayesian approach with a prior on gamma. The posterior of beta incorporates uncertainty about the exclusion restriction.
 
-### Practical Use
+#### Practical Use
 
 1. Start with gamma = 0 (standard IV) and report the baseline estimate.
 2. Choose a range for gamma based on economic reasoning (e.g., the reduced-form coefficient on the instrument provides an upper bound on the direct effect).
@@ -117,13 +105,13 @@ where gamma is the direct effect of the instrument Z on the outcome. The standar
 4. Report the maximum |gamma| that preserves significance or the same sign as the baseline.
 5. Discuss whether this threshold is plausible given the institutional setting.
 
-## Masten and Poirier (2021) — Partial Identification with Sensitivity
+### Masten and Poirier (2021) — Partial Identification with Sensitivity
 
-### Framework
+#### Framework
 
 Masten and Poirier develop a sensitivity analysis framework based on partial identification. Instead of point-identifying a causal effect under untestable assumptions, they characterize the identified set (the set of parameter values consistent with the data and a relaxed set of assumptions).
 
-### Key Idea
+#### Key Idea
 
 Parameterize departures from the identifying assumption (e.g., conditional independence, parallel trends, exclusion restriction) using a sensitivity parameter c.
 
@@ -132,7 +120,7 @@ Parameterize departures from the identifying assumption (e.g., conditional indep
 
 The identified set grows with c, showing how the conclusion degrades as the assumption is relaxed.
 
-### Application to Different Designs
+#### Application to Different Designs
 
 **Selection on unobservables**: Bound the conditional mean of the outcome under treatment as a function of how far the unconfoundedness assumption fails.
 
@@ -140,15 +128,15 @@ The identified set grows with c, showing how the conclusion degrades as the assu
 
 **IV**: Allow the exclusion restriction to fail by c (direct effect of instrument on outcome bounded by c).
 
-### Practical Value
+#### Practical Value
 
 - Provides a unified sensitivity framework across research designs.
 - Results are presented as breakdown points: the smallest c that overturns the conclusion.
 - Easy to communicate: "the result is robust to violations of parallel trends up to c = 0.03 standard deviations per year."
 
-## Breakpoint Analysis
+### Breakpoint Analysis
 
-### Concept
+#### Concept
 
 A breakpoint (or breakdown point) is the minimum amount of assumption violation required to change the qualitative conclusion (e.g., statistical significance, sign of the estimate).
 
@@ -157,16 +145,16 @@ Different sensitivity frameworks yield different breakpoint measures:
 - Conley gamma: the direct instrument-outcome effect at which the IV estimate becomes insignificant.
 - Masten-Poirier c: the assumption violation magnitude at which the identified set includes zero.
 
-### Reporting Best Practices
+#### Reporting Best Practices
 
 - Report the breakpoint alongside the main estimate.
 - Calibrate the breakpoint against observable benchmarks. For example: "The unobserved confounder would need to explain 2.5 times as much variation as our richest control variable (parental income) to overturn the result."
 - Compare breakpoints across specifications and samples.
 - Present visual sensitivity plots: estimated effect (or confidence interval) as a function of the sensitivity parameter.
 
-## Rosenbaum Bounds (Matching/Observational Studies)
+### Rosenbaum Bounds (Matching/Observational Studies)
 
-### Framework
+#### Framework
 
 In the context of matching or propensity score methods, Rosenbaum (2002) asks: how much could a hidden bias (unobserved confounder) change the odds of treatment before the conclusion is overturned?
 
@@ -176,13 +164,13 @@ The sensitivity parameter Gamma represents the maximum ratio of treatment odds b
 
 At Gamma = 1, there is no hidden bias (perfect matching on all confounders). As Gamma increases, the bounds on the treatment effect widen.
 
-### Reporting
+#### Reporting
 
 - Report the Gamma value at which the result becomes insignificant.
 - Calibrate: "A confounder that doubled the odds of treatment (Gamma = 2) would not overturn the finding."
 - Higher Gamma breakpoints indicate more robust findings.
 
-## E-Value (VanderWeele and Ding 2017)
+### E-Value (VanderWeele and Ding 2017)
 
 The E-value quantifies the minimum strength of association (on the risk ratio scale) that an unmeasured confounder would need to have with both the treatment and the outcome (conditional on measured covariates) to explain away the observed effect.
 
@@ -194,7 +182,7 @@ E = RR + sqrt(RR * (RR - 1))
 
 Originally developed for epidemiology but applicable to any setting with risk ratio or odds ratio outcomes.
 
-## Practical Recommendations
+### Practical Recommendations
 
 1. **Always conduct sensitivity analysis** for the key identifying assumption. The specific method depends on the research design:
    - OLS with controls: Oster (2019) delta
@@ -209,7 +197,7 @@ Originally developed for epidemiology but applicable to any setting with risk ra
 5. **Multiple methods**: When possible, apply more than one sensitivity framework. Concordance across methods strengthens the case.
 6. **Be honest**: If the result is fragile, say so. Fragile results are informative; hiding fragility is not.
 
-## Key References
+### Key References
 
 - Oster, E. (2019). Unobservable selection and coefficient stability. Journal of Business and Economic Statistics.
 - Altonji, J., Elder, T., and Taber, C. (2005). Selection on observed and unobserved variables. Journal of Political Economy.
@@ -218,28 +206,3 @@ Originally developed for epidemiology but applicable to any setting with risk ra
 - Rosenbaum, P. (2002). Observational Studies, 2nd ed. Springer.
 - VanderWeele, T. and Ding, P. (2017). Sensitivity analysis in observational research. Annals of Internal Medicine.
 - Roth, J. and Sant'Anna, P. (2023). When is parallel trends sensitive to functional form? Econometrica.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/causal-inference/sensitivity.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>analysis</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-analysis</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/causal-inference-sensitivity/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

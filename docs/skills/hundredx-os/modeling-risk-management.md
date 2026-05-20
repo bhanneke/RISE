@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/modeling/risk-management.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Risk Management
 
----
-
-# Risk Management
-
-## Overview
+### Overview
 
 Quantitative risk management measures, models, and manages financial risk — the possibility that investment returns deviate from expectations. The field connects probability theory (tail risk modeling), statistics (estimation under uncertainty), and regulation (Basel/Solvency capital requirements).
 
-## Risk Measures
+### Risk Measures
 
-### Value at Risk (VaR)
+#### Value at Risk (VaR)
 
 VaR_alpha: the loss threshold such that the probability of exceeding it is alpha.
 
@@ -43,7 +31,7 @@ Equivalently: VaR_alpha = -F_L^{-1}(alpha), where F_L is the loss distribution C
 - Tells nothing about the magnitude of losses beyond VaR (tail risk).
 - Sensitive to distributional assumptions.
 
-### Expected Shortfall (CVaR / Conditional VaR)
+#### Expected Shortfall (CVaR / Conditional VaR)
 
 ES_alpha = E[L | L > VaR_alpha]
 
@@ -55,7 +43,7 @@ The expected loss conditional on exceeding VaR. Also called Conditional VaR (CVa
 
 For continuous distributions: ES_alpha = (1/alpha) * integral_0^alpha VaR_u du.
 
-### Estimation Methods
+#### Estimation Methods
 
 **Historical Simulation**:
 - Sort historical P&L. VaR = the (alpha * N)-th worst loss.
@@ -101,7 +89,7 @@ def parametric_var_es(mu, sigma, alpha=0.01):
   VaR_t = -(mu_t + z_alpha * sigma_t) where sigma_t is GARCH conditional volatility.
 - Captures time-varying risk.
 
-### Backtesting VaR
+#### Backtesting VaR
 
 **Unconditional coverage** (Kupiec, 1995):
 - Count exceptions (days where loss > VaR). Under correct VaR, exceptions ~ Binomial(T, alpha).
@@ -115,9 +103,9 @@ def parametric_var_es(mu, sigma, alpha=0.01):
 - Yellow (5-9): increased capital multiplier.
 - Red (10+): model rejected, penalty.
 
-## Tail Risk Modeling
+### Tail Risk Modeling
 
-### Extreme Value Theory (EVT)
+#### Extreme Value Theory (EVT)
 
 Models the tail of the distribution directly, without assuming a specific distribution for the entire return series.
 
@@ -134,14 +122,14 @@ P(X - u > x | X > u) = (1 + xi * x / beta)^{-1/xi}
 ```python
 from scipy.stats import genpareto
 
-# Fit GPD to exceedances over threshold
+## Fit GPD to exceedances over threshold
 threshold = np.percentile(losses, 95)  # or use mean excess plot
 exceedances = losses[losses > threshold] - threshold
 
-# Fit parameters
+## Fit parameters
 xi, loc, beta = genpareto.fit(exceedances, floc=0)
 
-# VaR and ES from GPD
+## VaR and ES from GPD
 n = len(losses)
 n_u = len(exceedances)
 p_u = n_u / n
@@ -155,7 +143,7 @@ def gpd_es(var, xi, beta, threshold):
 
 **Threshold selection**: Use the mean excess plot (should be linear above threshold) or Hill plot (xi estimate should stabilize).
 
-### Fat Tails in Finance
+#### Fat Tails in Finance
 
 Financial returns exhibit:
 - Excess kurtosis (kurtosis >> 3).
@@ -167,18 +155,18 @@ Alternative distributions:
 - Generalized hyperbolic: flexible family nesting t, normal, and other distributions.
 - Stable distributions: can model infinite variance (alpha-stable), but controversial.
 
-## Copulas
+### Copulas
 
 Model dependence between random variables separately from their marginal distributions.
 
-### Sklar's Theorem
+#### Sklar's Theorem
 Any joint distribution F(x1, ..., xn) can be written as:
 
 F(x1, ..., xn) = C(F_1(x1), ..., F_n(x_n))
 
 where C is a copula and F_i are marginal CDFs.
 
-### Common Copulas
+#### Common Copulas
 
 **Gaussian copula**: Dependence structure of the multivariate normal. Symmetric, no tail dependence.
 
@@ -190,7 +178,7 @@ where C is a copula and F_i are marginal CDFs.
 
 **Frank copula**: Symmetric, no tail dependence. Intermediate between Clayton and Gumbel.
 
-### Tail Dependence
+#### Tail Dependence
 
 lambda_L = lim_{u->0} P(U_2 < u | U_1 < u) — probability of joint extreme negative events.
 lambda_U = lim_{u->1} P(U_2 > u | U_1 > u) — probability of joint extreme positive events.
@@ -203,20 +191,20 @@ lambda_U = lim_{u->1} P(U_2 > u | U_1 > u) — probability of joint extreme posi
 from scipy.stats import kendalltau
 from copulas.bivariate import Clayton, Gumbel, Frank
 
-# Fit copula to pseudo-observations (rank-transformed data)
+## Fit copula to pseudo-observations (rank-transformed data)
 u = np.column_stack([
     rankdata(returns_1) / (len(returns_1) + 1),
     rankdata(returns_2) / (len(returns_2) + 1)
 ])
 
-# Fit Clayton copula (lower tail dependence)
+## Fit Clayton copula (lower tail dependence)
 cop = Clayton()
 cop.fit(u)
 ```
 
-## Risk Decomposition
+### Risk Decomposition
 
-### Marginal and Component VaR
+#### Marginal and Component VaR
 
 **Marginal VaR**: Change in portfolio VaR from a small increase in position i.
 MVaR_i = dVaR / dw_i
@@ -226,7 +214,7 @@ CVaR_i = w_i * MVaR_i
 
 Sum of component VaRs equals total VaR (Euler decomposition).
 
-### Factor Risk Decomposition
+#### Factor Risk Decomposition
 
 Decompose portfolio variance into factor contributions:
 
@@ -235,21 +223,21 @@ Var(R_p) = beta_p' * Sigma_f * beta_p + sigma^2_epsilon
 - Systematic risk: from factor exposures.
 - Idiosyncratic risk: from residual.
 
-## Stress Testing and Scenario Analysis
+### Stress Testing and Scenario Analysis
 
-### Historical Scenarios
+#### Historical Scenarios
 - Replay specific crisis periods (2008 GFC, COVID crash, dot-com bust).
 - Apply historical factor movements to current portfolio.
 
-### Hypothetical Scenarios
+#### Hypothetical Scenarios
 - Define extreme but plausible scenarios (e.g., rates +300bp, equities -30%, credit spreads +500bp).
 - Compute portfolio P&L under each scenario.
 
-### Reverse Stress Testing
+#### Reverse Stress Testing
 - Start from a loss threshold (e.g., "what scenario causes a $X million loss?").
 - Work backward to find the scenarios.
 
-## Practical Checklist
+### Practical Checklist
 
 1. Compute VaR and ES at 1% and 5% levels. Report both.
 2. Use GARCH-based VaR for time-varying risk (not static historical simulation for actively traded portfolios).
@@ -262,7 +250,7 @@ Var(R_p) = beta_p' * Sigma_f * beta_p + sigma^2_epsilon
 9. For academic papers: discuss model risk — how sensitive are risk estimates to distributional assumptions?
 10. Compare risk estimates across methods (historical, parametric, Monte Carlo, EVT). Disagreement signals model uncertainty.
 
-## Key References
+### Key References
 
 - McNeil, A.J., Frey, R., and Embrechts, P. (2015). Quantitative Risk Management, revised ed. Princeton University Press.
 - Jorion, P. (2006). Value at Risk, 3rd ed. McGraw-Hill.
@@ -271,28 +259,3 @@ Var(R_p) = beta_p' * Sigma_f * beta_p + sigma^2_epsilon
 - Embrechts, P., Kluppelberg, C., and Mikosch, T. (1997). Modelling Extremal Events. Springer.
 - Joe, H. (2014). Dependence Modeling with Copulas. Chapman & Hall.
 - Artzner, P., Delbaen, F., Eber, J.M., and Heath, D. (1999). Coherent measures of risk. Mathematical Finance.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/modeling/risk-management.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/modeling-risk-management/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

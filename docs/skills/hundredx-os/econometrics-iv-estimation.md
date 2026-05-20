@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/econometrics/iv-estimation.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Instrumental Variables Estimation
 
----
-
-# Instrumental Variables Estimation
-
-## Core Problem
+### Core Problem
 
 OLS is inconsistent when an endogenous regressor is correlated with the error
 term. Sources: omitted variables, simultaneity, measurement error. IV methods
 resolve this by isolating exogenous variation through instruments.
 
-## 2SLS
+### 2SLS
 
 1. **First stage**: X = pi_0 + pi_1 * Z + pi_2 * W + v
 2. **Second stage**: Y = beta_0 + beta_1 * X_hat + beta_2 * W + epsilon
@@ -34,7 +22,7 @@ resolve this by isolating exogenous variation through instruments.
 - Never run two separate OLS regressions manually (SEs will be wrong).
 - Use robust SEs or GMM-based estimators with heteroskedasticity.
 
-## First-Stage Diagnostics
+### First-Stage Diagnostics
 
 - **Staiger-Stock rule**: F > 10 (conventional, non-robust F, single
   endogenous variable).
@@ -45,7 +33,7 @@ resolve this by isolating exogenous variation through instruments.
 
 Always report the first-stage F. A weak first stage undermines all IV inference.
 
-## Weak Instruments
+### Weak Instruments
 
 When instruments are weakly correlated with the endogenous variable:
 - 2SLS is biased toward OLS (bias ~ 1/F).
@@ -65,7 +53,7 @@ When instruments are weakly correlated with the endogenous variable:
 - **JIVE**: Leave-one-out fitted values in first stage. Reduces
   many-instruments bias.
 
-## Exclusion Restriction
+### Exclusion Restriction
 
 1. **Relevance**: Cov(Z, X) != 0 (testable via first stage)
 2. **Exclusion**: Cov(Z, epsilon) = 0 (not directly testable)
@@ -78,7 +66,7 @@ Strategies for arguing exclusion:
   is zero.
 - Sensitivity: Conley et al. (2012) plausibly exogenous bounds.
 
-## Overidentification Tests
+### Overidentification Tests
 
 - **Sargan test**: Under homoskedasticity, Chi-squared with (L - K) df.
 - **Hansen J test**: Robust to heteroskedasticity.
@@ -86,40 +74,40 @@ Strategies for arguing exclusion:
   If all instruments violate exclusion in the same direction, the test
   will not detect it.
 
-## IV Strategy Catalog
+### IV Strategy Catalog
 
-### Shift-Share / Bartik
+#### Shift-Share / Bartik
 B_i = sum_k s_{ik} * g_k (local shares x national shifts). Requires
 exogenous shares (GPSS 2020) OR exogenous shifts (BHJ 2022). See
 dedicated shift-share skill for details.
 
-### Judge / Examiner Designs
+#### Judge / Examiner Designs
 Leave-out mean of decision-maker's treatment rate as instrument. Requires
 conditional random assignment + monotonicity. See dedicated judge-designs
 skill.
 
-### Distance Instruments
+#### Distance Instruments
 Geographic distance to facility creates cost-of-access variation. Concern:
 residential sorting. Mitigate with historical/pre-determined distances.
 
-### Policy Variation
+#### Policy Variation
 Cross-jurisdictional or over-time variation in laws/regulations. Concerns:
 policy endogeneity, simultaneous changes, selective migration.
 
-### Lottery-Based
+#### Lottery-Based
 Draft lotteries, school lotteries, housing voucher lotteries. Clean
 randomization but identifies LATE for compliers.
 
-### Biological / Genetic
+#### Biological / Genetic
 Twin births for family size, Mendelian randomization. Concerns: pleiotropy,
 population stratification, dynastic effects.
 
-### Weather / Environmental
+#### Weather / Environmental
 Rainfall, temperature, natural disasters as instruments for
 weather-sensitive variables. Concern: weather affects many outcomes
 simultaneously.
 
-## Practical Checklist
+### Practical Checklist
 
 1. Report first-stage regression with F-statistic (robust or effective F).
 2. Report both OLS and IV estimates. Large differences suggest endogeneity;
@@ -132,35 +120,10 @@ simultaneously.
 8. Discuss what LATE the IV identifies. With heterogeneous effects, 2SLS
    estimates a complier-weighted average.
 
-## Key References
+### Key References
 
 - Angrist & Pischke (2009). Mostly Harmless Econometrics.
 - Stock & Yogo (2005). Testing for weak instruments.
 - Andrews, Stock & Sun (2019). Weak instruments in IV regression. Ann Rev Econ.
 - Lee, McCrary, Moreira & Porter (2022). Valid t-ratio inference for IV. AER.
 - Mogstad, Torgovitsky & Walters (2021). Causal interpretation of 2SLS. AER.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/econometrics/iv-estimation.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>analysis</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-analysis</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/econometrics-iv-estimation/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

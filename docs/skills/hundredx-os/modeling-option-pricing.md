@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/modeling/option-pricing.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Option Pricing
 
----
-
-# Option Pricing
-
-## Overview
+### Overview
 
 Option pricing theory values contingent claims — contracts whose payoff depends on the future value of an underlying asset. The fundamental insight is that options can be priced by constructing replicating portfolios (no-arbitrage) or by computing expected payoffs under the risk-neutral measure.
 
-## Foundations
+### Foundations
 
-### Option Basics
+#### Option Basics
 
 **Call option**: Right to buy the underlying at strike K at/before expiration T.
 - Payoff at expiration: max(S_T - K, 0)
@@ -42,7 +30,7 @@ Option pricing theory values contingent claims — contracts whose payoff depend
 - At-the-money (ATM): S ~ K.
 - Out-of-the-money (OTM): S < K for calls, S > K for puts.
 
-### Put-Call Parity
+#### Put-Call Parity
 
 For European options on a non-dividend-paying stock:
 
@@ -50,7 +38,7 @@ C - P = S - K * exp(-rT)
 
 This is a no-arbitrage relationship. Violations indicate mispricing, transaction costs, or early exercise premium (American options).
 
-### Risk-Neutral Pricing
+#### Risk-Neutral Pricing
 
 Under no-arbitrage, there exists a risk-neutral probability measure Q such that:
 
@@ -61,9 +49,9 @@ E^Q[S_T] = S_0 * exp(rT)
 
 This does NOT mean investors are risk-neutral — it is a mathematical equivalence derived from no-arbitrage.
 
-## Black-Scholes-Merton Model
+### Black-Scholes-Merton Model
 
-### Assumptions
+#### Assumptions
 1. Geometric Brownian Motion: dS/S = mu*dt + sigma*dW
 2. Constant volatility sigma
 3. Constant risk-free rate r
@@ -72,7 +60,7 @@ This does NOT mean investors are risk-neutral — it is a mathematical equivalen
 6. Continuous trading
 7. No arbitrage opportunities
 
-### Black-Scholes Formula
+#### Black-Scholes Formula
 
 **Call**: C = S * N(d1) - K * exp(-rT) * N(d2)
 **Put**: P = K * exp(-rT) * N(-d2) - S * N(-d1)
@@ -101,7 +89,7 @@ def bs_price(S, K, T, r, sigma, q=0, option_type='call'):
         return K * np.exp(-r * T) * norm.cdf(-d2) - S * np.exp(-q * T) * norm.cdf(-d1)
 ```
 
-## The Greeks
+### The Greeks
 
 Sensitivities of option price to model inputs.
 
@@ -132,12 +120,12 @@ def bs_greeks(S, K, T, r, sigma, q=0):
     return {'delta': delta, 'gamma': gamma, 'vega': vega, 'theta': theta, 'rho': rho}
 ```
 
-### Delta Hedging
+#### Delta Hedging
 - A delta-neutral portfolio: hold the option and short Delta shares.
 - Rebalance as Delta changes (Gamma measures how fast Delta moves).
 - Hedging error arises from discrete rebalancing, transaction costs, and vol misspecification.
 
-## Implied Volatility
+### Implied Volatility
 
 The volatility sigma_imp that, when plugged into Black-Scholes, reproduces the observed market price. Found by numerical inversion (Newton-Raphson or bisection).
 
@@ -152,7 +140,7 @@ def implied_vol(market_price, S, K, T, r, q=0, option_type='call'):
     return brentq(objective, 1e-6, 5.0)
 ```
 
-### Volatility Surface
+#### Volatility Surface
 
 IV varies across strike (K) and maturity (T):
 
@@ -162,7 +150,7 @@ IV varies across strike (K) and maturity (T):
 
 **The surface**: IV(K, T) is a 2D object. Interpolation methods: SVI (Stochastic Volatility Inspired) parameterization, SABR model, or spline interpolation.
 
-## Binomial Tree (Cox-Ross-Rubinstein)
+### Binomial Tree (Cox-Ross-Rubinstein)
 
 Discrete-time model. The stock moves up by factor u or down by factor d each period.
 
@@ -170,11 +158,11 @@ u = exp(sigma * sqrt(dt))
 d = 1/u
 p = (exp((r-q)*dt) - d) / (u - d)   # risk-neutral probability
 
-### European Options
+#### European Options
 - Build tree forward: compute stock prices at each node.
 - Work backward: at expiration, option value = payoff. At each prior node, discount expected value.
 
-### American Options
+#### American Options
 - Same backward induction, but at each node compare continuation value with immediate exercise value.
 - Take the maximum: V = max(payoff_if_exercise, discounted_expected_continuation)
 
@@ -209,11 +197,11 @@ def binomial_tree(S, K, T, r, sigma, q, N, option_type='call', american=False):
     return V[0]
 ```
 
-## Monte Carlo Option Pricing
+### Monte Carlo Option Pricing
 
 Simulate paths of the underlying under Q, compute payoffs, and average.
 
-### Geometric Brownian Motion Simulation
+#### Geometric Brownian Motion Simulation
 
 S_T = S_0 * exp((r - q - sigma^2/2)*T + sigma*sqrt(T)*Z),  Z ~ N(0,1)
 
@@ -234,12 +222,12 @@ def monte_carlo_european(S, K, T, r, sigma, q, n_paths=100000, option_type='call
     return price, se
 ```
 
-### Variance Reduction
+#### Variance Reduction
 - **Antithetic variates**: Use both Z and -Z. Halves variance for monotonic payoffs.
 - **Control variates**: Use a correlated variable with known expectation (e.g., the stock itself, or a simpler option with closed-form price).
 - **Importance sampling**: Shift the distribution to sample more from regions that matter for the payoff.
 
-### Path-Dependent Options
+#### Path-Dependent Options
 Monte Carlo is the natural method for path-dependent exotics:
 - Asian options (average price)
 - Barrier options (knock-in/knock-out)
@@ -247,9 +235,9 @@ Monte Carlo is the natural method for path-dependent exotics:
 
 For path simulation, discretize: S_{t+dt} = S_t * exp((r-q-sigma^2/2)*dt + sigma*sqrt(dt)*Z_t)
 
-## Stochastic Volatility Models
+### Stochastic Volatility Models
 
-### Heston Model (1993)
+#### Heston Model (1993)
 
 dS_t = (r - q) * S_t * dt + sqrt(V_t) * S_t * dW_1
 dV_t = kappa * (theta - V_t) * dt + xi * sqrt(V_t) * dW_2
@@ -264,7 +252,7 @@ Parameters:
 
 The Heston model has a semi-closed-form solution via characteristic functions, making calibration feasible.
 
-### SABR Model
+#### SABR Model
 
 Popular in interest rate derivatives:
 dF = sigma * F^beta * dW_1
@@ -277,9 +265,9 @@ Corr(dW_1, dW_2) = rho
 
 Hagan et al. (2002) provide an approximate implied vol formula, widely used for interpolation.
 
-## Jump-Diffusion Models
+### Jump-Diffusion Models
 
-### Merton (1976)
+#### Merton (1976)
 
 dS/S = (r - q - lambda*k)*dt + sigma*dW + J*dN
 
@@ -295,15 +283,15 @@ where lambda' = lambda*(1+k), r_n = r - lambda*k + n*mu_J/T, sigma_n^2 = sigma^2
 
 In practice, truncate at n=20-50.
 
-## Calibration
+### Calibration
 
-### Fitting to Market Data
+#### Fitting to Market Data
 1. Collect market option prices (or implied vols) across strikes and maturities.
 2. Define objective: minimize sum of squared differences between model and market prices (or implied vols).
 3. Use optimization (Levenberg-Marquardt, differential evolution, or basin-hopping for global search).
 4. Check fit quality: root mean squared error, examine residuals across the surface.
 
-### Heston Calibration Example
+#### Heston Calibration Example
 ```python
 from scipy.optimize import differential_evolution
 
@@ -321,7 +309,7 @@ bounds = [(0.001, 1), (0.001, 1), (0.1, 10), (0.01, 2), (-0.99, 0.99)]
 result = differential_evolution(heston_objective, bounds, args=(market_data,))
 ```
 
-## Practical Checklist
+### Practical Checklist
 
 1. For European options on liquid underlyings: start with Black-Scholes.
 2. Compute implied volatilities. If the surface shows significant smile/skew, BS is insufficient for pricing but useful as a quoting convention.
@@ -334,7 +322,7 @@ result = differential_evolution(heston_objective, bounds, args=(market_data,))
 9. Report moneyness (K/S or delta), not just strike, for comparability across firms/dates.
 10. For academic papers: cite the model clearly, state all assumptions, and discuss their violations in your setting.
 
-## Key References
+### Key References
 
 - Black, F. and Scholes, M. (1973). The pricing of options and corporate liabilities. Journal of Political Economy.
 - Merton, R.C. (1973). Theory of rational option pricing. Bell Journal of Economics.
@@ -343,28 +331,3 @@ result = differential_evolution(heston_objective, bounds, args=(market_data,))
 - Merton, R.C. (1976). Option pricing when underlying stock returns are discontinuous. Journal of Financial Economics.
 - Hull, J.C. (2021). Options, Futures, and Other Derivatives, 11th ed. Pearson.
 - Gatheral, J. (2006). The Volatility Surface: A Practitioner's Guide. Wiley.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/modeling/option-pricing.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/modeling-option-pricing/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

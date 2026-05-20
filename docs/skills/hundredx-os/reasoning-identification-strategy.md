@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>audit</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/reasoning/identification-strategy.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Identification Strategy Evaluation
 
----
-
-# Identification Strategy Evaluation
-
-## Purpose
+### Purpose
 
 Empirical credibility in economics rests on identification -- how convincingly the paper isolates the causal effect it claims to measure. This procedure provides a systematic framework for evaluating whether an identification strategy is convincing, what its vulnerabilities are, and what tests would strengthen it.
 
 ---
 
-## Step 1: Identify the Estimand
+### Step 1: Identify the Estimand
 
 Before evaluating the strategy, be precise about what the paper is trying to estimate:
 
@@ -39,9 +27,9 @@ Before evaluating the strategy, be precise about what the paper is trying to est
 
 ---
 
-## Step 2: Classify the Framework
+### Step 2: Classify the Framework
 
-### 2a. Difference-in-Differences (DiD)
+#### 2a. Difference-in-Differences (DiD)
 
 **Required assumptions:**
 - Parallel trends: treatment and control groups would have followed the same trend absent treatment
@@ -63,7 +51,7 @@ Before evaluating the strategy, be precise about what the paper is trying to est
 - Using TWFE with staggered adoption without discussing negative weights
 - Not addressing potential spillovers to control group
 
-### 2b. Instrumental Variables (IV)
+#### 2b. Instrumental Variables (IV)
 
 **Required assumptions:**
 - Relevance: instrument predicts the endogenous variable (first stage)
@@ -85,7 +73,7 @@ Before evaluating the strategy, be precise about what the paper is trying to est
 - Multiple instruments without discussing why they're all valid
 - Ignoring that instrument may affect outcome through channels other than claimed
 
-### 2c. Regression Discontinuity (RD)
+#### 2c. Regression Discontinuity (RD)
 
 **Required assumptions:**
 - Continuity: potential outcomes are continuous at the cutoff
@@ -106,7 +94,7 @@ Before evaluating the strategy, be precise about what the paper is trying to est
 - Bandwidth chosen to maximize significance
 - Ignoring that RD estimate is valid only at the cutoff
 
-### 2d. Randomized Controlled Trial (RCT)
+#### 2d. Randomized Controlled Trial (RCT)
 
 **Required assumptions:**
 - Random assignment actually achieved
@@ -122,7 +110,7 @@ Before evaluating the strategy, be precise about what the paper is trying to est
 - [ ] Power calculations (ex ante or ex post)
 - [ ] Multiple hypothesis testing correction if many outcomes
 
-### 2e. Structural Estimation
+#### 2e. Structural Estimation
 
 **Required evaluation criteria:**
 - [ ] Model assumptions clearly stated and discussed
@@ -133,7 +121,7 @@ Before evaluating the strategy, be precise about what the paper is trying to est
 
 ---
 
-## Step 3: Evaluate Threats to Identification
+### Step 3: Evaluate Threats to Identification
 
 For each framework, enumerate:
 
@@ -149,7 +137,7 @@ For each framework, enumerate:
 
 ---
 
-## Step 4: Rate Threats
+### Step 4: Rate Threats
 
 For each unaddressed or partially addressed threat:
 
@@ -163,7 +151,7 @@ For each unaddressed or partially addressed threat:
 
 ---
 
-## Step 5: Overall Credibility Assessment
+### Step 5: Overall Credibility Assessment
 
 Synthesize into a single assessment:
 
@@ -174,34 +162,9 @@ Synthesize into a single assessment:
 
 ---
 
-## Decision Rules for Referee Perspective
+### Decision Rules for Referee Perspective
 
 - A paper does NOT need to address every conceivable threat. It needs to address the most plausible and damaging ones.
 - A transparently discussed limitation is far better than an ignored one. Flag papers that oversell their identification.
 - The standard varies by outlet: top-5 journals demand near-airtight identification; field journals accept reasonable strategies with acknowledged limitations.
 - Novel identification strategies get more scrutiny than established ones. If using a new approach, the paper must convince the reader it's valid.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/reasoning/identification-strategy.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>audit</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/reasoning-identification-strategy/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

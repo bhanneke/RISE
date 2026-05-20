@@ -4,35 +4,13 @@
 
 Paper structure + research plan
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>design</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>research-design</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/paper-planning/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/paper-planning/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-planning
-description: "Guides pre-writing planning for academic papers with 4 structured steps: story design (task-challenge-insight-contribution-advantage), experiment planning (comparisons + ablations), figure design (pipeline + teaser), and 4-week timeline management. Includes counterintuitive planning tactics (write a mock rejection letter to identify weaknesses before writing, narrow before broad claims, design ablations first). Use when: user wants to plan a paper before writing, design story/contributions, plan experiments, create figure sketches, set a writing timeline, or write a pre-emptive rejection letter for planning purposes. Do NOT use for actual writing (use paper-writing), running experiments (use experiment-pipeline), self-reviewing a finished draft (use paper-review), or finding research problems (use research-ideation)."
-allowed-tools: "write_file edit_file read_file think_tool"
-metadata:
-  author: EvoScientist
-  version: '1.0.0'
-  tags: [core, research, writing, academic-writing, experiment-design]
----
-
-# Paper Planning
+## Paper Planning
 
 A structured approach to planning academic papers before writing begins. Covers four key activities: Story design, Experiment planning, Figure design, and Timeline management.
 
-## When to Use This Skill
+### When to Use This Skill
 
 > If you don't yet have an idea, use the `research-ideation` skill first to find a problem and design a solution.
 
@@ -42,7 +20,7 @@ A structured approach to planning academic papers before writing begins. Covers 
 - User wants to design pipeline figures or teaser figures
 - User asks about writing timelines or submission schedules
 
-## Planning Overview
+### Planning Overview
 
 Paper planning follows four steps, ideally completed **before** writing begins:
 
@@ -53,7 +31,7 @@ Step 3: Figure Design     → How do we visually communicate the method?
 Step 4: Timeline          → When does each section get written?
 ```
 
-## Counterintuitive Planning First
+### Counterintuitive Planning First
 
 Prioritize these counterintuitive rules before regular planning:
 
@@ -67,11 +45,11 @@ See [references/counterintuitive-planning.md](references/counterintuitive-planni
 
 ---
 
-## Step 1: Story Design
+### Step 1: Story Design
 
 The "story" is the logical narrative that connects the problem, insight, method, and results.
 
-### Reverse Engineering the Story
+#### Reverse Engineering the Story
 
 Work backwards to build the story:
 
@@ -82,7 +60,7 @@ Work backwards to build the story:
 
 Then write forward: Task → Previous methods → Challenge → Our contributions → Advantages
 
-### Core Elements to Define
+#### Core Elements to Define
 
 Before writing any section, clearly articulate:
 
@@ -94,7 +72,7 @@ Before writing any section, clearly articulate:
 | Contribution | What do we propose? | "Sparse temporal attention for dynamic regions" |
 | Advantage | Why is our approach better? | "Reduces computation while preserving quality" |
 
-### Starting Point: Pipeline Figure Sketch
+#### Starting Point: Pipeline Figure Sketch
 
 > Start by drawing a pipeline figure sketch. This forces you to clarify the overall method before writing.
 
@@ -108,11 +86,11 @@ See [references/story-design.md](references/story-design.md)
 
 ---
 
-## Step 2: Experiment Planning
+### Step 2: Experiment Planning
 
 Plan experiments **before** writing to avoid discovering gaps late.
 
-### Two Categories of Experiments
+#### Two Categories of Experiments
 
 **Comparison Experiments** — Prove our method is better:
 - Which baseline methods to compare against?
@@ -123,7 +101,7 @@ Plan experiments **before** writing to avoid discovering gaps late.
 - Part 1: One big table showing impact of core contributions
 - Part 2: Several small tables for design choices and hyperparameters
 
-### Planning Checklist
+#### Planning Checklist
 
 - [ ] List all comparison baselines (recent, relevant, SOTA)
 - [ ] Define evaluation metrics (standard for the task)
@@ -134,39 +112,39 @@ Plan experiments **before** writing to avoid discovering gaps late.
 
 See [references/experiment-planning.md](references/experiment-planning.md)
 
-### Experiment Plan Template
+#### Experiment Plan Template
 
 Use the template at [assets/experiment-plan-template.md](assets/experiment-plan-template.md) to organize your experiment plan.
 
 ---
 
-## Step 3: Figure Design
+### Step 3: Figure Design
 
 > The pipeline figure is for highlighting novelty, not for making readers understand. The Method text is what makes readers understand.
 
-### Pipeline Figure Principles
+#### Pipeline Figure Principles
 
 - **Highlight novelty**: The pipeline figure showcases what is new, not just the workflow
 - **Differentiate from prior work**: The figure must look different from previous methods
 - **Novel modules stand out**: If the overall pipeline is standard, zoom in on novel modules
 - Focus on clarity of the novel parts; standard components can be simplified
 
-### Teaser Figure
+#### Teaser Figure
 
 The teaser (usually Figure 1) shows the key result at a glance:
 - Place it at the top of the first page
 - Should be immediately compelling
 - Reference it from the Introduction
 
-### Visual Quality Matters
+#### Visual Quality Matters
 
 Visual polish directly influences review outcomes. See [references/figure-design.md](references/figure-design.md) for the full visual quality guide (pipeline figures, tables, typography)
 
 ---
 
-## Step 4: Timeline
+### Step 4: Timeline
 
-### 4-Week Countdown
+#### 4-Week Countdown
 
 Start writing **at least 1 month** before the deadline.
 
@@ -183,7 +161,7 @@ See [references/timeline-4week.md](references/timeline-4week.md) for the detaile
 
 ---
 
-## Handoff to Writing
+### Handoff to Writing
 
 When planning is complete, pass these artifacts to `paper-writing`:
 
@@ -199,7 +177,7 @@ When planning is complete, pass these artifacts to `paper-writing`:
 
 ---
 
-## Reference Navigation
+### Reference Navigation
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
@@ -210,36 +188,6 @@ When planning is complete, pass these artifacts to `paper-writing`:
 | Experiment plan template | [experiment-plan-template.md](assets/experiment-plan-template.md) | Creating a structured experiment plan |
 | Counterintuitive strategy | [counterintuitive-planning.md](references/counterintuitive-planning.md) | Increasing acceptance odds with non-obvious planning choices |
 
-## Handoff to Presentation
+### Handoff to Presentation
 
 If preparing a conference talk or slide deck, the `academic-slides` skill guides slide creation from your planning artifacts — including translating your story design and pipeline figure into presentation structure.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/paper-planning/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>design</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>research-design</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/paper-planning/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

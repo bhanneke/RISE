@@ -4,35 +4,13 @@
 
 Iterative coding loop for experimentation
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>code-gen</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>code-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/experiment-iterative-coder/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/experiment-iterative-coder/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: experiment-iterative-coder
-description: "Iterative code refinement through plan → code → evaluate → refine cycles. Runs lint checks (ruff), tests (pytest), and structured self-evaluation each cycle, then diagnoses failures and refines. Decomposes complex tasks into sequential phases, iterates up to 3 times per phase (10 total). Use when: the main agent delegates a code task with 'MODE: MORE_EFFORT', the user selects 'More Effort' code generation mode, or the task explicitly requests iterative refinement for higher code quality. Do NOT use for single-pass code generation (Lite mode), experiment pipeline orchestration (use experiment-pipeline), or diagnosing a specific experiment failure (use experiment-craft)."
-allowed-tools: "write_file edit_file read_file think_tool execute"
-metadata:
-  author: EvoScientist
-  version: '1.0.0'
-  tags: [core, code-generation, iteration, refinement]
----
-
-# Iterative Coder
+## Iterative Coder
 
 Iterative code refinement through structured plan → code → evaluate → refine cycles. Each cycle runs objective checks (lint, tests) and self-evaluation, then diagnoses failures and plans targeted improvements. Reaches production quality in 3-8 iterations.
 
-## When to Use This Skill
+### When to Use This Skill
 
 - Main agent delegates a code task prefixed with "MODE: MORE_EFFORT"
 - User selected "More Effort" mode for code generation
@@ -41,11 +19,11 @@ Iterative code refinement through structured plan → code → evaluate → refi
 - You want to iterate on code quality rather than submit first-pass code
 - You mention "iterative refinement", "code quality loop", "plan-code-evaluate"
 
-## The Iteration Mindset
+### The Iteration Mindset
 
 **Code quality comes from fast feedback loops, not careful first attempts.** A fast plan → code → evaluate → fix cycle beats spending 30 minutes on a "perfect" first implementation. The evaluate step reveals problems you cannot predict by thinking alone — lint errors, import failures, test regressions, and missing edge cases all surface immediately when you actually run the code.
 
-## Before Starting: Load Context
+### Before Starting: Load Context
 
 1. Read `/memory/experiment-memory.md` for proven strategies from past cycles (skip if it doesn't exist)
 2. Identify existing tests, linting config (pyproject.toml, ruff.toml), or CI setup in the workspace
@@ -55,7 +33,7 @@ Iterative code refinement through structured plan → code → evaluate → refi
    ```
    If either is missing, you will skip that check during evaluation (do not fail the iteration).
 
-## Phase Decomposition
+### Phase Decomposition
 
 Before iterating, analyze the task and break it into sequential phases:
 
@@ -72,11 +50,11 @@ For each phase, define:
 
 Order phases by dependency — later phases may build on earlier ones.
 
-## The Iteration Loop
+### The Iteration Loop
 
 For each phase, iterate up to **3 times**. Global maximum: **10 iterations** across all phases.
 
-### Step 1: Plan
+#### Step 1: Plan
 
 Read current code and previous evaluation feedback (if any). Write a concise improvement plan.
 
@@ -95,34 +73,34 @@ Adapt your plan based on the failure mode from the last evaluation:
 | Lint Failure | Run `ruff check --fix . && ruff format .` before any logic changes |
 | Low self-assessment | Re-read the original task requirements, check for missing functionality |
 
-### Step 2: Code
+#### Step 2: Code
 
 Implement the plan. Keep changes focused on what the plan specifies.
 
 - Do not rewrite working files unless the plan explicitly requires it
 - After writing code, do a quick sanity read of the changed files
 
-### Step 3: Evaluate
+#### Step 3: Evaluate
 
 **CRITICAL: You MUST run these commands every iteration. Do not skip evaluation.**
 
 ```bash
-# 1. Lint check
+## 1. Lint check
 ruff check . 2>&1 | tail -20
 echo "LINT_EXIT: $?"
 
-# 2. Format check
+## 2. Format check
 ruff format --check . 2>&1 | tail -10
 echo "FORMAT_EXIT: $?"
 
-# 3. Run tests (only if test files exist in workspace)
+## 3. Run tests (only if test files exist in workspace)
 python -m pytest -x -q --tb=short 2>&1 | tail -30
 echo "TEST_EXIT: $?"
 ```
 
 If `ruff` is not installed, skip checks 1-2. If `pytest` is not installed or no test files exist, skip check 3. Record which checks were skipped.
 
-### Step 4: Score
+#### Step 4: Score
 
 Compute a composite score from objective signals and self-assessment.
 
@@ -148,21 +126,21 @@ Evaluate on: correctness (does the code do what was asked?), completeness (all r
 
 See [references/evaluation-protocol.md](references/evaluation-protocol.md) for detailed scoring edge cases.
 
-### Step 5: Decide
+#### Step 5: Decide
 
 - Composite score **≥ 0.85** → advance to next phase (or finish if last phase)
 - Composite score **< 0.85** → return to Step 1 with evaluation feedback
 - **Phase iteration limit reached** (3 per phase) → advance to next phase anyway, note remaining issues
 - **Global iteration limit reached** (10 total) → stop, output current best result
 
-### Step 6: Log
+#### Step 6: Log
 
 **CRITICAL: Append to `/artifacts/iteration_log.md` after every iteration.**
 
 Use the template at [assets/iteration-log-template.md](assets/iteration-log-template.md):
 
 ```markdown
-## Iteration {N} (Phase {M}/{T})
+### Iteration {N} (Phase {M}/{T})
 - **Score**: {composite} (lint={X} format={X} test={X} self={X})
 - **Lint**: passed/failed ({N} issues)
 - **Tests**: passed/failed ({passed}/{total})
@@ -171,7 +149,7 @@ Use the template at [assets/iteration-log-template.md](assets/iteration-log-temp
 - **Next**: continue / next_phase / done
 ```
 
-## Completion
+### Completion
 
 After all phases complete or global iteration limit is reached:
 
@@ -182,7 +160,7 @@ After all phases complete or global iteration limit is reached:
 2. **List** all output file paths (code, configs, tests)
 3. **Note** remaining issues: lint warnings, missing tests, known limitations, TODOs
 
-## Counterintuitive Iteration Rules
+### Counterintuitive Iteration Rules
 
 1. **Fix lint before logic**: Lint errors compound — one import error masks all test failures downstream. Always run `ruff check --fix .` before investigating logic bugs.
 
@@ -194,18 +172,18 @@ After all phases complete or global iteration limit is reached:
 
 5. **Don't gold-plate**: 0.85 is the target, not 1.0. Diminishing returns kick in hard above 0.9. Ship and iterate in the next conversation if needed.
 
-## Skill Integration
+### Skill Integration
 
-### Before Starting (load memory)
+#### Before Starting (load memory)
 Refer to **evo-memory** → Read `/memory/experiment-memory.md` for prior strategies
 
-### On Failure (stuck after max iterations)
+#### On Failure (stuck after max iterations)
 Refer to **experiment-craft** → 5-step diagnostic flow to understand the root cause before retrying
 
-### On Success (all phases complete, score ≥ 0.85)
+#### On Success (all phases complete, score ≥ 0.85)
 Report to the main agent → main agent continues pipeline (data-analysis, writing, etc.)
 
-### Handoff Artifacts
+#### Handoff Artifacts
 
 | Artifact | Location | Used By |
 |----------|----------|---------|
@@ -213,39 +191,9 @@ Report to the main agent → main agent continues pipeline (data-analysis, writi
 | Final code | Workspace root | Next pipeline step |
 | Test results | Iteration log entries | data-analysis-agent |
 
-## Reference Navigation
+### Reference Navigation
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
 | Scoring rules and edge cases | [evaluation-protocol.md](references/evaluation-protocol.md) | When scoring edge cases arise (partial tests, missing tools) |
 | Iteration log template | [iteration-log-template.md](assets/iteration-log-template.md) | Every iteration (Step 6) |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/experiment-iterative-coder/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>code-gen</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>code-generation</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/experiment-iterative-coder/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

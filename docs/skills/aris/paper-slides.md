@@ -4,38 +4,19 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>slides</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>dissemination</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-slides/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-slides/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-slides
-description: "Generate conference presentation slides (beamer LaTeX → PDF + editable PPTX) from a compiled paper, with speaker notes and full talk script. Use when user says \"做PPT\", \"做幻灯片\", \"make slides\", \"conference talk\", \"presentation slides\", \"生成slides\", \"写演讲稿\", or wants beamer slides for a conference talk."
-argument-hint: "[paper-directory-or-talk-length] [— style-ref: <source>]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Paper Slides: From Paper to Conference Talk
+## Paper Slides: From Paper to Conference Talk
 
 Generate conference presentation slides from: **$ARGUMENTS**
 
-## Context
+### Context
 
 This skill runs **after** Workflow 3 (`/paper-writing`). It takes a compiled paper and generates a presentation slide deck for conference oral talks, spotlight presentations, or poster lightning talks.
 
 Unlike posters (single page, visual-first), slides tell a **temporal story**: each slide builds on the previous one, with progressive revelation of the research narrative. A good talk makes the audience understand *why this matters* before showing *what was done*.
 
-## Constants
+### Constants
 
 - **VENUE = `NeurIPS`** — Target venue, determines color scheme. Supported: `NeurIPS`, `ICML`, `ICLR`, `AAAI`, `ACL`, `EMNLP`, `CVPR`, `ECCV`, `GENERIC`. Override via argument.
 - **TALK_TYPE = `spotlight`** — Talk format. Options: `oral` (15-20 min), `spotlight` (5-8 min), `poster-talk` (3-5 min), `invited` (30-45 min). Determines slide count and content depth.
@@ -51,16 +32,16 @@ Unlike posters (single page, visual-first), slides tell a **temporal story**: ea
 
 > 💡 Override: `/paper-slides "paper/" — talk_type: oral, venue: ICML, minutes: 20, aspect: 4:3`
 
-## Optional: Style reference (`— style-ref: <source>`, opt-in)
+### Optional: Style reference (`— style-ref: <source>`, opt-in)
 
 Lets the user steer the talk's **structural** rhythm (story beats, theorem density, figure density inherited from the source paper) toward a reference paper. **Default OFF — when the user does not pass `— style-ref`, do nothing differently from before.**
 
 Only when `— style-ref: <source>` appears in `$ARGUMENTS`, run the helper FIRST:
 
 ```bash
-# Resolve $STYLE_HELPER via the canonical strict-safe chain (see
-# shared-references/integration-contract.md §2). Policy A — gate:
-# unresolved helper means --style-ref cannot be satisfied, so abort.
+## Resolve $STYLE_HELPER via the canonical strict-safe chain (see
+## shared-references/integration-contract.md §2). Policy A — gate:
+## unresolved helper means --style-ref cannot be satisfied, so abort.
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -92,7 +73,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 - **Never copy speaker-note prose, slide titles, or examples** from anything reachable through the cache. The talk content is from the user's paper, not the reference.
 - **Never pass `— style-ref` (or the cache contents) to the GPT-5.4 reviewer sub-agent** — the reviewer must judge the talk's clarity on its own merits.
 
-## Talk Type → Slide Count
+### Talk Type → Slide Count
 
 | Talk Type | Duration | Slides | Content Depth |
 |-----------|----------|:------:|---------------|
@@ -101,7 +82,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 | `oral` | 15-20 min | 15-22 | Full story with motivation, method detail, experiments, analysis |
 | `invited` | 30-45 min | 25-40 | Comprehensive: background, related work, deep method, extensive results, discussion |
 
-## Venue Color Schemes
+### Venue Color Schemes
 
 Same as `/paper-poster`:
 
@@ -113,7 +94,7 @@ Same as `/paper-poster`:
 | CVPR | `#2563EB` | `#7C3AED` | `#FFFFFF` | `#1E1E1E` |
 | GENERIC | `#334155` | `#2563EB` | `#FFFFFF` | `#1E1E1E` |
 
-## State Persistence (Compact Recovery)
+### State Persistence (Compact Recovery)
 
 Persist state to `slides/SLIDES_STATE.json` after each phase:
 
@@ -131,9 +112,9 @@ Persist state to `slides/SLIDES_STATE.json` after each phase:
 
 **On startup**: if `SLIDES_STATE.json` exists with `"status": "in_progress"` and within 24h → resume. Otherwise → fresh start.
 
-## Workflow
+### Workflow
 
-### Phase 0: Input Validation & Setup
+#### Phase 0: Input Validation & Setup
 
 1. **Check prerequisites**:
    ```bash
@@ -159,7 +140,7 @@ Persist state to `slides/SLIDES_STATE.json` after each phase:
 
 **State**: Write `SLIDES_STATE.json` with `phase: 0`.
 
-### Phase 1: Content Extraction & Slide Outline
+#### Phase 1: Content Extraction & Slide Outline
 
 Read `paper/sections/*.tex` and build a slide-by-slide outline.
 
@@ -238,7 +219,7 @@ Options:
 
 **State**: Write `SLIDES_STATE.json` with `phase: 1`.
 
-### Phase 2: Slide-by-Slide Content Drafting
+#### Phase 2: Slide-by-Slide Content Drafting
 
 For each slide in the outline, draft the actual content.
 
@@ -260,7 +241,7 @@ For each slide in the outline, draft the actual content.
 2. Content (itemize or figure + caption)
 3. `\note{}` with speaker text (if SPEAKER_NOTES=true)
 
-### Phase 3: Generate Slides LaTeX
+#### Phase 3: Generate Slides LaTeX
 
 Create `slides/main.tex` using beamer.
 
@@ -354,7 +335,7 @@ ln -sf ../paper/figures/*.png slides/figures/ 2>/dev/null
 - Frame numbers in bottom-right
 - Clean white background (no gradients, no decorative elements)
 
-### Phase 4: Compile Slides
+#### Phase 4: Compile Slides
 
 ```bash
 cd slides && latexmk -$ENGINE -interaction=nonstopmode main.tex
@@ -367,7 +348,7 @@ cd slides && latexmk -$ENGINE -interaction=nonstopmode main.tex
 
 **Verification**:
 ```bash
-# Check slide count matches outline
+## Check slide count matches outline
 pdfinfo slides/main.pdf | grep Pages
 ```
 
@@ -375,7 +356,7 @@ If page count differs significantly from outline (>2 slides off), investigate.
 
 **State**: Write `SLIDES_STATE.json` with `phase: 4`.
 
-### Phase 5: Codex MCP Review
+#### Phase 5: Codex MCP Review
 
 Send the slide outline + selected LaTeX frames to GPT-5.4 xhigh:
 
@@ -415,7 +396,7 @@ Save review to `slides/SLIDES_REVIEW.md`.
 
 **State**: Write `SLIDES_STATE.json` with `phase: 5`.
 
-### Phase 6: Speaker Notes
+#### Phase 6: Speaker Notes
 
 For each slide, ensure a `\note{}` block exists with:
 
@@ -426,16 +407,16 @@ For each slide, ensure a `\note{}` block exists with:
 Also generate `slides/speaker_notes.md` as a standalone backup:
 
 ```markdown
-# Speaker Notes
+## Speaker Notes
 
-## Slide 1: Title
+### Slide 1: Title
 [No speaking — wait for introduction]
 
-## Slide 2: Motivation
+### Slide 2: Motivation
 "Thank you. So let me start with the problem we're trying to solve..."
 [Time: 1.5 min]
 
-## Slide 3: Problem Statement
+### Slide 3: Problem Statement
 "Specifically, the challenge is..."
 → Transition: "To address this, our key insight is..."
 [Time: 1 min]
@@ -445,7 +426,7 @@ Also generate `slides/speaker_notes.md` as a standalone backup:
 
 **State**: Write `SLIDES_STATE.json` with `phase: 6`.
 
-### Phase 7: PowerPoint Export
+#### Phase 7: PowerPoint Export
 
 Generate an editable PPTX using `python-pptx`:
 
@@ -468,21 +449,21 @@ Write `slides/generate_pptx.py` that:
 
 ```bash
 cd slides && python3 generate_pptx.py
-# Output: slides/presentation.pptx
+## Output: slides/presentation.pptx
 ```
 
 > ⚠️ If `python-pptx` is not installed, skip with a note: "Install `pip install python-pptx` to enable PowerPoint export."
 
 **State**: Write `SLIDES_STATE.json` with `phase: 7`.
 
-### Phase 8: Full Talk Script
+#### Phase 8: Full Talk Script
 
 Generate `slides/TALK_SCRIPT.md` — a complete, word-for-word script for the talk.
 
 This is different from speaker notes (brief reminders). The talk script is a **full manuscript** that can be read aloud or used for practice.
 
 ```markdown
-# Talk Script: [Paper Title]
+## Talk Script: [Paper Title]
 
 **Venue**: [VENUE] [YEAR]
 **Talk type**: [TALK_TYPE] ([TALK_MINUTES] min)
@@ -490,7 +471,7 @@ This is different from speaker notes (brief reminders). The talk script is a **f
 
 ---
 
-## Slide 1: Title [0:00 - 0:15]
+### Slide 1: Title [0:00 - 0:15]
 
 *[Wait for chair introduction]*
 
@@ -498,7 +479,7 @@ This is different from speaker notes (brief reminders). The talk script is a **f
 
 ---
 
-## Slide 2: Motivation [0:15 - 1:30]
+### Slide 2: Motivation [0:15 - 1:30]
 
 "Let me start with the problem. [Describe the real-world motivation in accessible terms]. This matters because [impact statement].
 
@@ -508,7 +489,7 @@ The current state of the art approaches this with [brief existing approach]. But
 
 ---
 
-## Slide 3: Key Insight [1:30 - 2:30]
+### Slide 3: Key Insight [1:30 - 2:30]
 
 "Our key observation is that [core insight in one sentence].
 
@@ -518,13 +499,13 @@ This leads us to propose [method name], which [one-sentence description]."
 
 ---
 
-## Slide 4-N: [Continue for each slide...]
+### Slide 4-N: [Continue for each slide...]
 
 ...
 
 ---
 
-## Slide [N]: Thank You [TALK_MINUTES:00]
+### Slide [N]: Thank You [TALK_MINUTES:00]
 
 "To summarize: we've shown that [main result]. The key takeaway is [memorable final message].
 
@@ -532,7 +513,7 @@ The paper and code are available at the QR code on screen. I'm happy to take que
 
 ---
 
-## Time Budget Summary
+### Time Budget Summary
 
 | Slide | Topic | Duration | Cumulative |
 |:-----:|-------|:--------:|:----------:|
@@ -546,34 +527,34 @@ The paper and code are available at the QR code on screen. I'm happy to take que
 
 ---
 
-## Anticipated Q&A
+### Anticipated Q&A
 
-### Q1: How does this compare to [strongest baseline]?
+#### Q1: How does this compare to [strongest baseline]?
 **A**: "[Specific comparison with numbers]. Our advantage is particularly clear in [specific scenario], where we see [X%] improvement."
 
-### Q2: What are the main limitations?
+#### Q2: What are the main limitations?
 **A**: "[Honest answer]. We see this as [future work direction]."
 
-### Q3: How computationally expensive is this?
+#### Q3: How computationally expensive is this?
 **A**: "[Training/inference cost]. Compared to [baseline], our method requires [comparison]."
 
-### Q4: Does this generalize to [related domain]?
+#### Q4: Does this generalize to [related domain]?
 **A**: "[Answer based on paper's discussion section]."
 
-### Q5: What's the most surprising finding?
+#### Q5: What's the most surprising finding?
 **A**: "[Interesting insight from the experiments]."
 
-### Q6: How sensitive is the method to [hyperparameter/design choice]?
+#### Q6: How sensitive is the method to [hyperparameter/design choice]?
 **A**: "[Reference ablation study if available]."
 
-### Q7: What's the next step for this research?
+#### Q7: What's the next step for this research?
 **A**: "[Future work from conclusion]."
 
-### Q8: [Domain-specific question]
+#### Q8: [Domain-specific question]
 **A**: "[Answer]."
 ```
 
-### Final Output Summary
+#### Final Output Summary
 
 ```
 📊 Slide generation complete:
@@ -600,7 +581,7 @@ Next steps:
 
 **State**: Write `SLIDES_STATE.json` with `phase: 8, status: "completed"`.
 
-## Recommended Follow-up: `/slides-polish`
+### Recommended Follow-up: `/slides-polish`
 
 After this skill produces the initial Beamer + PPTX, the typical drift is
 **typography proportion + per-slide layout**, not content. Run
@@ -620,7 +601,7 @@ edits) and preserves speaker notes verbatim. Invocation:
 Skip it for short decks (< 5 slides) or when a complete redesign is
 needed (re-run `/paper-slides` instead).
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 - **One message per slide.** If a slide has two ideas, split it into two slides.
@@ -634,7 +615,7 @@ needed (re-run `/paper-slides` instead).
 - **Font size minimums**: Title ≥28pt, body ≥20pt, footnotes ≥14pt.
 - **Feishu notifications are optional.** If `~/.claude/feishu.json` exists, send notifications. If absent, skip.
 
-## Parameter Pass-Through
+### Parameter Pass-Through
 
 ```
 /paper-slides "paper/" — talk_type: oral, venue: ICML, minutes: 20, aspect: 4:3, notes: false
@@ -649,33 +630,3 @@ needed (re-run `/paper-slides` instead).
 | `notes` | true | Generate speaker notes |
 | `engine` | pdflatex | LaTeX engine |
 | `auto proceed` | false | Skip checkpoints |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-slides/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>slides</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>dissemination</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/paper-slides/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

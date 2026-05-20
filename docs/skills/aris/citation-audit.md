@@ -4,28 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>audit</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/citation-audit/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/citation-audit/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: citation-audit
-description: "Zero-context verification that every bibliographic entry in the paper is real, correctly attributed, and used in a context the cited paper actually supports. Uses a fresh cross-model reviewer with web/DBLP/arXiv lookup to catch hallucinated authors, wrong years, fabricated venues, version mismatches, and wrong-context citations (cite present but the cited paper does not establish the claim). Use when user says \"审查引用\", \"check citations\", \"citation audit\", \"verify references\", \"引用核对\", or before submission to ensure bibliography integrity."
-argument-hint: "[paper-directory-or-bib-file] [--uncited] [— soft-only]"
-allowed-tools: Bash(*), Read, Grep, Glob, Edit, Write, Agent, mcp__codex__codex, WebSearch, WebFetch
----
-
-# Citation Audit
+## Citation Audit
 
 Verify every `\cite{...}` in a paper against three independent layers:
 
@@ -35,7 +16,7 @@ Verify every `\cite{...}` in a paper against three independent layers:
 
 This skill is the fourth layer of \aris{}'s evidence-and-claim assurance, complementing `experiment-audit` (code), `result-to-claim` (science verdict), and `paper-claim-audit` (numerical claims). Together they form a bottom-up integrity stack from raw evaluation code to manuscript bibliography.
 
-## When to Use This Skill
+### When to Use This Skill
 
 **Run before submission.** The right gating point is:
 - After `paper-write` has produced the LaTeX draft and bib file
@@ -44,7 +25,7 @@ This skill is the fourth layer of \aris{}'s evidence-and-claim assurance, comple
 
 **Do not** run this on a half-written draft — most of the work is in cross-checking each `\cite` against context, which is wasted on placeholder text.
 
-## What This Skill Catches
+### What This Skill Catches
 
 The dangerous citation problems are **not** wildly fake citations — those are easy to spot. The dangerous ones are:
 
@@ -56,7 +37,7 @@ The dangerous citation problems are **not** wildly fake citations — those are 
 - **Phantom DOIs**: DOI looks real but does not resolve.
 - **Self-citation drift**: your own prior work cited with year off by one.
 
-## Constants
+### Constants
 
 - **REVIEWER_MODEL = `gpt-5.5`** — Used via Codex MCP. Default for cross-model review with web access.
 - **CONTEXT_POLICY = `fresh`** — Each audit run uses a new reviewer thread (REVIEWER_BIAS_GUARD). Never `codex-reply`.
@@ -65,9 +46,9 @@ The dangerous citation problems are **not** wildly fake citations — those are 
 - **STATE = `CITATION_AUDIT.json`** — Machine-readable verdict ledger consumable by downstream tools.
 - **SOFT_ONLY = `false`** — When true (set via `— soft-only` / `— soft_only` flag), the audit runs all three layers normally but **forbids any `.bib` file mutation**. Findings that would otherwise mutate the bib (FIX / REPLACE / REMOVE) are translated into per-occurrence sentence-rewrite proposals against the citing `*.tex` files. Used by `/resubmit-pipeline` Phase 1 to honor the user's hard "freeze the bib" constraint.
 
-## Workflow
+### Workflow
 
-### Step 1: Discover bib file and section files
+#### Step 1: Discover bib file and section files
 
 Locate:
 - `references.bib` (or `paper.bib` / similar) under the paper directory
@@ -75,7 +56,7 @@ Locate:
 
 If multiple bib files exist, audit each separately.
 
-### Step 2: Extract all (cite-key, context) pairs
+#### Step 2: Extract all (cite-key, context) pairs
 
 For each `\cite{key1,key2,...}` invocation in the paper:
 - Record the cite key
@@ -92,7 +73,7 @@ If the user passed `--uncited`, also compute the set difference `bib_keys \ cite
 
 Save the extracted contexts to `paper/.aris/citation-audit/contexts.txt` so the reviewer can read it directly. Use the paper-dir-relative path `.aris/citation-audit/contexts.txt` when recording the file in `audited_input_hashes`; do not stage under `/tmp` or other transient locations that the verifier cannot rehash later.
 
-### Step 3: Send each entry to fresh cross-model reviewer
+#### Step 3: Send each entry to fresh cross-model reviewer
 
 For each **cited** bib entry — i.e., each key in `cited_keys` with at least one extracted citation context — invoke `mcp__codex__codex` (NOT `codex-reply` — fresh thread per entry, or batch with explicit per-entry isolation). Do **not** send entries in `bib_keys \ cited_keys` to the reviewer; those are detect-only and surface only when `--uncited` is explicitly enabled (see "Uncited Entry Detection" below).
 
@@ -131,7 +112,7 @@ mcp__codex__codex:
 
 Save the response to `.aris/traces/citation-audit/<date>_runNN/<key>.md` per the review-tracing protocol.
 
-### Step 4: Aggregate verdicts
+#### Step 4: Aggregate verdicts
 
 Build `CITATION_AUDIT.json` following the schema defined in **"Submission
 Artifact Emission"** below (single authoritative schema for this file).
@@ -176,18 +157,18 @@ fields `audit_skill`, `verdict`, `reason_code`, `summary`,
 `audited_input_hashes`, `trace_path`, `thread_id`, `reviewer_model`,
 `reviewer_reasoning`, `generated_at`, `details`).
 
-### Step 5: Generate human-readable report
+#### Step 5: Generate human-readable report
 
 Write `CITATION_AUDIT.md`:
 
 ```markdown
-# Citation Audit Report
+## Citation Audit Report
 
 **Date**: 2026-04-19
 **Bib file(s)**: references.bib
 **Total entries**: 29
 
-## Summary
+### Summary
 | Verdict | Count |
 |---------|------|
 | KEEP    | 11   |
@@ -195,21 +176,21 @@ Write `CITATION_AUDIT.md`:
 | REPLACE | 3    |
 | REMOVE  | 1    |
 
-## Priority Fixes (CRITICAL — apply before submission)
+### Priority Fixes (CRITICAL — apply before submission)
 
-### REMOVE: anon2025placeholder
+#### REMOVE: anon2025placeholder
 - Author listed as "Anonymous" — canonical record exists with real authors and full title
 - Title is incomplete
 - ACTION: Replace key with the canonical citekey, update authors and title
 
-### REPLACE-CONTEXT: example2023priorwork in sec/2.overview.tex:42
+#### REPLACE-CONTEXT: example2023priorwork in sec/2.overview.tex:42
 - Cited to support a specific technical claim
 - The cited paper actually demonstrates a different (related but distinct) phenomenon
 - ACTION: Rewrite the sentence; cite the prior work for what it actually establishes
 
 [... continues for each entry ...]
 
-## All-Clean Entries (no action needed)
+### All-Clean Entries (no action needed)
 
 [list of KEEP keys]
 ```
@@ -217,7 +198,7 @@ Write `CITATION_AUDIT.md`:
 When `--uncited` is set, append the following section after "All-Clean Entries":
 
 ```markdown
-## Uncited Entries (opt-in)
+### Uncited Entries (opt-in)
 
 The following bib entries are present in the audited bib file(s) but are not referenced by any `\cite{...}` in the paper body:
 
@@ -228,7 +209,7 @@ The following bib entries are present in the audited bib file(s) but are not ref
 This section is detect-only; it does not change the top-level verdict.
 ```
 
-### Step 6: Apply fixes (interactive)
+#### Step 6: Apply fixes (interactive)
 
 For each FIX/REPLACE/REMOVE verdict, prompt the user:
 
@@ -241,7 +222,7 @@ Fix [key]?
 
 If `AUTO_APPLY = true`, apply all FIX-level changes (metadata corrections only). REPLACE and REMOVE always require human approval — they involve content changes.
 
-### Step 7: Recompile and verify
+#### Step 7: Recompile and verify
 
 ```bash
 latexmk -C && latexmk -pdf -interaction=nonstopmode main.tex
@@ -252,16 +233,16 @@ Confirm:
 - No `Reference undefined` warnings
 - Page count unchanged or only minimally affected by metadata fixes
 
-## Uncited Entry Detection (opt-in)
+### Uncited Entry Detection (opt-in)
 
 **Default**: disabled. Existing users see no behavior change — only `\cite{...}` keys are audited, and bib entries with no `\cite` reference in the manuscript are silently ignored.
 
 **Opt-in**: pass `--uncited` on invocation. The skill then performs a set-diff after Step 2 and reports bib entries that appear in any audited bib file(s) but are not cited anywhere in the paper. Detect-only — uncited entries are **not** sent to the cross-model reviewer, so there is no extra reviewer/web-lookup cost.
 
-### Why opt-in
+#### Why opt-in
 This skill's headline output is the three-axis audit on cited entries. Surfacing uncited bib entries by default would (a) change long-form output for every existing run, and (b) noise up the verdict for users who intentionally maintain a superset bib file (e.g., shared lab bib, in-progress section reorder where the cite has been removed but the entry intentionally retained). The flag preserves zero behavior change for existing callers.
 
-### Effect when enabled
+#### Effect when enabled
 
 When `--uncited` is set:
 
@@ -270,13 +251,13 @@ When `--uncited` is set:
 - The top-level `verdict` is **unchanged**: uncited entries do not upgrade or downgrade the PASS / WARN / FAIL / etc. classification. The `reason_code` and `summary` are likewise unchanged in shape; only the `details.uncited_entries` field appears.
 - Verifier gates and downstream skills (`paper-writing` Phase 6, `verify_paper_audits.sh`) MUST NOT treat the presence of `uncited_entries` as a blocking signal.
 
-### When opt-in is appropriate
+#### When opt-in is appropriate
 
 - Pre-submission cleanup (drop dead bib entries before sharing camera-ready ZIP).
 - Shared lab bib file where the paper uses a subset and the user wants to confirm what is in scope.
 - Recurring audits where the user has previously seen the uncited count and wants to track whether it changed.
 
-### Fallback when bib enumeration fails
+#### Fallback when bib enumeration fails
 
 If `--uncited` is enabled but full bib-key enumeration fails (e.g., malformed bib syntax that the parser cannot recover), the cited-entry audit must still proceed if at all possible. In that case:
 
@@ -287,7 +268,7 @@ If `--uncited` is enabled but full bib-key enumeration fails (e.g., malformed bi
 
 If the bib file cannot be read well enough to audit even the cited entries, fall back to the existing `BLOCKED` / `bib_unreadable` path defined in the verdict decision table; this is the same behavior as the no-flag default.
 
-## Key Rules
+### Key Rules
 
 - **Fresh reviewer thread per audit run** — never reuse prior review context
 - **Web access required** — the reviewer must do real lookups, not memory pattern-match
@@ -298,7 +279,7 @@ If the bib file cannot be read well enough to audit even the cited entries, fall
 - **Uncited detection is opt-in only** — never auto-enable; never block on uncited entries; existing callers must observe identical output if they do not pass `--uncited`
 - **Under `--soft-only`, citation-audit emits text-rewrite proposals only; bib files are never mutated regardless of finding severity.** The audit semantics (existence + metadata + context) and the per-entry KEEP/FIX/REPLACE/REMOVE ledger are preserved verbatim; only the action layer is translated to per-occurrence sentence rewrites in the citing `*.tex` files. Refuse any downstream-proposed bib edit while `--soft-only` is set.
 
-## Comparison with Other Audit Skills
+### Comparison with Other Audit Skills
 
 | Skill | What it audits | What it catches |
 |-------|---------------|-----------------|
@@ -309,18 +290,18 @@ If the bib file cannot be read well enough to audit even the cited entries, fall
 
 Together: code → result → numerical claim → cited claim. Each layer has cross-family review with no executor in the validator path.
 
-## Known Limitations
+### Known Limitations
 
 - **DBLP coverage gap**: very recent papers (< 2 weeks) may not yet be in DBLP. Reviewer should fall back to arXiv.
 - **Pre-print vs published**: when both exist, reviewer should prefer the published venue (ICML 2024 over arXiv 2401.xxxxx) but flag both.
 - **Anthology vs OpenReview**: NeurIPS/ICLR papers have OpenReview entries before official proceedings; both are valid sources.
 - **Multi-author truncation**: bib entries with 6+ authors using `and others` are conventional and not flagged unless the truncation hides a co-author the user explicitly cares about.
 
-## Review Tracing
+### Review Tracing
 
 After each `mcp__codex__codex` reviewer call, save the trace following `shared-references/review-tracing.md` (Policy C — forensic; never silently skip). Use `save_trace.sh` (resolved per the chain in `shared-references/integration-contract.md` §2) or write files directly to `.aris/traces/citation-audit/<date>_run<NN>/`. Respect the `--- trace:` parameter (default: `full`).
 
-## Output Contract
+### Output Contract
 
 - `CITATION_AUDIT.md` (human-readable report) at paper root
 - `CITATION_AUDIT.json` (machine-readable ledger; schema below) at paper root
@@ -328,17 +309,17 @@ After each `mcp__codex__codex` reviewer call, save the trace following `shared-r
 - Optional: applied fixes to `references.bib` + `sec/*.tex` (with `--apply` flag)
 - Optional: `details.uncited_entries` field in JSON + `## Uncited Entries (opt-in)` MD section (with `--uncited` flag; field absent and section omitted when flag is unset)
 
-## Optional: Soft-Only Mode (— soft-only)
+### Optional: Soft-Only Mode (— soft-only)
 
 **Default**: disabled. The audit emits the standard `KEEP / FIX / REPLACE / REMOVE` per-entry verdicts and a downstream caller (or the `--apply` path of Step 6) is free to mutate the bib.
 
 **Opt-in**: pass `— soft-only` (also accepts `— soft_only`) on invocation. This mode is designed for callers — notably `/resubmit-pipeline` Phase 1 — that operate under a **hard "freeze the bib" constraint**: if a citation is wrong-context, soften the surrounding sentence; do **not** change, add, or remove the cite itself.
 
-### What soft-only changes
+#### What soft-only changes
 
 The audit semantics are **unchanged**: existence + metadata + context-appropriateness checks all run, the reviewer is still invoked once per cited entry, and the per-entry KEEP/FIX/REPLACE/REMOVE verdicts are still computed and emitted exactly as in default mode. Only the **action layer** changes — soft-only translates each base verdict into a text-rewrite proposal instead of a bib mutation.
 
-### Verdict translation table
+#### Verdict translation table
 
 | Base verdict | Soft-only translation | Notes |
 |---|---|---|
@@ -347,7 +328,7 @@ The audit semantics are **unchanged**: existence + metadata + context-appropriat
 | `REPLACE` (wrong-context cite) | `soften_citing_sentence` | Per-occurrence sentence-rewrite proposal. For each `\cite{X}` in the body, locate the surrounding sentence and propose a softened version that does not claim what `X` actually establishes. |
 | `REMOVE` (cite refers to nonexistent paper — i.e., hallucinated citation) | `drop_cite_in_body_only` | The bib entry is left untouched (per the `--soft-only` invariant), but **the inline `\cite{X}` references in the body MUST be removed and the surrounding sentence rewritten** so it no longer relies on a nonexistent paper. Two sub-strategies the rewriter may use: (a) drop the inline `\cite{X}` entirely and rephrase the sentence to remove the load-bearing claim, OR (b) re-attribute to a different in-bib source that genuinely supports the claim. **Never** leave a `\cite{X}` to a hallucinated paper in the body — that is a worse failure mode than removing the cite, because reviewers will check the reference and find nothing. The bib entry itself stays (it's harmless once not cited; the verifier's uncited-detection at submission time will surface it for cleanup outside this audit). |
 
-### Augmented JSON schema (under `--soft-only`)
+#### Augmented JSON schema (under `--soft-only`)
 
 When the flag is set, the standard top-level fields (`audit_skill`, `verdict`, `reason_code`, `summary`, etc.) and the existing `details.per_entry` ledger are emitted exactly as in default mode. In addition:
 
@@ -384,16 +365,16 @@ When the flag is set, the standard top-level fields (`audit_skill`, `verdict`, `
 
 For `drop_cite_in_body_only`, the `proposed_rewrite` field shows the sentence with the inline `\cite{X}` removed (or replaced by a `\cite{Y}` to an alternate in-bib source). The `bib_entry_action` field is fixed to `"leave_as_is_per_soft_only"` — the bib record itself is never modified by the audit.
 
-### Augmented human-readable report
+#### Augmented human-readable report
 
 `CITATION_AUDIT.md` gains a new section `## Soft-Only Rewrites (— soft-only mode)` listing each occurrence with the proposed sentence rewrite for human approval. Example:
 
 ```markdown
-## Soft-Only Rewrites (— soft-only mode)
+### Soft-Only Rewrites (— soft-only mode)
 
 The bib file is frozen. The following sentence rewrites are proposed in lieu of bib edits.
 
-### `smith2023example` — base verdict REPLACE → `soften_citing_sentence`
+#### `smith2023example` — base verdict REPLACE → `soften_citing_sentence`
 
 - **File**: `sec/3.method.tex:142`
 - **Current**: "Smith et al. [2023] proves a generic result that..."
@@ -403,14 +384,14 @@ The bib file is frozen. The following sentence rewrites are proposed in lieu of 
 
 The existing per-entry verdict table in the Summary block is **kept** but FIX/REPLACE/REMOVE rows are annotated with a `🔒 bib frozen by --soft-only` badge so downstream readers see immediately why the bib was not mutated.
 
-### Hard guarantees under `--soft-only`
+#### Hard guarantees under `--soft-only`
 
 - **No `.bib` file mutations under any circumstance.** Step 6 ("Apply fixes (interactive)") is bypassed for the bib file; only `*.tex` rewrite proposals are produced (and still require human approval before any text edit).
 - If a downstream caller — including `paper-writing` Phase 6 or any wrapper — proposes a bib edit while `--soft-only` is set, **refuse it**: emit a one-line refusal in the trace and continue to the next finding.
 - The top-level `verdict` decision table is **unchanged**: a wrong-context cite still produces `FAIL` with `reason_code: wrong_context`. Soft-only does not silence the finding; it only constrains the action layer.
 - `--soft-only` composes with `--uncited`: both flags can be set together. Uncited entries remain detect-only and are not subject to soft-only translation (there is no citing sentence to soften).
 
-## Submission Artifact Emission
+### Submission Artifact Emission
 
 This skill **always** writes `paper/CITATION_AUDIT.json`, regardless of
 caller or detector outcome. A paper with no `.bib` file or no `\cite{...}`
@@ -446,7 +427,7 @@ The artifact conforms to the schema in `shared-references/assurance-contract.md`
 }
 ```
 
-### Optional: `details.uncited_entries` (only when `--uncited` is set)
+#### Optional: `details.uncited_entries` (only when `--uncited` is set)
 
 ```json
 "details": {
@@ -465,7 +446,7 @@ Field semantics:
 - Downstream consumers MUST treat absence of either field as the only valid default state and MUST NOT raise on missing.
 - `suggestion` is advisory only; the verifier and `paper-writing` Phase 6 do not block on it.
 
-### `audited_input_hashes` scope
+#### `audited_input_hashes` scope
 
 Hash the **declared input set** actually passed to this audit: the `.bib`
 file, `main.tex`, and every `sections/*.tex` file that supplied citation
@@ -480,7 +461,7 @@ verifier already resolves relative to the paper dir; prefixing produces
 `paper/paper/...` and false-fails as STALE). Use **absolute paths** for
 any file outside the paper dir.
 
-### Verdict decision table
+#### Verdict decision table
 
 | Input state                                                    | Verdict          | `reason_code` example |
 |----------------------------------------------------------------|------------------|-----------------------|
@@ -493,7 +474,7 @@ any file outside the paper dir.
 
 The `--uncited` flag does **not** appear in this table: uncited entries are advisory only and never alter the top-level verdict or reason_code. They surface exclusively through `details.uncited_entries` and the optional MD section.
 
-### Thread independence
+#### Thread independence
 
 Every invocation uses a fresh `mcp__codex__codex` thread. Never
 `codex-reply`. Do not accept prior audit outputs (PROOF_AUDIT,
@@ -504,40 +485,10 @@ This skill never blocks by itself; `paper-writing` Phase 6 plus the
 verifier decide whether the verdict blocks finalization based on the
 `assurance` level.
 
-## See Also
+### See Also
 
 - `/paper-claim-audit` — sibling skill for numerical claim verification
 - `/experiment-audit` — sibling skill for evaluation code integrity
 - `/result-to-claim` — claim verdict assignment from results
 - `shared-references/citation-discipline.md` — protocol document for citation hygiene
 - `shared-references/reviewer-independence.md` — cross-model review constraints
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/citation-audit/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>audit</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/citation-audit/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

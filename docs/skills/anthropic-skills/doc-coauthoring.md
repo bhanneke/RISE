@@ -4,30 +4,13 @@
 
 Long-document coauthoring workflow
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../anthropic-skills/">Anthropic Skills (foundational)</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/anthropics/skills/contents/skills/doc-coauthoring/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/anthropic-skills/doc-coauthoring/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/anthropics/skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: doc-coauthoring
-description: Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs, creating proposals, drafting specs, or similar documentation tasks.
----
-
-# Doc Co-Authoring Workflow
+## Doc Co-Authoring Workflow
 
 This skill provides a structured workflow for guiding users through collaborative document creation. Act as an active guide, walking users through three stages: Context Gathering, Refinement & Structure, and Reader Testing.
 
-## When to Offer This Workflow
+### When to Offer This Workflow
 
 **Trigger conditions:**
 - User mentions writing documentation: "write a doc", "draft a proposal", "create a spec", "write up"
@@ -45,11 +28,11 @@ Explain that this approach helps ensure the doc works well when others read it (
 
 If user declines, work freeform. If user accepts, proceed to Stage 1.
 
-## Stage 1: Context Gathering
+### Stage 1: Context Gathering
 
 **Goal:** Close the gap between what the user knows and what Claude knows, enabling smart guidance later.
 
-### Initial Questions
+#### Initial Questions
 
 Start by asking the user for meta-context about the document:
 
@@ -71,7 +54,7 @@ Inform them they can answer in shorthand or dump information however works best 
 - Check for images without alt-text
 - If images exist without alt-text, explain that when others use Claude to understand the doc, Claude won't be able to see them. Ask if they want alt-text generated. If so, request they paste each image into chat for descriptive alt-text generation.
 
-### Info Dumping
+#### Info Dumping
 
 Once initial questions are answered, encourage the user to dump all the context they have. Request information such as:
 - Background on the project/problem
@@ -121,7 +104,7 @@ Ask if there's any more context they want to provide at this stage, or if it's t
 
 If user wants to add more, let them. When ready, proceed to Stage 2.
 
-## Stage 2: Refinement & Structure
+### Stage 2: Refinement & Structure
 
 **Goal:** Build the document section by section through brainstorming, curation, and iterative refinement.
 
@@ -171,7 +154,7 @@ Confirm the filename has been created and indicate it's time to fill in each sec
 
 **For each section:**
 
-### Step 1: Clarifying Questions
+#### Step 1: Clarifying Questions
 
 Announce work will begin on the [SECTION NAME] section. Ask 5-10 clarifying questions about what should be included:
 
@@ -179,7 +162,7 @@ Generate 5-10 specific questions based on context and section purpose.
 
 Inform them they can answer in shorthand or just indicate what's important to cover.
 
-### Step 2: Brainstorming
+#### Step 2: Brainstorming
 
 For the [SECTION NAME] section, brainstorm [5-20] things that might be included, depending on the section's complexity. Look for:
 - Context shared that might have been forgotten
@@ -187,7 +170,7 @@ For the [SECTION NAME] section, brainstorm [5-20] things that might be included,
 
 Generate 5-20 numbered options based on section complexity. At the end, offer to brainstorm more if they want additional options.
 
-### Step 3: Curation
+#### Step 3: Curation
 
 Ask which points should be kept, removed, or combined. Request brief justifications to help learn priorities for the next sections.
 
@@ -199,11 +182,11 @@ Provide examples:
 
 **If user gives freeform feedback** (e.g., "looks good" or "I like most of it but...") instead of numbered selections, extract their preferences and proceed. Parse what they want kept/removed/changed and apply it.
 
-### Step 4: Gap Check
+#### Step 4: Gap Check
 
 Based on what they've selected, ask if there's anything important missing for the [SECTION NAME] section.
 
-### Step 5: Drafting
+#### Step 5: Drafting
 
 Use `str_replace` to replace the placeholder text for this section with the actual drafted content.
 
@@ -222,7 +205,7 @@ Inform them the [SECTION NAME] section has been drafted in [filename]. Ask them 
 **Key instruction for user (include when drafting the first section):**
 Provide a note: Instead of editing the doc directly, ask them to indicate what to change. This helps learning of their style for future sections. For example: "Remove the X bullet - already covered by Y" or "Make the third paragraph more concise".
 
-### Step 6: Iterative Refinement
+#### Step 6: Iterative Refinement
 
 As user provides feedback:
 - Use `str_replace` to make edits (never reprint the whole doc)
@@ -232,7 +215,7 @@ As user provides feedback:
 
 **Continue iterating** until user is satisfied with the section.
 
-### Quality Checking
+#### Quality Checking
 
 After 3 consecutive iterations with no substantial changes, ask if anything can be removed without losing important information.
 
@@ -240,7 +223,7 @@ When section is done, confirm [SECTION NAME] is complete. Ask if ready to move t
 
 **Repeat for all sections.**
 
-### Near Completion
+#### Near Completion
 
 As approaching completion (80%+ of sections done), announce intention to re-read the entire document and check for:
 - Flow and consistency across sections
@@ -259,26 +242,26 @@ Provide any final suggestions.
 
 Ask if ready to move to Reader Testing, or if they want to refine anything else.
 
-## Stage 3: Reader Testing
+### Stage 3: Reader Testing
 
 **Goal:** Test the document with a fresh Claude (no context bleed) to verify it works for readers.
 
 **Instructions to user:**
 Explain that testing will now occur to see if the document actually works for readers. This catches blind spots - things that make sense to the authors but might confuse others.
 
-### Testing Approach
+#### Testing Approach
 
 **If access to sub-agents is available (e.g., in Claude Code):**
 
 Perform the testing directly without user involvement.
 
-### Step 1: Predict Reader Questions
+#### Step 1: Predict Reader Questions
 
 Announce intention to predict what questions readers might ask when trying to discover this document.
 
 Generate 5-10 questions that readers would realistically ask.
 
-### Step 2: Test with Sub-Agent
+#### Step 2: Test with Sub-Agent
 
 Announce that these questions will be tested with a fresh Claude instance (no context from this conversation).
 
@@ -286,7 +269,7 @@ For each question, invoke a sub-agent with just the document content and the que
 
 Summarize what Reader Claude got right/wrong for each question.
 
-### Step 3: Run Additional Checks
+#### Step 3: Run Additional Checks
 
 Announce additional checks will be performed.
 
@@ -294,7 +277,7 @@ Invoke sub-agent to check for ambiguity, false assumptions, contradictions.
 
 Summarize any issues found.
 
-### Step 4: Report and Fix
+#### Step 4: Report and Fix
 
 If issues found:
 Report that Reader Claude struggled with specific issues.
@@ -311,13 +294,13 @@ Loop back to refinement for problematic sections.
 
 The user will need to do the testing manually.
 
-### Step 1: Predict Reader Questions
+#### Step 1: Predict Reader Questions
 
 Ask what questions people might ask when trying to discover this document. What would they type into Claude.ai?
 
 Generate 5-10 questions that readers would realistically ask.
 
-### Step 2: Setup Testing
+#### Step 2: Setup Testing
 
 Provide testing instructions:
 1. Open a fresh Claude conversation: https://claude.ai
@@ -331,14 +314,14 @@ For each question, instruct Reader Claude to provide:
 
 Check if Reader Claude gives correct answers or misinterprets anything.
 
-### Step 3: Additional Checks
+#### Step 3: Additional Checks
 
 Also ask Reader Claude:
 - "What in this doc might be ambiguous or unclear to readers?"
 - "What knowledge or context does this doc assume readers already have?"
 - "Are there any internal contradictions or inconsistencies?"
 
-### Step 4: Iterate Based on Results
+#### Step 4: Iterate Based on Results
 
 Ask what Reader Claude got wrong or struggled with. Indicate intention to fix those gaps.
 
@@ -346,11 +329,11 @@ Loop back to refinement for any problematic sections.
 
 ---
 
-### Exit Condition (Both Approaches)
+#### Exit Condition (Both Approaches)
 
 When Reader Claude consistently answers questions correctly and doesn't surface new gaps or ambiguities, the doc is ready.
 
-## Final Review
+### Final Review
 
 When Reader Testing passes:
 Announce the doc has passed Reader Claude testing. Before completion:
@@ -367,7 +350,7 @@ Announce document completion. Provide a few final tips:
 - Use appendices to provide depth without bloating the main doc
 - Update the doc as feedback is received from real readers
 
-## Tips for Effective Guidance
+### Tips for Effective Guidance
 
 **Tone:**
 - Be direct and procedural
@@ -393,33 +376,3 @@ Announce document completion. Provide a few final tips:
 - Don't rush through stages
 - Each iteration should make meaningful improvements
 - The goal is a document that actually works for readers
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/anthropics/skills/contents/skills/doc-coauthoring/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>anthropics/skills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../anthropic-skills.md">Anthropic Skills (foundational)</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/anthropics/skills">⭐ anthropics/skills</a><br><img src="https://img.shields.io/github/stars/anthropics/skills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/anthropics/skills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/anthropic-skills/doc-coauthoring/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/anthropic-skills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/grant-proposal/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/grant-proposal/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: grant-proposal
-description: "Draft a structured grant proposal from research ideas and literature. Supports KAKENHI (Japan), NSF (US), NSFC (China, including 面上/青年/优青/杰青/海外优青/重点), ERC (EU), DFG (Germany), SNSF (Switzerland), ARC (Australia), NWO (Netherlands), and generic formats. Use when user says \"write grant\", \"grant proposal\", \"申請書\", \"write KAKENHI\", \"科研費\", \"基金申请\", \"写基金\", \"NSF proposal\", or wants to turn research ideas into a funding application."
-argument-hint: "[research-direction — grant-type] [— style-ref: <source>]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Grant Proposal: From Research Ideas to Fundable Application
+## Grant Proposal: From Research Ideas to Fundable Application
 
 Draft a grant proposal based on: **$ARGUMENTS**
 
-## Overview
+### Overview
 
 This skill turns validated research ideas into a structured, reviewer-ready grant proposal. It chains sub-skills into a grant-specific pipeline:
 
@@ -50,7 +31,7 @@ This skill turns validated research ideas into a structured, reviewer-ready gran
 
 Grant proposals argue for **future work** (feasibility + potential), not completed work (results + claims). This skill handles the unique requirements of grant writing: narrative arc design, reviewer-facing structure, budget justification, timeline planning, and agency-specific formatting.
 
-## Constants
+### Constants
 
 - **GRANT_TYPE = `KAKENHI`** — Default grant type. Supported: `KAKENHI`, `NSF`, `NSFC`, `ERC`, `DFG`, `SNSF`, `ARC`, `NWO`, `GENERIC`. Override via argument (e.g., `/grant-proposal "topic — NSF"`).
 - **GRANT_SUBTYPE = `auto`** — Sub-type within the grant agency. Examples: KAKENHI `Start-up`/`Wakate`/`Kiban-B`; NSFC `Youth`/`Excellent-Youth`/`Distinguished`/`Overseas`/`Key`; NSF `CAREER`/`CRII`/`Standard`. Auto-detected from argument or defaults to the most common sub-type.
@@ -63,16 +44,16 @@ Grant proposals argue for **future work** (feasibility + potential), not complet
 
 > 💡 These are defaults. Override by telling the skill, e.g., `/grant-proposal "topic — NSF CAREER, latex output"` or `/grant-proposal "topic — NSFC Youth, language: English"`.
 
-## Optional: Style reference (`— style-ref: <source>`, opt-in)
+### Optional: Style reference (`— style-ref: <source>`, opt-in)
 
 Lets the PI steer the proposal's **structural** layout (section order tendency, paragraph length, figure density, citation style) toward a successful past proposal or paper they'd like to mirror. **Default OFF — when the user does not pass `— style-ref`, do nothing differently from before.**
 
 Only when `— style-ref: <source>` appears in `$ARGUMENTS`, run the helper FIRST, before drafting:
 
 ```bash
-# Resolve $STYLE_HELPER via the canonical strict-safe chain (see
-# shared-references/integration-contract.md §2). Policy A — gate:
-# unresolved helper means --style-ref cannot be satisfied, so abort.
+## Resolve $STYLE_HELPER via the canonical strict-safe chain (see
+## shared-references/integration-contract.md §2). Policy A — gate:
+## unresolved helper means --style-ref cannot be satisfied, so abort.
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -104,9 +85,9 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 - **Never copy proposal prose, claims, vision statements, or budget items** from anything reachable through the cache. The reference might be someone else's funded proposal; reproducing language risks plagiarism.
 - **Never pass `— style-ref` (or the cache contents) to the GPT-5.4 reviewer sub-agent** when it scores the draft — the proposal must be judged on its own merits.
 
-## Grant Type Specifications
+### Grant Type Specifications
 
-### KAKENHI (Japan — JSPS)
+#### KAKENHI (Japan — JSPS)
 
 | Field | Detail |
 |-------|--------|
@@ -116,7 +97,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 | **Review criteria** | 学術的重要性 (academic significance), 独創性 (originality), 研究計画の妥当性 (plan feasibility), 研究遂行能力 (PI capability) |
 | **Cultural norms** | Explicit yearly milestones (Year 1 / Year 2), budget justification integrated into plan, emphasize 社会的意義 (societal significance), concrete expected outputs (papers, datasets), reference KAKEN database for related funded projects |
 
-### NSF (US)
+#### NSF (US)
 
 | Field | Detail |
 |-------|--------|
@@ -126,7 +107,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 | **Review criteria** | Intellectual Merit, Broader Impacts |
 | **Cultural norms** | Aim-based structure (Aim 1/2/3), preliminary data strongly expected, broader impacts must be concrete and specific (not generic "benefit society"), Results from Prior Support section |
 
-### NSFC (China — 国家自然科学基金)
+#### NSFC (China — 国家自然科学基金)
 
 | Field | Detail |
 |-------|--------|
@@ -136,7 +117,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 | **Review criteria** | 科学意义 (scientific significance), 创新性 (innovation), 可行性 (feasibility), 研究队伍 (team qualification) |
 | **Cultural norms** | Heavy emphasis on 国际前沿 (international frontier) positioning, detailed feasibility analysis, explicit citation of applicant's prior publications, 研究基础 section is critical for demonstrating PI capability |
 
-### ERC (EU — European Research Council)
+#### ERC (EU — European Research Council)
 
 | Field | Detail |
 |-------|--------|
@@ -146,7 +127,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 | **Review criteria** | Ground-breaking nature, Methodology, PI track record |
 | **Cultural norms** | Emphasis on "high-risk/high-gain", methodology table with WP/deliverables/milestones, Gantt chart expected, strong PI narrative |
 
-### DFG (Germany — Deutsche Forschungsgemeinschaft)
+#### DFG (Germany — Deutsche Forschungsgemeinschaft)
 
 | Field | Detail |
 |-------|--------|
@@ -154,7 +135,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 | **Language** | English or German |
 | **Review criteria** | Scientific quality, Originality, Feasibility, PI qualification |
 
-### SNSF (Switzerland — Swiss National Science Foundation)
+#### SNSF (Switzerland — Swiss National Science Foundation)
 
 | Field | Detail |
 |-------|--------|
@@ -162,7 +143,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 | **Language** | English |
 | **Review criteria** | Scientific relevance, Originality, Feasibility, Track record |
 
-### ARC (Australia — Australian Research Council)
+#### ARC (Australia — Australian Research Council)
 
 | Field | Detail |
 |-------|--------|
@@ -170,7 +151,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 | **Language** | English |
 | **Review criteria** | Research quality, Feasibility, Benefit to Australia |
 
-### NWO (Netherlands — Dutch Research Council)
+#### NWO (Netherlands — Dutch Research Council)
 
 | Field | Detail |
 |-------|--------|
@@ -178,7 +159,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 | **Language** | English |
 | **Review criteria** | Scientific quality, Innovative character, Knowledge utilisation |
 
-### GENERIC
+#### GENERIC
 
 For any grant not listed above. User provides section names, page limits, and review criteria via argument:
 
@@ -186,7 +167,7 @@ For any grant not listed above. User provides section names, page limits, and re
 /grant-proposal "topic — GENERIC, sections: Background|Methods|Impact, language: English"
 ```
 
-## State Persistence (Compact Recovery)
+### State Persistence (Compact Recovery)
 
 Grant proposal drafting is a long task that may trigger context compaction. Persist state to `grant-proposal/GRANT_STATE.json` after each phase:
 
@@ -211,9 +192,9 @@ Grant proposal drafting is a long task that may trigger context compaction. Pers
 
 On completion, set `"status": "completed"`.
 
-## Workflow
+### Workflow
 
-### Phase 0: Input Parsing & Context Gathering
+#### Phase 0: Input Parsing & Context Gathering
 
 Parse `$ARGUMENTS` to extract:
 
@@ -239,7 +220,7 @@ If insufficient context exists:
 - No publication list → leave PI qualification section with `[TODO: Add publications]` placeholders
 - Has review-stage/AUTO_REVIEW.md → extract reviewer feedback and use it to strengthen the feasibility narrative
 
-### Phase 1: Literature & Landscape Positioning
+#### Phase 1: Literature & Landscape Positioning
 
 Invoke `/research-lit` to ground the proposal in real literature, then search for competing funded projects:
 
@@ -286,7 +267,7 @@ Options for the user:
 
 **State**: Write `GRANT_STATE.json` with `phase: 1` and the gap statement.
 
-### Phase 2: Narrative Structure & Aims Design
+#### Phase 2: Narrative Structure & Aims Design
 
 Design the proposal's logical architecture before writing any prose.
 
@@ -327,12 +308,12 @@ Problem → Why Now → What We Propose → Why It Will Work → What We Will De
 Design year-by-year (or quarter-by-quarter) plan:
 
 ```markdown
-### Year 1
+#### Year 1
 - Q1-Q2: [Aim 1 tasks]
 - Q3-Q4: [Aim 1 completion + Aim 2 start]
 - Expected outputs: [papers, datasets]
 
-### Year 2
+#### Year 2
 - Q1-Q2: [Aim 2 completion + Aim 3]
 - Q3-Q4: [Aim 3 completion + synthesis]
 - Expected outputs: [papers, tools, final report]
@@ -382,7 +363,7 @@ Options for the user:
 
 **State**: Write `GRANT_STATE.json` with `phase: 2`, aims summary, and Codex threadId.
 
-### Phase 3: Section Drafting
+#### Phase 3: Section Drafting
 
 Draft each section according to the grant type template. Write **complete prose**, not outlines or placeholders.
 
@@ -471,7 +452,7 @@ Which should I generate? (e.g., "1 and 3", "all", "skip")
 4. **Cite references properly** — use citation keys, will build bibliography later
 5. **Match the agency's tone and style** — formal Japanese for KAKENHI, direct English for NSF, etc.
 
-### Phase 4: External Review
+#### Phase 4: External Review
 
 Invoke `/research-review` on the complete draft for grant-type-specific evaluation:
 
@@ -539,7 +520,7 @@ mcp__codex__codex-reply:
     [PASTE REVISED PROPOSAL TEXT]
 ```
 
-### Phase 5: Revision & Output
+#### Phase 5: Revision & Output
 
 #### 5.1 Apply Reviewer Feedback
 
@@ -617,7 +598,7 @@ What would you like to do next?
 - "done" → finalize
 ```
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 
@@ -631,7 +612,7 @@ What would you like to do next?
 - **Cultural norms matter.** KAKENHI expects 社会的意義; NSF expects Broader Impacts; NSFC expects 国际前沿 positioning. Missing these is a red flag for reviewers.
 - **Feishu notifications are optional.** If `~/.claude/feishu.json` exists, send `checkpoint` at each phase transition and `pipeline_done` at final output. If absent, skip silently.
 
-## Parameter Pass-Through
+### Parameter Pass-Through
 
 Parameters can be passed inline with `—` separator. They flow to sub-skills when invoked:
 
@@ -651,9 +632,9 @@ Parameters can be passed inline with `—` separator. They flow to sub-skills wh
 | `reviewer model` | gpt-5.5 | Codex review model | → Codex MCP |
 | `auto proceed` | false | Skip checkpoints | — |
 
-## Composing with Other Skills
+### Composing with Other Skills
 
-### Sub-skills used by this skill
+#### Sub-skills used by this skill
 
 | Sub-skill | Phase | Purpose |
 |-----------|:-----:|---------|
@@ -662,7 +643,7 @@ Parameters can be passed inline with `—` separator. They flow to sub-skills wh
 | `/research-review` | 2, 4 | Structural review + full draft review |
 | `/paper-illustration` | 3 | Generate proposal figures (optional) |
 
-### Funding Track (this skill's primary use case)
+#### Funding Track (this skill's primary use case)
 
 ```
 /idea-discovery "direction"              ← Workflow 1: find validated ideas
@@ -674,45 +655,15 @@ Parameters can be passed inline with `—` separator. They flow to sub-skills wh
 /paper-writing                           ← Workflow 3: write the paper
 ```
 
-### Publish Track (skip this skill)
+#### Publish Track (skip this skill)
 
 ```
 /idea-discovery → /experiment-bridge → /auto-review-loop → /paper-writing → submit
 ```
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/grant-proposal/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/grant-proposal/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

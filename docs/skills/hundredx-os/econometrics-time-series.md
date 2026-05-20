@@ -4,31 +4,19 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/econometrics/time-series.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Time Series Econometrics
 
----
-
-# Time Series Econometrics
-
-## Overview
+### Overview
 
 Time series methods model the temporal dependence structure in financial and economic data. The core challenge is distinguishing genuine predictability from spurious correlation induced by persistence, non-stationarity, or structural breaks.
 
-## Stationarity and Unit Root Tests
+### Stationarity and Unit Root Tests
 
 A time series is (weakly) stationary if its mean, variance, and autocovariances are constant over time. Most financial prices are non-stationary (unit root); returns are typically stationary.
 
-### Testing for Unit Roots
+#### Testing for Unit Roots
 
 **Augmented Dickey-Fuller (ADF)**:
 - H0: Unit root (non-stationary). H1: Stationary.
@@ -49,20 +37,20 @@ A time series is (weakly) stationary if its mean, variance, and autocovariances 
 - Unit root tests allowing for structural breaks.
 - Use when you suspect a regime change (policy shift, crisis).
 
-### Practical Rules
+#### Practical Rules
 - Always plot the series first. Visual inspection catches most issues.
 - Test in levels and first differences.
 - For financial prices: work in log returns (continuously compounded).
 - For macro series: test whether first-differencing or detrending is appropriate.
 
-## ARIMA Models
+### ARIMA Models
 
 ARIMA(p, d, q): AutoRegressive Integrated Moving Average.
 - p: AR order (number of lagged values of y)
 - d: Integration order (number of differences to achieve stationarity)
 - q: MA order (number of lagged error terms)
 
-### Identification
+#### Identification
 1. Check stationarity (unit root tests). Set d accordingly (usually d=0 for returns, d=1 for prices).
 2. Examine ACF and PACF of the stationary series:
    - ACF cuts off at lag q, PACF decays → MA(q)
@@ -70,7 +58,7 @@ ARIMA(p, d, q): AutoRegressive Integrated Moving Average.
    - Both decay → ARMA(p,q)
 3. Use information criteria (AIC, BIC) to select p, q. BIC penalizes complexity more.
 
-### Estimation
+#### Estimation
 ```python
 from statsmodels.tsa.arima.model import ARIMA
 
@@ -79,17 +67,17 @@ results = model.fit()
 print(results.summary())
 ```
 
-### Diagnostics
+#### Diagnostics
 - Ljung-Box test on residuals (H0: no autocorrelation). Test at multiple lag lengths.
 - Jarque-Bera test for normality of residuals.
 - Plot residual ACF — should show no significant spikes.
 - Check for ARCH effects in residuals (Engle's LM test) → if present, use GARCH.
 
-## GARCH Models
+### GARCH Models
 
 Generalized Autoregressive Conditional Heteroskedasticity. Models time-varying volatility — the defining feature of financial return series (volatility clustering).
 
-### GARCH(1,1)
+#### GARCH(1,1)
 
 The workhorse model:
 
@@ -109,14 +97,14 @@ model = arch_model(returns, vol='Garch', p=1, q=1, dist='t')
 results = model.fit(disp='off')
 print(results.summary())
 
-# Conditional volatility
+## Conditional volatility
 vol = results.conditional_volatility
 
-# Standardized residuals
+## Standardized residuals
 std_resid = results.std_resid
 ```
 
-### Extensions
+#### Extensions
 
 **EGARCH (Nelson, 1991)**: Captures leverage effect (negative returns increase volatility more than positive returns of equal magnitude).
 
@@ -138,26 +126,26 @@ r_t = mu + delta * sigma_t^2 + epsilon_t
 - Tests risk-return tradeoff. delta > 0 means higher volatility commands higher expected return.
 
 ```python
-# EGARCH
+## EGARCH
 model = arch_model(returns, vol='EGARCH', p=1, q=1)
 
-# GJR-GARCH
+## GJR-GARCH
 model = arch_model(returns, vol='Garch', p=1, o=1, q=1)  # o=1 adds asymmetry
 ```
 
-### Distribution Assumptions
+#### Distribution Assumptions
 - Normal: default, but financial returns have fat tails.
 - Student-t: `dist='t'` — recommended default for financial data.
 - Skewed-t: `dist='skewt'` — captures both fat tails and asymmetry.
 - GED: `dist='ged'` — Generalized Error Distribution.
 
-### GARCH Diagnostics
+#### GARCH Diagnostics
 - Ljung-Box on squared standardized residuals (should show no remaining ARCH effects).
 - QQ-plot of standardized residuals against assumed distribution.
 - News impact curve (plot sigma^2 as function of epsilon_{t-1}).
 - Compare AIC/BIC across GARCH variants.
 
-## VAR Models
+### VAR Models
 
 Vector Autoregression: models multiple time series jointly. Each variable is regressed on its own lags and lags of all other variables.
 
@@ -165,7 +153,7 @@ Y_t = c + A_1 * Y_{t-1} + ... + A_p * Y_{t-p} + u_t
 
 where Y_t is a K-dimensional vector.
 
-### Identification and Estimation
+#### Identification and Estimation
 1. Test each series for unit roots. If I(1), consider VECM instead.
 2. Select lag order p using AIC/BIC/HQ on the VAR in levels (or differences if non-stationary).
 3. Estimate by OLS equation-by-equation (equivalent to SUR when all equations have the same regressors).
@@ -178,7 +166,7 @@ results = model.fit(maxlags=8, ic='bic')
 print(results.summary())
 ```
 
-### Granger Causality
+#### Granger Causality
 - X Granger-causes Y if past values of X improve prediction of Y beyond Y's own past.
 - Test via F-test on excluded lags in the Y equation.
 - NOT causal in the structural sense — purely predictive.
@@ -187,7 +175,7 @@ print(results.summary())
 results.test_causality('y1', causing='y2', kind='f')
 ```
 
-### Impulse Response Functions (IRFs)
+#### Impulse Response Functions (IRFs)
 - Trace the dynamic response of each variable to a one-unit shock in another.
 - **Ordering matters** for Cholesky decomposition: variable ordered first is assumed contemporaneously exogenous.
 - Report confidence bands (bootstrap or asymptotic).
@@ -197,21 +185,21 @@ irf = results.irf(periods=20)
 irf.plot(orth=True)  # Orthogonalized (Cholesky) IRFs
 ```
 
-### Structural VAR (SVAR)
+#### Structural VAR (SVAR)
 - Imposes economic restrictions on the contemporaneous impact matrix.
 - Short-run restrictions (Cholesky or custom zero restrictions).
 - Long-run restrictions (Blanchard-Quah: permanent vs transitory shocks).
 - Sign restrictions (Uhlig): identify shocks by the sign of responses.
 
-### Forecast Error Variance Decomposition (FEVD)
+#### Forecast Error Variance Decomposition (FEVD)
 - Decomposes the forecast error variance of each variable into contributions from each shock.
 - Complements IRFs: shows relative importance of shocks.
 
-## Cointegration
+### Cointegration
 
 Two or more I(1) series are cointegrated if a linear combination is I(0). The series share a common stochastic trend and cannot drift apart indefinitely.
 
-### Engle-Granger Two-Step
+#### Engle-Granger Two-Step
 1. Estimate cointegrating regression: y_t = alpha + beta * x_t + u_t (OLS)
 2. Test residuals u_t for unit root (ADF with Engle-Granger critical values, NOT standard ADF tables)
 3. If cointegrated, estimate ECM: Delta(y_t) = gamma * u_{t-1} + lagged differences + e_t
@@ -219,7 +207,7 @@ Two or more I(1) series are cointegrated if a linear combination is I(0). The se
 
 Limitations: only finds one cointegrating relationship; normalization matters; poor small-sample properties.
 
-### Johansen Test
+#### Johansen Test
 - Tests for number of cointegrating vectors among K variables.
 - Trace test and maximum eigenvalue test.
 - Can find 0, 1, ..., K-1 cointegrating relationships.
@@ -233,7 +221,7 @@ print(result.trace_stat)
 print(result.trace_stat_crit_vals)  # 90%, 95%, 99%
 ```
 
-### VECM (Vector Error Correction Model)
+#### VECM (Vector Error Correction Model)
 
 If cointegration exists, estimate VECM rather than VAR in differences:
 
@@ -250,7 +238,7 @@ model = VECM(data, k_ar_diff=2, coint_rank=1)
 results = model.fit()
 ```
 
-## HAC Standard Errors
+### HAC Standard Errors
 
 With time series data, OLS standard errors are inconsistent under heteroskedasticity and autocorrelation. Use Heteroskedasticity and Autocorrelation Consistent (HAC) estimators.
 
@@ -266,24 +254,24 @@ model = sm.OLS(y, X).fit(cov_type='HAC', cov_kwds={'maxlags': L})
 
 **When to use**: Always in time series regressions unless you have strong reasons to believe errors are homoskedastic and serially uncorrelated (rare in finance).
 
-## Forecast Evaluation
+### Forecast Evaluation
 
-### In-Sample vs Out-of-Sample
+#### In-Sample vs Out-of-Sample
 - In-sample fit (R^2, AIC) overstates predictive ability.
 - Use expanding or rolling window out-of-sample forecasts.
 - Compare against a benchmark (random walk, historical mean).
 
-### Metrics
+#### Metrics
 - RMSE, MAE, MAPE for point forecasts.
 - Diebold-Mariano test: H0 equal predictive accuracy between two models.
 - Clark-West test: for nested model comparisons (adjusts for the fact that the null imposes restrictions).
 - Mincer-Zarnowitz regression: regress realized on forecast. Test alpha=0, beta=1 jointly.
 
-### Density Forecasts
+#### Density Forecasts
 - Probability integral transform (PIT): if model is correct, PIT values are U(0,1).
 - Log predictive score for comparing density forecasts.
 
-## Structural Breaks and Regime Switching
+### Structural Breaks and Regime Switching
 
 **Chow test**: Known break date. F-test for parameter stability.
 
@@ -300,7 +288,7 @@ model = MarkovRegression(y, k_regimes=2, trend='c', switching_variance=True)
 results = model.fit()
 ```
 
-## Practical Checklist
+### Practical Checklist
 
 1. Plot the series. Check for trends, breaks, volatility clustering, outliers.
 2. Test for unit roots (ADF + KPSS). Transform to stationarity if needed (log returns, first differences).
@@ -315,7 +303,7 @@ results = model.fit()
 11. Test for structural breaks if the sample spans crises or policy changes.
 12. Report unconditional and conditional moments, persistence measures (half-life), and economic interpretation.
 
-## Key References
+### Key References
 
 - Hamilton, J.D. (1994). Time Series Analysis. Princeton University Press.
 - Luetkepohl, H. (2005). New Introduction to Multiple Time Series Analysis. Springer.
@@ -325,28 +313,3 @@ results = model.fit()
 - Johansen, S. (1991). Estimation and hypothesis testing of cointegration vectors. Econometrica.
 - Newey, W.K. and West, K.D. (1987). A simple, positive semi-definite, heteroskedasticity and autocorrelation consistent covariance matrix. Econometrica.
 - Diebold, F.X. and Mariano, R.S. (1995). Comparing predictive accuracy. Journal of Business & Economic Statistics.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/econometrics/time-series.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>analysis</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-analysis</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/econometrics-time-series/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

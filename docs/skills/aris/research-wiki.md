@@ -4,40 +4,21 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/research-wiki/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/research-wiki/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: research-wiki
-description: "Persistent research knowledge base that accumulates papers, ideas, experiments, claims, and their relationships across the entire research lifecycle. Inspired by Karpathy's LLM Wiki pattern. Use when user says \"知识库\", \"research wiki\", \"add paper\", \"wiki query\", \"查知识库\", or wants to build/query a persistent field map."
-argument-hint: [subcommand: init|ingest|sync|query|update|lint|stats]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Research Wiki: Persistent Research Knowledge Base
+## Research Wiki: Persistent Research Knowledge Base
 
 Subcommand: **$ARGUMENTS**
 
-## Overview
+### Overview
 
 The research wiki is a persistent, per-project knowledge base that accumulates structured knowledge across the entire ARIS research lifecycle. Unlike one-off literature surveys that are used and forgotten, the wiki **compounds** — every paper read, idea tested, experiment run, and review received makes the wiki smarter.
 
 Inspired by [Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f): compile knowledge once, keep it current, don't re-derive on every query.
 
-## Core Concepts
+### Core Concepts
 
-### Four Entity Types
+#### Four Entity Types
 
 | Entity | Directory | Node ID format | What it represents |
 |--------|-----------|---------------|--------------------|
@@ -46,7 +27,7 @@ Inspired by [Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6
 | **Experiment** | `experiments/` | `exp:<id>` | A concrete experiment run with results |
 | **Claim** | `claims/` | `claim:<id>` | A testable scientific claim with evidence status |
 
-### Typed Relationships (`graph/edges.jsonl`)
+#### Typed Relationships (`graph/edges.jsonl`)
 
 | Edge type | From → To | Meaning |
 |-----------|-----------|---------|
@@ -61,7 +42,7 @@ Inspired by [Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6
 
 Edges are stored in `graph/edges.jsonl` only. The `## Connections` section on each page is **auto-generated** from the graph — never hand-edit it.
 
-## Wiki Directory Structure
+### Wiki Directory Structure
 
 ```
 research-wiki/
@@ -81,9 +62,9 @@ research-wiki/
     edges.jsonl          # materialized current relationship graph
 ```
 
-## Subcommands
+### Subcommands
 
-## Helper resolution (run before any subcommand below)
+### Helper resolution (run before any subcommand below)
 
 All wiki operations except plain directory bootstrap go through a single
 canonical helper, `tools/research_wiki.py`. Skills that touch the wiki
@@ -117,7 +98,7 @@ same chain but **warn-and-skip** instead of hard-failing — their
 primary output (idea list, claim verdict, paper summary) must still be
 delivered to the user.
 
-### `/research-wiki init`
+#### `/research-wiki init`
 
 Initialize the wiki for the current project. After resolving
 `$WIKI_SCRIPT` per the chain above:
@@ -137,7 +118,7 @@ omitted `query_pack.md` — that drifted from the helper and made
 silently failed. Delegating init to the helper is the single source of
 truth for the wiki schema.)
 
-### `/research-wiki ingest "<paper title>" — arxiv: <id>`
+#### `/research-wiki ingest "<paper title>" — arxiv: <id>`
 
 Add a paper to the wiki. This subcommand is thin wrapping around
 `python3 "$WIKI_SCRIPT" ingest_paper …`, which is the single
@@ -157,16 +138,16 @@ Edge extraction (step 5/8 in the old manual flow) is **not** in
 identified:
 
 ```bash
-# arXiv-known paper
+## arXiv-known paper
 python3 "$WIKI_SCRIPT" ingest_paper research-wiki/ \
     --arxiv-id 2501.12345 --thesis "One-line claim from abstract."
 
-# Venue paper with no arXiv mirror
+## Venue paper with no arXiv mirror
 python3 "$WIKI_SCRIPT" ingest_paper research-wiki/ \
     --title "Attention Is All You Need" \
     --authors "Ashish Vaswani, Noam Shazeer, …" --year 2017 --venue "NeurIPS"
 
-# Manual edge after ingest
+## Manual edge after ingest
 python3 "$WIKI_SCRIPT" add_edge research-wiki/ \
     --from "paper:vaswani2017_attention_all_you" \
     --to "paper:chen2025_factorized_gap" \
@@ -178,18 +159,18 @@ Other skills (`/research-lit`, `/arxiv`, `/alphaxiv`, `/deepxiv`,
 their own last step — they don't re-route through `/research-wiki
 ingest` as a subcommand, so they don't need an LLM roundtrip.
 
-### `/research-wiki sync — arxiv-ids <id1>,<id2>,...`
+#### `/research-wiki sync — arxiv-ids <id1>,<id2>,...`
 
 Batch backfill: ingest one or more arXiv IDs that were read earlier
 without being ingested (e.g., because `research-wiki/` was set up after
 the reading happened, or a hook didn't fire).
 
 ```bash
-# Explicit list
+## Explicit list
 python3 "$WIKI_SCRIPT" sync research-wiki/ \
     --arxiv-ids 2310.06770,1706.03762
 
-# From a file (one id per line, # comments ok)
+## From a file (one id per line, # comments ok)
 python3 "$WIKI_SCRIPT" sync research-wiki/ --from-file ids.txt
 ```
 
@@ -217,37 +198,37 @@ tags: ["tag1", "tag2"]
 added: 2026-04-07T10:12:00Z
 ---
 
-# <full title>
+## <full title>
 
-## One-line thesis
+### One-line thesis
 
 [Single sentence capturing the paper's core contribution]
 
-## Problem / Gap
+### Problem / Gap
 
-## Method
+### Method
 
-## Key Results
+### Key Results
 
-## Assumptions
+### Assumptions
 
-## Limitations / Failure Modes
+### Limitations / Failure Modes
 
-## Reusable Ingredients
+### Reusable Ingredients
 
 [Techniques, datasets, or insights that could be repurposed]
 
-## Open Questions
+### Open Questions
 
-## Claims
+### Claims
 
 [Reference claim pages: claim:C1, claim:C2, etc.]
 
-## Connections
+### Connections
 
 [AUTO-GENERATED from graph/edges.jsonl — do not edit manually]
 
-## Relevance to This Project
+### Relevance to This Project
 
 [Why this paper matters for our specific research direction]
 ```
@@ -258,7 +239,7 @@ section after `Relevance to This Project` containing the raw abstract
 text as a blockquote. Manual ingests (no `--arxiv-id`) do not include
 this section._
 
-### `/research-wiki query "<topic>"`
+#### `/research-wiki query "<topic>"`
 
 Generate `query_pack.md` — a compressed, context-window-friendly summary:
 
@@ -278,7 +259,7 @@ Generate `query_pack.md` — a compressed, context-window-friendly summary:
 
 **Key rule:** Read from short fields only (frontmatter, one-line thesis, gap summary, failure note). Do not summarize full page bodies every time.
 
-### `/research-wiki update <node_id> — <field>: <value>`
+#### `/research-wiki update <node_id> — <field>: <value>`
 
 Update a specific entity:
 
@@ -290,7 +271,7 @@ Update a specific entity:
 
 After any update: rebuild `query_pack.md`, update `log.md`.
 
-### `/research-wiki lint`
+#### `/research-wiki lint`
 
 Health check the wiki:
 
@@ -303,7 +284,7 @@ Health check the wiki:
 
 Output a `LINT_REPORT.md` with suggested fixes.
 
-### `/research-wiki stats`
+#### `/research-wiki stats`
 
 Quick overview:
 
@@ -318,7 +299,7 @@ Gaps: 8 (3 unresolved)
 Last updated: 2026-04-07T10:12:00Z
 ```
 
-## Integration with Existing Workflows
+### Integration with Existing Workflows
 
 All paper-reading skills follow the same **integration contract** (see
 [`shared-references/integration-contract.md`](../shared-references/integration-contract.md)):
@@ -329,10 +310,10 @@ All paper-reading skills follow the same **integration contract** (see
 - backfill — `sync --arxiv-ids …`
 - diagnostic — `verify_wiki_coverage.sh` (Policy E; resolved per integration-contract §2)
 
-### Hook 1: After `/research-lit` finds papers
+#### Hook 1: After `/research-lit` finds papers
 
 ```
-# At end of research-lit, after synthesis:
+## At end of research-lit, after synthesis:
 if research-wiki/ exists AND $WIKI_SCRIPT resolved (chain at top of this SKILL):
     for paper in top_relevant_papers (limit 8-12):
         python3 "$WIKI_SCRIPT" ingest_paper research-wiki/ \
@@ -352,7 +333,7 @@ active)" that calls the same helper once per paper it touched. The
 business logic is not duplicated — only the loop over that skill's
 specific result set differs.
 
-### Hook 2: `/idea-creator` reads AND writes wiki
+#### Hook 2: `/idea-creator` reads AND writes wiki
 
 **Before ideation:**
 ```
@@ -375,13 +356,13 @@ rebuild query_pack
 log "idea-creator wrote N ideas to wiki"
 ```
 
-### Hook 3: After `/result-to-claim` verdict
+#### Hook 3: After `/result-to-claim` verdict
 
 ```
-# Create experiment page
+## Create experiment page
 exp_id = upsert_experiment(experiment_data)
 
-# Update each claim's status
+## Update each claim's status
 for claim_id in resolved_claims:
     if verdict == "yes":
         set_claim_status(claim_id, "supported")
@@ -393,10 +374,10 @@ for claim_id in resolved_claims:
         set_claim_status(claim_id, "invalidated")
         add_edge(exp_id, claim_id, "invalidates")
 
-# Update idea outcome
+## Update idea outcome
 update_idea(active_idea_id, outcome=verdict)
 
-# If failed, record WHY for future ideation
+## If failed, record WHY for future ideation
 if verdict in ("no", "partial"):
     update_idea failure_notes with specific metrics and reasons
 
@@ -404,7 +385,7 @@ rebuild query_pack
 log "result-to-claim: exp_id updated, verdict=..."
 ```
 
-## Re-ideation Trigger
+### Re-ideation Trigger
 
 After significant wiki updates, suggest re-running `/idea-creator`:
 
@@ -415,7 +396,7 @@ After significant wiki updates, suggest re-running `/idea-creator`:
 
 The system suggests but does not auto-trigger. User decides.
 
-## Key Rules
+### Key Rules
 
 - **One source of truth for relationships**: `graph/edges.jsonl`. Page `Connections` sections are auto-generated views.
 - **Canonical node IDs everywhere**: `paper:<slug>`, `idea:<id>`, `exp:<id>`, `claim:<id>`, `gap:<id>`. Never use raw titles or inconsistent shorthands.
@@ -424,36 +405,6 @@ The system suggests but does not auto-trigger. User decides.
 - **Append to log.md for every mutation.** The log is the audit trail.
 - **Reviewer independence applies.** When the wiki is read by cross-model review skills, pass file paths only — do not summarize wiki content for the reviewer.
 
-## Acknowledgements
+### Acknowledgements
 
 Inspired by [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) — "compile knowledge once, keep it current, don't re-derive on every query."
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/research-wiki/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/research-wiki/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

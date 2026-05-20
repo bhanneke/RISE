@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/modeling/portfolio-theory.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Portfolio Theory
 
----
-
-# Portfolio Theory
-
-## Overview
+### Overview
 
 Portfolio theory studies how investors allocate wealth across assets to optimize the risk-return tradeoff. From Markowitz's mean-variance framework to modern factor-based and risk-parity approaches, the field provides both normative guidance (how should you invest?) and positive tools (how do we measure portfolio performance?).
 
-## Mean-Variance Optimization (Markowitz, 1952)
+### Mean-Variance Optimization (Markowitz, 1952)
 
-### Setup
+#### Setup
 
 Given N assets with:
 - Expected returns: mu (N x 1 vector)
@@ -36,7 +24,7 @@ Given N assets with:
 Portfolio return: E[R_p] = w' * mu
 Portfolio variance: Var(R_p) = w' * Sigma * w
 
-### Optimization Problem
+#### Optimization Problem
 
 Minimize w' * Sigma * w
 subject to w' * mu = mu_target, w' * 1 = 1
@@ -78,7 +66,7 @@ def min_variance_portfolio(Sigma):
     return w
 ```
 
-### Estimation Error Problem
+#### Estimation Error Problem
 
 Mean-variance optimization is extremely sensitive to estimation error in mu and Sigma:
 - Small errors in expected returns produce large weight swings.
@@ -92,11 +80,11 @@ Mean-variance optimization is extremely sensitive to estimation error in mu and 
 - Resampled efficient frontier (Michaud, 1998).
 - Focus on minimum variance (which only needs Sigma, not mu).
 
-## Black-Litterman Model (1992)
+### Black-Litterman Model (1992)
 
 Combines market equilibrium (CAPM implied returns) with investor views.
 
-### Steps
+#### Steps
 
 1. **Equilibrium returns**: Start from market-cap-weighted implied excess returns:
    pi = delta * Sigma * w_mkt
@@ -114,17 +102,17 @@ Combines market equilibrium (CAPM implied returns) with investor views.
 
 tau ~ 0.025 (a scalar controlling prior uncertainty relative to data).
 
-### Advantages
+#### Advantages
 - Starts from a reasonable equilibrium (not zero expected returns).
 - Views are blended with equilibrium, not imposed.
 - Produces stable, diversified portfolios.
 - Investor only needs to express relative or absolute views on specific assets.
 
-## Risk Parity
+### Risk Parity
 
 Allocate portfolio such that each asset contributes equally to total portfolio risk.
 
-### Equal Risk Contribution (ERC)
+#### Equal Risk Contribution (ERC)
 
 For asset i, its risk contribution:
 RC_i = w_i * (Sigma * w)_i / sqrt(w' * Sigma * w)
@@ -152,22 +140,22 @@ def risk_parity(Sigma):
     return result.x
 ```
 
-### Properties
+#### Properties
 - Does not require expected return estimates (only Sigma).
 - Produces more diversified portfolios than mean-variance.
 - In practice, often combined with leverage (borrow at risk-free to target a volatility level).
 - Bridgewater's "All Weather" strategy is risk-parity-inspired.
 
-## Covariance Estimation
+### Covariance Estimation
 
-### Sample Covariance
+#### Sample Covariance
 Sigma_hat = (1/(T-1)) * X' * X (where X is demeaned returns matrix)
 
 - Unbiased but noisy, especially when N is large relative to T.
 - Eigenvalues are spread out (largest too large, smallest too small).
 - If N > T, the matrix is singular.
 
-### Ledoit-Wolf Shrinkage (2003)
+#### Ledoit-Wolf Shrinkage (2003)
 
 Sigma_shrunk = delta * F + (1 - delta) * Sigma_hat
 
@@ -183,7 +171,7 @@ Sigma_shrunk = cov_estimator.covariance_
 print(f"Shrinkage coefficient: {cov_estimator.shrinkage_:.3f}")
 ```
 
-### Factor Model Covariance
+#### Factor Model Covariance
 
 Sigma = B * Sigma_f * B' + D
 
@@ -193,15 +181,15 @@ Sigma = B * Sigma_f * B' + D
 - With K << N factors, this is a low-rank plus diagonal structure.
 - Better conditioned than the sample covariance when N is large.
 
-## Performance Evaluation
+### Performance Evaluation
 
-### Return Metrics
+#### Return Metrics
 
 **Cumulative return**: Product(1 + R_t) - 1.
 **Annualized return**: (1 + cumulative)^(252/T) - 1 for daily data.
 **Annualized volatility**: std(R_t) * sqrt(252) for daily data.
 
-### Risk-Adjusted Return Metrics
+#### Risk-Adjusted Return Metrics
 
 **Sharpe ratio** (Sharpe, 1966):
 SR = (E[R_p] - R_f) / sigma_p
@@ -225,7 +213,7 @@ IR = alpha / sigma_epsilon
 
 **Calmar ratio**: Annualized return / Max drawdown.
 
-### Drawdown Analysis
+#### Drawdown Analysis
 
 **Maximum drawdown**: Largest peak-to-trough decline.
 
@@ -242,7 +230,7 @@ def max_drawdown(returns):
 
 **Drawdown duration**: Time from peak to recovery (or ongoing if not recovered).
 
-### Attribution
+#### Attribution
 
 **Brinson-Fachler decomposition**: For a benchmark-relative portfolio:
 - Allocation effect: being over/underweight in asset classes that performed well/poorly.
@@ -255,26 +243,26 @@ R_p = alpha + Sum(beta_k * F_k) + epsilon
 
 Report: what fraction of return came from market, size, value, momentum, etc.
 
-## Portfolio Construction in Practice
+### Portfolio Construction in Practice
 
-### Constraints
+#### Constraints
 - **Long-only**: w_i >= 0. Dramatically changes the efficient frontier.
 - **Position limits**: w_i <= w_max (e.g., 5% per stock).
 - **Sector limits**: sum of weights in a sector <= threshold.
 - **Turnover limits**: constrain sum of |Delta_w_i| to control transaction costs.
 - **Tracking error**: sigma(R_p - R_b) <= TE_max.
 
-### Transaction Costs
+#### Transaction Costs
 - Proportional costs: c * |Delta_w_i| * Portfolio_value.
 - Market impact: increases with trade size (square-root model: impact ~ sqrt(Volume)).
 - Net-of-cost optimization: subtract estimated costs from expected returns.
 
-### Rebalancing
+#### Rebalancing
 - Calendar rebalancing: monthly, quarterly, annually.
 - Threshold rebalancing: rebalance when weights drift beyond bands.
 - Tradeoff: more frequent rebalancing keeps weights closer to optimal but incurs higher costs.
 
-## Practical Checklist
+### Practical Checklist
 
 1. **Inputs**: Use Ledoit-Wolf or factor model for covariance. For expected returns, use Black-Litterman or skip returns entirely (minimum variance / risk parity).
 2. **Constraints**: Always impose long-only and position limits in practice. Unconstrained MVO is unstable.
@@ -287,7 +275,7 @@ Report: what fraction of return came from market, size, value, momentum, etc.
 9. **Economic significance**: Report dollar returns, capacity, and scalability.
 10. **Visualization**: Efficient frontier, cumulative return plots, drawdown plots, rolling Sharpe.
 
-## Key References
+### Key References
 
 - Markowitz, H. (1952). Portfolio selection. Journal of Finance.
 - Black, F. and Litterman, R. (1992). Global portfolio optimization. Financial Analysts Journal.
@@ -297,28 +285,3 @@ Report: what fraction of return came from market, size, value, momentum, etc.
 - Lo, A.W. (2002). The statistics of Sharpe ratios. Financial Analysts Journal.
 - Michaud, R.O. (1989). The Markowitz optimization enigma: Is 'optimized' optimal? Financial Analysts Journal.
 - Brinson, G.P., Hood, L.R., and Beebower, G.L. (1986). Determinants of portfolio performance. Financial Analysts Journal.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/modeling/portfolio-theory.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/modeling-portfolio-theory/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,28 +4,16 @@
 
 Post-meeting summary + action items
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
-
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/post-meeting.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/post-meeting/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/post-meeting.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 <!-- post-meeting v1.7 | sanitized from private v1.7 -->
-# Post-Meeting Summary & Email
+## Post-Meeting Summary & Email
 
 *v1.7 — Recipient rule changed: default sends to the full team minus low-frequency categories (e.g., `infrequent`, `stakeholders`). Decoupled recipient-list display from send confirmation. Per-project override via `meeting_summary_recipients` in `.claude/CLAUDE.md`. Adds explicit sender choice (you vs. an AI EA identity). Includes the v1.4 hollow-transcript guard.*
 
 Summarize a meeting transcript and draft a follow-up email to attendees. Run from a project directory after a meeting.
 
-## Prerequisites
+### Prerequisites
 
 **Required:**
 - **Gmail MCP** — for drafting the follow-up email
@@ -37,7 +25,7 @@ Summarize a meeting transcript and draft a follow-up email to attendees. Run fro
 **Optional:**
 - **Granola MCP** — for pulling transcripts directly from Granola instead of local files
 
-## First-Time Setup
+### First-Time Setup
 
 1. **Create a project config** at `[project-root]/.claude/CLAUDE.md` with at minimum:
    ```markdown
@@ -59,7 +47,7 @@ Summarize a meeting transcript and draft a follow-up email to attendees. Run fro
 
 3. **Save meeting transcripts** as `.txt` files in that folder. Most transcription tools (Granola, Otter, etc.) can export to text. Name files with dates for easy sorting (e.g., `2026-03-15_team-sync.txt`).
 
-## Arguments
+### Arguments
 
 `$ARGUMENTS` can include:
 - *(none)* — most recent transcript in project's transcripts folder
@@ -68,9 +56,9 @@ Summarize a meeting transcript and draft a follow-up email to attendees. Run fro
 - `nosend` — show summary only, skip email drafting
 - `save` — also save summary as local `.md` file in transcripts folder
 
-## Instructions
+### Instructions
 
-### Step 1: Find Project Context
+#### Step 1: Find Project Context
 
 Read `.claude/CLAUDE.md` at **exactly** `$(pwd)/.claude/CLAUDE.md`.
 
@@ -89,13 +77,13 @@ I can search Granola directly — want me to list recent meetings? (y/n)
 If yes and Granola MCP is available: list recent meetings, then jump to Step 3 with `id:` flow.
 If no Granola MCP: ask user to provide the transcript path manually.
 
-### Step 2: Fetch Latest Transcript
+#### Step 2: Fetch Latest Transcript
 
 **If using Granola MCP:** Search for recent meetings matching this project and fetch the transcript.
 
 **If using local files:** List `.txt` files in the transcripts folder (excluding `archive/` subfolder), sorted by date (newest first).
 
-### Step 3: Pick Meeting
+#### Step 3: Pick Meeting
 
 If `id:DOC_ID` argument: use Granola MCP to fetch the document directly, skip to Step 4.
 
@@ -108,14 +96,14 @@ Otherwise: show most recent transcript + 2-3 others for selection.
 Transcript may still be processing. Try again in ~10 minutes, or pick an older meeting.
 ```
 
-### Step 3.5: Confirm Selection
+#### Step 3.5: Confirm Selection
 
 ```
 Summarize "[meeting title]" from [date]? (y/n)
 ```
 Confirm BEFORE reading the full transcript.
 
-### Step 4: Read Transcript
+#### Step 4: Read Transcript
 
 Read the selected `.txt` file. If using Granola MCP (`id:` arg), fetch via the Granola transcript API.
 
@@ -144,7 +132,7 @@ What would you like to do?
 ```
 Do NOT proceed unless the user explicitly chooses option 3.
 
-### Step 5: Summarize
+#### Step 5: Summarize
 
 Generate structured summary with:
 - 2-3 sentence overview of topics discussed
@@ -164,7 +152,7 @@ Draft in [detected language] or English? (default: English)
 
 If `nosend` argument: display summary and stop here.
 
-### Step 5.5: Sender Choice
+#### Step 5.5: Sender Choice
 
 Before drafting the email, ask who should send it:
 
@@ -179,7 +167,7 @@ If sender = **You**: Use a direct, professional tone. First person ("I'll clarif
 
 If sender = **AI executive assistant**: Open with a sentence identifying clearly as an AI assistant ("This is [Assistant Name], [Your Name]'s AI assistant. They asked me to send a summary of [today's/yesterday's] meeting. I generated this from the transcript — please flag anything I got wrong or missed."). Refer to the user in third person throughout. Sign as the AI assistant identity. Set a clear reply-to address pointing back to the user, and never sign as the user.
 
-### Step 6: Draft Email + Confirm
+#### Step 6: Draft Email + Confirm
 
 **Recipient rule (v1.7).** Default = **everyone on the team whose work the meeting affects**, not just attendees. Concretely: full team roster from `.claude/CLAUDE.md`, **minus** any `infrequent` and `stakeholders` categories. Field RAs and team members whose action items typically come up in meetings remain standing recipients even when they were not on the call — their tasks are routinely named.
 
@@ -214,7 +202,7 @@ Subject: Meeting summary: [title]
 
 If `save` argument: also write summary to `[transcripts_folder]/summary-[date]-[title-slug].md`.
 
-### Step 7: Create Gmail Draft
+#### Step 7: Create Gmail Draft
 
 On approval, use Gmail MCP to create a draft:
 ```
@@ -226,14 +214,14 @@ mcp__google_workspace__draft_gmail_message
 
 Report: "Draft created in Gmail — open Gmail to review and send."
 
-### Step 8: Log Performance
+#### Step 8: Log Performance
 
 ```bash
 echo "$(date +%Y-%m-%d),post-meeting,TOOL_CALLS,NOTES" >> ~/.claude-assistant/logs/skill-performance.csv
 ```
 Replace `TOOL_CALLS` with exact count and `NOTES` with summary (e.g., `team-sync-5-actions`).
 
-## Email Format
+### Email Format
 
 The email has two parts: a **summary body** (decisions, action items by person, next steps) and a **detailed meeting notes appendix** (full intellectual content as a searchable record).
 
@@ -276,27 +264,27 @@ Let me know if I missed anything.
 
 ---
 
-## Detailed Meeting Notes
+### Detailed Meeting Notes
 
-### [Topic Section 1]
+#### [Topic Section 1]
 [Substantive discussion: key arguments, positions taken by each participant,
 analytical points, data or evidence cited. Include enough detail that someone
 who missed the meeting can follow the reasoning.]
 
-### [Topic Section 2]
+#### [Topic Section 2]
 [Comparative examples discussed, theoretical debates, methodological considerations]
 
-### [Topic Section 3]
+#### [Topic Section 3]
 [Timeline/historical context, administrative items, logistics, resource questions]
 
-### [Continue for all substantive topics — aim for 3-5 pages]
+#### [Continue for all substantive topics — aim for 3-5 pages]
 ```
 
 **Summary body:** Numbered lists for decisions (with context). Action items **grouped by person** so each team member can scan for their tasks.
 
 **Detailed appendix:** Structured by discussion topic (not chronological). Include participant positions and arguments, not just conclusions. Capture analytical reasoning, not just outcomes. This serves as the meeting record — **be thorough, not brief**. Aim for 3-5 pages for a substantive meeting.
 
-## Customization Points
+### Customization Points
 
 - **Transcript source:** Swap Granola for Otter, Fireflies, or any tool that exports `.txt` transcripts.
 - **Team roster location:** Move from `.claude/CLAUDE.md` to a shared config file if you prefer.
@@ -305,7 +293,7 @@ who missed the meeting can follow the reasoning.]
 - **Language:** The language check detects non-English content; customize the default for your team.
 - **Transcript folder:** Change the convention in your project `.claude/CLAUDE.md`.
 
-## Error Handling
+### Error Handling
 
 | Condition | Action |
 |-----------|--------|
@@ -314,32 +302,3 @@ who missed the meeting can follow the reasoning.]
 | Granola MCP unavailable | Fall back to local `.txt` files |
 | Gmail draft fails | Display the email text so you can copy-paste it |
 | No team roster | Ask user to type recipient emails manually |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/post-meeting.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>infra</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/post-meeting.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/post-meeting/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

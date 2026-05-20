@@ -4,21 +4,9 @@
 
 Review a research plan with structured feedback
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/review-plan.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/review-plan/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/review-plan.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Plan Review
+## Plan Review
 *v1.3 — Step 7 logging hardened: routes through an atomic-write helper (no sync-race row loss) and adds a trailing `hostname` field for cross-machine diagnosis. Step 0 announces plan-mode detection (the harness blocks writes in plan mode → logging will be skipped for that run).*
 *v1.2 — Added optional cross-vendor peer critic (Codex, Gemini) dispatched in parallel with the Claude critic.*
 *v1.1 — Step 4 upgraded to agent dispatch for fresh-context review*
@@ -27,9 +15,9 @@ Stress-test a plan with structured expert critique, web research on best practic
 
 **Pre-approved tools:** WebSearch, filesystem reads, and the Task tool (for agent dispatch in Step 4) are pre-approved. Call tools directly.
 
-## Instructions
+### Instructions
 
-### Step 0: Pre-checks
+#### Step 0: Pre-checks
 
 **Plan-mode check (v1.3):** If this session is currently in Claude Code plan mode, announce up-front: *"⚠ Plan-mode detected — this run will NOT be logged to `skill-performance.csv` (the harness blocks file writes in plan mode, so Step 7 will silently fail). Invoke `/review-plan` outside plan mode if invocation-count accuracy matters."* Proceed with the review; the only affected step is Step 7 logging.
 
@@ -53,7 +41,7 @@ Parse `$ARGUMENTS` for flags. **If `$ARGUMENTS` is `help`, print the table below
 
 If ARGUMENTS mention "second opinion" or "another opinion" without a vendor, ask ONE clarifying question: "Which peer critic? codex / gemini / both / claude-only". Do NOT fabricate a default peer.
 
-### Step 1: Locate and Read the Plan
+#### Step 1: Locate and Read the Plan
 
 Three-tier priority:
 1. **Explicit file** — `file:path/to/plan.md` argument
@@ -67,7 +55,7 @@ If the plan is very short (<50 words), warn: "This plan is unusually brief. Proc
 
 Read the full plan content before continuing.
 
-### Step 2: Assign Expert Role
+#### Step 2: Assign Expert Role
 
 Infer the domain from plan content using these heuristics:
 
@@ -88,7 +76,7 @@ If `role:"..."` is provided, use that instead.
 
 If `dryrun`: Also show the planned web search queries (from Step 3) and stop. Do not execute the review.
 
-### Step 3: Research Best Practices
+#### Step 3: Research Best Practices
 
 **Query construction:** Extract the plan's primary *domain* and primary *technique/approach*. Build queries:
 - Query A: "[technique/approach] best practices [year]"
@@ -115,7 +103,7 @@ If `dryrun`: Also show the planned web search queries (from Step 3) and stop. Do
 
 Distill research into 3-5 key principles relevant to this specific plan. These feed into the review.
 
-### Step 4: Structured Review (Agent Dispatch)
+#### Step 4: Structured Review (Agent Dispatch)
 
 **Dispatch a review agent for fresh-context critique.** This avoids the bias of reviewing your own plan inline.
 
@@ -172,7 +160,7 @@ Output format: For each dimension, list findings with classification. End with a
 
 **After the agent returns**, incorporate its findings into the output format in Step 5. If the agent fails or times out, fall back to inline review using the same 6 dimensions above.
 
-### Step 4.5: Peer Critique (optional — only if peer flag is set)
+#### Step 4.5: Peer Critique (optional — only if peer flag is set)
 
 If `peer:codex`, `peer:gemini`, or `peer:both` was parsed from ARGUMENTS (Step 0), dispatch the peer critic(s) **IN PARALLEL** with the Claude agent from Step 4. That means: send ONE message containing the Task call (Claude critic) AND the Bash call(s) (peer critic), not sequential.
 
@@ -213,7 +201,7 @@ The `--` separator is defense-in-depth against prompts containing `---` YAML-fro
 ```bash
 "$GEMINI_BIN" "$PEER_PROMPT" --output-format "$GEMINI_OUTPUT_FORMAT" \
   > /tmp/review-gemini-$RUN_ID.json 2>/tmp/review-gemini-$RUN_ID.stderr
-# Parse response field: jq -r .response /tmp/review-gemini-$RUN_ID.json > /tmp/review-gemini-$RUN_ID.md
+## Parse response field: jq -r .response /tmp/review-gemini-$RUN_ID.json > /tmp/review-gemini-$RUN_ID.md
 ```
 
 **After ALL dispatches return** (Claude via Task, Codex via Bash, Gemini via Bash — all in one parallel message):
@@ -231,7 +219,7 @@ The `--` separator is defense-in-depth against prompts containing `---` YAML-fro
 
 This keeps the skill functional for users on fresh machines where settings haven't synced yet, rather than failing the whole review.
 
-### Step 5: Generate Output
+#### Step 5: Generate Output
 
 **Standard output format:**
 
@@ -311,7 +299,7 @@ Top issues:
 [Revised plan if REVISE]
 ```
 
-### Step 6: Iteration Gate
+#### Step 6: Iteration Gate
 
 After presenting the review, ask:
 
@@ -325,7 +313,7 @@ User can:
 After 2 review cycles on the same plan, note:
 > "This plan has been reviewed [N] times. Further iteration may have diminishing returns. Consider implementing and iterating in practice."
 
-### Step 7: Log Performance
+#### Step 7: Log Performance
 
 ```bash
 echo "$(date +%Y-%m-%d),review-plan,TOOL_CALLS,NOTES,$(hostname -s)" \
@@ -338,7 +326,7 @@ Replace TOOL_CALLS with your exact count of tool uses this run (no `~` prefix). 
 
 **Plan-mode limitation (v1.3):** Claude Code plan mode blocks file-write Bash operations, so this log step will SILENTLY FAIL if `/review-plan` was invoked while the parent session is in plan mode. Step 0 announces this up-front so the user knows the run won't appear in skill-performance.csv. There is no fix at the skill level — the harness owns that constraint. If invocation-count accuracy matters for a given decision, run `/review-plan` outside plan mode.
 
-## Error Handling
+### Error Handling
 
 | Condition | Behavior |
 |-----------|----------|
@@ -348,7 +336,7 @@ Replace TOOL_CALLS with your exact count of tool uses this run (no `~` prefix). 
 | Plan very short (<50 words) | Warn, proceed anyway |
 | `file:` path doesn't exist | "File not found: [path]. Check the path and try again." |
 
-## Examples
+### Examples
 
 ```
 /review-plan
@@ -360,33 +348,3 @@ Replace TOOL_CALLS with your exact count of tool uses this run (no `~` prefix). 
 /review-plan peer:codex file:~/Documents/grant-plan.md
 /review-plan peer:both depth:deep
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/review-plan.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/review-plan.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/review-plan/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/review/code.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Code Review Checklist for Academic Research
 
----
-
-# Code Review Checklist for Academic Research
-
-## Purpose
+### Purpose
 
 Research code must be correct, reproducible, and understandable -- by your future self, by coauthors, and by referees or replicators who may examine it years later. This checklist covers the standards that distinguish reliable research code from fragile scripts that produce results no one can verify.
 
 ---
 
-## 1. Reproducibility
+### 1. Reproducibility
 
 Reproducibility is the single most important property of research code. If someone cannot run your code and get the same results, the research is unverifiable.
 
@@ -42,7 +30,7 @@ Reproducibility is the single most important property of research code. If someo
 
 ---
 
-## 2. Documentation
+### 2. Documentation
 
 Code documentation serves two audiences: someone trying to understand what the code does, and someone trying to verify that it does what the paper claims.
 
@@ -57,7 +45,7 @@ Code documentation serves two audiences: someone trying to understand what the c
 
 ---
 
-## 3. Data Handling
+### 3. Data Handling
 
 Data errors are the most common source of incorrect results in empirical economics.
 
@@ -74,7 +62,7 @@ Data errors are the most common source of incorrect results in empirical economi
 
 ---
 
-## 4. Error Handling and Defensive Programming
+### 4. Error Handling and Defensive Programming
 
 Research code should fail loudly when assumptions are violated, not silently produce wrong results.
 
@@ -89,7 +77,7 @@ Research code should fail loudly when assumptions are violated, not silently pro
 
 ---
 
-## 5. Naming Conventions
+### 5. Naming Conventions
 
 Clear naming makes code self-documenting and reduces errors.
 
@@ -103,7 +91,7 @@ Clear naming makes code self-documenting and reduces errors.
 
 ---
 
-## 6. Testing
+### 6. Testing
 
 Research code deserves the same testing discipline as production software, adapted to the academic context.
 
@@ -117,7 +105,7 @@ Research code deserves the same testing discipline as production software, adapt
 
 ---
 
-## 7. Version Control
+### 7. Version Control
 
 Version control is not optional for research code.
 
@@ -132,7 +120,7 @@ Version control is not optional for research code.
 
 ---
 
-## 8. Performance and Scalability
+### 8. Performance and Scalability
 
 Not always critical, but important for large datasets or computationally intensive methods.
 
@@ -146,21 +134,21 @@ Not always critical, but important for large datasets or computationally intensi
 
 ---
 
-## 9. Language-Specific Checks
+### 9. Language-Specific Checks
 
-### Stata
+#### Stata
 - [ ] `set seed` before any randomization.
 - [ ] `assert` after merges to verify merge quality.
 - [ ] `eststo` / `esttab` or equivalent for reproducible table output.
 - [ ] `log using` to capture console output.
 
-### R
+#### R
 - [ ] `set.seed()` before random operations.
 - [ ] Use `renv` for package management.
 - [ ] Prefer `tidyverse` or `data.table` consistently, not a mix that confuses readers.
 - [ ] Use `fixest` or `lfe` for large fixed-effects regressions (orders of magnitude faster than `lm` with dummy variables).
 
-### Python
+#### Python
 - [ ] Use `pandas` with explicit `dtypes` on read.
 - [ ] Prefer `statsmodels` or `linearmodels` for econometric regressions.
 - [ ] Use virtual environments (`venv`, `conda`).
@@ -168,7 +156,7 @@ Not always critical, but important for large datasets or computationally intensi
 
 ---
 
-## Pre-Submission Final Check
+### Pre-Submission Final Check
 
 Before submitting a replication package:
 
@@ -178,28 +166,3 @@ Before submitting a replication package:
 - [ ] Remove any dead code, commented-out experiments, or personal notes.
 - [ ] Include a LICENSE file (MIT or BSD are common for research code).
 - [ ] Check that the README answers: What software? What data? How to run? What to expect?
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/review/code.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/review-code/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

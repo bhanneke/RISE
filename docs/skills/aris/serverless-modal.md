@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/serverless-modal/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/serverless-modal/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: serverless-modal
-description: "Run GPU workloads on Modal — training, fine-tuning, inference, batch processing. Zero-config serverless: no SSH, no Docker, auto scale-to-zero. Use when user says \"modal run\", \"modal training\", \"modal inference\", \"deploy to modal\", \"need a GPU\", \"run on modal\", \"serverless GPU\", or needs remote GPU compute."
-argument-hint: [task-description]
-allowed-tools: Bash(*), Read, Grep, Glob, Edit, Write, Agent
----
-
-# Modal Cloud GPU — Training & Inference
+## Modal Cloud GPU — Training & Inference
 
 Task: $ARGUMENTS
 
-## Overview
+### Overview
 
 **Modal** is a serverless GPU cloud. Key advantages over SSH-based platforms (vast.ai, remote servers):
 - **Zero config**: no SSH, no Docker, no port forwarding. Write Python → `modal run` → done.
@@ -41,12 +22,12 @@ Task: $ARGUMENTS
 
 **Trade-off**: Modal costs more per GPU-hour than vast.ai or Lightning for some GPU tiers, but eliminates setup time and idle billing, often making it cheaper for short/medium workloads. For long training runs (>4 hours), consider vast.ai for lower $/hr.
 
-## Authentication
+### Authentication
 
 ```bash
 pip install modal
 modal setup          # Opens browser login, writes token to ~/.modal.toml
-# Verify:
+## Verify:
 modal run -q 'print("ok")'
 ```
 
@@ -60,7 +41,7 @@ modal run -q 'print("ok")'
 >
 > **SECURITY WARNING**: Always bind your card and set spending limits directly on https://modal.com/settings in your browser. NEVER enter payment information, card numbers, or billing details through Claude Code or any CLI tool. Only the official Modal website is safe for payment operations.
 
-## Pricing (source: modal.com/pricing, per-second billing)
+### Pricing (source: modal.com/pricing, per-second billing)
 
 | GPU | $/sec | ≈$/hr | VRAM | Bandwidth GB/s | Free budget → hours |
 |---|---|---|---|---|---|
@@ -76,7 +57,7 @@ modal run -q 'print("ok")'
 
 CPU: $0.047/core/hr | RAM: $0.008/GiB/hr (GPU typically 90%+ of total cost)
 
-## !! Cost Estimation Required !!
+### !! Cost Estimation Required !!
 
 Before EVERY run, estimate cost and show to user for confirmation.
 
@@ -85,7 +66,7 @@ Key insights:
 - 7-8B BF16 inference needs **~22GB VRAM** (weights 15G + KV cache 1G + overhead), T4 (16GB) insufficient
 - H100 is often **cheaper than L4** for benchmarks (11x faster but only 5x more expensive)
 
-### Cost Estimation Template (required before every run)
+#### Cost Estimation Template (required before every run)
 
 ```
 Cost estimate (Modal):
@@ -95,7 +76,7 @@ Cost estimate (Modal):
   Estimate: ~[N] min, ~$[X]
 ```
 
-### 7-8B BF16 Benchmark Cost Comparison
+#### 7-8B BF16 Benchmark Cost Comparison
 
 | GPU | Speed tok/s | $/hr | 1000 samples x 200tok cost | Duration |
 |---|---|---|---|---|
@@ -103,9 +84,9 @@ Cost estimate (Modal):
 | A100-40GB | 104 | $2.10 | $1.12 | 32 min |
 | L4 | 20 | $0.80 | $2.22 | 167 min |
 
-## Workflow
+### Workflow
 
-### Step 1: Analyze Task → Estimate Cost → Choose GPU
+#### Step 1: Analyze Task → Estimate Cost → Choose GPU
 
 Same analysis as any GPU skill — determine VRAM needs from model size, pick GPU, estimate hours, calculate cost. See pricing table above.
 
@@ -118,7 +99,7 @@ Same analysis as any GPU skill — determine VRAM needs from model size, pick GP
 | 30B | ~65GB | A100-80GB, H100 |
 | 70B | ~140GB | H100:2, H200 |
 
-### Step 2: Generate Modal Launcher
+#### Step 2: Generate Modal Launcher
 
 Based on the task type, generate the appropriate launcher script.
 
@@ -134,9 +115,9 @@ image = modal.Image.debian_slim(python_version="3.11").pip_install(
     "torch", "transformers", "accelerate", "datasets", "wandb"
 )
 
-# Mount local project code into the container
+## Mount local project code into the container
 local_code = modal.Mount.from_local_dir(".", remote_path="/workspace")
-# Persistent volume for checkpoints and results
+## Persistent volume for checkpoints and results
 volume = modal.Volume.from_name("experiment-results", create_if_missing=True)
 
 @app.function(
@@ -248,29 +229,29 @@ def train_distributed():
                     "--mixed_precision", "bf16", "train.py"], check=True)
 ```
 
-### Step 3: Run
+#### Step 3: Run
 
 ```bash
 modal run launcher.py     # One-shot execution (most common for experiments)
 modal deploy app.py       # Persistent service deployment
 ```
 
-### Step 4: Verify & Monitor
+#### Step 4: Verify & Monitor
 
 ```bash
 modal app list            # List running apps
 modal app logs <app-name> # Stream logs
 ```
 
-### Step 5: Collect Results
+#### Step 5: Collect Results
 
 Results collection depends on the pattern used:
 
 **Volume-based** (recommended for training):
 ```python
-# Download results from volume after run completes
-# Option A: In the launcher script, copy results to local mount before exit
-# Option B: Use modal volume commands
+## Download results from volume after run completes
+## Option A: In the launcher script, copy results to local mount before exit
+## Option B: Use modal volume commands
 modal volume ls experiment-results
 modal volume get experiment-results /run_001/results.json ./results/
 ```
@@ -278,7 +259,7 @@ modal volume get experiment-results /run_001/results.json ./results/
 **Stdout/return-based** (for evaluation/benchmarks):
 Results are printed to terminal or returned from the function — already local.
 
-### Step 6: Cleanup
+#### Step 6: Cleanup
 
 Modal auto-scales to zero — no manual instance destruction needed. But clean up unused resources:
 
@@ -287,7 +268,7 @@ modal app stop <app-name>     # Stop a deployed service
 modal volume rm <volume-name> # Delete a volume when done
 ```
 
-## CLI Reference
+### CLI Reference
 
 ```bash
 modal run app.py          # Run once
@@ -300,7 +281,7 @@ modal volume get <vol> <remote> <local>  # Download from volume
 modal secret create NAME KEY=VALUE       # Create secret
 ```
 
-## Key Tips
+### Key Tips
 
 - GPU fallback: `gpu=["H100", "A100-80GB", "L40S"]` — Modal tries each in order
 - Multi-GPU: `gpu="H100:4"` (up to 8 GPUs, cost scales linearly)
@@ -310,7 +291,7 @@ modal secret create NAME KEY=VALUE       # Create secret
 - Local code: `modal.Mount.from_local_dir(".", remote_path="/workspace")`
 - W&B integration: `secrets=[modal.Secret.from_name("wandb-secret")]` + `wandb.init()` in your script
 
-## Composing with Other Skills
+### Composing with Other Skills
 
 ```
 /run-experiment "train model"       <- detects gpu: modal, calls /serverless-modal
@@ -322,10 +303,10 @@ modal secret create NAME KEY=VALUE       # Create secret
 /serverless-modal "deploy vLLM"     <- inference service deployment
 ```
 
-## CLAUDE.md Example
+### CLAUDE.md Example
 
 ```markdown
-## Modal
+### Modal
 - gpu: modal                 # tells run-experiment to use Modal serverless
 - modal_gpu: A100-80GB       # optional: override GPU selection (default: auto-select)
 - modal_timeout: 21600       # optional: max seconds (default: 6 hours)
@@ -336,39 +317,9 @@ No SSH keys, no Docker images, no instance management needed. Just `pip install 
 
 > **Cost protection**: After `modal setup`, go to https://modal.com/settings in your browser (NEVER through CLI) → bind a payment method to unlock $30/month free tier (without card: only $5/month). Then set a **workspace spending limit** equal to your free tier amount — Modal will auto-pause workloads when the limit is reached, preventing any surprise charges.
 
-## Documentation
+### Documentation
 
 - Docs: https://modal.com/docs/guide
 - GPU: https://modal.com/docs/guide/gpu
 - Pricing: https://modal.com/pricing
 - Examples: https://modal.com/docs/examples
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/serverless-modal/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/serverless-modal/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

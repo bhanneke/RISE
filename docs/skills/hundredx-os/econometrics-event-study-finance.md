@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/econometrics/event-study-finance.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Financial Event Studies
 
----
-
-# Financial Event Studies
-
-## Overview
+### Overview
 
 A financial event study measures the impact of an event (announcement, regulation, shock) on security prices by estimating abnormal returns — the difference between actual returns and expected returns absent the event. The method exploits the assumption that in efficient markets, prices adjust quickly to new information.
 
 Distinct from difference-in-differences event studies: financial event studies use the market model (not parallel trends) as the counterfactual, operate at daily/intraday frequency, and test statistical significance using cross-sectional and time-series variation in abnormal returns.
 
-## Timeline and Windows
+### Timeline and Windows
 
 ```
 |-------- Estimation Window --------|-- Gap --|---- Event Window ----|-- Post --|
@@ -46,9 +34,9 @@ Distinct from difference-in-differences event studies: financial event studies u
 
 **Gap**: Optional buffer between estimation and event window to prevent event contamination.
 
-## Expected Return Models
+### Expected Return Models
 
-### Market Model (Standard)
+#### Market Model (Standard)
 
 R_it = alpha_i + beta_i * R_mt + epsilon_it
 
@@ -56,7 +44,7 @@ R_it = alpha_i + beta_i * R_mt + epsilon_it
 - R_mt: market return (CRSP value-weighted or S&P 500).
 - Abnormal return: AR_it = R_it - (alpha_hat_i + beta_hat_i * R_mt)
 
-### Market-Adjusted Model (Simpler)
+#### Market-Adjusted Model (Simpler)
 
 AR_it = R_it - R_mt
 
@@ -64,7 +52,7 @@ AR_it = R_it - R_mt
 - Less precise but avoids estimation error in alpha/beta.
 - Appropriate when estimation window is unavailable.
 
-### Fama-French Three-Factor
+#### Fama-French Three-Factor
 
 R_it = alpha_i + beta_i * MKT_t + s_i * SMB_t + h_i * HML_t + epsilon_it
 
@@ -72,11 +60,11 @@ R_it = alpha_i + beta_i * MKT_t + s_i * SMB_t + h_i * HML_t + epsilon_it
 - Reduces cross-sectional variation in abnormal returns.
 - Use when the sample has systematic size/value tilts.
 
-### Four-Factor (Carhart)
+#### Four-Factor (Carhart)
 
 Adds momentum factor UMD (Up Minus Down) to FF3.
 
-### Buy-and-Hold Abnormal Returns (BHAR)
+#### Buy-and-Hold Abnormal Returns (BHAR)
 
 For long-horizon studies:
 
@@ -86,23 +74,23 @@ BHAR_i = Product(1 + R_it) - Product(1 + E[R_it])   over event window
 - Better captures investor experience than CARs for long horizons.
 - But: skewed distribution, cross-sectional dependence, rebalancing bias.
 
-## Abnormal Returns and Aggregation
+### Abnormal Returns and Aggregation
 
-### Cumulative Abnormal Return (CAR)
+#### Cumulative Abnormal Return (CAR)
 
 For firm i over event window [t1, t2]:
 
 CAR_i(t1, t2) = Sum(AR_it) for t = t1 to t2
 
-### Cross-Sectional Aggregation
+#### Cross-Sectional Aggregation
 
 Average CAR across N events:
 
 CAAR(t1, t2) = (1/N) * Sum(CAR_i(t1, t2)) for i = 1 to N
 
-## Test Statistics
+### Test Statistics
 
-### Parametric Tests
+#### Parametric Tests
 
 **Patell (1976) test** (standardized residual test):
 - Standardize each AR by its estimation-window standard error (adjusted for prediction error).
@@ -124,7 +112,7 @@ t_BMP = (1/N) * Sum(SAR_i) / sqrt((1/(N*(N-1))) * Sum((SAR_i - SAR_bar)^2))
 - Multiplies BMP by sqrt((1 - r_bar) / (1 + (N-1)*r_bar)) where r_bar is average pairwise correlation of ARs.
 - Essential when events cluster in calendar time.
 
-### Non-Parametric Tests
+#### Non-Parametric Tests
 
 **Sign test**: Under H0, fraction of positive CARs = 0.5. Binomial test.
 - Robust to non-normality.
@@ -137,13 +125,13 @@ t_BMP = (1/N) * Sum(SAR_i) / sqrt((1/(N*(N-1))) * Sum((SAR_i - SAR_bar)^2))
 
 **Generalized sign test**: Adjusts expected fraction of positive CARs using estimation-window data.
 
-### Which Test to Use
+#### Which Test to Use
 - **Default**: BMP (robust to event-induced variance).
 - **Clustered events**: Kolari-Pynnonen or calendar-time portfolio.
 - **Small samples / non-normal returns**: Rank test or sign test.
 - **Always report** at least one parametric and one non-parametric test.
 
-## Cross-Sectional Regression of CARs
+### Cross-Sectional Regression of CARs
 
 After computing CARs, explain variation across events:
 
@@ -153,7 +141,7 @@ CAR_i = gamma_0 + gamma_1 * X_1i + gamma_2 * X_2i + ... + eta_i
 - Use heteroskedasticity-robust (White) standard errors.
 - If events cluster in time: cluster standard errors by event date or use Fama-MacBeth.
 
-## Calendar-Time Portfolio Approach
+### Calendar-Time Portfolio Approach
 
 Alternative to cross-sectional aggregation when events cluster:
 
@@ -166,15 +154,15 @@ Advantages: naturally accounts for cross-sectional correlation. Standard errors 
 Disadvantages: portfolio composition changes monthly; low power when few events per month.
 
 ```python
-# Pseudo-code
+## Pseudo-code
 for each month t:
     portfolio_return_t = equal_weighted average of returns of firms in event window at t
 
-# Regress portfolio excess returns on factors
+## Regress portfolio excess returns on factors
 alpha = intercept from FF3 regression
 ```
 
-## Implementation in Python
+### Implementation in Python
 
 ```python
 import pandas as pd
@@ -225,7 +213,7 @@ def bmp_test(CARs, sigmas):
     return t_stat
 ```
 
-## Common Pitfalls
+### Common Pitfalls
 
 1. **Overlapping event windows**: If multiple events affect the same firm within the event window, CARs are confounded. Drop overlapping events or use shortest feasible window.
 2. **Event date uncertainty**: If the exact announcement date is unclear (e.g., rumors preceded the announcement), use [-5, +5] and plot daily CARs to identify information leakage.
@@ -235,7 +223,7 @@ def bmp_test(CARs, sigmas):
 6. **Confounding events**: Firm-specific confounding events (earnings, M&A) during the event window. Check for concurrent announcements.
 7. **Long-horizon issues**: CARs over months are unreliable — model misspecification accumulates, results are sensitive to benchmark choice. Prefer short windows.
 
-## Practical Checklist
+### Practical Checklist
 
 1. Define event precisely. Identify the exact announcement date from news archives / SEC filings / press releases.
 2. Choose event window length based on hypothesis. Default: [-1, +1] for clean identification.
@@ -248,7 +236,7 @@ def bmp_test(CARs, sigmas):
 9. Report: N events, mean/median CAR, test statistics, event window, estimation window.
 10. Plot cumulative average abnormal returns over the event window with confidence bands.
 
-## Key References
+### Key References
 
 - MacKinlay, A.C. (1997). Event studies in economics and finance. Journal of Economic Literature.
 - Campbell, J.Y., Lo, A.W., and MacKinlay, A.C. (1997). The Econometrics of Financial Markets. Princeton.
@@ -257,28 +245,3 @@ def bmp_test(CARs, sigmas):
 - Kothari, S.P. and Warner, J.B. (2007). Econometrics of event studies. In Handbook of Corporate Finance: Empirical Corporate Finance.
 - Corrado, C.J. (1989). A nonparametric test for abnormal security-price performance in event studies. Journal of Financial Economics.
 - Fama, E.F. (1998). Market efficiency, long-term returns, and behavioral finance. Journal of Financial Economics.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/econometrics/event-study-finance.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>analysis</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-analysis</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/econometrics-event-study-finance/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

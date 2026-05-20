@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/arxiv/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/arxiv/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: arxiv
-description: Search, download, and summarize academic papers from arXiv. Use when user says "search arxiv", "download paper", "fetch arxiv", "arxiv search", "get paper pdf", or wants to find and save papers from arXiv to the local paper library.
-argument-hint: [query-or-arxiv-id]
-allowed-tools: Bash(*), Read, Write
----
-
-# arXiv Paper Search & Download
+## arXiv Paper Search & Download
 
 Search topic or arXiv paper ID: $ARGUMENTS
 
-## Constants
+### Constants
 
 - **PAPER_DIR** - Local directory to save downloaded PDFs. Default: `papers/` in the current project directory.
 - **MAX_RESULTS = 10** - Default number of search results.
@@ -45,9 +26,9 @@ Search topic or arXiv paper ID: $ARGUMENTS
 > - `/arxiv "query" - dir: literature/` - save PDFs to a custom directory
 > - `/arxiv "query" - download: all` - download all result PDFs
 
-## Workflow
+### Workflow
 
-### Step 1: Parse Arguments
+#### Step 1: Parse Arguments
 
 Parse `$ARGUMENTS` for directives:
 
@@ -59,7 +40,7 @@ Parse `$ARGUMENTS` for directives:
 
 If the argument matches an arXiv ID pattern (`YYMM.NNNNN` or `category/NNNNNNN`), skip the search and go directly to Step 3.
 
-### Step 2: Search arXiv
+#### Step 2: Search arXiv
 
 Resolve `$ARXIV_FETCHER` via the canonical strict-safe chain (see
 [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2):
@@ -127,34 +108,34 @@ Present results as a table:
 | 1 | 2301.07041 | Attention Is All... | Vaswani et al. | 2017-06-12 | cs.LG    |
 ```
 
-### Step 3: Fetch Details for a Specific ID
+#### Step 3: Fetch Details for a Specific ID
 
 When a single paper ID is requested (either directly or from Step 2):
 
 ```bash
 python3 "$ARXIV_FETCHER" search "id:ARXIV_ID" --max 1
-# or fallback:
+## or fallback:
 python3 -c "
 import urllib.request, xml.etree.ElementTree as ET
 NS = 'http://www.w3.org/2005/Atom'
 url = 'http://export.arxiv.org/api/query?id_list=ARXIV_ID'
 with urllib.request.urlopen(url, timeout=30) as r:
     root = ET.fromstring(r.read())
-# print full details ...
+## print full details ...
 "
 ```
 
 Display: title, all authors, categories, full abstract, published date, PDF URL, abstract URL.
 
-### Step 4: Download PDFs
+#### Step 4: Download PDFs
 
 When download is requested, for each paper ID to download:
 
 ```bash
-# Using fetch script:
+## Using fetch script:
 python3 "$ARXIV_FETCHER" download ARXIV_ID --dir PAPER_DIR
 
-# Fallback:
+## Fallback:
 mkdir -p PAPER_DIR && python3 -c "
 import pathlib
 import sys
@@ -180,12 +161,12 @@ After each download:
 - Add a 1-second delay between consecutive downloads to avoid rate limiting
 - Report: `Downloaded: papers/2301.07041.pdf (842 KB)`
 
-### Step 5: Summarize
+#### Step 5: Summarize
 
 For each paper (downloaded or fetched by API):
 
 ```markdown
-## [Title]
+### [Title]
 
 - **arXiv**: [ID] - [abs_url]
 - **Authors**: [full author list]
@@ -199,7 +180,7 @@ For each paper (downloaded or fetched by API):
 - **Local PDF**: papers/[ID].pdf (if downloaded)
 ```
 
-### Step 6: Update Research Wiki (if active)
+#### Step 6: Update Research Wiki (if active)
 
 **Required when `research-wiki/` exists in the project**; skip silently
 otherwise. When the wiki dir exists, resolve `$WIKI_SCRIPT` per the
@@ -235,7 +216,7 @@ for the canonical-helper rule. Missed ingests can be backfilled later
 with `python3 "$WIKI_SCRIPT" sync research-wiki/ --arxiv-ids <id1>,<id2>,...`
 after resolving `$WIKI_SCRIPT` as above.
 
-### Step 7: Final Output
+#### Step 7: Final Output
 
 Summarize what was done:
 
@@ -251,7 +232,7 @@ Suggest follow-up skills:
 /novelty-check "idea"     - verify your idea is novel against these papers
 ```
 
-## Key Rules
+### Key Rules
 
 - Always show the arXiv ID prominently - users need it for citations and reproducibility
 - Verify downloaded PDFs: file must be > 10 KB; warn and delete if smaller
@@ -260,33 +241,3 @@ Suggest follow-up skills:
 - Handle both arXiv ID formats: new (`2301.07041`) and old (`cs/0601001`)
 - PAPER_DIR is created automatically if it does not exist
 - If the arXiv API is unreachable, report the error clearly and suggest using `/research-lit` with `- sources: web` as a fallback
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/arxiv/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/arxiv/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

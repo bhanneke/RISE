@@ -4,34 +4,15 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/run-experiment/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/run-experiment/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: run-experiment
-description: Deploy and run ML experiments on local, remote, Vast.ai, or Modal serverless GPU. Use when user says "run experiment", "deploy to server", "跑实验", or needs to launch training jobs.
-argument-hint: [experiment-description]
-allowed-tools: Bash(*), Read, Grep, Glob, Edit, Write, Agent, Skill(serverless-modal)
----
-
-# Run Experiment
+## Run Experiment
 
 Deploy and run ML experiment: $ARGUMENTS
 
-## Workflow
+### Workflow
 
-### Step 1: Detect Environment
+#### Step 1: Detect Environment
 
 Read the project's `CLAUDE.md` to determine the experiment environment:
 
@@ -48,7 +29,7 @@ Read the project's `CLAUDE.md` to determine the experiment environment:
    - If no running instance → call `/vast-gpu provision` which analyzes the task, presents cost-optimized GPU options, and rents the user's choice
 2. If no server info is found in `CLAUDE.md`, ask the user.
 
-### Step 2: Pre-flight Check
+#### Step 2: Pre-flight Check
 
 Check GPU availability on the target machine:
 
@@ -66,13 +47,13 @@ ssh -p <PORT> root@<HOST> nvidia-smi --query-gpu=index,memory.used,memory.total 
 **Local:**
 ```bash
 nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader
-# or for Mac MPS:
+## or for Mac MPS:
 python -c "import torch; print('MPS available:', torch.backends.mps.is_available())"
 ```
 
 Free GPU = memory.used < 500 MiB.
 
-### Step 3: Sync Code (Remote Only)
+#### Step 3: Sync Code (Remote Only)
 
 Check the project's `CLAUDE.md` for a `code_sync` setting. If not specified, default to `rsync`.
 
@@ -87,10 +68,10 @@ rsync -avz --include='*.py' --exclude='*' <local_src>/ <server>:<remote_dst>/
 
 Push local changes to remote repo, then pull on the server:
 ```bash
-# 1. Push from local
+## 1. Push from local
 git add -A && git commit -m "sync: experiment deployment" && git push
 
-# 2. Pull on server
+## 2. Pull on server
 ssh <server> "cd <remote_dst> && git pull"
 ```
 
@@ -115,7 +96,7 @@ scp -P <PORT> requirements.txt root@<HOST>:/workspace/
 ssh -p <PORT> root@<HOST> "pip install -q -r /workspace/requirements.txt"
 ```
 
-### Step 3.5: W&B Integration (when `wandb: true` in CLAUDE.md)
+#### Step 3.5: W&B Integration (when `wandb: true` in CLAUDE.md)
 
 **Skip this step entirely if `wandb` is not set or is `false` in CLAUDE.md.**
 
@@ -155,7 +136,7 @@ Before deploying, ensure the experiment scripts have W&B logging:
 
 > The W&B project name and API key come from `CLAUDE.md` (see example below). The experiment name is auto-generated from the script name + timestamp.
 
-### Step 4: Deploy
+#### Step 4: Deploy
 
 #### Remote (via SSH + screen)
 
@@ -197,16 +178,16 @@ No SSH, no code sync, no screen sessions needed. Modal handles everything.
 #### Local
 
 ```bash
-# Linux with CUDA
+## Linux with CUDA
 CUDA_VISIBLE_DEVICES=<gpu_id> python <script> <args> 2>&1 | tee <log_file>
 
-# Mac with MPS (PyTorch uses MPS automatically)
+## Mac with MPS (PyTorch uses MPS automatically)
 python <script> <args> 2>&1 | tee <log_file>
 ```
 
 For local long-running jobs, use `run_in_background: true` to keep the conversation responsive.
 
-### Step 5: Verify Launch
+#### Step 5: Verify Launch
 
 **Remote (SSH):**
 ```bash
@@ -227,13 +208,13 @@ modal app logs <app>   # Stream logs
 **Local:**
 Check process is running and GPU is allocated.
 
-### Step 6: Feishu Notification (if configured)
+#### Step 6: Feishu Notification (if configured)
 
 After deployment is verified, check `~/.claude/feishu.json`:
 - Send `experiment_done` notification: which experiments launched, which GPUs, estimated time
 - If config absent or mode `"off"`: skip entirely (no-op)
 
-### Step 7: Auto-Destroy Vast.ai Instance (when `gpu: vast` and `auto_destroy: true`)
+#### Step 7: Auto-Destroy Vast.ai Instance (when `gpu: vast` and `auto_destroy: true`)
 
 **Skip this step if not using vast.ai or `auto_destroy` is `false`.**
 
@@ -266,7 +247,7 @@ After the experiment completes (detected via `/monitor-experiment` or screen ses
 
 > This ensures users are never billed for idle instances. When `auto_destroy: true` (the default), the full lifecycle is automatic: rent → setup → run → collect → destroy.
 
-## Key Rules
+### Key Rules
 
 - ALWAYS check GPU availability first — never blindly assign GPUs (except Modal, which manages allocation automatically)
 - Each experiment gets its own screen session + GPU (remote) or background process (local)
@@ -277,12 +258,12 @@ After the experiment completes (detected via `/monitor-experiment` or screen ses
 - **Vast.ai cost awareness**: When using `gpu: vast`, always report the running cost. If `auto_destroy: true`, destroy the instance as soon as all experiments on it complete
 - **Modal cost awareness**: Always estimate and display cost before running. Modal auto-scales to zero — no idle billing, no manual cleanup
 
-## CLAUDE.md Example
+### CLAUDE.md Example
 
 Users should add their server info to their project's `CLAUDE.md`:
 
 ```markdown
-## Remote Server
+### Remote Server
 - gpu: remote               # use pre-configured SSH server
 - SSH: `ssh my-gpu-server`
 - GPU: 4x A100 (80GB each)
@@ -293,18 +274,18 @@ Users should add their server info to their project's `CLAUDE.md`:
 - wandb_project: my-project # W&B project name (required if wandb: true)
 - wandb_entity: my-team     # W&B team/user (optional, uses default if omitted)
 
-## Vast.ai
+### Vast.ai
 - gpu: vast                  # rent on-demand GPU from vast.ai
 - auto_destroy: true         # auto-destroy after experiment completes (default: true)
 - max_budget: 5.00           # optional: max total $ to spend per experiment
 
-## Modal
+### Modal
 - gpu: modal                 # serverless GPU via Modal (no SSH, auto scale-to-zero)
 - modal_gpu: A100-80GB       # optional: override GPU selection (default: auto-select)
 - modal_timeout: 21600       # optional: max seconds (default: 6 hours)
 - modal_volume: my-results   # optional: named volume for results persistence
 
-## Local Environment
+### Local Environment
 - gpu: local                 # use local GPU
 - Mac MPS / Linux CUDA
 - Conda env: `ml` (Python 3.10 + PyTorch)
@@ -315,33 +296,3 @@ Users should add their server info to their project's `CLAUDE.md`:
 > **Modal setup**: Run `pip install modal && modal setup`. Bind a payment method at https://modal.com/settings (NEVER through CLI) to unlock the full $30/month free tier (without card: $5/month only). Set a workspace spending limit to prevent accidental charges. Set `gpu: modal` in your `CLAUDE.md` — ideal for users without a local GPU who need to debug code or run small-scale tests.
 
 > **W&B setup**: Run `wandb login` on your server once (or set `WANDB_API_KEY` env var). The skill reads project/entity from CLAUDE.md and adds `wandb.init()` + `wandb.log()` to your training scripts automatically. Dashboard: `https://wandb.ai/<entity>/<project>`.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/run-experiment/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/run-experiment/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

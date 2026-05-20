@@ -4,48 +4,29 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/training-check/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/training-check/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: training-check
-description: Periodically check WandB metrics during training to catch problems early (NaN, loss divergence, idle GPUs). Avoids wasting GPU hours on broken runs. Use when training is running and you want automated health checks.
-argument-hint: [wandb-run-path]
-allowed-tools: Bash(*), Read, Grep, Glob, Write, Edit, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Training Check
+## Training Check
 
 Periodically read WandB metrics during training to catch problems early. Do not wait until training finishes to discover it was a waste of GPU time.
 
-## Context: $ARGUMENTS
+### Context: $ARGUMENTS
 
-## Constants
+### Constants
 
 - WANDB_ENTITY and WANDB_PROJECT: read from CLAUDE.md or passed as argument (format: `entity/project/run_id`)
 - CHECK_INTERVAL: starts at 10 minutes, then gradually increases if consistently healthy: 10 min → 20 min → 30 min → 60 min (cap)
 - REVIEWER_MODEL = `gpt-5.5` — used via Codex MCP for ambiguous cases only
 
-## When to Use
+### When to Use
 
 - After training is confirmed running (session alive, loss decreasing for first few steps)
 - Set up via CronCreate to fire periodically during training
 - **This skill checks training QUALITY, not process HEALTH.** Process health (session alive, GPU utilization) is [watchdog.py](../../tools/watchdog.py)'s job.
 
-## Workflow
+### Workflow
 
-### Step 1: Read WandB Metrics
+#### Step 1: Read WandB Metrics
 
 ```python
 import wandb
@@ -67,7 +48,7 @@ Check these signals:
 - **Learning rate**: Is the schedule behaving as expected?
 - **Gradient norm**: Exploding or vanishing?
 
-### Step 2: Judgment
+#### Step 2: Judgment
 
 | Signal | Judgment | Action |
 |--------|----------|--------|
@@ -79,7 +60,7 @@ Check these signals:
 | Metrics noisy, can't tell trend | **Unsure** | → Step 3 (Codex judgment) |
 | Slightly worse than baseline but still early | **Unsure** | → Step 3 (Codex judgment) |
 
-### Step 3: Codex Judgment (only when unsure)
+#### Step 3: Codex Judgment (only when unsure)
 
 Only escalate to Codex when the signal is ambiguous. For clearly good or clearly bad signals, act directly.
 
@@ -103,7 +84,7 @@ mcp__codex__codex:
     - WAIT: not enough data to judge, check again sooner
 ```
 
-### Step 4: Act
+#### Step 4: Act
 
 | Decision | Action |
 |----------|--------|
@@ -111,7 +92,7 @@ mcp__codex__codex:
 | **Continue** | Do nothing. Will be invoked again at next interval (increase interval if consistently healthy). |
 | **Wait** | Do nothing but keep the current short interval (don't increase). |
 
-## Integration with Watchdog
+### Integration with Watchdog
 
 Training-check and [watchdog.py](../../tools/watchdog.py) operate at different levels:
 
@@ -124,7 +105,7 @@ Use both together:
 - Watchdog catches crashes and idle GPUs immediately
 - Training-check catches subtle quality issues (loss plateau, metric degradation)
 
-## Rules
+### Rules
 
 - Do not stop training on first sign of noise — some loss spikes are normal. Look at **trends over multiple checkpoints**.
 - When stopping training, always save the WandB run URL and key metrics as evidence.
@@ -132,7 +113,7 @@ Use both together:
 - Gradually increase check interval when healthy (10 → 20 → 30 → 60 min). Reset to 10 min after any anomaly.
 - This skill is meant to be automated via CronCreate — do not ask the user whether to set it up. Just set it.
 
-## CronCreate Setup Example
+### CronCreate Setup Example
 
 ```
 After training is confirmed stable:
@@ -141,33 +122,3 @@ After training is confirmed stable:
 ```
 
 As the check interval increases, delete the old CronCreate job and create a new one with the longer interval.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/training-check/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/training-check/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

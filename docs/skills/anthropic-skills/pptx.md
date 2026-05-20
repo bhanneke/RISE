@@ -4,29 +4,11 @@
 
 PowerPoint deck generation
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../anthropic-skills/">Anthropic Skills (foundational)</a></div><div><b>Category:</b> <code>slides</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>dissemination</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/anthropics/skills/contents/skills/pptx/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/anthropic-skills/pptx/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/anthropics/skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## PPTX Skill
 
----
-
----
-name: pptx
-description: "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill."
-license: Proprietary. LICENSE.txt has complete terms
----
-
-# PPTX Skill
-
-## Quick Reference
+### Quick Reference
 
 | Task | Guide |
 |------|-------|
@@ -36,22 +18,22 @@ license: Proprietary. LICENSE.txt has complete terms
 
 ---
 
-## Reading Content
+### Reading Content
 
 ```bash
-# Text extraction
+## Text extraction
 python -m markitdown presentation.pptx
 
-# Visual overview
+## Visual overview
 python scripts/thumbnail.py presentation.pptx
 
-# Raw XML
+## Raw XML
 python scripts/office/unpack.py presentation.pptx unpacked/
 ```
 
 ---
 
-## Editing Workflow
+### Editing Workflow
 
 **Read [editing.md](editing.md) for full details.**
 
@@ -60,7 +42,7 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 
 ---
 
-## Creating from Scratch
+### Creating from Scratch
 
 **Read [pptxgenjs.md](pptxgenjs.md) for full details.**
 
@@ -68,18 +50,18 @@ Use when no template or reference presentation is available.
 
 ---
 
-## Design Ideas
+### Design Ideas
 
 **Don't create boring slides.** Plain bullets on a white background won't impress anyone. Consider ideas from this list for each slide.
 
-### Before Starting
+#### Before Starting
 
 - **Pick a bold, content-informed color palette**: The palette should feel designed for THIS topic. If swapping your colors into a completely different presentation would still "work," you haven't made specific enough choices.
 - **Dominance over equality**: One color should dominate (60-70% visual weight), with 1-2 supporting tones and one sharp accent. Never give all colors equal weight.
 - **Dark/light contrast**: Dark backgrounds for title + conclusion slides, light for content ("sandwich" structure). Or commit to dark throughout for a premium feel.
 - **Commit to a visual motif**: Pick ONE distinctive element and repeat it — rounded image frames, icons in colored circles, thick single-side borders. Carry it across every slide.
 
-### Color Palettes
+#### Color Palettes
 
 Choose colors that match your topic — don't default to generic blue. Use these palettes as inspiration:
 
@@ -96,7 +78,7 @@ Choose colors that match your topic — don't default to generic blue. Use these
 | **Sage Calm** | `84B59F` (sage) | `69A297` (eucalyptus) | `50808E` (slate) |
 | **Cherry Bold** | `990011` (cherry) | `FCF6F5` (off-white) | `2F3C7E` (navy) |
 
-### For Each Slide
+#### For Each Slide
 
 **Every slide needs a visual element** — image, chart, icon, or shape. Text-only slides are forgettable.
 
@@ -115,7 +97,7 @@ Choose colors that match your topic — don't default to generic blue. Use these
 - Icons in small colored circles next to section headers
 - Italic accent text for key stats or taglines
 
-### Typography
+#### Typography
 
 **Choose an interesting font pairing** — don't default to Arial. Pick a header font with personality and pair it with a clean body font.
 
@@ -137,13 +119,13 @@ Choose colors that match your topic — don't default to generic blue. Use these
 | Body text | 14-16pt |
 | Captions | 10-12pt muted |
 
-### Spacing
+#### Spacing
 
 - 0.5" minimum margins
 - 0.3-0.5" between content blocks
 - Leave breathing room—don't fill every inch
 
-### Avoid (Common Mistakes)
+#### Avoid (Common Mistakes)
 
 - **Don't repeat the same layout** — vary columns, cards, and callouts across slides
 - **Don't center body text** — left-align paragraphs and lists; center only titles
@@ -158,13 +140,13 @@ Choose colors that match your topic — don't default to generic blue. Use these
 
 ---
 
-## QA (Required)
+### QA (Required)
 
 **Assume there are problems. Your job is to find them.**
 
 Your first render is almost never correct. Approach QA as a bug hunt, not a confirmation step. If you found zero issues on first inspection, you weren't looking hard enough.
 
-### Content QA
+#### Content QA
 
 ```bash
 python -m markitdown output.pptx
@@ -180,7 +162,7 @@ python -m markitdown output.pptx | grep -iE "xxxx|lorem|ipsum|this.*(page|slide)
 
 If grep returns results, fix them before declaring success.
 
-### Visual QA
+#### Visual QA
 
 **⚠️ USE SUBAGENTS** — even for 2-3 slides. You've been staring at the code and will see what you expect, not what's there. Subagents have fresh eyes.
 
@@ -212,7 +194,7 @@ Read and analyze these images:
 Report ALL issues found, including minor ones.
 ```
 
-### Verification Loop
+#### Verification Loop
 
 1. Generate slides → Convert to images → Inspect
 2. **List issues found** (if none found, look again more critically)
@@ -224,7 +206,7 @@ Report ALL issues found, including minor ones.
 
 ---
 
-## Converting to Images
+### Converting to Images
 
 Convert presentations to individual slide images for visual inspection:
 
@@ -243,40 +225,10 @@ pdftoppm -jpeg -r 150 -f N -l N output.pdf slide-fixed
 
 ---
 
-## Dependencies
+### Dependencies
 
 - `pip install "markitdown[pptx]"` - text extraction
 - `pip install Pillow` - thumbnail grids
 - `npm install -g pptxgenjs` - creating from scratch
 - LibreOffice (`soffice`) - PDF conversion (auto-configured for sandboxed environments via `scripts/office/soffice.py`)
 - Poppler (`pdftoppm`) - PDF to images
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/anthropics/skills/contents/skills/pptx/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>anthropics/skills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../anthropic-skills.md">Anthropic Skills (foundational)</a></dd>
-<dt><b>Category</b></dt><dd><code>slides</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>dissemination</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/anthropics/skills">⭐ anthropics/skills</a><br><img src="https://img.shields.io/github/stars/anthropics/skills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/anthropics/skills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/anthropic-skills/pptx/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/anthropic-skills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

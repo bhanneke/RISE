@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/vast-gpu/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/vast-gpu/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: vast-gpu
-description: "Rent, manage, and destroy GPU instances on vast.ai. Use when user says \"rent gpu\", \"vast.ai\", \"rent a server\", \"cloud gpu\", or needs on-demand GPU without owning hardware."
-argument-hint: [task-description or action]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent
----
-
-# Vast.ai GPU Management
+## Vast.ai GPU Management
 
 Manage vast.ai GPU instance: $ARGUMENTS
 
-## Overview
+### Overview
 
 Rent cheap, capable GPUs from vast.ai on demand. This skill **analyzes the training task** to determine GPU requirements, searches for the best-value offers, presents options with estimated total cost, and handles the full lifecycle: rent → setup → run → destroy.
 
@@ -45,7 +26,7 @@ vastai set api-key YOUR_API_KEY
 
 SSH public key **must be uploaded at https://cloud.vast.ai/manage-keys/ BEFORE creating any instance**. Keys are baked into instances at creation time — if you add a key after renting, you must destroy and re-create the instance.
 
-## State File
+### State File
 
 All active vast.ai instances are tracked in `vast-instances.json` at the project root:
 ```json
@@ -70,9 +51,9 @@ All active vast.ai instances are tracked in `vast-instances.json` at the project
 
 This file is the source of truth for `/run-experiment` and `/monitor-experiment` to connect to vast.ai instances.
 
-## Workflow
+### Workflow
 
-### Action: Provision (default)
+#### Action: Provision (default)
 
 Analyze the task, find the best GPU, and present cost-optimized options. This is the main entry point — called directly or automatically by `/run-experiment` when `gpu: vast` is set.
 
@@ -114,10 +95,10 @@ Based on the task analysis, determine:
 Search across multiple GPU tiers to find the best value. Always search broadly — do NOT limit to one GPU model:
 
 ```bash
-# Tier 1: Budget GPUs (good for small models, fine-tuning, ablations)
+## Tier 1: Budget GPUs (good for small models, fine-tuning, ablations)
 vastai search offers "gpu_ram>=<MIN_VRAM> num_gpus>=<N> reliability>0.95 inet_down>100" -o 'dph+' --storage <DISK> --limit 10
 
-# Tier 2: If VRAM > 24 GB, also search high-VRAM cards specifically
+## Tier 2: If VRAM > 24 GB, also search high-VRAM cards specifically
 vastai search offers "gpu_ram>=48 num_gpus>=<N> reliability>0.95" -o 'dph+' --storage <DISK> --limit 5
 ```
 
@@ -169,7 +150,7 @@ Pick a number (or type a different offer ID):
 
 Use these to scale the base estimated hours across offers.
 
-### Action: Rent
+#### Action: Rent
 
 Create an instance from a user-selected offer.
 
@@ -253,7 +234,7 @@ To deploy: /run-experiment (will auto-detect this instance)
 To destroy when done: /vast-gpu destroy <ID>
 ```
 
-### Action: Setup
+#### Action: Setup
 
 Set up the rented instance for a specific experiment. Called automatically by `/run-experiment` when targeting a vast.ai instance.
 
@@ -291,7 +272,7 @@ ssh -p <PORT> root@<HOST> "cd /workspace/project && python -c 'import torch; pri
 
 Expected output: `PyTorch 2.1.0, CUDA: True, GPUs: 1` (or more GPUs if multi-GPU instance).
 
-### Action: Destroy
+#### Action: Destroy
 
 Tear down a vast.ai instance to stop billing.
 
@@ -336,7 +317,7 @@ Instance <ID> destroyed.
 - Results downloaded to: ./results/
 ```
 
-### Action: List
+#### Action: List
 
 Show all active vast.ai instances:
 ```bash
@@ -345,7 +326,7 @@ vastai show instances
 
 Cross-reference with `vast-instances.json` for experiment associations.
 
-### Action: Destroy All
+#### Action: Destroy All
 
 Tear down all active instances (use after all experiments complete):
 
@@ -354,7 +335,7 @@ Tear down all active instances (use after all experiments complete):
 3. Clear `vast-instances.json`
 4. Report total cost
 
-## Key Rules
+### Key Rules
 
 - **Task-driven selection** — NEVER ask users to pick GPU models. Analyze the task, estimate requirements, present cost-optimized options with total price
 - **ALWAYS destroy instances when experiments are done** — vast.ai bills per second, leaving instances running wastes money
@@ -370,12 +351,12 @@ Tear down all active instances (use after all experiments complete):
 - **Show estimated total cost, not just $/hr** — a $0.90/hr GPU that finishes in 2h ($1.80) beats a $0.30/hr GPU that takes 8h ($2.40)
 - **`vastai` CLI requires Python ≥ 3.10** — if system Python is older, use a conda env
 
-## CLAUDE.md Example
+### CLAUDE.md Example
 
 Users only need to set `gpu: vast` — no hardware preferences required:
 
 ```markdown
-## Vast.ai
+### Vast.ai
 - gpu: vast                  # tells run-experiment to use vast.ai
 - auto_destroy: true         # auto-destroy after experiment completes (default: true)
 - max_budget: 5.00           # optional: max total $ to spend (skill warns if estimate exceeds this)
@@ -384,7 +365,7 @@ Users only need to set `gpu: vast` — no hardware preferences required:
 
 The skill analyzes experiment scripts and plans to determine what GPU to rent. No need to specify GPU model, VRAM, or instance count.
 
-## Composing with Other Skills
+### Composing with Other Skills
 
 ```
 /run-experiment "train model"       ← detects gpu: vast, calls /vast-gpu provision
@@ -398,33 +379,3 @@ The skill analyzes experiment scripts and plans to determine what GPU to rent. N
 /vast-gpu destroy <instance_id>     ← tear down, stop billing
 /vast-gpu destroy-all               ← tear down everything
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/vast-gpu/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/vast-gpu/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

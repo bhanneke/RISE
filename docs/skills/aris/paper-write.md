@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-write/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-write/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-write
-description: "Draft LaTeX paper section by section from an outline. Use when user says \"写论文\", \"write paper\", \"draft LaTeX\", \"开始写\", or wants to generate LaTeX content from a paper plan."
-argument-hint: "[venue-or-section] [— style-ref: <source>]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Paper Write: Section-by-Section LaTeX Generation
+## Paper Write: Section-by-Section LaTeX Generation
 
 Draft a LaTeX paper based on: **$ARGUMENTS**
 
-## Constants
+### Constants
 
 - **REVIEWER_MODEL = `gpt-5.5`** — Model used via Codex MCP for section review. Must be an OpenAI model.
 - **TARGET_VENUE = `ICLR`** — Default venue. Supported: `ICLR`, `NeurIPS`, `ICML`, `CVPR` (also ICCV/ECCV), `ACL` (also EMNLP/NAACL), `AAAI`, `ACM` (ACM MM, SIGIR, KDD, CHI, etc.), `IEEE_JOURNAL` (IEEE Transactions / Letters, e.g., T-PAMI, JSAC, TWC, TCOM, TSP, TIP), `IEEE_CONF` (IEEE conferences, e.g., ICC, GLOBECOM, INFOCOM, ICASSP). Determines style file and formatting.
@@ -37,7 +18,7 @@ Draft a LaTeX paper based on: **$ARGUMENTS**
 - **MAX_PAGES = 9** — Main body page limit. For ML conferences: counts from first page to end of Conclusion section, references and appendix NOT counted. **For IEEE venues: references ARE counted toward the page limit.** Typical limits: IEEE journal = no strict limit (but 12-14 pages typical for Transactions, 4-5 for Letters), IEEE conference = 5-8 pages including references.
 - **DBLP_BIBTEX = true** — Fetch real BibTeX from DBLP/CrossRef instead of LLM-generated entries. Eliminates hallucinated citations. Zero install required. Set `false` to use legacy behavior (LLM search + `[VERIFY]` markers).
 
-## Inputs
+### Inputs
 
 1. **PAPER_PLAN.md** — outline with claims-evidence matrix, section plan, figure plan (from `/paper-plan`)
 2. **NARRATIVE_REPORT.md** — the research narrative (primary source of content)
@@ -47,7 +28,7 @@ Draft a LaTeX paper based on: **$ARGUMENTS**
 
 If no PAPER_PLAN.md exists, ask the user to run `/paper-plan` first or provide a brief outline.
 
-## Orchestra-Guided Writing Overlay
+### Orchestra-Guided Writing Overlay
 
 Keep the existing `insleep` workflow, file layout, and defaults. Use the shared references below only when they improve writing quality:
 
@@ -57,16 +38,16 @@ Keep the existing `insleep` workflow, file layout, and defaults. Use the shared 
 
 These references are support material, not extra workflow phases.
 
-## Optional: Style reference (`— style-ref: <source>`, opt-in)
+### Optional: Style reference (`— style-ref: <source>`, opt-in)
 
 Lets the user steer **structural** style (section ordering, theorem density, sentence cadence, figure density, bibliography style) toward a reference paper. **Default OFF — when the user does not pass `— style-ref`, do nothing differently from before.**
 
 Only when `— style-ref: <source>` appears in `$ARGUMENTS`, run the helper FIRST, before drafting:
 
 ```bash
-# Resolve $STYLE_HELPER via the canonical strict-safe chain (see
-# shared-references/integration-contract.md §2). Policy A — gate:
-# unresolved helper means --style-ref cannot be satisfied, so abort.
+## Resolve $STYLE_HELPER via the canonical strict-safe chain (see
+## shared-references/integration-contract.md §2). Policy A — gate:
+## unresolved helper means --style-ref cannot be satisfied, so abort.
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -98,7 +79,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id (`2501.12345` or `ar
 - **Never copy prose, claims, examples, or terminology** from anything reachable through the cache. The profile is intentionally aggregate; if you need substance, use the user's own outline.
 - **Never pass `— style-ref` (or the cache contents) to reviewer / auditor sub-agents.** Cross-model review independence (`../shared-references/reviewer-independence.md`) requires reviewers see only the artifact and the user's prompt, not the author's stylistic context.
 
-### `<!-- DATA_NEEDED -->` markers (when `GAP_REPORT.md` exists)
+#### `<!-- DATA_NEEDED -->` markers (when `GAP_REPORT.md` exists)
 
 If `/paper-plan` ran with `— style-ref:` it will have emitted `GAP_REPORT.md` alongside `PAPER_PLAN.md`. This file lists structural slots (ablation tables, scaling experiments, failure-case analyses, …) the exemplar implies but the user has **no evidence to fill**.
 
@@ -119,9 +100,9 @@ When `GAP_REPORT.md` is present and a section slot is classified as `status: mis
 
 Original idea: @zhangpelf in [#217](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/issues/217).
 
-## Templates
+### Templates
 
-### Venue-Specific Setup
+#### Venue-Specific Setup
 
 The skill includes conference templates in `templates/`. Select based on TARGET_VENUE:
 
@@ -159,7 +140,7 @@ The skill includes conference templates in `templates/`. Select based on TARGET_
 % Author block uses \IEEEauthorblockN / \IEEEauthorblockA
 ```
 
-### Project Structure
+#### Project Structure
 
 Generate this file structure:
 
@@ -182,15 +163,15 @@ paper/
 
 **Section files are FLEXIBLE**: If the paper plan has 6-8 sections, create corresponding files (e.g., `4_theory.tex`, `5_experiments.tex`, `6_analysis.tex`, `7_conclusion.tex`).
 
-## Workflow
+### Workflow
 
-### Step 0: Backup and Clean
+#### Step 0: Backup and Clean
 
 If `paper/` already exists, back up to `paper-backup-{timestamp}/` before overwriting. Never silently destroy existing work.
 
 **CRITICAL: Clean stale files.** When changing section structure (e.g., 5 sections → 7 sections), delete section files that are no longer referenced by `main.tex`. Stale files (e.g., old `5_conclusion.tex` left behind when conclusion moved to `7_conclusion.tex`) cause confusion and waste space.
 
-### Step 1: Initialize Project
+#### Step 1: Initialize Project
 
 1. Create `paper/` directory
 2. Copy venue template from `templates/` — the template already includes:
@@ -205,7 +186,7 @@ If `paper/` already exists, back up to `paper-backup-{timestamp}/` before overwr
 \author{Anonymous Authors}
 ```
 
-### Step 2: Generate math_commands.tex
+#### Step 2: Generate math_commands.tex
 
 Create shared math macros based on the paper's notation:
 
@@ -218,7 +199,7 @@ Create shared math macros based on the paper's notation:
 % Add paper-specific notation here
 ```
 
-### Step 3: Write Each Section
+#### Step 3: Write Each Section
 
 Process sections in order. For each section:
 
@@ -289,7 +270,7 @@ Before drafting the front matter, re-read the one-sentence contribution from `PA
 - Implementation details, hyperparameter tables
 - Additional visualizations
 
-### Step 3.5: Theory Paper Consistency Pass (theory papers only)
+#### Step 3.5: Theory Paper Consistency Pass (theory papers only)
 
 Run this pass after drafting all sections and before building the bibliography.
 
@@ -321,7 +302,7 @@ If no standalone full-proof source exists:
 
 **Empirical motivation:** in a real theory-paper run, the default behavior generated `"see supplementary proof document"` placeholders in the appendix. The author had to manually pull hundreds of lines of full proofs from a standalone proofs file (e.g. `proof_full.tex`). Without this pass, theory papers ship with sketch-only appendices that fail at theory venues.
 
-### Step 4: Build Bibliography
+#### Step 4: Build Bibliography
 
 **CRITICAL: Only include entries that are actually cited in the paper.**
 
@@ -340,16 +321,16 @@ Three-step fallback chain — zero install, zero auth, all real BibTeX:
 
 **Step A: DBLP (best quality — full venue, pages, editors)**
 ```bash
-# 1. Search by title + first author
+## 1. Search by title + first author
 curl -s "https://dblp.org/search/publ/api?q=TITLE+AUTHOR&format=json&h=3"
-# 2. Extract DBLP key from result (e.g., conf/nips/VaswaniSPUJGKP17)
-# 3. Fetch real BibTeX
+## 2. Extract DBLP key from result (e.g., conf/nips/VaswaniSPUJGKP17)
+## 3. Fetch real BibTeX
 curl -s "https://dblp.org/rec/{key}.bib"
 ```
 
 **Step B: CrossRef DOI (fallback — works for arXiv preprints)**
 ```bash
-# If paper has a DOI or arXiv ID (arXiv DOI = 10.48550/arXiv.{id})
+## If paper has a DOI or arXiv ID (arXiv DOI = 10.48550/arXiv.{id})
 curl -sLH "Accept: application/x-bibtex" "https://doi.org/{doi}"
 ```
 
@@ -364,10 +345,10 @@ If the DBLP/CrossRef flow is not enough, load `../shared-references/citation-dis
 
 ```python
 import re
-# 1. Grep all \citep{...}, \citet{...}, and \cite{...} from all .tex files
-# 2. Extract unique keys (handle multi-cite like \citep{a,b,c} or \cite{a,b,c})
-# 3. Parse the full .bib file, keep only entries whose key is in the cited set
-# 4. Write the filtered bib
+## 1. Grep all \citep{...}, \citet{...}, and \cite{...} from all .tex files
+## 2. Extract unique keys (handle multi-cite like \citep{a,b,c} or \cite{a,b,c})
+## 3. Parse the full .bib file, keep only entries whose key is in the cited set
+## 4. Write the filtered bib
 ```
 
 This prevents bib bloat (e.g., 948 lines → 215 lines in testing).
@@ -473,7 +454,7 @@ If `VERIFY` or `MISMATCH` is printed, do not invent metadata:
 4. Double-check year and venue for every entry
 5. Remove duplicate entries (same paper with different keys)
 
-### Step 5: Scientific Writing Quality Pass (5 audit passes)
+#### Step 5: Scientific Writing Quality Pass (5 audit passes)
 
 After drafting all sections, run five sequential audit passes. Based on Sainani's "Writing in the Sciences" methodology: every word must earn its place.
 
@@ -534,7 +515,7 @@ Passive voice IS acceptable for: established facts, methods where agent is irrel
 - Do Figure graphics match Table values?
 - Flag statistics cited only through secondary sources (reviews, textbooks) — recommend verifying primary source
 
-### Step 6: Cross-Review with REVIEWER_MODEL
+#### Step 6: Cross-Review with REVIEWER_MODEL
 
 Send the complete draft to GPT-5.4 xhigh:
 
@@ -562,7 +543,7 @@ mcp__codex__codex:
 
 Apply CRITICAL and MAJOR fixes. Document MINOR issues for the user.
 
-### Step 7: Reverse Outline Test (from Research-Paper-Writing-Skills)
+#### Step 7: Reverse Outline Test (from Research-Paper-Writing-Skills)
 
 After drafting all sections:
 
@@ -572,7 +553,7 @@ After drafting all sections:
 4. **Check evidence mapping** — every experiment/figure must support a stated claim
 5. **Fix gaps** — if a topic sentence doesn't advance the story, rewrite the paragraph
 
-### Step 8: Final Checks
+#### Step 8: Final Checks
 
 Before declaring done:
 
@@ -592,7 +573,7 @@ Before declaring done:
 - [ ] Venue-specific required sections/checklists satisfied (read `../shared-references/venue-checklists.md` if needed)
 - [ ] A skim reader can recover the main claim from the title, abstract, introduction, and Figure 1/captions
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 - **Do NOT generate author names, emails, or affiliations** — use anonymous block or placeholder
@@ -608,7 +589,7 @@ Before declaring done:
 - **Backup before overwrite** — never destroy existing `paper/` directory without backing up
 - **Front-load the contribution** — do not hide the payoff until the experiments or appendix
 
-## Writing Quality Reference
+### Writing Quality Reference
 
 - `../shared-references/writing-principles.md` — story framing, abstract/introduction patterns, sentence-level clarity, reviewer reading order
 - `../shared-references/venue-checklists.md` — ICLR/NeurIPS/ICML/IEEE submission requirements to check before declaring done
@@ -616,36 +597,6 @@ Before declaring done:
 
 Keep using the reverse-outline test and anti-inflation polish from the main workflow above; the shared references are there to improve quality without adding a new phase.
 
-## Acknowledgements
+### Acknowledgements
 
 Writing methodology adapted from [Research-Paper-Writing-Skills](https://github.com/Master-cai/Research-Paper-Writing-Skills) (CCF award-winning methodology). Citation verification from [claude-scholar](https://github.com/Galaxy-Dawn/claude-scholar) and [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills). This hybrid pack's writing-guidance overlay is adapted from Orchestra Research's paper-writing materials.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-write/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/paper-write/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

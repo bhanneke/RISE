@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/modeling/term-structure.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Term Structure Models
 
----
-
-# Term Structure Models
-
-## Overview
+### Overview
 
 Term structure models describe how interest rates vary across maturities. The yield curve — the relationship between yield and maturity — is fundamental to fixed income pricing, monetary policy transmission, and macroeconomic forecasting. Models range from purely statistical curve-fitting (Nelson-Siegel) to no-arbitrage dynamic models (Vasicek, CIR, HJM).
 
-## Yield Curve Basics
+### Yield Curve Basics
 
-### Definitions
+#### Definitions
 
 **Zero-coupon yield** (spot rate) y(t,T): the annualized return from buying a zero-coupon bond at t maturing at T.
 
@@ -42,14 +30,14 @@ f(t,T) = -d/dT [ln P(t,T)]
 - Flat: transition between normal and inverted.
 - Humped: peaks at intermediate maturity.
 
-### Stylized Facts
+#### Stylized Facts
 1. Yields are persistent (near unit root) but mean-reverting.
 2. The yield curve shifts roughly in parallel (level factor explains ~85% of variation).
 3. Slope and curvature factors explain most of the remaining variation.
 4. The spread (10Y - 2Y) predicts recessions and future economic activity.
 5. Term premia are time-varying and countercyclical.
 
-## Nelson-Siegel Model (1987)
+### Nelson-Siegel Model (1987)
 
 A parsimonious 4-parameter model for the yield curve:
 
@@ -64,7 +52,7 @@ where tau = T - t is time to maturity.
 - beta_2: curvature (hump). Loading starts at 0, peaks at medium maturity, returns to 0.
 - lambda: decay parameter controlling where the hump peaks.
 
-### Svensson Extension (1994)
+#### Svensson Extension (1994)
 
 Adds a second curvature factor:
 
@@ -72,7 +60,7 @@ y(tau) = beta_0 + beta_1 * L1(tau, lambda_1) + beta_2 * L2(tau, lambda_1) + beta
 
 Two decay parameters (lambda_1, lambda_2) allow richer curvature shapes. Used by many central banks.
 
-### Estimation
+#### Estimation
 
 ```python
 import numpy as np
@@ -99,7 +87,7 @@ def fit_ns(maturities, yields):
     return result.x
 ```
 
-### Dynamic Nelson-Siegel (Diebold-Li, 2006)
+#### Dynamic Nelson-Siegel (Diebold-Li, 2006)
 
 Treat beta_0, beta_1, beta_2 as time-varying latent factors following a VAR(1):
 
@@ -111,9 +99,9 @@ Treat beta_0, beta_1, beta_2 as time-varying latent factors following a VAR(1):
 - Excellent out-of-sample forecasting performance.
 - lambda is typically fixed at lambda = 0.0609 (Diebold-Li calibration).
 
-## Short-Rate Models
+### Short-Rate Models
 
-### Vasicek (1977)
+#### Vasicek (1977)
 
 dr_t = kappa * (theta - r_t) * dt + sigma * dW_t
 
@@ -128,7 +116,7 @@ dr_t = kappa * (theta - r_t) * dt + sigma * dW_t
 
 where B(t,T) = (1 - exp(-kappa*(T-t))) / kappa
 
-### Cox-Ingersoll-Ross (CIR, 1985)
+#### Cox-Ingersoll-Ross (CIR, 1985)
 
 dr_t = kappa * (theta - r_t) * dt + sigma * sqrt(r_t) * dW_t
 
@@ -136,7 +124,7 @@ dr_t = kappa * (theta - r_t) * dt + sigma * sqrt(r_t) * dW_t
 - Closed-form bond prices.
 - Volatility proportional to sqrt(r), capturing the empirical feature that rate volatility increases with level.
 
-### Hull-White (1990)
+#### Hull-White (1990)
 
 dr_t = [theta(t) - a * r_t] * dt + sigma * dW_t
 
@@ -144,7 +132,7 @@ dr_t = [theta(t) - a * r_t] * dt + sigma * dW_t
 - Analytically tractable.
 - Widely used in practice for derivatives pricing.
 
-### Calibration
+#### Calibration
 
 Short-rate models are calibrated to:
 1. **Yield curve**: Match observed zero-coupon yields.
@@ -152,7 +140,7 @@ Short-rate models are calibrated to:
 3. **Historical dynamics**: Estimate kappa, theta, sigma from historical rate data.
 
 ```python
-# Vasicek calibration from historical data (maximum likelihood)
+## Vasicek calibration from historical data (maximum likelihood)
 from scipy.optimize import minimize
 
 def vasicek_loglik(params, rates, dt):
@@ -168,7 +156,7 @@ result = minimize(vasicek_loglik, x0=[0.5, 0.05, 0.01], args=(rates, 1/252),
                   bounds=[(0.01, 5), (-0.05, 0.20), (0.001, 0.10)])
 ```
 
-## HJM Framework (Heath-Jarrow-Morton, 1992)
+### HJM Framework (Heath-Jarrow-Morton, 1992)
 
 Models the entire forward rate curve f(t,T) directly:
 
@@ -180,11 +168,11 @@ alpha(t,T) = sigma(t,T) * integral_{t}^{T} sigma(t,s) ds
 
 Key insight: specifying the volatility structure sigma(t,T) fully determines the model.
 
-### LIBOR Market Model (BGM)
+#### LIBOR Market Model (BGM)
 
 A discrete-tenor version of HJM that models forward LIBOR rates directly. Standard for pricing interest rate derivatives (caps, floors, swaptions).
 
-## Affine Term Structure Models (ATSMs)
+### Affine Term Structure Models (ATSMs)
 
 General class encompassing Vasicek, CIR, and multi-factor extensions:
 
@@ -199,31 +187,31 @@ P(t,T) = exp(A(T-t) + B(T-t)' * X_t)
 
 where A and B solve ODEs (Riccati equations).
 
-### Estimation Methods
+#### Estimation Methods
 - **Maximum likelihood** with Kalman filter: treat yields as noisy observations of latent factors.
 - **GMM**: match yield moments (means, variances, autocorrelations).
 - **Bayesian MCMC**: increasingly common for rich model specifications.
 
-## Term Premium Estimation
+### Term Premium Estimation
 
-### Adrian-Crump-Moench (ACM, 2013)
+#### Adrian-Crump-Moench (ACM, 2013)
 
 Widely used term premium decomposition (New York Fed publishes estimates):
 1. Extract principal components from the yield curve.
 2. Estimate factor dynamics and market prices of risk.
 3. Decompose yield into expected future short rates + term premium.
 
-### Kim-Wright (2005)
+#### Kim-Wright (2005)
 
 Three-factor Gaussian ATSM estimated at the Federal Reserve Board. Also produces term premium estimates.
 
-### Cochrane-Piazzesi (2005)
+#### Cochrane-Piazzesi (2005)
 
 A single return-forecasting factor (tent-shaped linear combination of forward rates) predicts excess bond returns across maturities. Suggests a single risk premium drives bond risk premia at all maturities.
 
-## Bond Pricing
+### Bond Pricing
 
-### Duration and Convexity
+#### Duration and Convexity
 
 **Modified duration**: D = -(1/P) * dP/dy. Measures price sensitivity to yield changes.
 
@@ -231,7 +219,7 @@ A single return-forecasting factor (tent-shaped linear combination of forward ra
 
 **Approximation**: Delta_P/P ~ -D * Delta_y + 0.5 * C * (Delta_y)^2
 
-### Credit Spreads
+#### Credit Spreads
 
 Corporate bond yield = risk-free yield + credit spread.
 
@@ -241,7 +229,7 @@ Structural models (Merton 1974): equity is a call option on firm assets. Default
 
 Reduced-form models (Duffie-Singleton 1999): model default intensity directly as a stochastic process.
 
-## Practical Checklist
+### Practical Checklist
 
 1. Start with Nelson-Siegel for cross-sectional curve fitting. Extract level, slope, curvature factors.
 2. For forecasting: Dynamic Nelson-Siegel (Diebold-Li) is hard to beat.
@@ -254,7 +242,7 @@ Reduced-form models (Duffie-Singleton 1999): model default intensity directly as
 9. For panel studies: use Driscoll-Kraay or two-way clustered standard errors.
 10. Report out-of-sample forecasting performance against random walk benchmark.
 
-## Key References
+### Key References
 
 - Nelson, C.R. and Siegel, A.F. (1987). Parsimonious modeling of yield curves. Journal of Business.
 - Diebold, F.X. and Li, C. (2006). Forecasting the term structure of government bond yields. Journal of Econometrics.
@@ -264,28 +252,3 @@ Reduced-form models (Duffie-Singleton 1999): model default intensity directly as
 - Adrian, T., Crump, R.K., and Moench, E. (2013). Pricing the term structure with linear regressions. Journal of Financial Economics.
 - Cochrane, J.H. and Piazzesi, M. (2005). Bond risk premia. American Economic Review.
 - Gurkaynak, R.S., Sack, B., and Wright, J.H. (2007). The U.S. Treasury yield curve: 1961 to the present. Journal of Monetary Economics.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/modeling/term-structure.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/modeling-term-structure/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

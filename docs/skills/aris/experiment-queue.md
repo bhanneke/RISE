@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>code-gen</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>code-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/experiment-queue/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/experiment-queue/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: experiment-queue
-description: SSH job queue for multi-seed/multi-config ML experiments with OOM-aware retry, stale-screen cleanup, and wave-transition race prevention. Use when user says "batch experiments", "队列实验", "run grid", "multi-seed sweep", "auto-chain experiments", or when /run-experiment is insufficient for 10+ jobs that need orchestration.
-argument-hint: [manifest-or-grid-spec]
-allowed-tools: Bash(*), Read, Grep, Glob, Edit, Write, Agent, Skill(run-experiment), Skill(monitor-experiment)
----
-
-# Experiment Queue
+## Experiment Queue
 
 Orchestrate large batches of ML experiments on SSH remote GPU servers with proper state tracking, OOM retry, stale cleanup, and wave transitions.
 
-## When to Use This Skill
+### When to Use This Skill
 
 Use when `/run-experiment` is insufficient:
 - **≥10 jobs** that need batching across GPUs
@@ -44,7 +25,7 @@ Do NOT use for:
 - Modal/Vast.ai deployments (those have their own orchestration)
 - Experiments that need manual inspection between runs
 
-## Why This Exists
+### Why This Exists
 
 Based on session audit (2026-04-16), the major wall-clock sinks in multi-seed grid experiments are:
 
@@ -56,9 +37,9 @@ Based on session audit (2026-04-16), the major wall-clock sinks in multi-seed gr
 
 All of these are pure engineering friction that can be orchestrated.
 
-## Core Concepts
+### Core Concepts
 
-### Job Manifest
+#### Job Manifest
 
 A manifest lists jobs with explicit state:
 
@@ -66,11 +47,11 @@ A manifest lists jobs with explicit state:
 project: my_grid_experiment
 cwd: /home/user/your_project
 conda: my_env
-# Optional: override conda hook path if conda is not at a standard location.
-# Can be a bare path (wrapped automatically) or a full `eval "$(... shell.bash hook)"` string.
-# Falls back to auto-detect of ~/anaconda3, ~/miniconda3, /opt/anaconda3, etc.,
-# or the ARIS_CONDA_HOOK environment variable.
-# conda_hook: /custom/path/to/conda
+## Optional: override conda hook path if conda is not at a standard location.
+## Can be a bare path (wrapped automatically) or a full `eval "$(... shell.bash hook)"` string.
+## Falls back to auto-detect of ~/anaconda3, ~/miniconda3, /opt/anaconda3, etc.,
+## or the ARIS_CONDA_HOOK environment variable.
+## conda_hook: /custom/path/to/conda
 ssh: gpu-server
 default_cmd: >
   python run_distill.py --backbone softmax --lam 0.5
@@ -95,7 +76,7 @@ jobs:
   # ... 14 more
 ```
 
-### Job State Machine
+#### Job State Machine
 
 ```
 pending → running → completed
@@ -104,7 +85,7 @@ pending → running → completed
 stale_screen_detected → cleaned → pending
 ```
 
-### Wave Orchestration
+#### Wave Orchestration
 
 A "wave" is a batch of jobs that fit available GPUs. Next wave only starts when:
 1. All current-wave python processes have exited
@@ -112,9 +93,9 @@ A "wave" is a batch of jobs that fit available GPUs. Next wave only starts when:
 3. GPU memory has dropped below threshold (≤500 MiB)
 4. Precondition checks pass for next-wave jobs
 
-## Workflow
+### Workflow
 
-### Step 1: Parse Manifest / Build from Grid
+#### Step 1: Parse Manifest / Build from Grid
 
 Input can be:
 - **YAML manifest** (explicit job list, recommended for complex cases)
@@ -124,7 +105,7 @@ Input can be:
 Bind the run identifiers once so every later step (manifest save, scp, launch, monitor, resume) refers to the same paths. Set these as local shell variables before generating the manifest:
 
 ```bash
-# REPLACE the placeholder path before running, or pre-export PROJECT_DIR:
+## REPLACE the placeholder path before running, or pre-export PROJECT_DIR:
 PROJECT_DIR="${PROJECT_DIR:?set PROJECT_DIR to the local project root}"
 RUN_TS=$(date -u +%Y%m%dT%H%M%SZ)             # one timestamp per run, reused everywhere
 LOCAL_RUN_DIR="$PROJECT_DIR/experiment_queue/$RUN_TS"
@@ -133,7 +114,7 @@ mkdir -p "$LOCAL_RUN_DIR"
 
 Save the built manifest to `$LOCAL_RUN_DIR/manifest.json` for reproducibility.
 
-### Step 2: Pre-flight
+#### Step 2: Pre-flight
 
 - Check SSH connection works
 - Check conda env exists on remote
@@ -143,19 +124,19 @@ Save the built manifest to `$LOCAL_RUN_DIR/manifest.json` for reproducibility.
 
 If any precondition fails, show user which jobs are blocked and why.
 
-### Step 3: Launch Scheduler
+#### Step 3: Launch Scheduler
 
 The canonical scheduler implementation lives in `skills/experiment-queue/scripts/queue_manager.py` (Phase 3.3 move, Arch C). `tools/experiment_queue/queue_manager.py` is now a Python `os.execv` shim retained for legacy resolver-chain compatibility. Three preliminaries before launch.
 
 **3a. Resolve the local helper directory.** The two helpers (`queue_manager.py`, `build_manifest.py`) now sit under `skills/experiment-queue/scripts/` in the ARIS repo, with shims at `tools/experiment_queue/` for legacy resolver layers. Use this hybrid chain so the skill works from any project layout:
 
 ```bash
-# Layer 0: self-contained (CC 1.0+ exposes $CLAUDE_SKILL_DIR).
+## Layer 0: self-contained (CC 1.0+ exposes $CLAUDE_SKILL_DIR).
 QUEUE_TOOLS=""
 if [ -n "${CLAUDE_SKILL_DIR:-}" ] && [ -f "$CLAUDE_SKILL_DIR/scripts/queue_manager.py" ]; then
   QUEUE_TOOLS="$CLAUDE_SKILL_DIR/scripts"
 fi
-# Layers 1-3: legacy chain via tools/experiment_queue/ shims.
+## Layers 1-3: legacy chain via tools/experiment_queue/ shims.
 if [ -z "$QUEUE_TOOLS" ]; then
   cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
   if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
@@ -217,7 +198,7 @@ Notes for callers:
 ```bash
 LOCAL_RUN_DIR="/abs/path/to/project/experiment_queue/<existing-run-ts>"   # the run dir to resume
 . "$LOCAL_RUN_DIR/run_meta.txt"                                            # reloads PROJECT_DIR / RUN_TS / REMOTE_RUN_REL / REMOTE_RUN_DIR
-# Then re-run Step 3d verbatim. Do NOT re-run Step 3c (would overwrite manifest.json + state.json).
+## Then re-run Step 3d verbatim. Do NOT re-run Step 3c (would overwrite manifest.json + state.json).
 ```
 
 The scheduler:
@@ -230,7 +211,7 @@ The scheduler:
 - Launches next wave when current wave settles
 - Writes state to `queue_state.json` continuously
 
-### Step 4: Monitoring
+#### Step 4: Monitoring
 
 User can check state anytime, using `$REMOTE_RUN_DIR` from Step 3b (or reload from `$LOCAL_RUN_DIR/run_meta.txt` for an older run):
 
@@ -241,14 +222,14 @@ ssh <server> "cat \"$REMOTE_RUN_DIR/queue_state.json\"" \
 
 Note: `/monitor-experiment` is currently focused on screen sessions, result JSONs, and W&B; it does not yet read `queue_state.json` directly. For queue-state monitoring, use the literal command above against the recorded `REMOTE_RUN_DIR`. (Tracking `/monitor-experiment` queue-state integration as a follow-up.)
 
-### Step 5: Post-completion
+#### Step 5: Post-completion
 
 When all jobs in `manifest.json` are `completed` or `stuck`:
 - The remote scheduler (`queue_manager.py`) exits cleanly with `All jobs done` to its own stdout (captured in `$REMOTE_RUN_DIR/queue_mgr.log`). It does NOT write the local summary.
 - The **local** skill agent then aggregates state into `$LOCAL_RUN_DIR/summary.md` (read `$REMOTE_RUN_DIR/queue_state.json`, group by status, optionally pull per-job logs).
 - Local skill agent invokes `/analyze-results` if `analyze_on_complete: true`.
 
-## Grid Spec Syntax
+### Grid Spec Syntax
 
 Instead of writing 24 job entries manually:
 
@@ -264,7 +245,7 @@ template:
 
 Expands to 36 jobs automatically.
 
-## Wave Chaining
+### Wave Chaining
 
 For sequential phases (teacher → student):
 
@@ -290,7 +271,7 @@ phases:
 Scheduler enforces `depends_on`: `distill_students` jobs stay `pending` until all
 `train_teachers` jobs are `completed`.
 
-## OOM Handling
+### OOM Handling
 
 Detect OOM from stdout:
 ```regex
@@ -305,7 +286,7 @@ On detection:
 5. Requeue as `pending`
 6. Max `oom_retry.max_attempts` before marking `stuck`
 
-## Stale Screen Detection
+### Stale Screen Detection
 
 Every 60s, for each running screen:
 1. Check screen exists (`screen -ls`)
@@ -314,7 +295,7 @@ Every 60s, for each running screen:
    - If expected output file exists → mark `completed`, kill stale screen
    - If no output file → mark `failed_other`, kill screen
 
-## Resume-on-restart
+### Resume-on-restart
 
 If scheduler crashes / is killed:
 1. Read `queue_state.json`
@@ -322,10 +303,10 @@ If scheduler crashes / is killed:
 3. For each `pending`: continue normally
 4. Idempotent: safe to restart scheduler without losing state
 
-## Output: Summary Report
+### Output: Summary Report
 
 ```markdown
-# Experiment Queue Summary
+## Experiment Queue Summary
 
 **Project**: my_grid_experiment
 **Started**: 2026-04-16 11:36:29
@@ -333,22 +314,22 @@ If scheduler crashes / is killed:
 **Total wall-clock**: 6h 25m
 **Jobs**: 40 completed, 2 OOM-retried then completed, 0 stuck
 
-## Phases
+### Phases
 | Phase | Jobs | Success | OOM retries | Duration |
 | --- | --- | --- | --- | --- |
 | train_teachers | 2 | 2 | 0 | 58m |
 | distill_students | 24 | 24 | 2 | 4h 02m |
 | multi_seed_validation | 16 | 16 | 0 | 1h 25m |
 
-## Results Files
+### Results Files
 - 42 JSON files in `figures/distill_sw_*.json`
 
-## Next Steps
+### Next Steps
 - Run `/analyze-results` on output JSONs
 - Figures auto-regen via `artifact-sync` (if configured)
 ```
 
-## Comparison with `/run-experiment`
+### Comparison with `/run-experiment`
 
 | Feature | `/run-experiment` | `experiment-queue` |
 | --- | --- | --- |
@@ -364,7 +345,7 @@ If scheduler crashes / is killed:
 
 **Rule**: Use `/run-experiment` for ≤5 jobs. Use `experiment-queue` for ≥10 jobs or anything with phases.
 
-## Key Rules
+### Key Rules
 
 - **Never overlap screens on the same GPU** — always wait for `memory.used < 500 MiB` before launching new job
 - **Always write state to disk** — every state change flushed to `queue_state.json`
@@ -373,13 +354,13 @@ If scheduler crashes / is killed:
 - **Bounded retry** — max N OOM retries, then mark `stuck` and alert
 - **Dependencies enforced at launch** — never launch student before teacher checkpoint exists
 
-## Known Failure Modes
+### Known Failure Modes
 
 - **SSH connection drop during scheduling**: scheduler keeps running on remote (nohup), just reconnect and check
 - **GPU reservation by another user**: scheduler waits, does not pre-empt
 - **Disk full on remote**: scheduler detects write failure, marks all pending `stuck`, alerts
 
-## Example Session
+### Example Session
 
 User: "跑 T5+T6 全部实验：T5 = N∈{80,192} × n 4 values × seed {200,201}, T6 = N∈{384,512} × n 4 values × seed {42,200,201}; T6 需要先 train teacher"
 
@@ -392,7 +373,7 @@ Claude invokes `/experiment-queue`:
 
 Then user can check anytime or wait for summary report.
 
-## See Also
+### See Also
 
 - `/run-experiment` — single experiment deployment
 - `/monitor-experiment` — check progress (now reads from queue_state.json)
@@ -400,7 +381,7 @@ Then user can check anytime or wait for summary report.
 - `skills/experiment-queue/scripts/queue_manager.py` (canonical, Phase 3.3 move) — the scheduler implementation; resolved at runtime via the fallback chain in Step 3a. Legacy entry at `tools/experiment_queue/queue_manager.py` is an `os.execv` shim.
 - `skills/experiment-queue/scripts/build_manifest.py` (canonical, Phase 3.3 move) — build manifest from grid spec; same resolution chain. Legacy entry at `tools/experiment_queue/build_manifest.py` is an `os.execv` shim.
 
-## Rationale / Source
+### Rationale / Source
 
 Identified via 2026-04-16 post-mortem analysis (Codex GPT-5.4 xhigh) of a 1.5-day
 multi-seed paper experiment session:
@@ -411,33 +392,3 @@ multi-seed paper experiment session:
 
 This skill targets the wall-clock sink specifically; see `artifact-sync` and
 `paper-fix-auto-apply` for the other two.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/experiment-queue/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>code-gen</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>code-generation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/experiment-queue/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

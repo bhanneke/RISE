@@ -4,23 +4,11 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/causal-inference/shift-share.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Shift-Share (Bartik) Instruments
 
----
-
-# Shift-Share (Bartik) Instruments
-
-## Structure
+### Structure
 
 A shift-share instrument has the form:
 
@@ -33,18 +21,18 @@ where:
 
 The instrument varies across units because different units have different exposure compositions (shares), even though the shifts are common to all units.
 
-## Canonical Applications
+### Canonical Applications
 
 - **Labor demand (Bartik 1991)**: s_{ik} = share of employment in industry k in region i at baseline. g_k = national growth rate of industry k employment (excluding region i). Instruments for local labor demand shocks.
 - **Immigration (Card 2001)**: s_{ik} = share of immigrants from origin country k living in region i at baseline. g_k = national inflow of immigrants from country k. Instruments for immigration inflows to a region.
 - **Trade shocks (Autor, Dorn, and Hanson 2013)**: s_{ik} = share of employment in industry k in commuting zone i. g_k = change in Chinese imports per worker in industry k (using imports to other high-income countries as shifts). Instruments for local exposure to import competition.
 - **Technology shocks**: Exposure to automation based on local occupation shares times national adoption of robots/AI.
 
-## Three Modern Interpretations
+### Three Modern Interpretations
 
 The recent econometric literature has clarified that there are fundamentally different ways to justify shift-share instruments, each with different assumptions and implications.
 
-### 1. Goldsmith-Pinkham, Sorkin, and Swift (2020) — Share Exogeneity
+#### 1. Goldsmith-Pinkham, Sorkin, and Swift (2020) — Share Exogeneity
 
 **Core idea**: The Bartik instrument is equivalent to a GMM estimator using the initial shares {s_{ik}} as individual instruments with shifts {g_k} as weights.
 
@@ -59,7 +47,7 @@ The recent econometric literature has clarified that there are fundamentally dif
 
 **Inference**: Standard IV standard errors are valid for the Bartik estimator under share exogeneity, but must account for the correct number of overidentifying restrictions (which equals the number of shares minus the number of endogenous variables).
 
-### 2. Borusyak, Hull, and Jaravel (2022) — Shift Exogeneity
+#### 2. Borusyak, Hull, and Jaravel (2022) — Shift Exogeneity
 
 **Core idea**: Identification comes from the exogeneity of the shifts (g_k), not the shares. The shifts are as-if randomly assigned across sectors/groups.
 
@@ -74,7 +62,7 @@ The recent econometric literature has clarified that there are fundamentally dif
 
 **Exposure robustness**: Even if individual shares are endogenous, the Bartik instrument is valid as long as shifts are exogenous and no single share dominates the instrument (the Herfindahl index of shares is small). This makes shift exogeneity applicable to many settings where arguing share exogeneity is difficult.
 
-### 3. Adao, Kolesar, and Morales (2019) — Inference Correction
+#### 3. Adao, Kolesar, and Morales (2019) — Inference Correction
 
 **Core idea**: Standard errors for shift-share regressions are typically too small because they ignore correlation in residuals induced by the structure of the instrument.
 
@@ -86,7 +74,7 @@ The recent econometric literature has clarified that there are fundamentally dif
 
 **Practical implication**: AKM standard errors are often substantially larger than conventional cluster-robust SEs, potentially overturning previously significant findings.
 
-## Choosing the Right Framework
+### Choosing the Right Framework
 
 | Feature | GPSS (Share exogeneity) | BHJ (Shift exogeneity) | AKM (Inference) |
 |---------|------------------------|------------------------|-----------------|
@@ -103,43 +91,43 @@ The recent econometric literature has clarified that there are fundamentally dif
 - In either case: report AKM standard errors as a conservative baseline.
 - If both shares and shifts are potentially endogenous: the design may not be credible.
 
-## Practical Implementation
+### Practical Implementation
 
-### Step 1: Describe the instrument
+#### Step 1: Describe the instrument
 - Clearly define shares and shifts.
 - Report summary statistics: number of sectors, Herfindahl index of shares, share of variation from top sectors.
 - Show the time structure: are shares from a pre-period? How far back?
 
-### Step 2: First stage
+#### Step 2: First stage
 - Regress the endogenous variable on the Bartik instrument and controls.
 - Report the effective F-statistic.
 - Show the first-stage relationship is not driven by a handful of sectors.
 
-### Step 3: Rotemberg decomposition (GPSS)
+#### Step 3: Rotemberg decomposition (GPSS)
 - Compute Rotemberg weights for each sector.
 - Identify top positive and negative weight sectors.
 - Argue exogeneity for the sectors that receive the most weight.
 - Show covariate balance for high-weight sectors.
 
-### Step 4: Shift-level analysis (BHJ)
+#### Step 4: Shift-level analysis (BHJ)
 - Run the equivalent shift-level regression.
 - Show the shifts are balanced on pre-treatment outcomes and covariates.
 - Cluster standard errors at the shift (sector) level.
 
-### Step 5: Inference
+#### Step 5: Inference
 - Report standard errors under multiple assumptions:
   - Cluster-robust (by region): the conventional approach, likely too small.
   - AKM (exposure-robust): conservative, accounts for share-driven correlation.
   - Sector-clustered: appropriate under shift exogeneity.
 - Compare all three. If conclusions change, discuss which assumption is more credible.
 
-### Step 6: Robustness
+#### Step 6: Robustness
 - Leave out the top contributing sectors one at a time.
 - Use lagged shares from an earlier period.
 - Include regional controls (pre-trends, demographic composition).
 - Construct a "leave-one-out" version of the shifts (exclude region i from the national shift calculation).
 
-## Common Pitfalls
+### Common Pitfalls
 
 1. **Leave-out construction**: When computing national shifts, exclude region i's own contribution to avoid mechanical correlation. This is standard practice but still sometimes overlooked.
 
@@ -153,7 +141,7 @@ The recent econometric literature has clarified that there are fundamentally dif
 
 6. **Heterogeneous effects**: With heterogeneous treatment effects across sectors, different frameworks identify different estimands. GPSS identifies a weighted average of sector-specific LATEs. BHJ identifies an exposure-weighted ATE.
 
-## Key References
+### Key References
 
 - Bartik, T. (1991). Who Benefits from State and Local Economic Development Policies? Upjohn Institute.
 - Goldsmith-Pinkham, P., Sorkin, I., and Swift, H. (2020). Bartik instruments: What, when, why, and how. American Economic Review.
@@ -161,28 +149,3 @@ The recent econometric literature has clarified that there are fundamentally dif
 - Adao, R., Kolesar, M., and Morales, E. (2019). Shift-share designs: Theory and inference. Quarterly Journal of Economics.
 - Card, D. (2001). Immigrant inflows, native outflows, and the local labor market impacts of higher immigration. Journal of Labor Economics.
 - Autor, D., Dorn, D., and Hanson, G. (2013). The China syndrome: Local labor market effects of import competition in the United States. American Economic Review.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/causal-inference/shift-share.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>analysis</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-analysis</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/causal-inference-shift-share/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

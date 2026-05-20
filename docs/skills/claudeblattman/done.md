@@ -4,21 +4,9 @@
 
 Mark work complete + update tracking
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/done.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/done/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/done.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Session Capture
+## Session Capture
 
 *v2.4.2 — Patch 0: structured cost-logging format for Step 6's performance log line — `mode:MODE session:SESSION files:FILES rule:RULE [optional description]` — so post-hoc cost analysis can group runs without parsing free-text NOTES. Patch 1 (private only): Step 0.5 Python extracted to a helper script; the public version keeps the Python inline.*
 *v2.4.1 — OSC-0 terminal-title escape wrapped in a brace-group `{ ... } 2>/dev/null` instead of `>/dev/tty 2>/dev/null`. The plain pattern leaks the open-error past `2>/dev/null` when the bash subprocess has no controlling terminal (any harness-spawned subshell), producing visible "device not configured: /dev/tty" noise. Brace-group silences it cleanly.*
@@ -33,7 +21,7 @@ Mark work complete + update tracking
 
 Captures key decisions, open questions, follow-ups, and working artifacts from the current session. Writes a structured entry to a session log and persists unsaved artifacts for cross-session continuity.
 
-## Arguments
+### Arguments
 
 `$ARGUMENTS` can include:
 - *(none)* — full capture (decisions + questions + follow-ups + context)
@@ -42,7 +30,7 @@ Captures key decisions, open questions, follow-ups, and working artifacts from t
 - `project:name` — tag the entry with a specific project name
 - `retro` — additionally run a watch-list check (looks for unresolved hypotheses, failed approaches, and patterns repeated across sessions). Opt-in only — no auto-fire on Extended sessions.
 
-## How Routing Works (v2.0+)
+### How Routing Works (v2.0+)
 
 `/done` decides where to write the handoff using two rules in priority order. Both prevent the most common misroute: stale state from a prior `/start-task` overrides the current working directory.
 
@@ -52,7 +40,7 @@ Captures key decisions, open questions, follow-ups, and working artifacts from t
 
 **Neither rule fires.** Falls through to a non-destructive path: writes a project-root `SESSION_LOG.md` (append-only) and a global handoff. **Never overwrites a project-root `HANDOFF.md` you maintain by hand** — that requires explicit `/start-task` first.
 
-## Instructions
+### Instructions
 
 **Effort-steering preamble:** This skill is structured and templated — extract facts from the conversation into slots and write outputs. Prioritize responding quickly over thinking deeply. Do not re-analyze the session. This is a low-judgment skill; high-effort reasoning is overkill and wastes tokens.
 
@@ -60,7 +48,7 @@ Captures key decisions, open questions, follow-ups, and working artifacts from t
 
 **Post-hoc budget audit:** Log the final tool-call count in Step 6's performance log line. If this run exceeded 40 calls, also write a one-line anomaly record to a rate-limit-shadow CSV. This is an audit trail, not a pre-emptive cap — the model cannot reliably count its own tool calls mid-execution.
 
-### Step 0.5: Consolidated CWD Walk
+#### Step 0.5: Consolidated CWD Walk
 
 All path resolution happens once, in a single Python subprocess. Downstream steps reference the cached values — they MUST NOT re-walk the filesystem.
 
@@ -133,7 +121,7 @@ If `SUBPROJECT_NAME` is empty: Step 3 omits the sub-project tag.
 If `PROJECT_ROOT` is empty: Step 5a.5 falls through to Step 5b's global path.
 If `CWD_HANDOFF_PATH` is empty: Step 5a Rule 1 doesn't fire; check Rule 2.
 
-### Step 1: Identify Session Scope
+#### Step 1: Identify Session Scope
 
 Review the conversation history and determine:
 - **Session topic(s):** What was worked on? (1-2 line summary)
@@ -142,7 +130,7 @@ Review the conversation history and determine:
 
 **Auto-quick for Brief sessions:** If duration is Brief AND no `project`, `retro`, or explicit flags were passed, apply `quick` mode semantics automatically. Saves 3-6 tool calls per Brief invocation. Do NOT auto-apply quick for Medium or Extended sessions.
 
-### Step 2: Extract Session Content
+#### Step 2: Extract Session Content
 
 Scan the conversation for:
 
@@ -156,11 +144,11 @@ Scan the conversation for:
 
 **Key artifacts created** — files written or modified.
 
-### Step 2.7: Watch-list Check (opt-in)
+#### Step 2.7: Watch-list Check (opt-in)
 
 Run only when the `retro` arg is present. Otherwise skip entirely. Procedure: scan for unresolved hypotheses, failed approaches, and behavioral patterns repeated across sessions. Append observations to a watch-list file (e.g., `~/.claude-assistant/working-notes/watch-list.md`).
 
-### Step 2.5: Working Artifacts
+#### Step 2.5: Working Artifacts
 
 **Skip if** ALL of: ≤5 exchanges, no files created/modified, no decisions logged, no agents spawned. Also skip in `quick` mode.
 
@@ -170,33 +158,33 @@ For each artifact: save to `<project-root>/working-notes/` (if `project` arg and
 
 Budget: consolidate to 1-3 files max.
 
-### Step 3: Write Session Entry
+#### Step 3: Write Session Entry
 
 Append to your global session log (e.g., `~/Documents/session-log.md`):
 
 ```markdown
 ---
 
-## [YYYY-MM-DD HH:MM] — [SUBPROJECT_NAME] [Session topic summary]
+### [YYYY-MM-DD HH:MM] — [SUBPROJECT_NAME] [Session topic summary]
 SESSLOG:[YYYY-MM-DD HH:MM]
 
 **Project(s):** [project names or "General"]
 **Duration:** [Brief/Medium/Extended]
 
-### Decisions
+#### Decisions
 - [Decision 1]
 
-### Open Questions
+#### Open Questions
 - [Question 1]
 
-### Follow-ups
+#### Follow-ups
 - [ ] [Action item 1]
 
-### Artifacts
+#### Artifacts
 - [Created/Modified] `path/to/file` — [what changed]
 
 [If not `quick`:]
-### Context
+#### Context
 [2-4 sentence summary of key context for the next session.]
 ```
 
@@ -204,13 +192,13 @@ If the file doesn't exist, create with header `# Session Log` + a brief descript
 
 **Sub-project tagging:** If `SUBPROJECT_NAME` was found in Step 0.5, include it in brackets before the topic. Otherwise omit the brackets entirely.
 
-### Step 3.5: Project SESSION_LOG.md Append (opt-in)
+#### Step 3.5: Project SESSION_LOG.md Append (opt-in)
 
 **Skip if** the current project's `.claude/CLAUDE.md` does not contain `session_log: true`, or if no project root is found.
 
 If `session_log: true` is set: append a session entry to `<PROJECT_ROOT>/SESSION_LOG.md` (chronological, oldest first — opposite of the global log).
 
-### Step 4: Prune and Cleanup
+#### Step 4: Prune and Cleanup
 
 **Session log pruning (v2.4 — deterministic helper):**
 
@@ -236,7 +224,7 @@ If the helper is missing or errors out: surface the error in Step 6 summary and 
 
 **Working-notes cleanup:** Delete files in `working-notes/` older than 30 days (by mtime). Skip if no `working-notes/` directory exists.
 
-### Step 5: Write Handoff Note
+#### Step 5: Write Handoff Note
 
 #### 5a. Sub-folder routing (CWD precedence)
 
@@ -340,30 +328,30 @@ Generate the handoff note (≤30 lines) and overwrite `~/.claude/handoff.md` (or
 - Include `SESSLOG:[YYYY-MM-DD HH:MM]` cross-reference
 
 ```markdown
-# Handoff — [YYYY-MM-DD]
+## Handoff — [YYYY-MM-DD]
 SESSLOG:[YYYY-MM-DD HH:MM]
 
-## Session Topic
+### Session Topic
 [1-line summary]
 
-## Active Decisions
+### Active Decisions
 - [Decision constraining next session]
 
-## Key Files
+### Key Files
 - [absolute path to important file]
 
-## Next Steps
+### Next Steps
 - [ ] [Most important next step]
 - [ ] [Other follow-ups]
 
-## Working Artifacts
+### Working Artifacts
 - [path/to/artifact] — [what it contains]
 
-## Context
+### Context
 [1-2 sentences for the next session to pick up seamlessly]
 ```
 
-### Step 6: Summary
+#### Step 6: Summary
 
 Display a brief confirmation:
 
@@ -398,9 +386,9 @@ Next time: [most important follow-up item]
 **v2.3 — Phase 0 affordance.** After printing the summary, emit an OSC-0 terminal-title escape via `/dev/tty` so the editor tab strip shows `[<task-short>] done`. Source the task name from `SUBPROJECT_NAME` (Step 0.5 cache). Falls silently to no-op if `/dev/tty` is unwritable or not the controlling terminal.
 
 ```bash
-# v2.4.1: brace-group + outer 2>/dev/null silences "device not configured: /dev/tty" when the bash
-# subprocess has no controlling terminal (any harness-spawned subshell). The plain
-# `>/dev/tty 2>/dev/null` pattern leaks the open-error past 2>/dev/null.
+## v2.4.1: brace-group + outer 2>/dev/null silences "device not configured: /dev/tty" when the bash
+## subprocess has no controlling terminal (any harness-spawned subshell). The plain
+## `>/dev/tty 2>/dev/null` pattern leaks the open-error past 2>/dev/null.
 if [ -n "$SUBPROJECT_NAME" ]; then
   SHORT_NAME=$(echo "$SUBPROJECT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | cut -c1-20)
   { printf ']0;[%s] done' "$SHORT_NAME" >/dev/tty; } 2>/dev/null || true
@@ -409,7 +397,7 @@ else
 fi
 ```
 
-## Customization Points
+### Customization Points
 
 - **Log file location:** Default `~/Documents/session-log.md`. Adjust to your preferred location.
 - **Handoff file location:** Default `~/.claude/handoff.md` (read by SessionStart hook). Adjust if your hook reads from elsewhere.
@@ -419,20 +407,20 @@ fi
 - **Routing-audit CSV:** Default `~/.claude-assistant/logs/routing-audit.csv`. Adjust to wherever you keep skill telemetry.
 - **Prune helper:** Default `~/.claude-assistant/scripts/session-log-prune.py`. A standalone Python script that reads the global session log, archives by tier, and prints a one-line summary. Easy to swap for any equivalent script of your own.
 
-## Error Handling
+### Error Handling
 
 - **No substantive content:** "Nothing to capture — session was too brief." Exit.
 - **Session log write fails:** Display the entry in the terminal so you can manually save it.
 - **Prune helper missing or errors:** Surface the error in Step 6 summary; pruning is non-blocking — the rest of /done continues.
 
-## Design Notes
+### Design Notes
 
 - **Complements session-closing patterns** — those suggest *improvements* (new skills, rules, agents). This skill captures *artifacts* (decisions, questions, follow-ups).
 - **No MCP tools needed** — pure filesystem operation.
 - **Skip-gate audit:** When working artifact scan is skipped, the reason is logged. Grep for `SKIPPED artifact scan` to detect over-firing.
 - **SESSLOG cross-references:** Both session log entries and handoff notes include `SESSLOG:[YYYY-MM-DD HH:MM]` for grep-able traceability.
 
-## Log Performance
+### Log Performance
 
 ```bash
 echo "$(date +%Y-%m-%d),done,TOOL_CALLS,NOTES" >> ~/.claude-assistant/logs/skill-performance.csv
@@ -452,32 +440,3 @@ Replace TOOL_CALLS with best estimate. **NOTES uses a structured format (v2.4.2)
 Example: `mode:full session:Extended files:3 rule:1-cwd resolver-migration-deploy`
 
 If this run exceeded the 40-call threshold, also append an anomaly row to a rate-limit-shadow CSV.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/done.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>infra</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/done.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/done/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

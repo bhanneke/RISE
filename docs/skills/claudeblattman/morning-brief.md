@@ -4,27 +4,15 @@
 
 Daily morning briefing template
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/morning-brief.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/morning-brief/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/morning-brief.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Morning Briefing
+## Morning Briefing
 
 *v1.5 — Unified hard deadline keywords; edge case fixes; structural cleanup*
 
 Generate a comprehensive daily morning briefing combining calendar, reminders, inbox state, weather, meeting context, and optional email triage into a single view.
 
-## Prerequisites
+### Prerequisites
 
 This skill requires several MCP integrations and config files to function fully. Missing components degrade gracefully (sections are omitted, not errors).
 
@@ -45,7 +33,7 @@ This skill requires several MCP integrations and config files to function fully.
 - `/triage-inbox` skill -- for auto-triage phase
 - Health check script at `~/.claude-assistant/scripts/check-sync.sh` -- for system health monitoring
 
-## First-Time Setup
+### First-Time Setup
 
 1. **Create config directory:**
    ```bash
@@ -95,7 +83,7 @@ This skill requires several MCP integrations and config files to function fully.
 
 5. **Create triage-config.md** if using auto-triage (see `/triage-inbox` for format).
 
-## Customization Points
+### Customization Points
 
 | Setting | Where to Configure | Default |
 |---------|-------------------|---------|
@@ -112,7 +100,7 @@ This skill requires several MCP integrations and config files to function fully.
 | **Reminders** | Requires macOS (osascript) | Section omitted |
 | **Health check** | `~/.claude-assistant/scripts/check-sync.sh` | Skipped if not found |
 
-## Arguments
+### Arguments
 
 `$ARGUMENTS` can include:
 - *(none)* -- full briefing, terminal output only
@@ -123,9 +111,9 @@ This skill requires several MCP integrations and config files to function fully.
 
 Multiple arguments can be combined: `email tomorrow`, `no-triage no-reminders`, etc.
 
-## Instructions
+### Instructions
 
-### Phase 0: Quick Health Check (< 5 seconds)
+#### Phase 0: Quick Health Check (< 5 seconds)
 
 If a health check script exists at `~/.claude-assistant/scripts/check-sync.sh`, run it before fetching any data:
 
@@ -145,7 +133,7 @@ bash ~/.claude-assistant/scripts/check-sync.sh 2>&1
 
 **Never block the briefing on health check results** -- failures are informational only. If the script is not found or fails to run, skip this phase silently and continue to Phase 1.
 
-### Phase 1: Read Config Files
+#### Phase 1: Read Config Files
 
 Read available config files. Missing files are not errors -- skip the corresponding sections.
 
@@ -156,7 +144,7 @@ Read available config files. Missing files are not errors -- skip the correspond
 
 If a config file is missing, note it internally and continue. The briefing adapts to available data.
 
-### Phase 2: Calendar Data
+#### Phase 2: Calendar Data
 
 Query all configured calendars for today's events (or tomorrow's if `tomorrow` argument).
 
@@ -178,7 +166,7 @@ Also fetch lookahead events (tomorrow, or weekend on Fridays):
 - Sort by start time (all-day events first)
 - Tag each event with its calendar name
 
-### Phase 3: Reminders (macOS only, skip if `no-reminders`)
+#### Phase 3: Reminders (macOS only, skip if `no-reminders`)
 
 Fetch incomplete reminders from Apple Reminders using osascript:
 
@@ -205,7 +193,7 @@ end tell'
 
 If osascript fails (non-macOS or Reminders not available), skip this phase silently.
 
-### Phase 4: Inbox Scan
+#### Phase 4: Inbox Scan
 
 Run these Gmail searches via MCP (all in parallel):
 
@@ -233,7 +221,7 @@ query: "from:me in:sent newer_than:7d -in:chat"
 
 For VIP results (4a), fetch message content to get sender names, subject lines, and dates. Sort oldest-first and calculate days waiting.
 
-### Phase 5: Auto-Triage (skip if `no-triage` argument)
+#### Phase 5: Auto-Triage (skip if `no-triage` argument)
 
 If `/triage-inbox` skill is available and `triage-config.md` exists, run inline triage:
 
@@ -246,7 +234,7 @@ If `/triage-inbox` skill is available and `triage-config.md` exists, run inline 
 
 If triage-config.md is missing or triage-inbox skill is not installed, skip this phase and report: "Triage skipped -- install /triage-inbox for auto-triage."
 
-### Phase 5a: Meeting Context (next 2 events)
+#### Phase 5a: Meeting Context (next 2 events)
 
 Using calendar data from Phase 2:
 
@@ -261,7 +249,7 @@ Using calendar data from Phase 2:
 
 If an event has no attendees (e.g., "Focus time"), skip context lookup. If searches return nothing, show the event without context. Cap at 2 events, 1-2 searches per event.
 
-### Phase 5b: Waiting-For Detection
+#### Phase 5b: Waiting-For Detection
 
 From the sent-email results (Phase 4d):
 
@@ -275,7 +263,7 @@ From the sent-email results (Phase 4d):
 
 If this adds too much latency, it can be skipped -- the briefing should not block on this.
 
-### Phase 5c: Weather
+#### Phase 5c: Weather
 
 Use WebSearch to query "[Your City] weather today" (city from calendar-policy.md) and extract a one-line summary including temperature, conditions, and precipitation chance.
 
@@ -283,14 +271,14 @@ Example: "Portland: 54F, partly cloudy, 20% chance rain"
 
 If WebSearch fails or no city configured, omit the weather line.
 
-### Phase 5d: Tomorrow/Weekend Preview
+#### Phase 5d: Tomorrow/Weekend Preview
 
 Using lookahead calendar data from Phase 2 and reminders from Phase 3:
 
 - **Normal days:** Show tomorrow's all-day events, timed events, and reminders due tomorrow
 - **Fridays:** Replace with "Weekend Preview" showing Saturday AND Sunday events/reminders grouped by day
 
-### Phase 6: Assemble & Display Briefing
+#### Phase 6: Assemble & Display Briefing
 
 #### Reminder Classification Logic
 
@@ -361,11 +349,11 @@ If goals.yaml was loaded:
 Compose the briefing in this format. Omit sections with no data. Use tomorrow's date if `tomorrow` argument was provided.
 
 ```
-# Morning Briefing -- [Day of Week], [Month] [Date], [Year]
+## Morning Briefing -- [Day of Week], [Month] [Date], [Year]
 [System health line or warning block from Phase 0, if available]
 [Weather one-liner, e.g., "[Your City]: 54F, partly cloudy, 20% chance rain"]
 
-## Suggested Priorities
+### Suggested Priorities
 [Generate 3-5 suggested priorities based on:]
 1. Hard deadline items (highest urgency)
 2. VIP emails awaiting response (by age, oldest first)
@@ -374,7 +362,7 @@ Compose the briefing in this format. Omit sections with no data. Use tomorrow's 
 5. Goal-aligned work (from goals.yaml)
 [Number them in suggested order of importance]
 
-## Goal Alignment
+### Goal Alignment
 - Today: [N] meetings ([M] align with goals, [K] are admin/service)
   - [event name] -> [objective name] (if aligned)
 - [N] hours unscheduled -- top research priority: [specific next step from goals.yaml]
@@ -383,7 +371,7 @@ Compose the briefing in this format. Omit sections with no data. Use tomorrow's 
 [If push_level = assertive AND <2 hours free:]
   !! Deep work alert: Less than 2 hours unscheduled today. Consider declining [lowest-priority meeting].
 
-## Today's Schedule
+### Today's Schedule
 - [time range]  [event name] ([calendar name])
   -> [1-line context from Phase 5a, if available]
 - [time range]  [event name] ([calendar name])
@@ -391,35 +379,35 @@ Compose the briefing in this format. Omit sections with no data. Use tomorrow's 
 [If no events: "No events scheduled today"]
 **[N] hours free** (of [M] available, [start]-[end])
 
-## Hard Deadlines
+### Hard Deadlines
   1. [[list]] [task name] (due [relative date]) !!
   ...
 [If none: omit entire section]
 
-## Inbox Highlights
+### Inbox Highlights
 - **VIP needing response:** [name] ([N]d), [name] ([N]d) -- sorted oldest-first
 - [N] unread emails remain in inbox
 - [N] emails in @ToSelf (pending todo conversion)
 [If @ToSelf has items: "Run /todo-queue to process"]
 
-## Waiting For
+### Waiting For
 - [Recipient name]: "[subject snippet]" ([N]d ago)
 - ...
 [Max 5 items, oldest first. If none: omit section]
 
-## Tasks Due Today
+### Tasks Due Today
   N. [[list]] [task name] ([time if set])
   ...
 [If none: omit section]
 
-## Tomorrow Preview
+### Tomorrow Preview
 - [All-day events]
 - [time range]  [event name]
 - [[list]] [reminder due tomorrow]
 [If nothing tomorrow: "Nothing scheduled for tomorrow"]
 [ON FRIDAYS: Replace with "Weekend Preview" showing Sat + Sun grouped by day]
 
-## Triage Summary
+### Triage Summary
 Auto-triaged [N] emails: [N] archived, [N] labeled, [N] flagged for review.
 
 APPLIED:
@@ -434,7 +422,7 @@ SKIPPED (left in inbox):
   !! Flagged: [sender] -> [label] (new sender -- suggest filter)
 [If no-triage: "Triage skipped -- run /triage-inbox manually"]
 
-## Overdue ([N] items)
+### Overdue ([N] items)
   N. [[list]] [task name] (N days overdue)
   ... [max 10 items, oldest first]
 [If >10: "... and [N] more -- run /todo-review to review"]
@@ -445,7 +433,7 @@ To adjust reminders: tell me "defer 8-12 to Monday" or "move 9 to Someday"
 
 **Display in terminal** -- this is the default output.
 
-### Phase 7: Email Delivery (only if `email` argument provided)
+#### Phase 7: Email Delivery (only if `email` argument provided)
 
 Email delivery is opt-in. There are two approaches:
 
@@ -465,12 +453,12 @@ This creates a draft you can review and send from Gmail.
 If you have a send-email script configured at `~/.claude-assistant/scripts/send-email.py`:
 
 ```bash
-# Write HTML to temp file
+## Write HTML to temp file
 cat > /tmp/morning-briefing.html << 'BRIEFING_EOF'
 [HTML content]
 BRIEFING_EOF
 
-# Send
+## Send
 python3 ~/.claude-assistant/scripts/send-email.py \
   --to your-email@gmail.com \
   --subject "Morning Briefing -- [Day], [Month] [Date], [Year]" \
@@ -610,7 +598,7 @@ When generating the email version, convert the briefing to HTML using this templ
 - No images, no background colors, no external resources -- pure inline HTML
 - Omit sections with no data (same as terminal version)
 
-## MCP Parameter Notes
+### MCP Parameter Notes
 
 These validated behaviors help avoid common issues:
 
@@ -619,7 +607,7 @@ These validated behaviors help avoid common issues:
 - `get_gmail_messages_content_batch`: May reject list parameters -- fall back to individual `mcp__google_workspace__get_gmail_message_content` calls
 - All search/label tools require `user_google_email: your-email@gmail.com`
 
-## Error Handling
+### Error Handling
 
 - **Gmail MCP unavailable**: Skip inbox/triage sections. Report "Gmail unavailable." Continue with calendar/reminders.
 - **Calendar MCP unavailable**: Skip schedule. Report "Calendar unavailable." Continue with other sections.
@@ -633,7 +621,7 @@ These validated behaviors help avoid common issues:
 - **Email delivery fails**: Report error. Briefing still displayed in terminal.
 - **Permission prompt appears**: A tool is missing from settings.json allow list. Add it under `permissions.allow`.
 
-## Examples
+### Examples
 
 ```
 /morning-brief                       # Full briefing, terminal only
@@ -644,7 +632,7 @@ These validated behaviors help avoid common issues:
 /morning-brief email tomorrow        # Tomorrow's view + email delivery
 ```
 
-## Integration Notes
+### Integration Notes
 
 - **Triage rules by reference:** This skill uses `/triage-inbox` classification logic and `triage-config.md` for data tables. Updates to those files propagate automatically -- no rules are duplicated here.
 - **Auto-apply is pre-approved:** Unlike `/triage-inbox` which requires `apply` argument, the morning briefing auto-applies all labels during triage. Both skills read and write the same triage state file, so whichever runs first sets the baseline for the next run.
@@ -653,39 +641,10 @@ These validated behaviors help avoid common issues:
 - **@ToSelf integration:** Checks for pending todo-queue items and reminds to run `/todo-queue`.
 - **Goal alignment:** Reads `goals.yaml` for priorities. Keep this file updated for relevant suggestions.
 
-## Performance Logging
+### Performance Logging
 
 After completing all phases, log this run:
 ```bash
 echo "$(date +%Y-%m-%d),morning-brief,TOOL_CALLS,NOTES" >> ~/.claude-assistant/logs/skill-performance.csv
 ```
 Replace TOOL_CALLS with approximate count of tool uses this run. Replace NOTES with brief volume info (e.g., "12 emails 4 cals"). Do not skip this step.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/morning-brief.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>infra</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/morning-brief.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/morning-brief/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

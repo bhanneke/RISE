@@ -4,36 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>ideation</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>rq-formulation</code> · <code>hypothesis-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/idea-creator/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/idea-creator/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: idea-creator
-description: Generate and rank research ideas given a broad direction. Use when user says "找idea", "brainstorm ideas", "generate research ideas", "what can we work on", or wants to explore a research area for publishable directions.
-argument-hint: [research-direction]
-allowed-tools: Bash(*), Read, Write, Grep, Glob, WebSearch, WebFetch, Agent, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Research Idea Creator
+## Research Idea Creator
 
 Generate publishable research ideas for: $ARGUMENTS
 
-## Overview
+### Overview
 
 Given a broad research direction from the user, systematically generate, validate, and rank concrete research ideas. This skill composes with `/research-lit`, `/novelty-check`, and `/research-review` to form a complete idea discovery pipeline.
 
-## Constants
+### Constants
 
 - **PILOT_MAX_HOURS = 2** — Skip any pilot estimated to take > 2 hours per GPU. Flag as "needs manual pilot".
 - **PILOT_TIMEOUT_HOURS = 3** — Hard timeout: kill pilots exceeding 3 hours. Collect partial results if available.
@@ -45,9 +26,9 @@ Given a broad research direction from the user, systematically generate, validat
 
 > 💡 Override via argument, e.g., `/idea-creator "topic" — pilot budget: 4h per idea, 20h total`.
 
-## Workflow
+### Workflow
 
-### Phase 0: Load Research Wiki (if active)
+#### Phase 0: Load Research Wiki (if active)
 
 **Skip this phase entirely if `research-wiki/` does not exist.**
 
@@ -82,7 +63,7 @@ else if research-wiki/ exists but query_pack.md is stale or missing:
     Then read query_pack.md as above
 ```
 
-### Phase 1: Landscape Survey (5-10 min)
+#### Phase 1: Landscape Survey (5-10 min)
 
 Map the research area to understand what exists and where the gaps are.
 
@@ -107,7 +88,7 @@ Map the research area to understand what exists and where the gaps are.
    - Scaling regimes that haven't been explored
    - Diagnostic questions that nobody has asked
 
-### Phase 2: Idea Generation (brainstorm with external LLM)
+#### Phase 2: Idea Generation (brainstorm with external LLM)
 
 Use the external LLM via Codex MCP for divergent thinking:
 
@@ -145,7 +126,7 @@ mcp__codex__codex:
 
 Save the threadId for follow-up.
 
-### Phase 3: First-Pass Filtering
+#### Phase 3: First-Pass Filtering
 
 For each generated idea, quickly evaluate:
 
@@ -163,7 +144,7 @@ For each generated idea, quickly evaluate:
 
 Eliminate ideas that fail any of these. Typically 8-12 ideas reduce to 4-6.
 
-### Phase 4: Deep Validation (for top ideas)
+#### Phase 4: Deep Validation (for top ideas)
 
 For each surviving idea, run a deeper evaluation:
 
@@ -183,7 +164,7 @@ For each surviving idea, run a deeper evaluation:
 
 3. **Combine rankings**: Merge your assessment with GPT-5.4's ranking. Select top 2-3 ideas for pilot experiments.
 
-### Phase 5: Parallel Pilot Experiments (for top 2-3 ideas)
+#### Phase 5: Parallel Pilot Experiments (for top 2-3 ideas)
 
 Before committing to a full research effort, run cheap pilot experiments to get empirical signal. This is the key differentiator from paper-only validation.
 
@@ -211,23 +192,23 @@ Before committing to a full research effort, run cheap pilot experiments to get 
 
 Note: Skip this phase if the ideas are purely theoretical or if no GPU is available. Flag skipped ideas as "needs pilot validation" in the report.
 
-### Phase 6: Output — Ranked Idea Report
+#### Phase 6: Output — Ranked Idea Report
 
 Write a structured report to `idea-stage/IDEA_REPORT.md`:
 
 ```markdown
-# Research Idea Report
+## Research Idea Report
 
 **Direction**: [user's research direction]
 **Generated**: [date]
 **Ideas evaluated**: X generated → Y survived filtering → Z piloted → W recommended
 
-## Landscape Summary
+### Landscape Summary
 [3-5 paragraphs on the current state of the field]
 
-## Recommended Ideas (ranked)
+### Recommended Ideas (ranked)
 
-### Idea 1: [title]
+#### Idea 1: [title]
 - **Hypothesis**: [one sentence]
 - **Minimum experiment**: [concrete description]
 - **Expected outcome**: [what success/failure looks like]
@@ -239,34 +220,34 @@ Write a structured report to `idea-stage/IDEA_REPORT.md`:
 - **Reviewer's likely objection**: [strongest counterargument]
 - **Why we should do this**: [1-2 sentences]
 
-### Idea 2: [title]
+#### Idea 2: [title]
 ...
 
-## Eliminated Ideas (for reference)
+### Eliminated Ideas (for reference)
 | Idea | Reason eliminated |
 |------|-------------------|
 | ... | Already done by [paper] |
 | ... | Requires > 1 week GPU time |
 | ... | Result wouldn't be interesting either way |
 
-## Pilot Experiment Results
+### Pilot Experiment Results
 | Idea | GPU | Time | Key Metric | Signal |
 |------|-----|------|------------|--------|
 | Idea 1 | GPU 0 | 45 min | +2.3% CE | POSITIVE |
 | Idea 2 | GPU 1 | 30 min | -0.1% CE | NEGATIVE |
 | Idea 3 | GPU 2 | 1.5 hr | +0.8% CE | WEAK POSITIVE |
 
-## Suggested Execution Order
+### Suggested Execution Order
 1. Start with Idea 1 (positive pilot signal, lowest risk)
 2. Idea 3 as backup (weak signal, may need larger scale to confirm)
 3. Idea 2 eliminated by pilot — negative result documented
 
-## Next Steps
+### Next Steps
 - [ ] Scale up Idea 1 to full experiment (multi-seed, full dataset)
 - [ ] If confirmed, invoke /auto-review-loop for full iteration
 ```
 
-## Phase 7: Write Ideas to Research Wiki (if active)
+### Phase 7: Write Ideas to Research Wiki (if active)
 
 **Skip this phase entirely if `research-wiki/` does not exist.**
 
@@ -304,14 +285,14 @@ if research-wiki/ exists:
         echo "WARN: idea pages were written but edges / query_pack / log were skipped because research_wiki.py is unreachable (see Phase 0 warning above)." >&2
 ```
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 
@@ -325,7 +306,7 @@ if research-wiki/ exists:
 - **If the user's direction is too broad (e.g., "NLP", "computer vision", "reinforcement learning"), STOP and ask them to narrow it.** A good direction is 1-2 sentences specifying the problem, domain, and constraint — e.g., "factorized gap in discrete diffusion LMs" or "sample efficiency of offline RL with image observations". Without sufficient specificity, generated ideas will be too vague to run experiments on.
 - **Anti-hallucination for cited papers.** When the landscape survey or novelty justification cites specific papers, every cited paper must pass pre-search verification (`verify_papers.py`, canonical name resolved per [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2; 3-layer arXiv / CrossRef / S2 fallback inside the helper itself). Policy D1 (primary + degraded-output fallback): if the helper is unresolved **or** its invocation fails, mark candidates `[UNVERIFIED]` and continue rather than dropping or guessing. Never fabricate arXiv IDs, DOIs, or titles from memory. Full protocol in [`shared-references/citation-discipline.md`](../shared-references/citation-discipline.md) § Pre-Search Verification Protocol.
 
-## Composing with Other Skills
+### Composing with Other Skills
 
 After this skill produces the ranked report:
 ```
@@ -337,36 +318,6 @@ implement                     → write code
 /auto-review-loop             → iterate until submission-ready
 ```
 
-## Review Tracing
+### Review Tracing
 
 After each `mcp__codex__codex` or `mcp__codex__codex-reply` reviewer call, save the trace following `shared-references/review-tracing.md` (Policy C — forensic; never silently skip). Use `save_trace.sh` (resolved per the chain in `shared-references/integration-contract.md` §2) or write files directly to `.aris/traces/<skill>/<date>_run<NN>/`. Respect the `--- trace:` parameter (default: `full`).
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/idea-creator/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>ideation</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>rq-formulation</code> <code>hypothesis-generation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/idea-creator/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,31 +4,9 @@
 
 Research idea generation
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>ideation</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>rq-formulation</code> · <code>hypothesis-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/research-ideation/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/research-ideation/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: research-ideation
-description: "End-to-end research ideation pipeline: literature grounding → multi-track idea generation (3 personas: innovator/pragmatist/critic) → iterative refinement → ELO tournament ranking → update evo-memory (IDE) → user selects direction → expand into manuscript-quality proposal. Use when: user wants to find a research direction, brainstorm ideas, evaluate idea novelty, design a novel solution, rank/compare research ideas, or generate a research proposal. Do NOT use for finding/searching/reading papers (use paper-navigator), literature survey reports (use research-survey), or planning a paper (use paper-planning)."
-allowed-tools: "write_file edit_file read_file think_tool execute"
-metadata:
-  author: EvoScientist
-  version: '2.1.0'
-  tags: [core, research, ideation, tournament, proposal]
----
-
-# Research Ideation
+## Research Ideation
 
 From research goal to ranked ideas and a detailed proposal.
 
@@ -54,14 +32,14 @@ Step 7: Expand into Proposal
 Step 8: Validate and Iterate
 ```
 
-## When to Use
+### When to Use
 
 - User wants to find a research direction or brainstorm research ideas
 - User wants to evaluate whether an idea is novel or worth pursuing
 - User wants to rank or compare multiple research ideas
 - User wants to generate a research proposal from an idea
 
-## When NOT to Use
+### When NOT to Use
 
 - **Finding/reading papers** → use `paper-navigator`
 - **Literature survey report** → use `research-survey`
@@ -69,7 +47,7 @@ Step 8: Validate and Iterate
 
 ---
 
-## Step 0: Load Prior Knowledge from evo-memory
+### Step 0: Load Prior Knowledge from evo-memory
 
 **Before any ideation begins**, load Ideation Memory (M_I) from prior research cycles:
 
@@ -81,19 +59,19 @@ Step 8: Validate and Iterate
 
 This step prevents repeating known dead ends and builds on prior successes across research cycles.
 
-## Step 1: Define a Long-Term Research Goal
+### Step 1: Define a Long-Term Research Goal
 
 Start with a goal that has both scientific and practical value. Ambitious enough for multiple papers, concrete enough to guide daily decisions.
 
 Ask: "What is the ultimate form of this research direction? What would the world look like if this problem were fully solved?"
 
-## Step 2: Literature Grounding (via paper-navigator)
+### Step 2: Literature Grounding (via paper-navigator)
 
 **Invoke `paper-navigator`** (Workflow 9: Ideation Support) to collect 30-50 relevant papers. Do NOT skip this step or substitute with general knowledge — ideas must be grounded in real papers.
 
 **CRITICAL: All paper discovery in this step MUST use the `paper-navigator` skill and its scripts (scholar_search, citation_traverse, arxiv_monitor, recommend, etc.). Using WebSearch, WebFetch, or any generic web search tool for finding papers is PROHIBITED.** Generic web search returns blog posts, news articles, and low-quality results — only paper-navigator provides access to Semantic Scholar, arXiv, citation graph traversal, and academic recommendations needed for rigorous literature grounding.
 
-### Build Challenge-Insight Tree
+#### Build Challenge-Insight Tree
 
 From the collected papers, construct a **challenge-insight tree** — a many-to-many mapping between technical challenges and the insights/techniques that address them:
 
@@ -112,11 +90,11 @@ See `references/literature-tree.md` for construction methodology.
 
 **Execution rule**: Do NOT generate ideas without real paper grounding. The tree must reference actual papers with titles, authors, and findings. Paper search MUST go through `paper-navigator` — never use WebSearch/WebFetch as a shortcut.
 
-## Step 3: Generate Ideas
+### Step 3: Generate Ideas
 
 Generate 3 initial research ideas from 3 distinct research directions, grounded in the literature.
 
-### Three Personas
+#### Three Personas
 
 | Persona | Focus |
 |---------|-------|
@@ -124,7 +102,7 @@ Generate 3 initial research ideas from 3 distinct research directions, grounded 
 | **Pragmatist** | Feasibility — realistic, clearly executable |
 | **Critic** | Scientific value — advances understanding, rigorous |
 
-### Process
+#### Process
 
 1. Analyze literature + challenge-insight tree → identify 3 fundamentally different research directions
 2. Generate one idea per direction using **Innovator** persona
@@ -132,19 +110,19 @@ Generate 3 initial research ideas from 3 distinct research directions, grounded 
    - **Path 1 (Focused Contribution)**: Single new component; clean hypothesis
    - **Path 2 (System Contribution)**: Tight causal interaction between components; emergent capability
 
-### Idea Format
+#### Idea Format
 
 ```
-# Research Idea: [Concise Title]
+## Research Idea: [Concise Title]
 
-## Core Idea
+### Core Idea
 [One paragraph: the proposal + which research direction it addresses]
 
-## Validation Plan
+### Validation Plan
 [Concrete experiment outline: datasets, baselines, metrics]
 ```
 
-## Step 4: Refine Ideas
+### Step 4: Refine Ideas
 
 Run 3 parallel refinement tracks — one per initial idea. Each track uses all 3 personas.
 
@@ -157,7 +135,7 @@ For each track:
   Track champion = best idea across iterations
 ```
 
-### 5 Evolution Strategies
+#### 5 Evolution Strategies
 
 1. **Enhancement through Grounding**: Strengthen with literature citations
 2. **Improving Coherence**: Fix logical flaws in the mechanism
@@ -167,16 +145,16 @@ For each track:
 
 **Critical rule**: If evaluation says the approach is a dead-end, the persona MUST pivot — refinement is not restricted to patching.
 
-### Logical Cohesion Principles
+#### Logical Cohesion Principles
 
 - **Too many variables** → Focus via Subtraction: isolate the most promising variable
 - **Disconnected components** → Justify via Strong Correlation: build explicit causal links
 
-## Step 5: ELO Tournament → Present Top-3
+### Step 5: ELO Tournament → Present Top-3
 
 Rank all track champions through pairwise comparison, then **present the top-3 to the user for selection**.
 
-### Four Dimensions
+#### Four Dimensions
 
 | Dimension | What It Measures |
 |-----------|-----------------|
@@ -185,20 +163,20 @@ Rank all track champions through pairwise comparison, then **present the top-3 t
 | **Relevance** | Does this address an important problem aligned with the goal? |
 | **Clarity** | Is the idea well-defined enough to start immediately? |
 
-### Tournament
+#### Tournament
 
 - **Starting Elo**: 1500 | **K-factor**: 32
 - Compare ideas pairwise → update Elo → sort by final score
 - See `references/elo-ranking-guide.md` for rubric and formula
 
-### Present Top-3 to User
+#### Present Top-3 to User
 
 After the tournament, present the top-3 ideas with **both** a comparison table and the **full refined idea** for each. This ensures the user sees the concrete, actionable version of each idea — not just a summary.
 
 #### Part 1: Comparison Table
 
 ```
-## Top-3 Research Ideas (ranked by ELO)
+### Top-3 Research Ideas (ranked by ELO)
 
 | Rank | Title | Core Mechanism | Novelty | Feasibility | Relevance | Clarity | ELO |
 |------|-------|---------------|---------|-------------|-----------|---------|-----|
@@ -212,17 +190,17 @@ After the tournament, present the top-3 ideas with **both** a comparison table a
 For **each** of the top-3, present the refined idea using the same structured format as Step 3, plus a refinement summary:
 
 ```
-# Refined Idea [Rank]: [Concise Title]
+## Refined Idea [Rank]: [Concise Title]
 
-## Core Idea
+### Core Idea
 [One paragraph: the refined proposal — this should reflect ALL changes from Step 4 refinement,
 not the original Step 3 version]
 
-## Validation Plan
+### Validation Plan
 [Concrete experiment outline updated with refinement insights: datasets, baselines, metrics,
 key ablations identified during refinement]
 
-## Refinement Summary
+### Refinement Summary
 [Brief paragraph summarizing what changed from the initial idea and why:
 - What was simplified or removed (and why)
 - What was added or concretized (and why)
@@ -244,7 +222,7 @@ Which idea would you like to develop into a full proposal? (1/2/3, or combine el
 - Request modifications before expanding
 - Ask to regenerate with different constraints
 
-## Step 6: Update evo-memory
+### Step 6: Update evo-memory
 
 After the tournament and before the user selects, trigger `evo-memory` IDE (Idea Direction Evolution):
 
@@ -255,11 +233,11 @@ After the tournament and before the user selects, trigger `evo-memory` IDE (Idea
 
 This ensures future ideation cycles benefit from what was learned in this cycle.
 
-## Step 7: Expand into Proposal
+### Step 7: Expand into Proposal
 
 After the user selects an idea, expand it into a manuscript-quality research proposal. **This is a two-phase process** because different fields require different proposal structures.
 
-### Phase 1: Generate a Domain-Specific Template
+#### Phase 1: Generate a Domain-Specific Template
 
 Before writing, first generate a proposal template tailored to the user's field:
 
@@ -270,7 +248,7 @@ Before writing, first generate a proposal template tailored to the user's field:
 
 See `assets/proposal-template.md` for the complete field-specific section guide and writing instructions.
 
-### Phase 2: Write the Proposal
+#### Phase 2: Write the Proposal
 
 Fill the generated template following these universal principles:
 - Write for a top-tier reviewer in the field — every claim supported, every design justified
@@ -280,13 +258,13 @@ Fill the generated template following these universal principles:
 
 See `references/proposal-extension.md` for detailed section guidance.
 
-## Step 8: Validate and Iterate
+### Step 8: Validate and Iterate
 
 Run experiments on representative data. If the approach fails, return to Step 3 or Step 4 with updated knowledge. See `experiment-craft` for systematic debugging.
 
 ---
 
-## Counterintuitive Rules
+### Counterintuitive Rules
 
 1. **Problem selection > solution design**: Choosing WHAT to solve matters more than HOW
 2. **Pursue new failure cases, not incremental improvements**: Find settings where existing methods break
@@ -298,7 +276,7 @@ Run experiments on representative data. If the approach fails, return to Step 3 
 
 ---
 
-## Dependency: paper-navigator
+### Dependency: paper-navigator
 
 All paper discovery goes through `paper-navigator`. This skill does not search for papers itself. **Using WebSearch, WebFetch, or any generic search tool to find papers is PROHIBITED** — these tools cannot access Semantic Scholar, citation graphs, or academic recommendation systems. Always use `paper-navigator` and its scripts (scholar_search, citation_traverse, arxiv_monitor, recommend, trending, etc.) for all paper discovery needs in Steps 2, 3, and 4.
 
@@ -308,14 +286,14 @@ All paper discovery goes through `paper-navigator`. This skill does not search f
 | Step 3 | Verify no well-established solution exists for selected problems |
 | Step 4 | Cross-domain search for transferable techniques during refinement |
 
-## evo-memory Integration
+### evo-memory Integration
 
 | When | Action | Details |
 |------|--------|---------|
 | **Step 0** (before ideation) | **Read M_I** | Load `/memory/ideation-memory.md`, select top-2 relevant entries, use feasible directions as seeds, avoid fundamental failures |
 | **Step 6** (after tournament) | **Write M_I via IDE** | Save top-3 directions with ELO scores as feasible; save dead-end ideas as unsuccessful with failure classification |
 
-## Handoff
+### Handoff
 
 | To | When | Key Artifacts |
 |----|------|---------------|
@@ -325,7 +303,7 @@ All paper discovery goes through `paper-navigator`. This skill does not search f
 
 ---
 
-## References & Assets
+### References & Assets
 
 | Topic | File |
 |-------|------|
@@ -339,33 +317,3 @@ All paper discovery goes through `paper-navigator`. This skill does not search f
 | Ranking scorecard | `assets/ranking-scorecard-template.md` |
 | Direction summary | `assets/direction-summary-template.md` |
 | Proposal example (E-FNO) | `assets/proposal-template.md` |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/research-ideation/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>ideation</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>rq-formulation</code> <code>hypothesis-generation</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/research-ideation/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -45,6 +45,25 @@ def copy_skill_details(packs: list[dict]) -> int:
         for src in sorted(src_details.glob("*.md")):
             skill_slug = src.stem
             text = src.read_text(encoding="utf-8")
+
+            # Strip leading YAML front-matter from the SKILL.md if present —
+            # otherwise it renders as a horizontal rule + raw key:value lines.
+            if text.startswith("---\n"):
+                end = text.find("\n---\n", 4)
+                if end != -1:
+                    text = text[end + 5:].lstrip("\n")
+
+            # Demote SKILL.md's H1 to H2 — the page already has its own H1.
+            text_lines = text.splitlines()
+            for i, ln in enumerate(text_lines):
+                if ln.startswith("# "):
+                    text_lines[i] = "#" + ln  # # → ##
+                elif ln.startswith("## "):
+                    text_lines[i] = "#" + ln  # ## → ###
+                elif ln.startswith("### "):
+                    text_lines[i] = "#" + ln  # etc., so we don't collide with H1
+            text = "\n".join(text_lines)
+
             meta = skills_by_slug.get(skill_slug, {})
             name = meta.get("name", skill_slug)
             category = meta.get("category", "—")
@@ -57,92 +76,69 @@ def copy_skill_details(packs: list[dict]) -> int:
             github_repo = github_repo_match.group(1).split("/blob/")[0].rstrip("/") if github_repo_match else None
             github_repo = github_repo.split("/tree/")[0] if github_repo else None
 
-            # Page URL for sharing
             page_url = f"https://bhanneke.github.io/RISE/skills/{pack_slug}/{skill_slug}/"
 
-            # Sidebar HTML (marketplace-style: install / source / share / GitHub stars)
-            sidebar = ['<div class="skill-sidebar">']
-            sidebar.append(f'<h3 style="margin-top:0;">Use this skill</h3>')
-
+            # Install / fetch block (text varies by pack)
             if pack_slug == "hundredx-os":
-                install_block = (
-                    f'<pre style="white-space:pre-wrap;"># curator-private; copy text from\n'
-                    f'# /Users/hanneke/Documents/Projects/100xOS/shared/skills/{meta.get("source_path","")}</pre>'
+                install_html = (
+                    '<p style="font-size:0.9em; color:#555;">'
+                    'Curator-private skill — copy text from '
+                    f'<code>100xOS/shared/skills/{meta.get("source_path","")}</code>.'
+                    '</p>'
                 )
             elif github_repo:
                 src_path = meta.get("source_path", "")
-                install_block = (
-                    f'<button onclick="navigator.clipboard.writeText(`gh api repos/{github_repo}/contents/{src_path} --jq .content | base64 -d`); this.textContent=\'✓ copied\';"\n'
-                    f'  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>\n'
-                    f'<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>{github_repo}</code>.</p>'
+                install_html = (
+                    f'<button onclick="navigator.clipboard.writeText('
+                    f'`gh api repos/{github_repo}/contents/{src_path} --jq .content | base64 -d`);'
+                    f' this.textContent=&apos;&#x2713; copied&apos;;" '
+                    f'style="background:#00897b; color:white; border:none; '
+                    f'padding:0.4em 0.8em; border-radius:4px; cursor:pointer; '
+                    f'font-size:0.9em; margin-right:0.5em;">'
+                    f'&#128203; copy fetch command</button>'
+                    f'<button onclick="navigator.clipboard.writeText(&apos;{page_url}&apos;);'
+                    f' this.textContent=&apos;&#x2713; copied&apos;;" '
+                    f'style="background:#fff; color:#333; border:1px solid #ccc; '
+                    f'padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">'
+                    f'&#128279; share link</button>'
                 )
             else:
-                install_block = '<p style="font-size:0.85em; color:#666;">No automated install — see source URL.</p>'
+                install_html = '<p style="font-size:0.9em; color:#555;">No automated install — open the source link.</p>'
 
-            sidebar.append(install_block)
+            stages_chip = " · ".join(f"<code>{x}</code>" for x in stages) if stages else "—"
+            stars_badge = (
+                f'<img src="https://img.shields.io/github/stars/{github_repo}?style=flat" '
+                f'alt="GitHub stars" style="vertical-align:middle;">'
+            ) if github_repo else ""
 
-            sidebar.append('<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">')
-            sidebar.append('<h4 style="margin:0 0 0.3em 0;">Metadata</h4>')
-            sidebar.append(f'<dl style="font-size:0.85em; margin:0;">')
-            sidebar.append(f'<dt><b>Pack</b></dt><dd><a href="../{pack_slug}.md">{pack_name}</a></dd>')
-            sidebar.append(f'<dt><b>Category</b></dt><dd><code>{category}</code></dd>')
-            sidebar.append(f'<dt><b>Field</b></dt><dd>{field}</dd>')
-            if stages:
-                sidebar.append(f'<dt><b>Pipeline stages</b></dt><dd>{" ".join(f"<code>{x}</code>" for x in stages)}</dd>')
-            sidebar.append(f'<dt><b>License</b></dt><dd>{pack_license}</dd>')
-            sidebar.append(f'<dt><b>Last update</b></dt><dd>{updated}</dd>')
-            sidebar.append('</dl>')
-
-            if github_repo:
-                sidebar.append('<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">')
-                sidebar.append('<h4 style="margin:0 0 0.5em 0;">Upstream</h4>')
-                sidebar.append(
-                    f'<p style="font-size:0.85em; margin:0.3em 0;">'
-                    f'<a href="https://github.com/{github_repo}">⭐ {github_repo}</a><br>'
-                    f'<img src="https://img.shields.io/github/stars/{github_repo}?style=flat" alt="stars">'
-                    f'</p>'
-                )
-
-            if source_url:
-                sidebar.append(
-                    f'<p style="margin:0.6em 0;"><a href="{source_url}" '
-                    f'style="font-size:0.9em;">↗ view SKILL.md on source</a></p>'
-                )
-
-            # Share
-            sidebar.append('<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">')
-            sidebar.append(
-                f'<button onclick="navigator.clipboard.writeText(\'{page_url}\'); this.textContent=\'✓ copied\';"\n'
-                f'  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>'
+            # Top metadata card — RAW HTML at the document top level so it does NOT
+            # interfere with the markdown rendering of the SKILL.md body below.
+            card = (
+                '<div class="skill-card" style="background:#fafafa; '
+                'border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; '
+                'margin:1em 0 1.5em; font-size:0.95em;">'
+                f'<div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;">'
+                f'<div><b>Pack:</b> <a href="../{pack_slug}/">{pack_name}</a></div>'
+                f'<div><b>Category:</b> <code>{category}</code></div>'
+                f'<div><b>Field:</b> {field}</div>'
+                f'<div><b>License:</b> <code>{pack_license}</code></div>'
+                f'<div><b>Updated:</b> {updated}</div>'
+                f'</div>'
+                f'<div style="margin-top:0.5em;"><b>Stages:</b> {stages_chip}</div>'
+                f'<div style="margin-top:0.8em;">{install_html}</div>'
+                f'<div style="margin-top:0.6em; font-size:0.9em;">'
+                f'<a href="{source_url}" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a>'
+                f'{(" &middot; " + stars_badge) if stars_badge else ""}'
+                f'</div>'
+                '</div>'
             )
-            sidebar.append(
-                f'<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">'
-                f'Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> '
-                f'or <a href="https://github.com/bhanneke/RISE/edit/main/skills/{pack_slug}.yml">edit on GitHub</a>.</p>'
-            )
-            sidebar.append('</div>')
 
-            # Page body: two-column layout
-            stages_chip = " · ".join(f"`{x}`" for x in stages) if stages else "—"
             page = (
                 f"<!-- DO NOT EDIT — auto-copied from skills/{pack_slug}/details/{skill_slug}.md -->\n\n"
                 f"# `{name}`\n\n"
                 f"{description}\n\n"
-                f"<style>\n"
-                f".skill-layout {{ display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }}\n"
-                f"@media (max-width: 900px) {{ .skill-layout {{ grid-template-columns: 1fr; }} }}\n"
-                f".skill-sidebar {{ background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }}\n"
-                f".skill-sidebar h3, .skill-sidebar h4 {{ color:#00695c; }}\n"
-                f".skill-sidebar dl dt {{ margin-top:0.5em; }}\n"
-                f".skill-sidebar dl dd {{ margin:0.1em 0 0 0; }}\n"
-                f"</style>\n\n"
-                f'<div class="skill-layout">\n'
-                f'<div class="skill-content" markdown>\n\n'
-                f"---\n\n"
-                f"{text}\n\n"
-                f"</div>\n\n"
-                + "\n".join(sidebar) + "\n\n"
-                f"</div>\n"
+                f"{card}\n\n"
+                f"{text}\n"
             )
             (dst_dir / f"{skill_slug}.md").write_text(page, encoding="utf-8")
             n_total += 1
@@ -158,7 +154,7 @@ def load_packs() -> list[dict[str, Any]]:
     packs = []
     for f in sorted(SKILLS_DIR.glob("*.yml")):
         if f.name.startswith("_"):
-            continue  # overlays (e.g. _featured.yml), not packs
+            continue
         with f.open("r", encoding="utf-8") as fh:
             data = yaml.safe_load(fh)
         if not data or "pack" not in data:
@@ -166,23 +162,6 @@ def load_packs() -> list[dict[str, Any]]:
         data["_path"] = f.relative_to(REPO_ROOT).as_posix()
         packs.append(data)
     return packs
-
-
-def load_featured() -> tuple[set[tuple[str, str]], dict[tuple[str, str], str]]:
-    """Load editor's-picks overlay. Returns (set-of-(pack,slug), reasons-by-key)."""
-    f = SKILLS_DIR / "_featured.yml"
-    if not f.exists():
-        return set(), {}
-    data = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
-    items = data.get("featured") or []
-    keys = set()
-    reasons: dict[tuple[str, str], str] = {}
-    for it in items:
-        k = (it.get("pack", ""), it.get("slug", ""))
-        keys.add(k)
-        if it.get("reason"):
-            reasons[k] = it["reason"]
-    return keys, reasons
 
 
 PAGE_HEADER = "<!-- DO NOT EDIT — auto-generated from {path} by scripts/build_skills_index.py -->"
@@ -274,63 +253,8 @@ def render_pack_page(pack_data: dict[str, Any]) -> str:
 def render_index(packs: list[dict[str, Any]]) -> str:
     out: list[str] = []
     total_skills = sum(len(p.get("skills") or []) for p in packs)
-    featured_keys, featured_reasons = load_featured()
-    out.append(f"*{len(packs)} skill packs · {total_skills} skills indexed · "
-               f"{len(featured_keys)} editor's picks.*")
+    out.append(f"*{len(packs)} skill packs · {total_skills} skills indexed.*")
     out.append("")
-
-    # ─── Editor's Picks ───────────────────────────────────────────────
-    if featured_keys:
-        # Build a lookup of skill metadata by (pack_slug, skill_slug)
-        meta_by_key: dict[tuple[str, str], tuple[dict, dict]] = {}
-        for p in packs:
-            pk = p["pack"]
-            for s in p.get("skills") or []:
-                meta_by_key[(pk["slug"], s.get("slug", ""))] = (pk, s)
-
-        out.append("## ★ Editor's Picks")
-        out.append("")
-        out.append("*Hand-curated entry points across the catalog. Not crowd-voted; "
-                   "re-curated periodically. See <a href=\"#all-skills\">All skills</a> "
-                   "for the full filterable table.*")
-        out.append("")
-        out.append('<div style="display:grid; grid-template-columns:repeat(auto-fill, '
-                   'minmax(20em, 1fr)); gap:1em; margin:1em 0;">')
-        # Order: keep the YAML curation order
-        ordered = [k for k in featured_keys]
-        # Read again to preserve list order
-        try:
-            data = yaml.safe_load((SKILLS_DIR / "_featured.yml").read_text(encoding="utf-8")) or {}
-            ordered = [(it.get("pack", ""), it.get("slug", "")) for it in (data.get("featured") or [])]
-        except Exception:
-            pass
-        for key in ordered:
-            entry = meta_by_key.get(key)
-            if not entry:
-                continue
-            pk, s = entry
-            pack_slug = pk["slug"]
-            s_slug = s.get("slug", "")
-            name = s.get("name", s_slug)
-            desc = s.get("description", "") or ""
-            reason = featured_reasons.get(key, "")
-            pack_details_dir = SKILLS_DIR / pack_slug / "details"
-            have_detail = (pack_details_dir / f"{s_slug}.md").exists()
-            link = f'<a href="{pack_slug}/{s_slug}/">view</a>' if have_detail else \
-                   f'<a href="{pack_slug}/">view pack</a>'
-            out.append(
-                '<div style="border:1px solid #e0e0e0; border-radius:8px; '
-                'padding:0.8em 1em; background:#fffbe8;">'
-                f'<div style="font-weight:600; color:#b07000;">★ <code>{name}</code></div>'
-                f'<div style="font-size:0.85em; color:#666; margin:0.2em 0 0.6em;">'
-                f'<a href="{pack_slug}/">{pk["name"]}</a></div>'
-                f'<div style="font-size:0.9em; margin-bottom:0.5em;">{reason or desc}</div>'
-                f'<div style="font-size:0.85em;">{link} '
-                f'· <a href="{s.get("details_url","")}" target="_blank" rel="noopener">↗ source</a></div>'
-                '</div>'
-            )
-        out.append("</div>")
-        out.append("")
 
     # Cross-pack matrix
     out.append("## Pack overview")
@@ -369,13 +293,8 @@ def render_index(packs: list[dict[str, Any]]) -> str:
   <input type="text" id="skillFilter" placeholder="🔍 free-text search across all fields…"
     style="width:100%; padding:0.5em 0.7em; font-size:1em; border:1px solid #ccc; border-radius:4px;"
     oninput="applyFilters()">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5em; gap:1em;">
-    <div>
-      <button onclick="resetFilters()" style="padding:0.3em 0.8em; font-size:0.85em;">reset all</button>
-      <label style="font-size:0.9em; margin-left:1em;">
-        <input type="checkbox" id="featuredOnly" onchange="applyFilters()"> ★ featured only
-      </label>
-    </div>
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5em;">
+    <button onclick="resetFilters()" style="padding:0.3em 0.8em; font-size:0.85em;">reset all</button>
     <span id="skillCount" style="color:#666; font-size:0.9em;"></span>
   </div>
 </div>
@@ -383,7 +302,6 @@ def render_index(packs: list[dict[str, Any]]) -> str:
 <script>
 function applyFilters() {{
   var q = (document.getElementById('skillFilter').value || '').toLowerCase().trim();
-  var featuredOnly = document.getElementById('featuredOnly') && document.getElementById('featuredOnly').checked;
   var facets = {{}};
   document.querySelectorAll('select[data-filter-col]').forEach(function(sel) {{
     if (sel.value) facets[sel.dataset.filterCol] = sel.value;
@@ -401,8 +319,7 @@ function applyFilters() {{
         if (rowVal !== facets[col]) {{ matchesFacets = false; break; }}
       }}
     }}
-    var matchesFeatured = !featuredOnly || row.dataset.featured === '1';
-    var show = matchesText && matchesFacets && matchesFeatured;
+    var show = matchesText && matchesFacets;
     row.style.display = show ? '' : 'none';
     if (show) n_visible++;
   }});
@@ -457,17 +374,10 @@ document.addEventListener('DOMContentLoaded', applyFilters);
             source_cell = f'<a href="{source_url}" target="_blank" rel="noopener">↗</a>' if source_url else "—"
             detail_cell = (f'<a href="{pack_slug}/{s_slug}/">view</a>'
                            if s_slug in have_details else "—")
-            is_featured = (pack_slug, s_slug) in featured_keys
-            star = ('<span title="Editor\'s Pick" '
-                    'style="color:#d4a000;">★ </span>') if is_featured else ""
-            featured_attr = "1" if is_featured else "0"
-            # Sort key: featured first, then alpha
-            sort_key = (0 if is_featured else 1, cat, name, pack_slug)
-            rows.append((sort_key,
+            rows.append((cat, name, pack_slug,
                          f'<tr data-pack="{pack_slug}" data-category="{cat}" '
-                         f'data-field="{field}" data-stages="{stages_attr}" '
-                         f'data-featured="{featured_attr}">'
-                         f"<td>{star}<code>{name}</code></td>"
+                         f'data-field="{field}" data-stages="{stages_attr}">'
+                         f"<td><code>{name}</code></td>"
                          f'<td><a href="{pack_slug}/">{pack_name}</a></td>'
                          f"<td>{field}</td>"
                          f"<td><code>{cat}</code></td>"
@@ -476,7 +386,7 @@ document.addEventListener('DOMContentLoaded', applyFilters);
                          f"<td>{detail_cell}</td>"
                          f"<td>{source_cell}</td>"
                          f"</tr>"))
-    for _, row_html in sorted(rows, key=lambda r: r[0]):
+    for _, _, _, row_html in sorted(rows):
         out.append(row_html)
     out.append("</tbody></table>")
     out.append("</div>")

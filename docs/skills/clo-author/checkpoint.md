@@ -4,34 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>none declared</code></div><div><b>Updated:</b> 2026-05-11</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/checkpoint/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/checkpoint/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: checkpoint
-description: >
-  Session handoff — persists what happened in the current session to memory,
-  SESSION_REPORT.md, and the research journal. Use when wrapping up a work session,
-  before `/compact`, or when the user says "checkpoint", "save progress", "sync",
-  "wrap up", "log this", or "handoff". Optionally pushes to Obsidian if the user
-  has configured `.claude/state/obsidian-config.md`. Does NOT run briefings,
-  calendar, or mail. Just gather, confirm, save.
-argument-hint: "[--auto | --memory-only | --scaffold-only | --dry-run]"
-allowed-tools: Read,Grep,Glob,Write,Edit,Bash
----
-
-# Checkpoint: Session Handoff
+## Checkpoint: Session Handoff
 
 Captures what happened in the current session and pushes it to three places (plus optionally a fourth):
 
@@ -44,9 +19,9 @@ You are fast and minimal. One confirmation prompt, then save.
 
 ---
 
-## Flow
+### Flow
 
-### Step 1: Gather Context
+#### Step 1: Gather Context
 
 Run these in parallel (single message, multiple Bash calls):
 
@@ -63,7 +38,7 @@ Then scan:
 - `quality_reports/session_logs/` for files modified today (if the project uses session logs)
 - The conversation context for key decisions, corrections, or learnings that qualify for auto-memory
 
-### Step 2: Detect Obsidian Configuration
+#### Step 2: Detect Obsidian Configuration
 
 Check for `.claude/state/obsidian-config.md`:
 
@@ -77,28 +52,28 @@ If the file exists, read it to extract:
 
 If the file does not exist, Obsidian integration is inactive for this session. Proceed without it — do not ask the user to set it up unless they invoke `/checkpoint --setup-obsidian` (see below).
 
-### Step 3: Draft Updates (present to user for confirmation)
+#### Step 3: Draft Updates (present to user for confirmation)
 
 Present a compact summary:
 
 ```
-## Checkpoint Summary
+### Checkpoint Summary
 
 **Project:** [name] | **Branch:** [current branch]
 **Session:** [date, ~duration if inferrable]
 **Obsidian:** [configured: path | not configured]
 
-### What happened
+#### What happened
 - [bullets from git log + conversation context]
 
-### Memory updates
+#### Memory updates
 - [new learnings to save — or "None"]
 
-### Scaffold updates
+#### Scaffold updates
 - **SESSION_REPORT.md:** [entry to append]
 - **quality_reports/research_journal.md:** [entry to append — if any agent work happened]
 
-### Obsidian updates
+#### Obsidian updates
 - [if configured: project note journal entry, dashboard row, daily journal]
 - [if not configured: "Skipped — no .claude/state/obsidian-config.md"]
 ```
@@ -107,7 +82,7 @@ Present a compact summary:
 
 Skip confirmation if invoked with `--auto` or the user said "just do it".
 
-### Step 4: Save Everything
+#### Step 4: Save Everything
 
 Execute all saves. Each section is independent — if one fails, the others still run.
 
@@ -136,7 +111,7 @@ Append-only. If the file doesn't exist, create it with header `# Session Report 
 Entry format (per `.claude/rules/logging.md`):
 
 ```markdown
-## YYYY-MM-DD HH:MM — [Brief Title]
+### YYYY-MM-DD HH:MM — [Brief Title]
 
 **Operations:**
 - [Scripts run, files created/modified/deleted]
@@ -160,7 +135,7 @@ Entry format (per `.claude/rules/logging.md`):
 Append only if agent work happened this session (writer, coder, strategist, etc.). Entry format per `logging.md`:
 
 ```markdown
-### YYYY-MM-DD HH:MM — [Agent Name]
+#### YYYY-MM-DD HH:MM — [Agent Name]
 **Phase:** [Discovery/Strategy/Execution/Peer Review/Presentation]
 **Target:** [file or topic]
 **Score:** [XX/100 or PASS/FAIL or N/A]
@@ -179,7 +154,7 @@ Follow the project's `obsidian-config.md` for vault path and project mapping. Th
 Entry format for project note journal:
 
 ```markdown
-### YYYY-MM-DD
+#### YYYY-MM-DD
 
 **Done:**
 - [concrete accomplishments from this session]
@@ -190,14 +165,14 @@ Entry format for project note journal:
 
 Keep it tight — 3–5 bullets per section max.
 
-### Step 4e. Refresh Project Dashboard
+#### Step 4e. Refresh Project Dashboard
 
 Regenerate the project dashboard to capture latest session state:
 ```bash
 python3 scripts/generate_dashboard.py
 ```
 
-### Step 5: Confirm
+#### Step 5: Confirm
 
 Report what was saved:
 
@@ -212,7 +187,7 @@ Checkpoint saved:
 
 ---
 
-## Flags
+### Flags
 
 | Flag | Effect |
 |------|--------|
@@ -224,7 +199,7 @@ Checkpoint saved:
 
 ---
 
-## Obsidian Config Setup (on demand)
+### Obsidian Config Setup (on demand)
 
 When invoked with `--setup-obsidian`:
 
@@ -238,7 +213,7 @@ Do NOT run this on every checkpoint — only when the user explicitly opts in.
 
 ---
 
-## Bundled Resources
+### Bundled Resources
 
 | Resource | Path | What It Contains |
 |----------|------|-----------------|
@@ -249,7 +224,7 @@ Do NOT run this on every checkpoint — only when the user explicitly opts in.
 
 ---
 
-## Rules
+### Rules
 
 - **Never invent progress.** Only log what actually happened — from git, conversation, or user confirmation.
 - **Be fast.** The whole checkpoint should take under 60 seconds including user confirmation.
@@ -262,36 +237,6 @@ Do NOT run this on every checkpoint — only when the user explicitly opts in.
 
 ---
 
-## Precedence
+### Precedence
 
 If the user has a user-level `checkpoint` skill at `~/.claude/skills/checkpoint/`, this project-level skill takes precedence when invoked from within clo-author. The user-level skill continues to work for projects that don't have this file.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/checkpoint/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>hugosantanna/clo-author</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../clo-author.md">Clo-Author skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>none declared</dd>
-<dt><b>Last update</b></dt><dd>2026-05-11</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/hugosantanna/clo-author">⭐ hugosantanna/clo-author</a><br><img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/hugosantanna/clo-author" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/clo-author/checkpoint/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/clo-author.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

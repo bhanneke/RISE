@@ -4,23 +4,11 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/review/technical-review.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Technical Review
 
----
-
-# Technical Review
-
-## Purpose
+### Purpose
 
 This skill describes how to conduct a technical/methodological review of a
 research paper, focusing on the internal coherence of the data-to-results
@@ -30,24 +18,24 @@ claims it does?
 
 ---
 
-## Step 1: Data Pipeline Verification
+### Step 1: Data Pipeline Verification
 
 Trace the data from source to estimation sample:
 
-### SQL / data construction
+#### SQL / data construction
 - Read the data queries. Do they construct the sample described in the paper?
 - Are exclusion criteria in the code the same as those described in the text?
 - Are variable definitions in the code consistent with the data description?
 - Does the time period in the query match the stated time period?
 
-### Sample construction
+#### Sample construction
 - How are missing values handled? Is it documented?
 - Are there implicit filters (e.g., inner joins that drop observations)?
 - Is the unit of observation what the paper claims? (e.g., firm-quarter,
   address-day, protocol-week)
 - Are there duplicates? Is deduplication documented?
 
-### Variable definitions
+#### Variable definitions
 - Are continuous variables winsorized or trimmed? At what level?
 - Are categorical variables grouped appropriately?
 - Are log transformations applied where claimed? What about zeros?
@@ -61,11 +49,11 @@ Trace the data from source to estimation sample:
 
 ---
 
-## Step 2: Estimation Code-to-Paper Alignment
+### Step 2: Estimation Code-to-Paper Alignment
 
 Compare the estimation code against the stated econometric specification:
 
-### Specification match
+#### Specification match
 - Write out the estimating equation from the paper
 - Write out what the code actually estimates
 - Are they the same? Check:
@@ -75,28 +63,28 @@ Compare the estimation code against the stated econometric specification:
   - Interaction terms
   - Sample restrictions
 
-### Standard errors
+#### Standard errors
 - What level are standard errors clustered at in the code?
 - Is this the level described in the paper?
 - Is the number of clusters reported? Is it sufficient (>= 30)?
 - If robust (HC) errors are used, which variant? (HC0, HC1, HC2, HC3)
 
-### Fixed effects
+#### Fixed effects
 - Which fixed effects are included in the code?
 - Do they match what the paper reports?
 - Are they collinear with the treatment variable? (This would absorb the
   effect of interest.)
 
-### Functional form
+#### Functional form
 - Level vs. log specification: does the code match the paper?
 - Are polynomials or splines used as described?
 - For binary outcomes: logit/probit vs. linear probability model — consistent?
 
 ---
 
-## Step 3: Results Interpretation Check
+### Step 3: Results Interpretation Check
 
-### Effect size interpretation
+#### Effect size interpretation
 - Is the coefficient interpreted in the correct units?
   - Log-level: a one-unit increase in X is associated with a (β×100)% change in Y
   - Log-log: a 1% increase in X is associated with a β% change in Y
@@ -105,13 +93,13 @@ Compare the estimation code against the stated econometric specification:
   - "A one-SD increase in X leads to..." — is the SD from the estimation sample
     or the full sample?
 
-### Significance and inference
+#### Significance and inference
 - Do the reported significance stars match the standard errors?
   - Check: |coefficient / SE| > 1.96 for 5% significance
 - Are confidence intervals correctly computed? (coef ± 1.96 × SE for 95%)
 - If multiple testing is an issue, is there a correction?
 
-### Robustness assessment
+#### Robustness assessment
 - Are the robustness checks addressing the actual threats to identification
   listed in the paper?
 - Or are they "cosmetic" — e.g., adding an irrelevant control, changing a
@@ -121,14 +109,14 @@ Compare the estimation code against the stated econometric specification:
 
 ---
 
-## Step 4: Red Flag Detection
+### Step 4: Red Flag Detection
 
-### P-value patterns
+#### P-value patterns
 - Count the p-values in the paper. Is there unusual clustering just below
   conventional thresholds (0.05, 0.01, 0.10)?
 - This is not proof of p-hacking, but a pattern worth noting.
 
-### Specification searching
+#### Specification searching
 - Are there signs that many specifications were tried but only favorable
   ones reported?
 - Does the paper report a "preferred specification" without justifying why
@@ -136,17 +124,17 @@ Compare the estimation code against the stated econometric specification:
 - Are there large jumps in coefficients across specifications? This suggests
   sensitivity to choices.
 
-### Selective reporting
+#### Selective reporting
 - Are there variables in the estimation code that don't appear in any table?
 - Are there specifications in the code that aren't reported?
 - Is there a "table graveyard" — tables mentioned in comments but not in the paper?
 
-### Magic numbers
+#### Magic numbers
 - Are there hardcoded values in the estimation or analysis code?
 - Examples: `if p_value < 0.05`, `threshold = 100`, `winsorize_level = 0.01`
 - These should be documented or parameterized.
 
-### Suspiciously clean results
+#### Suspiciously clean results
 - All coefficients significant with the same sign
 - R-squared suspiciously high for the type of regression
 - Perfect monotonicity in heterogeneity results
@@ -154,7 +142,7 @@ Compare the estimation code against the stated econometric specification:
 
 ---
 
-## Step 5: Internal Consistency Across Pipeline Stages
+### Step 5: Internal Consistency Across Pipeline Stages
 
 The most common source of technical problems is inconsistency between
 pipeline stages:
@@ -169,54 +157,29 @@ pipeline stages:
 
 ---
 
-## Output Structure
+### Output Structure
 
 ```
-# Technical Review
+## Technical Review
 
-## Summary Assessment
+### Summary Assessment
 [Pass / Concerns / Fail — with one-paragraph justification]
 
-## Data Pipeline
+### Data Pipeline
 [Issues found, or confirmation that pipeline is sound]
 
-## Estimation Implementation
+### Estimation Implementation
 [Code-to-paper alignment issues, or confirmation of alignment]
 
-## Results Reporting
+### Results Reporting
 [Interpretation issues, significance checks, robustness assessment]
 
-## Red Flags
+### Red Flags
 [Any red flags detected, or "None detected"]
 
-## Strengths
+### Strengths
 [What the implementation does well — be specific]
 
-## Recommendations
+### Recommendations
 [Specific actions to address each issue, mapped to pipeline stages]
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/review/technical-review.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/review-technical-review/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

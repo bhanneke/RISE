@@ -4,27 +4,15 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/latex/tables.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# LaTeX Tables for Economics Publications
+## LaTeX Tables for Economics Publications
 
 Guidelines for producing publication-ready regression tables, summary statistics,
 and other tabular output in economics papers. These conventions follow the style
 of top economics journals (AER, QJE, Econometrica, REStud, JPE).
 
-## Required packages
+### Required packages
 
 ```latex
 \usepackage{booktabs}     % Professional rules: \toprule, \midrule, \bottomrule
@@ -37,7 +25,7 @@ of top economics journals (AER, QJE, Econometrica, REStud, JPE).
 \usepackage{adjustbox}    % Scale oversized tables
 ```
 
-## Core principles
+### Core principles
 
 1. **Never use vertical rules.** No `|` in column specs. Ever. This is the single
    most important rule for professional tables.
@@ -48,7 +36,7 @@ of top economics journals (AER, QJE, Econometrica, REStud, JPE).
 5. **Keep tables self-contained.** A reader should understand the table without
    reading the surrounding text.
 
-## Basic regression table
+### Basic regression table
 
 ```latex
 \begin{table}[htbp]
@@ -85,7 +73,7 @@ of top economics journals (AER, QJE, Econometrica, REStud, JPE).
 \end{table}
 ```
 
-## Significance stars conventions
+### Significance stars conventions
 
 The standard in economics (and what journals expect):
 
@@ -113,7 +101,7 @@ Similarly, wrap text entries in `S` columns with braces:
 {--}          % Em-dash for missing values
 ```
 
-## Standard errors and confidence intervals
+### Standard errors and confidence intervals
 
 Standard errors go on the line below the coefficient, in parentheses. This is
 the universal convention in economics.
@@ -132,7 +120,7 @@ Education     & 0.089{***} \\
               & {[0.081, 0.097]}  \\
 ```
 
-## siunitx configuration
+### siunitx configuration
 
 Set up siunitx in the preamble for consistent number formatting:
 
@@ -148,7 +136,7 @@ Set up siunitx in the preamble for consistent number formatting:
 }
 ```
 
-### Column type specifications
+#### Column type specifications
 
 ```latex
 S[table-format=1.3]         % One digit before decimal, three after (e.g., 0.089)
@@ -158,7 +146,7 @@ S[table-format=1.3e1]       % Scientific notation
 S[table-format=2.1]         % Two digits, one decimal (e.g., 24.6)
 ```
 
-## Panel tables
+### Panel tables
 
 Panel tables group related regressions. Use `\cmidrule` to visually separate panels.
 
@@ -199,7 +187,7 @@ Panel tables group related regressions. Use `\cmidrule` to visually separate pan
 \end{table}
 ```
 
-## Summary statistics table
+### Summary statistics table
 
 ```latex
 \begin{table}[htbp]
@@ -227,7 +215,7 @@ Panel tables group related regressions. Use `\cmidrule` to visually separate pan
 \end{table>
 ```
 
-## Balance table (for RCTs and quasi-experiments)
+### Balance table (for RCTs and quasi-experiments)
 
 ```latex
 \begin{table}[htbp]
@@ -260,7 +248,7 @@ Panel tables group related regressions. Use `\cmidrule` to visually separate pan
 \end{table>
 ```
 
-## Difference-in-differences table
+### Difference-in-differences table
 
 ```latex
 \begin{table}[htbp]
@@ -291,7 +279,7 @@ Panel tables group related regressions. Use `\cmidrule` to visually separate pan
 \end{table}
 ```
 
-## Column spanning headers
+### Column spanning headers
 
 Use `\multicolumn` with `\cmidrule` to group columns under a shared header:
 
@@ -310,7 +298,7 @@ Use `\multicolumn` with `\cmidrule` to group columns under a shared header:
 Note `\cmidrule(lr)` trims the rule on both sides to create a visual gap
 between groups. This is important for readability.
 
-## Notes conventions
+### Notes conventions
 
 The notes block should follow a consistent structure:
 
@@ -330,7 +318,7 @@ The notes block should follow a consistent structure:
 \end{tablenotes}
 ```
 
-## Landscape tables
+### Landscape tables
 
 For wide tables that do not fit in portrait mode:
 
@@ -344,7 +332,7 @@ For wide tables that do not fit in portrait mode:
 \end{landscape}
 ```
 
-## Scaling oversized tables
+### Scaling oversized tables
 
 When a table is slightly too wide, use `adjustbox`:
 
@@ -359,7 +347,7 @@ When a table is slightly too wide, use `adjustbox`:
 Prefer this over `\resizebox` because `adjustbox` preserves font size when the
 table already fits.
 
-## Exporting tables from statistical software
+### Exporting tables from statistical software
 
 When generating tables from Stata, R, or Python:
 
@@ -373,7 +361,7 @@ When generating tables from Stata, R, or Python:
 Always review and adjust generated output. Automated tools rarely get every detail
 right (decimal alignment, note formatting, star placement in S columns).
 
-## Common mistakes to avoid
+### Common mistakes to avoid
 
 1. Using vertical lines (`|`) in column specifications.
 2. Using `\hline` instead of booktabs rules (`\toprule`, `\midrule`, `\bottomrule`).
@@ -386,28 +374,3 @@ right (decimal alignment, note formatting, star placement in S columns).
 8. Misaligned numbers (not using `S` columns or `dcolumn`).
 9. Reporting $R^2$ with four decimal places. Two is sufficient.
 10. Not reporting the number of observations or clusters.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/latex/tables.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/latex-tables/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

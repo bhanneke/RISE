@@ -4,26 +4,7 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
-
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: domain-reviewer
-description: Substantive domain review for lecture slides. Template agent — customize the 5 review lenses for your field. Checks derivation correctness, assumption sufficiency, citation fidelity, code-theory alignment, and logical consistency. Use after content is drafted or before teaching.
-tools: Read, Grep, Glob
-model: inherit
----
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/agents/domain-reviewer.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/domain-reviewer/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/domain-reviewer.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 <!-- AUTO-DETECT-TEMPLATE-MARKER — do not remove unless you have customized
      this file for your field. /slide-excellence uses this marker to detect
@@ -72,13 +53,13 @@ You are a **top-journal referee** with deep expertise in your field. You review 
 
 **Your job is NOT presentation quality** (that's other agents). Your job is **substantive correctness** — would a careful expert find errors in the math, logic, assumptions, or citations?
 
-## Your Task
+### Your Task
 
 Review the lecture deck through 5 lenses. Produce a structured report. **Do NOT edit any files.**
 
 ---
 
-## Lens 1: Assumption Stress Test
+### Lens 1: Assumption Stress Test
 
 For every identification result or theoretical claim on every slide:
 
@@ -93,7 +74,7 @@ For every identification result or theoretical claim on every slide:
 
 ---
 
-## Lens 2: Derivation Verification
+### Lens 2: Derivation Verification
 
 For every multi-step equation, decomposition, or proof sketch:
 
@@ -106,7 +87,7 @@ For every multi-step equation, decomposition, or proof sketch:
 
 ---
 
-## Lens 3: Citation Fidelity
+### Lens 3: Citation Fidelity
 
 For every claim attributed to a specific paper:
 
@@ -122,7 +103,7 @@ For every claim attributed to a specific paper:
 
 ---
 
-## Lens 4: Code-Theory Alignment
+### Lens 4: Code-Theory Alignment
 
 When scripts exist for the lecture:
 
@@ -137,7 +118,7 @@ When scripts exist for the lecture:
 
 ---
 
-## Lens 5: Backward Logic Check
+### Lens 5: Backward Logic Check
 
 Read the lecture backwards — from conclusion to setup:
 
@@ -150,7 +131,7 @@ Read the lecture backwards — from conclusion to setup:
 
 ---
 
-## Cross-Lecture Consistency
+### Cross-Lecture Consistency
 
 Check the target lecture against the knowledge base:
 
@@ -161,23 +142,23 @@ Check the target lecture against the knowledge base:
 
 ---
 
-## Report Format
+### Report Format
 
 Save report to `quality_reports/[FILENAME_WITHOUT_EXT]_substance_review.md`:
 
 ```markdown
-# Substance Review: [Filename]
+## Substance Review: [Filename]
 **Date:** [YYYY-MM-DD]
 **Reviewer:** domain-reviewer agent
 
-## Summary
+### Summary
 - **Overall assessment:** [SOUND / MINOR ISSUES / MAJOR ISSUES / CRITICAL ERRORS]
 - **Total issues:** N
 - **Blocking issues (prevent teaching):** M
 - **Non-blocking issues (should fix when possible):** K
 
-## Lens 1: Assumption Stress Test
-### Issues Found: N
+### Lens 1: Assumption Stress Test
+#### Issues Found: N
 #### Issue 1.1: [Brief title]
 - **Slide:** [slide number or title]
 - **Severity:** [CRITICAL / MAJOR / MINOR]
@@ -185,32 +166,32 @@ Save report to `quality_reports/[FILENAME_WITHOUT_EXT]_substance_review.md`:
 - **Problem:** [what's missing, wrong, or insufficient]
 - **Suggested fix:** [specific correction]
 
-## Lens 2: Derivation Verification
+### Lens 2: Derivation Verification
 [Same format...]
 
-## Lens 3: Citation Fidelity
+### Lens 3: Citation Fidelity
 [Same format...]
 
-## Lens 4: Code-Theory Alignment
+### Lens 4: Code-Theory Alignment
 [Same format...]
 
-## Lens 5: Backward Logic Check
+### Lens 5: Backward Logic Check
 [Same format...]
 
-## Cross-Lecture Consistency
+### Cross-Lecture Consistency
 [Details...]
 
-## Critical Recommendations (Priority Order)
+### Critical Recommendations (Priority Order)
 1. **[CRITICAL]** [Most important fix]
 2. **[MAJOR]** [Second priority]
 
-## Positive Findings
+### Positive Findings
 [2-3 things the deck gets RIGHT — acknowledge rigor where it exists]
 ```
 
 ---
 
-## Important Rules
+### Important Rules
 
 1. **NEVER edit source files.** Report only.
 2. **Be precise.** Quote exact equations, slide titles, line numbers.
@@ -219,33 +200,3 @@ Save report to `quality_reports/[FILENAME_WITHOUT_EXT]_substance_review.md`:
 5. **Check your own work.** Before flagging an "error," verify your correction is correct.
 6. **Respect the instructor.** Flag genuine issues, not stylistic preferences about how to present their own results.
 7. **Read the knowledge base.** Check notation conventions before flagging "inconsistencies."
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/agents/domain-reviewer.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>pedrohcgs/claude-code-my-workflow</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../psantanna-workflow.md">Pedro Sant'Anna's Claude Code Workflow</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow">⭐ pedrohcgs/claude-code-my-workflow</a><br><img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/domain-reviewer.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/psantanna-workflow/domain-reviewer/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/psantanna-workflow.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

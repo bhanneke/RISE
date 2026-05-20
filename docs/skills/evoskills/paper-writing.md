@@ -4,42 +4,20 @@
 
 Paper drafting pipeline
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/paper-writing/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/paper-writing/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-writing
-description: "Guides writing academic papers section by section using an 11-step workflow with LaTeX templates and counterintuitive writing tactics. Covers Abstract, Introduction, Method, Experiments, Related Work, Conclusion, and Supplementary. Use when: user asks to write or draft a paper section, needs LaTeX templates, wants to improve academic writing quality, optimize novelty framing, or mentions 'write introduction', 'draft method', 'paper writing'. Do NOT use for pre-submission review (use paper-review), experiment execution (use experiment-pipeline), or paper planning/story design (use paper-planning)."
-allowed-tools: "write_file edit_file read_file think_tool"
-metadata:
-  author: EvoScientist
-  version: '1.0.0'
-  tags: [core, research, writing, academic-writing, latex]
----
-
-# Paper Writing
+## Paper Writing
 
 A systematic 11-step workflow for writing academic papers, with section-specific templates and battle-tested writing principles.
 
-## When to Use This Skill
+### When to Use This Skill
 
 - User asks to write or draft a paper or paper section
 - User needs LaTeX templates for Abstract, Introduction, Method, Experiments, etc.
 - User wants to improve academic writing quality
 - User mentions "paper writing", "write introduction", "draft method section", etc.
 
-## Artifact Sources
+### Artifact Sources
 
 If you used upstream EvoSkills, pull these artifacts before writing:
 
@@ -54,7 +32,7 @@ If you used upstream EvoSkills, pull these artifacts before writing:
 | `experiment-pipeline` | Stage 1-4 results, ablation tables, trajectory logs | Step 5 (write experiments) |
 | `experiment-craft` | Failure analysis, implementation tricks | Step 3 (Method section), Step 9 (limitations) |
 
-## The 11-Step Writing Process
+### The 11-Step Writing Process
 
 Follow these steps in order. Each step builds on the previous one.
 
@@ -70,7 +48,7 @@ Follow these steps in order. Each step builds on the previous one.
 10. **Choose the title** — List important keywords, then compose an informative title.
 11. **Iterate** — Repeatedly review and revise the entire paper.
 
-## Counterintuitive Writing Rules
+### Counterintuitive Writing Rules
 
 Apply these rules when aiming for higher acceptance probability:
 
@@ -84,9 +62,9 @@ Apply these rules when aiming for higher acceptance probability:
 
 See [references/counterintuitive-writing.md](references/counterintuitive-writing.md) for all 7 tactics with before/after examples.
 
-## Section Quick Reference
+### Section Quick Reference
 
-### Abstract
+#### Abstract
 
 Answer these questions before drafting:
 1. What technical problem do we solve, and why is there no well-established solution?
@@ -97,7 +75,7 @@ Answer these questions before drafting:
 Three template versions: challenge-first, insight-bridge, multi-contribution.
 See [references/abstract-templates.md](references/abstract-templates.md)
 
-### Introduction
+#### Introduction
 
 **Thinking process** (reverse then forward):
 - Reverse: (1) What is the technical problem? (2) What are our contributions? (3) Benefits and new insights? (4) How to lead into the challenge?
@@ -108,7 +86,7 @@ See [references/introduction-templates.md](references/introduction-templates.md)
 
 **Anti-pattern**: Never write "here is a naive solution, then our improvement" — this makes the work appear incremental.
 
-### Method
+#### Method
 
 Every pipeline module needs three elements:
 1. **Module design** — Data structure, network design, forward process (given X input, step 1..., step 2..., output Y)
@@ -118,7 +96,7 @@ Every pipeline module needs three elements:
 Start with an Overview paragraph (setting + core contribution + section roadmap), then one subsection per module.
 See [references/method-templates.md](references/method-templates.md)
 
-### Experiments
+#### Experiments
 
 Three key questions to answer:
 1. How to prove our method is better → comparison experiments
@@ -128,7 +106,7 @@ Three key questions to answer:
 Ablation studies need: one big table (core contributions) + several small tables (design choices, hyperparameters).
 See [references/experiments-guide.md](references/experiments-guide.md)
 
-### Related Work
+#### Related Work
 
 Three-step process:
 1. List papers closely related to our method (most important — missing key references can cause rejection)
@@ -137,13 +115,13 @@ Three-step process:
 
 See [references/related-work-guide.md](references/related-work-guide.md)
 
-### Conclusion
+#### Conclusion
 
 - Must include **Limitation** section (reviewers frequently cite "no limitation" as a weakness)
 - Limitation = task goal / setting limitations (like future work), NOT technical defects
 - Rule: "If our method does not fall below current SOTA metrics, it is not a technical defect"
 
-### Supplementary Material
+#### Supplementary Material
 
 For page-limited venues, decide what goes in main paper vs. supplementary:
 - Core evidence for claims must stay in the main paper
@@ -152,7 +130,7 @@ For page-limited venues, decide what goes in main paper vs. supplementary:
 
 See [references/supplementary-guide.md](references/supplementary-guide.md)
 
-## Core Writing Principles
+### Core Writing Principles
 
 1. **One message per paragraph** — Each paragraph conveys exactly one point
 2. **Topic sentence first** — The first sentence tells readers what this paragraph is about
@@ -164,23 +142,23 @@ See [references/supplementary-guide.md](references/supplementary-guide.md)
 
 See [references/writing-principles.md](references/writing-principles.md)
 
-## Key Insight
+### Key Insight
 
 Visual polish directly influences review outcomes. See the `paper-planning` skill's [figure-design.md](../paper-planning/references/figure-design.md) for the full visual quality guide.
 
-## Paper Title Guidelines
+### Paper Title Guidelines
 
 - The title attracts specific reviewers — choose keywords carefully
 - Before writing the title, list important keywords, then compose
 - Title must be **informative**: include the technique, task, or problem solved
 - Avoid generic titles; specific phrases are more memorable
 
-## LaTeX Assets
+### LaTeX Assets
 
 - [assets/paper-skeleton.tex](assets/paper-skeleton.tex) — Annotated LaTeX skeleton with section structure
 - [assets/table-style.tex](assets/table-style.tex) — Booktabs table macros with color highlighting
 
-## Handoff to Review
+### Handoff to Review
 
 Before invoking `paper-review`, verify this checklist:
 
@@ -192,7 +170,7 @@ Before invoking `paper-review`, verify this checklist:
 
 ---
 
-## Section Navigation
+### Section Navigation
 
 | Section | Reference File | When to Load |
 |---------|---------------|--------------|
@@ -205,33 +183,3 @@ Before invoking `paper-review`, verify this checklist:
 | Supplementary | [supplementary-guide.md](references/supplementary-guide.md) | Deciding main vs. supplementary content |
 | Counterintuitive strategy | [counterintuitive-writing.md](references/counterintuitive-writing.md) | Improving reviewer trust and novelty perception |
 | Writing Practice | [writing-practice.md](references/writing-practice.md) | Building writing ability through deliberate practice |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/paper-writing/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/paper-writing/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

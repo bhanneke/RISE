@@ -4,34 +4,15 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>audit</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/claims-drafting/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/claims-drafting/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: claims-drafting
-description: "Draft patent claims for an invention. Use when user says \"撰写权利要求\", \"draft claims\", \"写权利要求书\", \"claim drafting\", or wants to create patent claims. The core skill of the patent pipeline."
-argument-hint: [invention-disclosure-path]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Claims Drafting: The Core Patent Skill
+## Claims Drafting: The Core Patent Skill
 
 Draft patent claims based on: **$ARGUMENTS**
 
 This is the most critical skill in the patent pipeline. Claims define the legal scope of protection -- everything else (specification, figures, abstract) exists to support and enable the claims.
 
-## Constants
+### Constants
 
 - `REVIEWER_MODEL = gpt-5.5` — External examiner for claim quality review
 - `MAX_CLAIM_REVISION_ROUNDS = 3` — Maximum revision iterations
@@ -40,23 +21,23 @@ This is the most critical skill in the patent pipeline. Claims define the legal 
 - `MAX_TOTAL_CLAIMS = 20` — Practical limit (USPTO includes 20 in base fee)
 - `PATENT_TYPE = "invention"` — `invention` (发明专利) or `utility_model` (实用新型, apparatus claims only)
 
-## Inputs
+### Inputs
 
 1. `patent/INVENTION_DISCLOSURE.md` — structured invention with core/supporting/optional features
 2. `patent/PRIOR_ART_REPORT.md` — prior art to avoid
 3. `patent/NOVELTY_ASSESSMENT.md` — novelty analysis with suggested amendments
 4. Target jurisdiction from invention disclosure or `$ARGUMENTS`
 
-## Shared References
+### Shared References
 
 Load `../shared-references/patent-writing-principles.md` for claim drafting principles, antecedent basis rules, and common pitfalls.
 Load `../shared-references/patent-format-cn.md` for CN claim format (其特征在于).
 Load `../shared-references/patent-format-us.md` for US claim format (comprising, means-plus-function).
 Load `../shared-references/patent-format-ep.md` for EP two-part form (characterised in that).
 
-## Workflow
+### Workflow
 
-### Step 1: Determine Claim Style and Patent Type
+#### Step 1: Determine Claim Style and Patent Type
 
 Based on patent type and jurisdiction:
 
@@ -75,7 +56,7 @@ Based on target jurisdiction:
 | EP | Two-part (mandatory) | characterised in that | A method for..., comprising [known], characterised in that [inventive] |
 | ALL | Draft CN + US + EP | All of the above | All of the above |
 
-### Step 2: Draft Independent Claims
+#### Step 2: Draft Independent Claims
 
 **CRITICAL — Claims numbering (CN format):**
 - Claims must be numbered 1, 2, 3, ... continuously without gaps
@@ -118,7 +99,7 @@ For each claim category identified in INVENTION_DISCLOSURE.md:
 - [ ] Each element is necessary for patentability
 - [ ] Claim scope is broadest defensible over prior art
 
-### Step 3: Draft Dependent Claims
+#### Step 3: Draft Dependent Claims
 
 For each independent claim, draft 5-10 dependent claims that:
 
@@ -139,7 +120,7 @@ For each independent claim, draft 5-10 dependent claims that:
 - Should not be cumulative (each claim should be independently useful as a fallback)
 - Multiple dependent claims (US: only "or" references, not "and")
 
-### Step 4: Claim-to-Specification Mapping
+#### Step 4: Claim-to-Specification Mapping
 
 Create a preliminary mapping to verify enablement:
 
@@ -150,7 +131,7 @@ Create a preliminary mapping to verify enablement:
 
 If any element lacks specification support, add it to the specification requirements.
 
-### Step 5: Cross-Model Examiner Review
+#### Step 5: Cross-Model Examiner Review
 
 Call `REVIEWER_MODEL` via `mcp__codex__codex` with xhigh reasoning:
 
@@ -185,7 +166,7 @@ mcp__codex__codex:
     Provide an overall PATENTABILITY SCORE: 1-10.
 ```
 
-### Step 6: Revision Loop
+#### Step 6: Revision Loop
 
 If the examiner review identifies issues:
 
@@ -195,14 +176,14 @@ If the examiner review identifies issues:
 4. Re-submit to examiner for round 2 (use `mcp__codex__codex` with threadId)
 5. Repeat up to `MAX_CLAIM_REVISION_ROUNDS` times
 
-### Step 7: Output
+#### Step 7: Output
 
 Write `patent/CLAIMS.md`:
 
 ```markdown
-## Patent Claims
+### Patent Claims
 
-### Independent Claims
+#### Independent Claims
 
 #### Claim 1 — Method
 [formatted claim text]
@@ -210,7 +191,7 @@ Write `patent/CLAIMS.md`:
 #### Claim X — System/Apparatus
 [formatted claim text]
 
-### Dependent Claims
+#### Dependent Claims
 
 #### Claim 2 (depends on 1)
 [formatted claim text]
@@ -219,7 +200,7 @@ Write `patent/CLAIMS.md`:
 [formatted claim text]
 ...
 
-### Claims Summary Table
+#### Claims Summary Table
 
 | Claim | Type | Depends On | Key Limitation | Prior Art Avoidance |
 |-------|------|-----------|----------------|---------------------|
@@ -228,11 +209,11 @@ Write `patent/CLAIMS.md`:
 | X | System | — | [mirrors claim 1] | [same as claim 1] |
 ...
 
-### Examiner Review Summary
+#### Examiner Review Summary
 [Key findings and how they were addressed]
 ```
 
-## Key Rules
+### Key Rules
 
 - Claims are the single most important part of the patent. Everything else supports them.
 - Draft independent claims first, then dependent claims.
@@ -244,33 +225,3 @@ Write `patent/CLAIMS.md`:
 - Never fabricate claim language -- every element must come from the actual invention.
 - If drafting for ALL jurisdictions, produce separate claim sets for CN, US, and EP.
 - If `mcp__codex__codex` is not available, skip cross-model examiner review and note it in the output.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/claims-drafting/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>audit</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/claims-drafting/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

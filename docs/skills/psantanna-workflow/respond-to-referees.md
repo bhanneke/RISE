@@ -4,33 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>revision</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>revision-editing</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/respond-to-referees/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/respond-to-referees/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/respond-to-referees/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: respond-to-referees
-description: Generate a structured response-to-referees document from a referee report and the revised manuscript. Maps each referee comment to the specific revision, classifies coverage (addressed / partially / deferred / disagreement), and drafts polite but firm responses. Use during the R&R (revise-and-resubmit) stage of paper revision.
-argument-hint: "[referee-report-path] [revised-manuscript-path] [--no-verify]"
-allowed-tools: ["Read", "Write", "Edit", "Grep", "Glob", "Bash", "Task"]
-effort: high
----
-
-# Respond to Referees
+## Respond to Referees
 
 Produce a complete response-to-referees document by cross-referencing the referee report against the revised manuscript. Classify every concern, draft a courteous response for each, and flag anything unaddressed before submission.
 
-## Inputs
+### Inputs
 
 - `$0` — path to the referee report
 - `$1` — path to the revised manuscript
@@ -46,13 +26,13 @@ Supported formats and how to read them. In the commands below, `FILE` stands for
 
 If a required tool is missing or extraction fails, ask the user to provide a plain-text version (`.txt` or `.md`) and stop.
 
-## Workflow
+### Workflow
 
-### Step 0: Convert Inputs to Plain Text
+#### Step 0: Convert Inputs to Plain Text
 
 Before any parsing or grep, convert non-text inputs (`.pdf`, `.docx`, `.html`) to plain text using the table above. Keep both the temp text file (for grep) and the original (for citation page references).
 
-### Step 1: Parse the Referee Report
+#### Step 1: Parse the Referee Report
 
 1. Read the report end-to-end.
 2. Decompose into discrete numbered concerns. Common patterns:
@@ -65,7 +45,7 @@ Before any parsing or grep, convert non-text inputs (`.pdf`, `.docx`, `.html`) t
    - **Verbatim quote** of the most representative sentence (~25 words max)
    - **One-line summary** in your own words
 
-### Step 2: Locate Each Concern in the Revised Manuscript
+#### Step 2: Locate Each Concern in the Revised Manuscript
 
 For every concern:
 
@@ -74,7 +54,7 @@ For every concern:
 3. `Read` the surrounding context (±20 lines) to confirm the change addresses the concern.
 4. Note the page/section/line numbers in the **original** file (not the temp file) for the response document.
 
-### Step 3: Classify Coverage
+#### Step 3: Classify Coverage
 
 Assign one of four labels to each concern:
 
@@ -87,7 +67,7 @@ Assign one of four labels to each concern:
 
 If you cannot find any evidence of a revision OR a deliberate decision to defer/disagree, mark the concern **UNADDRESSED — REQUIRES AUTHOR INPUT** and surface it in the warning summary at the end.
 
-### Step 4: Draft Each Response
+#### Step 4: Draft Each Response
 
 For every concern, write a 3–6 sentence response in this structure:
 
@@ -98,7 +78,7 @@ For every concern, write a 3–6 sentence response in this structure:
 
 Tone conventions: courteous but firm; never defensive; never quote the referee back at length; use "we" for the author team; avoid "the referee is wrong" — prefer "we respectfully retain our original framing because…".
 
-### Step 5: Produce the Response Document
+#### Step 5: Produce the Response Document
 
 Write the output to `response-to-referees.md` (matching the template filename) or a path the user specifies. Use the structure in `templates/response-to-referees.md`:
 
@@ -107,7 +87,7 @@ Write the output to `response-to-referees.md` (matching the template filename) o
 3. **Per-referee sections** — for each referee, a numbered list of responses produced in Step 4.
 4. **Concern matrix** — at the end, a single table summarizing every concern, classification, and response location for editor convenience.
 
-### Step 5.5: Post-Flight Verification (MANDATORY, CoVe)
+#### Step 5.5: Post-Flight Verification (MANDATORY, CoVe)
 
 The response document's most hallucination-prone content is the set of "we added X on page Y" claims. Hallucinating these gets a paper desk-rejected on sight. Before declaring the response document final, run the Post-Flight Verification protocol from [`.claude/rules/post-flight-verification.md`](../../rules/post-flight-verification.md).
 
@@ -126,12 +106,12 @@ Downgrade to the classification the evidence supports:
 
 Opt-out: `--no-verify` flag. Not recommended — the referee will run this check themselves.
 
-### Step 6: Warning Summary (MANDATORY)
+#### Step 6: Warning Summary (MANDATORY)
 
 After the document is written, include this summary in your **final chat message to the user** (NOT inside the response document):
 
 ```
-## Unaddressed concerns requiring author input
+### Unaddressed concerns requiring author input
 
 - R1.3: [summary] — no evidence of revision found
 - R2.7: [summary] — flagged as deferred but no rationale yet drafted
@@ -139,22 +119,22 @@ After the document is written, include this summary in your **final chat message
 
 If everything is covered, the final message should say `All concerns addressed or explicitly classified.`
 
-## Output Files
+### Output Files
 
 - `response-to-referees.md` — the deliverable (filename matches `templates/response-to-referees.md`)
 - (Optional) `response-to-referees-matrix.csv` — machine-readable concern-to-response mapping for tracking across revisions
 
-## Pre-submission rehearsal
+### Pre-submission rehearsal
 
 **Tip.** Before drafting your response, consider running `/review-paper --peer --r2 <journal>` on the *revised* manuscript first. It simulates the next referee round against your revisions — catching the "Resolved / Partial / Not addressed" classification mistakes before the real referee does. See [`.claude/skills/review-paper/SKILL.md`](../review-paper/SKILL.md).
 
-## Cross-References
+### Cross-References
 
 - For first-pass manuscript review **before** receiving referee comments, use `/review-paper`.
 - For substantive content audits during revision, use `/slide-excellence` (works on `.tex` manuscripts via the domain-reviewer agent).
 - Save the response to `quality_reports/` if you want a permanent record alongside other quality reports.
 
-## Verification
+### Verification
 
 Before reporting completion:
 
@@ -162,33 +142,3 @@ Before reporting completion:
 2. Confirm every "Addressed" or "Partially addressed" classification cites a specific page/section/line.
 3. Confirm the warning summary was emitted (even if empty).
 4. Confirm the cover paragraph names the journal and manuscript ID correctly.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/respond-to-referees/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>pedrohcgs/claude-code-my-workflow</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../psantanna-workflow.md">Pedro Sant'Anna's Claude Code Workflow</a></dd>
-<dt><b>Category</b></dt><dd><code>revision</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>revision-editing</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow">⭐ pedrohcgs/claude-code-my-workflow</a><br><img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/respond-to-referees/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/psantanna-workflow/respond-to-referees/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/psantanna-workflow.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/review/data.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Data Review Checklist for Empirical Economics
 
----
-
-# Data Review Checklist for Empirical Economics
-
-## Purpose
+### Purpose
 
 Data quality determines the credibility of empirical research. No econometric method can fix fundamentally flawed data. This checklist provides a systematic approach to reviewing data used in economics research -- whether you are checking your own work, reviewing a coauthor's data preparation, or assessing the data quality in a paper you are refereeing.
 
 ---
 
-## 1. Source Documentation
+### 1. Source Documentation
 
 Every dataset used in a paper must be traceable to its origin. A reader or replicator should be able to understand exactly where the data came from and how it was obtained.
 
@@ -43,7 +31,7 @@ Every dataset used in a paper must be traceable to its origin. A reader or repli
 
 ---
 
-## 2. Sample Construction
+### 2. Sample Construction
 
 The path from the raw data to the analysis sample must be transparent and justified.
 
@@ -67,7 +55,7 @@ The path from the raw data to the analysis sample must be transparent and justif
 
 ---
 
-## 3. Missing Values
+### 3. Missing Values
 
 Missing data is ubiquitous and must be handled deliberately, not by default.
 
@@ -85,7 +73,7 @@ Missing data is ubiquitous and must be handled deliberately, not by default.
 
 ---
 
-## 4. Variable Definitions
+### 4. Variable Definitions
 
 Every variable in the analysis must be defined precisely enough that another researcher could construct it independently.
 
@@ -104,7 +92,7 @@ Every variable in the analysis must be defined precisely enough that another res
 
 ---
 
-## 5. Outliers
+### 5. Outliers
 
 Outliers can dominate regression estimates, particularly in small samples or with skewed distributions.
 
@@ -122,7 +110,7 @@ Outliers can dominate regression estimates, particularly in small samples or wit
 
 ---
 
-## 6. Measurement Quality
+### 6. Measurement Quality
 
 The quality of measurement directly affects the interpretability of estimates. Measurement error in the outcome variable reduces precision. Measurement error in the explanatory variable biases estimates (attenuation bias in the classical case).
 
@@ -137,7 +125,7 @@ The quality of measurement directly affects the interpretability of estimates. M
 
 ---
 
-## 7. Time and Currency
+### 7. Time and Currency
 
 **Check these items:**
 
@@ -149,7 +137,7 @@ The quality of measurement directly affects the interpretability of estimates. M
 
 ---
 
-## 8. Panel Data Specific Checks
+### 8. Panel Data Specific Checks
 
 **Check these items:**
 
@@ -161,7 +149,7 @@ The quality of measurement directly affects the interpretability of estimates. M
 
 ---
 
-## 9. Cross-Sectional Data Specific Checks
+### 9. Cross-Sectional Data Specific Checks
 
 **Check these items:**
 
@@ -172,7 +160,7 @@ The quality of measurement directly affects the interpretability of estimates. M
 
 ---
 
-## 10. Data Integrity and Replication
+### 10. Data Integrity and Replication
 
 **Check these items:**
 
@@ -185,7 +173,7 @@ The quality of measurement directly affects the interpretability of estimates. M
 
 ---
 
-## Red Flags in Data Descriptions
+### Red Flags in Data Descriptions
 
 These patterns in a paper's data section should raise concern during review:
 
@@ -196,28 +184,3 @@ These patterns in a paper's data section should raise concern during review:
 - **No balance table in treatment-control designs:** Without evidence of baseline comparability, treatment effects are uninterpretable.
 - **Implausible summary statistics:** Mean income of $1 million in a population survey, negative standard deviations, minimum values above the mean.
 - **Outcome and treatment variables from different time periods:** The treatment must precede the outcome. This seems obvious but is occasionally violated.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/review/data.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/review-data/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

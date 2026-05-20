@@ -4,29 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>slides</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>dissemination</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/slide-excellence/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/slide-excellence/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/slide-excellence/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: slide-excellence
-description: Multi-agent comprehensive slide review (visual + pedagogy + proofreading, plus TikZ / parity / substance conditionally). Use when user says "full review", "excellence pass", "comprehensive check", "review everything", "pre-release review", "slide excellence", or before teaching / shipping a deck. Fanout wrapper — for a single lens, use `/visual-audit`, `/pedagogy-review`, or `/proofread` directly.
-argument-hint: "[QMD or TEX filename] [--fast] [--skip-substance | --acknowledge-template-domain-reviewer]"
-allowed-tools: ["Read", "Grep", "Glob", "Write", "Bash", "Task"]
-context: fork
----
-
-# Slide Excellence Review
+## Slide Excellence Review
 
 Run a comprehensive multi-dimensional review of lecture slides. Multiple agents analyze the file independently, then results are synthesized.
 
@@ -41,7 +21,7 @@ Run a comprehensive multi-dimensional review of lecture slides. Multiple agents 
 
 **Important:** this orchestrator does **conditional** dispatch — it only spawns the subagents that can actually produce useful output for the given file. No more running `tikz-reviewer` on a file with zero TikZ, or `quarto-critic` on a deck without a counterpart.
 
-## Step 1: Identify the File
+### Step 1: Identify the File
 
 Parse `$ARGUMENTS` for the filename. Resolve path in `Quarto/` or `Slides/`.
 
@@ -51,17 +31,17 @@ Determine the file type:
 - `.qmd` → Quarto
 - `.md` → Markdown slides
 
-## Step 2: Pre-flight — Detect Conditions
+### Step 2: Pre-flight — Detect Conditions
 
 Before spawning any agent, probe the file to determine which reviews make sense:
 
 ```bash
 FILE="$resolved_path"
 
-# Has TikZ diagrams?
+## Has TikZ diagrams?
 has_tikz=$(grep -c '\\begin{tikzpicture}' "$FILE" 2>/dev/null); has_tikz=${has_tikz:-0}
 
-# For .qmd: is there a paired .tex in Slides/?
+## For .qmd: is there a paired .tex in Slides/?
 has_tex_pair="false"
 if [[ "$FILE" == *.qmd ]]; then
   base="$(basename "$FILE" .qmd)"
@@ -75,7 +55,7 @@ if [[ "$FILE" == *.qmd ]]; then
   done
 fi
 
-# For .tex: is there a paired .qmd in Quarto/?
+## For .tex: is there a paired .qmd in Quarto/?
 has_qmd_pair="false"
 if [[ "$FILE" == *.tex ]]; then
   base="$(basename "$FILE" .tex)"
@@ -88,7 +68,7 @@ if [[ "$FILE" == *.tex ]]; then
   done
 fi
 
-# Has R code chunks or referenced R scripts?
+## Has R code chunks or referenced R scripts?
 has_r="false"
 if grep -qE '```\{r|source\(.*\.R\)' "$FILE" 2>/dev/null; then
   has_r="true"
@@ -105,7 +85,7 @@ Quarto pair:  Quarto/Lecture2.qmd (found)
 R chunks:     none
 ```
 
-## Step 3: Domain-reviewer customization check (MANDATORY for .tex)
+### Step 3: Domain-reviewer customization check (MANDATORY for .tex)
 
 Before spawning the substance-review agent on a `.tex` file, verify `.claude/agents/domain-reviewer.md` has been customized for this project. The ship-state domain-reviewer is a **template** — running it unmodified produces generic "are assumptions stated?" feedback, not real domain review.
 
@@ -136,7 +116,7 @@ What would you like to do?
 
 Wait for user input. Do NOT silently run domain-reviewer on a template.
 
-## Step 4: Run Review Agents in Parallel
+### Step 4: Run Review Agents in Parallel
 
 Spawn only the agents whose conditions hold:
 
@@ -174,19 +154,19 @@ Spawn only the agents whose conditions hold:
 
 **De-duplication:** if the user has already run one of these skills on this file in the current session (e.g., ran `/proofread` first, now running `/slide-excellence`), ask whether to reuse the existing report or re-run. Default: reuse (saves tokens).
 
-## Step 5: Synthesize Combined Summary
+### Step 5: Synthesize Combined Summary
 
 Only include sections for agents that actually ran.
 
 ```markdown
-# Slide Excellence Review: [Filename]
+## Slide Excellence Review: [Filename]
 
 **File:** [path]
 **Type:** [Beamer / Quarto / Markdown]
 **Detected:** TikZ=N | pair=[path or none] | R=[yes/no]
 **Agents spawned:** [A, B, C, D, G] (skipped: E [no pair], F [no R])
 
-## Overall Quality Score: [EXCELLENT / GOOD / NEEDS WORK / POOR]
+### Overall Quality Score: [EXCELLENT / GOOD / NEEDS WORK / POOR]
 
 | Dimension | Critical | Medium | Low |
 |-----------|----------|--------|-----|
@@ -196,12 +176,12 @@ Only include sections for agents that actually ran.
 | TikZ (if ran) | | | |
 | Substance (if ran) | | | |
 
-### Critical Issues (Immediate Action Required)
-### Medium Issues (Next Revision)
-### Recommended Next Steps
+#### Critical Issues (Immediate Action Required)
+#### Medium Issues (Next Revision)
+#### Recommended Next Steps
 ```
 
-## Step 6: Report Token/Time Budget
+### Step 6: Report Token/Time Budget
 
 After completion, print an estimate:
 
@@ -212,7 +192,7 @@ cost-conscious reviews, run individual subagent skills directly
 (/proofread, /visual-audit, /pedagogy-review).
 ```
 
-## Flag Reference
+### Flag Reference
 
 | Flag | Effect |
 |---|---|
@@ -220,7 +200,7 @@ cost-conscious reviews, run individual subagent skills directly
 | `--acknowledge-template-domain-reviewer` | Proceed with the un-customized domain-reviewer anyway; you accept that the substance review will be generic. |
 | `--fast` | Spawn a single synthesis agent reading the file directly, rather than parallel subagents. Cheaper (~8k vs ~50k tokens) but less thorough. |
 
-## Quality Score Rubric
+### Quality Score Rubric
 
 | Score | Critical | Medium | Meaning |
 |-------|----------|--------|---------|
@@ -229,38 +209,8 @@ cost-conscious reviews, run individual subagent skills directly
 | Needs Work | 6-10 | 16-30 | Significant revision |
 | Poor | 11+ | 31+ | Major restructuring |
 
-## Why conditional dispatch matters
+### Why conditional dispatch matters
 
 The previous version of this orchestrator spawned **all 6** subagents regardless of file type. Running `tikz-reviewer` on a TikZ-free deck produced an empty report (wasted tokens). Running `quarto-critic` without a counterpart file produced a "no pair to compare" report (wasted tokens). And running `domain-reviewer` without customization produced generic "are assumptions stated?" feedback that authors learned to ignore (eroded trust in the whole orchestrator).
 
 Conditional dispatch cuts token cost roughly in half on typical `.qmd`-only files and doubles trust by never running a reviewer that can't produce useful output.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/slide-excellence/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>pedrohcgs/claude-code-my-workflow</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../psantanna-workflow.md">Pedro Sant'Anna's Claude Code Workflow</a></dd>
-<dt><b>Category</b></dt><dd><code>slides</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>dissemination</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow">⭐ pedrohcgs/claude-code-my-workflow</a><br><img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/slide-excellence/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/psantanna-workflow/slide-excellence/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/psantanna-workflow.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,27 +4,15 @@
 
 Revise an existing grant or research proposal
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>revision</code></div><div><b>Field:</b> social-sciences</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>revision-editing</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/proposal-revise.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/proposal-revise/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/proposal-revise.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Revise Proposal
+## Revise Proposal
 *v2.4 — Renamed from revise-proposal; noun-first grouping. Adds donor profile lookup and funder-conflict flagging during revision.*
 *v2.x — Reviewer-comment categorization, voice-pack enforcement, automatic backup before save*
 
 Apply reviewer, collaborator, or self-review comments to an existing proposal draft while maintaining voice consistency. Use when applying feedback to a proposal draft.
 
-## Overview
+### Overview
 
 This skill takes an existing proposal draft and feedback (dictated, typed, or from a file), applies the changes, and outputs an updated draft with a change summary. Designed for iterative revision — by you, collaborators, or co-PIs.
 
@@ -32,7 +20,7 @@ This skill takes an existing proposal draft and feedback (dictated, typed, or fr
 
 **Pre-approved tools:** Google Workspace MCP and filesystem reads. Call them directly — no Task agents.
 
-## Voice Pack (Optional)
+### Voice Pack (Optional)
 
 If you maintain a voice pack:
 
@@ -43,9 +31,9 @@ If you maintain a voice pack:
 
 If not found, the skill warns and continues with general academic voice rules.
 
-## Instructions
+### Instructions
 
-### Step 1: Find the Draft
+#### Step 1: Find the Draft
 
 Look for the draft in this order:
 1. Path provided in `$ARGUMENTS` (first positional argument)
@@ -56,7 +44,7 @@ Read the full draft. Parse the revision notes section (if present) to understand
 
 Also read `.claude/CLAUDE.md` for project config.
 
-### Step 1.5: Donor Profile Lookup
+#### Step 1.5: Donor Profile Lookup
 
 After finding the draft, identify the funder (from draft filename, header, or content):
 
@@ -64,7 +52,7 @@ After finding the draft, identify the funder (from draft filename, header, or co
 2. **If found:** Read it. Display "What They Value" and "What to Avoid" to the user. These inform revision decisions — especially when feedback conflicts with funder priorities.
 3. **If not found:** Note: "No donor profile for [funder]. Proceeding without funder-specific guidance."
 
-### Step 2: Collect Feedback
+#### Step 2: Collect Feedback
 
 Feedback can come from any combination of these sources:
 
@@ -107,7 +95,7 @@ Proceed? [Y/n/edit]
 
 **Note:** The categorization and confirmation gate apply ONLY to formal reviewer comments (`reviewer:path`). For inline feedback and comments files, proceed directly to revisions.
 
-### Step 3: Apply Revisions
+#### Step 3: Apply Revisions
 
 For each piece of feedback:
 
@@ -128,7 +116,7 @@ For each piece of feedback:
 - If filling a PLACEHOLDER, remove the marker and replace with real content
 - If a comment is ambiguous, make your best interpretation and note it in the change summary
 
-### Step 4: Backup, Save, and Report
+#### Step 4: Backup, Save, and Report
 
 **Backup first.** Before overwriting, copy the current draft to `[filename].bak`.
 
@@ -136,7 +124,7 @@ For each piece of feedback:
 
 ```markdown
 ---
-## Revision Notes
+### Revision Notes
 
 **Draft created:** [original date]
 **Last revised:** [today] by `/proposal-revise`
@@ -168,7 +156,7 @@ Next steps:
 3. Run /review-writing for voice consistency check
 ```
 
-## Arguments
+### Arguments
 
 `$ARGUMENTS`:
 - Draft file path (first positional argument)
@@ -176,21 +164,21 @@ Next steps:
 - `reviewer:path` — formal reviewer comments (triggers categorization)
 - `nodiff` — skip the change summary
 
-## Examples
+### Examples
 
 ```
-# Self-review
+## Self-review
 /proposal-revise 05_Submissions/Grants/Draft.md
 Tighten the intro. Cut 200 words from methodology.
 
-# Collaborator feedback from file
+## Collaborator feedback from file
 /proposal-revise Draft.md comments:~/Downloads/feedback.txt
 
-# Formal reviewer comments
+## Formal reviewer comments
 /proposal-revise Draft.md reviewer:~/Downloads/reviews.pdf
 ```
 
-## Error Handling
+### Error Handling
 
 - If draft not found: Check the default draft directory for alternatives, suggest closest match
 - If voice pack not found: Continue with general voice rules
@@ -200,7 +188,7 @@ Tighten the intro. Cut 200 words from methodology.
 
 ---
 
-## Customization Points
+### Customization Points
 
 **To set up this skill for your workflow:**
 
@@ -211,33 +199,3 @@ Tighten the intro. Cut 200 words from methodology.
 3. **Donor profiles** (Step 1.5): The `~/.claude-assistant/donors/` directory is optional. If you maintain funder profiles, update the path to match your structure. If not, the skill continues without funder-specific guidance.
 
 4. **Example paths** in the Examples section also reference the default draft directory — update them to match your own structure.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/proposal-revise.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>revision</code></dd>
-<dt><b>Field</b></dt><dd>social-sciences</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>revision-editing</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/proposal-revise.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/proposal-revise/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

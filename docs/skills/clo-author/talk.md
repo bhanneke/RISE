@@ -4,28 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>slides</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>none declared</code></div><div><b>Updated:</b> 2026-05-11</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>dissemination</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/talk/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/talk/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: talk
-description: Create and audit presentations (Beamer or Quarto RevealJS). Combines talk creation, visual audit, and compilation. Replaces /create-talk, /visual-audit, /compile-latex (for talks).
-argument-hint: "[mode: create | audit | compile] [format: job-market | seminar | short | lightning] [--beamer] [file path]"
-allowed-tools: Read,Grep,Glob,Write,Edit,Task,Bash
----
-
-# Talk
+## Talk
 
 Create, audit, or compile presentations (Beamer or Quarto RevealJS).
 
@@ -33,10 +14,10 @@ Create, audit, or compile presentations (Beamer or Quarto RevealJS).
 
 ---
 
-## Modes
+### Modes
 
-### `/talk create [format]` — Create Quarto RevealJS Talk (default)
-### `/talk create [format] --beamer` — Create Beamer Talk
+#### `/talk create [format]` — Create Quarto RevealJS Talk (default)
+#### `/talk create [format] --beamer` — Create Beamer Talk
 
 Generate a presentation from the paper.
 
@@ -105,7 +86,7 @@ Report to the user:
 
 ---
 
-### `/talk audit [file]` — Visual Audit
+#### `/talk audit [file]` — Visual Audit
 
 Check existing slides for layout issues.
 
@@ -119,7 +100,7 @@ Run visual quality checks:
 
 ---
 
-### `/talk compile [file]` — Compile Talk
+#### `/talk compile [file]` — Compile Talk
 
 Automated compilation via latexmk:
 ```bash
@@ -133,7 +114,7 @@ cd paper/quarto && quarto render [file]
 
 ---
 
-## Bundled Resources
+### Bundled Resources
 
 | Resource | Path | What It Contains |
 |----------|------|-----------------|
@@ -148,7 +129,7 @@ The Storyteller agent reads these resources before building slides. The narrativ
 
 ---
 
-## Principles
+### Principles
 
 - **Paper is authoritative.** Every claim must appear in the paper.
 - **Figures over tables.** Audiences absorb figures instantly. Put regression tables in backup slides for Q&A.
@@ -157,33 +138,3 @@ The Storyteller agent reads these resources before building slides. The narrativ
 - **Audience calibration.** Job market = demonstrate rigor and command of the literature. Seminar = sell the interesting result. Short = method and key finding. Lightning = sell the idea in one breath.
 - **Advisory scoring.** Talk scores don't block commits.
 - **Worker-critic pairing.** Storyteller creates, storyteller-critic critiques. Never skip the review.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/talk/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>hugosantanna/clo-author</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../clo-author.md">Clo-Author skills</a></dd>
-<dt><b>Category</b></dt><dd><code>slides</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>dissemination</code></dd>
-<dt><b>License</b></dt><dd>none declared</dd>
-<dt><b>Last update</b></dt><dd>2026-05-11</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/hugosantanna/clo-author">⭐ hugosantanna/clo-author</a><br><img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/hugosantanna/clo-author" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/clo-author/talk/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/clo-author.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

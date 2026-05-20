@@ -4,47 +4,28 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/patent-review/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/patent-review/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: patent-review
-description: "Get an external patent examiner review of a patent application. Use when user says \"专利审查\", \"patent review\", \"审查意见\", \"examiner review\", or wants critical feedback on patent claims and specification."
-argument-hint: [patent-directory-or-scope]
-allowed-tools: Bash(*), Read, Grep, Glob, Write, Edit, Agent, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Patent Examiner Review via Codex MCP (xhigh reasoning)
+## Patent Examiner Review via Codex MCP (xhigh reasoning)
 
 Get a multi-round patent examiner review of the patent application based on: **$ARGUMENTS**
 
 Adapted from `/research-review`. The reviewer persona is a patent examiner, not a paper reviewer.
 
-## Constants
+### Constants
 
 - `REVIEWER_MODEL = gpt-5.5` — Model used via Codex MCP
 - `REVIEW_ROUNDS = 2` — Number of review rounds
 - `EXAMINER_PERSONA = "patent-examiner"` — GPT-5.4 persona
 
-## Prerequisites
+### Prerequisites
 
 - Codex MCP Server configured:
   ```bash
   claude mcp add codex -s user -- codex mcp-server
   ```
 
-## Inputs
+### Inputs
 
 1. `patent/CLAIMS.md` — all drafted claims
 2. `patent/specification/` — all specification sections
@@ -52,9 +33,9 @@ Adapted from `/research-review`. The reviewer persona is a patent examiner, not 
 4. `patent/PRIOR_ART_REPORT.md` — known prior art
 5. `patent/INVENTION_DISCLOSURE.md` — invention structure
 
-## Workflow
+### Workflow
 
-### Step 1: Gather Patent Context
+#### Step 1: Gather Patent Context
 
 Before calling the external reviewer, compile a comprehensive briefing:
 1. Read all claims (independent + dependent)
@@ -62,7 +43,7 @@ Before calling the external reviewer, compile a comprehensive briefing:
 3. Read prior art report for context
 4. Identify: core inventive concept, claim scope, known prior art, target jurisdiction
 
-### Step 2: Round 1 — Full Examiner Review
+#### Step 2: Round 1 — Full Examiner Review
 
 Send to `REVIEWER_MODEL` via `mcp__codex__codex` with xhigh reasoning:
 
@@ -126,7 +107,7 @@ mcp__codex__codex:
     Be rigorous and specific. This is a real examination.
 ```
 
-### Step 3: Implement Fixes (Round 1)
+#### Step 3: Implement Fixes (Round 1)
 
 Based on the examiner's office action:
 
@@ -146,7 +127,7 @@ For each fix:
 - Show the specific change (old claim -> new claim)
 - Explain how the fix addresses the examiner's concern
 
-### Step 4: Round 2 — Follow-Up Review
+#### Step 4: Round 2 — Follow-Up Review
 
 Use `mcp__codex__codex` with the threadId from Round 1:
 
@@ -172,17 +153,17 @@ mcp__codex__codex:
     4. Any remaining grounds for rejection?
 ```
 
-### Step 5: Generate Improvement Report
+#### Step 5: Generate Improvement Report
 
 Write `patent/PATENT_REVIEW.md`:
 
 ```markdown
-## Patent Review Report
+### Patent Review Report
 
-### Application Summary
+#### Application Summary
 [Title, claims count, jurisdiction]
 
-### Review Round 1
+#### Review Round 1
 #### Office Action Summary
 [Key findings from examiner]
 
@@ -194,7 +175,7 @@ Write `patent/PATENT_REVIEW.md`:
 
 #### Score After Round 1: [X]/10
 
-### Review Round 2
+#### Review Round 2
 #### Follow-Up Assessment
 [Are previous rejections overcome?]
 
@@ -203,7 +184,7 @@ Write `patent/PATENT_REVIEW.md`:
 
 #### Score After Round 2: [X]/10
 
-### Recommendations
+#### Recommendations
 [Final recommendations before proceeding to jurisdiction formatting]
 - [ ] All CRITICAL issues resolved
 - [ ] All MAJOR issues resolved or argued
@@ -211,7 +192,7 @@ Write `patent/PATENT_REVIEW.md`:
 - [ ] Ready for jurisdiction formatting
 ```
 
-## Key Rules
+### Key Rules
 
 - The reviewer persona must be a patent examiner, not a paper reviewer or academic.
 - Always use `model_reasoning_effort: "xhigh"` for maximum analysis depth.
@@ -219,33 +200,3 @@ Write `patent/PATENT_REVIEW.md`:
 - Document all changes in the review report for traceability.
 - If the patentability score is below 5/10 after Round 2, recommend significant rework before filing.
 - The review is advisory -- actual prosecution may proceed differently.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/patent-review/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/patent-review/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

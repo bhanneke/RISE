@@ -4,35 +4,13 @@
 
 Multi-perspective peer review
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/paper-review/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/paper-review/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-review
-description: "Guides self-review of YOUR OWN academic paper before submission with adversarial stress-testing. Core method: 5-aspect checklist (contribution sufficiency, writing clarity, results quality, testing completeness, method design), counterintuitive protocol (reject-first simulation, delete unsupported claims, score trust, promote limitations, attack novelty), reverse-outlining, and figure/table quality checks. Use when: user wants to self-review or self-check their own paper draft before submission, stress-test their claims, prepare for reviewer criticism, or mentions 'self-review', 'check my draft', 'is my paper ready'. Do NOT use for writing a peer review of someone else's paper, and do NOT use after receiving actual reviews (use paper-rebuttal instead)."
-allowed-tools: "read_file edit_file write_file think_tool"
-metadata:
-  author: EvoScientist
-  version: '1.0.0'
-  tags: [core, writing, academic-writing, peer-review]
----
-
-# Paper Review
+## Paper Review
 
 A systematic approach to self-reviewing academic papers before submission. Covers a 5-aspect review checklist, reverse-outlining for structural clarity, figure/table quality checks, and rebuttal preparation.
 
-## When to Use This Skill
+### When to Use This Skill
 
 - User wants to review or check a paper draft before submission
 - User asks for feedback on paper quality or completeness
@@ -41,13 +19,13 @@ A systematic approach to self-reviewing academic papers before submission. Cover
 
 > If the user has already received reviewer comments and needs to write a rebuttal, use the `paper-rebuttal` skill instead.
 
-## Prerequisites
+### Prerequisites
 
 Before starting review, confirm the `paper-writing` handoff checklist is satisfied: all sections drafted, claims anchored to evidence, limitation section present, figures finalized, and no unresolved `\todo{}` markers. If any item is incomplete, finish writing before reviewing.
 
 ---
 
-## The Perfectionist Approach
+### The Perfectionist Approach
 
 > Strive for perfection: review your own paper, consider every question a reviewer might ask, and address them one by one.
 
@@ -56,7 +34,7 @@ The best defense against negative reviews is a thorough self-review:
 2. **Seek advisor feedback**: Ask your advisor to review — the more feedback, the better
 3. **Address everything**: For every potential weakness you find, either fix it or prepare a defense
 
-## Counterintuitive Review Protocol
+### Counterintuitive Review Protocol
 
 Run this protocol before final polishing:
 
@@ -70,9 +48,9 @@ See [references/counterintuitive-review.md](references/counterintuitive-review.m
 
 ---
 
-## 5-Aspect Self-Review Checklist
+### 5-Aspect Self-Review Checklist
 
-### Aspect 1: Contribution Sufficiency
+#### Aspect 1: Contribution Sufficiency
 
 > The paper does not provide readers with new knowledge.
 
@@ -85,7 +63,7 @@ Ask these questions to evaluate whether the contribution is sufficient:
 
 **Red flag**: If "yes" to any of these, strengthen the contribution narrative or add more technical depth.
 
-### Aspect 2: Writing Clarity
+#### Aspect 2: Writing Clarity
 
 > Missing technical details, not reproducible; a method module lacks motivation.
 
@@ -97,7 +75,7 @@ Ask these questions to evaluate whether the contribution is sufficient:
 
 **Red flag**: If reproducibility is in doubt, add implementation details or supplementary material.
 
-### Aspect 3: Experimental Results Quality
+#### Aspect 3: Experimental Results Quality
 
 > Only slightly better than previous methods; or better than previous methods but still not good enough.
 
@@ -107,7 +85,7 @@ Ask these questions to evaluate whether the contribution is sufficient:
 
 **Red flag**: If improvements are marginal, emphasize other advantages (speed, generalizability, simplicity) or add more challenging test cases.
 
-### Aspect 4: Experimental Testing Completeness
+#### Aspect 4: Experimental Testing Completeness
 
 > Missing ablation studies; missing important baselines; missing important evaluation metrics; data too simple.
 
@@ -119,7 +97,7 @@ Ask these questions to evaluate whether the contribution is sufficient:
 
 **Red flag**: Missing ablations or baselines is one of the most common reasons for rejection.
 
-### Aspect 5: Method Design Issues
+#### Aspect 5: Method Design Issues
 
 > Experimental setting is impractical; method has technical flaws; method is not robust; new method's costs outweigh its benefits.
 
@@ -132,7 +110,7 @@ Ask these questions to evaluate whether the contribution is sufficient:
 
 ---
 
-## Critical Reminder: Claims Must Have Support
+### Critical Reminder: Claims Must Have Support
 
 > Every claim in the paper (especially in the Abstract and Introduction) must be correct and supported by experiments. Some reviewers will reject a paper directly for unsupported claims.
 
@@ -145,7 +123,7 @@ An unsupported claim — especially in the Abstract or Introduction — can be g
 
 ---
 
-## Reverse-Outlining Technique
+### Reverse-Outlining Technique
 
 > Extract the writing plan from finished paragraphs and check whether the flow is smooth.
 
@@ -164,9 +142,9 @@ Apply this to:
 
 ---
 
-## Figure and Table Quality Checklist
+### Figure and Table Quality Checklist
 
-### Figures
+#### Figures
 - [ ] Pipeline figure highlights novelty (not just explanation)
 - [ ] Pipeline figure looks distinct from prior work
 - [ ] Teaser figure is compelling and self-contained
@@ -175,7 +153,7 @@ Apply this to:
 - [ ] Color-blind friendly (avoid red-green only distinctions)
 - [ ] Figures are referenced in the text
 
-### Tables
+#### Tables
 - [ ] Captions are above the table
 - [ ] No vertical lines
 - [ ] Using booktabs (`\toprule`, `\midrule`, `\bottomrule`)
@@ -186,7 +164,7 @@ Apply this to:
 
 ---
 
-## Conclusion and Limitation Check
+### Conclusion and Limitation Check
 
 - [ ] Conclusion summarizes contributions and key results
 - [ ] **Limitation section is present** (reviewers frequently flag its absence)
@@ -196,7 +174,7 @@ Apply this to:
 
 ---
 
-## Pre-Submission Final Checks
+### Pre-Submission Final Checks
 
 - [ ] All references are complete (no "?" or missing entries)
 - [ ] Author information matches venue requirements
@@ -211,7 +189,7 @@ Apply this to:
 
 ---
 
-## Handoff to Rebuttal
+### Handoff to Rebuttal
 
 When reviews come back, use the `paper-rebuttal` skill for:
 - Score diagnosis and review color-coding
@@ -226,33 +204,3 @@ Your self-review artifacts (reject-first simulation, claim-evidence audit, prebu
 See [references/review-checklist.md](references/review-checklist.md) for an expanded version of the 5-aspect checklist with more detailed sub-questions.
 
 For adversarial stress testing and reject-risk thresholds, see [references/counterintuitive-review.md](references/counterintuitive-review.md).
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/paper-review/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/paper-review/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

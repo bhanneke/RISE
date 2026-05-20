@@ -4,28 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>slides</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>dissemination</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/slides-polish/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/slides-polish/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: slides-polish
-description: "Per-page Codex review + targeted python-pptx / Beamer fixes for academic talk slides. Use AFTER /paper-slides (or any externally generated PPTX/Beamer) when the deck looks 'mostly OK' but the user wants a final pass that aligns visual weight with a reference, bumps PPTX fonts to projector-readable size, kills italic style leaks, fixes text-frame overflow, and catches per-slide layout drift. Trigger phrases: \"polish slides\", \"slides 排版不对\", \"PPTX 字体太小\", \"和 Beamer 比一下\", \"per-page review\", \"和 codex 一页一页过\"."
-argument-hint: "[slides-dir-or-pptx] — reference: <ref-pdf> [— style: generic | why-rf | neurips | icml | iclr | cvpr] [— effort: lite | balanced | max | beast] [— interactive]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex
----
-
-# Slides Polish: Per-Page Codex Review + Targeted Layout Fixes
+## Slides Polish: Per-Page Codex Review + Targeted Layout Fixes
 
 Polish a generated slide deck — Beamer (`.tex` + `.pdf`) and/or PPTX — by
 running **per-page Codex review** against a reference visual and applying
@@ -35,7 +16,7 @@ until each slide reads at the same visual weight as the reference.
 
 Polish: **$ARGUMENTS**
 
-## What This Skill Is — and Is NOT
+### What This Skill Is — and Is NOT
 
 **This skill polishes layout and typography only.** It is the post-generation
 visual pass for an existing deck.
@@ -54,7 +35,7 @@ If you do not yet have a deck, run `/paper-slides` first. If you want to
 change content, go back to `/paper-slides` Phases 1-2 (or rewrite the outline
 manually) — do not run `/slides-polish` for that.
 
-## Constants
+### Constants
 
 - **REVIEWER_MODEL = `gpt-5.5`** — Codex MCP model for per-page review. xhigh reasoning is non-negotiable (see `../shared-references/effort-contract.md`). `gpt-5.4` is acceptable when the user has no `gpt-5.5` access; `gpt-5.5` is preferred for visual nuance.
 - **REVIEWER_REASONING = `xhigh`** — Hard invariant; the effort knob does **not** change this.
@@ -71,7 +52,7 @@ manually) — do not run `/slides-polish` for that.
 > - `/slides-polish talk_beamer/ — reference: ./reference_talk.pdf — style: generic — effort: max`
 > - `/slides-polish talk.pptx — reference: ./why_rf_2025.pdf — interactive`
 
-## Prerequisites
+### Prerequisites
 
 The skill discovers and reports missing prerequisites at Phase 0; it does not
 auto-install. Required:
@@ -87,7 +68,7 @@ Fallback rules:
 - If `pdftoppm`/`mutool` missing → ask user to install, do not proceed (visual review without rendered pages produces low-confidence Codex feedback).
 - If `soffice` missing and PPTX is the input → ask user to export PDF from their slide tool; resume after.
 
-## Inputs
+### Inputs
 
 Discovered automatically from `$ARGUMENTS` and the project directory:
 
@@ -99,7 +80,7 @@ Discovered automatically from `$ARGUMENTS` and the project directory:
 4. **Effort** (`— effort: lite | balanced | max | beast`, default `balanced`). See Effort Levels.
 5. **Interactive flag** (`— interactive`). Pauses after each per-slide fix.
 
-## Output Layout
+### Output Layout
 
 ```
 <deck-dir>/
@@ -130,9 +111,9 @@ Note: existing skills like `/paper-slides` may use a co-located state file
 (e.g., `slides/SLIDES_STATE.json`). `/slides-polish` keeps its state
 in `.aris/` to keep the deck directory free of polish-specific cruft.
 
-## Workflow
+### Workflow
 
-### Phase 0: Inventory, Inspect, Triage
+#### Phase 0: Inventory, Inspect, Triage
 
 1. **Discover inputs**: parse `$ARGUMENTS`; locate slides files; check prerequisites; emit a brief inventory report.
 2. **Confirm reference PDF**: validate the file exists and has the same slide count (or at least ≥ slide count) as the input. If a mismatch, ask user.
@@ -154,7 +135,7 @@ CLI:
 
 ```
 python3 inspect_pptx.py --pptx <input.pptx> --out <state-dir>/INSPECT_<stem>.json
-# exit 0 on success, 2 on missing python-pptx, 3 on parse failure
+## exit 0 on success, 2 on missing python-pptx, 3 on parse failure
 ```
 
 Recurse through groups; surface table cells and placeholders. Convert all
@@ -233,7 +214,7 @@ mcp__codex__codex:
 
 Save matrix to `TRIAGE.md`. Present to user before deep work begins.
 
-### Phase 1: Per-Page Review + Fix Loop
+#### Phase 1: Per-Page Review + Fix Loop
 
 For each slide flagged `NEEDS-WORK` or `BLOCKER`, run a focused fresh-thread
 Codex call. Apply the returned fix immediately (subject to `INTERACTIVE`),
@@ -315,7 +296,7 @@ def find_shape(slide, contains: str, *, kind: str | None = None):
 
 For grouped shapes, recurse into `shape.shapes` if `shape_type == GROUP`.
 
-### Phase 2: Beamer-Side Polish (if Beamer source present)
+#### Phase 2: Beamer-Side Polish (if Beamer source present)
 
 Same per-page review pattern, but on `main.tex` source + compiled PDF. Fixes
 are direct `Edit` tool operations on a `main_polished.tex` working copy
@@ -352,7 +333,7 @@ dependencies:
   set EA fonts explicitly. Mixed Chinese-English in titles needs the EA font
   hint or characters fall back to Latin.
 
-### Phase 3: PPTX-Side Polish
+#### Phase 3: PPTX-Side Polish
 
 Apply font scaling **first** (Phase 3a), then layout fix loop (Phase 3b).
 Bumping fonts without resizing frames creates overflow.
@@ -423,7 +404,7 @@ the inspector's bbox primitives.
   "[anonymized]"). NEVER infer or fill in real titles, counts, or URLs.
   See `../shared-references/experiment-integrity.md`.
 
-### Phase 4: Verification + Re-Triage
+#### Phase 4: Verification + Re-Triage
 
 1. **Re-render PPTX → PDF** (LibreOffice or user-export).
 2. **Re-render PDF → PNG** for visual.
@@ -437,7 +418,7 @@ the inspector's bbox primitives.
    submission counts). If found, fail closed and report.
 6. **Final emit**: `<stem>_polished.pptx` (and `.pdf` if rendered).
 
-### Phase 5: Changelog
+#### Phase 5: Changelog
 
 Write `POLISH_CHANGELOG.md`:
 
@@ -450,17 +431,17 @@ Slide  3 …      | …                                                         
 This makes every polish round auditable and reversible (each line maps to
 a `_polished_v{i}` checkpoint).
 
-## Style Presets
+### Style Presets
 
 Presets influence default colors and the element library only — the
 **reference PDF is always the visual ground truth**, not the preset.
 
-### `generic` (default)
+#### `generic` (default)
 
 Black + one accent (default `#2563EB`). No callout-box fills beyond a single
 neutral background where load-bearing.
 
-### `why-rf` (academic-minimalist, example preset)
+#### `why-rf` (academic-minimalist, example preset)
 
 Anchor: a 2025 academic talk on rectified flow with the following discipline.
 
@@ -495,12 +476,12 @@ Anchor: a 2025 academic talk on rectified flow with the following discipline.
 **Discipline**: fewer color boxes than typical "designerly" templates. Cosmetic
 cards become plain bullets; marketing flourishes are removed.
 
-### `neurips` / `icml` / `iclr` / `cvpr`
+#### `neurips` / `icml` / `iclr` / `cvpr`
 
 Inherit color schemes from `/paper-slides`. Polish-loop and font-scaling rules
 unchanged.
 
-## Effort Levels
+### Effort Levels
 
 See `../shared-references/effort-contract.md` for the full contract.
 
@@ -513,7 +494,7 @@ See `../shared-references/effort-contract.md` for the full contract.
 
 `reasoning_effort: xhigh` is non-negotiable across all levels.
 
-## Hard Invariants
+### Hard Invariants
 
 These are non-negotiable:
 
@@ -528,7 +509,7 @@ These are non-negotiable:
 9. **`reasoning_effort: xhigh`** is invariant across all `effort` levels.
 10. **Robust shape selection**: edits use unique-prefix `text_frame.text` matching with assert-unique semantics. If duplicate matches, abort and request disambiguation.
 
-## Review Tracing
+### Review Tracing
 
 After each per-page Codex call, save the trace following
 `../shared-references/review-tracing.md`. Per-call file under
@@ -542,7 +523,7 @@ After each per-page Codex call, save the trace following
 
 Both the triage pass and the per-slide passes are traced.
 
-## Prior Skill Relationship
+### Prior Skill Relationship
 
 - Runs **after** `/paper-slides` (or any externally generated deck).
 - Compatible with `/paper-poster` workflow (same color discipline) but
@@ -552,7 +533,7 @@ Both the triage pass and the per-slide passes are traced.
 - Does **not** call or compose with `/paper-slides` content phases — strict
   separation.
 
-## When NOT to Use
+### When NOT to Use
 
 - Slides are still in **content drafting** phase — go back to `/paper-slides`
   Phases 1-2.
@@ -562,7 +543,7 @@ Both the triage pass and the per-slide passes are traced.
   hand-edit.
 - The user explicitly says "no Codex" — this skill is Codex-driven by design.
 
-## Empirical Origin
+### Empirical Origin
 
 This skill was extracted from a polish run on a Chinese-spoken academic
 conference talk (May 2026). The convergent observation: **once content
@@ -572,7 +553,7 @@ Codex review with concrete python-pptx / `.tex` fix snippets converges in
 catalogs in Phases 2-3 (Beamer template gotchas, PPTX font scaling, layout
 fix loop, Chinese-font hints) are the durable artifact.
 
-## Parameter Pass-Through
+### Parameter Pass-Through
 
 When invoked via `/research-pipeline` or another orchestrator, parameters
 flow as:
@@ -583,33 +564,3 @@ flow as:
 - `— interactive` → `INTERACTIVE = true`.
 
 Other args (e.g., `— venue`) are ignored by this skill and not propagated.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/slides-polish/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>slides</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>dissemination</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/slides-polish/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

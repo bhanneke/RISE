@@ -4,48 +4,36 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>data-handling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-acquisition</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/data/crypto-defi.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Crypto & DeFi Data Skill
 
----
+### On-Chain Data Sources
 
-# Crypto & DeFi Data Skill
-
-## On-Chain Data Sources
-
-### Flipside Crypto
+#### Flipside Crypto
 - SQL interface to decoded blockchain data
 - Key schemas: `ethereum.core`, `ethereum.defi`, `solana.core`
 - Authentication: `x-api-key` header
 - Rate limits: vary by plan; cache aggressively
 
-### Allium
+#### Allium
 - SQL interface via `https://mcp.allium.so`
 - Authentication: `X-API-KEY` header
 - Cross-chain coverage: Ethereum, Solana, Arbitrum, Optimism, Base, Polygon
 
-### Dune Analytics
+#### Dune Analytics
 - SQL (DuneSQL, Trino-based) on decoded EVM data
 - Public queries can be forked; API for programmatic access
 - Good for quick exploration; Flipside/Allium better for large extracts
 
-### CoinGecko
+#### CoinGecko
 - Free API for token prices, market cap, volume
 - `https://api.coingecko.com/api/v3/`
 - Rate limit: 10-30 calls/min (free tier)
 
-## Common DeFi Data Patterns
+### Common DeFi Data Patterns
 
-### DEX / AMM Data
+#### DEX / AMM Data
 
 ```sql
 -- Uniswap V2/V3 swap events
@@ -77,7 +65,7 @@ FROM ethereum.defi.ez_lp_actions
 WHERE platform = 'uniswap-v3';
 ```
 
-### Lending Protocol Data
+#### Lending Protocol Data
 
 ```sql
 -- Aave/Compound borrow & supply events
@@ -94,7 +82,7 @@ WHERE protocol_name IN ('aave-v3', 'compound-v3')
   AND block_timestamp >= '2023-01-01';
 ```
 
-### Token Transfers & Prices
+#### Token Transfers & Prices
 
 ```sql
 -- ERC-20 token transfers
@@ -121,7 +109,7 @@ FROM ethereum.price.ez_prices_hourly
 WHERE symbol = 'WETH';
 ```
 
-### MEV & Transaction Ordering
+#### MEV & Transaction Ordering
 
 ```sql
 -- Sandwich attacks / MEV transactions
@@ -136,30 +124,30 @@ FROM ethereum.mev.ez_mev_transactions
 WHERE mev_type = 'sandwich';
 ```
 
-## Research-Relevant Variables
+### Research-Relevant Variables
 
-### Market Microstructure
+#### Market Microstructure
 - **Spread**: Bid-ask spread inferred from swap prices within same block
 - **Depth**: Total liquidity at various price ticks (V3) or total reserves (V2)
 - **Volume**: USD swap volume aggregated hourly/daily
 - **Price impact**: Percentage price change per unit trade size
 - **Slippage**: Difference between expected and executed price
 
-### DeFi-Specific Measures
+#### DeFi-Specific Measures
 - **TVL (Total Value Locked)**: Sum of assets deposited in protocol
 - **Utilization rate**: Borrowed / (borrowed + available) in lending protocols
 - **Impermanent loss**: Divergence loss from providing liquidity vs. holding
 - **Gas costs**: Transaction fees as a real friction in trade execution
 - **Protocol revenue**: Fees collected by the protocol treasury
 
-### Wallet-Level Panel Data
+#### Wallet-Level Panel Data
 - **Active addresses**: Unique addresses transacting per period
 - **Wallet age**: Blocks since first transaction
 - **Portfolio concentration**: Herfindahl index of token holdings
 - **Transaction frequency**: Trades per period per wallet
 - **Net flow**: Inflows minus outflows to a protocol or wallet
 
-## Data Quality Issues
+### Data Quality Issues
 
 1. **Bot / MEV activity**: A large fraction of DEX transactions are bots. Filter or control for:
    - Sandwich attack transactions
@@ -177,7 +165,7 @@ WHERE mev_type = 'sandwich';
    - L2s (Arbitrum, Optimism): Transaction ordering may differ from L1
    - Solana: Account model differs from EVM; different data schemas
 
-## Natural Experiments in DeFi
+### Natural Experiments in DeFi
 
 DeFi is rich with natural experiments because protocol governance creates exogenous policy changes:
 
@@ -191,28 +179,3 @@ DeFi is rich with natural experiments because protocol governance creates exogen
 - **Bridge failures**: Cross-chain bridge exploits as exogenous liquidity shocks
 
 These provide identification strategies (DiD, RDD, event studies) that are often more credible than in traditional finance settings because the policy changes are transparent, timestamped, and immutable.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/data/crypto-defi.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>data-handling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-acquisition</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/data-crypto-defi/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

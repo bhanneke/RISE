@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/semantic-scholar/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/semantic-scholar/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: semantic-scholar
-description: Search published venue papers (IEEE, ACM, Springer, etc.) via Semantic Scholar API. Complements /arxiv (preprints) with citation counts, venue metadata, and TLDR. Use when user says "search semantic scholar", "find IEEE papers", "find journal papers", "venue papers", "citation search", or wants published literature beyond arXiv preprints.
-argument-hint: query-or-paper-id
-allowed-tools: Bash(*), Read, Write
----
-
-# Semantic Scholar Paper Search
+## Semantic Scholar Paper Search
 
 Search topic or paper ID: $ARGUMENTS
 
-## Role & Positioning
+### Role & Positioning
 
 This skill is the **published venue** counterpart to `/arxiv`:
 
@@ -40,7 +21,7 @@ This skill is the **published venue** counterpart to `/arxiv`:
 
 **Do NOT duplicate arXiv's job.** If results contain an `externalIds.ArXiv` field, the paper is also on arXiv — note this but do not re-fetch from arXiv.
 
-## Constants
+### Constants
 
 - **MAX_RESULTS = 10** — Default number of search results.
 - **S2_FETCHER** — canonical name `semantic_scholar_fetch.py`, resolved per
@@ -62,9 +43,9 @@ This skill is the **published venue** counterpart to `/arxiv`:
 > - `/semantic-scholar "topic" - sort: citations` — bulk search sorted by citation count
 > - `/semantic-scholar "DOI:10.1109/..."` — fetch a single paper by DOI
 
-## Workflow
+### Workflow
 
-### Step 1: Parse Arguments
+#### Step 1: Parse Arguments
 
 Parse `$ARGUMENTS` for directives:
 
@@ -82,7 +63,7 @@ Parse `$ARGUMENTS` for directives:
 
 If the argument matches a DOI pattern (`10.XXXX/...`), a Semantic Scholar ID (40-char hex), or a prefixed ID (`ARXIV:...`, `CorpusId:...`), skip search and go directly to Step 3.
 
-### Step 2: Search Papers
+#### Step 2: Search Papers
 
 Resolve `$S2_FETCHER` via the canonical strict-safe chain (see
 [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2):
@@ -128,7 +109,7 @@ If `$S2_FETCHER` is empty (Policy D1 cascade), fall back to inline Python using 
 
 > **Note**: `--venue` requires exact venue names (e.g. "IEEE Transactions on Signal Processing"), not partial matches like "IEEE". Avoid using `--venue` in automated flows — prefer `--publication-types` + `--fields-of-study`.
 
-### Step 3: Fetch Details for a Specific Paper
+#### Step 3: Fetch Details for a Specific Paper
 
 When a single paper ID is requested:
 
@@ -142,13 +123,13 @@ Where PAPER_ID can be:
 - CorpusId: `CorpusId:219792180`
 - S2 ID: `f9314fd99be5f2b1b3efcfab87197d578160d553`
 
-### Step 4: De-duplicate Against arXiv
+#### Step 4: De-duplicate Against arXiv
 
 For each result, check `externalIds.ArXiv`:
 - If present → paper is also on arXiv. Note this in output but do NOT re-fetch via `/arxiv`.
 - If absent → paper is **venue-only** (e.g. IEEE without preprint). This is the unique value of this skill.
 
-### Step 5: Present Results
+#### Step 5: Present Results
 
 Present results as a table:
 
@@ -164,12 +145,12 @@ For each paper, also show:
 - **TLDR**: if available, show the one-line summary
 - **Also on arXiv**: if `externalIds.ArXiv` exists, note the arXiv ID
 
-### Step 6: Detailed Summary
+#### Step 6: Detailed Summary
 
 For each paper (or top 5 if many results):
 
 ```markdown
-## [Title]
+### [Title]
 
 - **Venue**: [venue name] ([publicationVenue.type]: journal/conference)
 - **Year**: [year] | **Citations**: [citationCount]
@@ -182,7 +163,7 @@ For each paper (or top 5 if many results):
 - **Also on arXiv**: [ArXiv ID if exists, else "No"]
 ```
 
-### Step 7: Update Research Wiki (if active)
+#### Step 7: Update Research Wiki (if active)
 
 **Required when `research-wiki/` exists in the project**; skip silently
 otherwise. When the wiki dir exists, resolve `$WIKI_SCRIPT` per the
@@ -221,7 +202,7 @@ handwrite `papers/<slug>.md`**. See
 Backfill with `/research-wiki sync --arxiv-ids <id1>,<id2>,...` for
 arXiv-available papers.
 
-### Step 8: Final Output
+#### Step 8: Final Output
 
 Summarize what was done:
 
@@ -238,7 +219,7 @@ Suggest follow-up skills:
 /novelty-check "idea"    - verify novelty against literature
 ```
 
-## Key Rules
+### Key Rules
 
 - **Default to filtered search**: Always apply `--fields-of-study` and `--publication-types` unless user says `- fields: all`. Without filters, S2 returns cross-discipline noise (linguistics, psychology, etc.).
 - **Citation count is gold**: S2's citation data is its main advantage over arXiv. Always show `citationCount` prominently and use it to rank/prioritize results.
@@ -248,33 +229,3 @@ Suggest follow-up skills:
 - **TLDR may be null**: Some publishers (notably IEEE) elide the TLDR field. Fall back to showing the first sentence of the abstract.
 - **openAccessPdf may be empty**: Many IEEE papers are closed access. Always provide the DOI link as fallback.
 - If the S2 API is unreachable, suggest using `/arxiv` or `/research-lit "topic" - sources: web` as fallback.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/semantic-scholar/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/semantic-scholar/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

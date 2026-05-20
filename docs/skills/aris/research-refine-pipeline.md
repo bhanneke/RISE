@@ -4,31 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/research-refine-pipeline/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/research-refine-pipeline/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: research-refine-pipeline
-description: 'Run an end-to-end workflow that chains `research-refine` and `experiment-plan`. Use when the user wants a one-shot pipeline from vague research direction to focused final proposal plus detailed experiment roadmap, or asks to "串起来", build a pipeline, do it end-to-end, or generate both the method and experiment plan together.'
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Research Refine Pipeline: End-to-End Method and Experiment Planning
+## Research Refine Pipeline: End-to-End Method and Experiment Planning
 
 Refine and concretize: **$ARGUMENTS**
 
-## Overview
+### Overview
 
 Use this skill when the user does not want to stop at a refined method. The goal is to produce a coherent package that includes:
 
@@ -47,11 +29,11 @@ For stage-specific detail, read these sibling skills only when needed:
 - `../research-refine/SKILL.md`
 - `../experiment-plan/SKILL.md`
 
-## Core Rule
+### Core Rule
 
 Do not plan a large experiment suite on top of an unstable method. First stabilize the thesis. Then turn the stable thesis into experiments.
 
-## Default Outputs
+### Default Outputs
 
 - `refine-logs/FINAL_PROPOSAL.md`
 - `refine-logs/REVIEW_SUMMARY.md`
@@ -60,9 +42,9 @@ Do not plan a large experiment suite on top of an unstable method. First stabili
 - `refine-logs/EXPERIMENT_TRACKER.md`
 - `refine-logs/PIPELINE_SUMMARY.md`
 
-## Workflow
+### Workflow
 
-### Phase 0: Triage the Starting Point
+#### Phase 0: Triage the Starting Point
 
 - Extract the problem, rough approach, constraints, resources, and target venue.
 - Check whether `refine-logs/FINAL_PROPOSAL.md` already exists and still matches the current request.
@@ -70,7 +52,7 @@ Do not plan a large experiment suite on top of an unstable method. First stabili
 - If the proposal is already strong and aligned, reuse it and jump to experiment planning.
 - If in doubt, prefer re-running `research-refine` rather than planning experiments for the wrong method.
 
-### Phase 1: Method Refinement Stage
+#### Phase 1: Method Refinement Stage
 
 Run the `research-refine` workflow and keep its V3 philosophy intact:
 
@@ -89,7 +71,7 @@ Exit this stage only when these are explicit:
 
 If the verdict is still `REVISE`, continue into experiment planning only if the remaining weaknesses are clearly documented.
 
-### Phase 2: Planning Gate
+#### Phase 2: Planning Gate
 
 Before the experiment stage, write a short gate check:
 
@@ -101,7 +83,7 @@ Before the experiment stage, write a short gate check:
 
 If these answers are not crisp, tighten the final proposal first.
 
-### Phase 3: Experiment Planning Stage
+#### Phase 3: Experiment Planning Stage
 
 Run the `experiment-plan` workflow grounded in:
 
@@ -117,47 +99,47 @@ Ensure the experiment plan covers:
 - a frontier necessity check if applicable
 - run order, budget, and decision gates
 
-### Phase 4: Integration Summary
+#### Phase 4: Integration Summary
 
 Write `refine-logs/PIPELINE_SUMMARY.md`:
 
 ```markdown
-# Pipeline Summary
+## Pipeline Summary
 
 **Problem**: [problem]
 **Final Method Thesis**: [one sentence]
 **Final Verdict**: [READY / REVISE / RETHINK]
 **Date**: [today]
 
-## Final Deliverables
+### Final Deliverables
 - Proposal: `refine-logs/FINAL_PROPOSAL.md`
 - Review summary: `refine-logs/REVIEW_SUMMARY.md`
 - Experiment plan: `refine-logs/EXPERIMENT_PLAN.md`
 - Experiment tracker: `refine-logs/EXPERIMENT_TRACKER.md`
 
-## Contribution Snapshot
+### Contribution Snapshot
 - Dominant contribution:
 - Optional supporting contribution:
 - Explicitly rejected complexity:
 
-## Must-Prove Claims
+### Must-Prove Claims
 - [Claim 1]
 - [Claim 2]
 
-## First Runs to Launch
+### First Runs to Launch
 1. [Run]
 2. [Run]
 3. [Run]
 
-## Main Risks
+### Main Risks
 - [Risk]:
 - [Mitigation]:
 
-## Next Action
+### Next Action
 - Proceed to `/run-experiment`
 ```
 
-### Phase 5: Present a Brief Summary to the User
+#### Phase 5: Present a Brief Summary to the User
 
 ```
 Pipeline complete.
@@ -176,14 +158,14 @@ Best next step:
 - /run-experiment
 ```
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 
@@ -196,7 +178,7 @@ Best next step:
 - If the method does not need a frontier primitive, say that clearly and avoid forcing one.
 - Prefer the staged skills when the user only needs one stage; use this skill for the integrated flow.
 
-## Composing with Other Skills
+### Composing with Other Skills
 
 ```
 /research-refine-pipeline -> one-shot method + experiment planning
@@ -204,33 +186,3 @@ Best next step:
 /experiment-plan   -> experiment planning only
 /run-experiment    -> execution
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/research-refine-pipeline/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/research-refine-pipeline/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

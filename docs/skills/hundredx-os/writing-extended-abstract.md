@@ -4,21 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/writing/extended-abstract.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Workshop Extended Abstract Blueprint
+## Workshop Extended Abstract Blueprint
 
 This skill defines the structure and argumentation pattern for workshop extended abstracts (3–8 pages), as derived from actual accepted submissions to WISE and the Workshop on Digital Markets.
 
@@ -26,11 +14,11 @@ An extended abstract is **not** a long version of a journal abstract. It is a co
 
 ---
 
-## Section Structure
+### Section Structure
 
 Use the following section headings and flow. This is the actual structure that has been accepted at top IS workshops.
 
-### 1. Introduction (~1–1.5 pages)
+#### 1. Introduction (~1–1.5 pages)
 
 Open with a concrete, grounded description of the phenomenon — anchored in real-world facts, market sizes, regulatory developments, or observable trends. Not generic claims about "digital transformation" or "emerging technologies."
 
@@ -46,7 +34,7 @@ Open with a concrete, grounded description of the phenomenon — anchored in rea
 
 **Example pivot to contribution:** "This paper conceptualizes how smart durable goods producers may leverage resale fees to shift value capture from platforms back to producers — a process we term 'de-platformization.'"
 
-### 2. Conceptual Framework / Model (~1.5–2.5 pages)
+#### 2. Conceptual Framework / Model (~1.5–2.5 pages)
 
 This is the theoretical core. Present either:
 - A **conceptual framework** with hypothesis development (empirical papers), or
@@ -68,7 +56,7 @@ This is the theoretical core. Present either:
 
 **Key guideline:** The model/framework section must make the contribution intellectually clear even without the empirical results. A reader should understand *why* the hypothesized effects occur, not just *that* they are hypothesized.
 
-### 3. Empirical Setting / Research Design (~0.5–1 page)
+#### 3. Empirical Setting / Research Design (~0.5–1 page)
 
 Describe the empirical context, data, and method concisely.
 
@@ -80,7 +68,7 @@ Describe the empirical context, data, and method concisely.
 
 **Example:** "Our research design leverages the quasi-natural experiment of Yuga Labs' rewarding strategy... We obtained data for all transactions from Flipside Crypto."
 
-### 4. Preliminary Empirical Results (~0.5–1 page)
+#### 4. Preliminary Empirical Results (~0.5–1 page)
 
 Present initial findings. "Preliminary" is acceptable — workshops expect work-in-progress.
 
@@ -91,7 +79,7 @@ Present initial findings. "Preliminary" is acceptable — workshops expect work-
 4. Note robustness if available: "To ensure robustness, we also examine the rewarding strategy of another creator..."
 5. Be honest about what is not yet done: "In the next stage of our research, we will incorporate primary market data to analyze..."
 
-### 5. Conclusion and Discussion (~0.5–1 page)
+#### 5. Conclusion and Discussion (~0.5–1 page)
 
 Wrap up with contributions, implications, limitations, and next steps.
 
@@ -102,13 +90,13 @@ Wrap up with contributions, implications, limitations, and next steps.
 4. **Next steps** (1–2 sentences): What will be done before the full paper? "In the next stage, we will..."
 5. **Broader relevance** (1–2 sentences, optional): Connect to wider trends or policy.
 
-### 6. References
+#### 6. References
 
 Standard bibliography. Use author-year style (natbib/plainnat). Keep it tight — only cite what is used in the text.
 
 ---
 
-## Argumentation Flow Across Sections
+### Argumentation Flow Across Sections
 
 The argument builds as a chain:
 
@@ -122,7 +110,7 @@ Each section's opening sentence connects to the previous section's conclusion. T
 
 ---
 
-## Length and Formatting
+### Length and Formatting
 
 - **Total length:** 3–8 pages depending on the workshop's call for papers. Check the CFP.
 - **Figures and tables count** toward the page limit. Use them selectively — 1–2 figures for the framework, 1 results table.
@@ -131,7 +119,7 @@ Each section's opening sentence connects to the previous section's conclusion. T
 
 ---
 
-## What NOT to Do
+### What NOT to Do
 
 - **Do NOT use the "Motivation / Expected Contribution / Feedback from Workshop" structure.** This is a generic template that signals the work is not yet developed. Use the section structure above.
 - **Do NOT write the introduction as a literature review.** The introduction motivates the research question. Literature is woven in to support the argument, not surveyed comprehensively.
@@ -140,28 +128,3 @@ Each section's opening sentence connects to the previous section's conclusion. T
 - **Do NOT write a teaser.** The extended abstract must contain actual substance — the framework, the model, preliminary evidence. "We plan to investigate..." without a framework is a research proposal, not an extended abstract.
 - **Do NOT use vague contribution statements.** Not "we contribute to the literature on X." Instead: "We are the first to derive [specific thing] for [specific context], allowing [specific new analysis]."
 - **Do NOT include an abstract section at the top.** An extended abstract *is* the abstract. Jump straight into the Introduction. (Exception: some CFPs require a short 150-word abstract before the extended abstract — if so, follow the separate abstract skill.)
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/writing/extended-abstract.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/writing-extended-abstract/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

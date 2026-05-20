@@ -4,38 +4,19 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>meta</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/meta-optimize/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/meta-optimize/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: meta-optimize
-description: "Analyze ARIS usage logs and propose optimizations to SKILL.md files, reviewer prompts, and workflow defaults. Outer-loop harness optimization inspired by Meta-Harness (Lee et al., 2026). Use when user says \"优化技能\", \"meta optimize\", \"improve skills\", \"分析使用记录\", or wants to optimize ARIS's own harness components based on accumulated experience."
-argument-hint: [target-skill-or-all]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Meta-Optimize: Outer-Loop Harness Optimization for ARIS
+## Meta-Optimize: Outer-Loop Harness Optimization for ARIS
 
 Analyze accumulated usage logs and propose optimizations for: **$ARGUMENTS**
 
-## Context
+### Context
 
 ARIS is a **research harness** — a system of skills, bridges, workflows, and artifact contracts that wraps around LLMs to orchestrate research. This skill implements a prototype **outer loop** that observes how the harness is used and proposes improvements to the harness itself (not to the research artifacts it produces).
 
 Inspired by Meta-Harness (Lee et al., 2026): the key insight is that harness design matters as much as model weights, and harness engineering can be partially automated by logging execution traces and using them to guide improvements.
 
-## What This Skill Optimizes (Harness Components)
+### What This Skill Optimizes (Harness Components)
 
 | Component | Example | Optimizable? |
 |-----------|---------|:---:|
@@ -48,14 +29,14 @@ Inspired by Meta-Harness (Lee et al., 2026): the key insight is that harness des
 
 **Not optimized**: The research artifacts themselves (papers, code, experiments). That's what the regular workflows do.
 
-## Prerequisites
+### Prerequisites
 
 1. **Logging must be active.** Copy `templates/claude-hooks/meta_logging.json` into your project's `.claude/settings.json` (or merge the hooks section).
 2. **Sufficient data.** At least 5 complete workflow runs logged in `.aris/meta/events.jsonl`. The skill will check and warn if insufficient.
 
-## Workflow
+### Workflow
 
-### Step 0: Check Data Availability
+#### Step 0: Check Data Availability
 
 ```bash
 EVENTS_FILE=".aris/meta/events.jsonl"
@@ -77,7 +58,7 @@ if [ "$SKILL_INVOCATIONS" -lt 5 ]; then
 fi
 ```
 
-### Step 1: Analyze Usage Patterns
+#### Step 1: Analyze Usage Patterns
 
 Read `.aris/meta/events.jsonl` and compute:
 
@@ -103,12 +84,12 @@ Read `.aris/meta/events.jsonl` and compute:
 
 Present findings as a structured summary table.
 
-### Step 2: Identify Optimization Targets
+#### Step 2: Identify Optimization Targets
 
 Based on Step 1, rank optimization opportunities by expected impact:
 
 ```markdown
-## Optimization Opportunities (ranked)
+### Optimization Opportunities (ranked)
 
 | # | Target | Signal | Proposed Change | Expected Impact |
 |---|--------|--------|-----------------|-----------------|
@@ -120,7 +101,7 @@ Based on Step 1, rank optimization opportunities by expected impact:
 If `$ARGUMENTS` specifies a target skill, focus analysis on that skill only.
 If `$ARGUMENTS` is empty or "all", analyze all skills with sufficient data.
 
-### Step 3: Generate Patch Proposals
+#### Step 3: Generate Patch Proposals
 
 For each optimization target, generate a concrete diff:
 
@@ -141,7 +122,7 @@ For each optimization target, generate a concrete diff:
 - Never change artifact schemas or MCP bridge config in v1
 - Never change behavior that would break existing user workflows
 
-### Step 4: Cross-Model Review of Patches
+#### Step 4: Cross-Model Review of Patches
 
 Send each patch to GPT-5.4 xhigh for adversarial review:
 
@@ -170,20 +151,20 @@ mcp__codex__codex:
     If score < 7, explain what additional evidence would be needed.
 ```
 
-### Step 5: Present Results
+#### Step 5: Present Results
 
 Output a structured report:
 
 ```markdown
-# ARIS Meta-Optimization Report
+## ARIS Meta-Optimization Report
 
 **Date**: [today]
 **Data**: [N] events, [M] skill invocations, [K] sessions
 **Target**: [skill name or "all"]
 
-## Proposed Changes
+### Proposed Changes
 
-### Change 1: [title]
+#### Change 1: [title]
 - **Target**: [skill/file:line]
 - **Signal**: [what the data shows]
 - **Patch**: [diff]
@@ -191,22 +172,22 @@ Output a structured report:
 - **Reviewer Notes**: [summary]
 - **Status**: ✅ Recommended / ⚠️ Needs more data / ❌ Rejected
 
-### Change 2: ...
+#### Change 2: ...
 
-## Changes NOT Made (insufficient evidence)
+### Changes NOT Made (insufficient evidence)
 - [pattern observed but too few samples]
 
-## Recommendations
+### Recommendations
 - [ ] Apply Change 1 (reviewer approved)
 - [ ] Collect more data for Change 3 (need N more runs)
 - [ ] Consider manual review of Change 2
 
-## Next Steps
+### Next Steps
 Run `/meta-optimize apply 1` to apply a specific change, or
 `/meta-optimize apply all` to apply all recommended changes.
 ```
 
-### Step 6: Apply Changes (if user approves)
+#### Step 6: Apply Changes (if user approves)
 
 If user runs `/meta-optimize apply [N]`:
 1. Back up original SKILL.md to `.aris/meta/backups/`
@@ -216,7 +197,7 @@ If user runs `/meta-optimize apply [N]`:
 
 **Never auto-apply without user approval.**
 
-## Key Rules
+### Key Rules
 
 - **Log-driven, not speculative.** Every proposed change must cite specific data from the event log. No "I think this would be better."
 - **Minimal patches.** Change one thing at a time. Don't rewrite entire skills.
@@ -226,7 +207,7 @@ If user runs `/meta-optimize apply [N]`:
 - **Honest about uncertainty.** If the data is insufficient, say so. Don't optimize on noise.
 - **Portable.** Optimizations should improve the skill for all users, not just one user's style. If a change seems user-specific, flag it.
 
-## Event Schema Reference
+### Event Schema Reference
 
 The log at `.aris/meta/events.jsonl` contains JSONL records with these shapes:
 
@@ -241,7 +222,7 @@ The log at `.aris/meta/events.jsonl` contains JSONL records with these shapes:
 {"ts":"...","session":"...","event":"session_end"}
 ```
 
-## Triggering
+### Triggering
 
 This skill is NOT part of the standard W1→W1.5→W2→W3→W4 pipeline. It is a **maintenance workflow** with three trigger mechanisms:
 
@@ -257,46 +238,17 @@ This skill is NOT part of the standard W1→W1.5→W2→W3→W4 pipeline. It is 
 
 **After each `/meta-optimize` run**, the skill writes the current timestamp to `.aris/meta/.last_optimize` so the readiness check only counts new invocations.
 
-## Acknowledgements
+### Acknowledgements
 
 Inspired by [Meta-Harness](https://arxiv.org/abs/2603.28052) (Lee et al., 2026) — end-to-end optimization of model harnesses via filesystem-based experience access and agentic code search.
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
 
-## Review Tracing
+### Review Tracing
 
 After each `mcp__codex__codex` or `mcp__codex__codex-reply` reviewer call, save the trace following `shared-references/review-tracing.md` (Policy C — forensic; never silently skip). Use `save_trace.sh` (resolved per the chain in `shared-references/integration-contract.md` §2) or write files directly to `.aris/traces/<skill>/<date>_run<NN>/`. Respect the `--- trace:` parameter (default: `full`).
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/meta-optimize/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>meta</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/meta-optimize/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

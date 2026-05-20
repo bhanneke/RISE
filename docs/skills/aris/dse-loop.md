@@ -4,34 +4,15 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/dse-loop/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/dse-loop/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: dse-loop
-description: "Autonomous design space exploration loop for computer architecture and EDA. Runs a program, analyzes results, tunes parameters, and iterates until objective is met or timeout. Use when user says \"DSE\", \"design space exploration\", \"sweep parameters\", \"optimize\", \"find best config\", or wants iterative parameter tuning."
-argument-hint: [task-description — include program, parameters, objective, and timeout]
-allowed-tools: Bash(*), Read, Grep, Glob, Write, Edit, Agent
----
-
-# DSE Loop: Autonomous Design Space Exploration
+## DSE Loop: Autonomous Design Space Exploration
 
 Autonomously explore a design space: run → analyze → pick next parameters → repeat, until the objective is met or timeout is reached. Designed for computer architecture and EDA problems.
 
-## Context: $ARGUMENTS
+### Context: $ARGUMENTS
 
-## Safety Rules — READ FIRST
+### Safety Rules — READ FIRST
 
 **NEVER do any of the following:**
 - `sudo` anything
@@ -43,7 +24,7 @@ Autonomously explore a design space: run → analyze → pick next parameters �
 
 **If a step requires any of the above, STOP and report to the user.**
 
-## Constants (override via $ARGUMENTS)
+### Constants (override via $ARGUMENTS)
 
 | Constant | Default | Description |
 |----------|---------|-------------|
@@ -54,7 +35,7 @@ Autonomously explore a design space: run → analyze → pick next parameters �
 
 Override inline: `/dse-loop "task desc — timeout: 4h, max_iterations: 100, patience: 15"`
 
-## Typical Use Cases
+### Typical Use Cases
 
 | Problem | Program | Parameters | Objective |
 |---------|---------|-----------|-----------|
@@ -66,9 +47,9 @@ Override inline: `/dse-loop "task desc — timeout: 4h, max_iterations: 100, pat
 | Formal verification | abc/sby | bound depth, engine, timeout per property | maximize coverage in time budget |
 | Memory subsystem | cacti / ramulator | bank count, row buffer policy, scheduling | optimize bandwidth/energy |
 
-## Workflow
+### Workflow
 
-### Phase 0: Parse Task & Setup
+#### Phase 0: Parse Task & Setup
 
 1. **Parse $ARGUMENTS** to extract:
    - **Program**: what to run (command, script, or Makefile target)
@@ -131,7 +112,7 @@ Override inline: `/dse-loop "task desc — timeout: 4h, max_iterations: 100, pat
 
 6. **Run baseline** (iteration 0): run the program with default/current parameters. Record the baseline metric. This is the point to beat.
 
-### Phase 1: Initial Exploration
+#### Phase 1: Initial Exploration
 
 **Goal**: Quickly survey the space to understand which parameters matter most.
 
@@ -149,7 +130,7 @@ Override inline: `/dse-loop "task desc — timeout: 4h, max_iterations: 100, pat
 4. Analyze: which parameters have the most impact on the objective?
 5. Narrow the search to the most sensitive parameters
 
-### Phase 2: Directed Search
+#### Phase 2: Directed Search
 
 **Goal**: Converge toward the optimum by making informed choices.
 
@@ -199,7 +180,7 @@ For each iteration:
 
 8. **Decide next step** → back to step 1
 
-### Phase 3: Refinement (if time allows)
+#### Phase 3: Refinement (if time allows)
 
 If the search converged and there's still time budget:
 
@@ -207,32 +188,32 @@ If the search converged and there's still time budget:
 2. **Sensitivity analysis**: which parameters can be relaxed without hurting the metric?
 3. **Constraint boundary**: if a constraint is nearly binding, explore near-feasible points
 
-### Phase 4: Report
+#### Phase 4: Report
 
 Write `dse_results/DSE_REPORT.md`:
 
 ```markdown
-# Design Space Exploration Report
+## Design Space Exploration Report
 
 **Task**: [description]
 **Date**: [start] → [end]
 **Total iterations**: N
 **Wall-clock time**: X hours Y minutes
 
-## Objective
+### Objective
 - **Metric**: [what was optimized]
 - **Direction**: minimize / maximize
 - **Baseline**: [value]
 - **Best found**: [value] ([improvement]% better than baseline)
 
-## Best Configuration
+### Best Configuration
 | Parameter | Baseline | Best |
 |-----------|----------|------|
 | param1    | default  | best_val |
 | param2    | default  | best_val |
 | ...       | ...      | ... |
 
-## Search Trajectory
+### Search Trajectory
 | Iteration | param1 | param2 | ... | Metric | Notes |
 |-----------|--------|--------|-----|--------|-------|
 | 0 (baseline) | ... | ... | ... | ... | baseline |
@@ -240,17 +221,17 @@ Write `dse_results/DSE_REPORT.md`:
 | ... | ... | ... | ... | ... | ... |
 | N (best) | ... | ... | ... | ... | ★ best |
 
-## Parameter Sensitivity
+### Parameter Sensitivity
 - **param1**: [high/medium/low impact] — [brief explanation]
 - **param2**: [high/medium/low impact] — [brief explanation]
 
-## Pareto Frontier (if multi-objective)
+### Pareto Frontier (if multi-objective)
 [Table or description of non-dominated points]
 
-## Stopping Reason
+### Stopping Reason
 [timeout / max_iterations / patience / success_criteria_met]
 
-## Recommendations
+### Recommendations
 - [actionable insights from the exploration]
 - [which parameters matter most]
 - [suggested follow-up explorations]
@@ -261,7 +242,7 @@ Also generate a summary plot if matplotlib is available:
 - Parameter sensitivity bar chart
 - Pareto frontier scatter (if multi-objective)
 
-## State Recovery
+### State Recovery
 
 If the context window compacts mid-run, the loop recovers from `DSE_STATE.json` + `dse_log.csv`:
 
@@ -269,7 +250,7 @@ If the context window compacts mid-run, the loop recovers from `DSE_STATE.json` 
 2. Read `dse_log.csv` for full history
 3. Resume from next iteration
 
-## Key Rules
+### Key Rules
 
 - Work AUTONOMOUSLY — do not ask the user for permission at each iteration
 - **Every run must be logged** — even failed runs, constraint violations, errors. The log is the ground truth.
@@ -281,48 +262,18 @@ If the context window compacts mid-run, the loop recovers from `DSE_STATE.json` 
 - If a run crashes, log the error, skip that point, and continue with the next
 - If the same crash repeats 3 times with different configs, stop and report the issue
 
-## Example Invocations
+### Example Invocations
 
 ```
-# Minimal — just name the parameters, let the agent figure out ranges
+## Minimal — just name the parameters, let the agent figure out ranges
 /dse-loop "Run gem5 mcf benchmark. Tune: L1D_SIZE, L2_SIZE, ROB_ENTRIES. Objective: maximize IPC. Timeout: 3h"
 
-# Partial — some ranges given, some not
+## Partial — some ranges given, some not
 /dse-loop "Run make synth. Tune: CLOCK_PERIOD [5ns, 4ns, 3ns, 2ns], FLATTEN, ABC_SCRIPT. Objective: minimize area at timing closure. Timeout: 1h"
 
-# Fully specified — explicit ranges for everything
+## Fully specified — explicit ranges for everything
 /dse-loop "Simulate processor with FIFO_DEPTH [4,8,16,32], ISSUE_WIDTH [1,2,4], PREFETCH [on,off]. Run: make sim. Objective: max throughput/area. Timeout: 2h"
 
-# Real-world: PDAG-SFA formal verification tuning
+## Real-world: PDAG-SFA formal verification tuning
 /dse-loop "Run python run_bmc.py. Tune: BMC_DEPTH, ENGINE, TIMEOUT_PER_PROP. Objective: maximize properties proved. Timeout: 2h"
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/dse-loop/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/dse-loop/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

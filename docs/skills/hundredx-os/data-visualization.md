@@ -4,25 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>data-handling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-acquisition</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/data/visualization.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Data Visualization Guide for Economics Research
 
----
+### Chart Selection by Data Relationship
 
-# Data Visualization Guide for Economics Research
-
-## Chart Selection by Data Relationship
-
-### Scatter Plot — Correlations and Cross-Sectional Relationships
+#### Scatter Plot — Correlations and Cross-Sectional Relationships
 
 Use when showing the relationship between two continuous variables across units.
 
@@ -36,14 +24,14 @@ ax.set_xlabel("Log GDP per Capita")
 ax.set_ylabel("Life Expectancy (years)")
 ax.set_title("Income and Health, 2020")
 
-# Add OLS fit line
+## Add OLS fit line
 sns.regplot(x="log_gdp_pc", y="life_expectancy", data=df, ax=ax,
             scatter=False, ci=95, line_kws={"color": "darkred", "linewidth": 1.5})
 ```
 
 Enhancements: size points by population, color by region, add country labels for notable outliers.
 
-### Line Plot — Time Series
+#### Line Plot — Time Series
 
 Use for showing trends, cycles, and changes over time.
 
@@ -52,7 +40,7 @@ fig, ax = plt.subplots(figsize=(8, 4.5))
 ax.plot(df["date"], df["gdp_growth"], linewidth=1.2, color="#1f77b4")
 ax.axhline(y=0, color="gray", linewidth=0.5, linestyle="--")
 
-# Shade recessions (NBER dates)
+## Shade recessions (NBER dates)
 for start, end in recession_dates:
     ax.axvspan(start, end, alpha=0.15, color="gray")
 
@@ -64,7 +52,7 @@ ax.set_title("U.S. Real GDP Growth, 1970-2024")
 For multiple series, keep the number of lines to 4-5 maximum. Use distinct colors and
 add a legend outside the plot area if needed.
 
-### Bar Chart — Comparisons Across Categories
+#### Bar Chart — Comparisons Across Categories
 
 Use for comparing values across discrete groups.
 
@@ -79,7 +67,7 @@ ax.invert_yaxis()  # Highest value at top
 Horizontal bars are preferred when category labels are long. Sort bars by value,
 not alphabetically, unless there is a natural ordering.
 
-### Coefficient Plot — Regression Results
+#### Coefficient Plot — Regression Results
 
 Use instead of regression tables when the audience is broad or when comparing
 many specifications.
@@ -89,7 +77,7 @@ import numpy as np
 
 fig, ax = plt.subplots(figsize=(6, 5))
 
-# Assuming results from statsmodels
+## Assuming results from statsmodels
 coefs = results.params[1:]  # Exclude intercept
 ci_low = results.conf_int()[0][1:]
 ci_high = results.conf_int()[1][1:]
@@ -105,20 +93,20 @@ ax.set_xlabel("Coefficient Estimate (95% CI)")
 ax.set_title("OLS Estimates")
 ```
 
-### Histogram / Density — Distributions
+#### Histogram / Density — Distributions
 
 Use to show the shape of a variable's distribution.
 
 ```python
 fig, ax = plt.subplots(figsize=(6, 4))
 ax.hist(df["log_income"], bins=50, density=True, alpha=0.7, color="#4c72b0", edgecolor="white")
-# Overlay kernel density
+## Overlay kernel density
 df["log_income"].plot.kde(ax=ax, color="darkred", linewidth=1.5)
 ax.set_xlabel("Log Income")
 ax.set_ylabel("Density")
 ```
 
-### Heatmap — Correlation Matrices and Two-Dimensional Summaries
+#### Heatmap — Correlation Matrices and Two-Dimensional Summaries
 
 ```python
 corr = df[vars_of_interest].corr()
@@ -128,7 +116,7 @@ sns.heatmap(corr, annot=True, fmt=".2f", cmap="RdBu_r", center=0,
             linewidths=0.5, cbar_kws={"shrink": 0.8})
 ```
 
-### Binned Scatter Plot — Nonparametric Relationships
+#### Binned Scatter Plot — Nonparametric Relationships
 
 Common in applied economics (Chetty-style). Bins the x-variable and plots mean y within each bin.
 
@@ -142,31 +130,31 @@ ax.set_xlabel("X (binned means)")
 ax.set_ylabel("Y (conditional mean)")
 ```
 
-## Accessibility — Colorblind-Safe Palettes
+### Accessibility — Colorblind-Safe Palettes
 
 Approximately 8% of men and 0.5% of women have color vision deficiency. Always design
 for accessibility.
 
-### Recommended Palettes
+#### Recommended Palettes
 
 ```python
-# Paul Tol's qualitative palette (up to 7 colors)
+## Paul Tol's qualitative palette (up to 7 colors)
 tol_bright = ["#4477AA", "#EE6677", "#228833", "#CCBB44", "#66CCEE", "#AA3377", "#BBBBBB"]
 
-# IBM Design Library colorblind-safe
+## IBM Design Library colorblind-safe
 ibm_cb = ["#648FFF", "#785EF0", "#DC267F", "#FE6100", "#FFB000"]
 
-# Seaborn colorblind palette
+## Seaborn colorblind palette
 sns.set_palette("colorblind")
 
-# For sequential data: viridis, cividis, or inferno (perceptually uniform)
+## For sequential data: viridis, cividis, or inferno (perceptually uniform)
 plt.cm.viridis
 plt.cm.cividis  # Best for colorblind readers
 
-# For diverging data: RdBu (red-blue), PiYG (pink-green)
+## For diverging data: RdBu (red-blue), PiYG (pink-green)
 ```
 
-### Additional Accessibility Guidelines
+#### Additional Accessibility Guidelines
 
 - Use shape and line style in addition to color to distinguish series.
 - Ensure sufficient contrast (avoid light colors on white backgrounds).
@@ -181,14 +169,14 @@ for i, col in enumerate(columns):
             markevery=10, label=col)
 ```
 
-## Publication-Quality Settings
+### Publication-Quality Settings
 
-### Global Defaults
+#### Global Defaults
 
 ```python
 import matplotlib as mpl
 
-# Publication defaults
+## Publication defaults
 mpl.rcParams.update({
     "figure.figsize": (6.5, 4.5),       # Fits single-column journal width
     "figure.dpi": 150,                    # Screen display
@@ -211,21 +199,21 @@ mpl.rcParams.update({
 })
 ```
 
-### Saving for Publication
+#### Saving for Publication
 
 ```python
-# Vector formats for journals (scalable, small file size for line art)
+## Vector formats for journals (scalable, small file size for line art)
 fig.savefig("figure1.pdf", format="pdf")
 fig.savefig("figure1.eps", format="eps")
 
-# Raster for presentations or web
+## Raster for presentations or web
 fig.savefig("figure1.png", format="png", dpi=300)
 
-# For LaTeX integration
+## For LaTeX integration
 fig.savefig("figure1.pgf")  # Native LaTeX rendering of text
 ```
 
-### Common Journal Requirements
+#### Common Journal Requirements
 
 | Journal Type        | Width (inches) | Font         | Format       |
 |---------------------|----------------|--------------|--------------|
@@ -234,7 +222,7 @@ fig.savefig("figure1.pgf")  # Native LaTeX rendering of text
 | AER / QJE / RES     | 6.5            | Times/Computer Modern | PDF |
 | Presentation slides | 10 x 6         | Sans-serif   | PNG (high DPI) |
 
-### Multi-Panel Figures
+#### Multi-Panel Figures
 
 ```python
 fig, axes = plt.subplots(2, 2, figsize=(7, 6), constrained_layout=True)
@@ -246,19 +234,19 @@ for i, (ax, var) in enumerate(zip(axes.flat, variables)):
 fig.savefig("figure_panels.pdf")
 ```
 
-### Annotations and Notes
+#### Annotations and Notes
 
 ```python
-# Source note below figure
+## Source note below figure
 fig.text(0.01, -0.02, "Source: FRED, Federal Reserve Bank of St. Louis.",
          fontsize=8, color="gray", ha="left", transform=fig.transFigure)
 
-# Note about methodology
+## Note about methodology
 fig.text(0.01, -0.05, "Note: Shaded areas indicate NBER recession dates.",
          fontsize=8, color="gray", ha="left", transform=fig.transFigure)
 ```
 
-## Quick Reference — Choosing the Right Chart
+### Quick Reference — Choosing the Right Chart
 
 | Question                           | Chart Type           |
 |------------------------------------|----------------------|
@@ -272,28 +260,3 @@ fig.text(0.01, -0.05, "Note: Shaded areas indicate NBER recession dates.",
 | How do two distributions compare?  | Overlaid densities   |
 | What is the composition over time? | Stacked area         |
 | Geographic variation?              | Choropleth map       |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/data/visualization.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>data-handling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-acquisition</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/data-visualization/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

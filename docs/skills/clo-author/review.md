@@ -4,28 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>none declared</code></div><div><b>Updated:</b> 2026-05-11</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/review/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/review/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: review
-description: All quality reviews — routes to appropriate critics based on target file type and flags. Replaces /paper-excellence, /proofread, /econometrics-check, /review-r, /review-paper.
-argument-hint: "[file path or --flag] Options: --peer [journal], --stress [journal], --methods, --proofread, --code, --replicate [lang], --all"
-allowed-tools: Read,Grep,Glob,Write,Bash,Task
----
-
-# Review
+## Review
 
 Unified review command that routes to the appropriate critic agents based on the target and flags.
 
@@ -33,14 +14,14 @@ Unified review command that routes to the appropriate critic agents based on the
 
 ---
 
-## Routing Logic
+### Routing Logic
 
-### Auto-detect by file type
+#### Auto-detect by file type
 - `.tex` paper file → **Comprehensive review** (writer-critic + strategist-critic + Verifier)
 - `.R`, `.py`, `.do`, `.jl` file → **Code review** (coder-critic standalone, categories 4-12)
 - `.tex` talk file (in talks/) → **Talk review** (storyteller-critic)
 
-### Explicit flags (override auto-detect)
+#### Explicit flags (override auto-detect)
 - `--peer [journal]` → **Full peer review** (editor desk review → referee dispatch → editorial decision)
 - `--peer --r2 [journal]` → **R&R second round** (same referees, same dispositions, memory of prior review)
 - `--stress [journal]` → **Hostile stress test** (same flow, adversarial referee dispositions)
@@ -53,16 +34,16 @@ Unified review command that routes to the appropriate critic agents based on the
 
 ---
 
-## Mode Details
+### Mode Details
 
-### Comprehensive Review (default for .tex paper)
+#### Comprehensive Review (default for .tex paper)
 Dispatch in parallel:
 1. **strategist-critic** — causal design audit (4 phases)
 2. **writer-critic** — manuscript polish (6 categories)
 3. **Verifier** — compilation check
 Compute weighted aggregate score.
 
-### Full Peer Review (`--peer [journal]`)
+#### Full Peer Review (`--peer [journal]`)
 
 Simulates a realistic journal submission. Three phases, orchestrated sequentially.
 
@@ -135,7 +116,7 @@ python3 scripts/generate_dashboard.py
 
 Open the HTML report for the user: `open quality_reports/reviews/YYYY-MM-DD_peer_review.html`
 
-### R&R Second Round (`--peer --r2 [journal]`)
+#### R&R Second Round (`--peer --r2 [journal]`)
 
 Continues the review cycle after the author has revised the paper.
 
@@ -156,7 +137,7 @@ They check whether each concern was: Resolved / Partially resolved / Not address
 5. **Editor R&R decision** — Round 2 allows Accept/Minor/Major/Reject. Round 3 allows Accept/Minor/Reject only. Max 3 rounds total — editor's patience runs out, just like real life.
 6. **Save reports** with `_r2` or `_r3` suffix to `quality_reports/reviews/`
 
-### Hostile Stress Test (`--stress [journal]`)
+#### Hostile Stress Test (`--stress [journal]`)
 
 Same three-phase flow as `--peer`, with these changes:
 
@@ -171,7 +152,7 @@ you otherwise. Be specific about what would change your mind.
 
 This is for pre-submission stress testing. If the paper survives two hostile referees, it's ready.
 
-### Code Review (`--code` or auto-detect .R/.py/.do/.jl)
+#### Code Review (`--code` or auto-detect .R/.py/.do/.jl)
 
 **Step 1: Mechanical lint** — run the grep-based linter first:
 ```bash
@@ -229,7 +210,7 @@ python3 scripts/generate_html_report.py code-audit quality_reports/[file]_code_r
 python3 scripts/generate_dashboard.py
 ```
 
-### Causal Audit (`--methods`)
+#### Causal Audit (`--methods`)
 
 Dispatch **strategist-critic** standalone for a full 4-phase causal inference review.
 
@@ -277,12 +258,12 @@ python3 scripts/generate_html_report.py strategy-review quality_reports/[file]_s
 python3 scripts/generate_dashboard.py
 ```
 
-### Manuscript Polish (`--proofread`)
+#### Manuscript Polish (`--proofread`)
 Dispatch **writer-critic** standalone:
 - 6 categories: structure, claims-evidence, ID fidelity, writing, grammar, compilation
 - Save report to `quality_reports/[file]_proofread_report.md`
 
-### Cross-Language Replication (`--replicate [language]`)
+#### Cross-Language Replication (`--replicate [language]`)
 1. Auto-detect source language from file extension
 2. Dispatch **Coder** in replication mode — re-implement in target language
 3. **coder-critic** reviews both implementations
@@ -291,7 +272,7 @@ Dispatch **writer-critic** standalone:
 
 ---
 
-## Verifier Pass/Fail Definition
+### Verifier Pass/Fail Definition
 
 The Verifier produces a binary PASS/FAIL result:
 
@@ -318,7 +299,7 @@ Verifier score maps to 0 (FAIL) or 100 (PASS) for weighted aggregation.
 
 ---
 
-## Scoring
+### Scoring
 
 | Mode | Blocking? | Gate |
 |------|-----------|------|
@@ -331,11 +312,11 @@ Verifier score maps to 0 (FAIL) or 100 (PASS) for weighted aggregation.
 
 ---
 
-## Bundled Resources
+### Bundled Resources
 
 All review checklists, rubrics, and templates live under `review/`:
 
-### Templates (checklists and report formats)
+#### Templates (checklists and report formats)
 
 | File | Used By | Content |
 |------|---------|---------|
@@ -349,13 +330,13 @@ All review checklists, rubrics, and templates live under `review/`:
 | `templates/disposition-pool.md` | editor | Referee dispositions, pet peeves, desk reject criteria, decision rules, report formats |
 | `templates/referee-report-template.md` | domain-referee, methods-referee | Standard output format for referee reports |
 
-### Config
+#### Config
 
 | File | Content |
 |------|---------|
 | `config/scoring-rubrics.md` | Consolidated deduction tables for all 7 critics + quality gates |
 
-### Gotchas
+#### Gotchas
 
 | File | Content |
 |------|---------|
@@ -363,7 +344,7 @@ All review checklists, rubrics, and templates live under `review/`:
 
 ---
 
-## Principles
+### Principles
 - **Smart routing.** File type determines the default review mode.
 - **Flags override.** Use explicit flags for targeted reviews.
 - **Critics never edit.** All reviews produce reports only.
@@ -375,33 +356,3 @@ All review checklists, rubrics, and templates live under `review/`:
 - **Proportional severity.** Missing `set.seed()` is Major; missing comment is Minor.
 - **Worker-critic separation.** The reviewer never fixes code or rewrites text -- it only critiques.
 - **Actionable output.** Every issue must have a concrete fix, not vague advice.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/review/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>hugosantanna/clo-author</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../clo-author.md">Clo-Author skills</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>none declared</dd>
-<dt><b>Last update</b></dt><dd>2026-05-11</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/hugosantanna/clo-author">⭐ hugosantanna/clo-author</a><br><img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/hugosantanna/clo-author" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/clo-author/review/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/clo-author.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

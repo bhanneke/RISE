@@ -4,21 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/latex/beamer.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# The Rhetoric of Decks — Beamer Presentation Generation
+## The Rhetoric of Decks — Beamer Presentation Generation
 
 A framework for creating effective academic presentations with AI assistance.
 Based on principles from classical rhetoric, information economics, and
@@ -26,9 +14,9 @@ decades of tacit knowledge about what makes presentations work.
 
 ---
 
-## Part I: Philosophy — The Three Laws
+### Part I: Philosophy — The Three Laws
 
-### Law 1: Beauty Is Function
+#### Law 1: Beauty Is Function
 
 Beautiful slides are not decorated slides. Beauty is *clarity made visible*.
 A slide is beautiful when every element earns its presence, nothing distracts,
@@ -38,7 +26,7 @@ A gradient that serves no purpose, a stock photo that illustrates nothing,
 an animation that delays comprehension — these are noise, not design.
 The most beautiful slide may be three words on a blank background.
 
-### Law 2: Cognitive Load Is the Enemy
+#### Law 2: Cognitive Load Is the Enemy
 
 The audience has limited working memory. Every unnecessary word, extraneous
 data point, or "just in case" inclusion steals bandwidth from the actual message.
@@ -49,7 +37,7 @@ data point, or "just in case" inclusion steals bandwidth from the actual message
 
 **One idea per slide. This is the law.**
 
-### Law 3: The Slide Serves the Spoken Word
+#### Law 3: The Slide Serves the Spoken Word
 
 The slide is not what you say. It is the visual anchor — a focal point for
 attention, a memory hook, evidence for the claim, a structural marker.
@@ -59,7 +47,7 @@ a document and called it a presentation.**
 
 ---
 
-## Part II: The Economics of Attention (MB/MC Equivalence)
+### Part II: The Economics of Attention (MB/MC Equivalence)
 
 Every deck is an optimization problem. Let MB be the marginal benefit of
 adding information to a slide. Let MC be the marginal cost — the cognitive
@@ -72,7 +60,7 @@ load imposed, attention demanded, risk of overwhelming the audience.
 When one slide is overloaded while another is sparse, you have misallocated
 the audience's attention budget.
 
-### What this means in practice
+#### What this means in practice
 
 **Overloaded slides** (MB/MC too low): Text running into footer, multiple
 competing ideas, charts with too many series. The audience gives up.
@@ -90,26 +78,26 @@ must be *intentional*, not accidents of poor distribution.
 
 ---
 
-## Part III: The Aristotelian Foundation
+### Part III: The Aristotelian Foundation
 
-### Ethos (Credibility)
+#### Ethos (Credibility)
 
 In decks: process diagrams showing methodology, acknowledged limitations,
 the "Devil's Advocate" slide. Admitting weakness builds credibility.
 
-### Pathos (Emotion)
+#### Pathos (Emotion)
 
 In decks: opening with a problem the audience recognizes, validating
 frustrations, connecting data to human impact. Pathos without logos
 is demagoguery.
 
-### Logos (Logic)
+#### Logos (Logic)
 
 In decks: data visualizations that reveal patterns, comparison tables,
 before/after examples, logical flow from problem to solution. Logos
 without pathos is a lecture.
 
-### Balance by context
+#### Balance by context
 
 | Context              | Logos | Ethos | Pathos |
 |----------------------|-------|-------|--------|
@@ -120,7 +108,7 @@ without pathos is a lecture.
 
 ---
 
-## Part IV: Titles Are Assertions, Not Labels
+### Part IV: Titles Are Assertions, Not Labels
 
 Slide titles carry the argument. They are claims, not labels.
 
@@ -136,9 +124,9 @@ else is evidence and elaboration.
 
 ---
 
-## Part V: Narrative Structure
+### Part V: Narrative Structure
 
-### The Arc (Three Acts)
+#### The Arc (Three Acts)
 
 **Act I — Problem (Tension):** Establish status quo, introduce the
 disruption/question, make the audience feel the problem.
@@ -149,7 +137,7 @@ what you learned, build the logical case.
 **Act III — Resolution (Release):** Deliver the insight, show implications,
 call to action.
 
-### The Pyramid Principle
+#### The Pyramid Principle
 
 Lead with the conclusion. Then support it. Humans want the punchline,
 then they want to understand why it's true.
@@ -158,7 +146,7 @@ then they want to understand why it's true.
 
 **Not this:** Background → More background → Analysis → Finding (finally)
 
-### The Opening
+#### The Opening
 
 The first slide after the title is the most important. It must grab
 attention, establish stakes, and preview the journey.
@@ -168,7 +156,7 @@ Bad: "Today I'm going to talk about..." / Agenda with 12 items / Definitions
 Good: A provocative question / A surprising statistic / A concrete problem
 the audience recognizes / A bold claim you'll defend
 
-### The Closing
+#### The Closing
 
 Bad: "Questions?" / Summary repeating everything / "Thank You"
 
@@ -177,7 +165,7 @@ that provokes continued thought / Return to the opening, now resolved
 
 ---
 
-## Part VI: Bullets Are a Confession of Defeat
+### Part VI: Bullets Are a Confession of Defeat
 
 A list of bullets says "I couldn't figure out the relationship between
 these ideas." Usually there's a structure hiding in your bullets:
@@ -191,7 +179,7 @@ Find the structure. Make it visible. Use layout, not bullets.
 
 ---
 
-## Part VII: The Devil's Advocate
+### Part VII: The Devil's Advocate
 
 Before presenting your argument, present its strongest critique:
 
@@ -206,9 +194,9 @@ and signals you're not hiding from problems.
 
 ---
 
-## Part VIII: Visual Grammar
+### Part VIII: Visual Grammar
 
-### Hierarchy
+#### Hierarchy
 
 Not all information is equal. Design must reflect this:
 
@@ -218,19 +206,19 @@ Not all information is equal. Design must reflect this:
 
 If everything is emphasized, nothing is emphasized.
 
-### White Space
+#### White Space
 
 Empty space is rest for the eye, emphasis for content, and confidence
 in your message. Crowded slides signal fear. White space signals confidence.
 
-### Typography
+#### Typography
 
 - Minimum 24pt for body text (20pt absolute floor)
 - Maximum two fonts (one headings, one body)
 - Sans-serif for projection (serif details disappear at distance)
 - Never justify text (ragged right is easier to read)
 
-### Data Visualization
+#### Data Visualization
 
 Charts are arguments, not decorations. Every chart must answer:
 "what am I supposed to conclude from this?"
@@ -245,15 +233,15 @@ If you can't explain what the chart proves in one sentence, it's too complex.
 
 ---
 
-## Part IX: LaTeX Implementation
+### Part IX: LaTeX Implementation
 
-### Document class and aspect ratio
+#### Document class and aspect ratio
 
 ```latex
 \documentclass[aspectratio=169, 11pt]{beamer}  % 16:9 widescreen standard
 ```
 
-### Custom Color Palette
+#### Custom Color Palette
 
 Never use default Beamer themes. Define a professional, harmonious palette
 with semantic color roles:
@@ -294,7 +282,7 @@ with semantic color roles:
 \setbeamercolor{enumerate item}{fg=Teal}
 ```
 
-### Custom Theme Configuration
+#### Custom Theme Configuration
 
 ```latex
 % Remove chrome
@@ -344,7 +332,7 @@ with semantic color roles:
 \setbeamerfont{framesubtitle}{size=\small, series=\mdseries}
 ```
 
-### Essential Packages
+#### Essential Packages
 
 ```latex
 \usepackage{amsmath, amssymb}
@@ -364,7 +352,7 @@ with semantic color roles:
 \pgfplotsset{compat=1.18}
 ```
 
-### Custom Commands
+#### Custom Commands
 
 ```latex
 % Inline emphasis
@@ -400,9 +388,9 @@ with semantic color roles:
 
 ---
 
-## Part X: Slide Layout Patterns
+### Part X: Slide Layout Patterns
 
-### 1. Title Slide — Full TikZ Overlay
+#### 1. Title Slide — Full TikZ Overlay
 
 ```latex
 {
@@ -434,7 +422,7 @@ with semantic color roles:
 }
 ```
 
-### 2. Two-Column Comparison (Bad vs. Good)
+#### 2. Two-Column Comparison (Bad vs. Good)
 
 ```latex
 \begin{frame}{Assertion Title Describing the Comparison}
@@ -459,7 +447,7 @@ with semantic color roles:
 \end{frame}
 ```
 
-### 3. TikZ Callout Box (Key Insight)
+#### 3. TikZ Callout Box (Key Insight)
 
 ```latex
 \begin{frame}{The Central Finding}
@@ -484,7 +472,7 @@ with semantic color roles:
 \end{frame}
 ```
 
-### 4. Three-Pillar Framework
+#### 4. Three-Pillar Framework
 
 ```latex
 \begin{frame}{The Three Modes of Persuasion}
@@ -507,7 +495,7 @@ with semantic color roles:
 \end{frame}
 ```
 
-### 5. Figure Slide
+#### 5. Figure Slide
 
 ```latex
 \begin{frame}{Treatment Increased Distance by 61 Miles}
@@ -524,7 +512,7 @@ with semantic color roles:
 \end{frame>
 ```
 
-### 6. Final Slide (Mirrors Title)
+#### 6. Final Slide (Mirrors Title)
 
 ```latex
 \begin{frame}[plain]
@@ -548,13 +536,13 @@ with semantic color roles:
 
 ---
 
-## Part XI: Figure Generation (R / ggplot2)
+### Part XI: Figure Generation (R / ggplot2)
 
 When generating figures, the R script should use a custom theme that
 matches the LaTeX palette exactly:
 
 ```r
-# Color palette matching LaTeX
+## Color palette matching LaTeX
 palette <- c(
   primary   = "#2E4057",  # DeepNavy
   secondary = "#048A81",  # Teal
@@ -583,7 +571,7 @@ theme_rhetoric <- function(base_size = 14) {
 }
 ```
 
-### Figure design rules
+#### Figure design rules
 
 - Output both PDF (vector) and PNG (300 DPI) for every figure
 - Dimensions: 10 × 6.5 inches for standard, 8 × 5 for smaller
@@ -595,7 +583,7 @@ theme_rhetoric <- function(base_size = 14) {
 
 ---
 
-## Part XII: Tables in Presentations
+### Part XII: Tables in Presentations
 
 Tables must be dramatically simpler than in papers.
 
@@ -608,7 +596,7 @@ Tables must be dramatically simpler than in papers.
 
 ---
 
-## Part XIII: Overlays and Animation
+### Part XIII: Overlays and Animation
 
 Use sparingly. Overlays are for building complex arguments, not decoration.
 
@@ -619,7 +607,7 @@ matters, revealing results after showing empirical strategy.
 
 ---
 
-## Part XIV: Appendix / Backup Slides
+### Part XIV: Appendix / Backup Slides
 
 ```latex
 \appendix
@@ -634,7 +622,7 @@ Back-link from appendix: `\hyperlink{main-results}{\beamerreturnbutton{Back}}`
 
 ---
 
-## Part XV: Timing and Length
+### Part XV: Timing and Length
 
 | Context                | Slides | Notes |
 |------------------------|--------|-------|
@@ -648,9 +636,9 @@ divider slides take less time.
 
 ---
 
-## Part XVI: TikZ Diagram Rules (Non-Negotiable)
+### Part XVI: TikZ Diagram Rules (Non-Negotiable)
 
-### Box uniformity
+#### Box uniformity
 
 All boxes in the same diagram MUST have identical dimensions. Use `text width`
 (hard-fixed) to control box size — NEVER `minimum width` (which grows with
@@ -662,7 +650,7 @@ box/.style={draw, rounded corners=3pt,
             align=center, font=\small}
 ```
 
-### Arrow routing
+#### Arrow routing
 
 Arrows must NEVER pass through boxes. Never use TikZ shorthand like `|-` or
 `-|` for routing — these go vertical-first or horizontal-first and will cross
@@ -677,20 +665,20 @@ enough outside all nodes to guarantee clearance:
 \draw[->] (A.east) --++(1,0) --++(0,-2) -- (C.west);
 ```
 
-### Text fitting
+#### Text fitting
 
 All text MUST fit on one line within its box. If it doesn't, shorten the text
 — do NOT resize the box. Uniform box size trumps showing every word. Verify
 after compilation that no text overflows.
 
-### Respect existing layouts
+#### Respect existing layouts
 
 Don't "clean up" a chaotic or organic layout into a grid unless explicitly
 asked. The original visual aesthetic and spatial relationships are intentional.
 When editing existing TikZ diagrams, preserve the overall structure and only
 modify the specific elements requested.
 
-### Visual verification
+#### Visual verification
 
 After every TikZ edit, compile and visually verify:
 - Arrows actually connect to the intended nodes
@@ -702,7 +690,7 @@ Never describe a fix as done if the geometry doesn't work in the compiled PDF.
 
 ---
 
-## Part XVII: Content Accuracy Rules
+### Part XVII: Content Accuracy Rules
 
 1. **Don't invent future plans.** If something already exists (e.g., a large
    literature catalog, running datasets, operational infrastructure), present
@@ -718,19 +706,19 @@ Never describe a fix as done if the geometry doesn't work in the compiled PDF.
 
 ---
 
-## Part XVIII: The Iterative Multi-Pass Workflow
+### Part XVIII: The Iterative Multi-Pass Workflow
 
-### Step 1: Build deck with MB/MC equivalence
+#### Step 1: Build deck with MB/MC equivalence
 
 Create the full deck. Check that cognitive load is balanced across all slides.
 No slide should be overloaded while another is sparse.
 
-### Step 2: Fix ALL compilation warnings
+#### Step 2: Fix ALL compilation warnings
 
 Check and eliminate every overfull/underfull hbox and vbox. No matter how
 small. These indicate LaTeX making compromises you did not authorize.
 
-### Step 3: Check silent visual errors
+#### Step 3: Check silent visual errors
 
 LaTeX warnings catch box overflow but NOT coordinate/positioning problems
 in TikZ, ggplot2, or matplotlib. These compile silently but look wrong:
@@ -746,11 +734,11 @@ in TikZ, ggplot2, or matplotlib. These compile silently but look wrong:
 - Legends obscuring data
 - Text sizing inconsistent across panels
 
-### Step 4: Recompile and verify
+#### Step 4: Recompile and verify
 
 After fixing, recompile and check flow, MB/MC balance, and label positioning.
 
-### Step 5: Repeat until all tests pass
+#### Step 5: Repeat until all tests pass
 
 ```
 while (not all_tests_pass):
@@ -762,7 +750,7 @@ while (not all_tests_pass):
 
 ---
 
-## Part XIX: Common Failures
+### Part XIX: Common Failures
 
 1. **Text walls**: slides that could be printed as paragraphs → extract key phrase
 2. **Burying the lede**: key point on slide 15 → state conclusion on slide 2
@@ -774,28 +762,3 @@ while (not all_tests_pass):
 8. **Bullet-only slides**: → find the structure, use TikZ diagrams or layouts
 9. **No backup slides**: → have appendix slide for every anticipated question
 10. **Figures without finding in title**: → title states what the chart proves
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/latex/beamer.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/latex-beamer/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

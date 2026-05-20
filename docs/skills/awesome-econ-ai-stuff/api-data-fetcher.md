@@ -4,55 +4,24 @@
 
 Fetch economic data from FRED, World Bank, and other APIs.
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../awesome-econ-ai-stuff/">awesome-econ-ai-stuff (Antonio Mele)</a></div><div><b>Category:</b> <code>data-handling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>Other (see repo)</code></div><div><b>Updated:</b> 2026</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-acquisition</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/data/api-data-fetcher/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/api-data-fetcher/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/data/api-data-fetcher/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## API Data Fetcher
 
----
-
----
-name: api-data-fetcher
-description: Fetch economic data from FRED, World Bank, and other APIs
-workflow_stage: data
-compatibility:
-  - claude-code
-  - cursor
-  - codex
-  - gemini-cli
-author: Awesome Econ AI Community
-version: 1.0.0
-tags:
-  - Python
-  - API
-  - FRED
-  - World-Bank
-  - data-collection
----
-
-# API Data Fetcher
-
-## Purpose
+### Purpose
 
 This skill helps economists fetch data from major economic data APIs including FRED (Federal Reserve Economic Data), World Bank, IMF, BLS, and OECD. It generates clean, documented Python code with proper error handling.
 
-## When to Use
+### When to Use
 
 - Downloading macroeconomic indicators
 - Building custom datasets from multiple sources
 - Automating data updates for ongoing projects
 - Fetching cross-country panel data
 
-## Instructions
+### Instructions
 
-### Step 1: Identify Data Requirements
+#### Step 1: Identify Data Requirements
 
 Ask the user:
 1. What data do you need? (GDP, unemployment, inflation, etc.)
@@ -60,7 +29,7 @@ Ask the user:
 3. What countries/regions?
 4. Preferred output format? (CSV, DataFrame, etc.)
 
-### Step 2: Select Appropriate API
+#### Step 2: Select Appropriate API
 
 | Data Type | Best Source | Package |
 |-----------|------------|---------|
@@ -70,7 +39,7 @@ Ask the user:
 | Cross-country | OECD | `pandasdmx` |
 | Financial | Yahoo Finance | `yfinance` |
 
-### Step 3: Generate Clean Code
+#### Step 3: Generate Clean Code
 
 Include:
 - API key handling (environment variables)
@@ -78,7 +47,7 @@ Include:
 - Data cleaning and formatting
 - Documentation of series definitions
 
-## Example Output
+### Example Output
 
 ```python
 """
@@ -96,9 +65,9 @@ import pandas as pd
 from datetime import datetime, timedelta
 from typing import List, Optional, Dict
 
-# ============================================
-# FRED Data Fetcher
-# ============================================
+## ============================================
+## FRED Data Fetcher
+## ============================================
 
 def fetch_fred_series(
     series_ids: List[str],
@@ -167,7 +136,7 @@ def fetch_fred_series(
     return df
 
 
-# Common FRED series for economists
+## Common FRED series for economists
 FRED_SERIES = {
     # GDP and Output
     'GDP': 'Gross Domestic Product',
@@ -195,9 +164,9 @@ FRED_SERIES = {
 }
 
 
-# ============================================
-# World Bank Data Fetcher
-# ============================================
+## ============================================
+## World Bank Data Fetcher
+## ============================================
 
 def fetch_world_bank_data(
     indicators: Dict[str, str],
@@ -271,7 +240,7 @@ def fetch_world_bank_data(
     return pd.DataFrame()
 
 
-# Common World Bank indicators
+## Common World Bank indicators
 WORLD_BANK_INDICATORS = {
     # Income and Growth
     'NY.GDP.PCAP.CD': 'GDP per capita (current US$)',
@@ -296,9 +265,9 @@ WORLD_BANK_INDICATORS = {
 }
 
 
-# ============================================
-# Usage Example
-# ============================================
+## ============================================
+## Usage Example
+## ============================================
 
 if __name__ == "__main__":
     # Example 1: Fetch US macro data from FRED
@@ -335,14 +304,14 @@ if __name__ == "__main__":
     print("\nSaved to data/cross_country_wb.csv")
 ```
 
-## Requirements
+### Requirements
 
-### Python Packages
+#### Python Packages
 ```bash
 pip install fredapi wbdata pandas
 ```
 
-### API Keys
+#### API Keys
 - **FRED**: Free key from https://fred.stlouisfed.org/docs/api/api_key.html
 - **World Bank**: No key required
 - **BLS**: Free key from https://www.bls.gov/developers/
@@ -352,7 +321,7 @@ Set environment variables:
 export FRED_API_KEY="your_key_here"
 ```
 
-## Best Practices
+### Best Practices
 
 1. **Store API keys in environment variables** - never hardcode
 2. **Add rate limiting** for bulk downloads
@@ -360,50 +329,20 @@ export FRED_API_KEY="your_key_here"
 4. **Document series definitions** from the source
 5. **Check for revisions** in real-time data
 
-## Common Pitfalls
+### Common Pitfalls
 
 - ❌ Hardcoding API keys in scripts
 - ❌ Not handling API rate limits
 - ❌ Ignoring data vintages/revisions
 - ❌ Mixing data frequencies without proper handling
 
-## References
+### References
 
 - [FRED API Documentation](https://fred.stlouisfed.org/docs/api/)
 - [World Bank Data API](https://datahelpdesk.worldbank.org/knowledgebase/topics/125589)
 - [QuantEcon: Python Data Sources](https://python-programming.quantecon.org/)
 
-## Changelog
+### Changelog
 
-### v1.0.0
+#### v1.0.0
 - Initial release with FRED and World Bank support
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/data/api-data-fetcher/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>meleantonio/awesome-econ-ai-stuff</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../awesome-econ-ai-stuff.md">awesome-econ-ai-stuff (Antonio Mele)</a></dd>
-<dt><b>Category</b></dt><dd><code>data-handling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-acquisition</code></dd>
-<dt><b>License</b></dt><dd>Other (see repo)</dd>
-<dt><b>Last update</b></dt><dd>2026</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff">⭐ meleantonio/awesome-econ-ai-stuff</a><br><img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/data/api-data-fetcher/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/api-data-fetcher/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/awesome-econ-ai-stuff.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

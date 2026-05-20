@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/research-pipeline/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/research-pipeline/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: research-pipeline
-description: "Full research pipeline: Workflow 1 (idea discovery) → implementation → Workflow 2 (auto review loop) → Workflow 3 (paper writing, optional). Goes from a broad research direction all the way to a polished PDF. Use when user says \"全流程\", \"full pipeline\", \"从找idea到投稿\", \"end-to-end research\", or wants the complete autonomous research lifecycle."
-argument-hint: [research-direction]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Full Research Pipeline: Idea → Experiments → Submission
+## Full Research Pipeline: Idea → Experiments → Submission
 
 End-to-end autonomous research workflow for: **$ARGUMENTS**
 
-## Constants
+### Constants
 
 - **AUTO_PROCEED = true** — When `true`, Gate 1 auto-selects the top-ranked idea (highest pilot signal + novelty confirmed) and continues to implementation. When `false`, always waits for explicit user confirmation before proceeding.
 - **ARXIV_DOWNLOAD = false** — When `true`, `/research-lit` downloads the top relevant arXiv PDFs during literature survey. When `false` (default), only fetches metadata via arXiv API. Passed through to `/idea-discovery` → `/research-lit`.
@@ -40,7 +21,7 @@ End-to-end autonomous research workflow for: **$ARGUMENTS**
 
 > 💡 Override via argument, e.g., `/research-pipeline "topic" — AUTO_PROCEED: false, human checkpoint: true, difficulty: nightmare, auto_write: true, venue: NeurIPS`.
 
-## Overview
+### Overview
 
 This skill chains the entire research lifecycle into a single pipeline:
 
@@ -51,9 +32,9 @@ This skill chains the entire research lifecycle into a single pipeline:
 
 It orchestrates up to three major workflows plus the implementation bridge between them. Workflow 3 (paper writing) is optional and controlled by `AUTO_WRITE`.
 
-## Pipeline
+### Pipeline
 
-### Stage 1: Idea Discovery (Workflow 1)
+#### Stage 1: Idea Discovery (Workflow 1)
 
 If `RESEARCH_BRIEF.md` exists in the project root, it will be automatically loaded as detailed context (replaces one-line prompt). See `templates/RESEARCH_BRIEF_TEMPLATE.md`.
 
@@ -92,7 +73,7 @@ Recommended: Idea 1. Shall I proceed with implementation?
 
 > ⚠️ **This gate waits for user confirmation when AUTO_PROCEED=false.** When `true`, it auto-selects the top idea after presenting results. The rest of the pipeline (Stages 2-4) is expensive (GPU time + multiple review rounds), so set `AUTO_PROCEED=false` if you want to manually choose which idea to pursue.
 
-### Stage 2: Implementation
+#### Stage 2: Implementation
 
 Once the user confirms which idea to pursue:
 
@@ -110,7 +91,7 @@ Once the user confirms which idea to pursue:
    - Are results saved to JSON/CSV for later analysis?
    - Is there proper logging for debugging?
 
-### Stage 3: Deploy Experiments (Workflow 2 — Part 1)
+#### Stage 3: Deploy Experiments (Workflow 2 — Part 1)
 
 Deploy the full-scale experiments. **Route by job count**:
 
@@ -141,7 +122,7 @@ Deploy the full-scale experiments. **Route by job count**:
 
 Wait for experiments to complete. Collect results.
 
-### Stage 4: Auto Review Loop (Workflow 2 — Part 2)
+#### Stage 4: Auto Review Loop (Workflow 2 — Part 2)
 
 Once initial results are in, start the autonomous improvement loop:
 
@@ -157,7 +138,7 @@ Once initial results are in, start the autonomous improvement loop:
 
 **Output:** `review-stage/AUTO_REVIEW.md` with full review history and final assessment.
 
-### Stage 5: Research Summary & Writing Handoff
+#### Stage 5: Research Summary & Writing Handoff
 
 After the auto-review loop completes, prepare the handoff for paper writing.
 
@@ -179,29 +160,29 @@ The narrative report must contain:
 **Output:** `NARRATIVE_REPORT.md` + research pipeline report.
 
 ```markdown
-# Research Pipeline Report
+## Research Pipeline Report
 
 **Direction**: $ARGUMENTS
 **Chosen Idea**: [title]
 **Date**: [start] → [end]
 **Pipeline**: idea-discovery → implement → run-experiment → auto-review-loop
 
-## Journey Summary
+### Journey Summary
 - Ideas generated: X → filtered to Y → piloted Z → chose 1
 - Implementation: [brief description of what was built]
 - Experiments: [number of GPU experiments, total compute time]
 - Review rounds: N/4, final score: X/10
 
-## Writing Handoff
+### Writing Handoff
 - NARRATIVE_REPORT.md: ✅ generated
 - Venue: [VENUE or "not set — run /paper-writing manually"]
 - Manual figures needed: [list or "none"]
 
-## Remaining TODOs (if any)
+### Remaining TODOs (if any)
 - [items flagged by reviewer that weren't addressed]
 ```
 
-### Stage 6: Paper Writing (Workflow 3 — Optional)
+#### Stage 6: Paper Writing (Workflow 3 — Optional)
 
 **Skip this stage if `AUTO_WRITE=false` (default).** Present the `/paper-writing` command for manual use:
 
@@ -246,14 +227,14 @@ When Workflow 3 finishes, update the pipeline report with:
 
 **Output:** `paper/` directory with LaTeX source, compiled PDF, and `PAPER_IMPROVEMENT_LOG.md`.
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 
@@ -264,7 +245,7 @@ When Workflow 3 finishes, update the pipeline report with:
 - **Documentation**: Every stage updates its own output file. The full history should be self-contained.
 - **Fail gracefully**: If any stage fails (no good ideas, experiments crash, review loop stuck), report clearly and suggest alternatives rather than forcing forward.
 
-## Typical Timeline
+### Typical Timeline
 
 | Stage | Duration | Can sleep? |
 |-------|----------|------------|
@@ -274,33 +255,3 @@ When Workflow 3 finishes, update the pipeline report with:
 | 4. Auto Review | 1-4 hours (depends on experiments) | Yes ✅ |
 
 **Sweet spot**: Run Stage 1-2 in the evening, launch Stage 3-4 before bed, wake up to a reviewed paper.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/research-pipeline/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/research-pipeline/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

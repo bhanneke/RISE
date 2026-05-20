@@ -4,28 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>none declared</code></div><div><b>Updated:</b> 2026-05-11</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/analyze/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/analyze/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: analyze
-description: End-to-end data analysis dispatching Coder and Data-engineer for implementation, coder-critic for review. Supports R, Python, Julia. Replaces /data-analysis.
-argument-hint: "[dataset path or goal] Options: --dual [lang1,lang2]"
-allowed-tools: Read,Grep,Glob,Write,Edit,Bash,Task
----
-
-# Analyze
+## Analyze
 
 Run end-to-end data analysis by dispatching the **Coder** (analysis), **Data-engineer** (cleaning + figures), and **coder-critic** (code review).
 
@@ -33,13 +14,13 @@ Run end-to-end data analysis by dispatching the **Coder** (analysis), **Data-eng
 
 ---
 
-## Workflow
+### Workflow
 
-### Step 1: Pre-Code Report (mandatory)
+#### Step 1: Pre-Code Report (mandatory)
 Before writing any code, the Coder must output a structured report proving it read the strategy inputs:
 
 ```markdown
-## Pre-Code Report
+### Pre-Code Report
 **Strategy memo:** [path or "not found"]
 **Domain profile:** [loaded / not found]
 **Language:** [R / Python / Julia — from CLAUDE.md]
@@ -62,7 +43,7 @@ Proceeding to implementation.
 
 If the strategy memo is missing, the Coder proceeds with the user's description — but flags that no memo was found and strategic alignment checks (coder-critic categories 1-3) cannot be verified.
 
-### Step 2: Data Preparation (if needed)
+#### Step 2: Data Preparation (if needed)
 If raw data provided, dispatch **Data-engineer** first:
 - Clean and wrangle raw data
 - Handle missing values, construct variables per strategy memo
@@ -70,7 +51,7 @@ If raw data provided, dispatch **Data-engineer** first:
 - Create publication-quality descriptive figures
 - Save cleaned data, codebook, and figures
 
-### Step 3: Main Analysis
+#### Step 3: Main Analysis
 Dispatch **Coder** agent:
 - Stage 0: Data loading (from cleaned data or raw)
 - Stage 1: Main specification (from strategy memo or user description)
@@ -87,7 +68,7 @@ The Coder follows these principles:
 - **No hardcoded paths.** All paths relative to repository root.
 - **saveRDS everything.** Every computed object (estimates, model fits, data frames, summary statistics) gets serialized to `.rds` for downstream use by the writer and other agents.
 
-### Step 4: Code Review
+#### Step 4: Code Review
 Dispatch **coder-critic** agent — run the full 12-category checklist:
 
 **Strategic (categories 1-3):**
@@ -115,12 +96,12 @@ python3 scripts/generate_html_report.py code-audit quality_reports/[script]_code
 python3 scripts/generate_dashboard.py
 ```
 
-### Step 5: Fix Issues
+#### Step 5: Fix Issues
 If coder-critic finds Critical or Major issues:
 1. Re-dispatch Coder with specific fixes (max 3 rounds)
 2. Re-run coder-critic to verify fixes
 
-### Step 6: Present Results
+#### Step 6: Present Results
 1. **Results summary** — key estimates with SEs and interpretation (from `results_summary.md`)
 2. **Scripts created** — paths and descriptions
 3. **Output files** — tables in `paper/tables/`, figures in `paper/figures/`
@@ -129,18 +110,18 @@ If coder-critic finds Critical or Major issues:
 
 ---
 
-## Script Structure Template
+### Script Structure Template
 
 ```r
-# ============================================================
-# [Descriptive Title]
-# Author: [from project context]
-# Purpose: [What this script does]
-# Inputs: [Data files]
-# Outputs: [Figures, tables, RDS files]
-# ============================================================
+## ============================================================
+## [Descriptive Title]
+## Author: [from project context]
+## Purpose: [What this script does]
+## Inputs: [Data files]
+## Outputs: [Figures, tables, RDS files]
+## ============================================================
 
-# 0. Setup ----
+## 0. Setup ----
 library(tidyverse)
 library(fixest)
 library(modelsummary)
@@ -150,22 +131,22 @@ set.seed(42)
 dir.create("paper/tables", recursive = TRUE, showWarnings = FALSE)
 dir.create("paper/figures", recursive = TRUE, showWarnings = FALSE)
 
-# 1. Data Loading ----
+## 1. Data Loading ----
 
-# 2. Exploratory Analysis ----
+## 2. Exploratory Analysis ----
 
-# 3. Main Analysis ----
+## 3. Main Analysis ----
 
-# 4. Tables and Figures ----
+## 4. Tables and Figures ----
 
-# 5. Export ----
-# saveRDS(model_fit, "scripts/R/output/model_fit.rds")
-# saveRDS(main_results, "scripts/R/output/main_results.rds")
+## 5. Export ----
+## saveRDS(model_fit, "scripts/R/output/model_fit.rds")
+## saveRDS(main_results, "scripts/R/output/main_results.rds")
 ```
 
 ---
 
-## Results Summary (Mandatory Artifact)
+### Results Summary (Mandatory Artifact)
 
 Every analysis run MUST produce `results_summary.md` containing:
 - All point estimates with standard errors and significance levels
@@ -178,7 +159,7 @@ This file is the primary handoff artifact to the writer agent. Without it, the w
 
 ---
 
-## Dual-Language Mode (`--dual r,python`)
+### Dual-Language Mode (`--dual r,python`)
 
 When `--dual [lang1,lang2]` is provided (e.g., `--dual r,python`, `--dual r,julia`):
 
@@ -191,7 +172,7 @@ When `--dual [lang1,lang2]` is provided (e.g., `--dual r,python`, `--dual r,juli
    - Flag any divergences with exact values from both languages
 5. Save comparison report to `quality_reports/cross_language_comparison.md`
 
-### Replication Tolerance Approach
+#### Replication Tolerance Approach
 
 Inspired by Scott Cunningham's replication methodology: **if two independent implementations agree, neither has a bug.** This is the core rationale for dual-language mode.
 
@@ -211,9 +192,9 @@ Inspired by Scott Cunningham's replication methodology: **if two independent imp
 
 ---
 
-## Bundled Resources
+### Bundled Resources
 
-### Templates
+#### Templates
 | File | Purpose |
 |------|---------|
 | `analyze/templates/pre-code-report.md` | Mandatory pre-check report format before writing code |
@@ -222,25 +203,25 @@ Inspired by Scott Cunningham's replication methodology: **if two independent imp
 | `analyze/templates/python-script-structure.py` | Boilerplate Python script scaffold |
 | `analyze/templates/results-summary.md` | Mandatory results summary output for writer handoff |
 
-### References
+#### References
 | File | Purpose |
 |------|---------|
 | `analyze/references/table-standards.md` | Full table formatting standards: booktabs, coefficient display, panel structure, R packages, file naming |
 | `analyze/references/figure-standards.md` | Full figure formatting standards: themes, colors, axis labels, export settings, common plot types |
 
-### Config
+#### Config
 | File | Purpose |
 |------|---------|
 | `analyze/config/replication-tolerances.json` | Tolerances for dual-language replication comparison (point estimates, SEs, p-values) |
 
-### Gotchas
+#### Gotchas
 | File | Purpose |
 |------|---------|
 | `analyze/gotchas.md` | Known failure points: R package quirks, numerical issues, output traps, cross-language divergence sources |
 
 ---
 
-## Principles
+### Principles
 - **Reproduce, don't guess.** If the user specifies a regression, run exactly that.
 - **Show your work.** Print summary statistics before jumping to regressions.
 - **Strategy alignment.** If strategy memo exists, code MUST implement it faithfully.
@@ -248,33 +229,3 @@ Inspired by Scott Cunningham's replication methodology: **if two independent imp
 - **saveRDS everything.** Every computed object gets saved via `saveRDS()` for downstream use -- model fits, cleaned data frames, summary statistics, not just final tables.
 - **Publication-ready output.** Tables and figures directly includable in the paper.
 - **Cross-language convergence.** When `--dual` is used, divergence is a bug until proven otherwise.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/analyze/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>hugosantanna/clo-author</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../clo-author.md">Clo-Author skills</a></dd>
-<dt><b>Category</b></dt><dd><code>analysis</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-analysis</code></dd>
-<dt><b>License</b></dt><dd>none declared</dd>
-<dt><b>Last update</b></dt><dd>2026-05-11</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/hugosantanna/clo-author">⭐ hugosantanna/clo-author</a><br><img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/hugosantanna/clo-author" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/clo-author/analyze/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/clo-author.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

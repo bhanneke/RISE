@@ -4,55 +4,36 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/interview-cheatsheet/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/interview-cheatsheet/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: interview-cheatsheet
-description: "Generate a long-form Chinese interview-prep cheat sheet on a specific ML/LLM topic — formulas with derivations, from-scratch PyTorch code, comparison tables, and 25 高频面试题 (L1 必会 / L2 进阶 / L3 顶级 lab). Cross-model codex review checks math, code, historical citations, and style discipline; then /render-html produces a single-file HTML with academic-newspaper template. Output: docs/tutorials/<slug>_tutorial.{md,html,review.json}. Use when the user says '写面试 cheat sheet', '写一份 X 教程', '帮我准备 Y 面试题', '出一份 X 速查', or wants a 600-1000 line Chinese tutorial on a specific ML topic."
-argument-hint: <topic> [--effort balanced|max] [--byline "Name (姓名), Affiliation"] [--commit false]
-allowed-tools: Bash(*), Read, Write, Edit, mcp__codex__codex
----
-
-# /interview-cheatsheet — long-form Chinese ML/LLM interview prep
+## /interview-cheatsheet — long-form Chinese ML/LLM interview prep
 
 Generate one comprehensive Chinese cheat sheet per invocation: formulas + derivations + from-scratch code + 25 高频题. Output passes cross-model math/code review before rendering. **Detect-only by default: never auto-commits.**
 
-## Inputs
+### Inputs
 
 - **`<topic>`** (required) — narrow enough for one 600-1000 line tutorial. Good: "RLHF / DPO / PPO", "MoE", "KV Cache + Speculative Decoding". Bad (too broad): "all of LLM training", "diffusion" (split into Forward Process / Sampling / CFG separately).
 - **`--effort`** (default `balanced`) — `balanced` ≈ 600 lines, `max` ≈ 1000 lines with deeper proofs and more L3 questions.
 - **`--byline`** (default `"Ruofeng Yang (杨若峰), Shanghai Jiao Tong University"`) — passed to `/render-html --author`.
 - **`--commit`** (default `false`) — if `false` (default), stop after rendering; user reviews and commits. Never push without explicit user approval.
 
-## Style guide — STRICT (read `docs/tutorials/attention_tutorial.md` as canonical reference)
+### Style guide — STRICT (read `docs/tutorials/attention_tutorial.md` as canonical reference)
 
-### Section skeleton (12-14 sections)
+#### Section skeleton (12-14 sections)
 
 ```
-## §0 TL;DR — callout intro line + numbered list of 5-7 takeaways
-## §1 直觉 — why this matters; analogy; one-paragraph mental model
-## §2 核心公式 — main formula + derivation (variance / scaling / boundary)
-## §3 实现细节 — 50-80 line from-scratch PyTorch
-## §4-7 变体 / 工程实践 / 常见 bug — variants, comparison tables, footguns
-## §8 复杂度 / 资源 — time + memory complexity
-## §9 与相关方法对比 — placement in the ecosystem
-## §10 25 高频面试题 — L1 (10 必会) + L2 (10 进阶) + L3 (5 顶级 lab), all with <details><summary> collapsible answers
-## §A 附录 (optional) — sanity-check output, reference list
+### §0 TL;DR — callout intro line + numbered list of 5-7 takeaways
+### §1 直觉 — why this matters; analogy; one-paragraph mental model
+### §2 核心公式 — main formula + derivation (variance / scaling / boundary)
+### §3 实现细节 — 50-80 line from-scratch PyTorch
+### §4-7 变体 / 工程实践 / 常见 bug — variants, comparison tables, footguns
+### §8 复杂度 / 资源 — time + memory complexity
+### §9 与相关方法对比 — placement in the ecosystem
+### §10 25 高频面试题 — L1 (10 必会) + L2 (10 进阶) + L3 (5 顶级 lab), all with <details><summary> collapsible answers
+### §A 附录 (optional) — sanity-check output, reference list
 ```
 
-### Conventions — bake the established lessons in
+#### Conventions — bake the established lessons in
 
 | Rule | Why | Example |
 |---|---|---|
@@ -65,7 +46,7 @@ Generate one comprehensive Chinese cheat sheet per invocation: formulas + deriva
 | Personal-info banlist: `SJTU JHC`, `JHC PhD`, `Server5`, `job market`, `/Users/...`, specific lab/company names | reviewer flags as FAIL | byline goes via `--author` at render time, not in body |
 | Language: Chinese primary, English technical terms in-place | matches established cheat-sheet style | "softmax 饱和", "vector field" |
 
-### Eyebrow / subtitle / title naming
+#### Eyebrow / subtitle / title naming
 
 | Field | Pattern |
 |---|---|
@@ -74,12 +55,12 @@ Generate one comprehensive Chinese cheat sheet per invocation: formulas + deriva
 | `--title` | `<Topic> 面试 Cheat Sheet` or `<Topic> Quick Reference` |
 | `--lang` | `zh-CN` |
 
-### Slug
+#### Slug
 `<topic>` → kebab/snake-case `<slug>` for filenames. e.g. "RLHF / DPO / PPO" → `rlhf_dpo_ppo`.
 
-## Workflow
+### Workflow
 
-### Step 1 — Plan structure (no files written)
+#### Step 1 — Plan structure (no files written)
 
 Internally sketch:
 - 12-14 section titles
@@ -90,11 +71,11 @@ Internally sketch:
 
 If the topic is too broad to fit in one cheat sheet, **stop and ask the user to scope** before drafting.
 
-### Step 2 — Draft MD
+#### Step 2 — Draft MD
 
 Write directly to `docs/tutorials/<slug>_tutorial.md`. Follow the style guide. Length target: 600 lines (balanced) or 1000 lines (max), ±20%.
 
-### Step 3 — Cross-model math/code review (codex 5.5 xhigh, FRESH thread)
+#### Step 3 — Cross-model math/code review (codex 5.5 xhigh, FRESH thread)
 
 Invoke `mcp__codex__codex` with `model: gpt-5.5`, `config: {model_reasoning_effort: xhigh}`, `sandbox: read-only`, fresh thread (never `codex-reply`).
 
@@ -103,12 +84,12 @@ Reviewer prompt:
 ```
 You are reviewing a long-form Chinese interview-prep tutorial on <TOPIC> for math/code/factual correctness and style discipline.
 
-## Files to read (READ-ONLY)
+### Files to read (READ-ONLY)
 - Draft MD: <MD_PATH>
 - Style reference: /Users/yangruofeng/Desktop/aris_paper_discussion/aris_repo/docs/tutorials/attention_tutorial.md
   (Read this only for STYLE — do NOT score the draft against the reference's content topic.)
 
-## Return JSON with these 10 checks
+### Return JSON with these 10 checks
 
 1. formula_correctness — Independently re-derive each $$ display formula. Flag any error with file:line.
 2. code_correctness — For each python block: would it run? Does it implement the stated math? Imports / shapes / device handling consistent?
@@ -132,7 +113,7 @@ Return JSON:
 Verdict: PASS = all pass, WARN = at most cosmetic issues (length slight off / cosmetic style), FAIL = any math/code/factual error OR personal-info leak OR table-pipe / callout-list bug.
 ```
 
-### Step 4 — Fix and loop (no hard cap — judge by trajectory)
+#### Step 4 — Fix and loop (no hard cap — judge by trajectory)
 
 For each FAIL issue, edit the MD. Then re-invoke codex with a **fresh thread** (never reuse threadId). Stop when verdict = PASS or WARN with no FAIL items.
 
@@ -143,7 +124,7 @@ For each FAIL issue, edit the MD. Then re-invoke codex with a **fresh thread** (
 
 Most tutorials converge in 3-5 rounds. Going to 5-6 rounds is fine if substantive bugs are still being caught — the Video Generation tutorial (May 2026) went to 5 rounds and the final 2 rounds caught real citation errors and an over-attribution to Sora's patch size that would have shipped otherwise.
 
-### Step 5 — Render via /render-html
+#### Step 5 — Render via /render-html
 
 Call directly (do not invoke `/render-html` as a sub-skill; call its python script — gives clear control):
 
@@ -160,7 +141,7 @@ python3 skills/render-html/scripts/render_html.py docs/tutorials/<slug>_tutorial
 
 `render_html.py` runs its own 13-check codex review automatically. If that FAILs, fix the MD (often a table-pipe or callout-list issue the math/code reviewer missed) and re-render. Note that `render_html.py` itself writes `<slug>_tutorial.review.json` for the render-stage audit.
 
-### Step 6 — Combine audit trail
+#### Step 6 — Combine audit trail
 
 After both reviews pass, merge math/code review history + render review history into one `docs/tutorials/<slug>_tutorial.review.json`:
 
@@ -189,7 +170,7 @@ After both reviews pass, merge math/code review history + render review history 
 }
 ```
 
-### Step 7 — Stop. Report to user.
+#### Step 7 — Stop. Report to user.
 
 Do **NOT** `git add` / `git commit` / `git push`. Report:
 
@@ -215,7 +196,7 @@ Do **NOT** `git add` / `git commit` / `git push`. Report:
   Also update docs/tutorials/README.md to add the new row.
 ```
 
-## Update the index
+### Update the index
 
 After the tutorial passes, optionally append a row to `docs/tutorials/README.md`:
 
@@ -225,7 +206,7 @@ After the tutorial passes, optionally append a row to `docs/tutorials/README.md`
 
 Suggest the row to the user but let them edit it in themselves if they want to curate.
 
-## Key invariants (the ARIS rules baked in)
+### Key invariants (the ARIS rules baked in)
 
 | Invariant | How it's enforced |
 |---|---|
@@ -236,14 +217,14 @@ Suggest the row to the user but let them edit it in themselves if they want to c
 | Lessons-learned encoded | Table-pipe + callout-list collision rules in style guide AND review checks 5+6 |
 | No silent failure | If review FAILs and the FAIL set is no longer shrinking (loop) or hits ~6 rounds without convergence, stop and report — don't push |
 
-## When NOT to use
+### When NOT to use
 
 - Topic too broad — split into smaller scopes first
 - Topic outside ML/LLM core — this style guide assumes math + code + Chinese; for general topics use a different format or write directly
 - Already have a draft you want to edit — use Edit directly, this skill is for greenfield generation
 - Don't want HTML output — call `/render-html` separately or skip Step 5
 
-## Reference invocations
+### Reference invocations
 
 ```
 /interview-cheatsheet "RLHF / DPO / PPO"
@@ -254,42 +235,12 @@ Suggest the row to the user but let them edit it in themselves if they want to c
 /interview-cheatsheet "Quantization (GPTQ / AWQ / INT4 / FP8 / SmoothQuant)"
 ```
 
-## Reference style files
+### Reference style files
 
 - Style canonical: `docs/tutorials/attention_tutorial.md` + `.html`
 - Style secondary: `docs/tutorials/flow_matching_tutorial.md` + `.html`
 - Review audit format: `docs/tutorials/attention_tutorial.review.json`
 
-## Provenance
+### Provenance
 
 Extracted from the two pilot tutorials (Attention + Flow Matching, May 2026). Both passed cross-model review; the attention tutorial required 3 review rounds — catching a table-pipe collision and a callout-list collision that were not obvious from the rendered output. Those lessons are now baked into the style guide and reviewer checks 5+6 so future tutorials don't repeat them.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/interview-cheatsheet/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/interview-cheatsheet/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>audit</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-claim-audit/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-claim-audit/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-claim-audit
-description: "Zero-context verification that every number, comparison, and scope claim in the paper matches raw result files. Uses a fresh cross-model reviewer with NO prior context to prevent confirmation bias. Use when user says \"审查论文数据\", \"check paper claims\", \"verify numbers\", \"论文数字核对\", or before submission to ensure paper-to-evidence fidelity."
-argument-hint: [paper-directory]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex
----
-
-# Paper Claim Audit: Zero-Context Evidence Verification
+## Paper Claim Audit: Zero-Context Evidence Verification
 
 Verify that every claim in the paper matches raw evidence for: **$ARGUMENTS**
 
-## Why This Exists
+### Why This Exists
 
 The executor writes experiments AND writes the paper. It "knows" what the results should be. This creates confirmation bias:
 - Rounding 84.7% up to 85.3%
@@ -39,7 +20,7 @@ The executor writes experiments AND writes the paper. It "knows" what the result
 
 A **fresh reviewer with zero prior context** catches these because it has no expectations — it just compares paper text vs raw files.
 
-## How This Differs From Other Audit Skills
+### How This Differs From Other Audit Skills
 
 | Skill | Question it answers |
 |-------|-------------------|
@@ -47,7 +28,7 @@ A **fresh reviewer with zero prior context** catches these because it has no exp
 | `/result-to-claim` | Does the data scientifically support this claim? |
 | **`/paper-claim-audit`** | **Does the paper report the data truthfully and precisely?** |
 
-## Core Principle
+### Core Principle
 
 **Zero-context, fresh reviewer.** The auditor receives ONLY:
 - Paper .tex files (the claims)
@@ -64,9 +45,9 @@ It does NOT receive:
 
 This is **stricter than reviewer-independence** — it's zero-context evidence audit.
 
-## Workflow
+### Workflow
 
-### Step 1: Collect Files (Executor — Claude)
+#### Step 1: Collect Files (Executor — Claude)
 
 Locate paper and result files WITHOUT reading or interpreting them.
 
@@ -96,7 +77,7 @@ NARRATIVE_REPORT.md, PAPER_PLAN.md, findings.md
 Any .md file that is an executor-written summary
 ```
 
-### Step 2: Fresh Reviewer Audit (GPT-5.4 — NEW thread, no reply)
+#### Step 2: Fresh Reviewer Audit (GPT-5.4 — NEW thread, no reply)
 
 **CRITICAL: Use `mcp__codex__codex` (new thread), NEVER `mcp__codex__codex-reply`.** Every run must be a fresh context.
 
@@ -175,36 +156,36 @@ mcp__codex__codex:
     Overall verdict: PASS | WARN | FAIL
 ```
 
-### Step 3: Write Report (Executor — Claude)
+#### Step 3: Write Report (Executor — Claude)
 
 Parse the reviewer's response and write `PAPER_CLAIM_AUDIT.md`:
 
 ```markdown
-# Paper Claim Audit Report
+## Paper Claim Audit Report
 
 **Date**: [today]
 **Auditor**: GPT-5.4 xhigh (fresh zero-context thread)
 **Paper**: [paper title from tex]
 
-## Overall Verdict: [PASS | WARN | FAIL]
+### Overall Verdict: [PASS | WARN | FAIL]
 
-## Claims Verified: [N total]
+### Claims Verified: [N total]
 - exact_match: [count]
 - rounding_ok: [count]
 - ambiguous_mapping: [count]
 - missing_evidence: [count]
 - mismatch: [count]
 
-## Issues Found
+### Issues Found
 
-### [FAIL/WARN] Claim #N: [description]
+#### [FAIL/WARN] Claim #N: [description]
 - **Location**: Section X / Table Y / Figure Z
 - **Paper says**: "..."
 - **Evidence shows**: ...
 - **Status**: [status]
 - **Fix**: [specific correction needed]
 
-## All Claims (detailed)
+### All Claims (detailed)
 
 | # | Location | Paper Value | Evidence Value | Status |
 |---|----------|-------------|---------------|--------|
@@ -215,7 +196,7 @@ Parse the reviewer's response and write `PAPER_CLAIM_AUDIT.md`:
 
 Also write `PAPER_CLAIM_AUDIT.json` for machine consumption.
 
-### Step 4: Print Summary
+#### Step 4: Print Summary
 
 ```
 📋 Paper Claim Audit Complete
@@ -231,15 +212,15 @@ Also write `PAPER_CLAIM_AUDIT.json` for machine consumption.
   See PAPER_CLAIM_AUDIT.md for details.
 ```
 
-## When to Run
+### When to Run
 
 1. **After `/paper-write`** — first check before improvement loop
 2. **After `/auto-paper-improvement-loop`** — recheck if improvement loop changed numbers
 3. **Before submission** — final verification
 
-## Integration with Other Skills
+### Integration with Other Skills
 
-### Read by `/auto-paper-improvement-loop` (if exists)
+#### Read by `/auto-paper-improvement-loop` (if exists)
 
 ```
 if PAPER_CLAIM_AUDIT.json exists:
@@ -247,14 +228,14 @@ if PAPER_CLAIM_AUDIT.json exists:
     fix them as priority items in the improvement round
 ```
 
-### Advisory, Never Blocking
+#### Advisory, Never Blocking
 
 Same pattern as `/experiment-audit`:
 - `PASS` → continue normally
 - `WARN` → print warning, continue, flag draft as "check numbers before submission"
 - `FAIL` → print alert, continue, but do NOT mark as submission-ready
 
-## Key Rules
+### Key Rules
 
 - **Fresh thread EVERY run.** Never use `codex-reply`. Never carry context.
 - **Zero executor interpretation.** Only file paths. No summaries.
@@ -262,11 +243,11 @@ Same pattern as `/experiment-audit`:
 - **Rounding rule.** Only standard rounding to displayed precision. 84.7% → 84.7% or 85% is OK. 84.7% → 85.3% is NOT OK.
 - **Cross-model.** Reviewer must be a different model family from executor.
 
-## Review Tracing
+### Review Tracing
 
 After each `mcp__codex__codex` or `mcp__codex__codex-reply` reviewer call, save the trace following `shared-references/review-tracing.md` (Policy C — forensic; never silently skip). Use `save_trace.sh` (resolved per the chain in `shared-references/integration-contract.md` §2) or write files directly to `.aris/traces/<skill>/<date>_run<NN>/`. Respect the `--- trace:` parameter (default: `full`).
 
-## Submission Artifact Emission
+### Submission Artifact Emission
 
 This skill **always** writes `paper/PAPER_CLAIM_AUDIT.json`, regardless of
 caller or detector outcome. A detector-negative run (paper has no numeric
@@ -301,7 +282,7 @@ The artifact conforms to the schema in `shared-references/assurance-contract.md`
 }
 ```
 
-### `audited_input_hashes` scope
+#### `audited_input_hashes` scope
 
 Hash the **declared input set** passed into this audit invocation — i.e. the
 exact `.tex` files and raw result / config files this run read — not a
@@ -318,7 +299,7 @@ external `results/` dirs. The verifier resolves relative entries via
 `os.path.join(paper_dir, key)`; prefixing with `paper/` produces
 `paper/paper/main.tex` and false-fails as STALE.
 
-### Verdict decision table
+#### Verdict decision table
 
 | Input state                                           | Verdict          | `reason_code` example |
 |-------------------------------------------------------|------------------|-----------------------|
@@ -329,7 +310,7 @@ external `results/` dirs. The verifier resolves relative entries via
 | Any material mismatch (wrong number, config mismatch) | `FAIL`           | `claim_mismatch`      |
 | Reviewer invocation failed (network / malformed)      | `ERROR`          | `reviewer_error`      |
 
-### Thread independence
+#### Thread independence
 
 Every invocation uses a fresh `mcp__codex__codex` thread. Never
 `codex-reply`. Do not accept prior audit outputs (PROOF_AUDIT, CITATION_AUDIT,
@@ -337,40 +318,10 @@ EXPERIMENT_LOG, AUTO_REVIEW summaries) as input to this audit — the fresh
 thread preserves reviewer independence per
 `shared-references/reviewer-independence.md`.
 
-### Human-readable sibling
+#### Human-readable sibling
 
 `paper/PAPER_CLAIM_AUDIT.md` is written alongside the JSON for readers.
 The JSON is authoritative for `verify_paper_audits.sh`; the Markdown
 is for humans. The parent skill (`paper-writing` Phase 6) plus the verifier
 decide whether the verdict blocks finalization — this skill itself never
 blocks; it only emits.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-claim-audit/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>audit</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/paper-claim-audit/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

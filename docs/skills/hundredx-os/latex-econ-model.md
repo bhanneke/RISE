@@ -4,26 +4,14 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/latex/econ-model.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# LaTeX Conventions for Economic Models
+## LaTeX Conventions for Economic Models
 
 Guidelines for typesetting economic theory in LaTeX. Follow these conventions to
 produce clean, readable, publication-quality mathematical economics.
 
-## Preamble essentials
+### Preamble essentials
 
 ```latex
 \usepackage{amsmath}      % Core math environments
@@ -34,9 +22,9 @@ produce clean, readable, publication-quality mathematical economics.
 \usepackage{bm}           % Bold math symbols (for vectors if needed)
 ```
 
-## Equation environments
+### Equation environments
 
-### Single equations
+#### Single equations
 
 Use `equation` for numbered, `equation*` for unnumbered. Never use `$$...$$`.
 
@@ -52,7 +40,7 @@ Use `equation` for numbered, `equation*` for unnumbered. Never use `$$...$$`.
 \end{equation*}
 ```
 
-### Multi-line aligned equations
+#### Multi-line aligned equations
 
 Use `align` for related equations that should be aligned (typically at `=` or
 inequality signs). Use `aligned` inside `equation` when you want a single
@@ -75,7 +63,7 @@ equation number for the group.
 \end{equation}
 ```
 
-### Cases (piecewise functions)
+#### Cases (piecewise functions)
 
 Use `cases` from amsmath or `dcases` from mathtools (the latter provides
 displaystyle inside cases, which looks better for fractions).
@@ -90,9 +78,9 @@ displaystyle inside cases, which looks better for fractions).
 \end{equation}
 ```
 
-## Standard notation conventions
+### Standard notation conventions
 
-### Agents, goods, time
+#### Agents, goods, time
 
 | Symbol | Convention | Example |
 |--------|-----------|---------|
@@ -102,7 +90,7 @@ displaystyle inside cases, which looks better for fractions).
 | `t`    | Time period | $t = 0, 1, 2, \ldots$ |
 | `s`    | State of the world | $s \in S$ |
 
-### Core economic objects
+#### Core economic objects
 
 ```latex
 % Preferences
@@ -139,7 +127,7 @@ A_t                   % Total factor productivity
 \Delta^{n-1}          % Simplex (for mixed strategies, distributions)
 ```
 
-### Operators and functions
+#### Operators and functions
 
 Define custom operators in the preamble to get proper spacing:
 
@@ -162,7 +150,7 @@ Usage:
 x^* = \argmax_{x \in X} f(x)
 ```
 
-### Indicator functions
+#### Indicator functions
 
 ```latex
 \mathbbm{1}\{x > 0\}        % Preferred: blackboard bold 1
@@ -170,7 +158,7 @@ x^* = \argmax_{x \in X} f(x)
 \mathbbm{1}_{x > 0}         % Subscript notation (also common)
 ```
 
-## Optimization problems
+### Optimization problems
 
 Economics papers are full of optimization problems. Typeset them consistently:
 
@@ -197,7 +185,7 @@ Economics papers are full of optimization problems. Typeset them consistently:
 
 For multi-line constraints, use the `align` approach shown earlier.
 
-## Equilibrium definitions
+### Equilibrium definitions
 
 Use the `definition` environment from amsthm. Define it in the preamble:
 
@@ -213,7 +201,7 @@ Use the `definition` environment from amsthm. Define it in the preamble:
 \newtheorem{example}{Example}
 ```
 
-### Competitive equilibrium
+#### Competitive equilibrium
 
 ```latex
 \begin{definition}[Competitive Equilibrium]\label{def:ce}
@@ -236,7 +224,7 @@ Use the `definition` environment from amsthm. Define it in the preamble:
 \end{definition}
 ```
 
-### Nash equilibrium (game theory)
+#### Nash equilibrium (game theory)
 
 ```latex
 \begin{definition}[Nash Equilibrium]\label{def:nash}
@@ -249,7 +237,7 @@ Use the `definition` environment from amsthm. Define it in the preamble:
 \end{definition}
 ```
 
-## Proofs
+### Proofs
 
 Use the `proof` environment from amsthm. It automatically adds a QED symbol.
 
@@ -273,7 +261,7 @@ Use the `proof` environment from amsthm. It automatically adds a QED symbol.
 \end{proof}
 ```
 
-### Proof sketches and appendix proofs
+#### Proof sketches and appendix proofs
 
 ```latex
 % In the main text
@@ -284,9 +272,9 @@ Use the `proof` environment from amsthm. It automatically adds a QED symbol.
 \end{proof}
 ```
 
-## Common patterns in economics papers
+### Common patterns in economics papers
 
-### First-order conditions (FOCs)
+#### First-order conditions (FOCs)
 
 ```latex
 % Vertically aligned FOCs
@@ -297,7 +285,7 @@ Use the `proof` environment from amsthm. It automatically adds a QED symbol.
 \end{align}
 ```
 
-### Value functions (dynamic programming)
+#### Value functions (dynamic programming)
 
 ```latex
 \begin{equation}\label{eq:bellman}
@@ -306,7 +294,7 @@ Use the `proof` environment from amsthm. It automatically adds a QED symbol.
 \end{equation}
 ```
 
-### Welfare and surplus
+#### Welfare and surplus
 
 ```latex
 % Compensating variation
@@ -321,14 +309,14 @@ Use the `proof` environment from amsthm. It automatically adds a QED symbol.
 \end{equation}
 ```
 
-### Elasticities
+#### Elasticities
 
 ```latex
 \varepsilon_{x,p} = \frac{\partial x}{\partial p} \cdot \frac{p}{x}
   = \frac{\partial \ln x}{\partial \ln p}
 ```
 
-## Cross-referencing
+### Cross-referencing
 
 Use `\eqref` for equations (adds parentheses automatically) and `\ref` for
 theorems, propositions, and definitions. Use the `cleveref` package for
@@ -342,7 +330,7 @@ As shown in \cref{eq:euler}, the Euler equation implies...
 By \cref{prop:euler,prop:tvc}, the solution is characterized by...
 ```
 
-## Style tips
+### Style tips
 
 - Use `\left( ... \right)` sparingly. Prefer `\bigl( ... \bigr)` or manual
   sizing for better control. `\left/\right` can produce ugly spacing.
@@ -359,28 +347,3 @@ By \cref{prop:euler,prop:tvc}, the solution is characterized by...
   but many economics papers avoid bold entirely and just state "let $x$ be a vector."
 - Calligraphic letters for sets, information sets, or Lagrangians:
   $\mathcal{I}$, $\mathcal{F}$, $\mathcal{L}$.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/latex/econ-model.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/latex-econ-model/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

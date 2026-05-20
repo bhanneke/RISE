@@ -4,35 +4,13 @@
 
 AI-generated inline figures (Google Gemini Nano Banana)
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>figures</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/nano-banana/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/nano-banana/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: nano-banana
-description: "Generate professional presentation slides and high-quality illustrations using Gemini image generation API (Nano Banana 2), with interactive browser-based review and iterative editing. Full workflow: content planning conversation → slides_plan.json → batch image generation → review with feedback → targeted slide editing → PPTX packaging. Use when: user wants to create a presentation, make slides, generate a PPT/PPTX, prepare a talk deck, design visual slide content, or generate high-quality figures/illustrations for papers and documents. Do NOT use for: writing academic papers (use paper-writing) or planning academic conference talk narrative structure (use academic-slides)."
-allowed-tools: "write_file edit_file read_file think_tool execute"
-metadata:
-  author: EvoScientist
-  version: '1.0.0'
-  tags: [core, presentation, image-generation]
----
-
-# Nano Banana
+## Nano Banana
 
 Generate high-quality presentation slides as images using Gemini's image generation API, review them interactively in a browser, and iteratively edit based on feedback.
 
-## When to Use This Skill
+### When to Use This Skill
 
 - User asks to create a presentation, slide deck, or PPT
 - User wants to generate visual slides for a talk or lecture
@@ -48,7 +26,7 @@ Generate high-quality presentation slides as images using Gemini's image generat
 
 ---
 
-## Before You Start: Prerequisites
+### Before You Start: Prerequisites
 
 Before proceeding with any slide generation, verify these prerequisites:
 
@@ -65,7 +43,7 @@ Before proceeding with any slide generation, verify these prerequisites:
 
 ---
 
-## Core Workflow
+### Core Workflow
 
 ```
 Phase 1: Content Planning Conversation     ← most important phase
@@ -81,7 +59,7 @@ Follow these phases in order. Do NOT skip Phase 1 — the quality of generated s
 
 ---
 
-## Phase 1: Content Planning Conversation
+### Phase 1: Content Planning Conversation
 
 This is the most critical phase. Rushing to generation without proper planning produces mediocre slides. Engage the user in a structured conversation:
 
@@ -115,7 +93,7 @@ This is the most critical phase. Rushing to generation without proper planning p
 
 ---
 
-## Phase 2: Generate slides_plan.json
+### Phase 2: Generate slides_plan.json
 
 Create a `slides_plan.json` file in the workspace root with this schema:
 
@@ -145,7 +123,7 @@ Create a `slides_plan.json` file in the workspace root with this schema:
 
 **page_type values:** `cover`, `content`, `data`
 
-### Critical Content Field Rules
+#### Critical Content Field Rules
 
 The `content` field is what gets passed to the image generation model. Follow these rules strictly:
 
@@ -177,9 +155,9 @@ Bottom tagline: AI changes everything
 
 ---
 
-## Phase 3: Select Style & Generate Slides
+### Phase 3: Select Style & Generate Slides
 
-### Available Styles
+#### Available Styles
 
 | Style | File | Visual Characteristics | Best For |
 |-------|------|----------------------|----------|
@@ -189,7 +167,7 @@ Bottom tagline: AI changes everything
 
 Present the styles to the user and let them choose. If unsure, recommend Lineal Color as the default.
 
-### Available Models
+#### Available Models
 
 | Model | Speed | Quality | When to Use |
 |-------|-------|---------|-------------|
@@ -199,7 +177,7 @@ Present the styles to the user and let them choose. If unsure, recommend Lineal 
 
 For first-time generation, recommend `gemini-3.1-flash-image-preview` (fast iteration). Switch to `gemini-3-pro-image-preview` for the final version.
 
-### Generate Command
+#### Generate Command
 
 ```bash
 python /skills/nano-banana/scripts/generate_ppt.py \
@@ -231,7 +209,7 @@ ppt_output/
 
 ---
 
-## Phase 4: Launch Review Server
+### Phase 4: Launch Review Server
 
 Start the interactive review server so the user can review slides and write feedback:
 
@@ -252,7 +230,7 @@ Wait for the user to confirm they have saved their feedback before proceeding.
 
 ---
 
-## Phase 5: Apply Feedback Edits
+### Phase 5: Apply Feedback Edits
 
 Read `slides_plan.json` and find all slides with a non-empty `feedback` field. For each one, run the edit script:
 
@@ -277,7 +255,7 @@ If the user has more feedback, repeat Phase 4-5. This review-edit cycle continue
 
 ---
 
-## Phase 6: Package as PPTX
+### Phase 6: Package as PPTX
 
 Once the user approves all slides, ask for the desired filename and package them:
 
@@ -295,7 +273,7 @@ python /skills/nano-banana/scripts/package_pptx.py \
 
 ---
 
-## Phase 7: Cleanup
+### Phase 7: Cleanup
 
 - The review server is automatically stopped by `package_pptx.py --kill-server`
 - Ask the user if they want to keep `ppt_output/` directory or clean it up
@@ -303,7 +281,7 @@ python /skills/nano-banana/scripts/package_pptx.py \
 
 ---
 
-## Counterintuitive Rules
+### Counterintuitive Rules
 
 1. **Never include meta-labels in content** — Words like "Slogan:", "Visual:", "Points:" will be rendered as visible text on the slide. Describe what you want without prefixes.
 
@@ -323,7 +301,7 @@ python /skills/nano-banana/scripts/package_pptx.py \
 
 ---
 
-## Scripts Reference
+### Scripts Reference
 
 | Script | Purpose | Key Arguments |
 |--------|---------|---------------|
@@ -334,7 +312,7 @@ python /skills/nano-banana/scripts/package_pptx.py \
 
 ---
 
-## Style Template Format
+### Style Template Format
 
 Style templates are markdown files in `styles/` with a fixed structure that `generate_ppt.py` parses:
 
@@ -346,33 +324,3 @@ Style templates are markdown files in `styles/` with a fixed structure that `gen
 | Other sections | Documentation only | No |
 
 To create a new style: copy an existing `.md` file, modify the `## Base Prompt` and `## Examples` sections. The code extracts `### Cover`, `### Content`, and `### Data` code blocks from `## Examples`.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/nano-banana/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>figures</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/nano-banana/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

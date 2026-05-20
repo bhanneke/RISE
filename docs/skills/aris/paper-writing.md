@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-writing/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-writing/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-writing
-description: "Workflow 3: Full paper writing pipeline. Orchestrates paper-plan → paper-figure → figure-spec/paper-illustration/mermaid-diagram → paper-write → paper-compile → auto-paper-improvement-loop to go from a narrative report to a polished PDF. At `— effort: max | beast` (or explicit `— assurance: submission`), Phase 6 gates the Final Report on `verify_paper_audits.sh` (resolved per integration-contract §2); the PDF is labelled `submission-ready` only when the external verifier is green. Use when user says \"写论文全流程\", \"write paper pipeline\", \"从报告到PDF\", \"paper writing\", or wants the complete paper generation workflow."
-argument-hint: "[narrative-report-path-or-topic] [— style-ref: <source>]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Workflow 3: Paper Writing Pipeline
+## Workflow 3: Paper Writing Pipeline
 
 Orchestrate a complete paper writing workflow for: **$ARGUMENTS**
 
-## Overview
+### Overview
 
 This skill chains five sub-skills into a single automated pipeline:
 
@@ -42,7 +23,7 @@ Each phase builds on the previous one's output. The final deliverable is a polis
 
 In this hybrid pack, the pipeline itself is unchanged, but `paper-plan` and `paper-write` use Orchestra-adapted shared references for stronger story framing and prose guidance.
 
-## Constants
+### Constants
 
 - **VENUE = `ICLR`** — Target venue. Options: `ICLR`, `NeurIPS`, `ICML`, `CVPR`, `ACL`, `AAAI`, `ACM`, `IEEE_JOURNAL` (IEEE Transactions / Letters), `IEEE_CONF` (IEEE conferences). Affects style file, page limit, citation format.
 - **MAX_IMPROVEMENT_ROUNDS = 2** — Number of review→fix→recompile rounds in the improvement loop.
@@ -54,7 +35,7 @@ In this hybrid pack, the pipeline itself is unchanged, but `paper-plan` and `pap
 > Override inline: `/paper-writing "NARRATIVE_REPORT.md" — venue: NeurIPS, illustration: gemini, human checkpoint: true`
 > IEEE example: `/paper-writing "NARRATIVE_REPORT.md" — venue: IEEE_JOURNAL`
 
-## Inputs
+### Inputs
 
 This pipeline accepts one of:
 
@@ -64,16 +45,16 @@ This pipeline accepts one of:
 
 The more detailed the input (especially figure descriptions and quantitative results), the better the output.
 
-## Optional: Style reference (`— style-ref: <source>`, opt-in)
+### Optional: Style reference (`— style-ref: <source>`, opt-in)
 
 Lets the user steer **structural** style (section ordering, theorem density, sentence cadence, figure density, bibliography style) of the generated paper toward a reference paper they admire. **Default OFF — when the user does not pass `— style-ref`, do nothing differently from before.**
 
 When `— style-ref: <source>` is in `$ARGUMENTS`, run the helper FIRST, before Phase 1 (paper-plan):
 
 ```bash
-# Resolve $STYLE_HELPER via the canonical strict-safe chain (see
-# shared-references/integration-contract.md §2). Policy A — gate:
-# unresolved helper means --style-ref cannot be satisfied, so abort.
+## Resolve $STYLE_HELPER via the canonical strict-safe chain (see
+## shared-references/integration-contract.md §2). Policy A — gate:
+## unresolved helper means --style-ref cannot be satisfied, so abort.
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -110,9 +91,9 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 - **Never copy prose, claims, examples, or terminology** from anything reachable through the cache.
 - **Never pass `— style-ref` (or the cache contents) to reviewer / auditor sub-skills** — Phase 4.5 (`/proof-checker`), Phase 4.7 / 5.5 (`/paper-claim-audit`), Phase 5 (`/auto-paper-improvement-loop` reviewer), Phase 5.8 (`/citation-audit`) MUST run on the artifact alone. Cross-model review independence (`../shared-references/reviewer-independence.md`).
 
-## Pipeline
+### Pipeline
 
-### Phase 0: Assurance Setup
+#### Phase 0: Assurance Setup
 
 Resolve the active `assurance` level and persist it so Phase 6's external
 verifier reads the same value. **Run once at pipeline start, before Phase 1.**
@@ -157,7 +138,7 @@ discouraged for actual submissions. See
    <either "current behavior, no audit gate" OR "mandatory audits gated by verify_paper_audits.sh (resolved per integration-contract §2)">
 ```
 
-### Phase 1: Paper Plan
+#### Phase 1: Paper Plan
 
 Invoke `/paper-plan` to create the structural outline:
 
@@ -192,7 +173,7 @@ Shall I proceed with figure generation?
 - **User approves** (or AUTO_PROCEED=true) → proceed to Phase 2.
 - **User requests changes** → adjust plan and re-present.
 
-### Phase 2: Figure Generation
+#### Phase 2: Figure Generation
 
 If `— style-ref: <source>` was passed in `$ARGUMENTS` and the helper succeeded above, append `— style-ref: <source>` to every writer-side sub-skill invocation in this pipeline (Phases 1, 2b, 3, 5). Do **not** append it to reviewer/auditor invocations (Phases 4.5, 4.7, 5.5, 5.8).
 
@@ -282,7 +263,7 @@ These are complementary, not mutually exclusive: you can run multiple generators
 [If all auto]: Shall I proceed with LaTeX writing?
 ```
 
-### Phase 3: LaTeX Writing
+#### Phase 3: LaTeX Writing
 
 Invoke `/paper-write` to generate section-by-section LaTeX:
 
@@ -314,7 +295,7 @@ If `— style-ref: <source>` was passed in `$ARGUMENTS` and the helper succeeded
 Shall I proceed with compilation?
 ```
 
-### Phase 4: Compilation
+#### Phase 4: Compilation
 
 Invoke `/paper-compile` to build the PDF:
 
@@ -345,7 +326,7 @@ Invoke `/paper-compile` to build the PDF:
 Shall I proceed with the improvement loop?
 ```
 
-### Phase 4.5: Proof Verification (theory papers only)
+#### Phase 4.5: Proof Verification (theory papers only)
 
 **Skip this phase if the paper contains no theorems, lemmas, or proofs.**
 
@@ -366,7 +347,7 @@ else:
     skip — no proofs, no action
 ```
 
-### Phase 4.7: Paper Claim Audit
+#### Phase 4.7: Paper Claim Audit
 
 **Skip if no result files exist (e.g., survey/position papers with no experiments).**
 
@@ -385,7 +366,7 @@ else:
     skip — no experimental results to verify
 ```
 
-### Phase 5: Auto Improvement Loop
+#### Phase 5: Auto Improvement Loop
 
 Invoke `/auto-paper-improvement-loop` to polish the paper:
 
@@ -412,7 +393,7 @@ If `— style-ref: <source>` was passed in `$ARGUMENTS` and the helper succeeded
 
 **Format check** (included in improvement loop Step 8): After final recompilation, auto-detect and fix overfull hboxes (content exceeding margins), verify page count vs venue limit, and ensure compact formatting. Location-aware thresholds: any main-body overfull blocks completion regardless of size; appendix overfulls block only if >10pt; bibliography overfulls block only if >20pt.
 
-### Phase 5.5: Final Paper Claim Audit (MANDATORY submission gate)
+#### Phase 5.5: Final Paper Claim Audit (MANDATORY submission gate)
 
 After `/auto-paper-improvement-loop` finishes, **rerun** `/paper-claim-audit` before the final report whenever the paper contains numeric claims and machine-readable raw result files exist.
 
@@ -443,7 +424,7 @@ fi
 
 **Empirical motivation:** in a real submission run, the final paper claimed a narrower experiment grid than the raw JSON actually contained, and a tolerance value was rounded down past the actual relative error. Both were caught only after manual `paper-claim-audit` invocation in the final round; the improvement loop did not detect them.
 
-### Phase 5.6: Kill-Argument Adversarial Review (theory / scope-heavy papers)
+#### Phase 5.6: Kill-Argument Adversarial Review (theory / scope-heavy papers)
 
 After Phase 5.5 (claim audit) passes, run `/kill-argument` whenever the paper is theory-heavy or makes explicit scope/generality claims in the title or abstract. This is a final adversarial check that complements the claim/citation/proof audits: those verify *local correctness* (numbers match, cites resolve, theorems prove); kill-argument tests *headline-level* survival — whether the paper as a whole answers the worst rejection paragraph a senior area chair would write.
 
@@ -471,7 +452,7 @@ fi
 
 **Why this is the right place:** Phase 5 (loop) optimizes for score, Phase 5.5 (claim audit) verifies numbers, Phase 5.8 (citation audit) verifies cites — none of these catches the case where every local component is correct but the paper still oversells what it actually proves. Kill-argument is the dedicated headline-scope check.
 
-### Phase 5.8: Citation Audit (submission gate)
+#### Phase 5.8: Citation Audit (submission gate)
 
 After the final paper-claim-audit passes, run `/citation-audit` to verify every `\cite{...}` along three axes: existence, metadata correctness, and context appropriateness. This is the fourth and final layer of the evidence-and-claim assurance stack (`experiment-audit` → `result-to-claim` → `paper-claim-audit` → `citation-audit`).
 
@@ -503,7 +484,7 @@ else:
 
 **Empirical motivation:** in a real submission run, several real papers were cited in contexts they did not actually support, and at least one bib entry shipped with `author = "Anonymous"` because the metadata had not been resolved. None were caught by the improvement loop or numeric claim audit; only fresh web-lookup review surfaced them.
 
-### Phase 6: Final Report
+#### Phase 6: Final Report
 
 **Phase 6.0 — Submission Gate**
 
@@ -530,7 +511,7 @@ alone):
 5. Use the re-derived level as authoritative for the rest of Phase 6.
 
 ```bash
-# Final authoritative value, written and read from the same source
+## Final authoritative value, written and read from the same source
 ASSURANCE=<derived-from-$ARGUMENTS>        # draft | submission
 mkdir -p paper/.aris
 echo "$ASSURANCE" > paper/.aris/assurance.txt
@@ -597,7 +578,7 @@ load-bearing: if the helper is unresolved the SKILL aborts the Final
 Report rather than producing an unverified `submission-ready` claim.
 
 ```bash
-# Resolve the audit verifier (Policy A — gate).
+## Resolve the audit verifier (Policy A — gate).
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -654,7 +635,7 @@ pattern is the default repo behavior.
 or directly if `assurance=draft`)
 
 ```markdown
-# Paper Writing Pipeline Report
+## Paper Writing Pipeline Report
 
 **Input**: [NARRATIVE_REPORT.md or topic]
 **Venue**: [ICLR/NeurIPS/ICML/CVPR/ACL/AAAI/ACM/IEEE_JOURNAL/IEEE_CONF]
@@ -662,7 +643,7 @@ or directly if `assurance=draft`)
 **Submission-ready**: [yes | no]   <!-- yes iff assurance=submission AND verifier exit 0 -->
 **Date**: [today]
 
-## Pipeline Summary
+### Pipeline Summary
 
 | Phase | Status | Output |
 |-------|--------|--------|
@@ -677,14 +658,14 @@ or directly if `assurance=draft`)
 | 5.8 Citation Audit | [PASS\|WARN\|FAIL\|NOT_APPLICABLE\|BLOCKED\|ERROR] | CITATION_AUDIT.{md,json} |
 | 6.0 Assurance Verifier | [OK\|STALE\|BLOCKING_VERDICT\|HAS_ISSUES\|SCHEMA_INVALID\|MISSING] per audit; exit [0\|1] overall (N/A if draft) | .aris/audit-verifier-report.json |
 
-## Improvement Scores
+### Improvement Scores
 | Round | Score | Key Changes |
 |-------|-------|-------------|
 | Round 0 | X/10 | Baseline |
 | Round 1 | Y/10 | [summary] |
 | Round 2 | Z/10 | [summary] |
 
-## Deliverables
+### Deliverables
 - paper/main.pdf — Final polished paper
 - paper/main_round0_original.pdf — Before improvement
 - paper/main_round1.pdf — After round 1
@@ -695,23 +676,23 @@ or directly if `assurance=draft`)
 - paper/CITATION_AUDIT.{md,json} — Bibliography verification (always emitted at `assurance=submission`; `NOT_APPLICABLE` when no `.bib` or no `\cite{...}`; omitted in `draft` mode if Phase 5.8 detector was negative)
 - paper/.aris/audit-verifier-report.json — External verifier report (submission only)
 
-## Remaining Issues (if any)
+### Remaining Issues (if any)
 - [items from final review that weren't addressed]
 
-## Next Steps
+### Next Steps
 - [ ] Visual inspection of PDF
 - [ ] Add any missing manual figures
 - [ ] Submit to [venue] via OpenReview / CMT / HotCRP
 ```
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — note: paper-writing always outputs English LaTeX for venue submission
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 - **Don't skip phases.** Each phase builds on the previous one — skipping leads to errors.
@@ -722,7 +703,7 @@ or directly if `assurance=draft`)
 - **Document everything.** The pipeline report should be self-contained.
 - **Respect page limits.** If the paper exceeds the venue limit, suggest specific cuts before the improvement loop.
 
-## Composing with Other Workflows
+### Composing with Other Workflows
 
 ```
 /idea-discovery "direction"         ← Workflow 1: find ideas
@@ -736,7 +717,7 @@ Or use /research-pipeline for the Workflow 1+2 end-to-end flow,
 then /paper-writing for the final writing step.
 ```
 
-## Typical Timeline
+### Typical Timeline
 
 | Phase | Duration | Can sleep? |
 |-------|----------|------------|
@@ -747,33 +728,3 @@ then /paper-writing for the final writing step.
 | 5. Improvement | 15-30 min | Yes ✅ |
 
 **Total: ~45-90 min** for a full paper from narrative report to polished PDF.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-writing/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/paper-writing/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

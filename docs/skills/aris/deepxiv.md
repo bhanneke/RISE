@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/deepxiv/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/deepxiv/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: deepxiv
-description: Search and progressively read open-access academic papers through DeepXiv. Use when the user wants layered paper access, section-level reading, trending papers, or DeepXiv-backed literature retrieval.
-argument-hint: [query-or-paper-id]
-allowed-tools: Bash(*), Read, Write
----
-
-# DeepXiv Paper Search & Progressive Reading
+## DeepXiv Paper Search & Progressive Reading
 
 Search topic or paper ID: $ARGUMENTS
 
-## Role & Positioning
+### Role & Positioning
 
 DeepXiv is the **progressive-reading** literature source:
 
@@ -41,7 +22,7 @@ DeepXiv is the **progressive-reading** literature source:
 
 Use DeepXiv when you want to avoid loading full papers too early.
 
-## Constants
+### Constants
 
 - **DEEPXIV_FETCHER** — canonical name `deepxiv_fetch.py`, resolved per
   [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2
@@ -59,7 +40,7 @@ Use DeepXiv when you want to avoid loading full papers too early.
 > - `/deepxiv "karpathy" - web` — DeepXiv web search
 > - `/deepxiv "258001" - sc` — Semantic Scholar metadata by ID
 
-## Setup
+### Setup
 
 DeepXiv is optional. If the CLI is not installed, tell the user:
 
@@ -69,9 +50,9 @@ pip install deepxiv-sdk
 
 On first use, `deepxiv` auto-registers a free token and stores it in `~/.env`.
 
-## Workflow
+### Workflow
 
-### Step 1: Parse Arguments
+#### Step 1: Parse Arguments
 
 Parse `$ARGUMENTS` for:
 
@@ -87,7 +68,7 @@ Parse `$ARGUMENTS` for:
 
 If the main argument looks like an arXiv ID and no explicit mode is given, default to `- brief`.
 
-### Step 2: Locate the Adapter
+#### Step 2: Locate the Adapter
 
 Resolve `$DEEPXIV_FETCHER` via the canonical strict-safe chain (see
 [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2).
@@ -105,9 +86,9 @@ DEEPXIV_FETCHER=".aris/tools/deepxiv_fetch.py"
 [ -f "$DEEPXIV_FETCHER" ] || { [ -n "${ARIS_REPO:-}" ] && DEEPXIV_FETCHER="$ARIS_REPO/tools/deepxiv_fetch.py"; }
 [ -f "$DEEPXIV_FETCHER" ] || DEEPXIV_FETCHER=""
 
-# Smoke test (optional — adapter resolution shown to user). The cascade
-# in Step 3 below branches purely on `[ -n "$DEEPXIV_FETCHER" ]`; a
-# resolved-but-non-functional adapter is not currently auto-demoted.
+## Smoke test (optional — adapter resolution shown to user). The cascade
+## in Step 3 below branches purely on `[ -n "$DEEPXIV_FETCHER" ]`; a
+## resolved-but-non-functional adapter is not currently auto-demoted.
 if [ -n "$DEEPXIV_FETCHER" ]; then
   echo "DeepXiv adapter resolved at: $DEEPXIV_FETCHER" >&2
 else
@@ -115,7 +96,7 @@ else
 fi
 ```
 
-### Step 3: Execute the Minimal Command
+#### Step 3: Execute the Minimal Command
 
 **Search papers**
 
@@ -201,7 +182,7 @@ Fallback:
 deepxiv sc "SEMANTIC_SCHOLAR_ID" --output json
 ```
 
-### Step 4: Present Results
+#### Step 4: Present Results
 
 When searching, present a compact table:
 
@@ -219,7 +200,7 @@ When reading a paper, show:
 - TLDR or abstract summary
 - suggested next step: `brief` → `head` → `section`
 
-### Step 5: Escalate Depth Only When Needed
+#### Step 5: Escalate Depth Only When Needed
 
 Use this progression:
 
@@ -231,7 +212,7 @@ Use this progression:
 
 Do not jump to full-paper reads when a brief or one section answers the question.
 
-### Step 6: Update Research Wiki (if active)
+#### Step 6: Update Research Wiki (if active)
 
 **Required when `research-wiki/` exists in the project**; skip silently
 otherwise. When the wiki dir exists, resolve `$WIKI_SCRIPT` per the
@@ -267,40 +248,10 @@ Backfill missed ingests with
 `python3 "$WIKI_SCRIPT" sync research-wiki/ --arxiv-ids <id1>,<id2>,...`
 after resolving `$WIKI_SCRIPT` as above.
 
-## Key Rules
+### Key Rules
 
 - Prefer the adapter script over raw `deepxiv` commands when available.
 - DeepXiv is optional. If unavailable, give the install command and suggest `/arxiv` or `/research-lit "topic" - sources: web`.
 - Use section-level reads to save tokens.
 - Treat DeepXiv as complementary to `/arxiv` and `/semantic-scholar`, not a replacement.
 - If the result overlaps with a published venue paper from Semantic Scholar, keep the richer venue metadata in the final summary.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/deepxiv/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/deepxiv/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,29 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/seven-pass-review/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/seven-pass-review/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/seven-pass-review/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: seven-pass-review
-description: Mechanize Pattern 15 — the seven-pass adversarial review protocol for academic manuscripts. Spawns 7 forked subagents in parallel (abstract, intro, methods, results, robustness, prose, citations), then synthesizes a prioritized revision checklist. Use for submission-ready or R&R-stage papers where single-pass review isn't enough.
-argument-hint: "[manuscript path]"
-allowed-tools: ["Read", "Grep", "Glob", "Write", "Bash", "Task"]
-effort: high
----
-
-# Seven-Pass Adversarial Review
+## Seven-Pass Adversarial Review
 
 Runs seven independent reviewers, each focused on a single lens, then synthesizes their findings into one prioritized revision plan. Pattern 15 from the workflow guide, mechanized.
 
@@ -34,11 +14,11 @@ Runs seven independent reviewers, each focused on a single lens, then synthesize
 
 > **When to pick this over `/review-paper`:** This skill costs roughly 7× more tokens than `/review-paper` (default) and ~2× more than `/review-paper --adversarial`. Use it when the paper is submission-ready or at R&R stage and you need maximum lens coverage. For early drafts or iterative work, `/review-paper` is the right tool. For journal-simulation pressure test, use `/review-paper --peer <journal>` instead.
 
-## Inputs
+### Inputs
 
 - `$0` — manuscript path (`.tex`, `.qmd`, `.md`, or `.pdf`). Required.
 
-## The Seven Lenses
+### The Seven Lenses
 
 Each lens runs as a **forked subagent** (context: fork) so the main conversation stays clean.
 
@@ -52,15 +32,15 @@ Each lens runs as a **forked subagent** (context: fork) so the main conversation
 | 6 | Prose quality | Sentence-level clarity, hedging, passive voice, paragraph cohesion | proofreader |
 | 7 | Citation audit | Invokes `/validate-bib --semantic`; checks cite-claim direction for top-10 works | general-purpose |
 
-## Workflow
+### Workflow
 
-### Phase 0: Pre-flight
+#### Phase 0: Pre-flight
 
 1. Resolve manuscript path.
 2. Decide if `.pdf` → extract text first (`pdftotext -layout`).
 3. Create output dir: `quality_reports/seven_pass_[stem]/`.
 
-### Phase 1: Spawn 7 reviewers in parallel
+#### Phase 1: Spawn 7 reviewers in parallel
 
 In a single message, spawn 7 Task tool calls (one per lens). Each subagent gets:
 
@@ -81,34 +61,34 @@ Lens prompt rubrics are embedded inline below — one summary paragraph per lens
 - **Lens 6 (Prose):** Sentences under 30 words? Active voice dominant? Hedging proportionate (neither overclaiming nor endless "may suggest")? Paragraph topic sentences?
 - **Lens 7 (Citations):** Invoke `/validate-bib --semantic`. For top-10 cited works, does the in-text claim match the cited paper's actual finding direction? Are contemporary / competing works cited?
 
-### Phase 2: Synthesize
+#### Phase 2: Synthesize
 
 Wait for all 7 lens reports. Then read them and produce:
 
 `quality_reports/seven_pass_[stem]/_SYNTHESIS.md`
 
 ```markdown
-# Seven-Pass Review: [Manuscript]
+## Seven-Pass Review: [Manuscript]
 
 **Date:** YYYY-MM-DD
 **Path:** [manuscript]
 
-## Executive verdict
+### Executive verdict
 
 **Overall state:** [SUBMIT / REVISE-MINOR / REVISE-MAJOR / REJECT-AND-RESTART]
 
-## Cross-lens CRITICAL issues
+### Cross-lens CRITICAL issues
 | # | Lens(es) | Issue | Recommendation |
 |---|---|---|---|
 
-## MAJOR issues (second-round)
+### MAJOR issues (second-round)
 | # | Lens(es) | Issue |
 |---|---|---|
 
-## MINOR polish
+### MINOR polish
 [bulleted]
 
-## Per-lens scorecard
+### Per-lens scorecard
 | Lens | Critical | Major | Minor | Score/10 |
 |---|---|---|---|---|
 | 1. Abstract | | | | |
@@ -120,16 +100,16 @@ Wait for all 7 lens reports. Then read them and produce:
 | 7. Citations | | | | |
 | **Overall** | | | | |
 
-## Revision plan (in recommended order)
+### Revision plan (in recommended order)
 1. [Highest-leverage fix — usually a lens with 2+ CRITICALs]
 2. …
 7. [Lowest-leverage polish]
 
-## Contradictions between lenses
+### Contradictions between lenses
 [If two lenses disagree, surface here. E.g., Lens 2 says "expand contribution" but Lens 6 says "trim intro".]
 ```
 
-### Phase 3: Token-budget report
+#### Phase 3: Token-budget report
 
 After synthesis, print:
 
@@ -143,62 +123,32 @@ For cheaper alternatives:
   - Iterative: /review-paper --adversarial
 ```
 
-## When to use this skill
+### When to use this skill
 
 - **Before first submission** to a top journal.
 - **After a major revision** when you want to catch drift.
 - **R&R when referees disagree** — surfaces contradictions your revision must navigate.
 
-## When NOT to use
+### When NOT to use
 
 - Early drafts (use `/review-paper` single-pass first).
 - Short notes, comments, or replies (overkill).
 - When you've already run this in the last 7 days and nothing substantive changed.
 
-## Cross-references
+### Cross-references
 
 - `.claude/skills/review-paper/SKILL.md` — the single-pass and `--adversarial` modes (cheaper, faster).
 - `.claude/skills/validate-bib/SKILL.md` — invoked by Lens 7.
 - `.claude/skills/audit-reproducibility/SKILL.md` — complementary; numeric-claims side of the audit.
 - Workflow guide, Pattern 15 — the narrative explanation of why seven lenses.
 
-## Exit behavior
+### Exit behavior
 
 - Exits 0 always (review is informational). The synthesis report's "Executive verdict" is the gate.
 - Any `CRITICAL` at the top of the synthesis should block submission until resolved.
 
-## What this skill does NOT do
+### What this skill does NOT do
 
 - Re-run seven lenses if the manuscript hasn't changed — check git diff against last run date in `_SYNTHESIS.md`, skip unchanged lenses if requested via `--incremental` (future).
 - Auto-apply fixes — that's `/review-paper --adversarial`'s job.
 - Replace human judgment. A reviewer who knows your subfield still beats seven LLMs.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/seven-pass-review/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>pedrohcgs/claude-code-my-workflow</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../psantanna-workflow.md">Pedro Sant'Anna's Claude Code Workflow</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow">⭐ pedrohcgs/claude-code-my-workflow</a><br><img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/seven-pass-review/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/psantanna-workflow/seven-pass-review/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/psantanna-workflow.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

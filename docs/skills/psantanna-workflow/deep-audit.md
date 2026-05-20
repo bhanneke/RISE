@@ -4,48 +4,21 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>audit</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/deep-audit/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/deep-audit/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/deep-audit/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: deep-audit
-description: |
-  Deep consistency audit of the entire repository infrastructure.
-  Launches 4 parallel specialist agents to find factual errors, code bugs,
-  count mismatches, and cross-document inconsistencies. Then fixes all issues
-  and loops until clean.
-  Use when: after making broad changes, before releases, or when user says
-  "audit", "find inconsistencies", "check everything".
-author: Claude Code Academic Workflow
-version: 1.0.0
-allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Task"]
-disable-model-invocation: true
----
-
-# /deep-audit — Repository Infrastructure Audit
+## /deep-audit — Repository Infrastructure Audit
 
 Run a comprehensive consistency audit across the entire repository, fix all issues found, and loop until clean.
 
-## When to Use
+### When to Use
 
 - After broad changes (new skills, rules, hooks, guide edits)
 - Before releases or major commits
 - When the user asks to "find inconsistencies", "audit", or "check everything"
 
-## Workflow
+### Workflow
 
-### PHASE 0: Mechanical checks (run FIRST, cheap, deterministic)
+#### PHASE 0: Mechanical checks (run FIRST, cheap, deterministic)
 
 Before spawning agents, run the mechanical parity checks:
 
@@ -62,7 +35,7 @@ This catches four classes of bug that agent-based audits have historically misse
 
 If Phase 0 reports P0 or P1 findings, fix them (or tune the regex if they are false positives) **before** launching the 4 agents. The mechanical layer is cheaper and more precise than agent prompts for these classes.
 
-### PHASE 1: Launch 4 Parallel Audit Agents
+#### PHASE 1: Launch 4 Parallel Audit Agents
 
 Launch these 4 agents simultaneously using `Task` with `subagent_type=general-purpose`. Each agent's prompt **must** tell it to read `.claude/references/audit-pet-peeves.md` and explicitly check for each class of bug before reporting clean. The pet-peeves file is a living catalogue of drift patterns review bots have caught; it grows with each PR.
 
@@ -114,7 +87,7 @@ Focus: `README.md`, `docs/index.html`, `docs/workflow-guide.html`
 - Directory tree matches actual structure
 - No stale counts from previous versions
 
-### PHASE 2: Triage Findings
+#### PHASE 2: Triage Findings
 
 Categorize each finding:
 - **Genuine bug**: Fix immediately
@@ -135,14 +108,14 @@ Common false alarms to watch for:
 - Commas/conjunctions: `"skills,"` vs `"skills, and"` are treated as different strings by `replace_all`
 Verify zero matches for the OLD number across the whole tree before declaring clean.
 
-### PHASE 3: Fix All Issues
+#### PHASE 3: Fix All Issues
 
 Apply fixes in parallel where possible. For each fix:
 1. Read the file first (required by Edit tool)
 2. Apply the fix
 3. Verify the fix (grep for stale values, check syntax)
 
-### PHASE 4: Re-render if Guide Changed
+#### PHASE 4: Re-render if Guide Changed
 
 If `guide/workflow-guide.qmd` was modified:
 ```bash
@@ -150,7 +123,7 @@ quarto render guide/workflow-guide.qmd
 cp guide/workflow-guide.html docs/workflow-guide.html
 ```
 
-### PHASE 5: Loop or Declare Clean
+#### PHASE 5: Loop or Declare Clean
 
 After fixing, launch a fresh set of 4 agents to verify.
 - If new issues found → fix and loop again
@@ -158,7 +131,7 @@ After fixing, launch a fresh set of 4 agents to verify.
 
 **Max loops: 5** (to prevent infinite cycling)
 
-## Key Lessons from Past Audits
+### Key Lessons from Past Audits
 
 These are real bugs found across 7 rounds — check for these specifically:
 
@@ -176,55 +149,25 @@ These are real bugs found across 7 rounds — check for these specifically:
 | macOS-only commands | Skills, rules | `open` without `xdg-open` fallback |
 | Stale hook references | Rules, guide, CHANGELOG, settings.json | Removed hooks still mentioned somewhere |
 
-## Output Format
+### Output Format
 
 After each round, report:
 
 ```
-## Round N Audit Results
+### Round N Audit Results
 
-### Issues Found: X genuine, Y false alarms
+#### Issues Found: X genuine, Y false alarms
 
 | # | Severity | File | Issue | Status |
 |---|----------|------|-------|--------|
 | 1 | Critical | file.py:42 | Description | Fixed |
 | 2 | Medium | file.qmd:100 | Description | Fixed |
 
-### Verification
+#### Verification
 - [ ] No stale counts (grep confirms)
 - [ ] All hooks have fail-open + future annotations
 - [ ] Guide renders successfully
 - [ ] docs/ updated
 
-### Result: [CLEAN | N issues remaining]
+#### Result: [CLEAN | N issues remaining]
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/deep-audit/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>pedrohcgs/claude-code-my-workflow</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../psantanna-workflow.md">Pedro Sant'Anna's Claude Code Workflow</a></dd>
-<dt><b>Category</b></dt><dd><code>audit</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow">⭐ pedrohcgs/claude-code-my-workflow</a><br><img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/deep-audit/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/psantanna-workflow/deep-audit/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/psantanna-workflow.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

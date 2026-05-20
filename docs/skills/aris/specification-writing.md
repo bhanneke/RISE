@@ -4,34 +4,15 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/specification-writing/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/specification-writing/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: specification-writing
-description: "Write the full patent specification from claims and invention disclosure. Use when user says \"撰写说明书\", \"write specification\", \"写说明书\", \"patent description\", or wants to draft the complete patent specification."
-argument-hint: [claims-path]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, Skill, WebSearch, WebFetch, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Specification Writing: Section-by-Section Patent Description
+## Specification Writing: Section-by-Section Patent Description
 
 Write the patent specification based on: **$ARGUMENTS**
 
 Adapted from `/paper-write` for patent specifications. The specification supports the claims -- it is not a paper.
 
-## Constants
+### Constants
 
 - `REVIEWER_MODEL = gpt-5.5` — External reviewer for specification quality
 - `JURISDICTION = "auto"` — Inherit from pipeline or detect from args; `CN`, `US`, `EP`, `ALL`
@@ -39,21 +20,21 @@ Adapted from `/paper-write` for patent specifications. The specification support
 - `OUTPUT_DIR = "patent/"` — Base output directory
 - `LANGUAGE = "auto"` — Auto from jurisdiction: CN->Chinese, US/EP->English
 
-## Inputs
+### Inputs
 
 1. `patent/CLAIMS.md` — the drafted claims (primary source)
 2. `patent/INVENTION_DISCLOSURE.md` — invention decomposition
 3. `patent/PRIOR_ART_REPORT.md` — for background section
 4. User-provided figures (if any)
 
-## Shared References
+### Shared References
 
 Load `../shared-references/patent-writing-principles.md` for specification writing rules, language guidelines, and reference numeral conventions.
 Load `../shared-references/patent-format-cn.md` or `patent-format-us.md` or `patent-format-ep.md` based on jurisdiction.
 
-## Workflow
+### Workflow
 
-### Step 1: Initialize Specification Structure
+#### Step 1: Initialize Specification Structure
 
 Create the output directory and section files:
 
@@ -68,7 +49,7 @@ patent/specification/
 └── abstract.md
 ```
 
-### Step 2: Write Title (发明名称)
+#### Step 2: Write Title (发明名称)
 
 - Must match the broadest claim scope
 - No trademarks, no "improved" or "new" or "novel"
@@ -76,13 +57,13 @@ patent/specification/
 - US/EP format: "[Technical topic] for [purpose]" or "[Technical topic] and method thereof"
 - Keep concise (CN: typically under 25 characters; US: under 500 characters)
 
-### Step 3: Write Technical Field (技术领域)
+#### Step 3: Write Technical Field (技术领域)
 
 1-2 paragraphs identifying the technical domain:
 - "The present invention relates to [broad field], and more particularly to [specific area]."
 - CN: "本发明涉及[技术领域]，具体涉及[具体领域]。"
 
-### Step 4: Write Background (背景技术)
+#### Step 4: Write Background (背景技术)
 
 This is NOT a literature review. It directly sets up the problem.
 
@@ -95,7 +76,7 @@ Structure:
 
 CN format: "背景技术" section describing existing technology and its shortcomings.
 
-### Step 5: Write Summary (发明内容)
+#### Step 5: Write Summary (发明内容)
 
 Three parts, directly mirroring INVENTION_DISCLOSURE.md:
 
@@ -116,7 +97,7 @@ Three parts, directly mirroring INVENTION_DISCLOSURE.md:
 - **NO specific numerical results** (e.g., "detection limit 70μm", "response time 105ms") — these are experimental findings, not invention properties
 - Frame advantages structurally: "由于采用了...结构，因此具有...效果"
 
-### Step 6: Write Brief Description of Drawings (附图说明)
+#### Step 6: Write Brief Description of Drawings (附图说明)
 
 Invoke `/figure-description` as a sub-skill if user has provided figures:
 ```
@@ -129,7 +110,7 @@ Format:
 - CN: "图1是...的示意图；图2是...的流程图；"
 - US: "FIG. 1 is a block diagram showing...; FIG. 2 is a flowchart illustrating..."
 
-### Step 7: Write Detailed Description (具体实施方式)
+#### Step 7: Write Detailed Description (具体实施方式)
 
 Invoke `/embodiment-description` as a sub-skill:
 ```
@@ -142,7 +123,7 @@ This section must:
 - Support every claim element with explicit description
 - Include variations and alternatives for broader claim interpretation
 
-### Step 8: Write Abstract (摘要)
+#### Step 8: Write Abstract (摘要)
 
 Jurisdiction-specific word limits:
 
@@ -158,7 +139,7 @@ The abstract summarizes:
 3. The technical solution (core features)
 4. Key advantages
 
-### Step 9: Claim Support Verification
+#### Step 9: Claim Support Verification
 
 Verify every claim element finds support in the specification:
 
@@ -170,7 +151,7 @@ Verify every claim element finds support in the specification:
 
 If any element lacks support, add the necessary description before proceeding.
 
-### Step 10: Cross-Model Review
+#### Step 10: Cross-Model Review
 
 Call `REVIEWER_MODEL` via `mcp__codex__codex` with xhigh reasoning:
 
@@ -191,15 +172,15 @@ mcp__codex__codex:
     6. Background deficiencies: Are they technical and specific enough?
 ```
 
-### Step 11: Output
+#### Step 11: Output
 
 All specification sections are in `patent/specification/`.
 
 Summary file: `patent/specification/SPECIFICATION_INDEX.md` with:
 ```markdown
-## Patent Specification
+### Patent Specification
 
-### Sections
+#### Sections
 | Section | File | Word Count | Status |
 |---------|------|-----------|--------|
 | Title | title.md | | Complete |
@@ -210,14 +191,14 @@ Summary file: `patent/specification/SPECIFICATION_INDEX.md` with:
 | Detailed Description | detailed_description.md | | Complete |
 | Abstract | abstract.md | | Complete |
 
-### Claim Support Status
+#### Claim Support Status
 | Claim | Elements Supported | Elements Missing |
 |-------|-------------------|-----------------|
 | 1 | All | None |
 | X | All | None |
 ```
 
-## Key Rules
+### Key Rules
 
 - The specification supports the claims, not the other way around. Every claim element must have support.
 - Use consistent terminology -- same word for the same concept throughout.
@@ -228,33 +209,3 @@ Summary file: `patent/specification/SPECIFICATION_INDEX.md` with:
 - Multiple embodiments strengthen the specification but are not always required.
 - Large file handling: if a Write operation fails, retry with Bash `cat <<'EOF'` heredoc.
 - If `mcp__codex__codex` is not available, skip cross-model review and note it in the output.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/specification-writing/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/specification-writing/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

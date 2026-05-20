@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>audit</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/reasoning/anti-slop.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Anti-Slop Rules for Academic Writing
 
----
-
-# Anti-Slop Rules for Academic Writing
-
-## Purpose
+### Purpose
 
 AI-generated academic text has a recognizable style: hedge-heavy, filler-laden, and structurally repetitive. A referee -- or any experienced reader -- spots it immediately. These rules produce writing that sounds like a senior researcher, not a language model.
 
 ---
 
-## Rule 1: Cut Filler Phrases
+### Rule 1: Cut Filler Phrases
 
 Delete these on sight. They add no information.
 
@@ -44,7 +32,7 @@ Delete these on sight. They add no information.
 
 ---
 
-## Rule 2: Replace Hedging with Substance
+### Rule 2: Replace Hedging with Substance
 
 Hedging is acceptable when it reflects genuine uncertainty. It is unacceptable as a reflex.
 
@@ -57,7 +45,7 @@ Hedging is acceptable when it reflects genuine uncertainty. It is unacceptable a
 
 ---
 
-## Rule 3: Active Voice for Your Contributions
+### Rule 3: Active Voice for Your Contributions
 
 Use active voice when describing what you do. Passive voice is fine for background or methods that are standard.
 
@@ -72,7 +60,7 @@ Exception: use passive when the actor doesn't matter ("The survey was administer
 
 ---
 
-## Rule 4: Vary Sentence Structure
+### Rule 4: Vary Sentence Structure
 
 AI text falls into a rhythmic pattern: simple sentence, compound sentence, simple sentence, compound sentence. Break the pattern.
 
@@ -84,7 +72,7 @@ AI text falls into a rhythmic pattern: simple sentence, compound sentence, simpl
 
 ---
 
-## Rule 5: Precision over Generality
+### Rule 5: Precision over Generality
 
 | Bad | Fix |
 |-----|-----|
@@ -96,7 +84,7 @@ AI text falls into a rhythmic pattern: simple sentence, compound sentence, simpl
 
 ---
 
-## Rule 6: No Section-Opening Previews
+### Rule 6: No Section-Opening Previews
 
 Do not start a section by explaining what the section will do. Just do it.
 
@@ -109,7 +97,7 @@ Exception: a one-sentence roadmap at the end of the introduction is standard pra
 
 ---
 
-## Rule 7: No Redundant Explanations
+### Rule 7: No Redundant Explanations
 
 Trust the reader. If you've defined notation, don't re-explain it every time you use it.
 
@@ -120,9 +108,9 @@ Trust the reader. If you've defined notation, don't re-explain it every time you
 
 ---
 
-## Rule 8: Specific Before/After Examples
+### Rule 8: Specific Before/After Examples
 
-### Example 1: Introduction paragraph
+#### Example 1: Introduction paragraph
 
 **Before (AI-sounding):**
 "This paper contributes to the growing literature on the effects of minimum wage policies on employment outcomes. Using a novel dataset and an innovative identification strategy, we find that minimum wage increases have heterogeneous effects across different types of workers. These findings have important implications for policymakers considering minimum wage adjustments."
@@ -130,7 +118,7 @@ Trust the reader. If you've defined notation, don't re-explain it every time you
 **After (researcher-sounding):**
 "We estimate the employment effect of the 2016 Seattle minimum wage increase using matched employer-employee records. The staggered rollout across firm sizes provides a difference-in-differences design. Hours worked fell by 9% among jobs paying below $19/hour, offsetting the 3% hourly wage gain and reducing monthly earnings by $125. The reductions concentrate among workers with fewer than three months of tenure."
 
-### Example 2: Results discussion
+#### Example 2: Results discussion
 
 **Before (AI-sounding):**
 "The results presented in Table 3 reveal several interesting patterns. First, we find that the coefficient on our variable of interest is positive and statistically significant, suggesting that there is indeed a positive relationship between X and Y. Second, the magnitude of the effect is economically meaningful, indicating that X plays an important role in determining Y."
@@ -138,35 +126,10 @@ Trust the reader. If you've defined notation, don't re-explain it every time you
 **After (researcher-sounding):**
 "Column 3 of Table 3 shows our preferred specification. A one-standard-deviation increase in local labor market concentration reduces wages by 2.1% (SE 0.8%). This is smaller than the 3.4% estimate in [Author (Year)], likely because our instrument isolates variation in concentration driven by plant closures rather than mergers, which may have different wage effects."
 
-### Example 3: Conclusion
+#### Example 3: Conclusion
 
 **Before (AI-sounding):**
 "In conclusion, this paper has made several important contributions to the literature. We have demonstrated that X affects Y through a novel mechanism. While our study has some limitations, including potential concerns about external validity, our findings nonetheless provide valuable insights for both researchers and policymakers. Future research should explore these questions in other contexts."
 
 **After (researcher-sounding):**
 "Local labor market concentration depresses wages. The effect operates through reduced outside options rather than monopsony pricing: workers in concentrated markets receive fewer competing offers (Table 5), and the wage penalty disappears for workers with portable skills who can credibly threaten to leave (Table 6). Our estimates are identified from plant closures in tradable industries and may not generalize to service-sector concentration."
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/reasoning/anti-slop.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>audit</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/reasoning-anti-slop/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

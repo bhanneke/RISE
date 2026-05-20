@@ -4,33 +4,21 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/writing/abstract.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Writing Abstracts for Economics Papers
 
----
-
-# Writing Abstracts for Economics Papers
-
-## Purpose
+### Purpose
 
 The abstract is the single most-read part of any paper. It determines whether a referee agrees to review, whether a colleague reads further, and how your paper is indexed and discovered. In roughly 150 words (100--200 depending on the journal), you must convey the full arc of the paper: what question you ask, why it matters, how you answer it, what you find, and why anyone should care.
 
 ---
 
-## Structure: Five Sentences
+### Structure: Five Sentences
 
 A strong economics abstract follows a five-element structure. Not every element requires exactly one sentence, but the total should rarely exceed 150 words.
 
-### 1. Context and Motivation (1 sentence)
+#### 1. Context and Motivation (1 sentence)
 
 Establish the topic and why it matters. Anchor in a concrete fact, policy question, or unresolved debate -- not a generic claim about importance.
 
@@ -40,7 +28,7 @@ Establish the topic and why it matters. Anchor in a concrete fact, policy questi
 
 The first version gives the reader a reason to care. The second says nothing informative.
 
-### 2. Research Question or Gap (1 sentence)
+#### 2. Research Question or Gap (1 sentence)
 
 State what specific question the paper answers or what gap it fills. This should flow naturally from the motivation.
 
@@ -50,7 +38,7 @@ State what specific question the paper answers or what gap it fills. This should
 
 Be precise. The reader should know the exact scope of the inquiry.
 
-### 3. Method and Data (1 sentence)
+#### 3. Method and Data (1 sentence)
 
 Describe how you answer the question. Include the identification strategy, the data source, and the setting. If you exploit a natural experiment or use a specific method, name it.
 
@@ -58,7 +46,7 @@ Describe how you answer the question. Include the identification strategy, the d
 
 This sentence tells the reader: the data (Danish administrative records), the method (IV), the source of variation (lockdown severity), and the estimand (causal effect on wages).
 
-### 4. Key Findings (1--2 sentences)
+#### 4. Key Findings (1--2 sentences)
 
 Report the main results with numbers. Quantify the magnitude of effects. Do not hide behind vague language.
 
@@ -68,7 +56,7 @@ Report the main results with numbers. Quantify the magnitude of effects. Do not 
 
 The first version is informative. The second could describe virtually any paper.
 
-### 5. Implications (1 sentence)
+#### 5. Implications (1 sentence)
 
 State what follows from the findings -- for policy, for theory, or for understanding the world. Be specific but do not overclaim.
 
@@ -78,7 +66,7 @@ State what follows from the findings -- for policy, for theory, or for understan
 
 ---
 
-## Assembled Example
+### Assembled Example
 
 > Over 40 percent of U.S. workers changed occupations during the COVID-19 pandemic, yet little is known about the wage consequences of these transitions. This paper estimates the causal effect of pandemic-induced occupation switching on short- and medium-run earnings. Using matched employer-employee records from Denmark and exploiting municipality-level variation in lockdown severity as an instrument, we isolate involuntary switches from voluntary career changes. We find that involuntary switchers experience an initial wage penalty of 8 percent, which shrinks to 3 percent after two years; the penalty is concentrated among workers over 45 and those moving to lower-skill occupations. These findings suggest that targeted retraining subsidies for older displaced workers could substantially reduce the persistent costs of large-scale labor market disruptions.
 
@@ -86,7 +74,7 @@ Word count: 127. This abstract contains all five elements, includes quantitative
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
 **Too vague.** Abstracts that rely on phrases like "we find significant effects" or "results suggest important implications" communicate nothing. Always include magnitudes.
 
@@ -104,7 +92,7 @@ Word count: 127. This abstract contains all five elements, includes quantitative
 
 ---
 
-## Journal-Specific Guidelines
+### Journal-Specific Guidelines
 
 Different journals have different word limits and expectations:
 
@@ -118,7 +106,7 @@ Always check the journal's submission guidelines for specific requirements.
 
 ---
 
-## Revision Checklist
+### Revision Checklist
 
 - [ ] Abstract is 100-150 words (hard ceiling: 150 words)
 - [ ] Research question is stated explicitly
@@ -131,28 +119,3 @@ Always check the journal's submission guidelines for specific requirements.
 - [ ] No citations in the abstract (rare exceptions exist, but avoid)
 - [ ] Abstract can stand alone -- a reader learns the full contribution without reading the paper
 - [ ] JEL codes and keywords are appropriate and included (if required)
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/writing/abstract.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/writing-abstract/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

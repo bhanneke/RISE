@@ -4,23 +4,11 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/writing/referee-response.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Writing Referee Responses
 
----
-
-# Writing Referee Responses
-
-## Purpose and Tone
+### Purpose and Tone
 
 A referee response (also called a "response to reviewers" or "reply to referees") is a formal document submitted alongside a revised manuscript. Its purpose is to demonstrate that you have taken every concern seriously and addressed each one substantively. The tone should be professional, respectful, and direct -- never defensive, dismissive, or sarcastic, even when the referee is wrong.
 
@@ -28,9 +16,9 @@ A well-crafted response dramatically increases the probability of acceptance. A 
 
 ---
 
-## Document Structure
+### Document Structure
 
-### Opening
+#### Opening
 
 Begin with a brief paragraph thanking the editor and referees:
 
@@ -52,13 +40,13 @@ by Referee 2 (all tables updated); and (3) we substantially rewrite
 Section 4 to clarify the identification strategy.
 ```
 
-### Point-by-Point Responses
+#### Point-by-Point Responses
 
 Address every point raised by every referee. Do not skip any comment, no matter how minor. Organize responses by referee.
 
 ---
 
-## Response Format for Each Point
+### Response Format for Each Point
 
 Use this structure for every individual comment:
 
@@ -86,7 +74,7 @@ Always tell the referee exactly where to find the change. This saves the referee
 
 ---
 
-## Example Response
+### Example Response
 
 ```
 RESPONSE TO REFEREE 1
@@ -140,39 +128,39 @@ meaningful. See revised Table 2, columns 3--6 (p. 21).
 
 ---
 
-## Common Scenarios and How to Handle Them
+### Common Scenarios and How to Handle Them
 
-### The referee asks for a fundamentally different paper.
+#### The referee asks for a fundamentally different paper.
 
 Acknowledge the alternative approach as valid, but explain why your approach better serves the research question. Offer small concessions (a discussion, a robustness check) without abandoning your framework.
 
 "We appreciate this thoughtful suggestion. We considered this approach early in the project but ultimately chose [current approach] because [specific reason]. We now discuss the tradeoffs between the two approaches in footnote 15 (p. 19). We also report the results using [referee's approach] in Appendix Table A7, which yields qualitatively similar findings."
 
-### The referee misunderstood something.
+#### The referee misunderstood something.
 
 This is almost always your fault as a writer. Accept responsibility for the lack of clarity and fix it.
 
 "We apologize for the lack of clarity on this point. The referee's reading is understandable given the original wording. We have substantially rewritten Section 4.1 (pp. 17--18) to make clear that [correct interpretation]. In particular, we now state explicitly on p. 17 that..."
 
-### The referee requests an analysis you cannot do.
+#### The referee requests an analysis you cannot do.
 
 Be transparent about why, and offer the best available alternative.
 
 "Unfortunately, the data do not allow us to perform this analysis directly because [specific reason -- e.g., the variable is not available before 2010]. However, as a partial test, we [describe alternative analysis]. We also discuss this limitation explicitly in the conclusion (p. 32, lines 4--9)."
 
-### The referee is factually wrong.
+#### The referee is factually wrong.
 
 Be gracious. Do not say "the referee is incorrect." Instead:
 
 "We appreciate this comment. We believe there may be a misunderstanding that was likely caused by our original exposition. To clarify: [correct statement with citation or evidence]. We have revised the text on p. 12 to state this more precisely."
 
-### The referee wants you to cite specific papers.
+#### The referee wants you to cite specific papers.
 
 Cite them. Even if the papers are only tangentially related, citing them costs nothing and shows good faith. If the referee is likely an author of those papers, be especially generous in your acknowledgment.
 
 "Thank you for pointing us to these important references. We now cite and discuss Smith (2019) and Jones (2021) in the literature review (p. 5) and relate our identification strategy to theirs in Section 4 (p. 16)."
 
-### Multiple referees raise the same concern.
+#### Multiple referees raise the same concern.
 
 Address it fully under the first referee's comment, then cross-reference:
 
@@ -180,7 +168,7 @@ Address it fully under the first referee's comment, then cross-reference:
 
 ---
 
-## Formatting Best Practices
+### Formatting Best Practices
 
 - **Number all comments** (1.1, 1.2, ... for Referee 1; 2.1, 2.2, ... for Referee 2).
 - **Use consistent visual formatting** to distinguish referee comments from your responses. Italics, block quotes, or a different font all work.
@@ -190,7 +178,7 @@ Address it fully under the first referee's comment, then cross-reference:
 
 ---
 
-## Strategic Considerations
+### Strategic Considerations
 
 - **Respond promptly.** If the journal gives you 3 months, do not take 6 months unless genuinely necessary. Delayed responses signal disinterest.
 - **The editor is your audience too.** The editor reads the response to decide whether you have adequately addressed concerns. Make it easy for the editor to say yes.
@@ -200,7 +188,7 @@ Address it fully under the first referee's comment, then cross-reference:
 
 ---
 
-## Checklist
+### Checklist
 
 - [ ] Every referee comment is quoted and addressed
 - [ ] No comment is skipped or summarized away
@@ -212,28 +200,3 @@ Address it fully under the first referee's comment, then cross-reference:
 - [ ] Opening paragraph thanks editor and referees
 - [ ] Summary of major changes included at the top
 - [ ] Response is formatted consistently and easy to navigate
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/writing/referee-response.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/writing-referee-response/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

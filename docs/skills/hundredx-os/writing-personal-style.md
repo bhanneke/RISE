@@ -4,27 +4,15 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/writing/personal-style.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Personal Academic Writing Style
+## Personal Academic Writing Style
 
 This skill captures the principal's academic writing voice as extracted from four published papers (BISE, IJRM, JMIS, ECIS 2025). Every draft you produce must match these patterns.
 
 ---
 
-## Voice and Tone
+### Voice and Tone
 
 - **Formal but accessible.** The writing is academic but avoids unnecessary jargon. Technical terms (e.g., "tokenization," "vector autoregressive model," "pseudonymous addresses") are introduced with brief inline explanations the first time they appear, making the text readable for a broad IS/management audience.
 - **Confident and assertive, with calibrated hedging.** Claims are stated directly: "blockchain data provides unprecedented transparency," "the exchange rate plays a prominent role." Hedging appears only where genuinely warranted: "may," "might," "potentially," "could" — never stacked ("it could potentially perhaps").
@@ -33,7 +21,7 @@ This skill captures the principal's academic writing voice as extracted from fou
 
 ---
 
-## Sentence Structure
+### Sentence Structure
 
 - **Medium-length sentences (20–35 words typical), with occasional long sentences (40–50 words) for complex argumentative chains.** Short punchy sentences (<15 words) are rare and used only for emphasis or transition.
 - **Front-load the point.** The main claim or finding goes at the beginning of the sentence; qualifications and elaboration follow. Example: "The exchange rate influences the total number of economic actors; however, only new actors had a reciprocal relation."
@@ -43,7 +31,7 @@ This skill captures the principal's academic writing voice as extracted from fou
 
 ---
 
-## Argumentation Flow
+### Argumentation Flow
 
 - **Problem → gap → "against this background" → contribution.** Introductions open with a concrete, grounded description of the phenomenon (often with dollar figures, market sizes, or regulatory milestones), then identify what the literature has not yet addressed, then pivot with a phrase like "against this background" or "building on these insights" to the paper's contribution.
 - **Literature as infrastructure, not decoration.** Prior work is cited to build the argument's foundation, not to show breadth. Each citation cluster serves a specific argumentative purpose — establishing a phenomenon, identifying a gap, or anchoring a method. Avoid "many scholars have studied X" without saying what they found.
@@ -52,7 +40,7 @@ This skill captures the principal's academic writing voice as extracted from fou
 
 ---
 
-## Transition Patterns
+### Transition Patterns
 
 - **Between paragraphs:** "However," "Moreover," "That said," "In contrast," "Building on these insights," "Against this background," "Thus," "Therefore," "In conclusion,"
 - **Between ideas within paragraphs:** "While... , ...," (concessive clause first), "Yet," "Nevertheless," "In the same vein," "Notably," "Additionally,"
@@ -62,7 +50,7 @@ This skill captures the principal's academic writing voice as extracted from fou
 
 ---
 
-## Literature Integration
+### Literature Integration
 
 - **High citation density in introductions** (often 3–6 citations per paragraph), tapering in results and discussion.
 - **Inline citations woven into the argument**, not dumped at the end of a sentence. Example: "research has deepened our understanding of how blockchain technology may create value (Chen, 2023) and how it might interoperate with existing digital infrastructure via oracles (Cong, 2024) or sensors (Bakos, 2023)."
@@ -72,7 +60,7 @@ This skill captures the principal's academic writing voice as extracted from fou
 
 ---
 
-## Presenting Findings
+### Presenting Findings
 
 - **Lead with the direction, then quantify.** "We find that involuntary switchers experience an initial wage penalty of 8 percent." Not: "The coefficient was 0.08, which indicates..."
 - **Name the variables and their relationships in plain language** before giving model numbers. Example: "The uniform relationship across firms shows a negligible coefficient (0.025)." The interpretation precedes or accompanies the number.
@@ -80,7 +68,7 @@ This skill captures the principal's academic writing voice as extracted from fou
 - **Comparisons to prior work are concrete:** "These values are lower than the one by Du et al. (2007), who found no relation between these two metrics."
 - **Tables and figures are referenced conversationally:** "Table 5 reveals the strong market position of OpenSea," "Figure 4 illustrates the share of wallet distribution." The text tells the reader what to see, not just where to look.
 
-### Introduction vs. Results: different levels of statistical detail
+#### Introduction vs. Results: different levels of statistical detail
 
 The **introduction** previews findings in plain economic language only: direction, magnitude in interpretable units (percentages, multiples, dollar amounts), and whether the effect is significant or not. No coefficients ($\hat{\beta}$), no p-values, no t-statistics, no standard errors. The reader should understand the main findings without any statistical training.
 
@@ -88,7 +76,7 @@ The **Results section** is where coefficients, standard errors, t-statistics, p-
 
 ---
 
-## Positioning Contributions
+### Positioning Contributions
 
 - **Contributions are numbered and explicitly stated:** "Our research makes several practical and theoretical contributions. First, ... Second, ... Third, ..."
 - **Each contribution is framed relative to what existed before:** "Our research is the first to derive the total wallet for all customers of all major firms in a specific market." The novelty is made explicit by contrasting with the prior state: "Unlike prior studies that relied on survey data or statistical models, our study uses decoded blockchain data."
@@ -97,7 +85,7 @@ The **Results section** is where coefficients, standard errors, t-statistics, p-
 
 ---
 
-## Characteristic Constructions
+### Characteristic Constructions
 
 - "This transparency enables..." / "These unique features provide new opportunities to..."
 - "We refer to X as Y" — for introducing paper-specific terminology
@@ -110,7 +98,7 @@ The **Results section** is where coefficients, standard errors, t-statistics, p-
 
 ---
 
-## Anti-Patterns (What NOT to Do)
+### Anti-Patterns (What NOT to Do)
 
 - **Do NOT use "delve into," "dive into," "unpack," "landscape," "paradigm shift," "game-changer," "cutting-edge," or "groundbreaking."** These are AI slop markers absent from the principal's writing.
 - **Do NOT start paragraphs with "It is important to note that..." or "It should be noted that..."** — get to the point.
@@ -124,11 +112,11 @@ The **Results section** is where coefficients, standard errors, t-statistics, p-
 
 ---
 
-## Formatting Rules — MANDATORY
+### Formatting Rules — MANDATORY
 
 These rules override any structural convenience. Violation of these rules makes the paper look like an AI-generated report rather than a scholarly article.
 
-### No bullet points in the body of the paper
+#### No bullet points in the body of the paper
 
 Results, discussion, limitations, future research, and conclusion sections must be written as **flowing prose paragraphs**. Bullet points and numbered lists are forbidden in these sections. This is non-negotiable.
 
@@ -158,37 +146,12 @@ portfolio-level effects. Finally, our identification strategy rests on
 the assumption that..., which would be violated if...
 ```
 
-### Em-dash restraint
+#### Em-dash restraint
 
 Use em-dashes very selectively — at most one or two per page. When you reach for an em-dash, first consider whether a comma, semicolon, or parenthetical would serve better. Em-dashes are a spice, not a staple. Overuse (more than 2-3 in a section) makes text look informal and fragmented.
 
-### Limitations and future research: brevity
+#### Limitations and future research: brevity
 
 The limitations subsection should be 1-2 paragraphs (150-300 words), not a catalogue. Each limitation should be framed as a scope condition with a constructive forward reference, not as an apology. Do not enumerate more than 3-4 limitations.
 
 Future research should be 1 short paragraph (100-150 words) identifying 2-3 specific, answerable questions. It is not a wish list. Keep it tight.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/writing/personal-style.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/writing-personal-style/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

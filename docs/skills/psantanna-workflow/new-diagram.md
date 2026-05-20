@@ -4,41 +4,20 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>figures</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/new-diagram/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/new-diagram/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/new-diagram/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: new-diagram
-description: Scaffold a new TikZ diagram from the snippet gallery with prevention rules pre-applied (explicit node dimensions, coordinate map, directional edge labels). Compiles standalone, invokes tikz-reviewer with citations from tikz-measurement.md, and loops on revisions until APPROVED.
-argument-hint: "[snippet-name] [output.tex] (both optional; interactive if omitted)"
-allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Task"]
-effort: high
-disable-model-invocation: true
----
-
-# Create a New TikZ Diagram
+## Create a New TikZ Diagram
 
 Scaffold a diagram from `templates/tikz-snippets/`, check it against the prevention rules, compile standalone, run the reviewer with measurement citations, and loop until the diagram passes. Use this **instead of** writing TikZ from scratch; the snippets embed the invariants that `tikz-prevention.md` requires.
 
-## Inputs
+### Inputs
 
 - `$0` (optional) — snippet name (without `.tex`). One of the filenames in `templates/tikz-snippets/`. If omitted, list the gallery and ask the user to pick.
 - `$1` (optional) — output path. Defaults to `Figures/new_diagram.tex` — ask the user if this target exists so we don't clobber.
 
-## Workflow
+### Workflow
 
-### Step 1: Pick a snippet
+#### Step 1: Pick a snippet
 
 ```bash
 ls -1 templates/tikz-snippets/*.tex
@@ -57,13 +36,13 @@ Current gallery (see [`templates/tikz-snippets/README.md`](../../../templates/ti
 
 If `$0` is not one of these, or is omitted, ask the user which to use.
 
-### Step 2: Copy the snippet to the output path
+#### Step 2: Copy the snippet to the output path
 
 ```bash
 SRC="templates/tikz-snippets/$0.tex"
 DST="${1:-Figures/new_diagram.tex}"
 
-# Confirm before overwriting
+## Confirm before overwriting
 if [ -f "$DST" ]; then
   echo "Output path already exists: $DST"
   # Ask the user whether to overwrite. Do NOT clobber silently.
@@ -73,7 +52,7 @@ mkdir -p "$(dirname "$DST")"
 cp "$SRC" "$DST"
 ```
 
-### Step 3: Edit the content to fit the user's intent
+#### Step 3: Edit the content to fit the user's intent
 
 Ask the user what the diagram should show. Edit `$DST` with the `Edit` tool:
 
@@ -83,7 +62,7 @@ Ask the user what the diagram should show. Edit `$DST` with the `Edit` tool:
 4. **Do not** add a bare `scale=X` to the tikzpicture options. Coordinates shrink, text does not — collisions follow. Allowed forms: `scale=X, every node/.style={scale=X}` or `scale=X, transform shape`. See [`tikz-prevention.md` P3](../../rules/tikz-prevention.md) for the full rule and `tikz-visual-quality.md` for the `scale=1.1` convention.
 5. **Every** new edge label must carry a directional keyword (`above`, `below`, `left`, `right`, `above left`, etc.). `midway` alone is a path position, not a direction — P4 violation.
 
-### Step 4: Prevention pre-check (MANDATORY)
+#### Step 4: Prevention pre-check (MANDATORY)
 
 Run the same shared Python checker `/extract-tikz` uses — this is the one tool that enforces both P3 and P4 consistently across the two skills:
 
@@ -97,7 +76,7 @@ python3 scripts/check-tikz-prevention.py "$DST"
 
 Do NOT re-implement the grep inline. The Python checker correctly handles multi-line `\begin{tikzpicture}[...]` options and multi-line `\draw ... node {...}` spans that a line-oriented grep cannot see.
 
-### Step 5: Standalone compile
+#### Step 5: Standalone compile
 
 All snippets are `\documentclass[border=4pt]{standalone}` so they compile without a Beamer frame and without `Preambles/header.tex`:
 
@@ -108,7 +87,7 @@ xelatex -interaction=nonstopmode "$(basename "$DST")" > /tmp/tikz-compile.log 2>
 
 Check exit code and `*.pdf` file size. If compile fails, read `/tmp/tikz-compile.log` and fix the `.tex` source.
 
-### Step 6: Visual review via tikz-reviewer
+#### Step 6: Visual review via tikz-reviewer
 
 Spawn the `tikz-reviewer` agent with `Task` (`subagent_type=tikz-reviewer`). Pass the `.tex` source and the compiled `.pdf` path. The reviewer is now required to cite the pass and formula from [`tikz-measurement.md`](../../rules/tikz-measurement.md) for every CRITICAL/MAJOR finding — vague reports are rejected.
 
@@ -119,7 +98,7 @@ Loop:
 
 **Max 5 rounds.** If after 5 rounds the reviewer is still reporting CRITICAL issues, surface the situation to the user — the snippet or the requested content may need redesign, not just tweaking.
 
-### Step 7: Optional — convert to SVG for Quarto
+#### Step 7: Optional — convert to SVG for Quarto
 
 If the user plans to use the diagram in Quarto slides (not just Beamer), convert the compiled PDF to SVG:
 
@@ -129,7 +108,7 @@ pdf2svg "${DST%.tex}.pdf" "${DST%.tex}.svg" 1
 
 Snippet-based diagrams are single-page, so a single `.svg` with the same basename as `.tex` is correct here. This differs from `/extract-tikz`, which produces a multi-page PDF from a `Figures/LectureN/extract_tikz.tex` master and names outputs `tikz_exact_00.svg, tikz_exact_01.svg, ...` (0-based filenames over 1-indexed PDF pages). If you need multi-page output for slide-by-slide reveals, use `/extract-tikz` instead.
 
-### Step 8: Clean up build artifacts
+#### Step 8: Clean up build artifacts
 
 ```bash
 cd "$(dirname "$DST")"
@@ -138,7 +117,7 @@ rm -f *.aux *.log *.out *.synctex.gz
 
 Leave the `.pdf` and `.svg` (if generated). They're what downstream tools use.
 
-### Step 9: Report
+#### Step 9: Report
 
 Print a summary:
 
@@ -148,44 +127,14 @@ Print a summary:
 - `.svg` path if generated
 - Reminder to `\input` or `\includegraphics` the diagram in the target Beamer/Quarto file
 
-## Why start from a snippet?
+### Why start from a snippet?
 
 Writing TikZ from scratch reliably produces collisions because the author cannot visually estimate where curves and labels will land. The snippets embed the invariants that `tikz-prevention.md` requires — coordinate maps, explicit node dimensions, directional edge labels — so the diagram passes the prevention pre-check by construction. You can always deviate from the snippet; the rules still apply.
 
-## Cross-references
+### Cross-references
 
 - [`.claude/rules/tikz-prevention.md`](../../rules/tikz-prevention.md) — the P1–P6 authoring rules.
 - [`.claude/rules/tikz-measurement.md`](../../rules/tikz-measurement.md) — the six-pass protocol with formulas the reviewer cites.
 - [`.claude/rules/tikz-visual-quality.md`](../../rules/tikz-visual-quality.md) — general visual standards.
 - [`.claude/skills/extract-tikz/SKILL.md`](../extract-tikz/SKILL.md) — for pulling TikZ out of an existing Beamer deck instead of creating new.
 - [`templates/tikz-snippets/README.md`](../../../templates/tikz-snippets/README.md) — gallery inventory and adaptation guide.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/new-diagram/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>pedrohcgs/claude-code-my-workflow</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../psantanna-workflow.md">Pedro Sant'Anna's Claude Code Workflow</a></dd>
-<dt><b>Category</b></dt><dd><code>figures</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow">⭐ pedrohcgs/claude-code-my-workflow</a><br><img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/new-diagram/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/psantanna-workflow/new-diagram/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/psantanna-workflow.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,34 +4,15 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/auto-review-loop/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/auto-review-loop/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: auto-review-loop
-description: Autonomous multi-round research review loop. Repeatedly reviews via Codex MCP, implements fixes, and re-reviews until positive assessment or max rounds reached. Use when user says "auto review loop", "review until it passes", or wants autonomous iterative improvement.
-argument-hint: [topic-or-scope]
-allowed-tools: Bash(*), Read, Grep, Glob, Write, Edit, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Auto Review Loop: Autonomous Research Improvement
+## Auto Review Loop: Autonomous Research Improvement
 
 Autonomously iterate: review → implement fixes → re-review, until the external reviewer gives a positive assessment or MAX_ROUNDS is reached.
 
-## Context: $ARGUMENTS
+### Context: $ARGUMENTS
 
-## Constants
+### Constants
 
 - MAX_ROUNDS = 4
 - POSITIVE_THRESHOLD: score >= 6/10, or verdict contains "accept", "sufficient", "ready for submission"
@@ -48,7 +29,7 @@ Autonomously iterate: review → implement fixes → re-review, until the extern
 
 > 💡 Override: `/auto-review-loop "topic" — compact: true, human checkpoint: true, difficulty: hard`
 
-## State Persistence (Compact Recovery)
+### State Persistence (Compact Recovery)
 
 Long-running loops may hit the context window limit, triggering automatic compaction. To survive this, persist state to `review-stage/REVIEW_STATE.json` after each round:
 
@@ -69,16 +50,16 @@ Long-running loops may hit the context window limit, triggering automatic compac
 
 **On completion** (positive assessment or max rounds), set `"status": "completed"` so future invocations don't accidentally resume a finished loop.
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
 
-## Workflow
+### Workflow
 
-### Initialization
+#### Initialization
 
 1. **Check for `review-stage/REVIEW_STATE.json`** *(fall back to `./REVIEW_STATE.json` if not found — legacy path)*:
    - If neither path exists: **fresh start** (normal case, identical to behavior before this feature existed)
@@ -96,7 +77,7 @@ Long-running loops may hit the context window limit, triggering automatic compac
 5. Initialize round counter = 1 (unless recovered from state file)
 6. Create/update `review-stage/AUTO_REVIEW.md` with header and timestamp
 
-### Loop (repeat up to MAX_ROUNDS)
+#### Loop (repeat up to MAX_ROUNDS)
 
 #### Phase A: Review
 
@@ -167,10 +148,10 @@ codex exec "$(cat <<'PROMPT'
 You are an adversarial senior ML reviewer (NeurIPS/ICML level).
 This is Round N/MAX_ROUNDS of an autonomous review loop.
 
-## Your Reviewer Memory (persistent across rounds)
+### Your Reviewer Memory (persistent across rounds)
 [Paste full contents of REVIEWER_MEMORY.md]
 
-## Instructions
+### Instructions
 You have FULL READ ACCESS to this repository. The author (Claude) does NOT
 control what you see — explore freely. Your job is to find problems the
 author might hide or downplay.
@@ -215,14 +196,14 @@ Then extract structured fields:
 After parsing the assessment, update `REVIEWER_MEMORY.md` in the project root:
 
 ```markdown
-# Reviewer Memory
+## Reviewer Memory
 
-## Round 1 — Score: X/10
+### Round 1 — Score: X/10
 - **Suspicion**: [what the reviewer flagged]
 - **Unresolved**: [concerns not yet addressed]
 - **Patterns**: [recurring issues the reviewer noticed]
 
-## Round 2 — Score: X/10
+### Round 2 — Score: X/10
 - **Previous suspicions addressed?**: [yes/no for each, with reviewer's judgment]
 - **New suspicions**: [...]
 - **Unresolved**: [carried forward + new]
@@ -244,7 +225,7 @@ After parsing the review, Claude (the author) gets a chance to **rebut**:
 For each weakness the reviewer identified, Claude writes a structured response:
 
 ```markdown
-### Rebuttal to Weakness #1: [title]
+#### Rebuttal to Weakness #1: [title]
 - **Accept / Partially Accept / Reject**
 - **Argument**: [why this criticism is invalid, already addressed, or based on a misunderstanding]
 - **Evidence**: [point to specific code, results, or prior round fixes]
@@ -372,14 +353,14 @@ If experiments were launched:
 Append to `review-stage/AUTO_REVIEW.md`:
 
 ```markdown
-## Round N (timestamp)
+### Round N (timestamp)
 
-### Assessment (Summary)
+#### Assessment (Summary)
 - Score: X/10
 - Verdict: [ready/almost/not ready]
 - Key criticisms: [bullet list]
 
-### Reviewer Raw Response
+#### Reviewer Raw Response
 
 <details>
 <summary>Click to expand full reviewer response</summary>
@@ -389,7 +370,7 @@ This is the authoritative record. Do NOT truncate or paraphrase.]
 
 </details>
 
-### Debate Transcript (hard + nightmare only)
+#### Debate Transcript (hard + nightmare only)
 
 <details>
 <summary>Click to expand debate</summary>
@@ -404,13 +385,13 @@ This is the authoritative record. Do NOT truncate or paraphrase.]
 
 </details>
 
-### Actions Taken
+#### Actions Taken
 - [what was implemented/changed]
 
-### Results
+#### Results
 - [experiment outcomes, if any]
 
-### Status
+#### Status
 - [continuing to round N+1 / stopping]
 - Difficulty: [medium/hard/nightmare]
 ```
@@ -425,7 +406,7 @@ This is the authoritative record. Do NOT truncate or paraphrase.]
 
 Increment round counter → back to Phase A.
 
-### Termination
+#### Termination
 
 When loop ends (positive assessment or max rounds):
 
@@ -440,7 +421,7 @@ When loop ends (positive assessment or max rounds):
    - Suggest whether to continue manually or pivot
 5. **Feishu notification** (if configured): Send `pipeline_done` with final score progression table
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 
@@ -455,7 +436,7 @@ When loop ends (positive assessment or max rounds):
 - Document EVERYTHING — the review log should be self-contained
 - Update project notes after each round, not just at the end
 
-## Prompt Template for Round 2+
+### Prompt Template for Round 2+
 
 ```
 mcp__codex__codex-reply:
@@ -476,36 +457,6 @@ mcp__codex__codex-reply:
     Same format: Score, Verdict, Remaining Weaknesses, Minimum Fixes.
 ```
 
-## Review Tracing
+### Review Tracing
 
 After each `mcp__codex__codex` or `mcp__codex__codex-reply` reviewer call, save the trace following `shared-references/review-tracing.md` (Policy C — forensic; never silently skip). Use `save_trace.sh` (resolved per the chain in `shared-references/integration-contract.md` §2) or write files directly to `.aris/traces/<skill>/<date>_run<NN>/`. Respect the `--- trace:` parameter (default: `full`).
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/auto-review-loop/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/auto-review-loop/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

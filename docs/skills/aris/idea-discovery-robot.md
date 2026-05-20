@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>ideation</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>rq-formulation</code> · <code>hypothesis-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/idea-discovery-robot/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/idea-discovery-robot/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: idea-discovery-robot
-description: "Workflow 1 adaptation for robotics and embodied AI. Orchestrates robotics-aware literature survey, idea generation, novelty check, and critical review to go from a broad robotics direction to benchmark-grounded, simulation-first ideas. Use when user says \"robotics idea discovery\", \"机器人找idea\", \"embodied AI idea\", \"机器人方向探索\", \"sim2real 选题\", or wants ideas for manipulation, locomotion, navigation, drones, humanoids, or general robot learning."
-argument-hint: [robotics-direction]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Robotics Idea Discovery Pipeline
+## Robotics Idea Discovery Pipeline
 
 Orchestrate a robotics-specific idea discovery workflow for: **$ARGUMENTS**
 
-## Overview
+### Overview
 
 This skill chains four sub-skills into a single automated pipeline:
 
@@ -53,7 +34,7 @@ The goal is not to produce flashy demos. The goal is to produce ideas that are:
 - feasible with available robotics infrastructure
 - interesting even if the answer is negative
 
-## Constants
+### Constants
 
 - **MAX_PILOT_IDEAS = 3** — Validate at most 3 top ideas deeply
 - **PILOT_MODE = `sim-first`** — Prefer simulation or offline-log pilots before any hardware execution
@@ -64,7 +45,7 @@ The goal is not to produce flashy demos. The goal is to produce ideas that are:
 
 > Override inline, e.g. `/idea-discovery-robot "bimanual manipulation" — only sim ideas, no real robot` or `/idea-discovery-robot "drone navigation" — focus on CoRL/RSS, 2 pilot ideas max`
 
-## Execution Rule
+### Execution Rule
 
 Follow the phases in order. Do **not** stop after a checkpoint unless:
 - the user explicitly says to stop, or
@@ -72,7 +53,7 @@ Follow the phases in order. Do **not** stop after a checkpoint unless:
 
 If `AUTO_PROCEED=true` and the user does not respond, continue immediately to the next phase using the strongest **sim-first, benchmark-grounded** option.
 
-## Phase 0: Frame the Robotics Problem
+### Phase 0: Frame the Robotics Problem
 
 Before generating ideas, extract or infer this **Robotics Problem Frame** from `$ARGUMENTS` and local project context:
 
@@ -94,7 +75,7 @@ If some fields are missing, make explicit assumptions and default to:
 
 Write this frame into working notes before moving on. Every later decision should reference it.
 
-## Phase 1: Robotics Literature Survey
+### Phase 1: Robotics Literature Survey
 
 Invoke:
 
@@ -104,7 +85,7 @@ Invoke:
 
 Then reorganize the findings using a robotics lens instead of a generic ML lens.
 
-### Build a Robotics Landscape Matrix
+#### Build a Robotics Landscape Matrix
 
 For each relevant paper, classify:
 
@@ -120,7 +101,7 @@ For each relevant paper, classify:
 | Metrics | success rate, collision rate, intervention count, path length, latency, energy |
 | Main bottleneck | sample inefficiency, brittleness, reset cost, perception drift, sim2real gap |
 
-### Search Priorities
+#### Search Priorities
 
 When refining the survey, prioritize:
 - recent work from **CoRL, RSS, ICRA, IROS, RA-L**
@@ -128,7 +109,7 @@ When refining the survey, prioritize:
 - benchmark papers and follow-up reproductions
 - negative-result or diagnosis papers if they reveal system bottlenecks
 
-### What to Look For
+#### What to Look For
 
 Do not stop at "who got the best success rate." Explicitly identify:
 - recurring failure modes papers do not fix
@@ -154,7 +135,7 @@ Should I generate ideas under this framing, or should I narrow to a specific rob
 - **User approves** (or no response + AUTO_PROCEED=true) → proceed to Phase 2 with the best robotics frame.
 - **User requests changes** (e.g. narrower embodiment, different benchmark family, no sim2real, no hardware) → refine the robotics frame, re-run Phase 1, and present again.
 
-## Phase 2: Robotics-Specific Idea Generation and Filtering
+### Phase 2: Robotics-Specific Idea Generation and Filtering
 
 Generate ideas only after the robotics frame is explicit.
 
@@ -176,7 +157,7 @@ Each candidate idea must include:
 - **Expected failure mode if the idea does not work**
 - **Whether the idea truly needs real hardware**
 
-### Good Robotics Idea Patterns
+#### Good Robotics Idea Patterns
 
 Prefer ideas that:
 - expose a real bottleneck in perception-action coupling
@@ -187,7 +168,7 @@ Prefer ideas that:
 - create a better benchmark, diagnostic, or evaluation protocol
 - test an assumption the community repeats but rarely measures
 
-### Weak Robotics Idea Patterns
+#### Weak Robotics Idea Patterns
 
 Downrank ideas that are mostly:
 - "apply a foundation model / VLM / diffusion model to robot X" with no new bottleneck analysis
@@ -196,7 +177,7 @@ Downrank ideas that are mostly:
 - impossible to evaluate without a months-long infrastructure build
 - only interesting if everything works perfectly
 
-### Filtering Rules
+#### Filtering Rules
 
 For each idea, reject or heavily downrank if:
 - no concrete simulator or benchmark is available
@@ -223,7 +204,7 @@ Should I carry the top sim-first ideas into novelty checking and external review
 - **User wants different constraints** → update the robotics frame and re-run Phase 2.
 - **User wants narrower scope** → go back to Phase 1 with a tighter embodiment / task / benchmark focus.
 
-## Phase 3: Feasibility and Pilot Design
+### Phase 3: Feasibility and Pilot Design
 
 For the top ideas, design a **minimal validation package**.
 
@@ -252,7 +233,7 @@ For each surviving idea, specify:
 - What negative result would still be publishable:
 ```
 
-### Real Robot Rule
+#### Real Robot Rule
 
 **Never auto-proceed to physical robot testing.** If an idea needs hardware:
 - mark it as `needs physical validation`
@@ -263,7 +244,7 @@ If no cheap sim/offline pilot exists, keep the idea in the report but label it *
 
 After Phase 3, continue to Phase 4 even if you only produced a pilot plan rather than running a pilot. Lack of immediate execution is not a reason to stop the workflow.
 
-## Phase 4: Deep Novelty Verification
+### Phase 4: Deep Novelty Verification
 
 For each top idea, run:
 
@@ -286,7 +267,7 @@ Be especially skeptical of ideas that are just:
 
 If the method is not novel but the **finding** or **evaluation protocol** is, say that explicitly.
 
-## Phase 5: External Robotics Review
+### Phase 5: External Robotics Review
 
 Invoke:
 
@@ -303,30 +284,30 @@ Frame the reviewer as a senior **CoRL / RSS / ICRA** reviewer. Ask them to focus
 
 Update the report with the reviewer's minimum viable evidence package.
 
-## Phase 6: Final Report
+### Phase 6: Final Report
 
 Write or update `idea-stage/IDEA_REPORT.md` with a robotics-specific structure so it stays compatible with downstream workflows.
 
 ```markdown
-# Robotics Idea Discovery Report
+## Robotics Idea Discovery Report
 
 **Direction**: $ARGUMENTS
 **Date**: [today]
 **Pipeline**: research-lit → idea-creator (robotics framing) → novelty-check → research-review
 
-## Robotics Problem Frame
+### Robotics Problem Frame
 - Embodiment:
 - Task family:
 - Observation / action interface:
 - Available assets:
 - Constraints:
 
-## Landscape Matrix
+### Landscape Matrix
 [grouped by embodiment, benchmark, and bottleneck]
 
-## Ranked Ideas
+### Ranked Ideas
 
-### Idea 1: [title] — RECOMMENDED
+#### Idea 1: [title] — RECOMMENDED
 - Embodiment:
 - Benchmark / simulator:
 - Bottleneck addressed:
@@ -337,22 +318,22 @@ Write or update `idea-stage/IDEA_REPORT.md` with a robotics-specific structure s
 - Hardware risk:
 - Next step:
 
-## Eliminated Ideas
+### Eliminated Ideas
 - [idea] — killed because benchmark unclear / hardware inaccessible / novelty weak / no fair evaluation
 
-## Evidence Package for the Top Idea
+### Evidence Package for the Top Idea
 - Required baselines:
 - Required metrics:
 - Required failure cases:
 - Whether real robot evidence is mandatory:
 
-## Next Steps
+### Next Steps
 - [ ] Implement sim-first pilot
 - [ ] Run /novelty-check on the final idea wording
 - [ ] Only after approval: consider hardware validation
 ```
 
-## Key Rules
+### Key Rules
 
 - **Simulation first.** Hardware is never the default.
 - **Benchmark specificity is mandatory.** No benchmark, no serious idea.
@@ -362,7 +343,7 @@ Write or update `idea-stage/IDEA_REPORT.md` with a robotics-specific structure s
 - **Infrastructure realism matters.** Operator time, reset burden, and safety count as research constraints.
 - **If the contribution is mainly diagnostic or evaluative, say so.** That can still be publishable.
 
-## Composing with Later Work
+### Composing with Later Work
 
 After this workflow identifies a strong robotics idea:
 
@@ -375,39 +356,9 @@ implement sim-first pilot
 
 If no simulator or benchmark is available yet, stop at the report and ask the user to choose whether to build infrastructure or pivot to a more executable idea.
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/idea-discovery-robot/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>ideation</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>rq-formulation</code> <code>hypothesis-generation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/idea-discovery-robot/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

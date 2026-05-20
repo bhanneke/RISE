@@ -4,38 +4,19 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>design</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>research-design</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-plan/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-plan/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-plan
-description: "Generate a structured paper outline from review conclusions and experiment results. Use when user says \"写大纲\", \"paper outline\", \"plan the paper\", \"论文规划\", or wants to create a paper plan before writing."
-argument-hint: "[topic-or-narrative-doc] [— style-ref: <source>]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Paper Plan: From Review Conclusions to Paper Outline
+## Paper Plan: From Review Conclusions to Paper Outline
 
 Generate a structured, section-by-section paper outline from: **$ARGUMENTS**
 
-## Constants
+### Constants
 
 - **REVIEWER_MODEL = `gpt-5.5`** — Model used via Codex MCP for outline review. Must be an OpenAI model.
 - **TARGET_VENUE = `ICLR`** — Default venue. User can override (e.g., `/paper-plan "topic" — venue: NeurIPS`). Supported: `ICLR`, `NeurIPS`, `ICML`, `CVPR`, `ACL`, `AAAI`, `ACM`, `IEEE_JOURNAL` (IEEE Transactions / Letters), `IEEE_CONF` (IEEE conferences).
 - **MAX_PAGES** — Page limit. For ML conferences: main body to Conclusion end (excluding references, appendix). ICLR=9, NeurIPS=9, ICML=8. **For IEEE venues: references ARE included in page count.** IEEE journal Transactions ≈ 12-14 pages total, Letters ≈ 4-5 pages total; IEEE conference ≈ 5-8 pages total (including references).
 
-## Inputs
+### Inputs
 
 The skill expects one or more of these in the project directory:
 
@@ -47,7 +28,7 @@ The skill expects one or more of these in the project directory:
 
 If none exist, ask the user to describe the paper's contribution in 3-5 sentences.
 
-## Orchestra-Guided Writing Overlay
+### Orchestra-Guided Writing Overlay
 
 Keep the existing `insleep` workflow and outputs, but use the shared references below to improve the quality of the story and outline.
 
@@ -55,16 +36,16 @@ Keep the existing `insleep` workflow and outputs, but use the shared references 
 - Read `../shared-references/venue-checklists.md` before freezing the outline for a specific venue.
 - Only load these references when needed; do not paste their full contents into the working draft.
 
-## Optional: Style reference (`— style-ref: <source>`, opt-in)
+### Optional: Style reference (`— style-ref: <source>`, opt-in)
 
 Lets the user steer the **structural** layout of the outline (section ordering, subsection density, theorem-environment density, figure budget, citation style) toward a reference paper. **Default OFF — when the user does not pass `— style-ref`, do nothing differently from before.**
 
 Only when `— style-ref: <source>` appears in `$ARGUMENTS`, run the helper FIRST, before drafting the outline:
 
 ```bash
-# Resolve $STYLE_HELPER via the canonical strict-safe chain (see
-# shared-references/integration-contract.md §2). Policy A — gate:
-# unresolved helper means --style-ref cannot be satisfied, so abort.
+## Resolve $STYLE_HELPER via the canonical strict-safe chain (see
+## shared-references/integration-contract.md §2). Policy A — gate:
+## unresolved helper means --style-ref cannot be satisfied, so abort.
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -96,7 +77,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id (`2501.12345` or `ar
 - **Never copy prose, claims, examples, section names verbatim, or terminology** from anything reachable through the cache. The user's narrative is the only source of substance.
 - **Never pass `— style-ref` (or the cache contents) to reviewer / auditor sub-agents.** Cross-model review independence (`../shared-references/reviewer-independence.md`) requires reviewers see only the artifact and the user's prompt.
 
-### Gap Report (`GAP_REPORT.md`, auto-emitted when style-ref is on)
+#### Gap Report (`GAP_REPORT.md`, auto-emitted when style-ref is on)
 
 When `— style-ref:` succeeded AND any of `figures/`, `results/`, `data/`, `tables/`, `sec/`, `NARRATIVE_REPORT.md`, `CLAIMS_FROM_RESULTS.md` exists in the project, **also** emit a gap report before drafting the outline. The gap report maps the exemplar's section topology + density requirements (from `style_profile.md`) against the user's actual assets, surfacing structural slots where the user has **no evidence to fill**. It is the contract by which `/paper-write` decides when to emit `<!-- DATA_NEEDED -->` markers instead of fabricating content.
 
@@ -108,13 +89,13 @@ Procedure:
 4. Emit `<output-dir>/GAP_REPORT.md`:
 
 ```markdown
-# GAP_REPORT — exemplar vs user assets
+## GAP_REPORT — exemplar vs user assets
 
 - **Exemplar source:** <source identifier (file path, arXiv ID, URL)>
 - **Generated:** <UTC ISO-8601>
 - **Style profile:** <relative path to style_profile.md>
 
-## Section topology gaps
+### Section topology gaps
 
 | Exemplar slot | Exemplar feature | User evidence | Status | Slot ID |
 |---|---|---|---|---|
@@ -123,13 +104,13 @@ Procedure:
 | §6 Discussion | failure-case analysis | not present in `NARRATIVE_REPORT.md` | missing | `GAP_S6_FAILURE` |
 | §2 Related | citation density ≥ 60 | `references.bib` has 35 entries | partial | `GAP_S2_CITES` |
 
-## Coverage summary
+### Coverage summary
 
 - covered: N
 - partial: M
 - missing: K
 
-## Used by
+### Used by
 
 - `/paper-write` reads this file and emits `<!-- DATA_NEEDED: <Slot ID> — <one-line description> -->` placeholders for `missing` slots instead of fabricating content.
 - `/paper-claim-audit` can use Slot IDs to flag claims that cite sections with `missing` evidence.
@@ -147,9 +128,9 @@ Slot ID format: `GAP_<SECTION>_<FEATURE>`, all-caps, stable across regenerations
 
 Original idea: @zhangpelf in [#217](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/issues/217).
 
-## Workflow
+### Workflow
 
-### Step 1: Extract Claims and Evidence
+#### Step 1: Extract Claims and Evidence
 
 **First check for `CLAIMS_FROM_RESULTS.md`** — if it exists (generated by `/result-to-claim` at the end of Workflow 2), use it as the starting point for claims. This file contains validated claims already mapped to experiment evidence. Merge with any additional claims from the narrative documents below.
 
@@ -172,7 +153,7 @@ Build a **Claims-Evidence Matrix**:
 | [claim 2] | [exp C] | Partially supported | §4.1 |
 ```
 
-### Step 2: Determine Paper Type and Structure
+#### Step 2: Determine Paper Type and Structure
 
 Based on TARGET_VENUE and paper content, classify and select structure.
 
@@ -222,12 +203,12 @@ Theory papers should:
 6. Conclusion (0.5 pages)
 ```
 
-### Step 3: Section-by-Section Planning
+#### Step 3: Section-by-Section Planning
 
 For each section, specify:
 
 ```markdown
-### §0 Abstract
+#### §0 Abstract
 - **What we achieve**: [the paper's specific contribution, not field-level background]
 - **Why it matters / is hard**: [why this problem is important and non-trivial]
 - **How we do it**: [approach in one sentence]
@@ -236,7 +217,7 @@ For each section, specify:
 - **Estimated length**: 150-250 words
 - **Self-contained check**: can a reader understand this without the paper?
 
-### §1 Introduction
+#### §1 Introduction
 - **Opening hook**: [1-2 sentences that motivate the problem]
 - **Gap / challenge**: [what's missing in prior work, and why prior work is insufficient]
 - **One-sentence contribution**: [the main takeaway of the paper]
@@ -249,14 +230,14 @@ For each section, specify:
 - **Key citations**: [3-5 papers to cite here]
 - **Front-loading check**: [would a skim reader know the main claim before reaching the method?]
 
-### §2 Related Work
+#### §2 Related Work
 - **Subtopics**: [2-4 categories of related work]
 - **Positioning**: [how this paper differs from each category]
 - **Minimum length**: 1 full page (at least 3-4 paragraphs with substantive synthesis)
 - **Organization rule**: organize by methodological family / assumption / question, not paper-by-paper
 - **Must NOT be just a list** — synthesize, compare, and position
 
-### §3 Method / Setup / Preliminaries
+#### §3 Method / Setup / Preliminaries
 - **Notation**: [key symbols and their meanings]
 - **Problem formulation**: [formal setup]
 - **Method description**: [algorithm, model, or experimental design]
@@ -264,26 +245,26 @@ For each section, specify:
 - **Proof sketch locations**: [which key steps appear here vs. appendix]
 - **Estimated length**: 1.5-2 pages
 
-### §4 Experiments / Main Results
+#### §4 Experiments / Main Results
 - **Figures planned**:
   - Fig 1: [description, type: bar/line/table/architecture, WHAT COMPARISON it shows]
   - Fig 2: [description]
   - Table 1: [what it shows, which methods/baselines compared]
 - **Data source**: [which JSON files / experiment results]
 
-### §5 Conclusion
+#### §5 Conclusion
 - **Restatement**: [contributions rephrased, not copy-pasted from intro]
 - **Limitations**: [honest assessment — reviewers value this]
 - **Future work**: [1-2 concrete directions]
 - **Estimated length**: 0.5 pages
 ```
 
-### Step 4: Figure Plan
+#### Step 4: Figure Plan
 
 List every figure and table:
 
 ```markdown
-## Figure Plan
+### Figure Plan
 
 | ID | Type | Description | Data Source | Priority |
 |----|------|-------------|-------------|----------|
@@ -300,12 +281,12 @@ List every figure and table:
 - Caption draft that clearly states the comparison
 - Why the figure helps a skim reader understand the paper before reading the full method
 
-### Step 5: Citation Scaffolding
+#### Step 5: Citation Scaffolding
 
 For each section, list required citations:
 
 ```markdown
-## Citation Plan
+### Citation Plan
 - §1 Intro: [paper1], [paper2], [paper3] (problem motivation)
 - §2 Related: [paper4]-[paper10] (categorized by subtopic)
 - §3 Method: [paper11] (baseline), [paper12] (technique we build on)
@@ -317,7 +298,7 @@ For each section, list required citations:
 3. Flag any citation you're unsure about with `[VERIFY]`
 4. Prefer published versions over arXiv preprints when available
 
-### Step 6: Cross-Review with REVIEWER_MODEL
+#### Step 6: Cross-Review with REVIEWER_MODEL
 
 Send the complete outline to GPT-5.4 xhigh for feedback:
 
@@ -343,12 +324,12 @@ mcp__codex__codex:
 
 Apply feedback before finalizing.
 
-### Step 7: Output
+#### Step 7: Output
 
 Save the final outline to `PAPER_PLAN.md` in the project root:
 
 ```markdown
-# Paper Plan
+## Paper Plan
 
 **Title**: [working title]
 **One-sentence contribution**: [single-sentence statement of the paper's core takeaway]
@@ -358,28 +339,28 @@ Save the final outline to `PAPER_PLAN.md` in the project root:
 **Page budget**: [MAX_PAGES] pages (main body to Conclusion end, excluding references & appendix)
 **Section count**: [N] (must match the number of section files that will be created)
 
-## Claims-Evidence Matrix
+### Claims-Evidence Matrix
 [from Step 1]
 
-## Structure
+### Structure
 [from Step 2-3, section by section]
 
-## Figure Plan
+### Figure Plan
 [from Step 4, with detailed hero figure description]
 
-## Citation Plan
+### Citation Plan
 [from Step 5]
 
-## Reviewer Feedback
+### Reviewer Feedback
 [from Step 6, summarized]
 
-## Next Steps
+### Next Steps
 - [ ] /paper-figure to generate all figures
 - [ ] /paper-write to draft LaTeX
 - [ ] /paper-compile to build PDF
 ```
 
-## Key Rules
+### Key Rules
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 - **Do NOT generate author information** — leave author block as placeholder or anonymous
 - **Be honest about evidence gaps** — mark claims as "needs experiment" rather than overclaiming
@@ -391,43 +372,13 @@ Save the final outline to `PAPER_PLAN.md` in the project root:
 - **Figures need detailed descriptions** — especially the hero figure, which must clearly specify comparisons and visual expectations
 - **Section count is flexible** — 5-8 sections depending on paper type. Don't force content into a rigid 5-section template.
 
-## Acknowledgements
+### Acknowledgements
 
 Outline methodology inspired by [Research-Paper-Writing-Skills](https://github.com/Master-cai/Research-Paper-Writing-Skills) (claim-evidence mapping), [claude-scholar](https://github.com/Galaxy-Dawn/claude-scholar) (citation verification), and [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills) (claim verification protocol). The writing-framing overlay in this hybrid pack is adapted from Orchestra Research's paper-writing guidance.
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-plan/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>design</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>research-design</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/paper-plan/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

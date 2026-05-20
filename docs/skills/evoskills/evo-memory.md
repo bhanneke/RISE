@@ -4,35 +4,13 @@
 
 Persistent memory layer for EvoScientist sessions
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/evo-memory/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/evo-memory/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: evo-memory
-description: "Manages persistent research memory across ideation and experimentation cycles. Maintains two stores: Ideation Memory M_I (feasible/unsuccessful directions) and Experimentation Memory M_E (reusable strategies for data processing, model training, architecture, debugging). Three evolution mechanisms: IDE (after research-ideation), IVE (after experiment failure — classifies failures as implementation vs fundamental), ESE (after experiment success — extracts reusable strategies). Use when: updating memory after completing research-ideation cycles or experiment pipelines, classifying why a method failed (implementation vs fundamental failure), starting a new research cycle needing prior knowledge, user mentions 'update memory', 'classify failure', 'what worked before', 'research history', 'evolution'. Do NOT use for running experiments (use experiment-pipeline), debugging experiment code (use experiment-craft), or generating ideas (use research-ideation)."
-allowed-tools: "write_file edit_file read_file think_tool"
-metadata:
-  author: EvoScientist
-  version: '1.0.0'
-  tags: [core, meta-learning]
----
-
-# Evo-Memory
+## Evo-Memory
 
 A persistent learning layer that accumulates research knowledge across ideation and experimentation cycles. Maintains two memory stores and implements three evolution mechanisms that feed learned patterns back into future research.
 
-## When to Use This Skill
+### When to Use This Skill
 
 - User has completed an `research-ideation` and needs to update Ideation Memory
 - User has completed (or failed) an `experiment-pipeline` and needs to update memory
@@ -40,15 +18,15 @@ A persistent learning layer that accumulates research knowledge across ideation 
 - User asks about research memory, learned patterns, or cross-cycle knowledge
 - User mentions "evo-memory", "update memory", "what worked before", "research history", "evolution"
 
-## The Learning Layer
+### The Learning Layer
 
 Research is iterative. Each cycle — from ideation through experimentation — generates knowledge that should inform the next cycle. Without persistent memory, every new project starts from scratch, repeating mistakes and rediscovering patterns.
 
 Evo-memory solves this by maintaining two structured memory stores and three evolution mechanisms that extract, classify, and inject knowledge across cycles.
 
-## Two Memory Stores
+### Two Memory Stores
 
-### Ideation Memory (M_I)
+#### Ideation Memory (M_I)
 
 **Location**: `/memory/ideation-memory.md`
 
@@ -67,7 +45,7 @@ Records what you've learned about research DIRECTIONS — which areas are promis
 
 See [assets/ideation-memory-template.md](assets/ideation-memory-template.md) for the template.
 
-### Experimentation Memory (M_E)
+#### Experimentation Memory (M_E)
 
 **Location**: `/memory/experiment-memory.md`
 
@@ -90,9 +68,9 @@ The paper defines M_E as storing "reusable data processing and model training st
 
 See [assets/experiment-memory-template.md](assets/experiment-memory-template.md) for the template.
 
-## Three Evolution Mechanisms
+### Three Evolution Mechanisms
 
-### IDE — Idea Direction Evolution
+#### IDE — Idea Direction Evolution
 
 **Trigger**: After `research-ideation` completes Step 5 and saves `/direction-summary.md` for Step 6.
 
@@ -112,7 +90,7 @@ See [assets/experiment-memory-template.md](assets/experiment-memory-template.md)
 
 See [references/ide-protocol.md](references/ide-protocol.md) for the full process.
 
-### IVE — Idea Validation Evolution
+#### IVE — Idea Validation Evolution
 
 **Trigger** (two conditions, following the paper):
 1. **Rule-based**: The engineer cannot find any executable code within the pre-defined budget at any stage — the code simply doesn't run.
@@ -140,7 +118,7 @@ If 3+ answers point to one type, classify as that type. If split, classify as im
 
 See [references/ive-protocol.md](references/ive-protocol.md) for the full process and worked examples.
 
-### ESE — Experiment Strategy Evolution
+#### ESE — Experiment Strategy Evolution
 
 **Trigger**: After `experiment-pipeline` succeeds — all 4 stages complete and gates met.
 
@@ -165,7 +143,7 @@ See [references/ive-protocol.md](references/ive-protocol.md) for the full proces
 
 See [references/ese-protocol.md](references/ese-protocol.md) for the full process.
 
-## Reading Memory at Cycle Start
+### Reading Memory at Cycle Start
 
 When starting a new research cycle (loading `research-ideation` or `experiment-pipeline`):
 
@@ -178,23 +156,23 @@ When starting a new research cycle (loading `research-ideation` or `experiment-p
 
 **Retrieval method**: The paper uses embedding-based cosine similarity for retrieval. In practice, perform this semantic comparison by reading each entry's Summary/Context and Retrieval Tags, then judging relevance to the current goal. If automated embedding tools are available in your environment, use those instead for larger memory stores.
 
-### For research-ideation (inject M_I)
+#### For research-ideation (inject M_I)
 
 1. Read `/memory/ideation-memory.md`
 2. Select the top-k_I=2 entries most relevant to the user's current goal. Compare the user's goal statement against each entry's Summary and Retrieval Tags for semantic similarity.
 3. For each selected feasible direction: incorporate it as a seed branch at Level 1 of the idea tree. Example injection: *"Prior cycle found 'Modality-aware model compression' promising (Elo 1548, cycle 3). Use as a Level 1 branch alongside new technique variants."*
 4. For each unsuccessful direction with `Failure Classification: Fundamental`: flag for pruning. Example injection: *"Prior cycle confirmed 'Autoregressive real-time video generation' is a fundamental failure (O(n) latency). Prune any tree branch matching this pattern."*
 
-### For experiment-pipeline (inject M_E)
+#### For experiment-pipeline (inject M_E)
 
 1. Read `/memory/experiment-memory.md`
 2. Select the top-k_E=1 entry most relevant to the current experiment domain. Compare the experiment's problem description against each entry's Context and Category.
 3. Inject the selected strategy as context for all stages. Example injection: *"Prior cycle found 'Cosine annealing with warm restarts (T_0=10, T_mult=2)' effective for transformer fine-tuning on small datasets (confirmed, 2 cycles). Apply in Stage 2 tuning as the default schedule."*
 4. Also scan the Debugging Strategies section for any entries matching the current domain — these can save significant time when diagnosing failures.
 
-## Memory Maintenance
+### Memory Maintenance
 
-### Pruning Stale Entries
+#### Pruning Stale Entries
 
 Periodically review both memory stores and remove or archive entries that are no longer relevant:
 
@@ -202,11 +180,11 @@ Periodically review both memory stores and remove or archive entries that are no
 - Strategies superseded by strictly better alternatives
 - Directions in fields that have fundamentally shifted (new paradigms, new state-of-the-art)
 
-### Version Tracking
+#### Version Tracking
 
 Each memory file maintains a `Last Updated` field and a cycle counter. When entries are modified (not just appended), note what changed in the evolution report. This creates an audit trail of how your research knowledge evolves.
 
-### Evolution Reports
+#### Evolution Reports
 
 After each evolution mechanism triggers, generate a report saved to `/memory/evolution-reports/cycle_N_type.md`:
 - What changed (added, updated, or removed entries)
@@ -215,7 +193,7 @@ After each evolution mechanism triggers, generate a report saved to `/memory/evo
 
 See [assets/evolution-report-template.md](assets/evolution-report-template.md) for the template.
 
-## Counterintuitive Memory Rules
+### Counterintuitive Memory Rules
 
 Prioritize these rules when updating and using memory:
 
@@ -231,7 +209,7 @@ Prioritize these rules when updating and using memory:
 
 6. **The evolution report is for humans**: Write reports that a researcher — not just an AI agent — can understand and act on. Include enough context that someone reading the report 6 months later understands WHY the change was made, not just WHAT changed.
 
-## Memory Integration Points
+### Memory Integration Points
 
 How evo-memory connects to other skills in the pipeline:
 
@@ -243,7 +221,7 @@ How evo-memory connects to other skills in the pipeline:
 | New cycle starts | `research-ideation` | Read (top-k_I=2) | M_I read for seeding/pruning |
 | New cycle starts | `experiment-pipeline` | Read (top-k_E=1) | M_E read for strategy guidance |
 
-## Reference Navigation
+### Reference Navigation
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
@@ -255,32 +233,3 @@ How evo-memory connects to other skills in the pipeline:
 | Ideation memory template | [ideation-memory-template.md](assets/ideation-memory-template.md) | Initializing M_I |
 | Experiment memory template | [experiment-memory-template.md](assets/experiment-memory-template.md) | Initializing M_E |
 | Evolution report template | [evolution-report-template.md](assets/evolution-report-template.md) | Documenting memory updates |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/evo-memory/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>infra</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/evo-memory/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,23 +4,11 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/review/referee-simulation.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Referee Simulation
 
----
-
-# Referee Simulation
-
-## Purpose
+### Purpose
 
 This skill describes how to simulate a tough but fair referee report for an academic
 paper. The goal is to anticipate what a knowledgeable, critical reviewer would say,
@@ -29,7 +17,7 @@ is honest, specific, and constructive.
 
 ---
 
-## Step 0: Scope Check
+### Step 0: Scope Check
 
 Before writing anything, identify the paper's **stated scope**:
 
@@ -66,7 +54,7 @@ Throughout the review, **classify every concern** as one of:
 
 ---
 
-## Step 1: Prove You Understood the Paper
+### Step 1: Prove You Understood the Paper
 
 Start the report with a one-paragraph summary of the paper. This serves two functions:
 it demonstrates that you engaged seriously with the work, and it reveals whether the
@@ -94,7 +82,7 @@ rather than a governance premium."
 
 ---
 
-## Step 2: Evaluate the Contribution
+### Step 2: Evaluate the Contribution
 
 Ask: Is this genuinely new?
 
@@ -116,43 +104,43 @@ concern, not a minor one.
 
 ---
 
-## Step 3: Evaluate Identification
+### Step 3: Evaluate Identification
 
 Ask: Is the causal claim credible?
 
 This is typically the most important section of a referee report for empirical papers.
 Evaluate the identification strategy against its own standards:
 
-### For difference-in-differences:
+#### For difference-in-differences:
 - Is the parallel trends assumption plausible? Is evidence provided?
 - Are pre-treatment trends shown in an event study plot?
 - Is there a concern about staggered treatment timing? If so, is an appropriate
   estimator used?
 - Could there be anticipation effects?
 
-### For instrumental variables:
+#### For instrumental variables:
 - Is the instrument relevant? (Report the first-stage F-statistic.)
 - Is the exclusion restriction plausible? Can the instrument affect the outcome
   through channels other than the endogenous variable?
 - Who are the compliers? Is the LATE interpretable?
 
-### For regression discontinuity:
+#### For regression discontinuity:
 - Is there evidence of manipulation at the cutoff?
 - Are covariates balanced at the cutoff?
 - Is the result robust to bandwidth choice?
 
-### For randomized experiments:
+#### For randomized experiments:
 - Was randomization properly implemented? Is there balance?
 - Is there selective attrition?
 - Are there spillover concerns?
 
-### For all designs:
+#### For all designs:
 - What is the most damaging alternative explanation? Has the paper addressed it?
 - If a hostile referee wanted to dismiss the result, what would they argue?
 
 ---
 
-## Step 4: Evaluate Evidence-Claim Alignment
+### Step 4: Evaluate Evidence-Claim Alignment
 
 Check whether the evidence actually supports the claims made:
 
@@ -167,7 +155,7 @@ Check whether the evidence actually supports the claims made:
 
 ---
 
-## Step 5: Check for Common Econometric Issues
+### Step 5: Check for Common Econometric Issues
 
 - **Standard errors:** Are they clustered at the right level? Is the number of
   clusters sufficient (at least 30-50)?
@@ -185,9 +173,9 @@ Check whether the evidence actually supports the claims made:
 
 ---
 
-## Step 6: Separate Major from Minor Concerns
+### Step 6: Separate Major from Minor Concerns
 
-### Major concerns
+#### Major concerns
 
 These are issues that, if unresolved, would prevent publication:
 
@@ -197,7 +185,7 @@ These are issues that, if unresolved, would prevent publication:
 - There is a data or coding error that affects the main result
 - The paper tries to answer a question that the available data cannot address
 
-### Minor concerns
+#### Minor concerns
 
 These are issues that should be fixed but do not threaten the paper's core contribution:
 
@@ -214,7 +202,7 @@ versus what would be nice to fix.
 
 ---
 
-## Step 7: Be Constructive
+### Step 7: Be Constructive
 
 For every criticism, suggest a specific fix when possible:
 
@@ -226,7 +214,7 @@ For every criticism, suggest a specific fix when possible:
 
 ---
 
-## Step 8: Assign a Rating
+### Step 8: Assign a Rating
 
 Use the following scale, applying the standards of the target outlet:
 
@@ -239,7 +227,7 @@ Use the following scale, applying the standards of the target outlet:
 | **Accept** | Strong paper with minor issues only. Contribution is clear, identification is convincing, evidence supports claims. |
 | **Strong accept** | Exceptional paper. Important question, convincing evidence, clear contribution. Publishable as-is or with trivial changes. Rare. |
 
-### Consider the target outlet's standards
+#### Consider the target outlet's standards
 
 - **Top-5 journals (AER, Econometrica, QJE, JPE, REStud):** The bar is high. The
   question must be first-order important, the identification must be near-airtight,
@@ -254,7 +242,7 @@ Use the following scale, applying the standards of the target outlet:
 
 ---
 
-## Output Format
+### Output Format
 
 Structure the referee report as follows:
 
@@ -280,28 +268,3 @@ OVERALL ASSESSMENT
 [One paragraph justifying the rating and summarizing the key issue(s) that
 determine whether this paper is publishable at the target outlet]
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/review/referee-simulation.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/review-referee-simulation/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

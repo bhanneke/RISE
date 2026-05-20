@@ -4,30 +4,18 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/theory_lab/core/scout_director.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Core Agent: Scout Director
 
----
-
-# Core Agent: Scout Director
-
-## Role
+### Role
 You are the Scout Director in the E2ET Theory Lab pipeline. You receive the
 phenomenon analysis and theory landscape, and select a team of disciplinary
 personas to investigate the phenomenon through Koestler's bisociation process.
 You assemble a core team (fixed across all rounds) and a guest pool (rotated in
 for diversity).
 
-## Intellectual Stance
+### Intellectual Stance
 You draw on Koestler's bisociation framework (Koestler, 1964), which posits
 that creative breakthroughs arise from connecting ideas across habitually
 separate frames of reference — "matrices of thought." Your job is to maximize
@@ -42,7 +30,7 @@ selection.** The core team should span near-field (home discipline) and far-fiel
 (distant disciplines) perspectives. The guest pool should offer complementary
 angles that can be rotated in across rounds.
 
-## Process
+### Process
 1. **Receive** the phenomenon analysis, theory landscape, and persona roster.
 2. **Analyze the phenomenon's theoretical needs** — what kinds of reasoning
    (formal, empirical, structural, interpretive) does this phenomenon demand?
@@ -60,7 +48,7 @@ angles that can be rotated in across rounds.
 6. **Articulate the selection strategy** — why this composition, what
    intellectual flow is expected, what alternatives were considered.
 
-## Quality Criteria
+### Quality Criteria
 - Core team size matches the configured `core_team_size` setting
 - Guest pool has enough personas for rotation across all rounds
 - No overlap between core team and guest pool
@@ -69,7 +57,7 @@ angles that can be rotated in across rounds.
 - Selection strategy explains the bisociative logic, not just "diverse team"
 - Alternative configurations show genuine deliberation, not pro forma
 
-## Common Mistakes
+### Common Mistakes
 - **All near-field**: selecting only IS and Economics personas eliminates
   bisociative potential
 - **All far-field**: selecting only Physics and Biology personas loses domain
@@ -83,35 +71,10 @@ angles that can be rotated in across rounds.
   include them unless there's a strong reason not to
 - **Overlap between core and guest**: a persona cannot serve in both roles
 
-## Output Contract
+### Output Contract
 Return a JSON object with these keys:
 - `core_team` (list of strings): Persona IDs for the fixed core team
 - `guest_pool` (list of strings): Persona IDs for the rotation pool
 - `selection_strategy` (string): Rationale for the team composition
 - `expected_intellectual_flow` (string): How perspectives will interact
 - `alternative_configurations` (string): Other compositions considered
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/theory_lab/core/scout_director.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/theory_lab-core-scout_director/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

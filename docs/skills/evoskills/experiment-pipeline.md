@@ -4,35 +4,13 @@
 
 End-to-end experiment pipeline orchestration
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>code-gen</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>code-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/experiment-pipeline/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/experiment-pipeline/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: experiment-pipeline
-description: "Guides structured 4-stage experiment execution with attempt budgets and gate conditions: Stage 1 initial implementation (reproduce baseline), Stage 2 hyperparameter tuning, Stage 3 proposed method validation, Stage 4 ablation study. Integrates with evo-memory (load prior strategies, trigger IVE/ESE) and experiment-craft (5-step diagnostic on failure). Use when: user has a planned experiment, needs to reproduce baselines, organize experiment workflow, or systematically validate a method. Do NOT use for debugging a specific experiment failure (use experiment-craft) or designing which experiments to run (use paper-planning)."
-allowed-tools: "write_file edit_file read_file think_tool execute"
-metadata:
-  author: EvoScientist
-  version: '1.0.0'
-  tags: [core, experimentation, experiment-design]
----
-
-# Experiment Pipeline
+## Experiment Pipeline
 
 A structured 4-stage framework for executing research experiments from initial implementation through ablation study, with attempt budgets and gate conditions that prevent wasted effort. This follows the Experiment Tree Search design from the EvoScientist paper, where the engineer agent iteratively generates executable code, runs experiments, and records structured execution results at each stage.
 
-## When to Use This Skill
+### When to Use This Skill
 
 - User has a planned experiment and needs to organize the execution workflow
 - User wants to systematically validate a novel method against baselines
@@ -40,13 +18,13 @@ A structured 4-stage framework for executing research experiments from initial i
 - User needs to reproduce baseline results before testing their method
 - User mentions "experiment pipeline", "baseline first", "ablation study", "stage budget", "experiment execution"
 
-## The Pipeline Mindset
+### The Pipeline Mindset
 
 **Experiments fail for two reasons: wrong order and no stopping criteria.** Most researchers jump straight to testing their novel method without verifying their baseline setup, then wonder why results don't make sense. Others spend weeks tuning hyperparameters without a budget, hoping the next run will work.
 
 The 4-stage pipeline solves both problems. It enforces a strict order (each stage validates assumptions the next stage depends on) and assigns attempt budgets (forcing systematic thinking over brute-force iteration).
 
-## Before Starting: Load Prior Knowledge
+### Before Starting: Load Prior Knowledge
 
 If coming from `research-ideation`, your research proposal (Step 7) provides the experiment plan — datasets, baselines, metrics, and ablation design — that maps directly to Stages 1-4 below.
 
@@ -57,7 +35,7 @@ Before entering the pipeline, load Experimentation Memory (M_E) from prior cycle
 3. The selected strategy informs hyperparameter ranges (Stage 2), debugging approaches (Stages 1-3), and training configurations across all stages
 4. If M_E doesn't exist yet (first cycle), skip this step and proceed — your results will seed M_E via ESE after pipeline completion
 
-## 4-Stage Pipeline Overview
+### 4-Stage Pipeline Overview
 
 Each stage follows a **generate → execute → record → diagnose → revise** loop:
 
@@ -70,7 +48,7 @@ Each stage follows a **generate → execute → record → diagnose → revise**
 
 Each stage saves artifacts to `/experiments/stageN_name/`.
 
-### The Stage Loop
+#### The Stage Loop
 
 Within every stage, repeat this cycle for each attempt:
 
@@ -80,7 +58,7 @@ Within every stage, repeat this cycle for each attempt:
 4. **Diagnose**: Compare results to expectations. If they match, assess the gate condition. If they don't, load `experiment-craft` for the 5-step diagnostic flow.
 5. **Revise**: Based on diagnosis, either advance to the next stage (gate met) or plan the next attempt (gate not met).
 
-## Stage 1: Initial Implementation
+### Stage 1: Initial Implementation
 
 **Goal**: Find or generate executable baseline code and verify it reproduces published results. This stage corresponds to the paper's "initial implementation" — the engineer agent searches for working code, runs it, and records structured execution results.
 
@@ -103,7 +81,7 @@ Within every stage, repeat this cycle for each attempt:
 
 See [references/stage-protocols.md](references/stage-protocols.md) for detailed initial implementation checklists.
 
-## Stage 2: Hyperparameter Tuning
+### Stage 2: Hyperparameter Tuning
 
 **Goal**: Find the optimal hyperparameter configuration for YOUR specific setup.
 
@@ -127,7 +105,7 @@ See [references/stage-protocols.md](references/stage-protocols.md) for detailed 
 
 See [references/attempt-budget-guide.md](references/attempt-budget-guide.md) for budget rationale and adjustment rules.
 
-## Stage 3: Proposed Method
+### Stage 3: Proposed Method
 
 **Goal**: Implement and validate your novel method, demonstrating improvement over the tuned baseline.
 
@@ -157,7 +135,7 @@ The `evo-memory` skill will classify the failure as:
 
 **Output**: `/experiments/stage3_method/` containing method code, results, comparison with baseline.
 
-## Stage 4: Ablation Study
+### Stage 4: Ablation Study
 
 **Goal**: Prove that each component of your method contributes meaningfully to the final result.
 
@@ -184,7 +162,7 @@ The `evo-memory` skill will classify the failure as:
 
 See [references/stage-protocols.md](references/stage-protocols.md) for detailed ablation design patterns.
 
-## Integrating experiment-craft for Diagnosis
+### Integrating experiment-craft for Diagnosis
 
 When a stage attempt fails, refer to the **experiment-craft** skill for structured diagnosis:
 
@@ -200,7 +178,7 @@ When a stage attempt fails, refer to the **experiment-craft** skill for structur
 - **Stage 3**: When method consistently underperforms baseline
 - **Stage 4**: When ablation results contradict your hypothesis
 
-## Code Trajectory Logging
+### Code Trajectory Logging
 
 Every attempt across all stages should be logged in a structured format that captures not just WHAT you did but WHY and WHAT YOU LEARNED. These logs feed into `evo-memory`'s Experiment Strategy Evolution (ESE) mechanism.
 
@@ -213,7 +191,7 @@ For each attempt, record:
 
 See [references/code-trajectory-logging.md](references/code-trajectory-logging.md) for the full logging format and how logs feed into `evo-memory`.
 
-## Counterintuitive Pipeline Rules
+### Counterintuitive Pipeline Rules
 
 Prioritize these rules during experiment execution:
 
@@ -229,7 +207,7 @@ Prioritize these rules during experiment execution:
 
 6. **Early termination is a feature**: Stopping before budget exhaustion is smart, not lazy. If the gate is clearly unachievable after systematic attempts, escalate to `evo-memory` IVE rather than burning remaining budget on increasingly random variations.
 
-## Handoff to Paper Writing
+### Handoff to Paper Writing
 
 When all four stages are complete, pass these artifacts to `paper-writing`:
 
@@ -246,29 +224,29 @@ Also pass results to `evo-memory` for evolution updates:
 - If any stage exhausts budget without executable code, OR Stage 3 method underperforms the tuned baseline → trigger IVE (Idea Validation Evolution)
 - If all stages succeeded → trigger ESE (Experiment Strategy Evolution)
 
-## Skill Integration
+### Skill Integration
 
-### Before Starting (load memory)
+#### Before Starting (load memory)
 Refer to the **evo-memory** skill to read Experimentation Memory:
 → Read M_E at `/memory/experiment-memory.md`
 
-### On Failure (within any stage)
+#### On Failure (within any stage)
 Refer to the **experiment-craft** skill for 5-step diagnostic:
 → Run diagnosis → Return to pipeline
 
-### On IVE Trigger (budget exhausted or method underperforms)
+#### On IVE Trigger (budget exhausted or method underperforms)
 Refer to the **evo-memory** skill for failure classification:
 → Run IVE protocol
 
-### On Pipeline Success (all 4 stages complete)
+#### On Pipeline Success (all 4 stages complete)
 Refer to the **evo-memory** skill for strategy extraction:
 → Run ESE protocol with trajectory logs
 
-### Handoff to Paper Writing
+#### Handoff to Paper Writing
 Refer to the **paper-writing** skill:
 → Pass all stage artifacts
 
-## Reference Navigation
+### Reference Navigation
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
@@ -277,33 +255,3 @@ Refer to the **paper-writing** skill:
 | Code trajectory logging format | [code-trajectory-logging.md](references/code-trajectory-logging.md) | Recording attempts for evo-memory |
 | Stage log template | [stage-log-template.md](assets/stage-log-template.md) | Logging a single stage's progress |
 | Pipeline tracker template | [pipeline-tracker-template.md](assets/pipeline-tracker-template.md) | Tracking the full 4-stage pipeline |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/experiment-pipeline/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>code-gen</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>code-generation</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/experiment-pipeline/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

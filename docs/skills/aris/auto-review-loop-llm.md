@@ -4,44 +4,25 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/auto-review-loop-llm/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/auto-review-loop-llm/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: auto-review-loop-llm
-description: Autonomous research review loop using any OpenAI-compatible LLM API. Configure via llm-chat MCP server or environment variables. Trigger with "auto review loop llm" or "llm review".
-argument-hint: [topic-or-scope]
-allowed-tools: Bash(*), Read, Grep, Glob, Write, Edit, Agent, Skill
----
-
-# Auto Review Loop (Generic LLM): Autonomous Research Improvement
+## Auto Review Loop (Generic LLM): Autonomous Research Improvement
 
 Autonomously iterate: review → implement fixes → re-review, until the external reviewer gives a positive assessment or MAX_ROUNDS is reached.
 
-## Context: $ARGUMENTS
+### Context: $ARGUMENTS
 
-## Constants
+### Constants
 
 - MAX_ROUNDS = 4
 - POSITIVE_THRESHOLD: score >= 6/10, or verdict contains "accept", "sufficient", "ready for submission"
 - REVIEW_DOC: `review-stage/AUTO_REVIEW.md` (cumulative log) *(fall back to `./AUTO_REVIEW.md` for legacy projects)*
 
-## LLM Configuration
+### LLM Configuration
 
 This skill uses **any OpenAI-compatible API** for external review via the `llm-chat` MCP server.
 
-### Configuration via MCP Server (Recommended)
+#### Configuration via MCP Server (Recommended)
 
 Add to `~/.claude/settings.json`:
 
@@ -61,7 +42,7 @@ Add to `~/.claude/settings.json`:
 }
 ```
 
-### Supported Providers
+#### Supported Providers
 
 | Provider | LLM_BASE_URL | LLM_MODEL |
 |----------|--------------|-----------|
@@ -74,7 +55,7 @@ Add to `~/.claude/settings.json`:
 | **阿里云百炼** | `https://dashscope.aliyuncs.com/compatible-mode/v1` | `qwen-max` |
 | **零一万物** | `https://api.lingyiwanwu.com/v1` | `yi-large` |
 
-## API Call Method
+### API Call Method
 
 **Primary: MCP Tool**
 
@@ -102,7 +83,7 @@ curl -s "${LLM_BASE_URL}/chat/completions" \
   }'
 ```
 
-## State Persistence (Compact Recovery)
+### State Persistence (Compact Recovery)
 
 Persist state to `review-stage/REVIEW_STATE.json` after each round:
 
@@ -121,15 +102,15 @@ Persist state to `review-stage/REVIEW_STATE.json` after each round:
 
 **On completion**, set `"status": "completed"`.
 
-## Workflow
+### Workflow
 
-### Initialization
+#### Initialization
 
 1. **Check `review-stage/REVIEW_STATE.json`** for recovery *(fall back to `./REVIEW_STATE.json` if not found — legacy path)*
 2. Read project context and prior reviews
 3. Initialize round counter
 
-### Loop (up to MAX_ROUNDS)
+#### Loop (up to MAX_ROUNDS)
 
 #### Phase A: Review
 
@@ -188,14 +169,14 @@ Monitor remote experiments
 Append to `review-stage/AUTO_REVIEW.md`:
 
 ```markdown
-## Round N (timestamp)
+### Round N (timestamp)
 
-### Assessment (Summary)
+#### Assessment (Summary)
 - Score: X/10
 - Verdict: [ready/almost/not ready]
 - Key criticisms: [bullet list]
 
-### Reviewer Raw Response
+#### Reviewer Raw Response
 
 <details>
 <summary>Click to expand full reviewer response</summary>
@@ -204,24 +185,24 @@ Append to `review-stage/AUTO_REVIEW.md`:
 
 </details>
 
-### Actions Taken
+#### Actions Taken
 - [what was implemented/changed]
 
-### Results
+#### Results
 - [experiment outcomes, if any]
 
-### Status
+#### Status
 - [continuing to round N+1 / stopping]
 ```
 
 **Write `review-stage/REVIEW_STATE.json`** with current state.
 
-### Termination
+#### Termination
 
 1. Set `review-stage/REVIEW_STATE.json` status to "completed"
 2. Write final summary
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 
@@ -232,7 +213,7 @@ Append to `review-stage/AUTO_REVIEW.md`:
 - Include previous context in round 2+ prompts
 - Prefer MCP tool over curl when available
 
-## Prompt Template for Round 2+
+### Prompt Template for Round 2+
 
 ```
 mcp__llm-chat__chat:
@@ -261,39 +242,9 @@ mcp__llm-chat__chat:
     Be brutally honest. If the work is ready, say so clearly.
 ```
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/auto-review-loop-llm/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/auto-review-loop-llm/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

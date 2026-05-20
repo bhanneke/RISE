@@ -4,46 +4,27 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/formula-derivation/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/formula-derivation/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: formula-derivation
-description: Structures and derives research formulas when the user wants to 推导公式, build a theory line, organize assumptions, turn scattered equations into a coherent derivation, or rewrite theory notes into a paper-ready formula document. Use when the derivation target is not yet fully fixed, the main object still needs to be chosen, or the user needs a coherent derivation package rather than a finished theorem proof.
-argument-hint: [problem-goal-current-formulas-or-notes]
-allowed-tools: Read, Write, Edit, Grep, Glob
----
-
-# Formula Derivation: Research Theory Line Construction
+## Formula Derivation: Research Theory Line Construction
 
 Build an honest derivation package, not a fake polished theorem story.
 
-## Constants
+### Constants
 
 - DEFAULT_DERIVATION_DOC = `DERIVATION_PACKAGE.md` in project root
 - STATUS = `COHERENT AS STATED | COHERENT AFTER REFRAMING / EXTRA ASSUMPTION | NOT YET COHERENT`
 
-## Context: $ARGUMENTS
+### Context: $ARGUMENTS
 
-## Goal
+### Goal
 
 Produce exactly one of:
 1. a coherent derivation package for the original target
 2. a reframed derivation package with corrected object / assumptions / scope
 3. a blocker report explaining why the current notes cannot yet support a coherent derivation
 
-## Inputs
+### Inputs
 
 Extract and normalize:
 - the target phenomenon, formula, relation, or theory line
@@ -63,9 +44,9 @@ Extract and normalize:
 
 If the target, object, notation, or assumptions are ambiguous, state the exact interpretation you are using before deriving anything.
 
-## Workflow
+### Workflow
 
-### Step 1: Gather Derivation Context
+#### Step 1: Gather Derivation Context
 Determine the target derivation file with this priority:
 1. a file path explicitly specified by the user
 2. a derivation draft already referenced in local notes
@@ -83,7 +64,7 @@ Extract:
 - known blockers
 - desired output mode
 
-### Step 2: Freeze the Target
+#### Step 2: Freeze the Target
 State explicitly:
 - what is being explained, derived, or supported
 - whether the immediate goal is:
@@ -95,7 +76,7 @@ State explicitly:
 
 Do not start symbolic manipulation before this is fixed.
 
-### Step 3: Choose the Invariant Object
+#### Step 3: Choose the Invariant Object
 Identify the single quantity or conceptual object that should organize the derivation.
 
 Typical possibilities include:
@@ -112,7 +93,7 @@ If the current notes start from a narrower quantity, decide explicitly whether i
 
 Do not let a convenient proxy silently replace the actual conceptual object.
 
-### Step 4: Normalize Assumptions and Notation
+#### Step 4: Normalize Assumptions and Notation
 Restate:
 - all assumptions
 - all symbols
@@ -128,7 +109,7 @@ Identify:
 Preserve the user's original notation unless a cleanup is necessary for coherence.
 If you adopt a cleaner internal formulation, keep that as a derivation device rather than silently replacing the user's target.
 
-### Step 5: Classify the Derivation Steps
+#### Step 5: Classify the Derivation Steps
 For every nontrivial step, determine whether it is:
 - **identity**: exact algebraic reformulation
 - **proposition**: a claim requiring conditions
@@ -138,7 +119,7 @@ For every nontrivial step, determine whether it is:
 Never merge these categories without signaling the transition.
 If one part is only interpretive, do not present it as if it were mathematically proved.
 
-### Step 6: Build a Derivation Map
+#### Step 6: Build a Derivation Map
 Choose a derivation strategy, for example:
 - definition -> substitution -> simplification
 - primitive law -> intermediate variable -> target expression
@@ -156,7 +137,7 @@ Then write a derivation map:
 If the derivation needs a decomposition, derive it from the chosen global quantity.
 Do not make a split appear magically from one local variable itself.
 
-### Step 7: Write the Derivation Document
+#### Step 7: Write the Derivation Document
 Write to the chosen target derivation file.
 
 If the target derivation file already exists:
@@ -188,7 +169,7 @@ Writing rules:
 - if the true object is dynamic or state dependent but a simpler slice is analyzed, say so explicitly
 - if a formula line is only heuristic, label it honestly
 
-### Step 8: Final Verification
+#### Step 8: Final Verification
 Before finishing the target derivation file, verify:
 - the target is explicit
 - the invariant object is stable across the derivation
@@ -200,63 +181,63 @@ Before finishing the target derivation file, verify:
 
 If the derivation still lacks a coherent object, stable assumptions, or an honest path from premises to result, downgrade the status and write a blocker report instead of forcing a clean story.
 
-## Required File Structure
+### Required File Structure
 
 Write the target derivation file using this structure:
 
 ```md
-# Derivation Package
+## Derivation Package
 
-## Target
+### Target
 [what is being derived or explained]
 
-## Status
+### Status
 COHERENT AS STATED / COHERENT AFTER REFRAMING / NOT YET COHERENT
 
-## Invariant Object
+### Invariant Object
 [top-level quantity organizing the derivation]
 
-## Assumptions
+### Assumptions
 - ...
 
-## Notation
+### Notation
 - ...
 
-## Derivation Strategy
+### Derivation Strategy
 [chosen route and why]
 
-## Derivation Map
+### Derivation Map
 1. Target depends on ...
 2. Intermediate step A uses ...
 3. Approximation enters at ...
 
-## Main Derivation
+### Main Derivation
 Step 1. ...
 Step 2. ...
 ...
 
-## Remarks and Interpretation
+### Remarks and Interpretation
 - ...
 
-## Boundaries and Non-Claims
+### Boundaries and Non-Claims
 - ...
 
-## Open Risks
+### Open Risks
 - ...
 ```
 
-## Output Modes
+### Output Modes
 
-### If the derivation is coherent as stated
+#### If the derivation is coherent as stated
 Write the full structure above with a clean derivation package.
 
-### If the notes are close but not coherent yet
+#### If the notes are close but not coherent yet
 Write:
 - the exact mismatch
 - the corrected invariant object, assumption, or scope
 - the reframed derivation package
 
-### If the derivation cannot be made coherent honestly
+#### If the derivation cannot be made coherent honestly
 Write:
 - `Status: NOT YET COHERENT`
 - the exact blocker:
@@ -267,7 +248,7 @@ Write:
   - theorem-level claim without enough conditions
 - what extra assumption, reframe, or intermediate derivation would be needed
 
-## Relationship to `proof-writer`
+### Relationship to `proof-writer`
 
 Use `formula-derivation` when the user says things like:
 - “我不知道怎么起这条推导主线”
@@ -282,14 +263,14 @@ Use `proof-writer` only after:
 - the notation is settled
 - and the task is now to prove or refute that claim rigorously
 
-## Chat Response
+### Chat Response
 
 After writing the target derivation file, respond briefly with:
 - status
 - whether the target survived unchanged or had to be reframed
 - what file was updated
 
-## Key Rules
+### Key Rules
 
 - Never fabricate a coherent derivation if the object, assumptions, or scope do not support one.
 - Prefer reframing the derivation over overclaiming.
@@ -298,33 +279,3 @@ After writing the target derivation file, respond briefly with:
 - Treat simplified constant-parameter cases as analysis slices, not as the conceptual main object.
 - If uncertainty remains, mark it explicitly in `Open Risks`; do not hide it in polished prose.
 - Coherence matters more than elegance.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/formula-derivation/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/formula-derivation/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

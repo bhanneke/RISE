@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/econometrics/rdd.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Regression Discontinuity Design
 
----
-
-# Regression Discontinuity Design
-
-## Core Idea
+### Core Idea
 
 Regression discontinuity (RD) exploits a known threshold in a running variable (also called score, forcing variable, or assignment variable) that determines treatment assignment. Units just above and just below the cutoff are assumed to be comparable in all respects except treatment status, creating a local quasi-experiment at the cutoff.
 
 RD is widely considered the most credible quasi-experimental design because the identification assumptions are partially testable and the design closely approximates a local randomized experiment.
 
-## Sharp RD
+### Sharp RD
 
 In the sharp design, treatment is a deterministic function of the running variable:
 
@@ -38,7 +26,7 @@ tau_SRD = lim_{x -> c+} E[Y | X = x] - lim_{x -> c-} E[Y | X = x]
 
 This identifies the local average treatment effect (LATE) at the cutoff point X = c. It is not informative about effects away from the cutoff without additional assumptions.
 
-## Fuzzy RD
+### Fuzzy RD
 
 In the fuzzy design, crossing the cutoff changes the probability of treatment but does not determine it perfectly:
 
@@ -50,7 +38,7 @@ tau_FRD = [lim E[Y | X = x from right] - lim E[Y | X = x from left]] / [lim P(D=
 
 This is the ratio of the jump in the outcome to the jump in the treatment probability. It is interpretable as the LATE for compliers at the cutoff (units induced into treatment by crossing the threshold). Fuzzy RD is implemented as a local IV regression, with the running variable centered at the cutoff and the indicator 1(X >= c) as the instrument.
 
-## Local Polynomial Estimation
+### Local Polynomial Estimation
 
 RD estimates are obtained by fitting local polynomial regressions on each side of the cutoff separately.
 
@@ -68,14 +56,14 @@ RD estimates are obtained by fitting local polynomial regressions on each side o
 - Common kernels: triangular (optimal for boundary estimation), Epanechnikov, uniform.
 - Triangular kernel is the MSE-optimal choice for RD at boundary points.
 
-## Bandwidth Selection
+### Bandwidth Selection
 
-### Imbens and Kalyanaraman (2012)
+#### Imbens and Kalyanaraman (2012)
 - MSE-optimal bandwidth for local linear RD.
 - Minimizes the integrated MSE of the treatment effect estimator.
 - Original standard choice; now largely superseded by CCT.
 
-### Calonico, Cattaneo, and Titiunik (2014, 2020) - CCT
+#### Calonico, Cattaneo, and Titiunik (2014, 2020) - CCT
 - Bias-corrected RD estimator with robust confidence intervals.
 - Uses an MSE-optimal bandwidth for point estimation and a separate (typically larger) bandwidth for bias correction.
 - Accounts for the bias introduced by local polynomial approximation.
@@ -87,9 +75,9 @@ RD estimates are obtained by fitting local polynomial regressions on each side o
 - Use the bias-corrected confidence intervals from `rdrobust`, not conventional ones.
 - With discrete running variables, see Cattaneo, Idrobo, and Titiunik (2020) for adapted methods.
 
-## Validity Tests
+### Validity Tests
 
-### McCrary (2008) Density Test
+#### McCrary (2008) Density Test
 - Tests for manipulation of the running variable around the cutoff.
 - If units can precisely sort above or below the cutoff, the RD design is invalid (endogenous selection).
 - The test checks for a discontinuity in the density of the running variable at the cutoff.
@@ -105,22 +93,22 @@ RD estimates are obtained by fitting local polynomial regressions on each side o
 - Running variable is determined before agents know the cutoff.
 - Running variable is difficult to manipulate precisely (birth weight, vote shares).
 
-### Covariate Balance at the Cutoff
+#### Covariate Balance at the Cutoff
 - Pre-determined covariates should not show discontinuities at the cutoff.
 - Run the RD specification using each covariate as the outcome. No significant jumps expected.
 - This is the RD analogue of balance tests in randomized experiments.
 - Failure of covariate balance suggests either manipulation or a confounding discontinuity.
 
-### Placebo Cutoffs
+#### Placebo Cutoffs
 - Estimate the RD at fake cutoff values away from the true cutoff.
 - The treatment effect should be zero at placebo cutoffs.
 - Helps assess whether the outcome function is smooth away from the cutoff.
 
-### Placebo Outcomes
+#### Placebo Outcomes
 - Test outcomes that should not be affected by treatment.
 - A discontinuity in a placebo outcome suggests a confounding discontinuity at the cutoff.
 
-## Donut Hole RD
+### Donut Hole RD
 
 When observations very close to the cutoff are subject to manipulation or heaping:
 - Exclude observations within a small window around the cutoff (the "donut").
@@ -133,7 +121,7 @@ Limitations:
 - Requires extrapolation to the cutoff from further away, increasing reliance on functional form.
 - Should be treated as a robustness check rather than the primary specification.
 
-## RD-Specific Pitfalls
+### RD-Specific Pitfalls
 
 **Global polynomial fitting**: Fitting high-order polynomials to all data (not local) produces misleading results. Gelman and Imbens (2019) show global polynomial RD estimates are sensitive to polynomial order, have poor coverage, and can generate wide confidence intervals with incorrect coverage. Use local polynomial estimation instead.
 
@@ -143,7 +131,7 @@ Limitations:
 
 **Treatment effect heterogeneity**: The RD estimate is local to the cutoff. It may differ substantially from the ATE. Explore heterogeneity by estimating the RD separately for subgroups defined by pre-treatment covariates.
 
-## Practical Checklist
+### Practical Checklist
 
 1. Plot the raw data: outcome against running variable with the cutoff marked. Use binned scatter plots (evenly-spaced or quantile-spaced bins).
 2. Run McCrary/rddensity test for manipulation of the running variable. Show the density histogram.
@@ -156,7 +144,7 @@ Limitations:
 9. If manipulation is a concern, report donut hole estimates.
 10. For fuzzy RD, report both the first stage (jump in treatment probability) and the reduced form (jump in outcome) alongside the fuzzy RD estimate.
 
-## Key References
+### Key References
 
 - Cattaneo, M., Idrobo, N., and Titiunik, R. (2020). A Practical Introduction to Regression Discontinuity Designs (Elements in Quantitative and Computational Methods). Cambridge.
 - Calonico, S., Cattaneo, M., and Titiunik, R. (2014). Robust nonparametric confidence intervals for regression-discontinuity designs. Econometrica.
@@ -164,28 +152,3 @@ Limitations:
 - Lee, D. and Lemieux, T. (2010). Regression discontinuity designs in economics. Journal of Economic Literature.
 - McCrary, J. (2008). Manipulation of the running variable in the regression discontinuity design. Journal of Econometrics.
 - Gelman, A. and Imbens, G. (2019). Why high-order polynomials should not be used in regression discontinuity designs. Journal of Business and Economic Statistics.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/econometrics/rdd.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>analysis</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-analysis</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/econometrics-rdd/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

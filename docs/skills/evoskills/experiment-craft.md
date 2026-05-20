@@ -4,35 +4,13 @@
 
 Experiment design and code crafting
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>code-gen</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>code-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/experiment-craft/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/experiment-craft/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: experiment-craft
-description: "Use this skill when the user wants to debug, diagnose, or systematically iterate on an experiment that already exists, or when they need a structured experiment log for tracking runs, hypotheses, failures, results, and next steps during active research. Apply it to underperforming methods, training that will not converge, regressions after a change, inconsistent results across datasets, aimless experimentation without progress, and questions like 'why doesn't this work?', 'no progress after many attempts', or 'how should I investigate this failure?'. Also use it for setting up practical experiment logging/record-keeping that supports debugging and iteration. Do not use it for designing a brand-new experiment pipeline or full experiment program (use experiment-pipeline), generating research ideas, fixing isolated coding/syntax errors, or writing retrospective summaries into research memory/notes/knowledge bases."
-allowed-tools: "write_file edit_file read_file think_tool execute"
-metadata:
-  author: EvoScientist
-  version: '1.0.0'
-  tags: [core, experimentation, experiment-design]
----
-
-# Experiment Craft
+## Experiment Craft
 
 A systematic approach to running, debugging, and iterating on research experiments. The critical skill is not running more experiments — it's understanding WHY experiments fail.
 
-## When to Use This Skill
+### When to Use This Skill
 
 - User's experiment is not working or producing unexpected results
 - User needs help diagnosing why a method fails on certain data
@@ -42,7 +20,7 @@ A systematic approach to running, debugging, and iterating on research experimen
 
 > This skill is typically loaded from within `experiment-pipeline` when a stage attempt fails. After debugging, return to the pipeline's stage-gate structure to continue. Can also be used standalone for any experiment debugging.
 
-## The Debugging Mindset
+### The Debugging Mindset
 
 **Finding WHY experiments fail is the most critical research skill.** Not analyzing results leads to two failure modes:
 1. **Slow progress**: Running random experiments without understanding failure causes
@@ -50,15 +28,15 @@ A systematic approach to running, debugging, and iterating on research experimen
 
 The goal is not to run more experiments. The goal is to run the RIGHT experiments — ones that isolate causes and test specific hypotheses.
 
-## 5-Step Diagnostic Flow
+### 5-Step Diagnostic Flow
 
 When an experiment fails or produces unexpected results, follow these five steps:
 
-### Step 1: Collect Failure Cases
+#### Step 1: Collect Failure Cases
 
 Gather concrete examples of bad results. Look at the actual outputs, not just aggregate metrics. What specifically went wrong? Are the failures systematic or random?
 
-### Step 2: Find a Working Version
+#### Step 2: Find a Working Version
 
 You need a baseline that works. Two ways to find one:
 
@@ -67,7 +45,7 @@ You need a baseline that works. Two ways to find one:
 
 If you can't find any working version, simplify further until something works. There is always a simple enough version that works.
 
-### Step 3: Bridge the Gap
+#### Step 3: Bridge the Gap
 
 Starting from the working version, incrementally add complexity until it breaks:
 
@@ -77,7 +55,7 @@ Starting from the working version, incrementally add complexity until it breaks:
 
 This step isolates the cause. Without it, you're guessing.
 
-### Step 4: Hypothesize and Verify
+#### Step 4: Hypothesize and Verify
 
 Based on the isolated cause from Step 3:
 
@@ -86,7 +64,7 @@ Based on the isolated cause from Step 3:
 3. Design targeted experiments to verify or eliminate each hypothesis
 4. Confirm the actual cause experimentally — don't rely on intuition alone
 
-### Step 5: Propose and Implement a Fix
+#### Step 5: Propose and Implement a Fix
 
 Based on the confirmed cause:
 
@@ -97,7 +75,7 @@ Based on the confirmed cause:
 
 See [references/debugging-methodology.md](references/debugging-methodology.md) for detailed branching logic and a cause taxonomy.
 
-## Counterintuitive Experiment Rules
+### Counterintuitive Experiment Rules
 
 Prioritize these rules during experimental work:
 
@@ -107,7 +85,7 @@ Prioritize these rules during experimental work:
 4. **Check related papers for their tricks**: Papers solving similar technical challenges often have critical implementation details buried in supplementary material or code. These tricks can make the difference between a technique working or failing.
 5. **"Once you've ruled out the impossible, whatever remains must be true"**: Systematic elimination beats intuition. When debugging, explicitly list ALL possible causes, then eliminate them one by one with targeted experiments.
 
-## Experiment Logging
+### Experiment Logging
 
 Every experiment should be logged with five sections. Use the template at [assets/experiment-log-template.md](assets/experiment-log-template.md).
 
@@ -123,14 +101,14 @@ Every experiment should be logged with five sections. Use the template at [asset
 
 > **Cross-cycle learning**: If using `experiment-pipeline`, your experiment logs feed into `evo-memory`'s ESE (Experiment Strategy Evolution) mechanism. Tag reusable strategies with `[Reusable]` so ESE can extract them for future cycles.
 
-## Return to experiment-pipeline
+### Return to experiment-pipeline
 
 After completing the 5-step diagnostic flow, return to `experiment-pipeline` with:
 - Confirmed cause of failure (from Step 4)
 - Proposed fix and its verification status (from Step 5)
 - Updated experiment log entry
 
-## Handoff to Paper Writing
+### Handoff to Paper Writing
 
 When experiments succeed and you have a complete set of results, pass these artifacts to `paper-writing`:
 
@@ -142,39 +120,9 @@ When experiments succeed and you have a complete set of results, pass these arti
 | Key implementation details and tricks | Steps 3-5 | Method section / Supplementary |
 | Baseline comparison results | Step 2 | Comparison tables |
 
-## Reference Navigation
+### Reference Navigation
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
 | Debugging methodology | [debugging-methodology.md](references/debugging-methodology.md) | Diagnosing why experiments fail |
 | Experiment log template | [experiment-log-template.md](assets/experiment-log-template.md) | Recording experiment details |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/experiment-craft/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>code-gen</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>code-generation</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/experiment-craft/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

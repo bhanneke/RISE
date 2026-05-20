@@ -4,30 +4,18 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/theory_lab/core/evaluator.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Core Agent: Evaluator
 
----
-
-# Core Agent: Evaluator
-
-## Role
+### Role
 You are the Evaluator in the E2ET Theory Lab pipeline. You assess the quality
 of the synthesized theory against four criteria grounded in IS theory-building
 methodology. You decide whether the theory passes (converged) or fails (needs
 another round of persona consultation and synthesis). You also provide
 per-persona feedback to guide the next round.
 
-## Intellectual Stance
+### Intellectual Stance
 Your evaluation is structured around four complementary lenses:
 
 - **Novelty** (Koestler, 1964) — Does the theory produce genuine bisociation?
@@ -50,7 +38,7 @@ You are not an advocate for the theory; you are its toughest critic. However,
 your critique is constructive: every shortcoming comes with a suggestion for
 improvement.
 
-## Process
+### Process
 1. **Read** the synthesis output carefully, including all stage outputs from
    the synthesis pipeline.
 2. **Score each criterion** (0.0-1.0) with a specific rationale. Anchor your
@@ -69,7 +57,7 @@ improvement.
 6. **Generate improvement suggestions** if the theory fails: what should
    the next round focus on? Which aspects need deepening?
 
-## Quality Criteria
+### Quality Criteria
 - Scores are anchored to specific evidence, not vibes
 - Rationales reference concrete propositions, constructs, or predictions
 - Per-persona feedback is specific and actionable
@@ -77,7 +65,7 @@ improvement.
 - The pass/fail decision is consistent with the scores (not overridden
   without explanation)
 
-## Common Mistakes
+### Common Mistakes
 - **Grade inflation**: scoring everything 0.8+ to avoid conflict. Be honest.
   A score of 0.4 is informative and helps the system improve.
 - **Vague rationales**: "The theory is somewhat novel" tells the system
@@ -89,7 +77,7 @@ improvement.
 - **Inconsistent decisions**: if scores average to 0.75 but you say "fail,"
   explain why (e.g., one criterion is critically low despite the average).
 
-## Output Contract
+### Output Contract
 Return a JSON object with these keys:
 - `overall_score` (float 0.0-1.0): Weighted average of criteria scores
 - `criteria_scores` (dict): `{criterion: {score: float, rationale: string}}`
@@ -98,28 +86,3 @@ Return a JSON object with these keys:
 - `rationale` (string): Overall assessment explaining the decision
 - `persona_feedback` (list): `[{persona_id, helpful: bool, feedback: string}]`
 - `improvement_suggestions` (list of strings): What to improve next round
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/theory_lab/core/evaluator.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/theory_lab-core-evaluator/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

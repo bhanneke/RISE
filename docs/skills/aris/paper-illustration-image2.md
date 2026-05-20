@@ -4,33 +4,14 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-illustration-image2/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-illustration-image2/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-illustration-image2
-description: "Generate publication-quality academic illustrations through a local Codex app-server bridge that uses Codex native image generation. This is a separate experimental alternative to `paper-illustration`, intended for Claude Code users who want a GPT-image-style renderer without modifying the original skill."
-argument-hint: [description-or-method-file]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, mcp__codex-image2__generate, mcp__codex-image2__generate_start, mcp__codex-image2__generate_status, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Paper Illustration Image2
+## Paper Illustration Image2
 
 Generate publication-quality paper figures using **Claude as the planner/reviewer**
 and a **local Codex app-server MCP bridge** as the raster renderer.
 
-## Core Design Philosophy
+### Core Design Philosophy
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────────┐
@@ -85,7 +66,7 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
-## Constants
+### Constants
 
 - **RENDERER = `codex-image2`** — Native image generation bridge exposed through local Codex app-server
 - **OPTIONAL_TEXT_CRITIC = `mcp__codex__codex`** — Optional text-only second opinion for layout/style checks
@@ -127,24 +108,24 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
 
   All invocations below use `python3 "$IMAGE2_HELPER" <subcommand>`.
 
-## CVPR/ICLR/NeurIPS Top-Tier Conference Style Guide
+### CVPR/ICLR/NeurIPS Top-Tier Conference Style Guide
 
 **What "CVPR Style" Actually Means:**
 
-### Visual Standards
+#### Visual Standards
 - **Clean white background** — No decorative patterns or gradients unless extremely subtle
 - **Sans-serif fonts** — Arial, Helvetica, or similarly clean paper-friendly typography
 - **Subtle color palette** — Use 3-5 coordinated colors, not rainbow colors
 - **Print-friendly** — Must remain understandable in grayscale
 - **Professional borders** — Thin to medium, clean, and consistent
 
-### Layout Standards
+#### Layout Standards
 - **Horizontal flow** — Left-to-right is the default for pipelines
 - **Clear grouping** — Use spacing or subtle grouping boxes for related modules
 - **Consistent sizing** — Similar components should have similar sizes
 - **Balanced whitespace** — Avoid both cramped and overly sparse layouts
 
-### Arrow Standards (MOST CRITICAL)
+#### Arrow Standards (MOST CRITICAL)
 - **Thick strokes** — Arrows must remain visible after paper scaling
 - **Clear arrowheads** — Large, unmistakable arrowheads
 - **Dark colors** — Prefer black or dark gray arrows
@@ -152,7 +133,7 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
 - **No crossings** — Reorganize the figure to avoid crossings where possible
 - **CORRECT DIRECTION** — Arrows must point to the right target
 
-### Visual Appeal (Academic Professional Style)
+#### Visual Appeal (Academic Professional Style)
 
 **目标：既不保守也不花哨，找到平衡点**
 
@@ -177,7 +158,7 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
 - Feels appropriate for a top-tier conference paper figure
 - Survives PDF scaling and grayscale printing
 
-### What to AVOID (CRITICAL)
+#### What to AVOID (CRITICAL)
 - ❌ Thin, hairline arrows
 - ❌ Unlabeled or ambiguous connections
 - ❌ Tiny unreadable text
@@ -185,7 +166,7 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
 - ❌ Over-decorated figures with shadows/glows/icons
 - ❌ Wrong arrow directions
 
-## Scope
+### Scope
 
 | Figure Type | Quality | Examples |
 |-------------|---------|----------|
@@ -195,9 +176,9 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
 
 **Not for:** Statistical plots (use `/paper-figure`), deterministic vector topology figures (prefer `/figure-spec`), photo-realistic scenes
 
-## Workflow: MUST EXECUTE ALL STEPS
+### Workflow: MUST EXECUTE ALL STEPS
 
-### Step 0: Pre-flight Check
+#### Step 0: Pre-flight Check
 
 Render this checklist explicitly before starting:
 
@@ -226,7 +207,7 @@ python3 "$IMAGE2_HELPER" preflight \
 
 5. If preflight is not `ok=true`, stop and say so clearly.
 
-## Step 1: Claude Plans the Figure
+### Step 1: Claude Plans the Figure
 
 Turn the user request into a **fully specified image prompt**. Include:
 
@@ -241,7 +222,7 @@ Turn the user request into a **fully specified image prompt**. Include:
 When the input is a method note or a paper section, summarize it first into a
 clean figure brief before writing the final image prompt.
 
-## Step 2: Layout Optimization
+### Step 2: Layout Optimization
 
 This step is required. Before rendering, refine the prompt into a concrete
 layout plan:
@@ -262,7 +243,7 @@ Use Codex layout critique for:
 - weak flow hierarchy
 - likely arrow-direction ambiguity or clutter
 
-## Step 3: Style Verification
+### Step 3: Style Verification
 
 This step is also required. Check the prompt against the intended paper style
 before rendering:
@@ -276,7 +257,7 @@ before rendering:
 If `mcp__codex__codex` is available, you may ask it for a short text-only
 style audit, but do not block on it.
 
-## Step 4: Generate Through the Bridge
+### Step 4: Generate Through the Bridge
 
 Call `mcp__codex-image2__generate_start` with:
 
@@ -293,7 +274,7 @@ Then call `mcp__codex-image2__generate_status` with bounded waits until:
 
 If generation fails, report the bridge error directly instead of hiding it.
 
-## Step 5: Review the Output
+### Step 5: Review the Output
 
 Review the generated image with a strict checklist:
 
@@ -305,7 +286,7 @@ Review the generated image with a strict checklist:
 
 Score it from 1-10.
 
-## Step 6: Refine if Needed
+### Step 6: Refine if Needed
 
 If score < 9, write a targeted refinement prompt:
 
@@ -319,7 +300,7 @@ Keep refinement feedback concrete:
 - `Make the off-target branch thinner and secondary`
 - `Use cleaner English labels: "Candidate sgRNA library", not "sgRNA library 23 bp"`
 
-## Step 7: Finalize And Verify
+### Step 7: Finalize And Verify
 
 When accepted:
 
@@ -351,7 +332,7 @@ Suggested LaTeX:
 \end{figure*}
 ```
 
-## Key Rules
+### Key Rules
 
 1. Never skip Step 2 or Step 3; layout and style checks are required.
 2. Never skip the final visual review.
@@ -367,7 +348,7 @@ Suggested LaTeX:
 12. Always use `tools/paper_illustration_image2.py finalize` to emit the final artifacts.
 13. Always use `tools/paper_illustration_image2.py verify` before claiming success.
 
-## Repair Path
+### Repair Path
 
 If rendering succeeded but final artifacts were skipped, repair the integration explicitly:
 
@@ -381,7 +362,7 @@ python3 "$IMAGE2_HELPER" verify \
   --json-out figures/ai_generated/verify.json
 ```
 
-## Output Structure
+### Output Structure
 
 ```text
 figures/ai_generated/
@@ -395,7 +376,7 @@ figures/ai_generated/
 └── verify.json            # Helper verification diagnostic
 ```
 
-## Model Summary
+### Model Summary
 
 | Stage | Agent / Tool | Purpose |
 |-------|--------------|---------|
@@ -406,33 +387,3 @@ figures/ai_generated/
 | Step 4 | `mcp__codex-image2__generate_start` + `generate_status` | Native raster image generation through Codex app-server |
 | Step 5 | Claude | Strict visual review and scoring |
 | Step 7 | `python3 "$IMAGE2_HELPER" finalize` + `verify` | Emit canonical artifacts and external verification receipt |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-illustration-image2/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/paper-illustration-image2/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

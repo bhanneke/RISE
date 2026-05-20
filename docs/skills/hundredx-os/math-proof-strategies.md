@@ -4,31 +4,19 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/math/proof-strategies.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Mathematical Proof Strategies
 
----
-
-# Mathematical Proof Strategies
-
-## Overview
+### Overview
 
 This skill guides the selection and implementation of computational proof methods.
 The goal is to translate mathematical propositions into self-contained Python scripts
 that produce a clear VERDICT: PROVED, DISPROVED, or INCONCLUSIVE.
 
-## Proof Method Selection
+### Proof Method Selection
 
-### When to Use Monte Carlo Simulation
+#### When to Use Monte Carlo Simulation
 
 Use Monte Carlo when:
 - The proposition involves probabilistic statements (expectations, variances, convergence in probability)
@@ -67,7 +55,7 @@ Reproducibility:
 - Report the seed in output
 ```
 
-### When to Use Symbolic Computation (SymPy)
+#### When to Use Symbolic Computation (SymPy)
 
 Use SymPy when:
 - The proposition involves algebraic identities
@@ -100,7 +88,7 @@ Limitations:
 - For transcendental expressions, use interval arithmetic via mpmath.iv
 ```
 
-### When to Use Numerical Optimization
+#### When to Use Numerical Optimization
 
 Use numerical methods when:
 - The proposition involves optimization (min, max, saddle points)
@@ -130,7 +118,7 @@ Convexity Verification:
 3. For quasi-convexity: check that sublevel sets are convex
 ```
 
-## Output Format
+### Output Format
 
 Every proof script MUST produce this output format:
 
@@ -149,7 +137,7 @@ LIMITATIONS: [any caveats]
 ============================================
 ```
 
-## Code Quality Requirements
+### Code Quality Requirements
 
 1. **Self-contained**: Only use numpy, scipy, sympy, matplotlib, itertools, functools
 2. **Reproducible**: Set random seed, report all parameters
@@ -158,25 +146,25 @@ LIMITATIONS: [any caveats]
 5. **Error handling**: Catch numerical issues (overflow, NaN, singular matrices)
 6. **Documentation**: Include docstring explaining the proposition and strategy
 
-## Common Proof Patterns
+### Common Proof Patterns
 
-### Verify an Identity: f(x) = g(x)
+#### Verify an Identity: f(x) = g(x)
 
 ```python
-# Symbolic: simplify f - g to 0
+## Symbolic: simplify f - g to 0
 d = sympy.simplify(f_expr - g_expr)
 assert d == 0, f"Difference is {d}"
 
-# Numerical: sample random points, check |f(x) - g(x)| < epsilon
+## Numerical: sample random points, check |f(x) - g(x)| < epsilon
 xs = np.random.uniform(-10, 10, 100000)
 diffs = np.abs(f(xs) - g(xs))
 assert np.all(diffs < 1e-10)
 ```
 
-### Verify an Inequality: f(x) >= g(x) for all x in D
+#### Verify an Inequality: f(x) >= g(x) for all x in D
 
 ```python
-# Try to find a counterexample via optimization
+## Try to find a counterexample via optimization
 from scipy.optimize import minimize
 result = minimize(lambda x: f(x) - g(x), x0=..., bounds=D)
 if result.fun < -1e-10:
@@ -187,15 +175,15 @@ else:
     print("VERDICT: PROVED (numerically)")
 ```
 
-### Verify Convergence: lim_{n->inf} a_n = L
+#### Verify Convergence: lim_{n->inf} a_n = L
 
 ```python
-# Compute terms for increasing n
+## Compute terms for increasing n
 ns = [10**k for k in range(1, 8)]
 terms = [a(n) for n in ns]
 errors = [abs(t - L) for t in terms]
 
-# Check if errors decrease toward 0
+## Check if errors decrease toward 0
 converging = all(errors[i+1] < errors[i] for i in range(len(errors)-1))
 final_error = errors[-1]
 
@@ -207,7 +195,7 @@ else:
     print("VERDICT: INCONCLUSIVE")
 ```
 
-### Verify a Probability Statement: P(X > c) = p
+#### Verify a Probability Statement: P(X > c) = p
 
 ```python
 np.random.seed(42)
@@ -223,7 +211,7 @@ else:
     print(f"VERDICT: DISPROVED (95% CI [{ci[0]:.6f}, {ci[1]:.6f}] excludes {p})")
 ```
 
-## Decision Tree
+### Decision Tree
 
 ```
 Is the proposition algebraic/symbolic?
@@ -242,28 +230,3 @@ Is it about convergence?
   YES -> Numerical sequence computation + rate estimation
   NO  -> Mixed approach: symbolic + numerical verification
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/math/proof-strategies.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/math-proof-strategies/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

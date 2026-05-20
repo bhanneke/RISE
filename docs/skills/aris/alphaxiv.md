@@ -4,34 +4,15 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/alphaxiv/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/alphaxiv/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: alphaxiv
-description: Quick single-paper lookup via AlphaXiv LLM-optimized summaries with tiered source fallback. Use when user says "explain this paper", "summarize paper", pastes an arXiv/AlphaXiv URL, or provides a bare arXiv ID for quick understanding - not for broad literature search.
-argument-hint: [arxiv-id-or-url]
-allowed-tools: Bash(*), Read, Write, WebFetch, Glob
----
-
-# AlphaXiv Paper Lookup
+## AlphaXiv Paper Lookup
 
 Lookup paper: $ARGUMENTS
 
 > Quick single-paper reader with tiered source fallback (overview → full markdown → LaTeX source). Powered by [AlphaXiv](https://alphaxiv.org).
 
-## Role & Positioning
+### Role & Positioning
 
 This skill is the **quick single-paper reader** that returns LLM-optimized summaries:
 
@@ -44,7 +25,7 @@ This skill is the **quick single-paper reader** that returns LLM-optimized summa
 
 **Do NOT use this skill for** topic discovery, broad literature search, or multi-paper surveys — use `/research-lit` or `/arxiv` instead.
 
-## Constants
+### Constants
 
 - **OVERVIEW_URL** = `https://alphaxiv.org/overview/{PAPER_ID}.md`
 - **ABS_URL** = `https://alphaxiv.org/abs/{PAPER_ID}.md`
@@ -56,9 +37,9 @@ This skill is the **quick single-paper reader** that returns LLM-optimized summa
 > - `/alphaxiv 2401.12345 - depth: src` — force LaTeX source inspection
 > - `/alphaxiv 2401.12345 - depth: abs` — force full markdown
 
-## Workflow
+### Workflow
 
-### Step 1: Parse Arguments & Extract Paper ID
+#### Step 1: Parse Arguments & Extract Paper ID
 
 Parse `$ARGUMENTS` to extract a bare arXiv paper ID. Accept these input formats:
 
@@ -73,7 +54,7 @@ Strip version suffixes (`v1`, `v2`, ...) for API calls. Store as `PAPER_ID`.
 Parse optional directives:
 - **`- depth: overview|abs|src`**: force a specific tier instead of cascading
 
-### Step 2: Fetch AlphaXiv Overview (Tier 1 — Fastest)
+#### Step 2: Fetch AlphaXiv Overview (Tier 1 — Fastest)
 
 Fetch the structured overview from `https://alphaxiv.org/overview/{PAPER_ID}.md`.
 
@@ -83,7 +64,7 @@ If the overview answers the user's question, **stop here**. Do not fetch deeper 
 
 If the request fails (HTTP 404 — paper not yet processed) or the content is insufficient, proceed to Step 3.
 
-### Step 3: Fetch Full AlphaXiv Markdown (Tier 2 — More Detail)
+#### Step 3: Fetch Full AlphaXiv Markdown (Tier 2 — More Detail)
 
 Fetch the full paper markdown from `https://alphaxiv.org/abs/{PAPER_ID}.md`.
 
@@ -94,7 +75,7 @@ This provides the full paper body as markdown. Use when the user needs:
 
 If this still does not answer the question, proceed to Step 4.
 
-### Step 4: Fetch arXiv LaTeX Source (Tier 3 — Deepest)
+#### Step 4: Fetch arXiv LaTeX Source (Tier 3 — Deepest)
 
 When the overview and full markdown are both insufficient (e.g., the user asks about equations, proofs, appendix details, or implementation specifics), download the paper's LaTeX source from `https://arxiv.org/src/{PAPER_ID}`.
 
@@ -110,25 +91,25 @@ Then inspect **only** the files needed to answer the question. Prioritize:
 
 Temporary source artifacts live under `/tmp`. Do not rely on persistence.
 
-### Step 5: Present Results
+#### Step 5: Present Results
 
 #### Default Answer Shape
 
 ```markdown
-## [Paper Title]
+### [Paper Title]
 
 - **arXiv**: [PAPER_ID] — https://arxiv.org/abs/[PAPER_ID]
 - **Source depth**: overview | abs | src
 
-### Summary
+#### Summary
 [2-3 sentence summary]
 
-### Key Points
+#### Key Points
 - [point 1]
 - [point 2]
 - [point 3]
 
-### Answer to Your Question
+#### Answer to Your Question
 [Direct answer if the user asked a specific question]
 ```
 
@@ -143,7 +124,7 @@ If the user only asks for one specific detail, answer it directly — skip the f
 /novelty-check "idea from paper"     - verify novelty against this paper's area
 ```
 
-## Update Research Wiki (if active)
+### Update Research Wiki (if active)
 
 **Required when `research-wiki/` exists in the project**; skip silently
 otherwise. When the wiki dir exists, resolve `$WIKI_SCRIPT` per the
@@ -176,7 +157,7 @@ the user can backfill via
 `python3 "$WIKI_SCRIPT" sync research-wiki/ --arxiv-ids <id>` after
 resolving `$WIKI_SCRIPT` as above.
 
-## Key Rules
+### Key Rules
 
 - **Overview first**: `overview` is the fastest path and must always be tried before deeper tiers. Only escalate when needed.
 - **Minimal reads**: At `src` tier, read only the files that answer the question. Full-tree reads waste tokens.
@@ -185,9 +166,9 @@ resolving `$WIKI_SCRIPT` as above.
 - **Rate limiting**: arXiv source download may rate-limit. If HTTP 429 occurs, wait 5 seconds and retry once. If still blocked, report the error and suggest `/deepxiv` as alternative.
 - **Complementary, not competing**: This skill complements `/arxiv` (search + download) and `/deepxiv` (progressive reading). Do not re-implement their functionality.
 
-## Integration with Other Skills
+### Integration with Other Skills
 
-### As enrichment in `/research-lit`
+#### As enrichment in `/research-lit`
 
 `/research-lit` can use this skill's Tier 1 (overview) as a fast enrichment step between search and deep analysis. After finding arXiv papers in Step 1, fetch AlphaXiv overviews to quickly assess relevance before committing to full-text reads:
 
@@ -199,36 +180,6 @@ Step 2: Deep analysis only for papers that pass the relevance filter
 
 This saves significant tokens by filtering out marginally relevant papers before deep reading.
 
-### As follow-up from other skills
+#### As follow-up from other skills
 
 After `/research-lit`, `/novelty-check`, or `/idea-discovery` surface a specific paper, users can invoke `/alphaxiv PAPER_ID` for a fast deep-dive without re-running the full survey.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/alphaxiv/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/alphaxiv/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/modeling/asset-pricing.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Asset Pricing and Factor Models
 
----
-
-# Asset Pricing and Factor Models
-
-## Overview
+### Overview
 
 Asset pricing studies why different securities earn different average returns. The central question: are return differences compensation for risk, or evidence of mispricing? The field operates through two main empirical approaches: cross-sectional regressions (Fama-MacBeth) and portfolio sorts.
 
-## Theoretical Foundations
+### Theoretical Foundations
 
-### Stochastic Discount Factor (SDF) Framework
+#### Stochastic Discount Factor (SDF) Framework
 
 All asset pricing models can be written as:
 
@@ -39,7 +27,7 @@ where M is the stochastic discount factor (pricing kernel). Different models cor
 - ICAPM: M = function of state variables
 - Consumption CAPM: M = beta * (C_{t+1}/C_t)^(-gamma)
 
-### Risk Premia
+#### Risk Premia
 
 For any factor f:
 E[R_i^e] = beta_i * lambda_f
@@ -47,9 +35,9 @@ E[R_i^e] = beta_i * lambda_f
 - beta_i: exposure of asset i to factor f (from time-series regression)
 - lambda_f: price of risk for factor f (estimated cross-sectionally)
 
-## Factor Models
+### Factor Models
 
-### CAPM (Sharpe 1964, Lintner 1965)
+#### CAPM (Sharpe 1964, Lintner 1965)
 
 E[R_i] - R_f = beta_i * (E[R_m] - R_f)
 
@@ -57,7 +45,7 @@ E[R_i] - R_f = beta_i * (E[R_m] - R_f)
 - beta_i = Cov(R_i, R_m) / Var(R_m).
 - Empirically rejected: the security market line is too flat (low-beta stocks earn more than predicted, high-beta stocks earn less).
 
-### Fama-French Three-Factor (1993)
+#### Fama-French Three-Factor (1993)
 
 R_it - R_ft = alpha_i + beta_i * MKT_t + s_i * SMB_t + h_i * HML_t + epsilon_it
 
@@ -65,13 +53,13 @@ R_it - R_ft = alpha_i + beta_i * MKT_t + s_i * SMB_t + h_i * HML_t + epsilon_it
 - SMB (Small Minus Big): return spread between small-cap and large-cap portfolios.
 - HML (High Minus Low): return spread between high book-to-market (value) and low book-to-market (growth) portfolios.
 
-### Carhart Four-Factor (1997)
+#### Carhart Four-Factor (1997)
 
 Adds UMD (Up Minus Down) momentum factor:
 
 R_it - R_ft = alpha_i + beta_i * MKT_t + s_i * SMB_t + h_i * HML_t + u_i * UMD_t + epsilon_it
 
-### Fama-French Five-Factor (2015)
+#### Fama-French Five-Factor (2015)
 
 Adds profitability and investment:
 
@@ -81,7 +69,7 @@ R_it - R_ft = alpha_i + b_i*MKT + s_i*SMB + h_i*HML + r_i*RMW + c_i*CMA + epsilo
 - CMA (Conservative Minus Aggressive): investment factor.
 - HML becomes redundant in many tests when RMW and CMA are included.
 
-### q-Factor Model (Hou-Xue-Zhang, 2015)
+#### q-Factor Model (Hou-Xue-Zhang, 2015)
 
 R_it - R_ft = alpha_i + beta_i*MKT + s_i*ME + r_i*ROE + c_i*IA + epsilon_it
 
@@ -90,12 +78,12 @@ R_it - R_ft = alpha_i + beta_i*MKT + s_i*ME + r_i*ROE + c_i*IA + epsilon_it
 - IA: investment-to-assets factor.
 - Motivated by q-theory of investment.
 
-### Other Notable Models
+#### Other Notable Models
 - **Stambaugh-Yuan (2017)**: mispricing factors (management + performance).
 - **Daniel-Hirshleifer-Sun (2020)**: behavioral factors (PEAD + financing).
 - **Barillas-Shanken (2018)**: model comparison framework using Bayesian methods.
 
-## Factor Data Sources
+### Factor Data Sources
 
 - **Ken French Data Library**: kenfrencharialibrary (Fama-French factors, industry portfolios, anomaly sorts). Free, updated monthly.
 - **AQR Data Library**: additional factors (BAB, QMJ, time-series momentum).
@@ -104,32 +92,32 @@ R_it - R_ft = alpha_i + beta_i*MKT + s_i*ME + r_i*ROE + c_i*IA + epsilon_it
 ```python
 import pandas_datareader.data as web
 
-# Fama-French factors from Ken French library
+## Fama-French factors from Ken French library
 ff3 = web.DataReader('F-F_Research_Data_Factors_daily', 'famafrench', start='2000-01-01')[0]
 ff5 = web.DataReader('F-F_Research_Data_5_Factors_2x3_daily', 'famafrench', start='2000-01-01')[0]
 mom = web.DataReader('F-F_Momentum_Factor_daily', 'famafrench', start='2000-01-01')[0]
 ```
 
-## Fama-MacBeth Regressions
+### Fama-MacBeth Regressions
 
 Two-pass procedure to estimate factor risk premia:
 
-### Pass 1: Time-Series Regressions
+#### Pass 1: Time-Series Regressions
 For each asset i, regress excess returns on factors to get beta estimates:
 
 R_it^e = alpha_i + beta_i' * F_t + epsilon_it
 
-### Pass 2: Cross-Sectional Regressions
+#### Pass 2: Cross-Sectional Regressions
 Each period t, regress cross-section of returns on estimated betas:
 
 R_it^e = gamma_0t + gamma_1t * beta_hat_i + eta_it
 
-### Inference
+#### Inference
 - lambda_hat = (1/T) * Sum(gamma_t) — time-series average of cross-sectional slopes.
 - Standard error: s.e.(lambda_hat) = std(gamma_t) / sqrt(T).
 - This automatically accounts for cross-sectional correlation in returns.
 
-### Shanken (1992) Correction
+#### Shanken (1992) Correction
 Betas are estimated with error. The errors-in-variables problem biases Fama-MacBeth standard errors downward.
 
 Corrected variance: Var(lambda_hat)_corrected = Var(lambda_hat)_FM * (1 + lambda' * Sigma_f^{-1} * lambda) + Sigma_f / T
@@ -139,15 +127,15 @@ where Sigma_f is the factor covariance matrix.
 ```python
 from linearmodels.asset_pricing import TradedFactorModel, LinearFactorModel
 
-# Using linearmodels
+## Using linearmodels
 model = TradedFactorModel(portfolios=portfolio_returns, factors=factor_returns)
 result = model.fit()
 print(result.summary)
 
-# Or manual Fama-MacBeth
+## Or manual Fama-MacBeth
 import statsmodels.api as sm
 
-# Pass 1: estimate betas (rolling or full-sample)
+## Pass 1: estimate betas (rolling or full-sample)
 betas = {}
 for asset in assets:
     reg = sm.OLS(returns[asset], sm.add_constant(factors)).fit()
@@ -155,7 +143,7 @@ for asset in assets:
 
 beta_df = pd.DataFrame(betas).T
 
-# Pass 2: cross-sectional regressions each period
+## Pass 2: cross-sectional regressions each period
 gammas = []
 for t in returns.index:
     y = returns.loc[t]
@@ -169,32 +157,32 @@ lambda_se = gammas.std() / np.sqrt(len(gammas))
 t_stats = lambda_hat / lambda_se
 ```
 
-## Portfolio Sorts
+### Portfolio Sorts
 
-### Single Sorts
+#### Single Sorts
 1. At the end of each month (or June for annual sorts), sort stocks into quantile portfolios based on a characteristic (e.g., size, B/M, momentum).
 2. Compute value-weighted or equal-weighted returns for each portfolio over the next month (or year).
 3. Form a long-short portfolio: top quantile minus bottom quantile.
 4. Test whether the long-short portfolio earns a significant alpha after controlling for known factors.
 
-### Double Sorts (Independent)
+#### Double Sorts (Independent)
 1. Sort stocks independently by two characteristics into quantiles.
 2. Intersect to form NxM portfolios.
 3. Compute average returns for each cell.
 4. Controls for the second characteristic when examining the first.
 
-### Double Sorts (Dependent/Sequential)
+#### Double Sorts (Dependent/Sequential)
 1. First sort by the control variable into quantiles.
 2. Within each quantile, sort by the variable of interest.
 3. Average across the first sort to get returns conditional on the variable of interest, controlling for the first.
 
-### Breakpoints
+#### Breakpoints
 - **NYSE breakpoints**: Use only NYSE stocks for breakpoint computation. This avoids micro-cap stocks (which dominate CRSP by count) from skewing the sort.
 - **Decile vs quintile**: Quintiles are standard. Deciles provide more granularity but may have too few stocks per portfolio in small samples.
 
-## Alpha Tests
+### Alpha Tests
 
-### GRS Test (Gibbons-Ross-Shanken, 1989)
+#### GRS Test (Gibbons-Ross-Shanken, 1989)
 
 Tests whether all intercepts (alphas) in a set of time-series regressions are jointly zero:
 
@@ -220,53 +208,53 @@ print(f"GRS statistic: {result.grs_statistic:.3f}")
 print(f"GRS p-value: {result.grs_pvalue:.4f}")
 ```
 
-### Spanning Tests
+#### Spanning Tests
 
 Test whether adding new factors improves the pricing of test assets beyond existing factors. Regress candidate factor on existing factors; if the intercept is significant, the new factor spans risks not captured by the existing model.
 
-## GMM Estimation of Asset Pricing Models
+### GMM Estimation of Asset Pricing Models
 
 For non-traded factor models (consumption, macro factors):
 
-### Moment Conditions
+#### Moment Conditions
 E[M * R_i^e] = 0 for all test assets i
 
 where M = 1 - b' * (f - E[f]) is linear in factors.
 
-### GMM Procedure
+#### GMM Procedure
 1. Stack N moment conditions: g_T(b) = (1/T) * Sum(M_t * R_t^e).
 2. First-stage GMM: W = I (identity weighting).
 3. Optimal GMM: W = S^{-1} where S is the long-run covariance of moment conditions.
 4. J-test (Hansen, 1982): T * g_T' * W * g_T ~ chi^2(N - K) tests overidentifying restrictions.
 
-### Hansen-Jagannathan Distance
+#### Hansen-Jagannathan Distance
 
 HJ = min_b sqrt(g_T' * E[R * R']^{-1} * g_T)
 
 Measures the maximum pricing error of the model, scaled by the second moment matrix of returns. Allows comparison across models with different numbers of factors.
 
-## Cross-Sectional Predictability
+### Cross-Sectional Predictability
 
-### Return Predictors (Anomalies)
+#### Return Predictors (Anomalies)
 Characteristics that predict the cross-section of returns:
 - Size, value (B/M), momentum, profitability, investment, accruals, asset growth, idiosyncratic volatility, betting-against-beta, quality, etc.
 - Harvey-Liu-Zhu (2016): over 300 factors documented. Multiple testing is a serious concern.
 
-### Multiple Testing Corrections
+#### Multiple Testing Corrections
 - Bonferroni: divide significance level by number of tests (conservative).
 - Holm-Bonferroni: step-down procedure (less conservative).
 - Benjamini-Hochberg: controls false discovery rate (FDR).
 - Harvey-Liu-Zhu (2016): t-stat threshold of ~3.0 (not 2.0) for new anomalies.
 - Bootstrapped critical values: account for cross-correlation among anomalies.
 
-### Fama-MacBeth with Characteristics
+#### Fama-MacBeth with Characteristics
 Instead of estimated betas, use firm characteristics directly:
 
 R_{i,t+1}^e = gamma_0t + gamma_1t * Char_it + eta_it
 
 This is essentially a cross-sectional regression of next-period returns on current characteristics. Avoids the errors-in-variables problem of estimated betas.
 
-## Practical Checklist
+### Practical Checklist
 
 1. **Define test assets**: 25 FF portfolios (5x5 size/value), industry portfolios, or individual stocks. Choice matters for power.
 2. **Factor construction**: Follow standard methodology (Fama-French conventions, NYSE breakpoints, value-weighted).
@@ -281,7 +269,7 @@ This is essentially a cross-sectional regression of next-period returns on curre
 11. **Out-of-sample**: Test in holdout period, international markets, or pre-discovery sample.
 12. **Robustness**: Micro-cap exclusion (NYSE price > $5 or ME > 20th percentile), winsorization (1%/99%), subperiods, alternative factor models.
 
-## Key References
+### Key References
 
 - Fama, E.F. and French, K.R. (1993). Common risk factors in the returns on stocks and bonds. Journal of Financial Economics.
 - Fama, E.F. and French, K.R. (2015). A five-factor asset pricing model. Journal of Financial Economics.
@@ -292,28 +280,3 @@ This is essentially a cross-sectional regression of next-period returns on curre
 - Shanken, J. (1992). On the estimation of beta-pricing models. Review of Financial Studies.
 - Cochrane, J.H. (2005). Asset Pricing, revised ed. Princeton University Press.
 - Harvey, C.R., Liu, Y., and Zhu, H. (2016). ... and the cross-section of expected returns. Review of Financial Studies.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/modeling/asset-pricing.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/modeling-asset-pricing/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

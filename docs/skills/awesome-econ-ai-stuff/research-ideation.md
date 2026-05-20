@@ -4,54 +4,24 @@
 
 Generate research questions from economic phenomena.
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../awesome-econ-ai-stuff/">awesome-econ-ai-stuff (Antonio Mele)</a></div><div><b>Category:</b> <code>ideation</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>Other (see repo)</code></div><div><b>Updated:</b> 2026</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>rq-formulation</code> · <code>hypothesis-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/ideation/research-ideation/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/research-ideation/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/ideation/research-ideation/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Research Ideation
 
----
-
----
-name: research-ideation
-description: Generate research questions from economic phenomena
-workflow_stage: ideation
-compatibility:
-  - claude-code
-  - cursor
-  - codex
-  - gemini-cli
-author: Awesome Econ AI Community
-version: 1.0.0
-tags:
-  - research
-  - ideation
-  - hypothesis
-  - brainstorming
----
-
-# Research Ideation
-
-## Purpose
+### Purpose
 
 This skill helps economists generate and refine research questions by applying economic thinking frameworks. It guides the process from observing phenomena to formulating testable hypotheses.
 
-## When to Use
+### When to Use
 
 - Starting a new research project
 - Brainstorming dissertation topics
 - Finding angles for policy analysis
 - Developing extensions of existing work
 
-## Instructions
+### Instructions
 
-### Step 1: Understand the Starting Point
+#### Step 1: Understand the Starting Point
 
 Ask the user:
 1. Do you have a phenomenon, puzzle, or data source in mind?
@@ -59,7 +29,7 @@ Ask the user:
 3. What's your methodological preference? (Theory, empirical, structural)
 4. Any constraints? (Data access, timeline, etc.)
 
-### Step 2: Apply Ideation Frameworks
+#### Step 2: Apply Ideation Frameworks
 
 Use these approaches:
 
@@ -83,7 +53,7 @@ Use these approaches:
 - What mechanisms remain unexplored?
 - Can methods from one field apply to another?
 
-### Step 3: Evaluate and Refine
+#### Step 3: Evaluate and Refine
 
 For each idea, assess:
 - **Feasibility**: Can this be done with available data/methods?
@@ -91,15 +61,15 @@ For each idea, assess:
 - **Interest**: Who cares about this question?
 - **Identification**: Can effects be credibly estimated?
 
-## Example Interaction
+### Example Interaction
 
 **User Query:** "I'm interested in labor economics and have access to LinkedIn data"
 
 **Generated Response:**
 
-## Research Ideas: LinkedIn Data × Labor Economics
+### Research Ideas: LinkedIn Data × Labor Economics
 
-### 1. Network Effects in Job Search
+#### 1. Network Effects in Job Search
 **Question:** How do professional networks affect job transitions and wage changes?
 
 **Puzzle:** Standard search models assume random matching, but most jobs come through networks. How much do networks matter for outcomes?
@@ -113,7 +83,7 @@ For each idea, assess:
 
 ---
 
-### 2. Skill Signaling and Returns
+#### 2. Skill Signaling and Returns
 **Question:** Do workers who list specific skills on profiles earn wage premiums?
 
 **Puzzle:** Are listed skills signals of ability, or just cheap talk? What's the return to skill acquisition vs. skill signaling?
@@ -125,7 +95,7 @@ For each idea, assess:
 
 ---
 
-### 3. Gender Gaps in Self-Promotion
+#### 3. Gender Gaps in Self-Promotion
 **Question:** Do men and women describe equivalent achievements differently?
 
 **Puzzle:** Lab evidence shows women understate accomplishments. Does this appear in real profiles and affect outcomes?
@@ -137,7 +107,7 @@ For each idea, assess:
 
 ---
 
-### 4. Remote Work and Labor Market Geography
+#### 4. Remote Work and Labor Market Geography
 **Question:** How has remote work changed the geographic reach of job matching?
 
 **Approach:**
@@ -147,7 +117,7 @@ For each idea, assess:
 
 ---
 
-## Evaluation Matrix
+### Evaluation Matrix
 
 | Idea | Data Feasibility | Identification | Policy Relevance |
 |------|-----------------|----------------|------------------|
@@ -156,7 +126,7 @@ For each idea, assess:
 | Gender language | High | High (descriptive) | High |
 | Remote geography | High | High (COVID natural experiment) | High |
 
-## Recommended Next Steps
+### Recommended Next Steps
 
 1. **For empirical work:** Start with Idea #4 (clearest identification)
 2. **For policy impact:** Idea #1 has most implications for job matching platforms
@@ -164,9 +134,9 @@ For each idea, assess:
 
 ---
 
-## Frameworks for Generating Questions
+### Frameworks for Generating Questions
 
-### The "5 Whys" for Economics
+#### The "5 Whys" for Economics
 
 Start with an observation and drill down:
 1. GDP growth is slowing → Why?
@@ -175,63 +145,33 @@ Start with an observation and drill down:
 4. Uncertainty is high → Why?
 5. Policy is unpredictable → **Testable: Does policy uncertainty cause low investment?**
 
-### The "What If" Generator
+#### The "What If" Generator
 
 - What if [policy X] were implemented?
 - What if [technology Y] became widespread?
 - What if [assumption Z] were relaxed?
 
-### The Cross-Field Pollinator
+#### The Cross-Field Pollinator
 
 Take a method from one field and apply to another:
 - IO techniques → Labor markets (how do firms choose wages like prices?)
 - Finance models → Education (returns to schooling as asset pricing)
 - Macro shocks → Micro outcomes (firm-level effects of exchange rate changes)
 
-## Common Pitfalls
+### Common Pitfalls
 
 - ❌ Questions that are too broad ("What causes inequality?")
 - ❌ Questions without clean identification ("Does education cause income?")
 - ❌ Questions without data ("Were medieval peasants happy?")
 - ❌ Questions already well-answered
 
-## References
+### References
 
 - [Shapiro (2022) How to Get Started on Research in Economics](https://www.brown.edu/Research/Shapiro/pdfs/research.pdf)
 - [Angrist & Pischke on Mostly Harmless research design](https://www.mostlyharmlesseconometrics.com/)
 - [AEA Research Pipelines](https://www.aeaweb.org/rfe/)
 
-## Changelog
+### Changelog
 
-### v1.0.0
+#### v1.0.0
 - Initial release with ideation frameworks
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/ideation/research-ideation/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>meleantonio/awesome-econ-ai-stuff</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../awesome-econ-ai-stuff.md">awesome-econ-ai-stuff (Antonio Mele)</a></dd>
-<dt><b>Category</b></dt><dd><code>ideation</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>rq-formulation</code> <code>hypothesis-generation</code></dd>
-<dt><b>License</b></dt><dd>Other (see repo)</dd>
-<dt><b>Last update</b></dt><dd>2026</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff">⭐ meleantonio/awesome-econ-ai-stuff</a><br><img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/ideation/research-ideation/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/research-ideation/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/awesome-econ-ai-stuff.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

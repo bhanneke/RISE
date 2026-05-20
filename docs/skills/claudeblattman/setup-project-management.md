@@ -4,29 +4,17 @@
 
 Bootstrap a project-management workspace
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/setup-project-management.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/setup-project-management/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/setup-project-management.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Setup Project Management
+## Setup Project Management
 
 *v1.1 — Simplified: reduced redundancy and verbosity*
 
 Sets up: folder structure, TODO.md, PROJECT_INDEX.md, .claude/CLAUDE.md, Google Doc hub, and meeting transcript workflow.
 
-## Instructions
+### Instructions
 
-### Phase 1: Discovery (DO THIS FIRST)
+#### Phase 1: Discovery (DO THIS FIRST)
 
 Before making ANY changes, assess the current state:
 
@@ -36,11 +24,11 @@ Before making ANY changes, assess the current state:
 4. **Check external file sources** — shared drives, cloud storage (Box, OneDrive, etc.). If found, get: web URL, local path, sync status. Identify high-priority files for local copies.
 5. **Assess data sensitivity** — IRB status, identifiable data locations
 
-### Phase 2: Gap Analysis
+#### Phase 2: Gap Analysis
 
 Present findings to user covering: existing structure, existing docs/tools, gaps vs. template, and potential conflicts.
 
-### Phase 3: Design Discussion
+#### Phase 3: Design Discussion
 
 **STOP AND DISCUSS WITH USER** before proceeding. Gather:
 
@@ -58,11 +46,11 @@ Present findings to user covering: existing structure, existing docs/tools, gaps
 7. **Related projects** — shared team members, overlapping keywords, cross-project email handling?
 8. **External file sources** — shared drive details; which files to copy locally (typically: research design, IRB, key lit; NOT: raw data, admin budgets); sync vs. unsync preference
 
-### Phase 4: Propose Customized Plan
+#### Phase 4: Propose Customized Plan
 
 Present a specific plan covering: folder changes, files to create, Google Doc structure, WhatsApp config, external file sources (if any), workflow adaptations, and what stays unchanged. **Get user approval before proceeding.**
 
-### Phase 5: Implementation
+#### Phase 5: Implementation
 
 Only after user approval:
 
@@ -91,7 +79,7 @@ Only after user approval:
 
 8. **Create submissions subfolders** if applicable: `Grants/`, `Journal/`, `Pre_Registration/`, `Conference/`
 
-### Phase 6: Verification
+#### Phase 6: Verification
 
 After implementation:
 
@@ -103,12 +91,12 @@ After implementation:
    - All 3 required in Tab 1 — advise user to add any missing markers
 4. **Summary for user** — list what was created, configured, external sources status, marker compatibility, next steps
 
-## Key Principles
+### Key Principles
 
 - **Explore first, change later** — never overwrite or reorganize without permission
 - **Iterate** until user is satisfied; document tradeoffs when template conflicts with existing setup
 
-## Arguments
+### Arguments
 
 `$ARGUMENTS` can include:
 - `discover` — Only run Phases 1-2 (assessment, no changes)
@@ -116,65 +104,36 @@ After implementation:
 - `full` — Complete setup with all phases
 - `minimal` — Create only .claude/CLAUDE.md and essential config
 
-## Examples
+### Examples
 
 ```
 /setup-project-management discover
-# Just assess current state, report findings
+## Just assess current state, report findings
 
 /setup-project-management plan
-# Assess and propose plan, wait for approval
+## Assess and propose plan, wait for approval
 
 /setup-project-management
-# Full interactive setup with all phases
+## Full interactive setup with all phases
 
 /setup-project-management minimal
-# Quick setup of just Claude config file
+## Quick setup of just Claude config file
 ```
 
-## Limitations
+### Limitations
 
 - Does NOT create Google Docs, restructure folders, delete/move files, configure MCP servers, or create WhatsApp groups
 - Only configures existing integrations
 
-## Troubleshooting
+### Troubleshooting
 
 - **WhatsApp groups not found** — names must be exact and case-sensitive; try partial search first
 - **Google Doc access** — verify Google Workspace MCP is configured; extract document ID from URL correctly
 - **Meeting transcripts** — if using Granola, MCP gives summaries only; export from Granola app for full transcripts
 
-## Customization Points
+### Customization Points
 
 - **Folder structure:** Adapt the numbered folder system to match your conventions
 - **Document hub:** Configure for Google Docs, Notion, or other platforms
 - **Team channels:** Add WhatsApp groups, Slack channels, or other communication tools
 - **Data sensitivity:** Add IRB-specific handling rules for sensitive projects
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/setup-project-management.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>infra</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/setup-project-management.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/setup-project-management/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

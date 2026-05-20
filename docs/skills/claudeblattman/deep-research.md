@@ -4,22 +4,10 @@
 
 Multi-agent deep research with paste-loop UX and subagent template
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
-
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> social-sciences</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/deep-research.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/deep-research/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/deep-research.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 <!-- deep-research v3 | sanitized from private skill -->
-# /deep-research
+## /deep-research
 
 *Federated deep-research workflow. Reports live in their project folder; a thin pointer INDEX in a central archive directory enables cross-project discovery.*
 
@@ -31,11 +19,11 @@ Run end-to-end deep research on a topic. Two invocation modes:
 **Automatic tools** (no paste-loop): Claude WebSearch subagent, OpenAI Codex CLI, Gemini 2.5 Pro CLI.
 **Paste-loop tools** (opt-in only): ChatGPT, Grok, Perplexity, Gemini Deep Research (browser).
 
-## Argument hint
+### Argument hint
 
 `<topic> [--quick | --tool claude|codex|gemini|chatgpt|grok|perplexity|gemini-deep|both|all-auto] [--depth standard|deep] [--project <name>] [--no-prestructure] | --absorb [<file>] [--project <name>] [--synthesize]`
 
-## Read first
+### Read first
 
 - `deep-research-references/config.md` — paths, defaults, routing config
 - `deep-research-references/dr-prompt-schema.md` — the 8-element prompt schema
@@ -46,9 +34,9 @@ Run end-to-end deep research on a topic. Two invocation modes:
 
 ---
 
-## Dispatch mode
+### Dispatch mode
 
-### Phase 0.5 — Pre-structure via /prompt (mandatory; no skip on well-formed inputs)
+#### Phase 0.5 — Pre-structure via /prompt (mandatory; no skip on well-formed inputs)
 
 **Invoke `/prompt` on every `$TOPIC`.** Even tight questions have implicit audience/context/output-shape that `/prompt` surfaces. The latency (5–15s) is worth the quality lift.
 
@@ -66,7 +54,7 @@ Use this for the DR schema? [y/N/edit]"
 
 **The only skip condition is the explicit `--no-prestructure` CLI flag.** Do not infer a skip from input quality, length, or efficiency.
 
-### Phase 1 — Prompt build
+#### Phase 1 — Prompt build
 
 Apply the 8-element DR Prompt Schema (`deep-research-references/dr-prompt-schema.md`). Default depth = `deep`. `--depth standard` drops elements 6+7 and the "research current best practices" preamble.
 
@@ -81,7 +69,7 @@ case "$ans" in
 esac
 ```
 
-### Phase 1.4 — Project routing
+#### Phase 1.4 — Project routing
 
 Decide `$PROJECT_DIR` BEFORE Phase 1.5. Logic:
 
@@ -145,7 +133,7 @@ PROJECT_DIR="${PROJECT_DIR/#\~/$HOME}"
 mkdir -p "$PROJECT_DIR"
 ```
 
-### Phase 1.5 — Archive prompt to project folder
+#### Phase 1.5 — Archive prompt to project folder
 
 Before any dispatch:
 
@@ -168,7 +156,7 @@ cat /tmp/dr-built-prompt-$RUN_ID.txt >> "/tmp/dr-prompt-$RUN_ID.md"
 cp "/tmp/dr-prompt-$RUN_ID.md" "$PROJECT_DIR/${DATE}_${SLUG}_prompt.md"
 ```
 
-### Phase 2 — Codex pre-flight (only if `--tool` includes codex)
+#### Phase 2 — Codex pre-flight (only if `--tool` includes codex)
 
 Inline lightweight quota guard. **Two-tier only: GREEN / RED.**
 
@@ -189,10 +177,10 @@ if [ -n "$USAGE_RAW" ] && [ "$USAGE_RAW" != "null" ]; then
     exit 1
   fi
 fi
-# Happy path: no output. Proceed to Phase 3.
+## Happy path: no output. Proceed to Phase 3.
 ```
 
-### Phase 3 — Dispatch
+#### Phase 3 — Dispatch
 
 **`--tool claude`** — Spawn a subagent with `context:fork` using the template at `deep-research-references/claude-subagent-template.md`. Pass:
 - Prompt path: `/tmp/dr-prompt-$RUN_ID.md`
@@ -238,7 +226,7 @@ If `$GEMINI_BIN` is empty, skip with note ("Gemini CLI not installed; run `npm i
 
 **`--tool all-auto`** — Three **concurrent tool calls** in a single message: one Task (Claude subagent), two Bash (Codex, Gemini CLI). All automatic, no paste-loop.
 
-### Phase 3.5 — Hard exit-code gate
+#### Phase 3.5 — Hard exit-code gate
 
 For each non-paste tool:
 
@@ -254,7 +242,7 @@ fi
 
 Same pattern for the Claude subagent (output file must exist + be non-empty). Synthesis includes only `*_OK=1` arms.
 
-### Phase 4 — Federated archive (write to project folder)
+#### Phase 4 — Federated archive (write to project folder)
 
 For each successful tool output:
 
@@ -297,7 +285,7 @@ jq -n --arg date "$DATE" --arg topic "$TOPIC" --arg tool "$TOOL" \
 find /tmp -name "dr-*-$RUN_ID*" -mtime +1 -delete
 ```
 
-### Phase 5 — Synthesis (opt-in, with `--synthesize`)
+#### Phase 5 — Synthesis (opt-in, with `--synthesize`)
 
 Thin wrapper that calls `/dr-synthesize <project-paths...>` as a subprocess. Synthesis writes to the SAME project folder as its primary input(s):
 
@@ -305,7 +293,7 @@ Thin wrapper that calls `/dr-synthesize <project-paths...>` as a subprocess. Syn
 
 `/dr-synthesize` enforces the mandatory `## Source Reports` header with absolute paths. Synthesis is a *new* file; never edits raw inputs. After write, append a synthesis row to INDEX.md/jsonl.
 
-### Phase 6 — Telemetry
+#### Phase 6 — Telemetry
 
 ```bash
 echo "$(date +%Y-%m-%d),deep-research,$TOOL_CALLS,${TOOL}-${SLUG}" >> ~/.claude-assistant/logs/skill-performance.csv
@@ -320,13 +308,13 @@ echo "$DATE,$RUN_ID,$WINDOW_BEFORE,$WINDOW_AFTER,$DELTA" >> ~/.claude-assistant/
 
 ---
 
-## Absorb mode
+### Absorb mode
 
 `/deep-research --absorb [<file>] [--project <name>] [--synthesize]`
 
 For external Deep Research outputs (you ran ChatGPT / Grok / Perplexity / Gemini Deep Research in the browser, or any other tool). Two paths:
 
-### Path A — Drag-and-drop, then absorb
+#### Path A — Drag-and-drop, then absorb
 
 Drop one or more `.md` files into a project's `raw-inputs/` folder via your editor's file explorer (e.g., `~/projects/<paper-name>/raw-inputs/test.md`). Then in the integrated terminal:
 
@@ -356,7 +344,7 @@ The skill scans every `raw-inputs/` folder for `.md` files lacking canonical fro
 6. **Append rows** to INDEX.md and INDEX.jsonl
 7. **Report:** `Absorbed N file(s). Skipped M (already indexed).`
 
-### Path B — Single-file with explicit path
+#### Path B — Single-file with explicit path
 
 ```
 /deep-research --absorb /path/to/external-report.md --project "<paper-name>"
@@ -364,13 +352,13 @@ The skill scans every `raw-inputs/` folder for `.md` files lacking canonical fro
 
 Same as Path A but processes one specified file. Moves it into `$PROJECT_DIR` after canonicalization.
 
-### Phase 5 — Synthesis (with `--synthesize`)
+#### Phase 5 — Synthesis (with `--synthesize`)
 
 If `--synthesize` is passed, after absorbing call `/dr-synthesize` on the absorbed file(s).
 
 ---
 
-## Defaults
+### Defaults
 
 - `--tool` default: `both` (Claude WebSearch + Codex in parallel). Both arms fully automatic. Codex arm is RED-gated per Phase 2 (5h bucket). For 3-arm automatic dispatch including Gemini 2.5 Pro CLI, pass `--tool all-auto`. Paste-loop arms (`chatgpt`, `grok`, `perplexity`, `gemini-deep`) are opt-in only — never volunteered.
 - `--depth` default: `deep` (all 8 schema elements + "research current best practices" preamble)
@@ -382,36 +370,36 @@ If `--synthesize` is passed, after absorbing call `/dr-synthesize` on the absorb
 
 ---
 
-## Smoke tests
+### Smoke tests
 
 **1. Routing inference + federated write:**
 ```bash
 /deep-research "What are the top 3 risks of long-context agentic coding setups?" --tool claude
-# Expect:
-#   Phase 1 prints schema'd prompt; [y/N/edit] gate fires
-#   Phase 1.4 keyword match prompts a project, or falls back to working-notes
-#   Phase 1.5: prompt file at $PROJECT_DIR/<date>_<slug>_prompt.md
-#   Phase 4: claude report at $PROJECT_DIR/<date>_<slug>_claude.md
-#   INDEX.md and INDEX.jsonl have new pointer rows
-#   research-archive/ contains NO .md content files (only INDEX.md, INDEX.jsonl)
+## Expect:
+##   Phase 1 prints schema'd prompt; [y/N/edit] gate fires
+##   Phase 1.4 keyword match prompts a project, or falls back to working-notes
+##   Phase 1.5: prompt file at $PROJECT_DIR/<date>_<slug>_prompt.md
+##   Phase 4: claude report at $PROJECT_DIR/<date>_<slug>_claude.md
+##   INDEX.md and INDEX.jsonl have new pointer rows
+##   research-archive/ contains NO .md content files (only INDEX.md, INDEX.jsonl)
 ```
 
 **2. Absorb workflow:**
 ```bash
 echo "fake report content" > "$HOME/projects/working-notes/raw-inputs/test-paste.md"
 /deep-research --absorb
-# Expect: prompts for slug + tool, renames to canonical, adds frontmatter, INDEX updated
+## Expect: prompts for slug + tool, renames to canonical, adds frontmatter, INDEX updated
 ```
 
 **3. Cross-project discovery:**
 ```bash
-# Open ~/research-archive/INDEX.md, find-in-file for any topic keyword
-# Expect: row visible, path clickable to project folder
+## Open ~/research-archive/INDEX.md, find-in-file for any topic keyword
+## Expect: row visible, path clickable to project folder
 ```
 
 ---
 
-## Customization Points
+### Customization Points
 
 - **Routing config:** `~/.claude-assistant/config/deep-research-routing.json`. Maps project keys → `path` + `title_patterns` + `exclude_patterns` for keyword inference.
 - **Project folder layout:** Default base is `~/projects/<name>/raw-inputs/`. Adjust if your projects live elsewhere (e.g., `~/Documents/research/...`).
@@ -419,33 +407,3 @@ echo "fake report content" > "$HOME/projects/working-notes/raw-inputs/test-paste
 - **Codex thresholds:** `~/.claude-assistant/config/codex-thresholds.sh` is the single source of truth for `PRO_5H_TOKEN_BUDGET` and `THRESHOLD_RED`. Recalibrate quarterly.
 - **CLI binaries:** Set `CODEX_BIN`, `GEMINI_BIN` paths in `deep-research-references/config.md` to match your install.
 - **ChatGPT artifact stripper:** Optional Python helper invoked during `--absorb` for ChatGPT exports (PUA character range ``–``). Skip if you don't ingest ChatGPT outputs.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/deep-research.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>social-sciences</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/deep-research.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/deep-research/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

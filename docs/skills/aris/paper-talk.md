@@ -4,28 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>slides</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>dissemination</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-talk/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-talk/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-talk
-description: "End-to-end conference talk pipeline: paper → slide outline → Beamer + PPTX → per-page polish → assurance checks (claim / citation / anonymity) → final export and report. Default-good for academic conference talks (NeurIPS / ICML / ICLR / VALSE / 投稿 talks). Trigger phrases: \"做 talk\", \"做 PPT 全流程\", \"talk pipeline\", \"end-to-end slides\", \"做演讲\", \"conference talk full workflow\". Use when the user wants the complete talk artifact, not just a slide deck."
-argument-hint: "[paper-dir] [— talk_type: oral | spotlight | poster-talk | invited] [— minutes: N] [— assurance: draft | polished | conference-ready] [— reference: <pdf>] [— style: generic | why-rf | <venue>] [— style-ref: <paper-source>] [— effort: lite | balanced | max | beast] [— anonymous]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, Skill, mcp__codex__codex
----
-
-# Paper Talk: End-to-End Conference Talk Pipeline
+## Paper Talk: End-to-End Conference Talk Pipeline
 
 Workflow: from a completed paper to a conference-ready talk artifact —
 slide outline, Beamer source, editable PPTX, speaker notes, full talk
@@ -33,7 +14,7 @@ script, polished visuals, and assurance checks.
 
 Pipeline target: **$ARGUMENTS**
 
-## Assurance Ladder
+### Assurance Ladder
 
 The skill takes an explicit `— assurance:` argument; default is `polished`.
 
@@ -47,7 +28,7 @@ Phase 4 (assurance checks) is opt-in via `— assurance: conference-ready`.
 The lower levels skip claim / citation / anonymity audits, which is correct
 when content has already been audited at the paper-writing stage.
 
-## Hard Invariants
+### Hard Invariants
 
 These are non-negotiable across all phases:
 
@@ -62,7 +43,7 @@ These are non-negotiable across all phases:
 9. **Final report cannot be `conference-ready` unless required audits pass.** Phase 6 verifies and downgrades verdict if audits fail.
 10. **`reasoning_effort: xhigh`** is invariant across all `effort` levels for any Codex call invoked by sub-skills.
 
-## Constants
+### Constants
 
 - **PAPER_DIR = `paper/`** — Source paper directory. Override via positional argument.
 - **OUTPUT_DIR = `slides/`** — Where the deck artefacts live.
@@ -75,7 +56,7 @@ These are non-negotiable across all phases:
 - **REFERENCE_VISUAL** — Required when `assurance ≥ polished`. The Beamer compile of this talk is an acceptable self-reference; an external academic talk PDF is preferred when the user wants visual alignment beyond defaults.
 - **AUTO_PROCEED = false** — Each major phase pauses for user approval. Set `true` only when explicitly requested.
 
-## Inputs
+### Inputs
 
 Discovered from `$ARGUMENTS` and the project directory:
 
@@ -86,7 +67,7 @@ Discovered from `$ARGUMENTS` and the project directory:
 5. **(optional) `— reference: <pdf>`** — visual anchor for `/slides-polish`. If absent and the assurance level requires polish, the workflow uses the Beamer self-compile as reference.
 6. **(optional) `— talk_type`, `— minutes`, `— style`, `— effort`** — see Constants.
 
-## Output Layout
+### Output Layout
 
 File names match `/paper-slides`'s emit contract — this workflow is a
 **non-renaming consumer**.
@@ -126,9 +107,9 @@ slides/
 The audit JSON files follow the shared 6-state schema; see
 `../shared-references/assurance-contract.md`.
 
-## Workflow
+### Workflow
 
-### Phase 0: Setup
+#### Phase 0: Setup
 
 1. **Validate paper directory**: `ls $PAPER_DIR/main.tex $PAPER_DIR/main.pdf`. If absent → halt and ask user to point to the compiled paper.
 2. **Check prerequisites**:
@@ -141,7 +122,7 @@ The audit JSON files follow the shared 6-state schema; see
 4. **State init**: write `.aris/paper-talk/PIPELINE_STATE.json` with `phase: 0`, timestamp, all resolved overrides.
 5. **Resume mode**: if `slides/SLIDE_OUTLINE.md` exists and `PIPELINE_STATE.json` shows recent in-progress work, prompt the user — resume from last phase or start fresh.
 
-### Phase 1: Slide Outline (Checkpoint)
+#### Phase 1: Slide Outline (Checkpoint)
 
 Goal: produce or accept a `slides/SLIDE_OUTLINE.md` that the user signs off
 on before any deck-building happens.
@@ -169,7 +150,7 @@ The outline must contain, per slide:
 approval. Set `AUTO_PROCEED = true` only when the user is explicitly
 running unattended.
 
-### Phase 2: Build Baseline Deck
+#### Phase 2: Build Baseline Deck
 
 Invoke `/paper-slides` to generate Beamer source + PPTX from the approved
 outline.
@@ -192,7 +173,7 @@ After return: verify the four artefacts exist. If any missing, halt with a
 diagnostic. Do **not** rename outputs — downstream phases bind to these
 exact paths.
 
-### Phase 3: Visual Polish (when assurance ≥ polished)
+#### Phase 3: Visual Polish (when assurance ≥ polished)
 
 Skip when `assurance == draft`.
 
@@ -214,7 +195,7 @@ The polish phase is read-only on content (see Hard Invariants). If
 would alter content, surface that block to the user and halt rather than
 overriding.
 
-### Phase 4: Assurance Checks (when assurance == conference-ready)
+#### Phase 4: Assurance Checks (when assurance == conference-ready)
 
 Skip when `assurance ∈ {draft, polished}`.
 
@@ -298,7 +279,7 @@ When the talk is for an anonymous-submission venue or the user passed
 Output → `.aris/paper-talk/audits/anonymity_scan.json` (6-state). Any
 `FAIL` (real-content leak) blocks `conference-ready`.
 
-### Phase 5: Final Export + Integrity
+#### Phase 5: Final Export + Integrity
 
 Resolve the **final PPTX path**:
 
@@ -321,7 +302,7 @@ Then:
 If any integrity check fails, downgrade the Phase-6 verdict and surface
 specifics to the user.
 
-### Phase 6: Final Report
+#### Phase 6: Final Report
 
 Write `.aris/paper-talk/FINAL_REPORT.md` with:
 
@@ -345,7 +326,7 @@ Otherwise the report emits the highest passing level (`polished` or
 `draft`) and itemises why `conference-ready` was not granted, citing the
 specific audit JSON and the failing verdict line.
 
-## Effort Levels
+### Effort Levels
 
 See `../shared-references/effort-contract.md`.
 
@@ -362,7 +343,7 @@ See `../shared-references/effort-contract.md`.
 combine `effort: lite, assurance: conference-ready` to mean "fast pipeline,
 but every audit must emit a verdict before finalisation."
 
-## Parameter Pass-Through
+### Parameter Pass-Through
 
 ```
 /paper-talk "paper/" — talk_type: oral — minutes: 25 — assurance: conference-ready \
@@ -377,20 +358,20 @@ Forwarded to:
 - `/citation-audit` (Phase 4.2): scoped to slide-deck-only citations.
 - Anonymity scan (Phase 4.3): inline tool, no external skill.
 
-## When NOT to Use
+### When NOT to Use
 
 - The paper is not yet compiled or claims are not stable. Run `/paper-writing` first.
 - The user wants a poster, not a talk. Use `/paper-poster`.
 - The user already has a finished deck and only needs visual polish. Use `/slides-polish` directly — `/paper-talk` would needlessly rebuild.
 - The talk content is unrelated to a paper (general lecture, demo). The orchestration assumes a paper-grounded talk; for ad-hoc decks, use `/paper-slides` directly with manual outline.
 
-## Prior Skill Relationship
+### Prior Skill Relationship
 
 - Composes `/paper-slides`, `/slides-polish`, `/paper-claim-audit`, `/citation-audit`.
 - Does **not** call `/kill-argument` by default — that is upstream intellectual stress-test, not deck QA. Users who want talk-story stress-test before slide build can run `/kill-argument paper/` first.
 - Sister workflow to `/paper-writing` (paper) and `/paper-poster` (poster).
 
-## Empirical Origin
+### Empirical Origin
 
 This workflow generalises a 30+ iteration polish run on a Chinese-spoken
 academic conference talk (May 2026). The convergent learning was that talk
@@ -399,33 +380,3 @@ audit, export, report — and benefits from the same assurance ladder. The
 per-page Codex polish pass (Phase 3) is the single most expensive but
 highest-value step, and is hidden behind the `polished` default so users
 get it without thinking about it.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-talk/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>slides</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>dissemination</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/paper-talk/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

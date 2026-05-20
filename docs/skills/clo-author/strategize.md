@@ -4,28 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>none declared</code></div><div><b>Updated:</b> 2026-05-11</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/strategize/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/strategize/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: strategize
-description: Design identification strategy, pre-analysis plan, or formal theory section. Dispatches Strategist / Theorist (proposer) and the paired critic (validator). Replaces /identify and /pre-analysis-plan.
-argument-hint: "[mode: strategy | pap | pap interactive | theory] [research question or spec path]"
-allowed-tools: Read,Grep,Glob,Write,Task
----
-
-# Strategize
+## Strategize
 
 Design an identification strategy, pre-analysis plan, or formal theory section by dispatching the appropriate creator (**Strategist** or **Theorist**) and its paired critic.
 
@@ -33,9 +14,9 @@ Design an identification strategy, pre-analysis plan, or formal theory section b
 
 ---
 
-## Modes
+### Modes
 
-### `/strategize [question]` or `/strategize strategy [question]` — Identification Strategy
+#### `/strategize [question]` or `/strategize strategy [question]` — Identification Strategy
 Design the causal identification strategy.
 
 **Agents:** Strategist → strategist-critic
@@ -45,7 +26,7 @@ Workflow:
 1. **Pre-Strategy Report (mandatory).** Before proposing any strategy, the Strategist must output a structured report proving it read the discovery inputs:
 
 ```markdown
-## Pre-Strategy Report
+### Pre-Strategy Report
 **Research spec:** [path or "not found"]
 **Literature review:** [path or "not found"]
 **Data assessment:** [path or "not found"]
@@ -93,7 +74,7 @@ If research spec, literature review, or data assessment are missing, the Strateg
    - **Key assumptions:** What must hold (parallel trends, exclusion restriction, continuity, etc.)
    - **What would invalidate:** What findings would force a strategy change (pre-trends failure, weak first stage, manipulation at cutoff)
 
-### `/strategize pap [spec]` — Pre-Analysis Plan
+#### `/strategize pap [spec]` — Pre-Analysis Plan
 Draft a pre-analysis plan following AEA/OSF/EGAP standards.
 
 **Input:** `$ARGUMENTS` — path to research spec file, a topic, or `interactive` for guided interview.
@@ -179,7 +160,7 @@ When drafting a PAP from a topic (without a full research spec or interactive in
 A registered PAP with unchecked assumptions is worse than no PAP. The final section of every PAP must include:
 
 ```markdown
-## Pre-Registration Checklist
+### Pre-Registration Checklist
 
 **Review every [ASSUMED] item before registering this plan.**
 
@@ -205,7 +186,7 @@ Save PAP to `quality_reports/pre_analysis_plan_[topic].md`
 
 ---
 
-### `/strategize theory [target]` — Formal Theory Section
+#### `/strategize theory [target]` — Formal Theory Section
 
 Produce a formal theory section: assumptions, definitions, lemmas, theorems, and proofs.
 
@@ -226,7 +207,7 @@ Workflow:
 1. **Pre-Theory Report (mandatory).** Before writing any math, the Theorist must output a structured report showing what was read:
 
 ```markdown
-## Pre-Theory Report
+### Pre-Theory Report
 **Research spec:** [path or "not found"]
 **Strategy memo:** [path or "not found"]
 **Existing paper/draft:** [path or "not found"]
@@ -269,9 +250,9 @@ If strategy memo or paper type is missing, the Theorist flags it and asks before
 
 ---
 
-## Bundled Resources
+### Bundled Resources
 
-### Templates
+#### Templates
 | File | Purpose |
 |------|---------|
 | `strategize/templates/pre-strategy-report.md` | Mandatory pre-check report before designing strategy |
@@ -280,7 +261,7 @@ If strategy memo or paper type is missing, the Theorist flags it and asks before
 | `strategize/templates/theory-memo.md` | Theory section output format (assumptions, results, proofs) |
 | `strategize/templates/decision-record.md` | Template for documenting strategy decisions with alternatives |
 
-### Design Checklists
+#### Design Checklists
 | File | Design |
 |------|--------|
 | `strategize/templates/design-checklists/did.md` | Difference-in-Differences (parallel trends, staggered, estimator selection) |
@@ -290,26 +271,26 @@ If strategy memo or paper type is missing, the Theorist flags it and asks before
 | `strategize/templates/design-checklists/structural.md` | Structural Estimation (model environment, identification, counterfactuals) |
 | `strategize/templates/design-checklists/descriptive.md` | Descriptive/Measurement (construction, validation, decomposition) |
 
-### PAP Templates
+#### PAP Templates
 | File | Registry |
 |------|----------|
 | `strategize/templates/pap-templates/aea-rct.md` | AEA RCT Registry (most structured, all fields required) |
 | `strategize/templates/pap-templates/osf.md` | OSF (flexible, good for observational studies) |
 | `strategize/templates/pap-templates/egap.md` | EGAP (development/political science, governance emphasis) |
 
-### References
+#### References
 | File | Purpose |
 |------|---------|
 | `strategize/references/pap-interview-flow.md` | 6-question guided interview for building a PAP interactively |
 
-### Gotchas
+#### Gotchas
 | File | Purpose |
 |------|---------|
 | `strategize/gotchas.md` | Known failure points: design selection traps, memo pitfalls, PAP anti-patterns, theory-mode caveats |
 
 ---
 
-## Principles
+### Principles
 
 - **Strategist proposes, strategist-critic critiques.** Adversarial pairing catches design flaws early.
 - **Theorist proves, theorist-critic checks the proof.** Proof validity gates everything downstream -- notation, citations, polish.
@@ -321,33 +302,3 @@ If strategy memo or paper type is missing, the Theorist flags it and asks before
 - **Be honest about what's exploratory.** Label subgroups and secondary outcomes clearly.
 - **Power calculations require assumptions.** State every assumption. Show sensitivity.
 - **A PAP is a commitment device.** Make sure the researcher understands what they're committing to.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/strategize/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>hugosantanna/clo-author</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../clo-author.md">Clo-Author skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>none declared</dd>
-<dt><b>Last update</b></dt><dd>2026-05-11</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/hugosantanna/clo-author">⭐ hugosantanna/clo-author</a><br><img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/hugosantanna/clo-author" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/clo-author/strategize/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/clo-author.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

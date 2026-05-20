@@ -4,46 +4,27 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>figures</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/mermaid-diagram/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/mermaid-diagram/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: mermaid-diagram
-description: Generate Mermaid diagrams from user requirements. Saves .mmd and .md files to figures/ directory with syntax verification. Supports flowcharts, sequence diagrams, class diagrams, ER diagrams, Gantt charts, and 18 more diagram types.
-argument-hint: [diagram description or requirements]
-allowed-tools: Bash(*), Read, Write, Edit, Glob, Grep
----
-
-# Mermaid Diagram Generator
+## Mermaid Diagram Generator
 
 Generate high-quality Mermaid diagram code based on user requirements, with file output and verification.
 
-## Constants
+### Constants
 
 - **OUTPUT_DIR = `figures/`** — Output directory for all generated files
 - **MAX_ITERATIONS = 3** — Maximum refinement rounds for syntax errors
 
-## Workflow: MUST EXECUTE ALL STEPS
+### Workflow: MUST EXECUTE ALL STEPS
 
-### Step 0: Pre-flight Check
+#### Step 0: Pre-flight Check
 
 ```bash
-# Create output directory
+## Create output directory
 mkdir -p figures
 ```
 
-### Step 1: Understand Requirements & Select Diagram Type
+#### Step 1: Understand Requirements & Select Diagram Type
 
 Parse the input: **$ARGUMENTS**
 
@@ -53,7 +34,7 @@ Parse the input: **$ARGUMENTS**
 4. Identify all components, connections, and data flow
 5. Plan the diagram structure
 
-### Step 2: Read Documentation
+#### Step 2: Read Documentation
 
 Select the appropriate diagram type based on the use case. Use your built-in knowledge of Mermaid syntax, or fetch up-to-date docs via the context7 MCP server if needed.
 
@@ -83,7 +64,7 @@ Select the appropriate diagram type based on the use case. Use your built-in kno
 | User Journey | User experience flows |
 | ZenUML | Sequence diagrams (code style) |
 
-### Configuration & Themes
+#### Configuration & Themes
 
 - **Theming** - Custom colors and styles
 - **Directives** - Diagram-level configuration
@@ -91,7 +72,7 @@ Select the appropriate diagram type based on the use case. Use your built-in kno
 - **Configuration** - Global settings
 - **Math** - LaTeX math support (see Math Formulas in Diagrams section below)
 
-### Step 3: Generate Mermaid Code & Save Files
+#### Step 3: Generate Mermaid Code & Save Files
 
 Generate the Mermaid code following the reference specification, then save TWO files:
 
@@ -112,7 +93,7 @@ flowchart TD
 The `.md` file wraps the same code in a mermaid code block for preview rendering, plus a title and description. Example:
 
 ```markdown
-# Diagram Title
+## Diagram Title
 
 Brief description of what this diagram shows.
 
@@ -127,12 +108,12 @@ flowchart TD
 
 **Naming convention**: Use a descriptive kebab-case name derived from the user's request (e.g., `auth-flow`, `system-architecture`, `database-er`).
 
-### Step 4: Verify Mermaid Syntax (MANDATORY)
+#### Step 4: Verify Mermaid Syntax (MANDATORY)
 
 **Claude MUST verify the generated Mermaid code by running the Mermaid CLI (`mmdc`).**
 
 ```bash
-# Check if mermaid-cli is available
+## Check if mermaid-cli is available
 if command -v mmdc &> /dev/null; then
     # Render to PNG to verify syntax is correct
     mmdc -i figures/<diagram-name>.mmd -o figures/<diagram-name>.png -b transparent
@@ -150,24 +131,24 @@ fi
 3. Re-run verification
 4. Repeat up to MAX_ITERATIONS (3) times
 
-### Step 5: Claude STRICT Visual Review & Scoring (MANDATORY)
+#### Step 5: Claude STRICT Visual Review & Scoring (MANDATORY)
 
 After successful rendering, Claude MUST read the generated PNG and perform a STRICT review:
 
 ```markdown
-## Claude's STRICT Review of <diagram-name>
+### Claude's STRICT Review of <diagram-name>
 
-### What I See
+#### What I See
 [Describe the rendered diagram in DETAIL - every block, every arrow, every label]
 
-### Files Generated
+#### Files Generated
 - `figures/<diagram-name>.mmd` — Raw Mermaid source
 - `figures/<diagram-name>.md` — Markdown with embedded diagram
 - `figures/<diagram-name>.png` — Rendered PNG (if mmdc available)
 
-### ═══════════════════════════════════════════════════════════════
-### STRICT VERIFICATION CHECKLIST (ALL must pass for score ≥ 9)
-### ═══════════════════════════════════════════════════════════════
+#### ═══════════════════════════════════════════════════════════════
+#### STRICT VERIFICATION CHECKLIST (ALL must pass for score ≥ 9)
+#### ═══════════════════════════════════════════════════════════════
 
 #### A. File Correctness
 - [ ] `.mmd` file contains valid Mermaid syntax (no markdown fences)
@@ -199,15 +180,15 @@ Check EACH block/node:
 - [ ] Proper spacing (not cramped, not sparse)
 - [ ] Data flow is traceable in 5 seconds
 
-### ═══════════════════════════════════════════════════════════════
+#### ═══════════════════════════════════════════════════════════════
 
-### Issues Found (BE SPECIFIC)
+#### Issues Found (BE SPECIFIC)
 1. [Issue 1]: [EXACTLY what is wrong] → [How to fix]
 2. [Issue 2]: [EXACTLY what is wrong] → [How to fix]
 
-### Score: X/10
+#### Score: X/10
 
-### Score Breakdown Guide:
+#### Score Breakdown Guide:
 - **10**: Perfect. No issues. Publication-ready.
 - **9**: Excellent. Minor issues that don't affect understanding.
 - **8**: Good but has noticeable issues (layout, styling).
@@ -215,14 +196,14 @@ Check EACH block/node:
 - **6**: Has arrow direction errors or missing major components.
 - **1-5**: Major issues. Unacceptable.
 
-### Verdict
+#### Verdict
 [ ] ACCEPT (score ≥ 9 AND all critical checks pass)
 [ ] FIX (score < 9 OR any critical check fails — list EXACT fixes needed)
 ```
 
 **If FIX: apply corrections to both `.mmd` and `.md` files, re-render, and re-verify. Loop until ACCEPT or MAX_ITERATIONS reached.**
 
-### Step 6: Final Output Summary
+#### Step 6: Final Output Summary
 
 When accepted, present to user:
 
@@ -238,11 +219,11 @@ To re-render manually:
   mmdc -i figures/<diagram-name>.mmd -o figures/<diagram-name>.png
 ```
 
-## Architecture Diagram Best Practices
+### Architecture Diagram Best Practices
 
 When generating `architecture-beta` diagrams, apply these layout techniques for complex diagrams:
 
-### Use Junctions for Layout Control
+#### Use Junctions for Layout Control
 
 Think of the diagram as an invisible grid. Use `junction` nodes as virtual anchor points on that grid to precisely control where each component is placed. This is especially useful when a direct edge between two services produces unexpected positioning.
 
@@ -268,7 +249,7 @@ j_webapi_l:R --> L:webapi
 
 Place junctions on all four sides of components to anchor them logically on the grid.
 
-### Use Edges out of Groups for Floating Components
+#### Use Edges out of Groups for Floating Components
 
 For services that have no logical connection to other nodes (e.g. a deployment tool, a monitoring agent), use a junction combined with the `{group}` modifier to position them without adding a semantically incorrect edge:
 
@@ -280,24 +261,24 @@ j_acd_t:B -- T:acd
 
 This anchors `acd` below its intended neighbor without implying a real relationship.
 
-## CVPR/ICLR/NeurIPS Style Guide (for Academic Diagrams)
+### CVPR/ICLR/NeurIPS Style Guide (for Academic Diagrams)
 
 When the diagram is intended for academic papers, apply these style standards:
 
-### Visual Standards
+#### Visual Standards
 - **Clean white background** — No decorative patterns or gradients (unless subtle)
 - **Sans-serif fonts** — Arial, Helvetica, or Computer Modern; minimum 14pt
 - **Subtle color palette** — Not rainbow colors; use 3-5 coordinated colors
 - **Print-friendly** — Must be readable in grayscale (many reviewers print papers)
 - **Professional borders** — Thin (2-3px), solid colors, not flashy
 
-### Layout Standards
+#### Layout Standards
 - **Horizontal flow** — Left-to-right is the standard for pipelines
 - **Clear grouping** — Use subtle background boxes to group related modules
 - **Consistent sizing** — Similar components should have similar sizes
 - **Balanced whitespace** — Not cramped, not sparse
 
-### Arrow Standards (MOST CRITICAL)
+#### Arrow Standards (MOST CRITICAL)
 - **Thick strokes** — 4-6px minimum (thin arrows disappear when printed)
 - **Clear arrowheads** — Large, filled triangular heads
 - **Dark colors** — Black or dark gray (#333333); avoid colored arrows
@@ -305,7 +286,7 @@ When the diagram is intended for academic papers, apply these style standards:
 - **No crossings** — Reorganize layout to avoid arrow crossings
 - **CORRECT DIRECTION** — Arrows must point to the RIGHT target!
 
-### Color Palette (Academic Professional)
+#### Color Palette (Academic Professional)
 - **Inputs**: Green (#10B981 / #34D399)
 - **Encoders**: Blue (#2563EB / #3B82F6)
 - **Fusion**: Purple (#7C3AED / #8B5CF6)
@@ -313,7 +294,7 @@ When the diagram is intended for academic papers, apply these style standards:
 - **Arrows**: Black or dark gray (#333333 / #1F2937)
 - **Background**: Pure white (#FFFFFF)
 
-### What to AVOID
+#### What to AVOID
 - Rainbow color schemes (too many colors)
 - Thin, hairline arrows
 - Heavy drop shadows or glowing effects
@@ -321,17 +302,17 @@ When the diagram is intended for academic papers, apply these style standards:
 - Excessive decorative icons
 - Small text that's unreadable when printed
 
-## Math Formulas in Diagrams (KaTeX)
+### Math Formulas in Diagrams (KaTeX)
 
 Mermaid supports rendering mathematical expressions via KaTeX (v10.9.0+). **When the diagram content involves math** (formulas, equations, Greek letters, subscripts/superscripts, fractions, matrices, operators, etc.), use KaTeX notation instead of plain-text approximations.
 
-### Supported Diagram Types for Math
+#### Supported Diagram Types for Math
 
 Math rendering with `$$...$$` is supported in:
 - **Flowcharts** (`flowchart` / `graph`) — in node labels and edge labels
 - **Sequence Diagrams** — in participant aliases, messages, and notes
 
-### Syntax Rules
+#### Syntax Rules
 
 1. **Wrap math expressions in `$$` delimiters** inside quoted strings:
    ```
@@ -353,7 +334,7 @@ Math rendering with `$$...$$` is supported in:
    node["$$\text{Attention}(Q, K, V)$$"]
    ```
 
-### Common Math Patterns for ML/Science Diagrams
+#### Common Math Patterns for ML/Science Diagrams
 
 | Concept | KaTeX Syntax | Renders As |
 | ------- | ------------ | ---------- |
@@ -368,7 +349,7 @@ Math rendering with `$$...$$` is supported in:
 | Norm | `$$\|\|x\|\|_2$$` | ‖x‖₂ |
 | Hat/tilde | `$$\hat{y}, \tilde{x}$$` | ŷ, x̃ |
 
-### Example: Attention Mechanism with Math
+#### Example: Attention Mechanism with Math
 
 ```
 flowchart TD
@@ -387,20 +368,20 @@ flowchart TD
     weighted --> output
 ```
 
-### When to Use Math vs Plain Text
+#### When to Use Math vs Plain Text
 
 - **Use math** when the diagram is for academic/technical audiences and precision matters (papers, lectures, technical docs)
 - **Use plain text** (`<br/>` for line breaks) when the diagram is for general audiences or when math would add visual clutter without improving clarity
 - **Default behavior**: If the user's request contains mathematical notation, equations, or Greek symbols, automatically use KaTeX math rendering. Otherwise, use plain text labels.
 
-### Gotchas
+#### Gotchas
 
 - The `$$` delimiters must be **inside quoted strings** — unquoted `$$` will break parsing
 - Backslashes in KaTeX (`\frac`, `\sqrt`, etc.) work normally in Mermaid strings
 - Very long formulas may overflow node boxes — break them with `\\` (newline in KaTeX) or simplify
 - **Always verify rendering** with `mmdc` — some KaTeX expressions may not render in all environments
 
-## Code Quality Rules
+### Code Quality Rules
 
 Generated Mermaid code MUST:
 
@@ -411,7 +392,7 @@ Generated Mermaid code MUST:
 5. Use `<br/>` for line breaks inside node labels — never use `\n`, which renders as literal text
 6. Avoid special characters in labels that break Mermaid parsing (wrap in quotes if needed)
 
-## Output Structure
+### Output Structure
 
 ```
 figures/
@@ -420,7 +401,7 @@ figures/
 └── <diagram-name>.png    # Rendered PNG (if mmdc available)
 ```
 
-## Key Rules (MUST FOLLOW)
+### Key Rules (MUST FOLLOW)
 
 1. **ALWAYS save files to `figures/` directory** — Never just output code in chat
 2. **ALWAYS generate BOTH `.mmd` and `.md` files** — They must contain identical Mermaid code
@@ -437,33 +418,3 @@ figures/
 ---
 
 User requirements: $ARGUMENTS
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/mermaid-diagram/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>figures</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/mermaid-diagram/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

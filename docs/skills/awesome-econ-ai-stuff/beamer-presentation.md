@@ -4,54 +4,24 @@
 
 Create academic presentations in Beamer with professional themes.
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../awesome-econ-ai-stuff/">awesome-econ-ai-stuff (Antonio Mele)</a></div><div><b>Category:</b> <code>slides</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>Other (see repo)</code></div><div><b>Updated:</b> 2026</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>dissemination</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/communication/beamer-presentation/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/beamer-presentation/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/communication/beamer-presentation/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Beamer Presentation Creator
 
----
-
----
-name: beamer-presentation
-description: Create academic presentations in Beamer with professional themes
-workflow_stage: communication
-compatibility:
-  - claude-code
-  - cursor
-  - codex
-  - gemini-cli
-author: Awesome Econ AI Community
-version: 1.0.0
-tags:
-  - LaTeX
-  - Beamer
-  - presentations
-  - slides
----
-
-# Beamer Presentation Creator
-
-## Purpose
+### Purpose
 
 This skill helps economists create professional academic presentations using LaTeX Beamer. It provides templates for conference talks, job market presentations, and seminar presentations with proper structure and clean aesthetics.
 
-## When to Use
+### When to Use
 
 - Preparing conference presentations
 - Creating job market talk slides
 - Making seminar/workshop presentations
 - Converting a paper into presentation slides
 
-## Instructions
+### Instructions
 
-### Step 1: Understand the Context
+#### Step 1: Understand the Context
 
 Ask the user:
 1. What type of presentation? (20-min conference, 90-min seminar, job market)
@@ -59,7 +29,7 @@ Ask the user:
 3. What's the target audience expertise level?
 4. Do they have specific style preferences?
 
-### Step 2: Structure by Time
+#### Step 2: Structure by Time
 
 | Duration | Structure |
 |----------|-----------|
@@ -67,7 +37,7 @@ Ask the user:
 | 45-60 min | Add literature review, more results detail, robustness |
 | 90 min | Full seminar with theoretical framework, extensive empirics |
 
-### Step 3: Follow Presentation Best Practices
+#### Step 3: Follow Presentation Best Practices
 
 - **One idea per slide**
 - **Minimal text** - use bullets of 3-6 words
@@ -75,7 +45,7 @@ Ask the user:
 - **Consistent colors** - use a limited palette
 - **Reveal incrementally** using `\pause` or `<+->` for complex slides
 
-## Example Output
+### Example Output
 
 ```latex
 \documentclass[aspectratio=169, 11pt]{beamer}
@@ -303,7 +273,7 @@ Ask the user:
 \end{document}
 ```
 
-## Theme Recommendations
+### Theme Recommendations
 
 | Audience | Theme | Notes |
 |----------|-------|-------|
@@ -312,7 +282,7 @@ Ask the user:
 | Job market | `default` with custom colors | Safe, customizable |
 | Policy | `CambridgeUS` | Authoritative look |
 
-## Best Practices
+### Best Practices
 
 1. **One message per slide** - if you need more, split it
 2. **Use figures over tables** when possible
@@ -321,7 +291,7 @@ Ask the user:
 5. **Prepare backup slides** for anticipated questions
 6. **Practice timing** - 1-2 minutes per slide max
 
-## Common Pitfalls
+### Common Pitfalls
 
 - ❌ Too much text on slides
 - ❌ Reading slides word-for-word
@@ -329,43 +299,13 @@ Ask the user:
 - ❌ Skipping the roadmap/preview
 - ❌ Ending with "Questions?" instead of takeaways
 
-## References
+### References
 
 - [Shapiro (2019) How to Give Applied Micro Talk](https://www.brown.edu/Research/Shapiro/pdfs/applied_micro_slides.pdf)
 - [Beamer User Guide](https://ctan.org/pkg/beamer)
 - [Metropolis Theme](https://github.com/matze/mtheme)
 
-## Changelog
+### Changelog
 
-### v1.0.0
+#### v1.0.0
 - Initial release with conference talk template
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/communication/beamer-presentation/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>meleantonio/awesome-econ-ai-stuff</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../awesome-econ-ai-stuff.md">awesome-econ-ai-stuff (Antonio Mele)</a></dd>
-<dt><b>Category</b></dt><dd><code>slides</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>dissemination</code></dd>
-<dt><b>License</b></dt><dd>Other (see repo)</dd>
-<dt><b>Last update</b></dt><dd>2026</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff">⭐ meleantonio/awesome-econ-ai-stuff</a><br><img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/communication/beamer-presentation/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/beamer-presentation/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/awesome-econ-ai-stuff.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

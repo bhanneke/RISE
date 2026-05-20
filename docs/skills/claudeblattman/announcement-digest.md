@@ -4,46 +4,34 @@
 
 Triage and digest announcements / newsletters / Slack-equivalent feeds
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/announcement-digest.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/announcement-digest/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/announcement-digest.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Announcement Digest
-# Adapt for your source — swap the @[SOURCE] label, names, and classification rules.
-# This is a sanitized version of a working school-email digest skill.
-# Full walkthrough: https://claudeblattman.com/workflows/school-digest/
+## Announcement Digest
+## Adapt for your source — swap the @[SOURCE] label, names, and classification rules.
+## This is a sanitized version of a working school-email digest skill.
+## Full walkthrough: https://claudeblattman.com/workflows/school-digest/
 
 *v1.0 — Announcement email digest skill*
 
 Compile a digest of high-volume announcement emails from a single source (school, employer, nonprofit, professional association). Extract what matters, skip the noise, send a summary.
 
-## Prerequisites
+### Prerequisites
 
 - **Gmail MCP** — for searching and reading emails
 - **Gmail label + filter** — all source emails auto-labeled (e.g., `@School`, `@CompanyNews`)
 - **Classification rules** — a config file with your calibrated rules (see walkthrough)
 - **send-email.py** or equivalent — for sending the compiled digest
 
-## Config & State Files
+### Config & State Files
 
 - **Rules:** `[YOUR_CONFIG_PATH]/digest-rules.md`
 - **State:** `[YOUR_STATE_PATH]/digest-state.json`
 
 State file tracks: `last_digest_date`, `digest_count`, `reported_message_ids`, `reported_message_ids_ttl_days` (default 30).
 
-## Execution Steps
+### Execution Steps
 
-### Step 1: Read State & Check Frequency
+#### Step 1: Read State & Check Frequency
 
 1. Read `digest-state.json`.
 2. If `last_digest_date` is not null and fewer than 2 days have passed:
@@ -51,7 +39,7 @@ State file tracks: `last_digest_date`, `digest_count`, `reported_message_ids`, `
    - **Exit.**
 3. Store `digest_count` (needed for first-time intro check at Step 5).
 
-### Step 2: Fetch Labeled Emails
+#### Step 2: Fetch Labeled Emails
 
 1. Compute lookback date: `last_digest_date` if set, otherwise 14 days ago.
 2. Search Gmail: `label:[YOUR_LABEL] after:[lookback_date in YYYY/MM/DD]`
@@ -60,7 +48,7 @@ State file tracks: `last_digest_date`, `digest_count`, `reported_message_ids`, `
 3. Filter out any message IDs already in `reported_message_ids`.
 4. If no new emails remain, exit with message.
 
-### Step 3: Fetch Email Content
+#### Step 3: Fetch Email Content
 
 1. For each new message, fetch full content via `get_gmail_message_content`.
    - Fetch in parallel batches of 10.
@@ -68,7 +56,7 @@ State file tracks: `last_digest_date`, `digest_count`, `reported_message_ids`, `
 3. Accumulate total word count across all fetched message bodies.
 4. **Prune `reported_message_ids`**: Remove IDs older than `reported_message_ids_ttl_days`.
 
-### Step 4: Classify Each Email
+#### Step 4: Classify Each Email
 
 Read your rules config for the full rule set. For each email (or thread), apply classification in this order:
 
@@ -95,13 +83,13 @@ Apply rules from config using this priority order:
 4. **HIGH keyword overrides LLM urgency** upward (never downward).
 5. **SKIP keyword overrides to skip** unless LLM said `action_required`.
 
-### Step 4.5: Write Classified Artifact
+#### Step 4.5: Write Classified Artifact
 
 Write full classified data to `/tmp/digest-classified.json`. This serves as:
 - A **compaction safeguard** — if context is lost, re-compose from this file
 - A **debug artifact** — review classification accuracy after the fact
 
-### Step 5: Compose Digest
+#### Step 5: Compose Digest
 
 Format as plain text. Structure:
 
@@ -141,7 +129,7 @@ Compressed ~[W] words across [N] emails ([M] threads) into this digest.
 - Omit empty sections
 - **First-time send** (if `digest_count` was 0): Prepend intro explaining what this automated digest is and who it's from.
 
-### Step 6: Save State & Send
+#### Step 6: Save State & Send
 
 1. **Write state file FIRST** (before sending):
    - Add ALL processed message IDs to `reported_message_ids` (including skipped)
@@ -152,23 +140,23 @@ Compressed ~[W] words across [N] emails ([M] threads) into this digest.
 
 3. **Do NOT mark source emails as read.** The digest is additive — it doesn't replace checking the source.
 
-### Step 7: Log Performance
+#### Step 7: Log Performance
 
 Log tool call count, duration, and volume for future optimization.
 
-## Edge Cases
+### Edge Cases
 
 - **No emails:** Exit with message at Step 2.
 - **All already reported:** Exit with message at Step 2.
 - **Send failure after state write:** State is already saved (prevents duplicate digests). Log the error and retry manually.
 
-## What This Skill Does NOT Do
+### What This Skill Does NOT Do
 
 - Does not mark emails as read
 - Does not apply Gmail labels
 - Does not modify any emails
 
-## Building Your Own Rules Config
+### Building Your Own Rules Config
 
 The classification rules are the hardest part. Don't try to write them upfront — calibrate from real data:
 
@@ -183,33 +171,3 @@ See the [full walkthrough](https://claudeblattman.com/workflows/school-digest/) 
 ---
 
 *Sanitized from a working skill. Adapt the label, categories, and rules for your source.*
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/announcement-digest.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/announcement-digest.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/announcement-digest/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

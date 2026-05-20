@@ -4,34 +4,15 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/proof-checker/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/proof-checker/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: proof-checker
-description: Rigorous mathematical proof verification and fixing workflow. Reads a LaTeX proof, identifies gaps via cross-model review (Codex GPT-5.4 xhigh), fixes each gap with full derivations, re-reviews, and generates an audit report. Use when user says "检查证明", "verify proof", "proof check", "审证明", "check this proof", or wants rigorous mathematical verification of a theory paper.
-argument-hint: "[path-to-tex-file or proof-description] [--deep-fix] [--restatement-check]"
-allowed-tools: Bash(*), Read, Grep, Glob, Write, Edit, Agent, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Proof Checker: Rigorous Mathematical Verification & Fixing
+## Proof Checker: Rigorous Mathematical Verification & Fixing
 
 Systematically verify a mathematical proof via cross-model adversarial review, fix identified gaps, re-review until convergence, and generate a detailed audit report with proof-obligation accounting.
 
-## Context: $ARGUMENTS
+### Context: $ARGUMENTS
 
-## Constants
+### Constants
 
 - MAX_REVIEW_ROUNDS = 3
 - REVIEWER_MODEL = `gpt-5.5` via Codex MCP, reasoning effort always `xhigh`
@@ -41,7 +22,7 @@ Systematically verify a mathematical proof via cross-model adversarial review, f
 - STATE_FILE: `PROOF_CHECK_STATE.json` (for recovery)
 - SKELETON_DOC: `PROOF_SKELETON.md` (micro-claim inventory)
 
-### Acceptance Gate (objective, replaces subjective scoring)
+#### Acceptance Gate (objective, replaces subjective scoring)
 
 The proof passes when ALL of the following hold:
 1. Zero open FATAL or CRITICAL issues
@@ -49,9 +30,9 @@ The proof passes when ALL of the following hold:
 3. All big-O/Θ/o statements have declared parameter dependence and uniformity scope
 4. Counterexample pass executed on all key lemmas (log candidates even if none found)
 
-## Issue Taxonomy (20 categories, 4 groups)
+### Issue Taxonomy (20 categories, 4 groups)
 
-### Group A: Logic & Proof Structure
+#### Group A: Logic & Proof Structure
 
 | Category | Description | Example |
 |----------|-------------|---------|
@@ -63,7 +44,7 @@ The proof passes when ALL of the following hold:
 | **CIRCULAR_DEPENDENCY** | Lemma uses theorem that depends on it | |
 | **LOGICAL_GAP** | A step is not justified by what precedes it | B=Θ(1) → β_K=0 without analyzing W |
 
-### Group B: Analysis & Measure Theory
+#### Group B: Analysis & Measure Theory
 
 | Category | Description | Example |
 |----------|-------------|---------|
@@ -74,7 +55,7 @@ The proof passes when ALL of the following hold:
 | **REGULARITY_GAP** | Differentiability/Lipschitz/convexity used but not established | |
 | **STOCHASTIC_MODE_CONFUSION** | Mixes a.s./in prob./in L²/in expectation | |
 
-### Group C: Model & Parameter Tracking
+#### Group C: Model & Parameter Tracking
 
 | Category | Description | Example |
 |----------|-------------|---------|
@@ -85,16 +66,16 @@ The proof passes when ALL of the following hold:
 | **NORMALIZATION_MISMATCH** | Coordinate/scaling conventions inconsistent | Rescaled vs raw coordinates |
 | **CONSTANT_DEPENDENCE_HIDDEN** | "C" depends on d,n,K but treated as universal | |
 
-### Group D: Scope & Claims
+#### Group D: Scope & Claims
 
 | Category | Description | Example |
 |----------|-------------|---------|
 | **SCOPE_OVERCLAIM** | Conclusion stated more broadly than proof supports | "β_K=0" with only generic overlap |
 | **REFERENCE_MISMATCH** | Cited theorem's hypotheses not verified at point of use | |
 
-## Two-Axis Severity System
+### Two-Axis Severity System
 
-### Axis A — Proof Status (what is wrong)
+#### Axis A — Proof Status (what is wrong)
 
 | Status | Meaning |
 |--------|---------|
@@ -104,7 +85,7 @@ The proof passes when ALL of the following hold:
 | **OVERSTATED** | True only after weakening conclusion / adding qualifiers |
 | **UNCLEAR** | Ambiguous notation / definition drift (not wrong per se) |
 
-### Axis B — Impact (how much breaks)
+#### Axis B — Impact (how much breaks)
 
 | Impact | Meaning |
 |--------|---------|
@@ -112,7 +93,7 @@ The proof passes when ALL of the following hold:
 | **LOCAL** | Affects a side result but not the main theorem |
 | **COSMETIC** | Exposition only |
 
-### Severity Labels (derived)
+#### Severity Labels (derived)
 
 | Label | Definition |
 |-------|------------|
@@ -121,7 +102,7 @@ The proof passes when ALL of the following hold:
 | **MAJOR** | (UNJUSTIFIED + LOCAL) or (UNDERSTATED/OVERSTATED + GLOBAL) |
 | **MINOR** | Clarity / notation / dimension bookkeeping that doesn't change claims |
 
-## Side-Condition Checklists for Common Theorems
+### Side-Condition Checklists for Common Theorems
 
 When the proof invokes any of the following, require explicit verification of ALL listed conditions:
 
@@ -139,9 +120,9 @@ When the proof invokes any of the following, require explicit verification of AL
 | **Analytic continuation** | Domain connectivity + identity theorem conditions |
 | **WLOG reduction** | Invariance under claimed symmetry + reduction is reversible |
 
-## Workflow
+### Workflow
 
-### Phase 0: Preparation
+#### Phase 0: Preparation
 
 1. **Locate the proof**: Find the main `.tex` file(s).
 2. **Read the entire proof**: Extract list of all theorems/lemmas/propositions/corollaries/definitions/assumptions.
@@ -149,7 +130,7 @@ When the proof invokes any of the following, require explicit verification of AL
 4. **Build a section map**: Structured list with line numbers and key claims.
 5. **Identify the main theorem**: Central result, assumptions, claims.
 
-### Phase 0.5: Proof-Obligation Ledger
+#### Phase 0.5: Proof-Obligation Ledger
 
 Build formal accounting artifacts. Save to `PROOF_SKELETON.md`:
 
@@ -195,7 +176,7 @@ h_act = Θ(κ^α)  [as κ→0, uniform in π on compact subsets of Π_K, for fix
 ```
 Flag any statement where limit order is ambiguous or uniformity is unclear.
 
-### Phase 1: First Review (Codex GPT-5.4 xhigh)
+#### Phase 1: First Review (Codex GPT-5.4 xhigh)
 
 Submit the **complete proof content** with the following **mandatory reviewer checklist** in the prompt:
 
@@ -300,7 +281,7 @@ If the user passed `--deep-fix` on invocation, append the following block to the
 
 **Save the threadId.** Parse into structured issue list. Write to `PROOF_AUDIT.md`.
 
-### Phase 1.5: Counterexample Red Team
+#### Phase 1.5: Counterexample Red Team
 
 For each CRITICAL or MAJOR issue, and for every key lemma that introduces:
 - a new inequality bound
@@ -323,7 +304,7 @@ Systematically attempt to construct counterexamples using:
 
 Record all attempts (successful or not) in `PROOF_AUDIT.md`.
 
-### Phase 2: Fix Implementation
+#### Phase 2: Fix Implementation
 
 For each issue, ordered by severity (FATAL → CRITICAL → MAJOR → MINOR):
 
@@ -346,7 +327,7 @@ Log this choice — it is a scope-changing decision when it alters theorem state
 
 #### Step 2d: Record the fix
 ```markdown
-### Fix N: [SHORT TITLE]
+#### Fix N: [SHORT TITLE]
 **Issue**: [id] [CATEGORY] — [description]
 **Severity**: FATAL / CRITICAL / MAJOR / MINOR
 **Status**: INVALID / UNJUSTIFIED / UNDERSTATED / OVERSTATED
@@ -367,13 +348,13 @@ Log this choice — it is a scope-changing decision when it alters theorem state
 pdflatex -interaction=nonstopmode <file>.tex 2>&1 | grep -E "Error|Warning|undefined"
 ```
 
-### Phase 3: Re-Review (Codex GPT-5.4 xhigh)
+#### Phase 3: Re-Review (Codex GPT-5.4 xhigh)
 
 Use `codex-reply` with saved threadId. Include fix summaries. Request the same mandatory checklist.
 
 Check acceptance gate. If not met, repeat Phases 2-3 (up to MAX_REVIEW_ROUNDS).
 
-### Phase 3.5: Global Closure & Independent Verification
+#### Phase 3.5: Global Closure & Independent Verification
 
 #### Global closure checks
 After all fixes, verify the proof as a whole:
@@ -405,7 +386,7 @@ After fixes, re-run:
 - Counterexample suite on all DOWNSTREAM lemmas of modified results
 - Assumption-delta report: what became stronger/weaker due to fixes?
 
-### Phase 3.6: Theorem Restatement Regression (opt-in)
+#### Phase 3.6: Theorem Restatement Regression (opt-in)
 
 **Default**: skipped. Existing callers see no change.
 
@@ -451,7 +432,7 @@ If `--restatement-check` is set but the cross-location scan cannot complete, emi
 - Ambiguous label resolution (e.g., the same `\label{thm:foo}` appears more than once with no clear canonical pick).
 - **No labeled canonical theorem-like block found** (the algorithm only inspects `\begin{theorem|lemma|proposition|corollary}` blocks with an explicit `\label{...}`; if there is no such block, there is nothing to compare restatements against).
 
-### Phase 3.9: Unrecoverable Proof Protocol
+#### Phase 3.9: Unrecoverable Proof Protocol
 
 If acceptance gate is not met after MAX_REVIEW_ROUNDS, output a **Proof Unrecoverable Report**:
 1. Minimal set of blocking FATAL/CRITICAL issues that could not be resolved
@@ -461,7 +442,7 @@ If acceptance gate is not met after MAX_REVIEW_ROUNDS, output a **Proof Unrecove
 
 Do NOT silently declare success. The report must be honest.
 
-### Phase 4: Audit Report Generation
+#### Phase 4: Audit Report Generation
 
 Generate `proof_audit_report.tex` with:
 
@@ -474,7 +455,7 @@ Generate `proof_audit_report.tex` with:
 
 Compile: `pdflatex proof_audit_report.tex && pdflatex proof_audit_report.tex`
 
-### Phase 5: State Persistence
+#### Phase 5: State Persistence
 
 Write `PROOF_CHECK_STATE.json`:
 ```json
@@ -493,27 +474,27 @@ Write `PROOF_CHECK_STATE.json`:
 }
 ```
 
-## Deep-Fix Mode (opt-in)
+### Deep-Fix Mode (opt-in)
 
 **Default**: disabled. The Phase 1 reviewer emits issues with `minimal_fix` (a 1-2 sentence pointer); existing callers see no change.
 
 **Opt-in**: pass `--deep-fix` on invocation. The Phase 1 reviewer prompt is **augmented** (not replaced) with the "DEEP-FIX OUTPUT" and "ALGEBRA / TYPE SANITY PASS" blocks above, so the reviewer also returns a `deep_fix_plan` per issue: corrected statement, changed equations, downstream label list, minimal LaTeX patch plan, and closure tests. Issues invoking Schur / Young / Cauchy-Schwarz / Hölder / quadratic forms / operator norms / power counting additionally carry an `algebra_sanity` block (dimension table + power count + zero-coupling check + constant-dependence diff).
 
-### Why opt-in
+#### Why opt-in
 The default `minimal_fix` prose is intentionally short — it suits the common case where the executor wants high-level pointers and will derive the patch separately. Forcing `deep_fix_plan` on every run would (a) inflate every reviewer call by 2-5×, (b) trigger re-review thrash for issues the executor has already decided to weaken or defer, and (c) change the shape of `details.issues` for every existing caller. The flag preserves zero behavior change for default invocations while letting the executor request repair-grade output when the fix is going to be applied immediately.
 
-### Effect when enabled
+#### Effect when enabled
 - The Phase 1 reviewer prompt is augmented with the deep-fix and algebra-sanity blocks; nothing in the original mandatory checklist or output format is removed.
 - `PROOF_AUDIT.json` `details` gains a sibling field `deep_fix_plans` (parallel to `details.issues`); see "Submission Artifact Emission" below.
 - The top-level `verdict`, `reason_code`, and `summary` are **unchanged in shape and decision rule**: deep-fix output is advisory tooling for the executor, not a verdict-altering signal.
 - Verifier gates and downstream skills (`paper-writing` Phase 6, `verify_paper_audits.sh`) MUST treat absence of `deep_fix_plans` as the only valid default state and MUST NOT block on its presence or content.
 
-### When opt-in is appropriate
+#### When opt-in is appropriate
 - The executor intends to apply the fix in the same session and wants to skip a follow-up "give me a concrete patch" thread.
 - A previous default-mode run identified a CRITICAL or MAJOR issue whose `minimal_fix` was too vague to act on (e.g., "redo the Schur step" without specifying the corrected operator-norm bound).
 - Algebra-heavy proofs with Schur / quadratic-form / operator-norm steps where the reviewer's first pass has consistently produced under-specified fixes.
 
-### Failure modes
+#### Failure modes
 
 A deep-fix-only failure must never contaminate the default proof-check output. All of the following paths emit `details.deep_fix_status: "unavailable"` + `details.deep_fix_plans: []` (with a one-line note in `details.deep_fix_note`) and leave the standard issue list, top-level verdict, reason_code, and summary unchanged:
 
@@ -525,9 +506,9 @@ Verifier gates MUST treat `unavailable` identically to the field being absent: n
 
 If the augmented Phase 1 call fails so badly that the normal proof review cannot be recovered (e.g., the reviewer thread itself errored), retry once with the unaugmented prompt; if that also fails, fall through to the existing reviewer-failure path that maps to the top-level `ERROR` verdict.
 
-## Key Rules
+### Key Rules
 
-### Mathematical rigor
+#### Mathematical rigor
 - **Never accept a proof step on faith**. "Clearly" / "it follows" / "by standard arguments" are red flags — each must spawn a micro-claim.
 - **Hypothesis discharge**: Every time a lemma is APPLIED, verify EACH of its hypotheses at that point. Use the side-condition checklists above.
 - **Interchange discipline**: Every swap of limit/expectation/derivative/integral must cite a theorem (DCT/MCT/Fubini/Leibniz) and verify its conditions with explicit dominating function or integrability proof.
@@ -537,31 +518,31 @@ If the augmented Phase 1 call fails so badly that the normal proof review cannot
 - **WLOG prohibition**: Every "without loss of generality" must have an explicit micro-claim proving the reduction. No free WLOGs.
 - **No silent assumption strengthening**: Any fix that adds conditions must propagate to the theorem statement.
 
-### Cross-model protocol
+#### Cross-model protocol
 - **Claude analyzes, Codex reviews**: Claude reads proof, formulates questions, implements fixes. Codex provides adversarial review.
 - **Codex reasoning always xhigh**: Never downgrade.
 - **Send full content**: Don't summarize — send actual math for line-by-line checking.
 - **Preserve threadId within a single run**: Use `codex-reply` for Phase 3 follow-up rounds within the same top-level `/proof-checker` invocation, so the reviewer keeps prior-issue context when judging whether a fix closed the gap. Across separate top-level invocations, always start a fresh thread (see "Thread independence" below).
 
-### Fix quality
+#### Fix quality
 - **Minimal fixes**: Fix exactly what's broken, nothing more.
 - **Full derivation**: Every fix includes complete mathematical argument.
 - **Explicit scope decisions**: Each fix is tagged ADD_DERIVATION / STRENGTHEN_ASSUMPTION / WEAKEN_CLAIM / ADD_REFERENCE.
 - **Compile after each fix**: LaTeX must compile cleanly.
 
-### Scope honesty
+#### Scope honesty
 - **Don't overclaim**: If a fix makes a result conditional, say so.
 - **Separate "proven" from "assumed"**: The audit report has an explicit section for this.
 - **Log open problems**: Issues requiring future work are listed, not hidden.
 
-### Opt-in flag discipline
+#### Opt-in flag discipline
 - **Deep-fix is opt-in only**: never auto-enable; never block on `deep_fix_plans` content; existing callers must observe identical reviewer output and identical JSON schema if they do not pass `--deep-fix`.
 - **Reviewer prompt augmentation is additive**: the deep-fix block is appended to the Phase 1 prompt, not substituted for any part of it. The original mandatory checklist (A-H) and original per-issue OUTPUT FORMAT remain in place verbatim.
 - **Restatement check is opt-in only**: Phase 3.6 runs only when `--restatement-check` is set; existing callers must observe identical reviewer output and identical JSON schema if they do not pass the flag.
 - **No Phase reordering**: enabling Phase 3.6 inserts it strictly between 3.5 and 3.9; it does not skip any other phase or change their semantics.
 - **No verdict crosstalk**: neither deep-fix output nor `restatement_drift` ever alters top-level `verdict` or `reason_code`. A paper with non-empty drift or with deep-fix plans may still pass; a paper with FAIL verdict stays FAIL whether or not either flag was set.
 
-## Output Files
+### Output Files
 
 | File | Content | When |
 |------|---------|------|
@@ -573,7 +554,7 @@ If the augmented Phase 1 call fails so badly that the normal proof review cannot
 
 When `--restatement-check` is set, `PROOF_AUDIT.json` additionally carries `details.restatement_drift` and `details.restatement_check_status`; both fields are omitted when the flag is unset. See "Submission Artifact Emission" below.
 
-## Submission Artifact Emission
+### Submission Artifact Emission
 
 This skill **always** writes `PROOF_AUDIT.json` at the paper directory
 root (i.e. `paper/PROOF_AUDIT.json` when invoked from `/paper-writing`
@@ -611,7 +592,7 @@ The artifact conforms to the schema in `shared-references/assurance-contract.md`
 }
 ```
 
-### Optional: `details.deep_fix_plans` (only when `--deep-fix` is set)
+#### Optional: `details.deep_fix_plans` (only when `--deep-fix` is set)
 
 ```json
 "details": {
@@ -652,7 +633,7 @@ Field semantics:
 - Downstream consumers MUST treat absence of either field as the only valid default state and MUST NOT raise on missing.
 - `deep_fix_plans` is advisory tooling for the executor; `verify_paper_audits.sh` and `paper-writing` Phase 6 do not block on its content or shape.
 
-### Optional: `details.restatement_drift` (only when `--restatement-check` is set)
+#### Optional: `details.restatement_drift` (only when `--restatement-check` is set)
 
 ```json
 "details": {
@@ -681,7 +662,7 @@ Field semantics:
 - Downstream consumers MUST treat absence or `"unavailable"` identically as the default state and MUST NOT raise on missing.
 - `restatement_drift` does **not** alter `details.issues` and does **not** change the top-level `verdict` decision rule. The reviewer may at its discretion mirror a CRITICAL-severity drift into `details.issues` as a regular issue, but that is a per-issue judgment, not an automatic schema-driven rule.
 
-### `audited_input_hashes` scope
+#### `audited_input_hashes` scope
 
 Hash the **declared input set** actually reviewed — the theorem-bearing
 `.tex` files passed into this invocation — not a repo-wide union and not
@@ -694,7 +675,7 @@ verifier resolves relative to the paper dir; prefixing produces
 `paper/paper/...` and false-fails as STALE). Use **absolute paths** for
 files outside the paper dir.
 
-### Verdict decision table
+#### Verdict decision table
 
 | Input state                                           | Verdict          | `reason_code` example |
 |-------------------------------------------------------|------------------|-----------------------|
@@ -708,7 +689,7 @@ files outside the paper dir.
 MAJOR issues alone map to `WARN` or `FAIL` at the reviewer's discretion and
 must carry an explicit justification in `summary` + `details.issues`.
 
-### Thread independence
+#### Thread independence
 
 Every **top-level** `/proof-checker` invocation starts a fresh `mcp__codex__codex` thread; do not reuse a saved threadId across separate invocations of this skill. Within a single top-level invocation, `codex-reply` is the correct primitive to thread the Phase 3 follow-up rounds — the reviewer needs prior-issue context to judge whether a fix actually closed the gap, and the Phase 1→3 flow above explicitly relies on this. The Phase 3.5 "Independent second review for FATAL/CRITICAL fixes" sub-step is the deliberate exception inside a single run: it must spawn a fresh thread so the blind reviewer has no exposure to the original critique.
 
@@ -718,7 +699,7 @@ This skill never blocks by itself; `paper-writing` Phase 6 plus the
 verifier decide whether the verdict blocks finalization based on the
 `assurance` level.
 
-## Example Invocations
+### Example Invocations
 
 ```
 /proof-checker "neurips_2025.tex"
@@ -728,33 +709,3 @@ verifier decide whether the verdict blocks finalization based on the
 /proof-checker "paper/main.tex --restatement-check"   # opt-in: run Phase 3.6 to detect cross-location theorem-statement drift
 /proof-checker "paper/main.tex --deep-fix --restatement-check"   # both opt-ins, independent
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/proof-checker/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/proof-checker/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>submission</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>dissemination</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/resubmit-pipeline/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/resubmit-pipeline/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: resubmit-pipeline
-description: "Workflow 5: orchestrate a text-only resubmit of a polished paper to a different venue under hard constraints (no new experiments, no bib edits, no framework changes, never overwrite prior submissions). Phase 0 physical isolation, Phase 0.5 health + anonymity check, Phase 1 audit (proof / claim / citation), Phase 2 microedits via auto-loop with edit-whitelist + citation-audit --soft-only, Phase 3 kill-argument adversarial gate, Phase 4 final compile + Overleaf push via /overleaf-sync. Use when user says \"resubmit pipeline\", \"重投流程\", \"port paper to <new venue>\", \"resubmit to <venue>\", \"tighten paper for resubmission\", or has a rejected/withdrawn paper to move to a different top venue under tight time budget."
-argument-hint: "[paper-base-dir] [— target-venue: <name>] [— review-corpus: <path>]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Resubmit Pipeline: Text-Only Microedit Mode
+## Resubmit Pipeline: Text-Only Microedit Mode
 
 Compose a polished paper into a new venue under text-only constraints: **$ARGUMENTS**
 
-## Why This Exists
+### Why This Exists
 
 Most ARIS writing workflows assume the input is either a narrative report (Workflow 3) or an in-progress paper that may still need experiments / bib changes / structural edits. Resubmit is a fundamentally different scope:
 
@@ -40,20 +21,20 @@ Most ARIS writing workflows assume the input is either a narrative report (Workf
 
 Existing skills cover adjacent territory but none of this exact composition: `/rebuttal` builds the OpenReview-style response document, not in-paper microedits; `/auto-paper-improvement-loop` is the per-round engine but presupposes someone has already chosen the base manuscript, migrated venue format, set the edit whitelist, queued the reviewer feedback, and decided what NOT to change. `/resubmit-pipeline` fills that orchestration gap.
 
-## When to Use
+### When to Use
 
 - A theory or system paper was rejected at venue A and you want to resubmit to venue B with tight time budget (≤ 1-2 weeks).
 - You have **3 inputs ready**: the polished paper directory at venue A's format, the target venue B's format/template/style files, and the prior reviewer reports.
 - You explicitly do **not** want to re-derive theorems, run new experiments, or change the bibliography.
 
-## When NOT to Use
+### When NOT to Use
 
 - The paper still needs experiments — use `/experiment-bridge` → `/auto-review-loop` first.
 - The paper still needs structural rewrites or new sections — use `/paper-writing` (Workflow 3).
 - You want to write the rebuttal response itself — use `/rebuttal` (Workflow 4).
 - The reviewer feedback demands new theorems or new framework — escalate to user before starting; this skill emits `BLOCKED` with `reason_code: out_of_scope_microedit` if it detects this case.
 
-## Constants
+### Constants
 
 - **REVIEWER_MODEL** = inherits from `/auto-paper-improvement-loop`'s default (`gpt-5.5` via Codex MCP) unless the user passes `— reviewer-model: gpt-5.4` (legacy) or another OpenAI model. Codex reasoning effort is fixed at `xhigh` for all reviewer calls per the existing skill convention.
 - **ROUNDS** = 2 (default; matches `/auto-paper-improvement-loop`'s diminishing-returns line). A 3rd round only fires if Phase 2 reports non-convergence AND the user explicitly approves at the round-2 checkpoint.
@@ -62,7 +43,7 @@ Existing skills cover adjacent territory but none of this exact composition: `/r
 - **NEVER_OVERWRITE** = true (always; this is a hard contract — prior submission directories are immutable).
 - **ASSURANCE_LEVEL** = `submission` (default; resubmit always targets a real submission).
 
-## Inputs
+### Inputs
 
 Three mandatory inputs:
 
@@ -79,20 +60,20 @@ Optional:
 - **`— skip-anonymity-scan`** — skip Phase 0.5 anonymity check (only valid for non-double-blind venues like TMLR; else WARN).
 - **`— overleaf-target: <project-id>`** — the Overleaf project ID for Phase 4 push (per `/overleaf-sync setup`).
 
-## Pipeline
+### Pipeline
 
-### Phase 0: Physical Isolation Setup (zero edits to existing files)
+#### Phase 0: Physical Isolation Setup (zero edits to existing files)
 
 Resubmit's hardest invariant: **never overwrite any prior submission directory**. The new venue's submission lives as a **sibling** of all prior venues.
 
 ```bash
-# Resolve target-venue → new sibling dir name (capitalized)
+## Resolve target-venue → new sibling dir name (capitalized)
 NEW_VENUE_DIR="$(dirname "$PAPER_BASE_DIR")/$(echo "$TARGET_VENUE" | sed 's/.*/\u&/')"
 
-# Atomic dir create — `mkdir` (not `mkdir -p`) fails fast if the dir exists,
-# avoiding the TOCTOU race window of `[ -e ] && exit; mkdir -p`. The mkdir
-# itself must succeed exactly once; if a concurrent run gets there first,
-# this errors out per resubmit-pipeline's never-overwrite invariant.
+## Atomic dir create — `mkdir` (not `mkdir -p`) fails fast if the dir exists,
+## avoiding the TOCTOU race window of `[ -e ] && exit; mkdir -p`. The mkdir
+## itself must succeed exactly once; if a concurrent run gets there first,
+## this errors out per resubmit-pipeline's never-overwrite invariant.
 mkdir "$NEW_VENUE_DIR" 2>/dev/null || {
     echo "ERROR: $NEW_VENUE_DIR already exists; resubmit-pipeline never overwrites prior submissions. Pick a different target-venue or rename the existing dir." >&2
     exit 1
@@ -111,7 +92,7 @@ mkdir -p "$NEW_VENUE_DIR/.aris"
 
 **Output of Phase 0**: a new sibling dir with all source files, no edits to text content yet, ready for compile.
 
-### Phase 0.5: Health Check + Anonymity Scan (still zero text edits)
+#### Phase 0.5: Health Check + Anonymity Scan (still zero text edits)
 
 Before any audit or edit, the paper must compile cleanly on the new venue's style and pass anonymity scan if the target venue is double-blind.
 
@@ -153,7 +134,7 @@ Search for `\revise{...}`, `\fix{...}`, `\new{...}`, `\todo{...}`, `\todonotes{.
 
 **Output of Phase 0.5**: `BASELINE.md` with initial page count, anonymity-scan summary, residual-color list, overfull-hbox count.
 
-### Phase 1: Audit (zero edits)
+#### Phase 1: Audit (zero edits)
 
 Three audits in parallel, all detect-only. The new dir's source files are read; nothing is written except audit artifacts.
 
@@ -197,7 +178,7 @@ For each file under $REVIEW_CORPUS:
 
 **Output of Phase 1**: 4 artifacts (3 audits + KNOWN_WEAKNESSES.md). All are inputs to Phase 2.
 
-### Phase 2: Targeted Text Microedits via Auto-Improvement Loop
+#### Phase 2: Targeted Text Microedits via Auto-Improvement Loop
 
 The load-bearing phase. `/auto-paper-improvement-loop` is invoked with **two safety mechanisms**:
 
@@ -284,7 +265,7 @@ The load-bearing phase. `/auto-paper-improvement-loop` is invoked with **two saf
 
 **Output of Phase 2**: `PAPER_IMPROVEMENT_LOG.md` with per-round diffs, `rejected_by_edit_whitelist` list, and convergence status.
 
-### Phase 3: Adversarial Gate
+#### Phase 3: Adversarial Gate
 
 `/kill-argument $NEW_VENUE_DIR/`
 
@@ -304,7 +285,7 @@ For each decomposed_point with verdict in {still_unresolved, partially_answered}
 
 If extra round queue is non-empty AND user-budget allows: one extra Phase 2 round. Else: stop and surface the user-escalation queue with a written escalation note ("here is what cannot be fixed under your constraints; please decide before submission").
 
-### Phase 4: Final Compile + Diff Report + Overleaf Push
+#### Phase 4: Final Compile + Diff Report + Overleaf Push
 
 **Final compile**:
 
@@ -345,7 +326,7 @@ Defer entirely to `/overleaf-sync setup` and `/overleaf-sync push`. Do **not** i
 
 If `overleaf-target` is not provided, skip Overleaf push and tell the user to either `/overleaf-sync setup <id>` manually or zip-export the directory.
 
-## Page-Shrink Heuristic
+### Page-Shrink Heuristic
 
 When Phase 0.5 or Phase 4 detects page overflow, apply this **ordered** heuristic. Stop as soon as the page limit is met. Each step is fully constrained by the edit whitelist (no theorem changes, no bib changes, no framework changes):
 
@@ -357,7 +338,7 @@ When Phase 0.5 or Phase 4 detects page overflow, apply this **ordered** heuristi
 
 **Forbidden** under this heuristic: removing experiments, removing theorems from main, removing citations (bib frozen). If after step 5 the paper still overflows, emit `RESUBmit_REPORT.json` with `verdict: BLOCKED, reason_code: page_shrink_failed_under_constraints` and surface to user — they must decide whether to relax a constraint or pick a different target venue.
 
-## Convergence Criteria (Phase 2 stop condition)
+### Convergence Criteria (Phase 2 stop condition)
 
 Phase 2's per-round loop terminates when **all three** hold:
 
@@ -369,7 +350,7 @@ If after `ROUNDS` (default 2) any of (1)/(2)/(3) is still failing, emit a checkp
 
 This pattern is borrowed from `/rebuttal` Phase 7's "terminate when no new substantive issues" — the same shape works for resubmit.
 
-## Master `RESUBMIT_REPORT.md` Ledger
+### Master `RESUBMIT_REPORT.md` Ledger
 
 Every resubmit run writes one master report at `$NEW_VENUE_DIR/RESUBMIT_REPORT.{md,json}` collecting:
 
@@ -383,7 +364,7 @@ Every resubmit run writes one master report at `$NEW_VENUE_DIR/RESUBMIT_REPORT.{
 
 The schema follows `shared-references/assurance-contract.md` (the same schema all mandatory audits use). This makes resubmit-pipeline runs forensically reproducible.
 
-## Failure Modes
+### Failure Modes
 
 The skill emits one of 7 verdicts (the 6 from the assurance contract + a `USER_DECISION` runtime state for in-flight checkpoint pauses):
 
@@ -404,7 +385,7 @@ The skill emits one of 7 verdicts (the 6 from the assurance contract + a `USER_D
 
 `BLOCKED` is recoverable; `ERROR` indicates an unexpected sub-skill failure; only `FAIL` and unrecoverable `BLOCKED` block submission.
 
-## Key Rules
+### Key Rules
 
 - **Never overwrite prior submission directories.** This is the single hardest invariant. The skill aborts at Phase 0 if the target dir already exists.
 - **Bib is frozen.** All citation-audit findings flow through `--soft-only` and emerge as text-rewrite proposals, not bib edits.
@@ -416,7 +397,7 @@ The skill emits one of 7 verdicts (the 6 from the assurance contract + a `USER_D
 - **Overleaf push defers to `/overleaf-sync`.** Don't invent a parallel mechanism.
 - **Master `RESUBMIT_REPORT.md` ledger is mandatory** at `assurance: submission`.
 
-## Output Contract
+### Output Contract
 
 - `<NEW_VENUE_DIR>/main.tex` + `sec/` + `main.pdf` — the new submission, compiled
 - `<NEW_VENUE_DIR>/RESUBMIT_REPORT.md` + `RESUBMIT_REPORT.json` — master ledger (mandatory)
@@ -435,43 +416,13 @@ The skill emits one of 7 verdicts (the 6 from the assurance contract + a `USER_D
 
 The new venue dir is **the** deliverable; the prior venue dir is untouched.
 
-## Review Tracing
+### Review Tracing
 
 Every Codex MCP reviewer call across all phases saves traces per `shared-references/review-tracing.md` to `<NEW_VENUE_DIR>/.aris/traces/<phase-name>/<date>_run<NN>/`. Both threads of `/kill-argument` are preserved separately. The master `RESUBMIT_REPORT.json` `trace_path` field points to the top-level traces directory.
 
-## Notes
+### Notes
 
 - This skill orchestrates several existing skills (proof-checker, paper-claim-audit, citation-audit, auto-paper-improvement-loop, kill-argument, paper-compile, overleaf-sync) plus uses two recently-added parameters (`/auto-paper-improvement-loop --edit-whitelist`, `/citation-audit --soft-only`). Make sure those parameters resolve to the current SKILL.md versions before relying on the resubmit pipeline.
 - The 5-layer anonymity scan is intentionally more thorough than `/paper-compile`'s generic self-citation warning, because resubmit-mode often inherits camera-ready text from a non-double-blind venue going to a double-blind venue.
 - Page-shrink heuristic is ordered (compress conclusion → tighten hedging → move marginal figures → move proof sketches → compress related-work prose). The order is calibrated to "least risky to most risky" — compressing conclusion is mostly editorial; moving proof sketches changes the reading flow. Stop as early as page limit is met.
 - `RESUBMIT_REPORT.json` schema follows `shared-references/assurance-contract.md` exactly. This makes resubmit runs forensically reproducible. **Note**: `verify_paper_audits.sh` does not currently include `RESUBMIT_REPORT.json` in its `MANDATORY_AUDITS` list (the verifier checks proof / paper-claim / citation / kill-argument). The 4 mandatory audit files consumed by resubmit (which DO live in `<NEW_VENUE_DIR>/`) are recognized by the verifier as usual; `RESUBMIT_REPORT.json` is the orchestrator's own ledger and is not yet a verifier mandatory artifact. Adding it to the verifier is a separate follow-up if the user wants resubmit to be a submission gate via the verifier.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/resubmit-pipeline/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>submission</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>dissemination</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/resubmit-pipeline/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

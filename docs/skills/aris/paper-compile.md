@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-compile/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-compile/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-compile
-description: "Compile LaTeX paper to PDF, fix errors, and verify output. Use when user says \"编译论文\", \"compile paper\", \"build PDF\", \"生成PDF\", or wants to compile LaTeX into a submission-ready PDF."
-argument-hint: [paper-directory]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob
----
-
-# Paper Compile: LaTeX to Submission-Ready PDF
+## Paper Compile: LaTeX to Submission-Ready PDF
 
 Compile the LaTeX paper and fix any issues: **$ARGUMENTS**
 
-## Constants
+### Constants
 
 - **COMPILER = `latexmk`** — LaTeX build tool. Handles multi-pass compilation automatically.
 - **ENGINE = `pdflatex`** — LaTeX engine. Options: `pdflatex` (default), `xelatex` (for CJK/custom fonts), `lualatex`.
@@ -37,47 +18,47 @@ Compile the LaTeX paper and fix any issues: **$ARGUMENTS**
 - **PAPER_DIR = `paper/`** — Directory containing LaTeX source files.
 - **MAX_PAGES** — Page limit. ML conferences: main body to Conclusion end (excluding references & appendix). ICLR=9, NeurIPS=9, ICML=8. **IEEE venues: references ARE included in page count.** IEEE journal ≈ 12-14 pages, IEEE conference ≈ 5-8 pages (all inclusive).
 
-## Workflow
+### Workflow
 
-### Step 1: Verify Prerequisites
+#### Step 1: Verify Prerequisites
 
 Check that the compilation environment is ready:
 
 ```bash
-# Check LaTeX installation
+## Check LaTeX installation
 which pdflatex && which latexmk && which bibtex
 
-# If not installed, provide instructions:
-# macOS: brew install --cask mactex-no-gui
-# Ubuntu: sudo apt-get install texlive-full
-# Server: conda install -c conda-forge texlive-core
+## If not installed, provide instructions:
+## macOS: brew install --cask mactex-no-gui
+## Ubuntu: sudo apt-get install texlive-full
+## Server: conda install -c conda-forge texlive-core
 ```
 
 Verify all required files exist:
 
 ```bash
-# Must exist
+## Must exist
 ls $PAPER_DIR/main.tex
 
-# Should exist
+## Should exist
 ls $PAPER_DIR/references.bib
 ls $PAPER_DIR/sections/*.tex
 ls $PAPER_DIR/figures/*.pdf 2>/dev/null || ls $PAPER_DIR/figures/*.png 2>/dev/null
 ```
 
-### Step 2: First Compilation Attempt
+#### Step 2: First Compilation Attempt
 
 ```bash
 cd $PAPER_DIR
 
-# Clean previous build artifacts
+## Clean previous build artifacts
 latexmk -C
 
-# Full compilation (pdflatex + bibtex + pdflatex × 2)
+## Full compilation (pdflatex + bibtex + pdflatex × 2)
 latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex 2>&1 | tee compile.log
 ```
 
-### Step 3: Error Diagnosis and Auto-Fix
+#### Step 3: Error Diagnosis and Auto-Fix
 
 If compilation fails, read `compile.log` and fix common errors:
 
@@ -123,7 +104,7 @@ I was expecting a `,' or a `}'---line 15 of references.bib
 **`\crefname` undefined for custom theorem types:**
 → Ensure `\crefname{assumption}{Assumption}{Assumptions}` and similar are in the preamble after `\newtheorem{assumption}`.
 
-### Step 4: Iterative Fix Loop
+#### Step 4: Iterative Fix Loop
 
 ```
 for attempt in 1..MAX_COMPILE_ATTEMPTS:
@@ -142,18 +123,18 @@ For each error:
 
 **Stuck after 2 attempts?** If Codex plugin is installed, invoke `/codex:rescue` — Codex can independently read the LaTeX source and `compile.log` to spot issues Claude missed (e.g., conflicting packages, encoding problems, subtle macro errors). If not installed, continue with Claude's own diagnosis.
 
-### Step 5: Post-Compilation Checks
+#### Step 5: Post-Compilation Checks
 
 After successful compilation, verify the output:
 
 ```bash
-# Check PDF exists and has content
+## Check PDF exists and has content
 ls -la main.pdf
-# Check page count
+## Check page count
 pdfinfo main.pdf | grep Pages
 
-# macOS: open for visual inspection
-# open main.pdf
+## macOS: open for visual inspection
+## open main.pdf
 ```
 
 **Visual review (automated):**
@@ -175,14 +156,14 @@ This is a quick visual scan, not a full review — the improvement loop does dee
 - [ ] Figures are rendered (not missing image placeholders)
 
 ```bash
-# Check for undefined references
+## Check for undefined references
 grep -c "LaTeX Warning.*undefined" compile.log
 
-# Check for missing citations
+## Check for missing citations
 grep -c "Citation.*undefined" compile.log
 ```
 
-### Step 6: Page Count Verification
+#### Step 6: Page Count Verification
 
 **CRITICAL**: Verify paper fits within MAX_PAGES.
 
@@ -192,7 +173,7 @@ grep -c "Citation.*undefined" compile.log
 
 **Precise check using `pdftotext`:**
 ```bash
-# Extract text and find where Conclusion ends vs References begin
+## Extract text and find where Conclusion ends vs References begin
 pdftotext main.pdf - | python3 -c "
 import sys
 text = sys.stdin.read()
@@ -216,12 +197,12 @@ If over limit:
 - Suggest specific cuts (move proofs to appendix, compress tables, tighten writing)
 - Report: "Main body is X pages (limit: MAX_PAGES). Suggestion: move [specific content] to appendix."
 
-### Step 6.5: Stale File Detection
+#### Step 6.5: Stale File Detection
 
 Check for orphaned section files not referenced by `main.tex`:
 
 ```bash
-# Find all .tex files in sections/ and check which are \input'ed by main.tex
+## Find all .tex files in sections/ and check which are \input'ed by main.tex
 for f in paper/sections/*.tex; do
     base=$(basename "$f")
     if ! grep -q "$base" paper/main.tex; then
@@ -232,7 +213,7 @@ done
 
 This prevents confusion from leftover files when section structure changes (e.g., old `5_conclusion.tex` left behind after restructuring to 7 sections).
 
-### Step 7: Submission Readiness
+#### Step 7: Submission Readiness
 
 For conference submission, additional checks:
 
@@ -246,10 +227,10 @@ For conference submission, additional checks:
 - [ ] **File size**: reasonable (< 50MB for most venues, < 10MB preferred)
 - [ ] **No `[VERIFY]` markers**: search the PDF text for leftover markers
 
-### Step 8: Output Summary
+#### Step 8: Output Summary
 
 ```markdown
-## Compilation Report
+### Compilation Report
 
 - **Status**: SUCCESS / FAILED
 - **PDF**: paper/main.pdf
@@ -260,13 +241,13 @@ For conference submission, additional checks:
 - **Undefined references**: 0
 - **Undefined citations**: 0
 
-### Next Steps
+#### Next Steps
 - [ ] Visual inspection of PDF
 - [ ] Run `/paper-write` to fix any content issues
 - [ ] Submit to [venue] via OpenReview / CMT / HotCRP
 ```
 
-## Key Rules
+### Key Rules
 
 - **Never delete the user's source files** — only modify to fix errors
 - **Keep compile.log** — useful for debugging
@@ -275,7 +256,7 @@ For conference submission, additional checks:
 - **Font embedding is critical** — some venues reject PDFs with non-embedded fonts
 - **Page count rules differ by venue** — ML conferences: main body to Conclusion (refs excluded). **IEEE venues: total pages including references.**
 
-## Common Venue Requirements
+### Common Venue Requirements
 
 | Venue | Style File | Citation | Page Limit | Refs in limit? | Submission |
 |-------|-----------|----------|------------|----------------|------------|
@@ -284,33 +265,3 @@ For conference submission, additional checks:
 | ICML 2025 | `icml2025.sty` | `natbib` (`\citep`/`\citet`) | 8 pages (to Conclusion end) | No | OpenReview |
 | IEEE Journal | `IEEEtran.cls` [journal] | `cite` (`\cite{}`, numeric) | ~12-14 pages (Transactions) / ~4-5 (Letters) | **Yes** | IEEE Author Portal / ScholarOne |
 | IEEE Conference | `IEEEtran.cls` [conference] | `cite` (`\cite{}`, numeric) | 5-8 pages (varies by conf) | **Yes** | EDAS / IEEE Author Portal |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-compile/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/paper-compile/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

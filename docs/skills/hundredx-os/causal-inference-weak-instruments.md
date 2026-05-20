@@ -4,23 +4,11 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/causal-inference/weak-instruments.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Weak Instruments
 
----
-
-# Weak Instruments
-
-## The Problem
+### The Problem
 
 An instrument is "weak" when it is only slightly correlated with the endogenous variable. Formally, the concentration parameter (a function of the first-stage coefficients and the covariance structure) is small. Under weak instruments:
 
@@ -31,9 +19,9 @@ An instrument is "weak" when it is only slightly correlated with the endogenous 
 
 Weak instruments are not a small-sample problem. They persist in large samples because the issue is the signal-to-noise ratio in the first stage, not the sample size per se.
 
-## First-Stage F-Statistic
+### First-Stage F-Statistic
 
-### Conventional F-stat
+#### Conventional F-stat
 The F-statistic from the first-stage regression testing the null that all excluded instruments have zero coefficients.
 
 **Staiger and Stock (1997) rule of thumb**: F > 10. This threshold ensures that 2SLS bias is no more than approximately 10% of the OLS bias and that the Wald test has size distortion of no more than about 10 percentage points (actual size no more than 15% at 5% nominal level).
@@ -43,28 +31,28 @@ The F-statistic from the first-stage regression testing the null that all exclud
 - With heteroskedasticity or clustering, the conventional F is not the appropriate diagnostic.
 - With multiple endogenous regressors, the single-equation F is insufficient.
 
-### Effective F-Statistic (Olea and Pflueger 2013)
+#### Effective F-Statistic (Olea and Pflueger 2013)
 - Robust to heteroskedasticity, serial correlation, and clustering.
 - Defined as F_eff = (beta_hat' * V^{-1} * beta_hat) / K, where the variance matrix V is robust.
 - Compare to critical values from Olea and Pflueger tables, which depend on the number of instruments, the desired maximum bias/size distortion, and the estimator (2SLS vs LIML).
 - For 2SLS with one endogenous variable, the critical value for 10% worst-case bias is approximately 23.1 (stricter than the Staiger-Stock threshold).
 
-### Sanderson-Windmeijer (2016) F-statistics
+#### Sanderson-Windmeijer (2016) F-statistics
 - For models with multiple endogenous regressors, report a conditional first-stage F-statistic for each endogenous variable.
 - Tests whether each endogenous variable is identified, holding the others fixed.
 - A single weak instrument for one endogenous regressor contaminates all coefficient estimates in the system.
 
-## Stock-Yogo Critical Values
+### Stock-Yogo Critical Values
 
 Stock and Yogo (2005) provide formal critical values for weak instrument tests based on two criteria:
 
-### Relative bias criterion
+#### Relative bias criterion
 - The null: the bias of 2SLS relative to OLS exceeds a threshold b (e.g., 5%, 10%, 20%, 30%).
 - Critical values depend on the number of endogenous regressors (n) and the number of instruments (K).
 - For n = 1, K = 1: the critical value for 10% max relative bias is 16.38.
 - More instruments lower the critical value but increase bias from many instruments.
 
-### Size distortion criterion
+#### Size distortion criterion
 - The null: the actual rejection rate of a 5% Wald test exceeds a threshold r (e.g., 10%, 15%, 20%, 25%).
 - For n = 1, K = 1: the critical value for 10% max size distortion is 16.38 (same as bias criterion in this case).
 - These critical values are specific to 2SLS. LIML has different (typically lower) critical values.
@@ -80,7 +68,7 @@ Stock and Yogo (2005) provide formal critical values for weak instrument tests b
 
 With more instruments, the critical value increases because each additional instrument adds bias from overfitting.
 
-## Anderson-Rubin Test
+### Anderson-Rubin Test
 
 The Anderson-Rubin (AR) test provides valid inference on the structural parameter regardless of instrument strength.
 
@@ -96,7 +84,7 @@ The Anderson-Rubin (AR) test provides valid inference on the structural paramete
 - With many instruments, the AR test loses power because it tests all instruments jointly.
 - The conditional likelihood ratio (CLR) test of Moreira (2003) is more powerful while maintaining correct size.
 
-## The tF Procedure (Lee, McCrary, Moreira, and Porter 2022)
+### The tF Procedure (Lee, McCrary, Moreira, and Porter 2022)
 
 A simple and practical approach to inference under potentially weak instruments.
 
@@ -115,29 +103,29 @@ A simple and practical approach to inference under potentially weak instruments.
 
 **Practical implication**: Many existing IV results with F-statistics between 10 and 20 would lose significance under the tF procedure. This highlights that the Staiger-Stock rule of thumb, while useful, is not sufficient for reliable inference.
 
-## LIML vs 2SLS Under Weak Identification
+### LIML vs 2SLS Under Weak Identification
 
-### 2SLS under weak instruments
+#### 2SLS under weak instruments
 - Biased toward OLS.
 - Bias proportional to the number of instruments (K) divided by the concentration parameter.
 - Can be severely misleading: point estimates close to OLS with narrow confidence intervals that miss the true parameter.
 
-### LIML under weak instruments
+#### LIML under weak instruments
 - Approximately median-unbiased (the median of the LIML sampling distribution is close to the true parameter).
 - No finite moments (mean and variance do not exist), so mean bias is undefined.
 - Much less biased than 2SLS in simulations.
 - Wider confidence intervals than 2SLS, but better coverage.
 
-### Fuller estimator
+#### Fuller estimator
 - Modified LIML: k = k_LIML - c/(n - K), where c is a user-chosen constant.
 - Fuller(1) minimizes mean squared error and has finite moments.
 - Fuller(4) provides approximately unbiased estimates.
 - Practical choice when LIML confidence intervals are erratic.
 
-### Recommendation
+#### Recommendation
 When the effective F is below 20-25, report LIML alongside 2SLS. If they diverge substantially, weak instruments are a real concern. Use AR or tF for inference rather than relying on the LIML point estimate alone.
 
-## Many Instruments
+### Many Instruments
 
 When the number of instruments K is large relative to the sample size n, additional problems arise:
 
@@ -149,7 +137,7 @@ When the number of instruments K is large relative to the sample size n, additio
 
 **Practical guidance**: If you have more than a handful of instruments, compare 2SLS, LIML, and JIVE. Agreement suggests the many-instruments problem is minor. Divergence signals trouble. Consider reducing the instrument count (use fewer lags, collapse the instrument matrix, use factor analysis to extract a few strong instruments).
 
-## Diagnostic Summary
+### Diagnostic Summary
 
 | Diagnostic | Purpose | Threshold / Reference |
 |------------|---------|----------------------|
@@ -161,7 +149,7 @@ When the number of instruments K is large relative to the sample size n, additio
 | tF procedure | Adjusted t-test critical values | Lee et al. (2022) tables |
 | Kleibergen-Paap rk statistic | Robust rank test for underidentification | Critical values from KP tables |
 
-## Practical Checklist
+### Practical Checklist
 
 1. Always report the first-stage F-statistic. Use the effective F (Olea-Pflueger) with robust/clustered SEs.
 2. Compare F to Stock-Yogo critical values appropriate for your number of instruments and estimator.
@@ -172,7 +160,7 @@ When the number of instruments K is large relative to the sample size n, additio
 7. Always report the reduced form. It is valid regardless of instrument strength.
 8. If weak instruments are unavoidable, be honest about it. Present bounds and sensitivity analysis rather than pretending the problem does not exist.
 
-## Key References
+### Key References
 
 - Staiger, D. and Stock, J. (1997). Instrumental variables regression with weak instruments. Econometrica.
 - Stock, J. and Yogo, M. (2005). Testing for weak instruments in linear IV regression. In Andrews and Stock (eds.), Identification and Inference for Econometric Models. Cambridge.
@@ -180,28 +168,3 @@ When the number of instruments K is large relative to the sample size n, additio
 - Lee, D., McCrary, J., Moreira, M., and Porter, J. (2022). Valid t-ratio inference for IV. American Economic Review.
 - Andrews, I., Stock, J., and Sun, L. (2019). Weak instruments in IV regression: Theory and practice. Annual Review of Economics.
 - Moreira, M. (2003). A conditional likelihood ratio test for structural models. Econometrica.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/causal-inference/weak-instruments.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>analysis</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-analysis</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/causal-inference-weak-instruments/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

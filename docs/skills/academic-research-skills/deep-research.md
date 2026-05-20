@@ -4,35 +4,9 @@
 
 13-agent research team with Socratic guided mode, PRISMA systematic review, intent detection, dialogue health monitoring, optional cross-model DA, Semantic Scholar API verification.
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../academic-research-skills/">Academic Research Skills (ARS)</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>CC BY-NC 4.0</code></div><div><b>Updated:</b> 2026-05</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/Imbad0202/academic-research-skills/contents/deep-research/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/academic-research-skills/deep-research/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/Imbad0202/academic-research-skills/blob/main/deep-research/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/Imbad0202/academic-research-skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: deep-research
-description: "Universal deep research agent team. 13-agent pipeline for rigorous academic research on any topic. 7 modes: full research, quick brief, paper review, lit-review, fact-check, Socratic guided research dialogue, and systematic review with optional meta-analysis. Covers research question formulation, Socratic mentoring, methodology design, systematic literature search, source verification, cross-source synthesis, risk of bias assessment, meta-analysis, APA 7.0 report compilation, editorial review, devil's advocate challenges, ethics review, and post-research literature monitoring. Triggers on: research, deep research, literature review, systematic review, meta-analysis, PRISMA, evidence synthesis, fact-check, guide my research, help me think through, 研究, 深度研究, 文獻回顧, 文獻探討, 系統性回顧, 後設分析, 事實查核, 引導我的研究, 幫我釐清, 幫我想想, 我不確定要研究什麼, 研究方向, 研究主題."
-metadata:
-  version: "2.9.4"
-  last_updated: "2026-05-18"
-  status: active
-  data_access_level: raw
-  task_type: open-ended
-  related_skills:
-    - academic-paper
-    - academic-pipeline
----
-
-# Deep Research — Universal Academic Research Agent Team
+## Deep Research — Universal Academic Research Agent Team
 
 Universal deep research tool — a domain-agnostic 13-agent team for rigorous academic research on any topic.
 
@@ -42,7 +16,7 @@ Universal deep research tool — a domain-agnostic 13-agent team for rigorous ac
 
 > **Routing discipline (v3.9.2):** see `.claude/CLAUDE.md` "Routing Discipline (v3.9.2)" + `shared/references/intent_clarification_protocol.md` for cross-skill routing rules. This skill assumes routing has already settled — ambiguous cross-phase materials should have been clarified upstream.
 
-## Quick Start
+### Quick Start
 
 **Minimal command:**
 ```
@@ -66,15 +40,15 @@ Guide my research on the impact of declining birth rates on private universities
 
 ---
 
-## Trigger Conditions
+### Trigger Conditions
 
-### Trigger Keywords
+#### Trigger Keywords
 
 **English**: research, deep research, literature review, systematic review, meta-analysis, PRISMA, evidence synthesis, fact-check, methodology, APA report, academic analysis, policy analysis, guide my research, help me think through, monitor this topic, set up alerts
 
 **繁體中文**: 研究, 深度研究, 文獻回顧, 文獻探討, 系統性回顧, 後設分析, 證據綜整, 事實查核, 研究方法, 學術分析, 政策分析, 引導我的研究, 幫我釐清, 監測這個主題, 設定追蹤
 
-### Socratic Mode Activation
+#### Socratic Mode Activation
 
 Activate `socratic` mode when the user's **intent** matches any of the following patterns, **regardless of language**. Detect meaning, not exact keywords.
 
@@ -90,7 +64,7 @@ Activate `socratic` mode when the user's **intent** matches any of the following
 **Example triggers** (illustrative, not exhaustive):
 "guide my research", "help me think through", 「引導我的研究」「幫我釐清」, or equivalent in any language
 
-### Does NOT Trigger
+#### Does NOT Trigger
 
 | Scenario | Use Instead |
 |----------|-------------|
@@ -98,7 +72,7 @@ Activate `socratic` mode when the user's **intent** matches any of the following
 | Reviewing a paper (structured review) | `academic-paper-reviewer` |
 | Full research-to-paper pipeline | `academic-pipeline` |
 
-### Quick Mode Selection Guide
+#### Quick Mode Selection Guide
 
 | Your Situation 你的狀況 | Recommended Mode | Spectrum |
 |----------------|-----------------|----------|
@@ -117,7 +91,7 @@ Not sure? Start with `socratic` — it will help you figure out what you need.
 
 ---
 
-## Agent Team (13 Agents)
+### Agent Team (13 Agents)
 
 | # | Agent | Role | Phase |
 |---|-------|------|-------|
@@ -137,7 +111,7 @@ Not sure? Start with `socratic` — it will help you figure out what you need.
 
 ---
 
-## Mode Selection Guide
+### Mode Selection Guide
 
 See `references/mode_selection_guide.md` for the detailed guide.
 
@@ -162,7 +136,7 @@ User Input
 
 ---
 
-## Orchestration Workflow (6 Phases)
+### Orchestration Workflow (6 Phases)
 
 ```
 User: "Research [topic]"
@@ -267,7 +241,7 @@ User: "Research [topic]"
          - Remaining issues -> "Acknowledged Limitations" section
 ```
 
-### Checkpoint Rules
+#### Checkpoint Rules
 
 1. ⚠️ **IRON RULE**: **Devil's Advocate** has 3 mandatory checkpoints; **Critical-severity** issues block progression
 2. Revision loops capped at **2 iterations**; remaining issues become "acknowledged limitations"
@@ -276,7 +250,7 @@ User: "Research [topic]"
 
 ---
 
-## Phase-by-phase Invocation Contract (v3.9.2)
+### Phase-by-phase Invocation Contract (v3.9.2)
 
 ARS pipeline runs in 6 phases. Two invocation modes:
 
@@ -292,7 +266,7 @@ Routing into Mode B requires explicit user signal — `/ars-<mode>` slash comman
 
 ---
 
-## Socratic Mode: Guided Research Dialogue
+### Socratic Mode: Guided Research Dialogue
 
 5-layer dialogue guiding users from vague ideas to concrete research questions. Core principle: ⚠️ **IRON RULE**: Never give direct answers.
 
@@ -300,13 +274,13 @@ Routing into Mode B requires explicit user signal — `/ars-<mode>` slash comman
 
 > See `references/socratic_mode_protocol.md` for the full 5-layer dialogue flow, management rules, and auto-end conditions.
 
-### Opt-in Reading Probe (v3.5.1)
+#### Opt-in Reading Probe (v3.5.1)
 
 Setting `ARS_SOCRATIC_READING_PROBE=1` enables a one-time honesty probe during **goal-oriented** Socratic sessions. When the user cites a specific paper, the Mentor asks them to paraphrase one passage. Decline is logged without penalty. Default OFF. See `agents/socratic_mentor_agent.md` §"Optional Reading Probe Layer".
 
 ---
 
-## Systematic Review Mode
+### Systematic Review Mode
 
 PRISMA 2020-compliant systematic review with optional meta-analysis. Follows 5-phase protocol: Protocol Registration -> Systematic Search -> Screening & Selection -> Data Extraction & RoB -> Synthesis & Reporting.
 
@@ -316,7 +290,7 @@ PRISMA 2020-compliant systematic review with optional meta-analysis. Follows 5-p
 
 ---
 
-## Operational Modes
+### Operational Modes
 
 | Mode | Agents Active | Output | Word Count |
 |------|---------------|--------|------------|
@@ -330,7 +304,7 @@ PRISMA 2020-compliant systematic review with optional meta-analysis. Follows 5-p
 
 ---
 
-## Failure Paths
+### Failure Paths
 
 See `references/failure_paths.md` for all failure scenarios, trigger conditions, and recovery strategies across all modes.
 
@@ -349,7 +323,7 @@ Key failure path summary:
 
 ---
 
-## Literature Monitoring (Optional Post-Pipeline)
+### Literature Monitoring (Optional Post-Pipeline)
 
 Optional post-research monitoring for new publications in the research area.
 
@@ -357,7 +331,7 @@ Optional post-research monitoring for new publications in the research area.
 
 ---
 
-## Handoff Protocol: deep-research → academic-paper
+### Handoff Protocol: deep-research → academic-paper
 
 After research is complete, the following materials can be handed off to `academic-paper`:
 
@@ -378,13 +352,13 @@ See `examples/handoff_to_paper.md` for a detailed handoff example.
 
 ---
 
-## Full Academic Pipeline
+### Full Academic Pipeline
 
 See `academic-pipeline/SKILL.md` for the complete workflow.
 
 ---
 
-## Agent File References
+### Agent File References
 
 | Agent | Definition File |
 |-------|----------------|
@@ -404,7 +378,7 @@ See `academic-pipeline/SKILL.md` for the complete workflow.
 
 ---
 
-## Reference Files
+### Reference Files
 
 | Reference | Purpose | Used By |
 |-----------|---------|---------|
@@ -430,7 +404,7 @@ See `academic-pipeline/SKILL.md` for the complete workflow.
 
 ---
 
-## Templates
+### Templates
 
 | Template | Purpose |
 |----------|---------|
@@ -443,7 +417,7 @@ See `academic-pipeline/SKILL.md` for the complete workflow.
 
 ---
 
-## Examples
+### Examples
 
 | Example | Demonstrates |
 |---------|-------------|
@@ -457,13 +431,13 @@ See `academic-pipeline/SKILL.md` for the complete workflow.
 
 ---
 
-## Output Language
+### Output Language
 
 Follows the user's language. Academic terminology kept in English. Socratic mode uses natural conversational style.
 
 ---
 
-## Anti-Patterns
+### Anti-Patterns
 
 Explicit prohibitions to prevent common failure modes:
 
@@ -477,7 +451,7 @@ Explicit prohibitions to prevent common failure modes:
 | 6 | **Shallow Socratic mode** | Giving answers disguised as questions ("Wouldn't you say X is true?") | Ask genuine questions that expose assumptions; never lead to predetermined conclusions |
 | 7 | **Source tier inflation** | Treating a blog post as equivalent to a peer-reviewed journal | Apply evidence hierarchy strictly: Tier 1 (peer-reviewed) > Tier 2 (preprint) > Tier 3 (gray lit) |
 
-## Quality Standards
+### Quality Standards
 
 1. ⚠️ **IRON RULE**: **Every claim must have a citation** — no unsupported assertions
 2. **Evidence hierarchy** — meta-analyses > RCTs > cohort studies > case reports > expert opinion
@@ -487,7 +461,7 @@ Explicit prohibitions to prevent common failure modes:
 6. **Reproducibility** — search strategies, inclusion criteria, and analytical methods must be documented for replication
 7. **Socratic integrity** — in socratic mode, never give direct answers; always guide through questions
 
-## Cross-Agent Quality Alignment
+### Cross-Agent Quality Alignment
 
 Unified definitions across all agents. ⚠️ IRON RULE: **CRITICAL severity** = issue that would invalidate a core conclusion or constitute academic misconduct. Requires immediate resolution.
 
@@ -495,7 +469,7 @@ Unified definitions across all agents. ⚠️ IRON RULE: **CRITICAL severity** =
 
 ---
 
-## Integration with Other Skills
+### Integration with Other Skills
 
 This skill is domain-agnostic but can be combined with domain-specific skills:
 
@@ -510,7 +484,7 @@ deep-research (systematic-review) + academic-paper -> PRISMA systematic review p
 
 ---
 
-## Version Info
+### Version Info
 
 | Item | Content |
 |------|---------|
@@ -521,36 +495,6 @@ deep-research (systematic-review) + academic-paper -> PRISMA systematic review p
 
 ---
 
-## Version History
+### Version History
 
 > See `references/changelog.md` for full version history.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/Imbad0202/academic-research-skills/contents/deep-research/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>Imbad0202/academic-research-skills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../academic-research-skills.md">Academic Research Skills (ARS)</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>CC BY-NC 4.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/Imbad0202/academic-research-skills">⭐ Imbad0202/academic-research-skills</a><br><img src="https://img.shields.io/github/stars/Imbad0202/academic-research-skills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/Imbad0202/academic-research-skills/blob/main/deep-research/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/academic-research-skills/deep-research/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/academic-research-skills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

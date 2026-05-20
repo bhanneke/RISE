@@ -4,56 +4,37 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/jurisdiction-format/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/jurisdiction-format/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: jurisdiction-format
-description: "Compile patent application into jurisdiction-specific filing format. Use when user says \"格式转换\", \"jurisdiction format\", \"国家格式\", \"compile patent\", or wants formatted patent documents for CN/US/EP filing."
-argument-hint: [patent-directory-or-jurisdiction]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob
----
-
-# Jurisdiction Format: Patent Filing Compilation
+## Jurisdiction Format: Patent Filing Compilation
 
 Compile the patent application into filing-ready format based on: **$ARGUMENTS**
 
 Analogous to `/paper-compile` but for patent document formatting instead of LaTeX.
 
-## Constants
+### Constants
 
 - `JURISDICTION = "auto"` — From pipeline or args: `CN`, `US`, `EP`, `ALL`
 - `PATENT_TYPE = "invention"` — `invention` (发明专利) or `utility_model` (实用新型, CN only)
 - `OUTPUT_FORMAT = "markdown"` — `markdown` (for review) or `docx` (for filing, requires python-docx)
 - `OUTPUT_DIR = "patent/output/"` — Base output directory
 
-## Inputs
+### Inputs
 
 1. `patent/CLAIMS.md` — drafted claims
 2. `patent/specification/` — all specification sections (title, technical_field, background, summary, drawings_description, detailed_description, abstract)
 3. `patent/figures/` — figure descriptions and numeral index
 4. `patent/INVENTION_DISCLOSURE.md` — for metadata
 
-## Shared References
+### Shared References
 
 Load `../shared-references/patent-format-cn.md` for CNIPA document structure and formatting rules.
 Load `../shared-references/patent-format-us.md` for USPTO document structure.
 Load `../shared-references/patent-format-ep.md` for EPO document structure.
 
-## Workflow
+### Workflow
 
-### Step 1: Determine Output Jurisdictions
+#### Step 1: Determine Output Jurisdictions
 
 From `$ARGUMENTS` or constant:
 - `CN` -> Generate CNIPA format only
@@ -61,7 +42,7 @@ From `$ARGUMENTS` or constant:
 - `EP` -> Generate EPO format only
 - `ALL` -> Generate all three formats
 
-### Step 2: Generate CN Format (if CN or ALL)
+#### Step 2: Generate CN Format (if CN or ALL)
 
 Output to `patent/output/CN/`:
 
@@ -95,7 +76,7 @@ If `OUTPUT_FORMAT = "docx"`:
 - Set font to 宋体 (SimSun) for body, 黑体 (SimHei) for headers
 - Standard margins (上下 2.54cm, 左右 3.17cm)
 
-### Step 3: Generate US Format (if US or ALL)
+#### Step 3: Generate US Format (if US or ALL)
 
 Output to `patent/output/US/`:
 
@@ -130,7 +111,7 @@ Generate a skeleton ADS with:
 - Application type
 - Entity status (small/micro/large)
 
-### Step 4: Generate EP Format (if EP or ALL)
+#### Step 4: Generate EP Format (if EP or ALL)
 
 Output to `patent/output/EP/`:
 
@@ -155,7 +136,7 @@ Format drawings references as "FIG. 1" or "Figure 1".
 - Extract from abstract.md
 - ~150 words limit
 
-### Step 5: Consistency Check
+#### Step 5: Consistency Check
 
 Verify across all generated formats:
 - [ ] All claims are present in every format
@@ -164,14 +145,14 @@ Verify across all generated formats:
 - [ ] No format-specific requirements are violated
 - [ ] Language is correct for each jurisdiction (Chinese for CN, English for US/EP)
 
-### Step 6: Output Summary
+#### Step 6: Output Summary
 
 Write `patent/output/OUTPUT_SUMMARY.md`:
 
 ```markdown
-## Patent Filing Documents
+### Patent Filing Documents
 
-### Generated Files
+#### Generated Files
 
 #### CN (CNIPA)
 | File | Description | Status |
@@ -195,13 +176,13 @@ Write `patent/output/OUTPUT_SUMMARY.md`:
 | description.md | Description in EP format | Complete |
 | abstract.md | Abstract (EP) | Complete |
 
-### Consistency Check
+#### Consistency Check
 - [ ] All claims present in all formats
 - [ ] Reference numerals consistent
 - [ ] Language correct per jurisdiction
 ```
 
-## Key Rules
+### Key Rules
 
 - Never mix jurisdiction formats (e.g., do not include "其特征在于" in US claims).
 - Claims must be identical in technical content across jurisdictions, only the format differs.
@@ -210,33 +191,3 @@ Write `patent/output/OUTPUT_SUMMARY.md`:
 - Abstract word limits are jurisdiction-specific and must be verified.
 - The jurisdiction-format skill does NOT modify claim content -- it reformats existing content only.
 - If `OUTPUT_FORMAT = "docx"`, check that python-docx is available; if not, fall back to markdown.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/jurisdiction-format/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/jurisdiction-format/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

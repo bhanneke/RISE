@@ -4,37 +4,9 @@
 
 Pipeline orchestrator that chains deep-research → academic-paper → academic-paper-reviewer with quality gates between stages.
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../academic-research-skills/">Academic Research Skills (ARS)</a></div><div><b>Category:</b> <code>meta</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>CC BY-NC 4.0</code></div><div><b>Updated:</b> 2026-05</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/Imbad0202/academic-research-skills/contents/academic-pipeline/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/academic-research-skills/academic-pipeline/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/Imbad0202/academic-research-skills/blob/main/academic-pipeline/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/Imbad0202/academic-research-skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: academic-pipeline
-description: "Orchestrator for the full academic research pipeline: research -> write -> integrity check -> review -> revise -> re-review -> re-revise -> final integrity check -> finalize. Coordinates deep-research, academic-paper, and academic-paper-reviewer into a seamless 10-stage workflow with mandatory integrity verification, two-stage peer review, and reproducible quality gates. Triggers on: academic pipeline, research to paper, full paper workflow, paper pipeline, end-to-end paper, research-to-publication, complete paper workflow."
-metadata:
-  version: "3.9.4.1"
-  last_updated: "2026-05-19"
-  depends_on: "deep-research, academic-paper, academic-paper-reviewer"
-  status: active
-  data_access_level: verified_only
-  task_type: open-ended
-  related_skills:
-    - deep-research
-    - academic-paper
-    - academic-paper-reviewer
----
-
-# Academic Pipeline v3.8.2 — Full Academic Research Workflow Orchestrator
+## Academic Pipeline v3.8.2 — Full Academic Research Workflow Orchestrator
 
 A lightweight orchestrator that manages the complete academic pipeline from research exploration to final manuscript. It does not perform substantive work — it only detects stages, recommends modes, dispatches skills, manages transitions, and tracks state.
 
@@ -52,7 +24,7 @@ A lightweight orchestrator that manages the complete academic pipeline from rese
 5. **Reproducible** — Standardized workflow producing consistent quality assurance each time
 6. **Process documentation** — After pipeline completion, automatically generates a "Paper Creation Process Record" PDF documenting the human-AI collaboration history
 
-## Quick Start
+### Quick Start
 
 **Full workflow (from scratch):**
 ```
@@ -92,13 +64,13 @@ resume_from_passport=<hash> [stage=<n>] [mode=<m>]
 
 ---
 
-## Trigger Conditions
+### Trigger Conditions
 
-### Trigger Keywords
+#### Trigger Keywords
 
 **English**: academic pipeline, research to paper, full paper workflow, paper pipeline, end-to-end paper, research-to-publication, complete paper workflow
 
-### Non-Trigger Scenarios
+#### Non-Trigger Scenarios
 
 | Scenario | Skill to Use |
 |----------|-------------|
@@ -108,7 +80,7 @@ resume_from_passport=<hash> [stage=<n>] [mode=<m>]
 | Only need to check citation format | `academic-paper` (citation-check mode) |
 | Only need to convert paper format | `academic-paper` (format-convert mode) |
 
-### Trigger Exclusions
+#### Trigger Exclusions
 
 - If the user only needs a single function (just search materials, just check citations), no pipeline is needed — directly trigger the corresponding skill
 - If the user is already using a specific mode of a skill, respect that entry point; the pipeline is opt-in
@@ -116,7 +88,7 @@ resume_from_passport=<hash> [stage=<n>] [mode=<m>]
 
 ---
 
-## Pipeline Stages (10 Stages)
+### Pipeline Stages (10 Stages)
 
 | Stage | Name | Skill / Agent Called | Available Modes | Deliverables |
 |-------|------|---------------------|----------------|-------------|
@@ -140,7 +112,7 @@ This mirrors PaperOrchestra's parallel execution of Plot Generation (Step 2) and
 
 ---
 
-## Pipeline State Machine
+### Pipeline State Machine
 
 1. **Stage 1 RESEARCH** -> user confirmation -> Stage 2
 2. **Stage 2 WRITE** -> user confirmation -> Stage 2.5
@@ -157,11 +129,11 @@ See `references/pipeline_state_machine.md` for complete state transition definit
 
 ---
 
-## Adaptive Checkpoint System
+### Adaptive Checkpoint System
 
 ⚠️ **IRON RULE — Core rule: After each stage completion, the system must proactively prompt the user and wait for confirmation. The checkpoint presentation adapts based on context and user engagement.**
 
-### Checkpoint Types
+#### Checkpoint Types
 
 | Type | When Used | Content |
 |------|-----------|---------|
@@ -169,7 +141,7 @@ See `references/pipeline_state_machine.md` for complete state transition definit
 | SLIM | After 2+ consecutive "continue" responses on non-critical stages | One-line status + explicit continue/pause prompt |
 | MANDATORY | Integrity FAIL; Review decision; Stage 5 | Cannot be skipped; requires explicit user input |
 
-### Decision Dashboard (shown at FULL checkpoints)
+#### Decision Dashboard (shown at FULL checkpoints)
 
 ```
 ━━━ Stage [X] [Name] Complete ━━━
@@ -193,7 +165,7 @@ Ready to proceed to Stage [Y]? You can also:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-### Adaptive Rules
+#### Adaptive Rules
 
 1. **First checkpoint**: always FULL
 2. **After 2+ consecutive "continue" without review**: prompt user awareness ("You've continued [N] times in a row. Want to review progress?")
@@ -202,7 +174,7 @@ Ready to proceed to Stage [Y]? You can also:
 5. **Before finalization (Stage 5)**: always MANDATORY
 6. **All other stages**: start FULL, downgrade to SLIM if user says "just continue"
 
-### Checkpoint Rules
+#### Checkpoint Rules
 
 1. ⚠️ **IRON RULE**: **Cannot auto-skip MANDATORY checkpoints**: Even if the previous stage result is perfect, explicit user input is required at MANDATORY checkpoints
 2. **User can adjust**: At FULL and MANDATORY checkpoints, users can modify the mode or settings for the next step
@@ -210,7 +182,7 @@ Ready to proceed to Stage [Y]? You can also:
 4. **SLIM mode**: If the user says "just continue" or "fully automatic," subsequent non-critical checkpoints switch to SLIM format (one-line status + explicit continue/pause prompt)
 5. **Awareness guard**: After 4+ consecutive continue responses, the system inserts a FULL checkpoint regardless of stage type to ensure user remains engaged
 
-### Self-Check Questions (at every FULL checkpoint)
+#### Self-Check Questions (at every FULL checkpoint)
 
 Before presenting the checkpoint to the user, the orchestrator asks itself:
 
@@ -224,7 +196,7 @@ If ANY answer raises concern, include it in the checkpoint presentation to the u
 
 ---
 
-## Agent Team (5 Agents)
+### Agent Team (5 Agents)
 
 | # | Agent | Role | File |
 |---|-------|------|------|
@@ -236,9 +208,9 @@ If ANY answer raises concern, include it in the checkpoint presentation to the u
 
 ---
 
-## Orchestrator Workflow
+### Orchestrator Workflow
 
-### Step 1: INTAKE & DETECTION
+#### Step 1: INTAKE & DETECTION
 
 ```
 pipeline_orchestrator_agent analyzes the user's input:
@@ -259,7 +231,7 @@ pipeline_orchestrator_agent analyzes the user's input:
 3. Determine entry point, confirm with user
 ```
 
-### Step 2: MODE RECOMMENDATION
+#### Step 2: MODE RECOMMENDATION
 
 ```
 Based on entry point and user preferences, recommend modes for each stage:
@@ -272,7 +244,7 @@ User type determination:
 Explain the differences between modes when recommending, letting the user choose
 ```
 
-### Step 3: STAGE EXECUTION
+#### Step 3: STAGE EXECUTION
 
 ```
 Call the corresponding skill (does not do work itself, purely dispatching):
@@ -288,7 +260,7 @@ After completion:
 3. [MANDATORY] Proactively prompt checkpoint, wait for user confirmation
 ```
 
-### Step 4: TRANSITION
+#### Step 4: TRANSITION
 
 ```
 After user confirmation:
@@ -306,7 +278,7 @@ After user confirmation:
 3. Begin next stage
 ```
 
-### Mid-Conversation Reinforcement Protocol
+#### Mid-Conversation Reinforcement Protocol
 
 At every stage transition, the orchestrator MUST inject a brief core principles reminder. This prevents context rot in long conversations.
 
@@ -328,7 +300,7 @@ Checkpoint: [MANDATORY/ADVISORY] — [What user needs to confirm]
 
 ---
 
-## Phase-by-phase Invocation Contract (v3.9.2)
+### Phase-by-phase Invocation Contract (v3.9.2)
 
 academic-pipeline is the orchestrator skill that coordinates the full ARS pipeline across 10 stages (delegating to deep-research, academic-paper, academic-paper-reviewer). Two invocation modes:
 
@@ -350,7 +322,7 @@ Routing into Mode B requires explicit user signal — `/ars-<mode>` slash comman
 
 ---
 
-## Integrity Review Protocol
+### Integrity Review Protocol
 
 Stage 2.5 (pre-review) and Stage 4.5 (post-revision) verification. 5-phase protocol: references → citation context → statistical data → originality → claims.
 
@@ -365,7 +337,7 @@ Stage 2.5 (pre-review) and Stage 4.5 (post-revision) verification. 5-phase proto
 
 ---
 
-## Two-Stage Review Protocol
+### Two-Stage Review Protocol
 
 Stage 3 (full review, 5 reviewers) → Revision Coaching → Stage 4 → Stage 3' (re-review) → optional Residual Coaching → Stage 4'.
 
@@ -373,7 +345,7 @@ Stage 3 (full review, 5 reviewers) → Revision Coaching → Stage 4 → Stage 3
 
 ---
 
-## Mid-Entry Protocol
+### Mid-Entry Protocol
 
 Users can enter from any stage. The orchestrator will:
 
@@ -388,7 +360,7 @@ Users can enter from any stage. The orchestrator will:
 
 ---
 
-## External Review Protocol
+### External Review Protocol
 
 Handles external (human) reviewer feedback integration. 4-step workflow: Intake & Structuring → Strategic Revision Coaching → Revision & Response → Self-Verification.
 
@@ -396,7 +368,7 @@ Handles external (human) reviewer feedback integration. 4-step workflow: Intake 
 
 ---
 
-## Progress Dashboard
+### Progress Dashboard
 
 ASCII dashboard shown at FULL checkpoints to display pipeline progress.
 
@@ -404,7 +376,7 @@ ASCII dashboard shown at FULL checkpoints to display pipeline progress.
 
 ---
 
-## Revision Loop Management
+### Revision Loop Management
 
 - Stage 3 (first review) -> Stage 4 (revision) -> Stage 3' (verification review) -> Stage 4' (re-revision, if needed) -> Stage 4.5 (final verification)
 - **Maximum 1 round of RE-REVISE** (Stage 4'): If Stage 3' gives Major, enter Stage 4' for revision then proceed directly to Stage 4.5 (no return to review)
@@ -412,17 +384,17 @@ ASCII dashboard shown at FULL checkpoints to display pipeline progress.
 - Mark unresolved issues as Acknowledged Limitations
 - Provide cumulative revision history (each round's decision, items addressed, unresolved items)
 
-### Early-Stopping Criterion (v3.2)
+#### Early-Stopping Criterion (v3.2)
 
 At the end of each revision round, if **delta < 3 points** on the 0-100 rubric AND **no P0 issues remain**, suggest stopping the revision loop ("converged"). User can override. Hard cap: 2 full revision loops (Stage 4 + Stage 4').
 
-### Budget Transparency (v3.2)
+#### Budget Transparency (v3.2)
 
 At pipeline start, estimate token cost based on paper length, mode, and cross-model toggle. Present estimate and ask for user confirmation before Stage 1 begins.
 
 ---
 
-## Reproducibility
+### Reproducibility
 
 Every pipeline artifact is versioned, hashed, and auditable.
 
@@ -430,7 +402,7 @@ Every pipeline artifact is versioned, hashed, and auditable.
 
 ---
 
-## Stage 6: Process Summary Protocol
+### Stage 6: Process Summary Protocol
 
 Produces the final process record: paper creation journey, collaboration quality evaluation (6 dimensions, 1-100), and AI self-reflection report.
 
@@ -438,7 +410,7 @@ Produces the final process record: paper creation journey, collaboration quality
 
 ---
 
-## Collaboration Depth Observer (v3.5.0, advisory only — never blocks)
+### Collaboration Depth Observer (v3.5.0, advisory only — never blocks)
 
 The `collaboration_depth_agent` observes the user's collaboration pattern with the pipeline. It is **advisory only** and **never blocks** progression at any checkpoint. It is `non-blocking` by design and carries `blocking: false` in its frontmatter as a structural guarantee.
 
@@ -466,7 +438,7 @@ The `collaboration_depth_agent` observes the user's collaboration pattern with t
 
 ---
 
-## Anti-Patterns
+### Anti-Patterns
 
 Explicit prohibitions to prevent common failure modes:
 
@@ -483,7 +455,7 @@ Explicit prohibitions to prevent common failure modes:
 
 ---
 
-## Quality Standards
+### Quality Standards
 
 | Dimension | Requirement |
 |-----------|------------|
@@ -502,7 +474,7 @@ Explicit prohibitions to prevent common failure modes:
 
 ---
 
-## Error Recovery
+### Error Recovery
 
 | Stage | Error | Handling |
 |-------|-------|---------|
@@ -520,7 +492,7 @@ Explicit prohibitions to prevent common failure modes:
 
 ---
 
-## Agent File References
+### Agent File References
 
 | Agent | Definition File |
 |-------|----------------|
@@ -532,7 +504,7 @@ Explicit prohibitions to prevent common failure modes:
 
 ---
 
-## Reference Files
+### Reference Files
 
 | Reference | Purpose |
 |-----------|---------|
@@ -556,7 +528,7 @@ Explicit prohibitions to prevent common failure modes:
 
 ---
 
-## Templates
+### Templates
 
 | Template | Purpose |
 |----------|---------|
@@ -564,7 +536,7 @@ Explicit prohibitions to prevent common failure modes:
 
 ---
 
-## Examples
+### Examples
 
 | Example | Demonstrates |
 |---------|-------------|
@@ -573,13 +545,13 @@ Explicit prohibitions to prevent common failure modes:
 
 ---
 
-## Output Language
+### Output Language
 
 Follows user language. Academic terminology retained in English.
 
 ---
 
-## Integration with Other Skills
+### Integration with Other Skills
 
 ```
 academic-pipeline dispatches the following skills (does not do work itself):
@@ -614,7 +586,7 @@ Stage 5: academic-paper (format-convert mode)
 
 ---
 
-## Related Skills
+### Related Skills
 
 | Skill | Relationship |
 |-------|-------------|
@@ -624,7 +596,7 @@ Stage 5: academic-paper (format-convert mode)
 
 ---
 
-## Version Info
+### Version Info
 
 | Item | Content |
 |------|---------|
@@ -636,35 +608,6 @@ Stage 5: academic-paper (format-convert mode)
 
 ---
 
-## Changelog
+### Changelog
 
 > See `references/changelog.md` for full version history.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/Imbad0202/academic-research-skills/contents/academic-pipeline/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>Imbad0202/academic-research-skills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../academic-research-skills.md">Academic Research Skills (ARS)</a></dd>
-<dt><b>Category</b></dt><dd><code>meta</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>License</b></dt><dd>CC BY-NC 4.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/Imbad0202/academic-research-skills">⭐ Imbad0202/academic-research-skills</a><br><img src="https://img.shields.io/github/stars/Imbad0202/academic-research-skills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/Imbad0202/academic-research-skills/blob/main/academic-pipeline/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/academic-research-skills/academic-pipeline/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/academic-research-skills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

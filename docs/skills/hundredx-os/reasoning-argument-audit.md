@@ -4,35 +4,23 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>audit</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/reasoning/argument-audit.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Argument Coherence Audit
 
----
-
-# Argument Coherence Audit
-
-## Purpose
+### Purpose
 
 A publishable paper makes a single coherent argument. Every section exists to advance that argument. This procedure identifies where the argument breaks down -- where claims are unsupported, where sections don't connect, and where the reader would lose the thread.
 
 ---
 
-## Step 0: Type III Error Diagnostic — Are We Solving the Right Problem?
+### Step 0: Type III Error Diagnostic — Are We Solving the Right Problem?
 
 Before auditing the argument's coherence, verify that the research question itself is worth answering. A Type III error (Rai, 2017) is answering the wrong question using the right methods. You can be precise, disciplined, and technically strong, yet fail to create value if the underlying problem does not matter.
 
 Problem formulation is the most consequential decision a scholar makes. Run these five tests before proceeding:
 
-### Test 1: Streetlight Effect
+#### Test 1: Streetlight Effect
 
 Is the paper studying what is important, or what is easy because the data are available? Signs of the streetlight effect:
 - The research question follows directly from a dataset the authors happen to have
@@ -41,7 +29,7 @@ Is the paper studying what is important, or what is easy because the data are av
 
 Ask: if this dataset did not exist, would anyone consider this question important?
 
-### Test 2: Solution-Driven Research
+#### Test 2: Solution-Driven Research
 
 Is the paper pushing a theory or method in search of a problem, rather than the other way around? Signs:
 - The method or model is introduced before the research problem is established
@@ -50,7 +38,7 @@ Is the paper pushing a theory or method in search of a problem, rather than the 
 
 Ask: does the paper have a compelling problem independent of the tool used to solve it?
 
-### Test 3: Consequential Gap
+#### Test 3: Consequential Gap
 
 If the paper identifies a gap in the literature, does it explain why the gap is consequential? "No one has studied X" is an observation about the literature, not a reason to study X. The gap must matter:
 - What decisions are made poorly because this knowledge is missing?
@@ -59,13 +47,13 @@ If the paper identifies a gap in the literature, does it explain why the gap is 
 
 Ask: if we filled this gap, what would change in how people think, decide, or act?
 
-### Test 4: Phenomenon-to-Archetype Link
+#### Test 4: Phenomenon-to-Archetype Link
 
 Does the paper connect its immediate phenomenon to a broader, archetypal problem? The phenomenon is specific (e.g., "DeFi protocols lose billions despite public audits"). The archetypal problem is general (e.g., "transparency alone does not prevent exploitation when comprehension costs are high"). A paper that stays at the phenomenon level is a case study. A paper that links to the archetype produces transferable knowledge.
 
 Ask: what general class of problems does this specific phenomenon represent?
 
-### Test 5: Derivative Answer Risk
+#### Test 5: Derivative Answer Risk
 
 Will the answer advance knowledge, or essentially reaffirm what we already know in a new setting? Signs of a derivative answer:
 - The expected finding is obvious given existing theory
@@ -74,7 +62,7 @@ Will the answer advance knowledge, or essentially reaffirm what we already know 
 
 Ask: what would be surprising about the findings? If nothing, the question may not be worth asking at the current level of ambition.
 
-### Scope Calibration
+#### Scope Calibration
 
 Finally, assess scope. Both extremes are pitfalls:
 - **Too narrow**: The question is answerable but trivial. Only the authors care about the answer.
@@ -86,7 +74,7 @@ A well-scoped question is one where the proposed methods can deliver a credible 
 
 ---
 
-## Step 1: Extract the Core Claim and Check Motivation Source
+### Step 1: Extract the Core Claim and Check Motivation Source
 
 Read the introduction and conclusion. State in one sentence:
 - **What question does this paper answer?**
@@ -99,7 +87,7 @@ If you cannot state these in one sentence each, the paper has an identity proble
 
 ---
 
-## Step 2: Map the Argument Flow
+### Step 2: Map the Argument Flow
 
 For each section of the paper, identify:
 
@@ -113,7 +101,7 @@ Fill in this table. The argument flows if:
 
 ---
 
-## Step 3: Identify Argument Jumps
+### Step 3: Identify Argument Jumps
 
 An argument "jump" is where the paper moves from claim A to claim B without establishing the connection. Common patterns:
 
@@ -132,7 +120,7 @@ For each jump found:
 
 ---
 
-## Step 4: Check Evidence-Claim Alignment
+### Step 4: Check Evidence-Claim Alignment
 
 For each empirical result the paper presents:
 - **What does the paper claim this result shows?**
@@ -145,7 +133,7 @@ For each empirical result the paper presents:
 
 ---
 
-## Step 5: Assess Justifiability of Each Jump
+### Step 5: Assess Justifiability of Each Jump
 
 For each argument jump identified in Step 3, classify:
 
@@ -156,7 +144,7 @@ For each argument jump identified in Step 3, classify:
 
 ---
 
-## Step 6: Produce the Audit Output
+### Step 6: Produce the Audit Output
 
 For each issue found, provide:
 
@@ -172,35 +160,10 @@ Prioritize by severity. A paper with one critical issue and ten minor issues sho
 
 ---
 
-## Anti-Patterns to Flag
+### Anti-Patterns to Flag
 
 - **The literature review that doesn't serve the argument**: Pages of "Author A found X, Author B found Y" without explaining how this positions the current paper's contribution.
 - **The model that doesn't connect to the empirics**: A theoretical section that makes predictions, followed by an empirical section that tests different predictions.
 - **The robustness section that undermines the main result**: "Our result is robust to X, Y, and Z" but not robust to the most obvious threat.
 - **The conclusion that introduces new claims**: Claims in the conclusion that aren't supported anywhere in the paper.
 - **The introduction that oversells**: Promising to "resolve a longstanding debate" when the paper provides one additional piece of evidence.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/reasoning/argument-audit.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>audit</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/reasoning-argument-audit/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

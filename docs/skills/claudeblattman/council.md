@@ -4,27 +4,15 @@
 
 Convene a multi-perspective 'council' on an open question
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>ideation</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>rq-formulation</code> · <code>hypothesis-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/council.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/council/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/council.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# /council — Parallel Critics + Separate Synthesis
+## /council — Parallel Critics + Separate Synthesis
 
 *v1.3 — Removed the Phase 4 "rate-limit advisory" line: it depended on response headers that aren't accessible under OAuth-only auth, so it printed "unavailable" on every run. The "Ctrl-C to abort" affordance was also phantom — print and dispatch happen in the same model turn, so there's no actual abort window. Replaced with a clean dispatch announcement: `$PANEL_NAME panel: dispatched N critics on $COUNCIL_CRITIC_MODEL`. v1.2 added `--chef-skill`. v1.1 added `--mixed` (cross-vendor peer). v1.0: dispatches N critic agents in parallel, runs a separate synthesis pass; hard cap 5; single-round only; never majority-votes on narrative output.*
 
 Dispatches N critic agents in parallel, collects raw outputs, and runs a separate synthesis pass. Hard cap of 5 critics. Single-round only. Never majority-votes on narrative output.
 
-## Quick Start
+### Quick Start
 
 The fastest path that works out of the box:
 
@@ -36,7 +24,7 @@ This uses a hardcoded 3-role panel (skill-engineer + UX-for-tools + non-expert-a
 
 For broader use (plan / paper / decision / grant panels), see "Default panels" below — those require persona agent files in `~/.claude/agents/`.
 
-## Config
+### Config
 
 ```
 COUNCIL_CRITIC_MODEL=opus       # or sonnet for cheaper runs
@@ -47,7 +35,7 @@ COUNCIL_DEFAULT_N=3
 
 Models are set here, not in persona frontmatter. Next-model migration = edit two lines.
 
-## Invocation
+### Invocation
 
 **Primary:** `/council <topic>` or `/council file:<path> [flags]`
 
@@ -56,7 +44,7 @@ Models are set here, not in persona frontmatter. Next-model migration = edit two
 - **Chef-skill voice triggers** → auto-set `--chef-skill`: "council this skill" / "skill council" / "council on this tool / command / workflow" / "bespoke skill council"
 - Meta-reference guard: sentences *about* councils as a topic are not invocations. On low confidence, ask one line.
 
-## Flags
+### Flags
 
 | Flag | Effect |
 |------|--------|
@@ -66,7 +54,7 @@ Models are set here, not in persona frontmatter. Next-model migration = edit two
 | `--mixed [codex\|gemini]` | Swap ONE Claude critic for a cross-vendor peer |
 | `--chef-skill` | Hardcoded 3-role skill/tool-design panel. Bypasses panel resolution and persona-file check. **Works out of box.** |
 
-## Default panels (resolve from `--type` or keyword inference)
+### Default panels (resolve from `--type` or keyword inference)
 
 These require persona agent files in `~/.claude/agents/`. The file naming convention is `<persona-name>-agent.md` or `experts/<persona-name>.md`.
 
@@ -82,9 +70,9 @@ If you don't have these persona files yet, use `--chef-skill` for skill-design t
 
 Keyword inference (used if `--type` not given): "plan / architecture / design" → plan; "paper / referee / submission / manuscript" → paper; "proposal / grant / funder / NSF / Gates" → grant; "should I / go-no-go / accept / reject / decide" → decision; else ambiguous → ask.
 
-## Dispatch phases
+### Dispatch phases
 
-### Phase 1 — Parse and resolve
+#### Phase 1 — Parse and resolve
 
 1. Parse topic + flags.
 2. If `file:<path>`, Read the file; that is the content for the critics.
@@ -95,7 +83,7 @@ Keyword inference (used if `--type` not given): "plan / architecture / design" �
    - Ambiguous → ask one line: "Panel type: plan / paper / decision / grant?"
 4. Cap N at `COUNCIL_MAX_CRITICS`. If user asks for >5, refuse with: "Hard cap is 5. Pick a tighter panel."
 
-### Phase 1.5 — `--chef-skill` short-circuit
+#### Phase 1.5 — `--chef-skill` short-circuit
 
 If `--chef-skill` flag is set, skip Phases 2 (meta-guard) and 3 (persona-file check). This branch ships a hardcoded 3-role panel for skill/tool-design review, dispatched as `general-purpose` subagents with inline role-string prefixes — not persona files.
 
@@ -107,11 +95,11 @@ Pre-populate these 3 role-strings and jump directly to Phase 5 dispatch:
 
 Panel type for synthesis: **plan**. N critics: **3**.
 
-### Phase 2 — Meta-reference guard
+#### Phase 2 — Meta-reference guard
 
 If invocation is via natural-language trigger (not explicit `/council`), classify whether this is an invocation or a meta-reference. Dispatch one short Task call to classify; if META or UNCLEAR, ask one line before dispatching critics. Skip this phase if `--chef-skill` is set.
 
-### Phase 3 — Persona file existence check
+#### Phase 3 — Persona file existence check
 
 For each persona in the resolved panel, Glob both:
 - `~/.claude/agents/{name}-agent.md`
@@ -119,7 +107,7 @@ For each persona in the resolved panel, Glob both:
 
 If any persona file is missing, abort with a clear error listing the missing personas. **No silent fallback to `general-purpose`.** Skip this phase if `--chef-skill` is set.
 
-### Phase 4 — Dispatch announcement
+#### Phase 4 — Dispatch announcement
 
 Print one line before the parallel Task calls:
 
@@ -132,7 +120,7 @@ No terminal period (this is a status line, not prose). `$PANEL_NAME` is one of `
 <!-- v1.3: previous "Rate-limit advisory: unavailable…" line removed. The header-based advisory was structurally inert under OAuth-only auth, and "Ctrl-C to abort" was a phantom affordance (print and dispatch happen in the same model turn). If the harness later exposes rate-limit state via /status hook or env var, restore a real advisory here. -->
 
 
-### Phase 4.5 — Peer swap (only if `--mixed` flag set)
+#### Phase 4.5 — Peer swap (only if `--mixed` flag set)
 
 If `--mixed codex|gemini` was passed, swap ONE Claude critic for a cross-vendor peer. Preserves the 5-critic cap.
 
@@ -149,7 +137,7 @@ The swapped Claude critic becomes a peer-vendor critic via Bash dispatch (Codex 
 
 If the peer binary is missing, print one line ("Gemini CLI not installed; falling back to all-Claude council") and continue with the unswapped panel. Graceful degradation.
 
-### Phase 5 — Parallel Task dispatch
+#### Phase 5 — Parallel Task dispatch
 
 Send one message with N Task tool calls (true parallelism). Each call:
 - `subagent_type`: persona slug (e.g., `skeptic-agent`)
@@ -161,11 +149,11 @@ Send one message with N Task tool calls (true parallelism). Each call:
 
 **`--chef-skill` mode:** Dispatch 3 `general-purpose` Task calls in parallel (not persona-agent slugs). Each call's `prompt` opens with the corresponding role-string from Phase 1.5 as a prefix, followed by the topic/file content and the instruction *"Produce raw critique in this role's voice. End with VERDICT: APPROVE | REVISE + one-line rationale."*
 
-### Phase 6 — Collect
+#### Phase 6 — Collect
 
 Collect raw critic outputs. Do NOT inline-synthesize.
 
-### Phase 7 — Separate synthesis dispatch
+#### Phase 7 — Separate synthesis dispatch
 
 One more Task call:
 - `subagent_type`: `general-purpose`
@@ -178,11 +166,11 @@ Panel-type branches:
 - **decision** → Recommended action → Top 3 risks → Top 3 reasons in favor → per-critic verdict
 - **grant** → Paper branch + funder-officer fundability verdict
 
-### Phase 8 — Emit
+#### Phase 8 — Emit
 
 Emit the synthesis. Include raw critic outputs inside a `<details>` collapsible at the bottom for verification.
 
-### Phase 9 — Log
+#### Phase 9 — Log
 
 Append one row to a council invocation log (e.g., `~/.claude-assistant/logs/council-invocations.csv`):
 
@@ -190,7 +178,7 @@ Append one row to a council invocation log (e.g., `~/.claude-assistant/logs/coun
 timestamp,run_id,topic,panel_resolved,critic_count,synthesis_verdict,wall_time_sec,model_critic,model_synthesis
 ```
 
-## Why a Council
+### Why a Council
 
 Multiple critics with explicit lenses outperform one general critic on review/decision tasks. The pattern:
 
@@ -199,50 +187,20 @@ Multiple critics with explicit lenses outperform one general critic on review/de
 - **Single round** — no iterative debate. Round 2+ documented to drift toward conformity (see 2025-2026 multi-agent literature)
 - **Hard cap 5** — beyond 5 critics, you get diminishing returns and harder synthesis
 
-## Out of scope (v1.0+)
+### Out of scope (v1.0+)
 
 - Round 2 / iterative debate (single-round only)
 - Majority voting on narrative output (conformity bias)
 - LLM-proposed persona generation (`--chef` mode without `-skill`): requires a router. Hardcoded `--chef-skill` is the minimum-viable path for now.
 
-## Performance Logging
+### Performance Logging
 
 ```bash
 echo "$(date +%Y-%m-%d),council,TOOL_CALLS,${N_CRITICS}-critics-${PANEL_TYPE}" >> ~/.claude-assistant/logs/skill-performance.csv
 ```
 
-## Setup Notes
+### Setup Notes
 
 - For chef-skill mode: nothing required. Works out of box.
 - For default panels: place persona agent files in `~/.claude/agents/`. The site provides one starter agent (`agents/proposal-critic-agent.md`); add more as you build out your panel library.
 - For mixed mode: install the peer CLI (Codex via macOS app, Gemini via `npm install -g @google/gemini-cli`). The skill degrades gracefully if either is missing.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/council.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>ideation</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>rq-formulation</code> <code>hypothesis-generation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/council.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/council/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

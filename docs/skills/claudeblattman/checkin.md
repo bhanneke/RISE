@@ -4,21 +4,9 @@
 
 Daily check-in / status update with Claude
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/checkin.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/checkin/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/checkin.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Check-In Session
+## Check-In Session
 
 *v1.4 — Hardened Phase 0.5 triage: enforcement contract, explicit steps, auth fallback*
 
@@ -26,7 +14,7 @@ Interactive check-in with Claude as chief of staff. Combines inbox triage, remin
 
 > **This is an interactive skill.** A full session takes 10-15 minutes. Try `/checkin quick` first for a 30-second status view.
 
-## Prerequisites
+### Prerequisites
 
 This skill requires several MCP integrations and config files. Missing components degrade gracefully (phases are skipped, not errors).
 
@@ -46,7 +34,7 @@ This skill requires several MCP integrations and config files. Missing component
 - **Granola MCP** — for meeting context from past transcripts
 - **Apple Reminders** (macOS only) — for reminder triage phase
 
-## First-Time Setup
+### First-Time Setup
 
 1. **Create config directory:**
    ```bash
@@ -74,7 +62,7 @@ This skill requires several MCP integrations and config files. Missing component
    /checkin quick
    ```
 
-## Customization Points
+### Customization Points
 
 | Setting | Where to Configure | Default |
 |---------|-------------------|---------|
@@ -90,7 +78,7 @@ This skill requires several MCP integrations and config files. Missing component
 | **Email quick-fire cap** | Phase 4 | 10 emails |
 | **Meeting prep cap** | Phase 3 | 3 meetings |
 
-## MANDATORY: Phase Execution Order
+### MANDATORY: Phase Execution Order
 
 **Execute phases sequentially. Do NOT skip any phase unless its skip-argument is set. Do NOT jump ahead based on user phrasing like "focus on email" — that adjusts emphasis within phases, not which phases run. Complete each phase before starting the next.**
 
@@ -113,7 +101,7 @@ User arguments like "focus on email" control **depth and emphasis** within phase
 > record "Triage: skipped (no-triage flag)". If auth is unavailable, record
 > "Triage: skipped (auth unavailable)". Do not fabricate triage counts.
 
-## Arguments
+### Arguments
 
 `$ARGUMENTS` can include (combine freely):
 - *(none)* — full interactive session (triage + reminders + prep + email + priorities)
@@ -124,9 +112,9 @@ User arguments like "focus on email" control **depth and emphasis** within phase
 - `no-triage` — skip inbox triage (Phase 0.5)
 - `tomorrow` — preview tomorrow's schedule (skip interactive phases)
 
-## Instructions
+### Instructions
 
-### Phase 0: Pre-Compute All Data (one batch, no interaction)
+#### Phase 0: Pre-Compute All Data (one batch, no interaction)
 
 **This entire phase runs before any output to the user.** Front-load all slow MCP calls.
 
@@ -194,7 +182,7 @@ Using fetched email contents, classify each:
 
 ---
 
-### Phase 0.5: Inbox Triage
+#### Phase 0.5: Inbox Triage
 
 **A. Check skip conditions first.**
 - If `no-triage` or `tomorrow` argument: record "Triage: skipped ({reason})" -> jump to Phase 1.
@@ -223,7 +211,7 @@ Phase 1 MUST display these counts. Do not start Phase 1 until this step is compl
 
 ---
 
-### Phase 1: Quick Status (30 seconds, display only)
+#### Phase 1: Quick Status (30 seconds, display only)
 
 **Phase completion checklist (MUST appear first):**
 Before any other output, display which phases completed. Source triage counts from actual results, not memory:
@@ -237,7 +225,7 @@ Remaining phases show as unchecked (they haven't run yet). This line is the user
 **Time-aware header:**
 
 ```
-# Check-In -- [Day], [Month] [Date] ([period]: [time])
+## Check-In -- [Day], [Month] [Date] ([period]: [time])
 
 [If morning:]
 Today: [N] meetings | [N] hours free (8am-6pm)
@@ -261,7 +249,7 @@ If `quick` argument: show Phase 1 + Phase 5 only, then proceed to Phase 6 (save 
 
 ---
 
-### Phase 2: Reminder Triage (2-3 min, interactive)
+#### Phase 2: Reminder Triage (2-3 min, interactive)
 
 **Skip if `no-reminders` argument or non-macOS.**
 
@@ -299,7 +287,7 @@ Batch: "keep all", "defer 1,3,5 to Friday", "done 4"
 
 ---
 
-### Phase 3: Meeting Prep (2-3 min per key meeting, interactive)
+#### Phase 3: Meeting Prep (2-3 min per key meeting, interactive)
 
 **Skip if `no-prep` argument.**
 
@@ -324,7 +312,7 @@ New contact or infrequent interaction.
 
 ---
 
-### Phase 4: Email Quick-Fire (3-5 min, interactive)
+#### Phase 4: Email Quick-Fire (3-5 min, interactive)
 
 **Skip if `no-email` argument.**
 
@@ -381,7 +369,7 @@ SUBSTANTIVE (needs input):
 
 ---
 
-### Phase 5: Priorities (1 min, display only)
+#### Phase 5: Priorities (1 min, display only)
 
 **Time-aware priorities:**
 
@@ -416,7 +404,7 @@ Anything to add or change? Otherwise, have a great [period].
 
 ---
 
-### Phase 6: Save Session State
+#### Phase 6: Save Session State
 
 Update `~/.claude-assistant/state/checkin-state.json`:
 
@@ -451,7 +439,7 @@ Update `~/.claude-assistant/state/checkin-state.json`:
 
 Prune sessions older than 30 days. After 5+ sessions where the user always approves a pattern, add to `learned_patterns.always_send`.
 
-### Phase 7: Log Performance
+#### Phase 7: Log Performance
 
 ```bash
 echo "$(date +%Y-%m-%d),checkin,TOOL_CALLS,NOTES" >> ~/.claude-assistant/logs/skill-performance.csv
@@ -459,7 +447,7 @@ echo "$(date +%Y-%m-%d),checkin,TOOL_CALLS,NOTES" >> ~/.claude-assistant/logs/sk
 
 Replace TOOL_CALLS with approximate count and NOTES with brief summary.
 
-## Error Handling
+### Error Handling
 
 - **Gmail MCP unavailable:** Skip Phases 0.5 and 4, report "Gmail unavailable"
 - **Calendar MCP unavailable:** Skip meeting prep context, report "Calendar unavailable"
@@ -468,14 +456,14 @@ Replace TOOL_CALLS with approximate count and NOTES with brief summary.
 - **Email send fails:** Save draft to Gmail via `draft_gmail_message`
 - **checkin-state.json missing:** Initialize fresh state file
 
-## Integration Notes
+### Integration Notes
 
 - **Morning-brief** remains for passive scheduled reports. `/checkin` is the active interactive triage.
 - **Triage logic** is shared with `/triage-inbox` — both use the same `triage-config.md` and `email-policy.md`. Install `/triage-inbox` for the triage phase to work.
 - **Email drafting** uses Gmail MCP (Option A) or a custom send script (Option B).
 - **Goal alignment** reads `goals.yaml` — keep this file updated via `/goals-review`.
 
-## Speed Notes
+### Speed Notes
 
 - **Pre-compute everything** in Phase 0 before interaction
 - **Parallel MCP calls** wherever possible
@@ -483,32 +471,3 @@ Replace TOOL_CALLS with approximate count and NOTES with brief summary.
 - **Cap email quick-fire** at 10 emails
 - **Adaptive triage window** — repeat runs search fewer emails = faster
 - Target: Phase 0 in 60-120 seconds, interactive phases in 5-10 min
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/checkin.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>infra</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/checkin.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/checkin/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

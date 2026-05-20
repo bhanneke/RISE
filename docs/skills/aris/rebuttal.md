@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>revision</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>revision-editing</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/rebuttal/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/rebuttal/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: rebuttal
-description: "Workflow 4: Submission rebuttal pipeline. Parses external reviews, enforces coverage and grounding, drafts a safe text-only rebuttal under venue limits, and manages follow-up rounds. Use when user says \"rebuttal\", \"reply to reviewers\", \"ICML rebuttal\", \"OpenReview response\", or wants to answer external reviews safely."
-argument-hint: [paper-path-or-review-bundle]
-allowed-tools: Bash(*), Read, Grep, Glob, Write, Edit, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Workflow 4: Rebuttal
+## Workflow 4: Rebuttal
 
 Prepare and maintain a grounded, venue-compliant rebuttal for: **$ARGUMENTS**
 
-## Scope
+### Scope
 
 This skill is optimized for:
 - **text-only rebuttal** under strict character/word limits (e.g. ICML single-document)
@@ -46,7 +27,7 @@ This skill does **not**:
 
 If the user already has new results, derivations, or approved commitments, the skill can incorporate them as **user-confirmed evidence**.
 
-## Lifecycle Position
+### Lifecycle Position
 
 ```text
 Workflow 1:   idea-discovery
@@ -56,7 +37,7 @@ Workflow 3:   paper-writing
 Workflow 4:   rebuttal (post-submission external reviews)
 ```
 
-## Constants
+### Constants
 
 - **VENUE = `ICML`** — Default venue. Override if needed.
 - **RESPONSE_MODE = `TEXT_ONLY`** — v1 default.
@@ -72,7 +53,7 @@ Workflow 4:   rebuttal (post-submission external reviews)
 
 > Override: `/rebuttal "paper/" — venue: NeurIPS, character limit: 5000`
 
-## Required Inputs
+### Required Inputs
 
 1. **Paper source** — PDF, LaTeX directory, or narrative summary
 2. **Raw reviews** — pasted text, markdown, or PDF with reviewer IDs
@@ -81,7 +62,7 @@ Workflow 4:   rebuttal (post-submission external reviews)
 
 If venue rules, limit, or rendering mode are missing, **stop and ask** before drafting.
 
-## Safety Model
+### Safety Model
 
 Three hard gates — if any fails, do NOT finalize:
 
@@ -89,22 +70,22 @@ Three hard gates — if any fails, do NOT finalize:
 2. **Commitment gate** — every promise maps to: `already_done`, `approved_for_rebuttal`, or `future_work_only`. Not approved = blocked.
 3. **Coverage gate** — every reviewer concern ends in: `answered`, `deferred_intentionally`, or `needs_user_input`. No issue disappears.
 
-## Workflow
+### Workflow
 
-### Phase 0: Resume or Initialize
+#### Phase 0: Resume or Initialize
 
 1. If `rebuttal/REBUTTAL_STATE.md` exists → resume from recorded phase
 2. Otherwise → create `rebuttal/`, initialize all output documents
 3. Load paper, reviews, venue rules, any user-confirmed evidence
 
-### Phase 1: Validate Inputs and Normalize Reviews
+#### Phase 1: Validate Inputs and Normalize Reviews
 
 1. Validate venue rules are explicit
 2. Normalize all reviewer text into `rebuttal/REVIEWS_RAW.md` (verbatim)
 3. Record metadata in `rebuttal/REBUTTAL_STATE.md`
 4. If ambiguous, pause and ask
 
-### Phase 2: Atomize and Classify Reviewer Concerns
+#### Phase 2: Atomize and Classify Reviewer Concerns
 
 Create `rebuttal/ISSUE_BOARD.md`.
 
@@ -120,7 +101,7 @@ For each atomic concern:
   - `structural_distinction` — for "your method reduces to X / is just generic Y / is subsumed by Z" attacks. Pattern: agree on the local reduction; show the structural feature your parameterization preserves that X/Y/Z does not capture, backed by a concrete mechanism (theorem dependency, derivation step, or empirical consequence). Never use rhetorically without the supporting mechanism.
 - `status`: open / answered / deferred / needs_user_input
 
-### Phase 3: Build Strategy Plan
+#### Phase 3: Build Strategy Plan
 
 Create `rebuttal/STRATEGY_PLAN.md`.
 
@@ -133,7 +114,7 @@ Create `rebuttal/STRATEGY_PLAN.md`.
 
 **QUICK_MODE exit**: If `QUICK_MODE = true`, stop here. Present `ISSUE_BOARD.md` + `STRATEGY_PLAN.md` to the user and summarize: how many issues per reviewer, shared vs unique concerns, recommended priorities, and evidence gaps. The user can then decide to continue with full rebuttal (`/rebuttal — quick mode: false`) or write manually.
 
-### Phase 3.5: Evidence Sprint (when AUTO_EXPERIMENT = true)
+#### Phase 3.5: Evidence Sprint (when AUTO_EXPERIMENT = true)
 
 **Skip entirely if `AUTO_EXPERIMENT` is `false` — instead, pause and present the evidence gaps to the user.**
 
@@ -161,7 +142,7 @@ If the strategy plan identifies issues that require new empirical evidence (tagg
 
 **Time guard**: If estimated GPU-hours exceed rebuttal deadline, skip and flag for manual handling.
 
-### Phase 4: Draft Initial Rebuttal
+#### Phase 4: Draft Initial Rebuttal
 
 Create the draft artifact(s) per `VENUE_MODE`:
 - `single_document` mode → one `rebuttal/REBUTTAL_DRAFT_v1.md`
@@ -246,7 +227,7 @@ Rules for `REVISION_PLAN.md`:
 - Never add items that are not backed by the draft or by user-confirmed evidence.
 - On rerun / follow-up rounds, update checkbox state in place rather than regenerating from scratch.
 
-### Phase 5: Safety Validation
+#### Phase 5: Safety Validation
 
 Run all lints:
 1. **Coverage** — every issue maps to draft anchor
@@ -258,7 +239,7 @@ Run all lints:
 7. **Thread-local context** (`per_reviewer_thread` mode only) — each reviewer file must be intelligible without reading any other reviewer file. Flag any "see Reviewer X" references or undefined terms that rely on cross-thread context.
 8. **Adversarial design-choice scan** — for each experimental claim, ask: "Could a hostile reviewer find a non-obvious design choice (compute-match, frozen subset, sampling protocol) that I haven't disclosed?" If yes, add a one-line caveat in the Setup paragraph. Narrower than provenance; focused on *design choices* not factual sources.
 
-### Phase 6: Codex MCP Stress Test
+#### Phase 6: Codex MCP Stress Test
 
 ```
 mcp__codex__codex:
@@ -279,7 +260,7 @@ mcp__codex__codex:
 
 **Iterations.** Run the base round on the full draft. Then run focused follow-up rounds on each `reviewer_priority: pivotal` response, terminating when Codex returns no new substantive issues. Hard cap at 5 rounds total. Save each round to `rebuttal/MCP_STRESS_TEST_round<N>.md`; the highest round number represents the final state. If any hard safety blocker remains → revise before finalizing.
 
-### Phase 7: Finalize
+#### Phase 7: Finalize
 
 **Outputs depend on `VENUE_MODE`:**
 
@@ -312,7 +293,7 @@ mcp__codex__codex:
    - `REVISION_PLAN.md` checklist — counts of pending / approved / deferred
    - Remaining risks + lines needing manual approval
 
-### Phase 8: Follow-Up Rounds
+#### Phase 8: Follow-Up Rounds
 
 When new reviewer comments arrive:
 
@@ -324,7 +305,7 @@ When new reviewer comments arrive:
 6. Use Codex MCP reply for continuity if useful
 7. Rules: escalate technically not rhetorically; concede if reviewer is correct; stop arguing if reviewer is immovable and no new evidence exists
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If Write fails, retry with Bash heredoc silently.
 - **Never fabricate.** No invented evidence, numbers, derivations, citations, or links.
@@ -341,36 +322,6 @@ When new reviewer comments arrive:
 - **Resume cleanly.** Continue from REBUTTAL_STATE.md on rerun.
 - **Anti-hallucination citations.** Any reference added must go through DBLP → CrossRef → [VERIFY].
 
-## Review Tracing
+### Review Tracing
 
 After each `mcp__codex__codex` or `mcp__codex__codex-reply` reviewer call, save the trace following `shared-references/review-tracing.md` (Policy C — forensic; never silently skip). Use `save_trace.sh` (resolved per the chain in `shared-references/integration-contract.md` §2) or write files directly to `.aris/traces/<skill>/<date>_run<NN>/`. Respect the `--- trace:` parameter (default: `full`).
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/rebuttal/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>revision</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>revision-editing</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/rebuttal/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,27 +4,15 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>data-handling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-acquisition</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/data/figure-spec.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Figure Specification Format
+## Figure Specification Format
 
 When producing figures, output a `figure_spec.json` file with actual data values.
 The pipeline renders these specs into publication-quality PDFs deterministically.
 Do NOT write matplotlib/seaborn code or attempt to generate figures yourself.
 
-## Structure
+### Structure
 
 ```json
 {
@@ -40,9 +28,9 @@ Do NOT write matplotlib/seaborn code or attempt to generate figures yourself.
 }
 ```
 
-## Supported Figure Types
+### Supported Figure Types
 
-### coefficient — Horizontal coefficient plot with CIs
+#### coefficient — Horizontal coefficient plot with CIs
 ```json
 {
   "figure_type": "coefficient",
@@ -55,7 +43,7 @@ Do NOT write matplotlib/seaborn code or attempt to generate figures yourself.
 }
 ```
 
-### event_study — Dynamic treatment effects
+#### event_study — Dynamic treatment effects
 ```json
 {
   "figure_type": "event_study",
@@ -69,7 +57,7 @@ Do NOT write matplotlib/seaborn code or attempt to generate figures yourself.
 }
 ```
 
-### time_series — Multi-series line plot
+#### time_series — Multi-series line plot
 ```json
 {
   "figure_type": "time_series",
@@ -83,7 +71,7 @@ Do NOT write matplotlib/seaborn code or attempt to generate figures yourself.
 }
 ```
 
-### bar — Categorical comparison
+#### bar — Categorical comparison
 ```json
 {
   "figure_type": "bar",
@@ -94,7 +82,7 @@ Do NOT write matplotlib/seaborn code or attempt to generate figures yourself.
 }
 ```
 
-### binscatter — Binned scatter plot
+#### binscatter — Binned scatter plot
 ```json
 {
   "figure_type": "binscatter",
@@ -106,7 +94,7 @@ Do NOT write matplotlib/seaborn code or attempt to generate figures yourself.
 }
 ```
 
-### distribution — Histogram with optional KDE
+#### distribution — Histogram with optional KDE
 ```json
 {
   "figure_type": "distribution",
@@ -119,7 +107,7 @@ Do NOT write matplotlib/seaborn code or attempt to generate figures yourself.
 }
 ```
 
-### multi_panel — Grid of sub-figures
+#### multi_panel — Grid of sub-figures
 ```json
 {
   "figure_type": "multi_panel",
@@ -131,7 +119,7 @@ Do NOT write matplotlib/seaborn code or attempt to generate figures yourself.
 }
 ```
 
-## Rules
+### Rules
 
 1. Embed ACTUAL numeric values from estimation results. Never use placeholders.
 2. Maximum ~10,000 data points per figure. Pre-bin distributions if needed.
@@ -139,28 +127,3 @@ Do NOT write matplotlib/seaborn code or attempt to generate figures yourself.
 4. Provide a `label` for LaTeX `\ref{}` and a `caption_hint` for the drafter.
 5. Skip figure types that don't fit the methodology.
 6. All axis labels should include units where applicable.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/data/figure-spec.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>data-handling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-acquisition</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/data-figure-spec/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

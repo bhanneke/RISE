@@ -4,41 +4,23 @@
 
 Build MCP servers (Anthropic spec)
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../anthropic-skills/">Anthropic Skills (foundational)</a></div><div><b>Category:</b> <code>meta</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/anthropics/skills/contents/skills/mcp-builder/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/anthropic-skills/mcp-builder/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/anthropics/skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## MCP Server Development Guide
 
----
-
----
-name: mcp-builder
-description: Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).
-license: Complete terms in LICENSE.txt
----
-
-# MCP Server Development Guide
-
-## Overview
+### Overview
 
 Create MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. The quality of an MCP server is measured by how well it enables LLMs to accomplish real-world tasks.
 
 ---
 
-# Process
+## Process
 
-## 🚀 High-Level Workflow
+### 🚀 High-Level Workflow
 
 Creating a high-quality MCP server involves four main phases:
 
-### Phase 1: Deep Research and Planning
+#### Phase 1: Deep Research and Planning
 
 #### 1.1 Understand Modern MCP Design
 
@@ -95,7 +77,7 @@ Prioritize comprehensive API coverage. List endpoints to implement, starting wit
 
 ---
 
-### Phase 2: Implementation
+#### Phase 2: Implementation
 
 #### 2.1 Set Up Project Structure
 
@@ -144,7 +126,7 @@ For each tool:
 
 ---
 
-### Phase 3: Review and Test
+#### Phase 3: Review and Test
 
 #### 3.1 Code Quality
 
@@ -168,7 +150,7 @@ See language-specific guides for detailed testing approaches and quality checkli
 
 ---
 
-### Phase 4: Create Evaluations
+#### Phase 4: Create Evaluations
 
 After implementing your MCP server, create comprehensive evaluations to test its effectiveness.
 
@@ -213,13 +195,13 @@ Create an XML file with this structure:
 
 ---
 
-# Reference Files
+## Reference Files
 
-## 📚 Documentation Library
+### 📚 Documentation Library
 
 Load these resources as needed during development:
 
-### Core MCP Documentation (Load First)
+#### Core MCP Documentation (Load First)
 - **MCP Protocol**: Start with sitemap at `https://modelcontextprotocol.io/sitemap.xml`, then fetch specific pages with `.md` suffix
 - [📋 MCP Best Practices](./reference/mcp_best_practices.md) - Universal MCP guidelines including:
   - Server and tool naming conventions
@@ -228,11 +210,11 @@ Load these resources as needed during development:
   - Transport selection (streamable HTTP vs stdio)
   - Security and error handling standards
 
-### SDK Documentation (Load During Phase 1/2)
+#### SDK Documentation (Load During Phase 1/2)
 - **Python SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
 - **TypeScript SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
 
-### Language-Specific Implementation Guides (Load During Phase 2)
+#### Language-Specific Implementation Guides (Load During Phase 2)
 - [🐍 Python Implementation Guide](./reference/python_mcp_server.md) - Complete Python/FastMCP guide with:
   - Server initialization patterns
   - Pydantic model examples
@@ -247,39 +229,10 @@ Load these resources as needed during development:
   - Complete working examples
   - Quality checklist
 
-### Evaluation Guide (Load During Phase 4)
+#### Evaluation Guide (Load During Phase 4)
 - [✅ Evaluation Guide](./reference/evaluation.md) - Complete evaluation creation guide with:
   - Question creation guidelines
   - Answer verification strategies
   - XML format specifications
   - Example questions and answers
   - Running an evaluation with the provided scripts
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/anthropics/skills/contents/skills/mcp-builder/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>anthropics/skills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../anthropic-skills.md">Anthropic Skills (foundational)</a></dd>
-<dt><b>Category</b></dt><dd><code>meta</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/anthropics/skills">⭐ anthropics/skills</a><br><img src="https://img.shields.io/github/stars/anthropics/skills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/anthropics/skills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/anthropic-skills/mcp-builder/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/anthropic-skills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

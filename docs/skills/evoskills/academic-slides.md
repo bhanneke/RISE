@@ -4,35 +4,13 @@
 
 Academic slide deck generation
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>slides</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>dissemination</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/academic-slides/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/academic-slides/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: academic-slides
-description: "Use this skill for creating or refining an academic slide deck and the talk built around it: structuring a conference talk, thesis defense, lab meeting, or paper-to-slides deck; deciding the narrative arc and slide breakdown; improving slide design and visual hierarchy; planning rehearsal, timing, Q&A, and backup slides; or generating the .pptx. Reach for it when the user is shaping the presentation itself. Do not use for writing the paper, producing standalone speaker notes/scripts/transcripts, making posters, creating isolated figures/charts outside a slide deck, or building non-academic presentations."
-allowed-tools: "write_file edit_file read_file think_tool execute"
-metadata:
-  author: EvoScientist
-  version: '1.0.0'
-  tags: [core, writing, presentation, academic-writing]
----
-
-# Academic Slides
+## Academic Slides
 
 A structured approach to creating academic presentation slides and preparing research talks. Covers narrative structure, slide design, visual hierarchy, delivery technique, and Q&A preparation.
 
-## When to Use This Skill
+### When to Use This Skill
 
 - User wants to create presentation slides for a research talk
 - User asks about structuring an academic presentation
@@ -42,7 +20,7 @@ A structured approach to creating academic presentation slides and preparing res
 
 ---
 
-## Before You Start: Three Questions
+### Before You Start: Three Questions
 
 Before designing any slides, answer these questions clearly:
 
@@ -57,7 +35,7 @@ Before designing any slides, answer these questions clearly:
 
 ---
 
-## Core Workflow
+### Core Workflow
 
 ```
 Step 1: Define scope and audience
@@ -69,7 +47,7 @@ Step 6: Rehearse and time
 Step 7: Prepare backup / Q&A slides
 ```
 
-### Step 1: Define Scope and Audience
+#### Step 1: Define Scope and Audience
 
 | Audience | Adjust |
 |----------|--------|
@@ -80,27 +58,27 @@ Step 7: Prepare backup / Q&A slides
 
 **Rule of thumb**: Duration in minutes = approximate slide count. A 20-minute talk needs about 20 slides.
 
-### Step 2: Draft Narrative Arc
+#### Step 2: Draft Narrative Arc
 
 Use the outline template at [assets/talk-outline-template.md](assets/talk-outline-template.md) to plan your talk before making any slides. The outline forces you to articulate your key takeaway and narrative arc.
 
-### Step 3: Design Slide Structure
+#### Step 3: Design Slide Structure
 
 Break your outline into sections with claim-style headers. See [talk-structure.md](references/talk-structure.md) for two complete talk structures and section-by-section guidance.
 
-### Step 4: Create Individual Slides
+#### Step 4: Create Individual Slides
 
 One idea per slide. Follow the 10 design rules in [slide-design.md](references/slide-design.md) for visual hierarchy and layout.
 
-### Step 5: Build the .pptx File
+#### Step 5: Build the .pptx File
 
 Use [slide-creation.md](references/slide-creation.md) for practical `.pptx` creation — color palettes, layout code, charts, tables, figures, and QA workflow.
 
-### Step 6: Rehearse and Time
+#### Step 6: Rehearse and Time
 
 See [references/delivery-and-qa.md](references/delivery-and-qa.md) for the rehearsal protocol, delivery principles, and Q&A preparation.
 
-### Step 7: Prepare Backup Slides
+#### Step 7: Prepare Backup Slides
 
 Backup slides go after your "Thank You" slide. They are not part of the talk — they are your safety net for Q&A:
 
@@ -111,7 +89,7 @@ Backup slides go after your "Thank You" slide. They are not part of the talk —
 
 ---
 
-## Artifact Sources from Other Skills
+### Artifact Sources from Other Skills
 
 If you used other EvoSkills earlier in the pipeline, pull these artifacts directly:
 
@@ -127,29 +105,29 @@ See [slide-creation.md](references/slide-creation.md) for detailed layout patter
 
 ---
 
-## Counterintuitive Presentation Rules
+### Counterintuitive Presentation Rules
 
 > For the 10 design rules (one idea per slide, claim-style titles, max 6 elements, etc.), see [slide-design.md](references/slide-design.md). The rules below are higher-level mindset shifts.
 
-### 1. Your slides are not your paper
+#### 1. Your slides are not your paper
 
 A talk is an advertisement, not a lecture. Your goal is to make the audience interested enough to read the paper. Cut 80% of your paper's content. If someone can reconstruct your paper from your slides alone, your slides have too much.
 
-### 2. Reading and listening compete
+#### 2. Reading and listening compete
 
 Text-heavy slides force the audience to choose between reading your slides and listening to you. They will read — and stop hearing you. When you put text on a slide, you are choosing to be ignored.
 
-### 3. Enthusiasm > polish
+#### 3. Enthusiasm > polish
 
 A passionate speaker with rough slides beats a bored speaker with beautiful slides. The audience remembers your energy and clarity, not your color scheme. If you only have time to improve one thing, rehearse more — don't redesign slides.
 
-### 4. Related work is not citation duty
+#### 4. Related work is not citation duty
 
 Use related work to BUILD your problem motivation, not to show you have read papers. Each related work slide should advance the narrative: "This approach solved X, but Y remains open — which is exactly what we address."
 
 ---
 
-## Reference Navigation
+### Reference Navigation
 
 | Topic | Reference File | When to Use |
 |-------|---------------|-------------|
@@ -158,33 +136,3 @@ Use related work to BUILD your problem motivation, not to show you have read pap
 | Slide creation | [slide-creation.md](references/slide-creation.md) | Building .pptx files with code |
 | Delivery and Q&A | [delivery-and-qa.md](references/delivery-and-qa.md) | Rehearsal, timing, Q&A preparation |
 | Talk outline template | [talk-outline-template.md](assets/talk-outline-template.md) | Starting a new presentation |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/academic-slides/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>slides</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>dissemination</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/academic-slides/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

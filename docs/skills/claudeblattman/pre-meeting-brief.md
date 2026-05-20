@@ -4,29 +4,17 @@
 
 Pre-meeting brief generation
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
-
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../claudeblattman/">claudeblattman (Chris Blattman)</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/pre-meeting-brief.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/claudeblattman/pre-meeting-brief/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/pre-meeting-brief.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 <!-- pre-meeting-brief v1.3 | sanitized from private v1.3 -->
-# Pre-Meeting Brief
+## Pre-Meeting Brief
 
 *v1.3 — Granola health-check simplified after the Granola public-API rewrite. Phase 0f no longer probes transcript content (the upcoming meeting has no transcript yet, and probing an arbitrary prior transcript adds latency without a clean health signal — it was producing false HOLLOW). HOLLOW classification removed for Granola entirely; Granola is now OK / DEGRADED / UNAVAILABLE only. Phase 1c fallback clarified to hunt PRIOR project meetings for context, not the upcoming one. Source-confidence table, circuit breaker, and error-handling table aligned.*
 *v1.2 — Generates a structured pre-meeting briefing from project communications. Run from a project directory.*
 
 Pulls context from WhatsApp, Gmail, Granola, Google Docs, and local files. Surfaces decisions required, open loops, and preparation needs. Optionally emails the brief to attendees.
 
-## Prerequisites
+### Prerequisites
 
 **Required:**
 - **Gmail MCP** — for searching and reading message context
@@ -40,7 +28,7 @@ Pulls context from WhatsApp, Gmail, Granola, Google Docs, and local files. Surfa
 **Optional:**
 - A send-email helper script if you want one-step send (otherwise the skill creates a Gmail draft)
 
-## First-Time Setup
+### First-Time Setup
 
 1. **Create a project config** at `[project-root]/.claude/CLAUDE.md` with at minimum:
    ```markdown
@@ -72,7 +60,7 @@ Pulls context from WhatsApp, Gmail, Granola, Google Docs, and local files. Surfa
 
 3. **(Optional) Configure a routing file** at `~/.claude-assistant/config/granola-routing.json` if you have multiple projects pulling Granola transcripts. The skill uses this to list known projects when it can't find a config.
 
-## Arguments
+### Arguments
 
 `$ARGUMENTS` can include (combine freely):
 - *(none)* — next upcoming meeting with project context
@@ -83,7 +71,7 @@ Pulls context from WhatsApp, Gmail, Granola, Google Docs, and local files. Surfa
 - `full` — force Full depth (overrides auto-detection)
 - `since:YYYY-MM-DD` — override lookback start date
 
-## CRITICAL: No Permission Prompts
+### CRITICAL: No Permission Prompts
 
 **Do NOT use Task agents or ToolSearch.** All required tools are pre-approved. Call them directly:
 - `Read`, `Write`, `Bash`, `Glob`, `Grep`
@@ -98,9 +86,9 @@ Pulls context from WhatsApp, Gmail, Granola, Google Docs, and local files. Surfa
 - Email draft display: Batch-confirm (show draft + recipients)
 - Email send: Per-item confirm (user must say "send")
 
-## Instructions
+### Instructions
 
-### Phase 0: Identify Meeting + Pre-flight
+#### Phase 0: Identify Meeting + Pre-flight
 
 **0a. Read project config:**
 Read `$(pwd)/.claude/CLAUDE.md`. Extract:
@@ -181,7 +169,7 @@ HOLLOW counts as DEGRADED for the minimum-signal gate.
 
 ---
 
-### Phase 1: Gather Data (inline parallel MCP calls)
+#### Phase 1: Gather Data (inline parallel MCP calls)
 
 **Per-source call limits (Full depth):**
 
@@ -248,7 +236,7 @@ Fire these in parallel where possible:
 
 ---
 
-### Phase 2: Synthesize
+#### Phase 2: Synthesize
 
 **2a. Build one-line source banner** (degraded sources only):
 - If all OK: `Sources: all healthy`
@@ -291,7 +279,7 @@ Rules:
 
 ---
 
-### Phase 3: Present Briefing
+#### Phase 3: Present Briefing
 
 **Full depth:** Full terminal template with all sections (DECISIONS REQUIRED, OPEN LOOPS, PER ATTENDEE, PREPARE, KEY UPDATES, SUGGESTED FOCUS, KNOWN BLIND SPOTS).
 
@@ -306,7 +294,7 @@ If `email` argument: always prompt for email regardless of content.
 
 ---
 
-### Phase 4: Distribute (if email requested)
+#### Phase 4: Distribute (if email requested)
 
 **4a. Draft email:**
 The email is a **document delivery to attendees**, not a summary for yourself.
@@ -370,7 +358,7 @@ rm -f /tmp/pre-meeting-body.txt
 
 ---
 
-### Phase 5: Log Performance
+#### Phase 5: Log Performance
 
 ```bash
 echo "$(date +%Y-%m-%d),pre-meeting-brief,TOOL_CALLS,NOTES" >> ~/.claude-assistant/logs/skill-performance.csv
@@ -380,7 +368,7 @@ Replace TOOL_CALLS with the **exact** count (each MCP call, Read, Write, Glob, G
 
 After logging: "Run `/post-meeting` after this call to capture outcomes."
 
-## Customization Points
+### Customization Points
 
 - **Transcript source:** Swap Granola for Otter, Fireflies, or any tool that exports `.txt` transcripts to your transcripts folder.
 - **WhatsApp DB path:** The default `~/whatsapp-mcp-ts/data/whatsapp.db` reflects one MCP install. Update the SQLite paths if your bridge stores data elsewhere.
@@ -388,7 +376,7 @@ After logging: "Run `/post-meeting` after this call to capture outcomes."
 - **Email sending:** Default is Gmail draft (Option A). Replace with a send script (Option B) if you have one configured.
 - **Routing config:** `~/.claude-assistant/config/granola-routing.json` is optional — used only to suggest known project directories when the skill is run outside one.
 
-## Error Handling
+### Error Handling
 
 | Condition | Action |
 |-----------|--------|
@@ -409,7 +397,7 @@ After logging: "Run `/post-meeting` after this call to capture outcomes."
 | All sources UNAVAILABLE | Stop — don't produce a brief from zero data |
 | Send fails | Fall back to Gmail draft |
 
-## Performance Budget
+### Performance Budget
 
 | Scenario | Tool Calls | Time |
 |----------|-----------|------|
@@ -419,7 +407,7 @@ After logging: "Run `/post-meeting` after this call to capture outcomes."
 
 Advisory threshold: 80 tool calls. Per-source caps bound tool call distribution: Gmail 8, Granola 5, WhatsApp 5, Doc 2, Local 3, plus Phase 0 overhead (~8) = ~31 calls minimum floor. Target 50 total.
 
-## Examples
+### Examples
 
 ```
 /pre-meeting-brief                    # Next meeting matching project context
@@ -429,32 +417,3 @@ Advisory threshold: 80 tool calls. Per-source caps bound tool call distribution:
 /pre-meeting-brief nosend             # Show brief only, no email
 /pre-meeting-brief since:2026-03-01   # Override lookback start
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/chrisblattman/claudeblattman/contents/skills/pre-meeting-brief.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>chrisblattman/claudeblattman</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../claudeblattman.md">claudeblattman (Chris Blattman)</a></dd>
-<dt><b>Category</b></dt><dd><code>infra</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/chrisblattman/claudeblattman">⭐ chrisblattman/claudeblattman</a><br><img src="https://img.shields.io/github/stars/chrisblattman/claudeblattman?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/chrisblattman/claudeblattman/blob/main/skills/pre-meeting-brief.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/claudeblattman/pre-meeting-brief/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/claudeblattman.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

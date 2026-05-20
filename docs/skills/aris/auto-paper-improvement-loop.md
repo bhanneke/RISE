@@ -4,38 +4,19 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>meta</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/auto-paper-improvement-loop/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/auto-paper-improvement-loop/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: auto-paper-improvement-loop
-description: "Autonomously improve a generated paper via GPT-5.4 xhigh review → implement fixes → recompile, for 2 rounds. Use when user says \"改论文\", \"improve paper\", \"论文润色循环\", \"auto improve\", or wants to iteratively polish a generated paper."
-argument-hint: "[paper-directory] [— style-ref: <source>] [— edit-whitelist <path>]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Auto Paper Improvement Loop: Review → Fix → Recompile
+## Auto Paper Improvement Loop: Review → Fix → Recompile
 
 Autonomously improve the paper at: **$ARGUMENTS**
 
-## Context
+### Context
 
 This skill is designed to run **after** Workflow 3 (`/paper-plan` → `/paper-figure` → `/paper-write` → `/paper-compile`). It takes a compiled paper and iteratively improves it through external LLM review.
 
 Unlike `/auto-review-loop` (which iterates on **research** — running experiments, collecting data, rewriting narrative), this skill iterates on **paper writing quality** — fixing theoretical inconsistencies, softening overclaims, adding missing content, and improving presentation.
 
-## Constants
+### Constants
 
 - **MAX_ROUNDS = 2** — Two rounds of review→fix→recompile. Empirically, Round 1 catches structural issues (4→6/10), Round 2 catches remaining presentation issues (6→7/10). Diminishing returns beyond 2 rounds for writing-only improvements.
 - **REVIEWER_MODEL = `gpt-5.5`** — Model used via Codex MCP for paper review.
@@ -46,16 +27,16 @@ Unlike `/auto-review-loop` (which iterates on **research** — running experimen
 
 > 💡 Override: `/auto-paper-improvement-loop "paper/" — human checkpoint: true`
 
-## Optional: Style reference (`— style-ref: <source>`, opt-in)
+### Optional: Style reference (`— style-ref: <source>`, opt-in)
 
 Lets the user steer **structural fixes only** during improvement (section reordering hints, paragraph length nudges, figure density adjustments) toward a reference paper. **Default OFF — when the user does not pass `— style-ref`, do nothing differently from before.**
 
 Only when `— style-ref: <source>` appears in `$ARGUMENTS`, run the helper FIRST, before the loop starts:
 
 ```bash
-# Resolve $STYLE_HELPER via the canonical strict-safe chain (see
-# shared-references/integration-contract.md §2). Policy A — gate:
-# unresolved helper means --style-ref cannot be satisfied, so abort.
+## Resolve $STYLE_HELPER via the canonical strict-safe chain (see
+## shared-references/integration-contract.md §2). Policy A — gate:
+## unresolved helper means --style-ref cannot be satisfied, so abort.
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
@@ -87,13 +68,13 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 - **Never copy prose, claims, examples, or terminology** from anything reachable through the cache when implementing fixes.
 - **Never pass `— style-ref` (or the cache contents) to the GPT-5.4 reviewer sub-agent.** The Reviewer Independence Protocol below requires reviewers see only the artifact and the user's prompt — leaking the style ref would contaminate the review with author-side context. **This is the most critical invariant in this skill.**
 
-## Optional: Edit Whitelist (`— edit-whitelist <path>`, opt-in)
+### Optional: Edit Whitelist (`— edit-whitelist <path>`, opt-in)
 
 Lets the caller hard-constrain which files and operations the **fix-implementation** step (Step 3 / Step 6) is allowed to touch. **Default OFF — when the user does not pass `— edit-whitelist` (or the alias `— edit_whitelist`), the loop applies all reviewer-driven edits without restriction, exactly as before.**
 
 This is the parameter that upstream pipelines (e.g. `/resubmit-pipeline` Phase 2) use to enforce text-only resubmit microedits: no `.bib` mutations, no `.sty` / `.bst` mutations, no edits to prior-submission directories, no new `\cite{...}`, no new theorem environments, no new numerical claims.
 
-### Schema
+#### Schema
 
 The whitelist file is YAML or JSON. All four sections are optional:
 
@@ -123,7 +104,7 @@ max_edits_per_round: 30   # hard cap on number of accepted edits per round (reje
 rationale: "Resubmit mode: text-only microedits, paper structure frozen by user constraint."
 ```
 
-### Resolution rules
+#### Resolution rules
 
 - **`allowed_paths` empty AND `forbidden_paths` empty** → whitelist is a no-op (advisory: the file is loaded and `rationale` echoed to the log, but no path filtering is applied).
 - **`allowed_paths` empty, `forbidden_paths` non-empty** → all paths NOT matched by `forbidden_paths` are mutable.
@@ -131,11 +112,11 @@ rationale: "Resubmit mode: text-only microedits, paper structure frozen by user 
 - **Both non-empty** → an edit is allowed iff the target matches `allowed_paths` AND does NOT match `forbidden_paths`. `forbidden_paths` always wins on overlap.
 - **`forbidden_operations` missing or empty** → no operation-level guard; only path-level filtering applies.
 
-### Glob semantics
+#### Glob semantics
 
 Use bash `extglob` / Python `fnmatch.fnmatch` semantics. `**` matches any depth (zero or more directory segments). Patterns are matched against the path **relative to the paper directory** (e.g. `paper/sec/intro.tex` matches `sec/*.tex` when paper-directory is `paper/`).
 
-### Forbidden-operation detectors
+#### Forbidden-operation detectors
 
 For each candidate edit's diff (the new lines being added — deletions are exempt), the loop runs these regex checks and rejects if any forbidden operation matches:
 
@@ -146,13 +127,13 @@ For each candidate edit's diff (the new lines being added — deletions are exem
 | `new_theorem_env` | `\\begin\{(theorem|lemma|proposition|corollary)\*?\}` |
 | `numerical_claim` | New token matching `\b\d+(\.\d+)?%?\b` that did NOT appear in the deleted/replaced lines (i.e. genuinely new numbers, not edits to existing ones) |
 
-### Behavior at loop start (before Round 1 fix-implementation)
+#### Behavior at loop start (before Round 1 fix-implementation)
 
 1. If `— edit-whitelist <path>` is present in `$ARGUMENTS`, set `EDIT_WHITELIST = <path>`.
 2. Load the file (`yaml.safe_load`; if it fails, fall back to `json.loads`). On load failure, abort the loop with a clear error — do NOT silently proceed unconstrained.
 3. Echo `rationale` (if present) into `PAPER_IMPROVEMENT_LOG.md` under a new "Edit Whitelist" preamble section so the audit trail records why edits were constrained.
 
-### Behavior during fix-implementation (Steps 3 and 6)
+#### Behavior during fix-implementation (Steps 3 and 6)
 
 Before applying each proposed edit:
 
@@ -169,36 +150,36 @@ Before applying each proposed edit:
    ```
 6. Continue with the remaining edits in the round. Do NOT abort the whole round on a single rejection.
 
-### End-of-round surfacing
+#### End-of-round surfacing
 
 At the end of each round (after the recompile, before moving to the next round), if any edits were rejected during that round's fix step:
 
 - Print a one-line summary to the round's checkpoint output: `Edit whitelist rejected N edits this round (M path, K operation). See PAPER_IMPROVEMENT_LOG.md "Rejected by edit_whitelist (Round N)".`
 - If `HUMAN_CHECKPOINT = true`, include the rejection list in the checkpoint shown to the user before they approve next-round fixes.
 
-### Example invocations
+#### Example invocations
 
 ```bash
-# Resubmit-pipeline Phase 2 caller (text-only mode):
+## Resubmit-pipeline Phase 2 caller (text-only mode):
 /auto-paper-improvement-loop "paper/" — edit-whitelist .resubmit/edit_whitelist.yaml
 
-# Aliased form is accepted:
+## Aliased form is accepted:
 /auto-paper-improvement-loop "paper/" — edit_whitelist .resubmit/edit_whitelist.yaml
 
-# Combined with other flags:
+## Combined with other flags:
 /auto-paper-improvement-loop "paper/" — human checkpoint: true — edit-whitelist constraints.yaml
 ```
 
-### Rationale
+#### Rationale
 
 Without a whitelist, the loop's reviewer-driven fix step is free to add citations, introduce new theorem environments, or tweak numerical claims — all of which are reasonable for first-submission polish but **forbidden** in resubmit / camera-ready / rebuttal-only modes where the paper structure is frozen by external constraint. Routing those constraints through a first-class parameter (rather than relying on the LLM to "remember" not to do them) makes the constraint enforceable, auditable via `PAPER_IMPROVEMENT_LOG.md`, and visible to the user at each round's checkpoint.
 
-## Inputs
+### Inputs
 
 1. **Compiled paper** — `paper/main.pdf` + LaTeX source files
 2. **All section `.tex` files** — concatenated for review prompt
 
-## State Persistence (Compact Recovery)
+### State Persistence (Compact Recovery)
 
 If the context window fills up mid-loop, Claude Code auto-compacts. To recover, this skill writes `PAPER_IMPROVEMENT_STATE.json` after each round:
 
@@ -216,7 +197,7 @@ If the context window fills up mid-loop, Claude Code auto-compacts. To recover, 
 
 **After each round**: overwrite the state file. **On completion**: set `"status": "completed"`.
 
-## Reviewer Independence Protocol
+### Reviewer Independence Protocol
 
 The reviewer must be context-naive on every round. Prior-round summaries, fix lists, and executor explanations are not evidence; they are a source of confirmation bias. If the reviewer is told what changed, scores tend to drift upward even when the manuscript itself has not materially improved.
 
@@ -230,27 +211,27 @@ Rules:
 
 Set `REVIEWER_BIAS_GUARD = false` only if you explicitly want the legacy, context-carrying behavior for debugging.
 
-## Workflow
+### Workflow
 
-### Step 0: Preserve Original
+#### Step 0: Preserve Original
 
 ```bash
 cp paper/main.pdf paper/main_round0_original.pdf
 ```
 
-### Step 1: Collect Paper Text
+#### Step 1: Collect Paper Text
 
 Concatenate all section files into a single text block for the review prompt:
 
 ```bash
-# Collect all sections in order
+## Collect all sections in order
 for f in paper/sections/*.tex; do
     echo "% === $(basename $f) ==="
     cat "$f"
 done > /tmp/paper_full_text.txt
 ```
 
-### Step 2: Round 1 Review
+#### Step 2: Round 1 Review
 
 Send the full paper text AND compiled PDF to GPT-5.4 xhigh:
 
@@ -290,7 +271,7 @@ mcp__codex__codex:
 
 Save the threadId for Round 2.
 
-### Step 2b: Human Checkpoint (if enabled)
+#### Step 2b: Human Checkpoint (if enabled)
 
 **Skip if `HUMAN_CHECKPOINT = false`.**
 
@@ -310,7 +291,7 @@ Reply "go" to implement all fixes, give custom instructions, "skip 2" to skip sp
 
 Parse user response same as `/auto-review-loop`: approve / custom instructions / skip / stop.
 
-### Step 3: Implement Round 1 Fixes
+#### Step 3: Implement Round 1 Fixes
 
 Parse the review and implement fixes by severity:
 
@@ -337,7 +318,7 @@ Parse the review and implement fixes by severity:
 | Number mismatch (paper vs results) | Run `/paper-claim-audit` if PAPER_CLAIM_AUDIT.md doesn't exist; fix any `number_mismatch` or `aggregation_mismatch` claims |
 | Keyword inconsistency | The "Banana Rule": if Methods says "obese group", Results must not say "heavier group". Extract key terms, verify consistency across all sections |
 
-### Step 4: Recompile Round 1
+#### Step 4: Recompile Round 1
 
 ```bash
 cd paper && latexmk -C && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
@@ -346,7 +327,7 @@ cp main.pdf main_round1.pdf
 
 Verify: 0 undefined references, 0 undefined citations.
 
-### Step 4.5: Restatement Regression Test
+#### Step 4.5: Restatement Regression Test
 
 After every recompilation, rerun a theorem-statement consistency check so fix rounds cannot reintroduce appendix drift. **Run this after Step 4 and again after Step 7 before the final format check.**
 
@@ -372,8 +353,8 @@ def normalize(s):
     s = re.sub(r'\\begin\{[^}]+\}|\\end\{[^}]+\}', '', s)
     s = re.sub(r'\s+', ' ', s)
     return s.strip().lower()
-# Compare normalized theorem blocks from the current main-body files
-# against their appendix restatements. Any mismatch blocks completion.
+## Compare normalized theorem blocks from the current main-body files
+## against their appendix restatements. Any mismatch blocks completion.
 PY
 ```
 
@@ -389,7 +370,7 @@ The inline Python check above is the default and is sufficient for routine main-
 
 This is advisory only — the inline Step 4.5 check remains the default and continues to run on every loop round. Consider invoking `/proof-checker --restatement-check` when (a) you suspect cross-location drift outside the main↔appendix axis (e.g., abstract overclaim relative to theorem statement), or (b) you want reviewer-graded drift signatures rather than raw string mismatches. Running both is supported and they are independent: the inline check fails fast on string drift, the proof-checker pass surfaces semantic-class drift.
 
-### Step 5: Round 2 Review
+#### Step 5: Round 2 Review
 
 If `REVIEWER_BIAS_GUARD = true` (default), use a **fresh** `mcp__codex__codex` thread for Round 2. Do not reuse the Round 1 threadId for prompting. Save the returned threadId only for recovery bookkeeping.
 
@@ -431,20 +412,20 @@ mcp__codex__codex:
 
 If `REVIEWER_BIAS_GUARD = false` (legacy debugging only), use `mcp__codex__codex-reply` with the saved threadId; this is **not** the recommended path.
 
-### Step 5.5: Kill Argument Exercise (theory / scope-heavy papers only)
+#### Step 5.5: Kill Argument Exercise (theory / scope-heavy papers only)
 
 Run this only if the paper is theory-heavy (≥5 `\begin{theorem}|\begin{lemma}|\begin{proposition}|\begin{corollary}` environments in the source) or has explicit scope/generality claims in title/abstract, and only on the final scheduled round (`current_round == MAX_ROUNDS`).
 
 **Delegate to `/kill-argument`** — the canonical implementation lives at `skills/kill-argument/SKILL.md` (extracted in May 2026). This step does NOT re-implement the Attack-and-Adjudication prompt template; instead, invoke the skill and read its output:
 
 ```bash
-# Invoke the canonical adversarial-review primitive on the current paper.
-# /kill-argument runs two fresh-thread codex 5.5 xhigh calls and writes
-# KILL_ARGUMENT.{md,json} into the paper directory. It is detect-only —
-# it never edits the paper itself.
+## Invoke the canonical adversarial-review primitive on the current paper.
+## /kill-argument runs two fresh-thread codex 5.5 xhigh calls and writes
+## KILL_ARGUMENT.{md,json} into the paper directory. It is detect-only —
+## it never edits the paper itself.
 /kill-argument "$PAPER_DIR"
 
-# Read the structured verdict.
+## Read the structured verdict.
 KILL_VERDICT=$(jq -r '.verdict' "$PAPER_DIR/KILL_ARGUMENT.json")
 KILL_REASON=$(jq -r '.reason_code' "$PAPER_DIR/KILL_ARGUMENT.json")
 ```
@@ -465,11 +446,11 @@ If `/kill-argument` returns `verdict: NOT_APPLICABLE` (paper isn't theory- or sc
 
 **Empirical motivation:** in a real submission run, after several rounds of standard improvement (score 7-8/10), the kill-argument exercise surfaced framing weaknesses that no prior review caught (e.g., a setting being mostly conditional rather than truly general, or a baseline being irrelevant to real systems). Author rebuttal forced explicit scope qualifications in abstract and discussion.
 
-### Step 5b: Human Checkpoint (if enabled)
+#### Step 5b: Human Checkpoint (if enabled)
 
 **Skip if `HUMAN_CHECKPOINT = false`.** Same as Step 2b — present Round 2 review, wait for user input.
 
-### Step 6: Implement Round 2 Fixes
+#### Step 6: Implement Round 2 Fixes
 
 Same process as Step 3. Typical Round 2 fixes:
 - Add controlled synthetic experiments validating theory
@@ -479,40 +460,40 @@ Same process as Step 3. Typical Round 2 fixes:
 
 **Edit-whitelist gate (if set):** Same as Step 3 — if `EDIT_WHITELIST` is set, run the path + forbidden-operation checks before applying each proposed edit. Rejections are logged to `PAPER_IMPROVEMENT_LOG.md` under `## Rejected by edit_whitelist (Round 2)` and the loop continues. Surface a rejection summary at the end of the round.
 
-### Step 7: Recompile Round 2
+#### Step 7: Recompile Round 2
 
 ```bash
 cd paper && latexmk -C && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 cp main.pdf main_round2.pdf
 ```
 
-### Step 8: Format Check
+#### Step 8: Format Check
 
 After the final recompilation, run a **location-aware** format compliance check.
 
 ```bash
-# If the log lacks file/line data, rerun the final compile once with -file-line-error.
+## If the log lacks file/line data, rerun the final compile once with -file-line-error.
 cd paper && latexmk -pdf -file-line-error -interaction=nonstopmode -halt-on-error main.tex
 ```
 
 ```bash
-# 1. Page count vs venue limit
+## 1. Page count vs venue limit
 PAGES=$(pdfinfo paper/main.pdf | grep Pages | awk '{print $2}')
 echo "Pages: $PAGES (limit: 9 main body for ICLR/NeurIPS)"
 
-# 2. Duplicate labels: HARD BLOCK
+## 2. Duplicate labels: HARD BLOCK
 DUP_LABELS=$(grep -Rho "\\\\label{[^}]*}" paper/main.tex paper/sections 2>/dev/null | sort | uniq -d || true)
 if [ -n "$DUP_LABELS" ]; then
     echo "Duplicate labels found (BLOCKING):"
     echo "$DUP_LABELS"
 fi
 
-# 3. Overfull warnings with location classification
+## 3. Overfull warnings with location classification
 OVERFULLS=$(grep -n "Overfull \\\\hbox" paper/main.log 2>/dev/null || true)
 
-# Main body = source files before \appendix in main.tex.
-# Appendix = source files after \appendix, or files whose path contains "appendix".
-# Bibliography = paper.bbl, references.bib, or bibliography-generated output.
+## Main body = source files before \appendix in main.tex.
+## Appendix = source files after \appendix, or files whose path contains "appendix".
+## Bibliography = paper.bbl, references.bib, or bibliography-generated output.
 MAIN_BODY_OVERFULL=$(echo "$OVERFULLS" | grep -v -E 'appendix|paper\.bbl|references\.bib' || true)
 APPENDIX_OVERFULL=$(echo "$OVERFULLS" | grep -E 'appendix' || true)
 BIB_OVERFULL=$(echo "$OVERFULLS" | grep -E 'paper\.bbl|references\.bib' || true)
@@ -551,14 +532,14 @@ echo "$BIB_OVERFULL"
 
 **Empirical motivation:** in a real submission run, dozens of overfull hbox warnings (the largest well over 100pt in an appendix proof) survived multiple improvement rounds because the previous blanket "overfull > 10pt blocks" rule was too lax and treated all locations equally.
 
-### Step 9: Document Results
+#### Step 9: Document Results
 
 Create `PAPER_IMPROVEMENT_LOG.md` in the paper directory:
 
 ```markdown
-# Paper Improvement Log
+## Paper Improvement Log
 
-## Score Progression
+### Score Progression
 
 | Round | Score | Verdict | Key Changes |
 |-------|-------|---------|-------------|
@@ -566,7 +547,7 @@ Create `PAPER_IMPROVEMENT_LOG.md` in the paper directory:
 | Round 1 | Y/10 | No/Almost/Yes | [summary of fixes] |
 | Round 2 | Z/10 | No/Almost/Yes | [summary of fixes] |
 
-## Round 1 Review & Fixes
+### Round 1 Review & Fixes
 
 <details>
 <summary>GPT-5.4 xhigh Review (Round 1)</summary>
@@ -575,12 +556,12 @@ Create `PAPER_IMPROVEMENT_LOG.md` in the paper directory:
 
 </details>
 
-### Fixes Implemented
+#### Fixes Implemented
 1. [Fix description]
 2. [Fix description]
 ...
 
-## Round 2 Review & Fixes
+### Round 2 Review & Fixes
 
 <details>
 <summary>GPT-5.4 xhigh Review (Round 2)</summary>
@@ -589,18 +570,18 @@ Create `PAPER_IMPROVEMENT_LOG.md` in the paper directory:
 
 </details>
 
-### Fixes Implemented
+#### Fixes Implemented
 1. [Fix description]
 2. [Fix description]
 ...
 
-## PDFs
+### PDFs
 - `main_round0_original.pdf` — Original generated paper
 - `main_round1.pdf` — After Round 1 fixes
 - `main_round2.pdf` — Final version after Round 2 fixes
 ```
 
-### Step 9: Summary
+#### Step 9: Summary
 
 Report to user:
 - Score progression table
@@ -608,14 +589,14 @@ Report to user:
 - Final page count
 - Remaining issues (if any)
 
-### Feishu Notification (if configured)
+#### Feishu Notification (if configured)
 
 After each round's review AND at final completion, check `~/.claude/feishu.json`:
 - **After each round**: Send `review_scored` — "Round N: X/10 — [key changes]"
 - **After final round**: Send `pipeline_done` — score progression table + final page count
 - If config absent or mode `"off"`: skip entirely (no-op)
 
-## Output
+### Output
 
 ```
 paper/
@@ -626,7 +607,7 @@ paper/
 └── PAPER_IMPROVEMENT_LOG.md    # Full review log with scores
 ```
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 
@@ -639,7 +620,7 @@ paper/
 - **Global consistency** — when renaming notation or softening claims, check ALL files (abstract, intro, method, experiments, theory sections, conclusion, tables, figure captions)
 - **Edit-whitelist rejections are LOGGED, not silently dropped** — when `EDIT_WHITELIST` is set and an edit is rejected for a path or forbidden-operation violation, the rejection MUST be appended to `PAPER_IMPROVEMENT_LOG.md` with file, reason, offending pattern, and the original reviewer concern. The loop reports a rejection summary at the end of every round (and in the checkpoint, if `HUMAN_CHECKPOINT = true`). Never silently swallow a whitelist rejection — the audit trail is the whole point of the parameter.
 
-## Typical Score Progression
+### Typical Score Progression
 
 Based on end-to-end testing on a real theory-paper run:
 
@@ -652,35 +633,6 @@ Based on end-to-end testing on a real theory-paper run:
 
 **+4.5 points across 3 rounds** (2 content + 1 format) is typical for a well-structured but rough first draft. Final state at submission: clean overfull-hbox count and venue-format-compliant length.
 
-## Review Tracing
+### Review Tracing
 
 After each `mcp__codex__codex` or `mcp__codex__codex-reply` reviewer call, save the trace following `shared-references/review-tracing.md` (Policy C — forensic; never silently skip). Use `save_trace.sh` (resolved per the chain in `shared-references/integration-contract.md` §2) or write files directly to `.aris/traces/<skill>/<date>_run<NN>/`. Respect the `--- trace:` parameter (default: `full`).
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/auto-paper-improvement-loop/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>meta</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/auto-paper-improvement-loop/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

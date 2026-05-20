@@ -4,31 +4,9 @@
 
 Survey/literature review generation
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/research-survey/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/research-survey/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: research-survey
-description: "Generates structured literature survey reports from collected papers using a multi-stage pipeline: outline generation (query-type adaptive) → draft survey → section-by-section expansion → summary section refinement → final assembly. Produces survey-grade output with taxonomy-based method analysis, LaTeX formalizations, comparative tables, and dense citations. Use when: user wants a literature review, research survey, field overview, or systematic synthesis of multiple papers. Do NOT use for finding/searching papers (use paper-navigator), generating research ideas (use research-ideation), or writing a paper's Related Work section (use paper-writing)."
-allowed-tools: "write_file edit_file read_file think_tool"
-metadata:
-  author: EvoScientist
-  version: '1.0.0'
-  tags: [core, research, literature, survey, synthesis]
----
-
-# Research Survey
+## Research Survey
 
 Generates high-quality, survey-grade literature reviews from papers collected by `paper-navigator`.
 
@@ -48,19 +26,19 @@ Stage 5: Refine Summary Sections (Abstract/Intro/Conclusion)
 Stage 6: Assemble + References
 ```
 
-## When to Use
+### When to Use
 
 - User asks for a "literature review", "survey", "field overview", or "systematic review"
 - User has collected papers and wants them synthesized into a structured report
 - User wants to understand the full landscape of a research field
 
-## When NOT to Use
+### When NOT to Use
 
 - **Finding papers** → use `paper-navigator` first, then come here
 - **Generating research ideas** → use `research-ideation`
 - **Writing a Related Work section for a paper** → use `paper-writing`
 
-## Dependency: paper-navigator
+### Dependency: paper-navigator
 
 This skill requires papers as input. If the user hasn't provided papers, **first invoke `paper-navigator`** (Workflow 1, target 30-120 papers) to collect them.
 
@@ -68,11 +46,11 @@ This skill requires papers as input. If the user hasn't provided papers, **first
 
 ---
 
-## Stage 1: Generate Outline
+### Stage 1: Generate Outline
 
 **This is a two-phase process.** Different fields have different survey conventions — a clinical systematic review looks nothing like a CS methods survey. First generate a domain-appropriate template, then create the detailed outline.
 
-### Phase 1A: Generate Domain-Specific Survey Template
+#### Phase 1A: Generate Domain-Specific Survey Template
 
 Before outlining, identify the field and adapt the structure:
 
@@ -81,7 +59,7 @@ Before outlining, identify the field and adapt the structure:
 3. **Add field-specific sections** (e.g., Risk of Bias Assessment for medicine, Structure-Property Relationships for materials, Ethical Considerations for human-subjects research)
 4. **Determine comparison table dimensions** appropriate to the field
 
-### Phase 1B: Create Detailed Outline
+#### Phase 1B: Create Detailed Outline
 
 With the domain-specific template as the framework, generate the outline:
 
@@ -106,7 +84,7 @@ See `references/survey-methodology.md` for full outline generation rules and `as
 
 ---
 
-## Stage 2: Draft Survey
+### Stage 2: Draft Survey
 
 Generate a complete draft from the outline using the **top-30 most relevant papers**.
 
@@ -117,11 +95,11 @@ Generate a complete draft from the outline using the **top-30 most relevant pape
 
 ---
 
-## Stage 3: Expand Sections
+### Stage 3: Expand Sections
 
 Expand each non-summary section using **all collected papers** (30-120). This is where survey-grade depth is achieved.
 
-### Section Expansion Targets
+#### Section Expansion Targets
 
 | Section Type | Target Length | Focus |
 |---|---|---|
@@ -132,7 +110,7 @@ Expand each non-summary section using **all collected papers** (30-120). This is
 | **Problem Definition** | 2000+ words | LaTeX formalization, constraints, assumptions |
 | **Other** | 2500+ words | Default |
 
-### Expansion Rules
+#### Expansion Rules
 
 1. **Thematic coherence**: Keep same themes and narrative flow as draft — don't introduce unrelated topics
 2. **Cite comprehensively**: Use as many relevant papers from the full collection as possible
@@ -144,7 +122,7 @@ Expand each non-summary section using **all collected papers** (30-120). This is
 
 ---
 
-## Stage 4: Generate Section Summaries
+### Stage 4: Generate Section Summaries
 
 After all content sections are expanded, generate a condensed summary for each major section:
 
@@ -156,14 +134,14 @@ These section summaries become the shared context for the final abstract, introd
 
 ---
 
-## Stage 5: Refine Summary Sections
+### Stage 5: Refine Summary Sections
 
 After all content sections are expanded, refine the **summary sections** (Abstract, Introduction, Conclusion):
 
 1. Use all section summaries as context to rewrite Abstract, Introduction, Conclusion
 2. This ensures summary sections accurately reflect the full survey content
 
-### Summary Section Standards
+#### Summary Section Standards
 
 **Abstract** (300-500 words):
 - Continuous narrative, NO bullet points or bold labels
@@ -180,7 +158,7 @@ After all content sections are expanded, refine the **summary sections** (Abstra
 
 ---
 
-## Stage 6: Assemble Final Survey
+### Stage 6: Assemble Final Survey
 
 Assemble sections in outline order, then append formatted references:
 
@@ -192,7 +170,7 @@ Save to `/artifacts/survey-{topic}-{date}.md`.
 
 ---
 
-## Core Quality Principles
+### Core Quality Principles
 
 1. **Build taxonomy, don't enumerate**: Cluster papers by technical mechanism, not chronology. This is the defining characteristic of a survey vs. a summary.
 
@@ -210,7 +188,7 @@ Save to `/artifacts/survey-{topic}-{date}.md`.
 
 ---
 
-## Reference Materials
+### Reference Materials
 
 | Resource | Location | Purpose |
 |----------|----------|---------|
@@ -220,7 +198,7 @@ Save to `/artifacts/survey-{topic}-{date}.md`.
 
 ---
 
-## Handoff
+### Handoff
 
 | From → To | When |
 |-----------|------|
@@ -228,33 +206,3 @@ Save to `/artifacts/survey-{topic}-{date}.md`.
 | Here → `research-ideation` | Survey reveals research gaps worth pursuing |
 | Here → `paper-writing` | Survey informs Related Work section of a paper |
 | Here → `paper-planning` | Survey provides literature context for story design |
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/research-survey/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>EvoScientist/EvoSkills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../evoskills.md">EvoSkills</a></dd>
-<dt><b>Category</b></dt><dd><code>literature</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>literature-discovery</code> <code>literature-synthesis</code></dd>
-<dt><b>License</b></dt><dd>Apache-2.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05-17</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/EvoScientist/EvoSkills">⭐ EvoScientist/EvoSkills</a><br><img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/EvoScientist/EvoSkills" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/evoskills/research-survey/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/evoskills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

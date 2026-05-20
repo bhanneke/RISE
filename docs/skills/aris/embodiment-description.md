@@ -4,50 +4,31 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/embodiment-description/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/embodiment-description/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: embodiment-description
-description: "Write detailed embodiment descriptions for patent specifications. Use when user says \"撰写实施例\", \"write embodiment\", \"实施例描述\", \"detailed description\", or wants to describe how to practice an invention."
-argument-hint: [claims-path-or-embodiment-details]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob
----
-
-# Embodiment Description
+## Embodiment Description
 
 Write detailed embodiments for: **$ARGUMENTS**
 
 Embodiments describe HOW to make and use the invention -- they are the patent equivalent of experiment sections, but describe the invention rather than evaluating it empirically.
 
-## Constants
+### Constants
 
 - `MIN_EMBODIMENTS = 1` — At least one complete embodiment required
 - `MAX_EMBODIMENTS = 3` — Practical limit; more embodiments strengthen enablement
 - `EMBODIMENT_STYLE = detailed` — `detailed` (full working example) or `outline` (sketch)
 - `REFERENCE_NUMERAL_PREFIX = 100` — Starting reference numeral for first figure's components
 
-## Inputs
+### Inputs
 
 1. `patent/INVENTION_DISCLOSURE.md` — invention decomposition (core/supporting/optional features)
 2. `patent/CLAIMS.md` — drafted claims that the embodiments must support
 3. User-provided figures (if any) in any directory
 4. `patent/figures/numeral_index.md` if it exists (from `/figure-description`)
 
-## Workflow
+### Workflow
 
-### Step 1: Plan Embodiments
+#### Step 1: Plan Embodiments
 
 For each claim category (method, system, etc.), plan at least one embodiment:
 
@@ -57,7 +38,7 @@ For each claim category (method, system, etc.), plan at least one embodiment:
 | 2 | Claims 2, 3 | Alternative | [different parameters/materials] |
 | 3 | Claims 4, 5 | Additional alternative | [different configuration] |
 
-### Step 2: Write Each Embodiment
+#### Step 2: Write Each Embodiment
 
 For each embodiment, write a detailed description following this structure:
 
@@ -85,7 +66,7 @@ For system/apparatus embodiments:
 
 These variations are critical -- they support broader claim interpretation.
 
-### Step 3: Reference Numeral Integration
+#### Step 3: Reference Numeral Integration
 
 Ensure consistent reference numeral usage:
 
@@ -99,7 +80,7 @@ Ensure consistent reference numeral usage:
 - Later in same embodiment: "the processor 102"
 - Cross-figure: "the processor 102 (shown in both FIG. 1 and FIG. 2)"
 
-### Step 4: Claim Support Verification
+#### Step 4: Claim Support Verification
 
 For each claim element, verify it appears in at least one embodiment:
 
@@ -109,7 +90,7 @@ For each claim element, verify it appears in at least one embodiment:
 
 If any claim element lacks embodiment support, add the necessary description.
 
-### Step 5: Software/Algorithm Embodiments (if applicable)
+#### Step 5: Software/Algorithm Embodiments (if applicable)
 
 For method/software inventions, include:
 - Pseudocode or algorithmic description (NOT actual code)
@@ -125,13 +106,13 @@ At step 204, the processor 102 extracts feature vectors from the input data usin
 At step 206, the processor 102 applies the attention mechanism 110 to the feature vectors...
 ```
 
-### Step 6: Output
+#### Step 6: Output
 
 Embodiment sections are written to `patent/specification/detailed_description.md` (or appended to the specification structure).
 
 Each embodiment section should be self-contained but cross-reference other embodiments when describing alternatives.
 
-## Key Rules
+### Key Rules
 
 - Embodiments must teach a POSITA to make and use the invention without undue experimentation.
 - Include at least one "best mode" embodiment (US requirement).
@@ -147,33 +128,3 @@ Each embodiment section should be self-contained but cross-reference other embod
 - Include specific parameters where possible, but frame them as exemplary, not limiting.
 - Reference numerals must be consistent with the figures.
 - Do NOT use subjective language ("excellent", "surprising", "superior").
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/embodiment-description/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/embodiment-description/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

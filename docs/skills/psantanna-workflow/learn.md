@@ -4,38 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/learn/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/learn/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/learn/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: learn
-description: |
-  Extract reusable knowledge from the current session into a persistent skill.
-  Use when you discover something non-obvious, create a workaround, or develop
-  a multi-step workflow that future sessions would benefit from.
-author: Claude Code Academic Workflow
-version: 1.0.0
-argument-hint: "[skill-name (kebab-case)]"
-allowed-tools: ["Read", "Write", "Bash", "Glob", "Grep"]
-disable-model-invocation: true
----
-
-# /learn — Skill Extraction Workflow
+## /learn — Skill Extraction Workflow
 
 Extract non-obvious discoveries into reusable skills that persist across sessions.
 
-## When to Use This Skill
+### When to Use This Skill
 
 Invoke `/learn` when you encounter:
 
@@ -47,9 +22,9 @@ Invoke `/learn` when you encounter:
 - **Repeatable workflows** — Multi-step task you'd do again
 - **User-facing automation** — Reports, checks, or processes users will request
 
-## Workflow Phases
+### Workflow Phases
 
-### PHASE 1: Evaluate (Self-Assessment)
+#### PHASE 1: Evaluate (Self-Assessment)
 
 Before creating a skill, answer these questions:
 
@@ -60,15 +35,15 @@ Before creating a skill, answer these questions:
 
 **Continue only if YES to at least one question.**
 
-### PHASE 2: Check Existing Skills
+#### PHASE 2: Check Existing Skills
 
 Search for related skills to avoid duplication:
 
 ```bash
-# Check project skills
+## Check project skills
 ls .claude/skills/ 2>/dev/null
 
-# Search for keywords
+## Search for keywords
 grep -r -i "KEYWORD" .claude/skills/ 2>/dev/null
 ```
 
@@ -77,7 +52,7 @@ grep -r -i "KEYWORD" .claude/skills/ 2>/dev/null
 - Same trigger & fix → Update existing skill (bump version)
 - Partial overlap → Update with new variant
 
-### PHASE 3: Create Skill
+#### PHASE 3: Create Skill
 
 Create the skill file at `.claude/skills/[skill-name]/SKILL.md`:
 
@@ -94,31 +69,31 @@ version: 1.0.0
 argument-hint: "[expected arguments]"  # Optional
 ---
 
-# Skill Name
+## Skill Name
 
-## Problem
+### Problem
 [Clear problem description — what situation triggers this skill]
 
-## Context / Trigger Conditions
+### Context / Trigger Conditions
 [When to use — exact error messages, symptoms, scenarios]
 [Be specific enough that you'd recognize it again]
 
-## Solution
+### Solution
 [Step-by-step solution]
 [Include commands, code snippets, or workflows]
 
-## Verification
+### Verification
 [How to verify it worked]
 [Expected output or state]
 
-## Example
+### Example
 [Concrete example of the skill in action]
 
-## References
+### References
 [Documentation links, related files, or prior discussions]
 ```
 
-### PHASE 4: Quality Gates
+#### PHASE 4: Quality Gates
 
 Before finalizing, verify:
 
@@ -129,7 +104,7 @@ Before finalizing, verify:
 - [ ] No sensitive information (credentials, personal data)
 - [ ] Skill name is descriptive and uses kebab-case
 
-## Output
+### Output
 
 After creating the skill, report:
 
@@ -139,7 +114,7 @@ After creating the skill, report:
   Problem: [what it solves]
 ```
 
-## Example: Creating a Skill
+### Example: Creating a Skill
 
 User discovers that a specific R package silently drops observations:
 
@@ -154,18 +129,18 @@ author: Claude Code Academic Workflow
 version: 1.0.0
 ---
 
-# fixest Missing Covariate Handling
+## fixest Missing Covariate Handling
 
-## Problem
+### Problem
 The fixest package silently drops observations when covariates have NA values,
 which can produce unexpected results when comparing to other packages.
 
-## Context / Trigger Conditions
+### Context / Trigger Conditions
 - Sample size in fixest is smaller than expected
 - Results differ from Stata or other R packages
 - Model has covariates with potential missing values
 
-## Solution
+### Solution
 1. Check for NA patterns before regression:
    ```r
    summary(complete.cases(data[, covariates]))
@@ -173,39 +148,10 @@ which can produce unexpected results when comparing to other packages.
 2. Explicitly handle NA values or use `na.action` parameter
 3. Document the expected sample size in comments
 
-## Verification
+### Verification
 Compare `nobs(model)` with `nrow(data)` — difference indicates dropped obs.
 
-## References
+### References
 - fixest documentation on missing values
 - [LEARN:r-code] entry in MEMORY.md
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/learn/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>pedrohcgs/claude-code-my-workflow</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../psantanna-workflow.md">Pedro Sant'Anna's Claude Code Workflow</a></dd>
-<dt><b>Category</b></dt><dd><code>infra</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-04</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow">⭐ pedrohcgs/claude-code-my-workflow</a><br><img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/learn/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/psantanna-workflow/learn/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/psantanna-workflow.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

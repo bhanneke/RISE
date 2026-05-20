@@ -4,42 +4,23 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/feishu-notify/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/feishu-notify/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: feishu-notify
-description: "Send notifications to Feishu/Lark. Internal utility used by other skills, or manually via /feishu-notify. Supports push-only (webhook) and interactive (bidirectional) modes. Use when user says \"发飞书\", \"notify feishu\", or other skills need to send status updates."
-argument-hint: [message-text]
-allowed-tools: Bash(curl *), Bash(cat *), Read, Glob
----
-
-# Feishu/Lark Notification
+## Feishu/Lark Notification
 
 Send a notification: **$ARGUMENTS**
 
-## Overview
+### Overview
 
 This skill provides Feishu/Lark integration for ARIS. It is designed as an **internal utility** — other skills call it at key events (experiment done, review scored, checkpoint waiting). It can also be invoked manually.
 
 **Zero-impact guarantee**: If no `feishu.json` config exists, this skill does nothing and returns silently. All existing workflows are completely unaffected.
 
-## Configuration
+### Configuration
 
 The skill reads `~/.claude/feishu.json`. If this file does not exist, **all Feishu functionality is disabled** — skills behave exactly as before.
 
-### Config Format
+#### Config Format
 
 ```json
 {
@@ -52,7 +33,7 @@ The skill reads `~/.claude/feishu.json`. If this file does not exist, **all Feis
 }
 ```
 
-### Modes
+#### Modes
 
 | Mode | `"mode"` value | What it does | Requires |
 |------|----------------|--------------|----------|
@@ -60,9 +41,9 @@ The skill reads `~/.claude/feishu.json`. If this file does not exist, **all Feis
 | **Push only** | `"push"` | Send webhook notifications at key events. Mobile push, no reply | Feishu bot webhook URL |
 | **Interactive** | `"interactive"` | Full bidirectional. Approve/reject from Feishu, reply to checkpoints | [feishu-claude-code](https://github.com/joewongjc/feishu-claude-code) running |
 
-## Workflow
+### Workflow
 
-### Step 1: Read Config
+#### Step 1: Read Config
 
 ```bash
 cat ~/.claude/feishu.json 2>/dev/null
@@ -73,7 +54,7 @@ cat ~/.claude/feishu.json 2>/dev/null
 - **`"mode": "push"`** → proceed to Step 2 (push)
 - **`"mode": "interactive"`** → proceed to Step 3 (interactive)
 
-### Step 2: Push Notification (webhook)
+#### Step 2: Push Notification (webhook)
 
 Send a rich card to the Feishu webhook:
 
@@ -107,7 +88,7 @@ curl -s -X POST "$WEBHOOK_URL" \
 
 **Return immediately after curl** — push mode never waits for a response.
 
-### Step 3: Interactive Notification (bidirectional)
+#### Step 3: Interactive Notification (bidirectional)
 
 Interactive mode uses [feishu-claude-code](https://github.com/joewongjc/feishu-claude-code) as a bridge:
 
@@ -128,17 +109,17 @@ Interactive mode uses [feishu-claude-code](https://github.com/joewongjc/feishu-c
 
 4. **Return the user's reply** to the calling skill so it can act on it.
 
-### Step 4: Verify Delivery
+#### Step 4: Verify Delivery
 
 - **Push mode**: Check curl exit code. If non-zero, log warning but do NOT block the workflow.
 - **Interactive mode**: If bridge is unreachable, fall back to push mode (if webhook configured) or skip silently.
 
-## Helper Function (for other skills)
+### Helper Function (for other skills)
 
 Other skills should use this pattern to send notifications:
 
 ```markdown
-### Feishu Notification (if configured)
+#### Feishu Notification (if configured)
 
 Check if `~/.claude/feishu.json` exists and mode is not "off":
 - If **push** mode: send webhook notification with event summary
@@ -148,7 +129,7 @@ Check if `~/.claude/feishu.json` exists and mode is not "off":
 
 **This check is always guarded.** If the config file doesn't exist, the skill skips the notification block entirely — zero overhead, zero side effects.
 
-## Event Catalog
+### Event Catalog
 
 Skills send these events at these moments:
 
@@ -165,7 +146,7 @@ Skills send these events at these moments:
 | `/research-pipeline` | `checkpoint` | Between workflow stages |
 | `/research-pipeline` | `pipeline_done` | Full pipeline complete |
 
-## Key Rules
+### Key Rules
 
 - **NEVER block a workflow** because Feishu is unreachable. Always fail open.
 - **NEVER require Feishu config** — all skills must work without it.
@@ -174,32 +155,3 @@ Skills send these events at these moments:
 - **Interactive timeout = auto-proceed.** Don't hang forever waiting for a reply.
 - **Respect `AUTO_PROCEED`**: In interactive mode, if the user doesn't reply within timeout, use the same auto-proceed logic as the calling skill.
 - **No secrets in notifications.** Never include API keys, tokens, or passwords in Feishu messages.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/feishu-notify/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>infra</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/feishu-notify/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

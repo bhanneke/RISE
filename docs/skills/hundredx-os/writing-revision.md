@@ -4,23 +4,11 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/writing/revision.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Paper Revision Workflow
 
----
-
-# Paper Revision Workflow
-
-## Purpose
+### Purpose
 
 Guide the systematic revision of a manuscript in response to reviewer reports
 and an editor's decision letter. This skill covers the full workflow from
@@ -30,9 +18,9 @@ For formatting the response letter itself, see `writing/referee-response`.
 
 ---
 
-## Revision Phases
+### Revision Phases
 
-### Phase 1: Triage the Reports
+#### Phase 1: Triage the Reports
 
 Read all reviewer reports and the editor's letter. Classify every comment:
 
@@ -49,7 +37,7 @@ Read all reviewer reports and the editor's letter. Classify every comment:
 every comment to a paper section. Some comments interact — a causality concern
 from Referee 1 may be addressed by the robustness check requested by Referee 2.
 
-### Phase 2: Address Causality and Identification First
+#### Phase 2: Address Causality and Identification First
 
 Reviewers' concerns about causal identification are the single most common
 reason for rejection in empirical papers. Address these before anything else.
@@ -73,7 +61,7 @@ Either (a) strengthen the identification strategy with additional analysis, or
 explain why it is valuable on its own terms. Half-measures ("we acknowledge
 this is correlational" while still making causal claims) will be rejected.
 
-### Phase 3: Systematic Section-by-Section Revision
+#### Phase 3: Systematic Section-by-Section Revision
 
 Map each reviewer comment to the specific section(s) it affects. Then revise
 section by section, addressing all mapped comments for that section in one pass.
@@ -89,7 +77,7 @@ section by section, addressing all mapped comments for that section in one pass.
 | Conclusion | Repeating results without insight |
 | References | Missing DOI, inconsistent formatting, orphan citations |
 
-### Phase 4: Bibliography and DOI Enforcement
+#### Phase 4: Bibliography and DOI Enforcement
 
 **Every reference MUST have a DOI.** This is a hard requirement, not a suggestion.
 
@@ -99,7 +87,7 @@ section by section, addressing all mapped comments for that section in one pass.
 4. Use `plainnat` bibliography style (or another DOI-displaying style).
 5. Only exceptions: pre-DOI publications, unpublished manuscripts, datasets.
 
-### Phase 5: Draft the Response Letter
+#### Phase 5: Draft the Response Letter
 
 Use the `writing/referee-response` skill for formatting. Key principles:
 
@@ -110,7 +98,7 @@ Use the `writing/referee-response` skill for formatting. Key principles:
   revised the section").
 - Cross-reference when multiple referees raise the same issue.
 
-### Phase 6: Verification
+#### Phase 6: Verification
 
 Before submitting:
 
@@ -125,7 +113,7 @@ Before submitting:
 
 ---
 
-## Integration with Workers
+### Integration with Workers
 
 | Task | Worker | Key skills |
 |------|--------|-----------|
@@ -138,7 +126,7 @@ Before submitting:
 
 ---
 
-## Anti-Patterns
+### Anti-Patterns
 
 - **Defensive revisions.** Adding caveats ("we acknowledge this limitation")
   without substantive changes. Reviewers see through this.
@@ -150,28 +138,3 @@ Before submitting:
   what was asked unless a new analysis directly addresses a concern.
 - **Missing DOI in the revision.** Reviewers specifically check for this.
   It signals carelessness.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/writing/revision.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/writing-revision/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

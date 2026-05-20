@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/kill-argument/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/kill-argument/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: kill-argument
-description: "Two-thread adversarial review: a fresh reviewer constructs the strongest 200-word rejection memo, then a second fresh reviewer defends the paper point-by-point and surfaces still-unresolved critical issues. Use when user says \"kill argument\", \"adversarial review\", \"hostile review\", \"rebuttal preparation\", \"reviewer-2 simulation\", or before submitting a theory paper that has already passed standard review rounds."
-argument-hint: [paper-directory]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, mcp__codex__codex
----
-
-# Kill Argument Exercise: Adversarial Attack-Defense Review
+## Kill Argument Exercise: Adversarial Attack-Defense Review
 
 Stress-test the headline claims of a paper against the strongest possible rejection argument: **$ARGUMENTS**
 
-## Why This Exists
+### Why This Exists
 
 Standard score-based reviews (`/peer-review`, `/research-review`, `/auto-paper-improvement-loop`) tend to produce **balanced** weakness lists.  Each weakness gets ~equal attention, ranked CRITICAL > MAJOR > MINOR.  Empirically, this misses one specific failure mode: the **single most damaging argument** a reviewer would write in a rejection paragraph — the one sentence that, if a senior area chair reads it, kills the paper.
 
@@ -39,7 +20,7 @@ This skill runs that adversarial pass deliberately, then forces a second fresh r
 
 **Empirical motivation:** in a real submission run, after several rounds of standard improvement (score 7-8/10), the kill-argument exercise surfaced framing weaknesses that no prior review caught (e.g., a setting being mostly conditional rather than truly general, or a baseline being irrelevant to real systems).  Author rebuttal forced explicit scope qualifications in abstract and discussion that weren't visible from the score-based reviews alone.
 
-## How This Differs From Other Review Skills
+### How This Differs From Other Review Skills
 
 | Skill | What it asks the reviewer | Output |
 |-------|---------------------------|--------|
@@ -52,7 +33,7 @@ This skill runs that adversarial pass deliberately, then forces a second fresh r
 
 This skill is **complementary**, not a replacement.  Run after standard reviews when you want to know what the worst-case reviewer paragraph would look like, before camera-ready or rebuttal preparation.
 
-## When To Use
+### When To Use
 
 - After 1-2 rounds of `/auto-paper-improvement-loop` settled at a stable score, but before submission.  Surfaces what additional fixes would close the headline-attack gap.
 - During rebuttal preparation, to predict reviewer-2's strongest objection so you can prepare the response in advance.
@@ -61,7 +42,7 @@ This skill is **complementary**, not a replacement.  Run after standard reviews 
 
 This skill is most valuable for **theory papers** with ≥5 theorem-class environments (so the headline depends on real proof obligations).  For empirical papers without theorems, use `/peer-review` instead.
 
-## Constants
+### Constants
 
 - **REVIEWER_MODEL** = `gpt-5.5` (default; specify `gpt-5.4` if you want to fall back to the legacy default).  Reviewer reasoning effort = `xhigh`.
 - **CONTEXT_POLICY** = `fresh` (REVIEWER_BIAS_GUARD).  Each thread is a fresh `mcp__codex__codex` call.  **Never** use `mcp__codex__codex-reply`.  No prior review summary, fix list, or executor explanation enters either prompt.
@@ -70,9 +51,9 @@ This skill is most valuable for **theory papers** with ≥5 theorem-class enviro
 - **CLASSIFICATION** = `answered_by_current_text` / `partially_answered` / `still_unresolved`.  (Names chosen so the adjudicator does not assume "fixed" implies prior history of patching — they read the paper as a fresh reviewer would.)
 - **OUTPUT** = `KILL_ARGUMENT.md` (human-readable) + `KILL_ARGUMENT.json` (machine-readable) in the paper directory.
 
-## Workflow
+### Workflow
 
-### Step 1: Discover paper files
+#### Step 1: Discover paper files
 
 Locate the paper directory and inventory the source.
 
@@ -80,11 +61,11 @@ Locate the paper directory and inventory the source.
 PAPER_DIR="$ARGUMENTS"   # e.g., paper-overleaf/ or paper/
 cd "$PAPER_DIR"
 
-# Find the LaTeX entry point
+## Find the LaTeX entry point
 ENTRY=$(grep -lE '^\\documentclass' *.tex 2>/dev/null | head -1)
 echo "Entry: $ENTRY"
 
-# Find all source files codex should read
+## Find all source files codex should read
 find . -name "*.tex" -not -path "./.git/*" 2>/dev/null
 find . -name "*.bib" -not -path "./.git/*" 2>/dev/null
 find figures/ -name "*.pdf" -o -name "*.png" 2>/dev/null
@@ -93,7 +74,7 @@ ls -la *.pdf 2>/dev/null  # compiled PDF
 
 If a compiled PDF is missing, the skill should still run on .tex source alone, but the prompt should mention this so the reviewer doesn't waste cycles trying to extract from a non-existent PDF.
 
-### Step 2: Attack memo (Thread 1, fresh codex)
+#### Step 2: Attack memo (Thread 1, fresh codex)
 
 Invoke `mcp__codex__codex` (NOT `codex-reply`) with the following prompt structure:
 
@@ -153,7 +134,7 @@ mcp__codex__codex:
 
 Save the returned `threadId` for the trace; do NOT pass it to Thread 2.  Save the attack memo verbatim — both Thread 2 and the human-readable report use it.
 
-### Step 3: Adjudication memo (Thread 2, fresh codex with attack + paper)
+#### Step 3: Adjudication memo (Thread 2, fresh codex with attack + paper)
 
 Invoke a second `mcp__codex__codex` call (still NOT `codex-reply` — Thread 2 is independent of Thread 1's codex history):
 
@@ -235,12 +216,12 @@ mcp__codex__codex:
 
 Save the returned `threadId`.
 
-### Step 4: Write KILL_ARGUMENT.md and KILL_ARGUMENT.json
+#### Step 4: Write KILL_ARGUMENT.md and KILL_ARGUMENT.json
 
 Compose the human-readable report `<paper-dir>/KILL_ARGUMENT.md`:
 
 ```markdown
-# Kill Argument Report — <paper title>
+## Kill Argument Report — <paper title>
 
 **Date**: <YYYY-MM-DD>
 **Reviewer model**: gpt-5.5 xhigh, fresh threads (no codex-reply)
@@ -248,23 +229,23 @@ Compose the human-readable report `<paper-dir>/KILL_ARGUMENT.md`:
 **Adjudicator thread**: <threadId 2>
 **Verdict**: <PASS / WARN / FAIL / NOT_APPLICABLE / BLOCKED / ERROR> (`reason_code: <...>`)
 
-## Net assessment
+### Net assessment
 
 <paragraph from adjudicator memo's "Net assessment">
 
-## Attack memo (verbatim)
+### Attack memo (verbatim)
 
 > <attack memo from Thread 1>
 
-## Adjudication (per-point)
+### Adjudication (per-point)
 
 <copy verbatim from Thread 2 — uses labels answered_by_current_text / partially_answered / still_unresolved>
 
-## Top action items
+### Top action items
 
 <copy from Thread 2>
 
-## Recommendation
+### Recommendation
 
 If P_4 (or whatever still_unresolved critical) is research-level, record
 it as a known open problem in the conclusion / limitations. If it is
@@ -348,7 +329,7 @@ The verdict is computed from the per-point counts; do NOT let the
 defense thread output the top-level verdict directly (that would let
 it self-grade). The skill code does the verdict mapping.
 
-### Step 5: Print summary
+#### Step 5: Print summary
 
 To the user:
 
@@ -373,14 +354,14 @@ To the user:
   Full report: <paper-dir>/KILL_ARGUMENT.md
 ```
 
-## Output Contract
+### Output Contract
 
 - `<paper-dir>/KILL_ARGUMENT.md` — human-readable report
 - `<paper-dir>/KILL_ARGUMENT.json` — machine-readable ledger
 - `.aris/traces/kill-argument/<date>_runNN/` — per-thread codex traces (Attack memo + Adjudication memo)
 - Optional: applied fixes if user explicitly requests; default is **detect-only, do not auto-modify**.
 
-## Key Rules
+### Key Rules
 
 - **Fresh thread per call.**  Both Attack and Adjudication use `mcp__codex__codex`, never `codex-reply`.  Thread 1 and Thread 2 must not share codex context.
 - **Zero prior context.**  Neither thread receives prior round reviews, fix lists, executor summaries, or improvement-loop logs.
@@ -390,47 +371,17 @@ To the user:
 - **Verdict is computed by the skill, not by the adjudicator.**  The Codex thread emits per-point classifications; the skill code maps those to one of the 6 audit verdicts via the table in Step 4.  Never let the adjudicator self-grade the top-level verdict.
 - **Detect-only by direct invocation; can be invoked by `/auto-paper-improvement-loop` Step 5.5 which then merges unresolved findings into its fix list.**  When a user runs `/kill-argument paper/` directly, the output is informational and the human decides whether to act.  When the skill is invoked from inside the auto-improvement loop, the loop reads `KILL_ARGUMENT.json`, deduplicates against its existing weakness list, and feeds novel `still_unresolved` points into Step 6 fixes — `/kill-argument` itself never edits paper files.
 
-## When NOT to Use
+### When NOT to Use
 
 - Empirical papers without theorems / scope claims — `/peer-review` is more useful.  The skill emits `NOT_APPLICABLE` with `reason_code: not_theory_or_scope_paper` in this case.
 - Very early drafts where the headline isn't stable yet — fix the headline first.  The skill emits `NOT_APPLICABLE` with `reason_code: headline_unstable` if the title or abstract changed within the last 2 commits.
 - Papers with ongoing experiments — wait until results stabilize, then run.
 - (`/auto-paper-improvement-loop` Step 5.5 used to run this protocol inline; as of May 2026 it now invokes `/kill-argument` and reads `KILL_ARGUMENT.json` instead, so there is no longer a "do not invoke from inside auto-loop" exclusion.)
 
-## Review Tracing
+### Review Tracing
 
 After each `mcp__codex__codex` reviewer call, save the trace following `shared-references/review-tracing.md` (Policy C — forensic; never silently skip).  Use `save_trace.sh` (resolved per the chain in `shared-references/integration-contract.md` §2) or write files directly to `.aris/traces/kill-argument/<date>_run<NN>/`.  Both threads' raw responses should be preserved.
 
-## Notes
+### Notes
 
 This skill was extracted as a standalone primitive from `/auto-paper-improvement-loop` Step 5.5 in May 2026, after the protocol proved valuable in surfacing headline-vs-body scope gaps that score-based reviews missed.  The attack-then-defense pattern was kept exactly because of empirical evidence that asking one model to "write the rejection memo" produces qualitatively different feedback than asking it to "review and grade" — the former forces commitment, the latter encourages hedging.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/kill-argument/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/kill-argument/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>figures</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-figure/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-figure/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: paper-figure
-description: "Generate publication-quality figures and tables from experiment results. Use when user says \"画图\", \"作图\", \"generate figures\", \"paper figures\", or needs plots for a paper."
-argument-hint: [figure-plan-or-data-path]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Paper Figure: Publication-Quality Plots from Experiment Data
+## Paper Figure: Publication-Quality Plots from Experiment Data
 
 Generate all figures and tables for a paper based on: **$ARGUMENTS**
 
-## Scope: What This Skill Can and Cannot Do
+### Scope: What This Skill Can and Cannot Do
 
 | Category | Can auto-generate? | Examples |
 |----------|-------------------|----------|
@@ -42,7 +23,7 @@ Generate all figures and tables for a paper based on: **$ARGUMENTS**
 
 **In practice:** For a typical ML paper, this skill handles ~60% of figures (all data plots + tables). The remaining ~40% (hero figure, architecture diagram, qualitative results) need to be created manually and placed in `figures/` before running `/paper-write`. The skill will detect these as "existing figures" and preserve them.
 
-## Constants
+### Constants
 
 - **STYLE = `publication`** — Visual style preset. Options: `publication` (default, clean for print), `poster` (larger fonts), `slide` (bold colors)
 - **DPI = 300** — Output resolution
@@ -52,7 +33,7 @@ Generate all figures and tables for a paper based on: **$ARGUMENTS**
 - **FIG_DIR = `figures/`** — Output directory for generated figures
 - **REVIEWER_MODEL = `gpt-5.5`** — Model used via Codex MCP for figure quality review.
 
-## Inputs
+### Inputs
 
 1. **PAPER_PLAN.md** — figure plan table (from `/paper-plan`)
 2. **Experiment data** — JSON files, CSV files, or screen logs in `figures/` or project root
@@ -60,9 +41,9 @@ Generate all figures and tables for a paper based on: **$ARGUMENTS**
 
 If no PAPER_PLAN.md exists, scan for data files and ask the user which figures to generate.
 
-## Workflow
+### Workflow
 
-### Step 1: Read Figure Plan
+#### Step 1: Read Figure Plan
 
 Parse the Figure Plan table from PAPER_PLAN.md:
 
@@ -78,12 +59,12 @@ Identify:
 - Which need manual creation (architecture diagrams, etc.)
 - Which are comparison tables (generate as LaTeX)
 
-### Step 2: Set Up Plotting Environment
+#### Step 2: Set Up Plotting Environment
 
 Create a shared style configuration script:
 
 ```python
-# paper_plot_style.py — shared across all figure scripts
+## paper_plot_style.py — shared across all figure scripts
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.rcParams.update({
@@ -106,7 +87,7 @@ matplotlib.rcParams.update({
     'mathtext.fontset': 'stix',
 })
 
-# Color palette
+## Color palette
 COLORS = plt.cm.tab10.colors  # or Set2, or colorblind-safe
 
 def save_fig(fig, name, fmt=FORMAT):
@@ -115,7 +96,7 @@ def save_fig(fig, name, fmt=FORMAT):
     print(f'Saved: {FIG_DIR}/{name}.{fmt}')
 ```
 
-### Step 3: Auto-Select Figure Type
+#### Step 3: Auto-Select Figure Type
 
 Use this decision tree for data-driven figures (inspired by Imbad0202/academic-research-skills):
 
@@ -130,13 +111,13 @@ Use this decision tree for data-driven figures (inspired by Imbad0202/academic-r
 | Multi-dataset results | Multi-panel (subfigure) | 0.95\textwidth |
 | Prior work comparison | LaTeX table | — |
 
-### Step 4: Generate Each Figure
+#### Step 4: Generate Each Figure
 
 For each figure in the plan, create a standalone Python script:
 
 **Line plots** (training curves, scaling):
 ```python
-# gen_fig2_training_curves.py
+## gen_fig2_training_curves.py
 from paper_plot_style import *
 import json
 
@@ -159,7 +140,7 @@ methods = ['Baseline', 'Method A', 'Method B', 'Ours']
 values = [82.3, 85.1, 86.7, 89.2]
 bars = ax.bar(methods, values, color=[COLORS[i] for i in range(len(methods))])
 ax.set_ylabel('Accuracy (%)')
-# Add value labels on bars
+## Add value labels on bars
 for bar, val in zip(bars, values):
     ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3,
             f'{val:.1f}', ha='center', va='bottom', fontsize=FONT_SIZE-1)
@@ -190,10 +171,10 @@ Method & Rate & Depends on $D$? & Multi-modal? \\
 - If the figure already exists in `figures/`, preserve it and generate only the LaTeX `\includegraphics` snippet
 - Flag as `[MANUAL]` in the figure plan and `latex_includes.tex`
 
-### Step 5: Run All Scripts
+#### Step 5: Run All Scripts
 
 ```bash
-# Run all figure generation scripts
+## Run all figure generation scripts
 for script in gen_fig*.py; do
     python "$script"
 done
@@ -201,7 +182,7 @@ done
 
 Verify all output files exist and are non-empty.
 
-### Step 6: Generate LaTeX Include Snippets
+#### Step 6: Generate LaTeX Include Snippets
 
 For each figure, output the LaTeX code to include it:
 
@@ -217,7 +198,7 @@ For each figure, output the LaTeX code to include it:
 
 Save all snippets to `figures/latex_includes.tex` for easy copy-paste into the paper.
 
-### Step 7: Figure Quality Review with REVIEWER_MODEL
+#### Step 7: Figure Quality Review with REVIEWER_MODEL
 
 Send figure descriptions and captions to GPT-5.4 for review:
 
@@ -238,7 +219,7 @@ mcp__codex__codex:
     [list all figures with captions and descriptions]
 ```
 
-### Step 8: Quality Checklist
+#### Step 8: Quality Checklist
 
 Before finishing, verify each figure (from pedrohcgs/claude-code-my-workflow):
 
@@ -254,7 +235,7 @@ Before finishing, verify each figure (from pedrohcgs/claude-code-my-workflow):
 - [ ] Serif font matches paper body text (Times / Computer Modern)
 - [ ] Colorblind-accessible (if using colorblind palette)
 
-## Output
+### Output
 
 ```
 figures/
@@ -269,7 +250,7 @@ figures/
 └── TABLE_*.tex                  # standalone table LaTeX files
 ```
 
-## Key Rules
+### Key Rules
 
 - **Every figure must be reproducible** — save the generation script alongside the output
 - **Do NOT hardcode data** — always read from JSON/CSV files
@@ -281,7 +262,7 @@ figures/
 - **No titles inside figures** — captions are in LaTeX only
 - **Comparison tables count as figures** — generate them as standalone .tex files
 
-## Figure Type Reference
+### Figure Type Reference
 
 | Type | When to Use | Typical Size |
 |------|------------|--------------|
@@ -295,36 +276,6 @@ figures/
 | Multi-panel | Combined results (subfigures) | 0.95\textwidth |
 | Comparison table | Prior bounds vs. ours (theory) | full width |
 
-## Acknowledgements
+### Acknowledgements
 
 Design pattern (type × style matrix) inspired by [baoyu-skills](https://github.com/jimliu/baoyu-skills). Publication style defaults and figure rules from [pedrohcgs/claude-code-my-workflow](https://github.com/pedrohcgs/claude-code-my-workflow). Visualization decision tree from [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills).
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-figure/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>figures</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/paper-figure/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

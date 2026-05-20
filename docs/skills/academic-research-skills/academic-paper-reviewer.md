@@ -4,35 +4,9 @@
 
 7-agent multi-perspective peer review with 0–100 quality rubrics (EIC + 3 dynamic reviewers + Devil's Advocate), concession threshold protocol, attack intensity preservation, optional cross-model DA critique/calibration, R&R traceability matrix.
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../academic-research-skills/">Academic Research Skills (ARS)</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>CC BY-NC 4.0</code></div><div><b>Updated:</b> 2026-05</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/Imbad0202/academic-research-skills/contents/academic-paper-reviewer/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/academic-research-skills/academic-paper-reviewer/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/Imbad0202/academic-research-skills/blob/main/academic-paper-reviewer/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/Imbad0202/academic-research-skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: academic-paper-reviewer
-description: "Multi-perspective academic paper review with dynamic reviewer personas. Simulates 5 independent reviewers (EIC + 3 peer reviewers + Devil's Advocate) with field-specific expertise. Supports full review, re-review (verification), quick assessment, methodology focus, Socratic guided, and calibration modes. Triggers on: review paper, peer review, manuscript review, referee report, review my paper, critique paper, simulate review, editorial review, calibrate reviewer, reviewer calibration, measure reviewer accuracy."
-metadata:
-  version: "1.9.1"
-  last_updated: "2026-05-18"
-  status: active
-  data_access_level: verified_only
-  task_type: open-ended
-  related_skills:
-    - academic-paper
-    - academic-pipeline
----
-
-# Academic Paper Reviewer v1.9.0 — Multi-Perspective Academic Paper Review Agent Team
+## Academic Paper Reviewer v1.9.0 — Multi-Perspective Academic Paper Review Agent Team
 
 Simulates a complete international journal peer review process: automatically identifies the paper's field, dynamically configures 5 reviewers (Editor-in-Chief + 3 peer reviewers + Devil's Advocate) who review from four non-overlapping perspectives — methodology, domain expertise, cross-disciplinary viewpoints, and core argument challenges — ultimately producing a structured Editorial Decision and Revision Roadmap.
 
@@ -45,7 +19,7 @@ Simulates a complete international journal peer review process: automatically id
 
 ---
 
-## Quick Start
+### Quick Start
 
 **Simplest command:**
 ```
@@ -60,13 +34,13 @@ Review this paper: [paste paper or provide file]
 
 ---
 
-## Trigger Conditions
+### Trigger Conditions
 
-### Trigger Keywords
+#### Trigger Keywords
 
 **English**: review paper, peer review, manuscript review, referee report, review my paper, critique paper, simulate review, editorial review, calibrate reviewer, reviewer calibration, measure reviewer accuracy
 
-### Non-Trigger Scenarios
+#### Non-Trigger Scenarios
 
 | Scenario | Skill to Use |
 |----------|-------------|
@@ -74,7 +48,7 @@ Review this paper: [paste paper or provide file]
 | Need in-depth investigation of a research topic | `deep-research` |
 | Need to revise a paper (already have review comments) | `academic-paper` (revision mode) |
 
-### Quick Mode Selection Guide
+#### Quick Mode Selection Guide
 
 | Your Situation | Recommended Mode | Spectrum |
 |----------------|-----------------|----------|
@@ -91,7 +65,7 @@ Not sure? Use `full` for pre-submission review, `re-review` for post-revision ve
 
 ---
 
-## Agent Team (7 Agents)
+### Agent Team (7 Agents)
 
 | # | Agent | Role | Phase |
 |---|-------|------|-------|
@@ -105,7 +79,7 @@ Not sure? Use `full` for pre-submission review, `re-review` for post-revision ve
 
 ---
 
-## Orchestration Workflow (3 Phases)
+### Orchestration Workflow (3 Phases)
 
 ```
 User: "Review this paper"
@@ -184,7 +158,7 @@ User: "Review this paper"
      ** User can say "just fix it" to skip guidance **
 ```
 
-### Checkpoint Rules
+#### Checkpoint Rules
 
 1. **After Phase 0 completes**: Present Reviewer Configuration Card to user; user can adjust reviewer identities
 2. ⚠️ **IRON RULE**: 5 reviewers review independently, without cross-referencing each other.
@@ -195,7 +169,7 @@ User: "Review this paper"
 
 ---
 
-## Phase-by-phase Invocation Contract (v3.9.2)
+### Phase-by-phase Invocation Contract (v3.9.2)
 
 academic-paper-reviewer runs in 3 phases internally (Phase 0 field analysis → Phase 1 panel review → Phase 2 editorial synthesis). Within the full ARS pipeline, this skill sits at the orchestrator's Phase 5 (Review), but each agent inside the reviewer skill is single-phase relative to the skill's own phase numbering.
 
@@ -217,7 +191,7 @@ Routing into Mode B requires explicit user signal — `/ars-<mode>` slash comman
 
 ---
 
-## Operational Modes (6 Modes)
+### Operational Modes (6 Modes)
 
 | Mode | Trigger | Agents | Output |
 |------|---------|--------|--------|
@@ -228,7 +202,7 @@ Routing into Mode B requires explicit user signal — `/ars-<mode>` slash comman
 | `guided` | "guide me" | All + Socratic dialogue | Socratic issue-by-issue guided review |
 | **`calibration`** (v3.2) | **"calibrate reviewer" / "measure reviewer accuracy"** | **All 7 agents, 5x per gold paper, cross-model default-on** | **Calibration Report: FNR/FPR/balanced accuracy/AUC + per-dimension calibration error + session-scoped confidence disclosure** |
 
-### Mode Selection Logic
+#### Mode Selection Logic
 
 ```
 "Review this paper"                      -> full
@@ -244,7 +218,7 @@ Routing into Mode B requires explicit user signal — `/ars-<mode>` slash comman
 
 ---
 
-## Re-Review Mode (Verification Review)
+### Re-Review Mode (Verification Review)
 
 Dedicated mode for Pipeline Stage 3' — verifies whether revisions address first-round review comments. Uses R&R Traceability Matrix (Schema 11) with Author's Claim + Verified? columns.
 
@@ -255,7 +229,7 @@ Dedicated mode for Pipeline Stage 3' — verifies whether revisions address firs
 
 ---
 
-## Guided Mode (Socratic Guided Review)
+### Guided Mode (Socratic Guided Review)
 
 Helps authors understand problems themselves through progressive revelation. EIC opens with strengths, then gradually introduces deeper issues from each reviewer perspective.
 
@@ -263,7 +237,7 @@ Helps authors understand problems themselves through progressive revelation. EIC
 
 ---
 
-## Calibration Mode (v3.2)
+### Calibration Mode (v3.2)
 
 Opt-in mode that measures this reviewer's FNR / FPR / balanced accuracy against a user-supplied gold set (5-20 papers with known outcomes). Runs `full` 5x per paper with fresh context, cross-model default-on. Produces a Calibration Report attached as a confidence disclosure to subsequent reviews in the session.
 
@@ -271,11 +245,11 @@ Opt-in mode that measures this reviewer's FNR / FPR / balanced accuracy against 
 
 ---
 
-## Review Output Format
+### Review Output Format
 
 Each reviewer's report structure is detailed in `templates/peer_review_report_template.md`.
 
-### Devil's Advocate Report Structure (Special Format)
+#### Devil's Advocate Report Structure (Special Format)
 
 The Devil's Advocate uses a dedicated format, not the standard reviewer template:
 - **Strongest Counter-Argument** (200-300 words)
@@ -286,22 +260,22 @@ The Devil's Advocate uses a dedicated format, not the standard reviewer template
 
 ---
 
-## Editorial Decision Format
+### Editorial Decision Format
 
 The Editorial Decision Letter structure is detailed in `templates/editorial_decision_template.md`.
 
 ---
 
-## Integration
+### Integration
 
-### Upstream/Downstream Relationships
+#### Upstream/Downstream Relationships
 
 ```
 deep-research --> academic-paper --> [integrity check] --> academic-paper-reviewer --> academic-paper (revision) --> academic-paper-reviewer (re-review) --> [final integrity] --> finalize
    (research)       (writing)         (integrity audit)      (review)                    (revision)                    (verification review)                (final verification)   (finalization)
 ```
 
-### Specific Integration Methods
+#### Specific Integration Methods
 
 | Integration Direction | Description |
 |----------------------|-------------|
@@ -310,13 +284,13 @@ deep-research --> academic-paper --> [integrity check] --> academic-paper-review
 | **Downstream: reviewer -> academic-paper** | The Revision Roadmap format can be directly used as reviewer feedback input for `academic-paper` revision mode |
 | **Downstream: reviewer (re-review) -> integrity** | After re-review completes, proceeds to final integrity verification |
 
-### Pipeline Usage Example
+#### Pipeline Usage Example
 
 > See `references/integration_guide.md` for a complete 9-step pipeline usage example.
 
 ---
 
-## Agent File References
+### Agent File References
 
 | Agent | Definition File |
 |-------|----------------|
@@ -330,7 +304,7 @@ deep-research --> academic-paper --> [integrity check] --> academic-paper-review
 
 ---
 
-## Reference Files
+### Reference Files
 
 | Reference | Purpose | Used By |
 |-----------|---------|---------|
@@ -348,7 +322,7 @@ deep-research --> academic-paper --> [integrity check] --> academic-paper-review
 
 ---
 
-## Templates
+### Templates
 
 | Template | Purpose |
 |----------|---------|
@@ -358,7 +332,7 @@ deep-research --> academic-paper --> [integrity check] --> academic-paper-review
 
 ---
 
-## Examples
+### Examples
 
 | Example | Demonstrates |
 |---------|-------------|
@@ -367,7 +341,7 @@ deep-research --> academic-paper --> [integrity check] --> academic-paper-review
 
 ---
 
-## Anti-Patterns
+### Anti-Patterns
 
 Explicit prohibitions to prevent common failure modes, especially during long conversations:
 
@@ -383,7 +357,7 @@ Explicit prohibitions to prevent common failure modes, especially during long co
 
 ---
 
-## Quality Standards
+### Quality Standards
 
 | Dimension | Requirement |
 |-----------|-------------|
@@ -399,13 +373,13 @@ Explicit prohibitions to prevent common failure modes, especially during long co
 
 ---
 
-## Output Language
+### Output Language
 
 Follows the paper's language. Academic terms remain in English. User can override (e.g., "review this Chinese paper in English").
 
 ---
 
-## Related Skills
+### Related Skills
 
 | Skill | Relationship |
 |-------|-------------|
@@ -416,7 +390,7 @@ Follows the paper's language. Academic terms remain in English. User can overrid
 
 ---
 
-## v3.6.2 Sprint Contract Hard Gate
+### v3.6.2 Sprint Contract Hard Gate
 
 - **Reviewer hard gate.** All reviewer modes that ship with contracts (`reviewer_full`, `reviewer_methodology_focus`) now run two-call Phase 1 (paper-content-blind) + Phase 2 (paper-visible) orchestration. See `references/sprint_contract_protocol.md`.
 - **Schema 13 sprint contract.** Template-driven acceptance criteria with `panel_size`, `acceptance_dimensions`, `failure_conditions` (with `severity` precedence + `cross_reviewer_quantifier` panel-relative thresholds), `measurement_procedure`, optional `override_ladder`, bounded `agent_amendments`. Validator: `scripts/check_sprint_contract.py`. Schema: `shared/sprint_contract.schema.json`.
@@ -426,7 +400,7 @@ Follows the paper's language. Academic terms remain in English. User can overrid
 
 ---
 
-## Version Info
+### Version Info
 
 | Item | Content |
 |------|---------|
@@ -438,36 +412,6 @@ Follows the paper's language. Academic terms remain in English. User can overrid
 
 ---
 
-## Changelog
+### Changelog
 
 > See `references/changelog.md` for full version history.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/Imbad0202/academic-research-skills/contents/academic-paper-reviewer/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>Imbad0202/academic-research-skills</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../academic-research-skills.md">Academic Research Skills (ARS)</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>CC BY-NC 4.0</dd>
-<dt><b>Last update</b></dt><dd>2026-05</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/Imbad0202/academic-research-skills">⭐ Imbad0202/academic-research-skills</a><br><img src="https://img.shields.io/github/stars/Imbad0202/academic-research-skills?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/Imbad0202/academic-research-skills/blob/main/academic-paper-reviewer/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/academic-research-skills/academic-paper-reviewer/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/academic-research-skills.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

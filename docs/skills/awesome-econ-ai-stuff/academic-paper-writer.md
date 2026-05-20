@@ -4,54 +4,24 @@
 
 Draft economics papers with proper structure and academic style.
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../awesome-econ-ai-stuff/">awesome-econ-ai-stuff (Antonio Mele)</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>Other (see repo)</code></div><div><b>Updated:</b> 2026</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/writing/academic-paper-writer/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/academic-paper-writer/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/writing/academic-paper-writer/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Academic Paper Writer
 
----
-
----
-name: academic-paper-writer
-description: Draft economics papers with proper structure and academic style
-workflow_stage: writing
-compatibility:
-  - claude-code
-  - cursor
-  - codex
-  - gemini-cli
-author: Awesome Econ AI Community
-version: 1.0.0
-tags:
-  - LaTeX
-  - academic-writing
-  - papers
-  - economics
----
-
-# Academic Paper Writer
-
-## Purpose
+### Purpose
 
 This skill helps economists draft, structure, and polish academic papers with proper conventions for economics journals. It provides templates for different paper types and guidance on academic writing style.
 
-## When to Use
+### When to Use
 
 - Starting a new research paper from scratch
 - Restructuring an existing draft
 - Writing specific sections (introduction, literature review, conclusion)
 - Preparing papers for journal submission
 
-## Instructions
+### Instructions
 
-### Step 1: Identify Paper Type
+#### Step 1: Identify Paper Type
 
 Ask the user:
 1. Is this empirical or theoretical?
@@ -59,7 +29,7 @@ Ask the user:
 3. What stage is the paper at? (outline, first draft, revision)
 4. What sections need help?
 
-### Step 2: Follow the IMRAD Structure
+#### Step 2: Follow the IMRAD Structure
 
 For empirical papers, use:
 1. **Introduction** - Motivation, research question, contribution
@@ -69,7 +39,7 @@ For empirical papers, use:
 5. **Discussion** - Interpretation, mechanisms, limitations
 6. **Conclusion** - Summary and implications
 
-### Step 3: Apply Economics Writing Conventions
+#### Step 3: Apply Economics Writing Conventions
 
 - **First paragraph** should state the research question and main finding
 - **Use present tense** for established facts, past tense for your findings
@@ -77,7 +47,7 @@ For empirical papers, use:
 - **Cite heavily** in the literature review
 - **Lead with results** in the results section
 
-## Example Output: Introduction Template
+### Example Output: Introduction Template
 
 ```latex
 \section{Introduction}
@@ -119,7 +89,7 @@ main findings. Section~\ref{sec:robustness} discusses robustness
 checks. Section~\ref{sec:conclusion} concludes.
 ```
 
-## Example Output: Results Section Template
+### Example Output: Results Section Template
 
 ```latex
 \section{Results}
@@ -174,7 +144,7 @@ R-squared      & 0.05   & 0.12  & 0.35  & 0.35  \\
 \end{table}
 ```
 
-## Example Output: Conclusion Template
+### Example Output: Conclusion Template
 
 ```latex
 \section{Conclusion}
@@ -202,26 +172,26 @@ This paper opens several avenues for future work.
 stimulate further research on [BROADER TOPIC].
 ```
 
-## Writing Tips
+### Writing Tips
 
-### For Introductions
+#### For Introductions
 - **First sentence should grab attention** - not "This paper examines..."
 - **State your contribution clearly** - what's new about this paper?
 - **Be specific about magnitudes** - don't just say "large effect"
 - **Acknowledge limitations** preemptively in the last paragraph
 
-### For Results
+#### For Results
 - **Lead with numbers** - put the coefficient in the first sentence
 - **Interpret economically** - what does a 0.05 coefficient mean?
 - **Guide the reader** through tables column by column
 - **Don't oversell** - distinguish statistical from economic significance
 
-### For Conclusions
+#### For Conclusions
 - **Don't introduce new results** - synthesize what you've shown
 - **Be honest about limitations** - reviewers will find them anyway
 - **End on the contribution** - remind readers why this matters
 
-## Common Pitfalls
+### Common Pitfalls
 
 - ❌ Burying the main result in the middle of the paper
 - ❌ Using "significant" without specifying statistical or economic
@@ -229,43 +199,13 @@ stimulate further research on [BROADER TOPIC].
 - ❌ Literature review that's just a list of papers
 - ❌ Conclusion that's just a summary
 
-## References
+### References
 
 - [Cochrane (2005) Writing Tips for PhD Students](https://www.johnhcochrane.com/research-all/writing-tips-for-phd-studentsnbsp)
 - [Shapiro (2019) How to Give an Applied Micro Talk](https://www.brown.edu/Research/Shapiro/pdfs/applied_micro_slides.pdf)
 - [Thomson (2011) A Guide for the Young Economist](https://mitpress.mit.edu/books/guide-young-economist)
 
-## Changelog
+### Changelog
 
-### v1.0.0
+#### v1.0.0
 - Initial release with introduction, results, and conclusion templates
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/writing/academic-paper-writer/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>meleantonio/awesome-econ-ai-stuff</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../awesome-econ-ai-stuff.md">awesome-econ-ai-stuff (Antonio Mele)</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>Other (see repo)</dd>
-<dt><b>Last update</b></dt><dd>2026</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff">⭐ meleantonio/awesome-econ-ai-stuff</a><br><img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/writing/academic-paper-writer/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/academic-paper-writer/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/awesome-econ-ai-stuff.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

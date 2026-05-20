@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/causal-inference/judge-designs.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Judge and Examiner Designs
 
----
-
-# Judge and Examiner Designs
-
-## Core Idea
+### Core Idea
 
 Judge (or examiner) designs exploit the quasi-random assignment of cases to decision-makers who vary in their treatment propensity. When cases are assigned to judges, patent examiners, disability adjudicators, or caseworkers through a process that is as-if random (conditional on time and location), the decision-maker's leniency serves as an instrument for the treatment they impose.
 
 The instrument captures exogenous variation in treatment that arises not from the defendant's or applicant's characteristics but from the idiosyncratic preferences of the assigned decision-maker.
 
-## Setup and Notation
+### Setup and Notation
 
 - Unit i is assigned to decision-maker j
 - Treatment D_i (e.g., incarceration, patent grant, disability award)
@@ -35,9 +23,9 @@ The instrument captures exogenous variation in treatment that arises not from th
 
 The instrument is Z_j, measuring how much more or less likely judge j is to treat, relative to other judges handling similar cases.
 
-## Instrument Construction
+### Instrument Construction
 
-### Leave-Out Mean (Jackknife IV)
+#### Leave-Out Mean (Jackknife IV)
 
 The standard instrument is the leave-out mean treatment rate of judge j:
 
@@ -47,7 +35,7 @@ This excludes individual i's own treatment status to avoid mechanical correlatio
 
 **Why leave-out**: Including the own observation creates a mechanical first stage even with random assignment. The leave-out construction ensures the instrument reflects the judge's general tendency, not the specific case outcome.
 
-### Residualized Leniency
+#### Residualized Leniency
 
 When assignment is random conditional on covariates (court-by-time FE, case characteristics):
 
@@ -56,16 +44,16 @@ When assignment is random conditional on covariates (court-by-time FE, case char
 
 This removes variation in judge treatment rates that reflects differences in case composition rather than true leniency differences.
 
-### Handling Unbalanced Panels
+#### Handling Unbalanced Panels
 
 Judges with few cases produce noisy leniency measures. Options:
 - Exclude judges with fewer than a minimum number of cases (e.g., 50).
 - Shrinkage estimators: Empirical Bayes estimates of judge leniency pull extreme estimates toward the overall mean.
 - Weight by the number of cases per judge.
 
-## Identification Assumptions
+### Identification Assumptions
 
-### 1. Conditional Random Assignment
+#### 1. Conditional Random Assignment
 
 Cases must be assigned to judges as-if randomly, conditional on observable case characteristics and court-by-time fixed effects.
 
@@ -83,7 +71,7 @@ Cases must be assigned to judges as-if randomly, conditional on observable case 
 - Administrative overrides: complex cases assigned to senior judges.
 - Transfers: cases reassigned after initial assignment.
 
-### 2. Exclusion Restriction
+#### 2. Exclusion Restriction
 
 The judge affects the outcome only through the treatment decision, not through any other channel.
 
@@ -95,7 +83,7 @@ The judge affects the outcome only through the treatment decision, not through a
 
 **Mitigation**: Carefully define the treatment. If the instrument captures variation in multiple treatment margins, the IV estimate reflects a combination of effects. Use multi-valued treatment frameworks or focus on a specific margin.
 
-### 3. Monotonicity
+#### 3. Monotonicity
 
 A stricter judge must be stricter for all types of cases, not just on average. Formally: if judge j is more likely to incarcerate than judge j' on average, then for every defendant type, P(D = 1 | j) >= P(D = 1 | j').
 
@@ -103,15 +91,15 @@ A stricter judge must be stricter for all types of cases, not just on average. F
 
 **Plausibility**: Monotonicity is more plausible when the treatment is binary and judges face the same decision (incarcerate or not) for all cases. It is less plausible when judges face multidimensional decisions or when the instrument conflates different treatment margins.
 
-## Testing for Validity
+### Testing for Validity
 
-### Covariate Balance
+#### Covariate Balance
 
 Regress pre-determined covariates on judge leniency (the leave-out instrument). No significant relationship should exist after conditioning on court-by-time FE.
 
 Standard test: regress each covariate on the instrument and report coefficients. Joint F-test for all covariates.
 
-### Frandsen, Lefgren, and Leslie (2023) Monotonicity Test
+#### Frandsen, Lefgren, and Leslie (2023) Monotonicity Test
 
 A formal test for the monotonicity assumption in judge designs.
 
@@ -124,19 +112,19 @@ A formal test for the monotonicity assumption in judge designs.
 
 **Limitations**: The test has power against specific monotonicity violations but cannot detect all forms of non-monotonicity. Passing the test is necessary but not sufficient for monotonicity.
 
-### First-Stage Heterogeneity
+#### First-Stage Heterogeneity
 
 Estimate first-stage coefficients for different subgroups (by case type, defendant characteristics, severity). If leniency predicts treatment strongly for all subgroups with the same sign, this supports (but does not prove) monotonicity.
 
-### Specification Tests
+#### Specification Tests
 
 - **Overidentification**: With many judges, the model is heavily overidentified. The Sargan/Hansen J-test can detect some forms of instrument invalidity, though it has low power.
 - **Leave-one-judge-out**: Re-estimate excluding each judge. Sensitivity of results to individual judges.
 - **Split-sample**: Estimate leniency in one random half of each judge's cases; apply it as an instrument in the other half.
 
-## Applications
+### Applications
 
-### Criminal Justice
+#### Criminal Justice
 
 **Incarceration effects on recidivism**:
 - Kling (2006): longer sentences increase post-release earnings for some groups.
@@ -147,7 +135,7 @@ Estimate first-stage coefficients for different subgroups (by case type, defenda
 - Dobbie, Goldin, and Yang (2018): pre-trial detention increases guilty pleas and conviction rates, reduces future employment.
 - Gupta, Hansman, and Frenchman (2016): cash bail assignment affects detention and downstream outcomes.
 
-### Patent Examination
+#### Patent Examination
 
 **Patent grant effects on innovation and firm outcomes**:
 - Sampat and Williams (2019): gene patents do not reduce follow-on innovation.
@@ -155,7 +143,7 @@ Estimate first-stage coefficients for different subgroups (by case type, defenda
 
 **Instrument**: Examiner grant rate (leave-out) instruments for whether a specific application is granted.
 
-### Disability Insurance
+#### Disability Insurance
 
 **Effect of disability insurance receipt on labor supply**:
 - Maestas, Mullen, and Strand (2013): DI allowance reduces labor force participation substantially.
@@ -163,20 +151,20 @@ Estimate first-stage coefficients for different subgroups (by case type, defenda
 
 **Instrument**: Examiner or ALJ (Administrative Law Judge) allowance rate.
 
-### Social Services and Child Welfare
+#### Social Services and Child Welfare
 
 **Foster care and child removal**:
 - Doyle (2007, 2008): children on the margin of foster care placement have worse outcomes in foster care (delinquency, teen motherhood).
 
 **Instrument**: Caseworker removal propensity.
 
-### Asylum and Immigration
+#### Asylum and Immigration
 
 **Asylum grant decisions**:
 - Judges vary substantially in asylum grant rates; assignment is quasi-random within courts.
 - Used to study effects of legal status on economic integration.
 
-## Many Judges and Weak Instruments
+### Many Judges and Weak Instruments
 
 Judge designs typically have many instruments (one per judge or a continuous leniency measure). This creates specific econometric issues:
 
@@ -185,7 +173,7 @@ Judge designs typically have many instruments (one per judge or a continuous len
 - **UJIVE (Kolesar 2013)**: Unbiased jackknife IV estimator, particularly suitable for judge designs.
 - **Post-LASSO IV**: Select a subset of judges with the strongest first stages using LASSO, then use them as instruments.
 
-## Practical Checklist
+### Practical Checklist
 
 1. Document the assignment mechanism. Explain why it is quasi-random.
 2. Show covariate balance on pre-determined characteristics conditional on court-by-time FE.
@@ -198,7 +186,7 @@ Judge designs typically have many instruments (one per judge or a continuous len
 9. Report the complier characteristics (who are the marginal individuals affected by judge assignment).
 10. Consider the specific LATE being estimated: effects for marginal cases, not infra-marginal.
 
-## Key References
+### Key References
 
 - Kling, J. (2006). Incarceration length, employment, and earnings. American Economic Review.
 - Dobbie, W., Goldin, J., and Yang, C. (2018). The effects of pre-trial detention on conviction, future crime, and employment. American Economic Review.
@@ -207,28 +195,3 @@ Judge designs typically have many instruments (one per judge or a continuous len
 - Mogstad, M., Torgovitsky, A., and Walters, C. (2021). The causal interpretation of two-stage least squares with multiple instruments. American Economic Review.
 - Kolesar, M. (2013). Estimation in an instrumental variables model with treatment effect heterogeneity. Working paper.
 - Sampat, B. and Williams, H. (2019). How do patents affect follow-on innovation? Evidence from the human genome. American Economic Review.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/causal-inference/judge-designs.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>analysis</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-analysis</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/causal-inference-judge-designs/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

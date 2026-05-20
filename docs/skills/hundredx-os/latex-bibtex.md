@@ -4,27 +4,15 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/latex/bibtex.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# BibTeX Conventions for Economics
+## BibTeX Conventions for Economics
 
 Guidelines for maintaining clean, consistent, and complete BibTeX databases
 for economics research. These conventions follow the norms of top economics
 journals and the `natbib` citation system.
 
-## Preamble setup
+### Preamble setup
 
 ```latex
 \usepackage[authoryear,round]{natbib}  % Author-year citations with round parens
@@ -41,7 +29,7 @@ as clickable hyperlinks in the bibliography. The `plainnat` style displays DOIs
 by default. If using a journal-specific style (e.g., `aer`), verify that it
 renders the `doi` field — if not, switch to `plainnat` or add a custom `.bst`.
 
-### Common bibliography styles in economics
+#### Common bibliography styles in economics
 
 | Style file | Journal | DOI display | Notes |
 |-----------|---------|-------------|-------|
@@ -54,7 +42,7 @@ renders the `doi` field — if not, switch to `plainnat` or add a custom `.bst`.
 **Rule:** Use `plainnat` as default unless submitting to a specific journal that
 requires its own `.bst`. This ensures DOIs are always visible in the bibliography.
 
-## Citation commands (natbib)
+### Citation commands (natbib)
 
 ```latex
 \citet{autor2013}        % Autor, Dorn, and Hanson (2013)
@@ -85,9 +73,9 @@ The employment effects are substantial \citep{autor2013}.
 \citep{autor2013} document large employment declines.  % Don't use \citep as subject
 ```
 
-## Entry types
+### Entry types
 
-### @article -- Published journal articles
+#### @article -- Published journal articles
 
 The most common entry type in economics. Required fields: author, title, journal,
 year, volume.
@@ -106,7 +94,7 @@ year, volume.
 }
 ```
 
-### @techreport -- Working papers
+#### @techreport -- Working papers
 
 Use for NBER working papers, CEPR discussion papers, Fed working papers,
 university working paper series, and any unpublished manuscript with a
@@ -140,7 +128,7 @@ For NBER specifically, the convention is:
 }
 ```
 
-### SSRN working papers
+#### SSRN working papers
 
 ```bibtex
 @techreport{chen2024ssrn,
@@ -154,7 +142,7 @@ For NBER specifically, the convention is:
 }
 ```
 
-### CEPR discussion papers
+#### CEPR discussion papers
 
 ```bibtex
 @techreport{mueller2023cepr,
@@ -167,7 +155,7 @@ For NBER specifically, the convention is:
 }
 ```
 
-### Federal Reserve working papers
+#### Federal Reserve working papers
 
 ```bibtex
 @techreport{garcia2024fed,
@@ -180,7 +168,7 @@ For NBER specifically, the convention is:
 }
 ```
 
-### @unpublished -- Manuscripts without a series
+#### @unpublished -- Manuscripts without a series
 
 Use for papers without an official working paper number (e.g., job market
 papers, manuscripts in preparation, papers "under review").
@@ -201,7 +189,7 @@ papers, manuscripts in preparation, papers "under review").
 }
 ```
 
-### @incollection -- Chapters in edited volumes
+#### @incollection -- Chapters in edited volumes
 
 Common for Handbook chapters (Handbook of Labor Economics, Handbook of
 Public Economics, etc.).
@@ -221,7 +209,7 @@ Public Economics, etc.).
 }
 ```
 
-### @inproceedings -- Conference proceedings
+#### @inproceedings -- Conference proceedings
 
 Rarely used in economics (unlike computer science). Use only for AEA Papers
 and Proceedings or similar.
@@ -241,7 +229,7 @@ and Proceedings or similar.
 }
 ```
 
-### @book -- Monographs and textbooks
+#### @book -- Monographs and textbooks
 
 ```bibtex
 @book{mascolell1995,
@@ -261,7 +249,7 @@ and Proceedings or similar.
 }
 ```
 
-## Citation key conventions
+### Citation key conventions
 
 Use a consistent naming scheme throughout the `.bib` file. The most common
 convention in economics:
@@ -289,7 +277,7 @@ autor-dorn-hanson-2013 % Hyphenated (readable but long)
 Pick one convention and stick with it across your entire `.bib` file and
 all your papers. Consistency matters more than the specific scheme.
 
-## Author name formatting
+### Author name formatting
 
 BibTeX expects `Lastname, Firstname` format with `and` between authors:
 
@@ -307,7 +295,7 @@ author = {Autor, David H., Dorn, David, Hanson, Gordon H.},
 author = {Autor, David H. & Dorn, David & Hanson, Gordon H.},
 ```
 
-### Special characters in names
+#### Special characters in names
 
 Use LaTeX escapes for accented characters:
 
@@ -324,9 +312,9 @@ author = {{Congressional Budget Office}},          % institutional author
 Wrap institutional/corporate authors in double braces to prevent BibTeX
 from parsing them as "Firstname Lastname."
 
-## Required vs. optional fields by entry type
+### Required vs. optional fields by entry type
 
-### @article
+#### @article
 
 | Field | Required? | Notes |
 |-------|-----------|-------|
@@ -341,7 +329,7 @@ from parsing them as "Firstname Lastname."
 | url | Optional | Usually redundant if DOI present |
 | month | Optional | Rarely needed |
 
-### @techreport
+#### @techreport
 
 | Field | Required? | Notes |
 |-------|-----------|-------|
@@ -353,7 +341,7 @@ from parsing them as "Firstname Lastname."
 | number | Recommended | The WP number |
 | doi | **Required** | NBER papers have DOIs; look up via CrossRef for others |
 
-### @incollection
+#### @incollection
 
 | Field | Required? | Notes |
 |-------|-----------|-------|
@@ -368,7 +356,7 @@ from parsing them as "Firstname Lastname."
 | chapter | Optional | |
 | doi | **Required** | Look up via CrossRef if missing |
 
-## DOI formatting
+### DOI formatting
 
 **Every reference MUST include a DOI.** This is non-negotiable for published
 articles, book chapters, and working papers with assigned DOIs. For the rare
@@ -387,7 +375,7 @@ doi = {10.1257/aer.103.6.2121},
 url = {https://doi.org/10.1257/aer.103.6.2121},  % REDUNDANT -- remove
 ```
 
-## Journal name conventions
+### Journal name conventions
 
 Use full journal names, not abbreviations. BibTeX style files handle
 abbreviation if needed.
@@ -418,7 +406,7 @@ journal = {ECTA},
 journal = {REStud},
 ```
 
-## Page ranges
+### Page ranges
 
 Always use en-dash (`--`) for page ranges. BibTeX converts `--` to an
 en-dash in the output.
@@ -429,7 +417,7 @@ pages = {2121-2168},     % Wrong: hyphen (technically works but bad practice)
 pages = {2121},          % Single page (for very short items like editorials)
 ```
 
-## Title capitalization
+### Title capitalization
 
 BibTeX style files typically handle capitalization. To preserve capitalization
 of proper nouns, acronyms, and specific terms, wrap them in braces:
@@ -447,7 +435,7 @@ title = {{GDP}, Prices, and Growth: Lessons from the {Great Recession}},
 title = {{The China Syndrome: Local Labor Market Effects}},  % Avoid this
 ```
 
-## Handling forthcoming papers
+### Handling forthcoming papers
 
 ```bibtex
 @article{smith2024forth,
@@ -459,7 +447,7 @@ title = {{The China Syndrome: Local Labor Market Effects}},  % Avoid this
 }
 ```
 
-## Sorting and organization
+### Sorting and organization
 
 Keep your `.bib` file sorted alphabetically by citation key. This makes it
 easy to find entries and spot duplicates.
@@ -474,7 +462,7 @@ Use a consistent structure within each entry:
 7. `doi`
 8. `note` / `url` (if needed)
 
-## Common mistakes to avoid
+### Common mistakes to avoid
 
 1. **Inconsistent author names.** The same person appears as "Autor, David",
    "Autor, David H.", and "David Autor" in different entries. Pick one
@@ -509,7 +497,7 @@ Use a consistent structure within each entry:
 10. **Overly long notes fields.** The `note` field is for brief metadata
     ("Forthcoming", "Revised version"), not abstracts or summaries.
 
-## Useful tools
+### Useful tools
 
 - **Google Scholar:** Export BibTeX directly (but always clean up the output --
   Google Scholar entries are often incomplete or poorly formatted).
@@ -520,28 +508,3 @@ Use a consistent structure within each entry:
 - **Zotero:** Reference manager with BibTeX export via Better BibTeX plugin.
   Good for collaborative projects.
 - **dblp / EconLit:** Look up entries if Google Scholar's version is incomplete.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/latex/bibtex.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/latex-bibtex/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>code-gen</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>code-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/experiment-bridge/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/experiment-bridge/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: experiment-bridge
-description: "Workflow 1.5: Bridge between idea discovery and auto review. Reads EXPERIMENT_PLAN.md, implements experiment code, deploys to GPU, collects initial results. Use when user says \"实现实验\", \"implement experiments\", \"bridge\", \"从计划到跑实验\", \"deploy the plan\", or has an experiment plan ready to execute."
-argument-hint: [experiment-plan-path-or-topic]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Workflow 1.5: Experiment Bridge
+## Workflow 1.5: Experiment Bridge
 
 Implement and deploy experiments from plan: **$ARGUMENTS**
 
-## Overview
+### Overview
 
 This skill bridges Workflow 1 (idea discovery + method refinement) and Workflow 2 (auto review loop). It takes the experiment plan and turns it into running experiments with initial results.
 
@@ -40,7 +21,7 @@ refine-logs/EXPERIMENT_TRACKER.md     code        (cross-model)    /run-experime
 refine-logs/FINAL_PROPOSAL.md
 ```
 
-## Constants
+### Constants
 
 - **CODE_REVIEW = true** — GPT-5.4 xhigh reviews experiment code before deployment. Catches logic bugs before wasting GPU hours. Set `false` to skip.
 - **AUTO_DEPLOY = true** — Automatically deploy experiments after implementation + review. Set `false` to manually inspect code before deploying.
@@ -51,7 +32,7 @@ refine-logs/FINAL_PROPOSAL.md
 
 > Override: `/experiment-bridge "EXPERIMENT_PLAN.md" — compact: true, base repo: https://github.com/org/project`
 
-## Inputs
+### Inputs
 
 This skill expects one or more of:
 
@@ -63,9 +44,9 @@ This skill expects one or more of:
 
 If none exist, ask the user what experiments to implement.
 
-## Workflow
+### Workflow
 
-### Phase 1: Parse the Experiment Plan
+#### Phase 1: Parse the Experiment Plan
 
 Read `EXPERIMENT_PLAN.md` and extract:
 
@@ -92,13 +73,13 @@ Present a brief summary:
 Proceeding to implementation.
 ```
 
-### Phase 2: Implement Experiment Code
+#### Phase 2: Implement Experiment Code
 
 **If `BASE_REPO` is set** — clone the repo first:
 ```bash
 git clone <BASE_REPO> base_repo/
-# Read the repo's README, understand its structure, find entry points
-# Implement experiments by modifying/extending this codebase
+## Read the repo's README, understand its structure, find entry points
+## Implement experiments by modifying/extending this codebase
 ```
 
 For each milestone (in order), write the experiment scripts:
@@ -122,7 +103,7 @@ For each milestone (in order), write the experiment scripts:
    - Are results saved in a parseable format (JSON/CSV)?
    - Does the code match FINAL_PROPOSAL.md's method description?
 
-### Phase 2.5: Cross-Model Code Review (when CODE_REVIEW = true)
+#### Phase 2.5: Cross-Model Code Review (when CODE_REVIEW = true)
 
 **Skip this step if `CODE_REVIEW` is `false`.**
 
@@ -159,7 +140,7 @@ mcp__codex__codex:
 - **CRITICAL issues found** → fix them, then re-submit for review (max 2 rounds)
 - **Codex MCP unavailable** → skip silently, proceed to Phase 3 (graceful degradation)
 
-### Phase 3: Sanity Check (if SANITY_FIRST = true)
+#### Phase 3: Sanity Check (if SANITY_FIRST = true)
 
 Before deploying the full experiment suite, run the sanity-stage experiment:
 
@@ -190,7 +171,7 @@ If sanity fails → **auto-debug before giving up** (max 3 attempts):
 
 > Never give up on the first failure. Most experiment crashes are fixable without human intervention.
 
-### Phase 4: Deploy Full Experiments
+#### Phase 4: Deploy Full Experiments
 
 Deploy experiments following the plan's milestone order. **Route by job count**:
 
@@ -228,7 +209,7 @@ Total estimated: ~X GPU-hours on [N] GPUs
 Deploy now? Or review the code first?
 ```
 
-### Phase 5: Collect Initial Results
+#### Phase 5: Collect Initial Results
 
 As experiments complete:
 
@@ -239,46 +220,46 @@ As experiments complete:
 4. **Write initial results summary:**
 
 ```markdown
-# Initial Experiment Results
+## Initial Experiment Results
 
 **Date**: [today]
 **Plan**: refine-logs/EXPERIMENT_PLAN.md
 
-## Results by Milestone
+### Results by Milestone
 
-### M0: Sanity — PASSED
+#### M0: Sanity — PASSED
 - [result]
 
-### M1: Baselines
+#### M1: Baselines
 | Run | System | Key Metric | Status |
 |-----|--------|-----------|--------|
 | R001 | baseline_1 | X.XX | DONE |
 
-### M2: Main Method
+#### M2: Main Method
 | Run | System | Key Metric | Status |
 |-----|--------|-----------|--------|
 | R003 | our_method | X.XX | DONE |
 
-### M3: Ablations
+#### M3: Ablations
 ...
 
-## Summary
+### Summary
 - [X/Y] must-run experiments completed
 - Main result: [positive/negative/inconclusive]
 - Ready for /auto-review-loop: [YES/NO]
 
-## Next Step
+### Next Step
 → /auto-review-loop "[topic]"
 ```
 
-### Phase 5.5: Write Compact Log (when COMPACT = true)
+#### Phase 5.5: Write Compact Log (when COMPACT = true)
 
 **Skip entirely if `COMPACT` is `false`.**
 
 Append each completed experiment to `EXPERIMENT_LOG.md`:
 
 ```markdown
-## [Run ID] — [timestamp]
+### [Run ID] — [timestamp]
 - **System**: [method name]
 - **Config**: [key hyperparameters]
 - **Result**: [primary metric = X.XX]
@@ -288,7 +269,7 @@ Append each completed experiment to `EXPERIMENT_LOG.md`:
 
 This structured log survives session recovery — downstream skills read it instead of parsing screen output.
 
-### Phase 5.6: Auto Ablation Planning
+#### Phase 5.6: Auto Ablation Planning
 
 After main experiments (M2) complete with positive results, invoke `/ablation-planner` to design ablation studies:
 
@@ -299,7 +280,7 @@ After main experiments (M2) complete with positive results, invoke `/ablation-pl
 
 If `/ablation-planner` is not available, skip silently — the existing EXPERIMENT_PLAN.md ablation blocks (if any) remain unchanged.
 
-### Phase 6: Handoff
+#### Phase 6: Handoff
 
 Present final status:
 
@@ -317,14 +298,14 @@ Ready for Workflow 2:
 → /auto-review-loop "[topic]"
 ```
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
 
-## Key Rules
+### Key Rules
 
 - **CRITICAL — Evaluation must use dataset ground truth.** When writing evaluation scripts, ALWAYS compare model predictions against the dataset's actual ground truth labels/targets — NEVER use another model's output as ground truth. Double-check: (1) ground truth comes from the dataset split, not from a baseline/backbone model, (2) evaluation metrics are computed against the same ground truth for all methods, (3) if the task has official eval scripts, use those.
 - **Follow the plan.** Do not invent experiments not in EXPERIMENT_PLAN.md. If you think something is missing, note it but don't add it.
@@ -337,7 +318,7 @@ Ready for Workflow 2:
 - **Vast.ai lifecycle.** If using vast.ai instances, destroy them after all experiments complete and results are downloaded. Running instances cost money every second — don't leave them idle. Use `/vast-gpu destroy` or `/vast-gpu destroy-all` when done.
 - **Modal lifecycle.** If using `gpu: modal`, no cleanup is needed — Modal auto-scales to zero after each run. But always show cost estimates before running and verify the spending limit is set at https://modal.com/settings (NEVER through CLI).
 
-## Composing with Other Skills
+### Composing with Other Skills
 
 ```
 /idea-discovery "direction"          ← Workflow 1: find + refine + plan
@@ -347,33 +328,3 @@ Ready for Workflow 2:
 
 Or use /research-pipeline for the full end-to-end flow (includes this bridge).
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/experiment-bridge/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>code-gen</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>code-generation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/experiment-bridge/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

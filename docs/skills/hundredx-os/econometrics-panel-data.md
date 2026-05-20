@@ -4,23 +4,11 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/econometrics/panel-data.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Panel Data Methods
 
----
-
-# Panel Data Methods
-
-## Overview
+### Overview
 
 Panel data (longitudinal data) tracks the same units (individuals, firms, countries) across multiple time periods. The repeated observations allow researchers to control for unobserved time-invariant heterogeneity, which is the central advantage of panel methods over cross-sectional analysis.
 
@@ -30,7 +18,7 @@ Y_it = X_it * beta + alpha_i + gamma_t + epsilon_it
 
 where alpha_i is unit-specific unobserved heterogeneity, gamma_t captures common time shocks, and epsilon_it is the idiosyncratic error.
 
-## Fixed Effects (FE)
+### Fixed Effects (FE)
 
 The fixed effects estimator controls for arbitrary time-invariant unobserved heterogeneity (alpha_i) by demeaning all variables within each unit.
 
@@ -47,7 +35,7 @@ Key properties:
 
 **Strict exogeneity assumption**: Current errors must be uncorrelated with past, present, and future values of X. This rules out feedback effects (where past outcomes affect current X) and lagged dependent variables. Violations lead to inconsistency.
 
-## Random Effects (RE)
+### Random Effects (RE)
 
 The random effects estimator treats alpha_i as a random variable uncorrelated with the regressors. It uses a GLS transformation that partially demeans the data.
 
@@ -61,7 +49,7 @@ Key properties:
 - Inconsistent if alpha_i is correlated with X_it (the typical concern in economics).
 - Appropriate when units are randomly sampled from a larger population and there is no reason to expect correlation between unobservables and regressors (rare in observational economics).
 
-## Hausman Test
+### Hausman Test
 
 Tests whether the RE estimator is consistent by comparing FE and RE coefficients:
 
@@ -78,7 +66,7 @@ Caveats:
 - With clustered or heteroskedasticity-robust standard errors, use the robust version (Wooldridge 2010 or `xtoverid` in Stata).
 - Low power in small samples. Failure to reject does not prove RE is valid.
 
-## Correlated Random Effects (CRE)
+### Correlated Random Effects (CRE)
 
 The Mundlak (1978) / Chamberlain (1982) approach bridges FE and RE:
 
@@ -93,7 +81,7 @@ Properties:
 - Hausman test is equivalent to testing gamma = 0.
 - Natural framework for combining FE-like within estimation with between variation for time-invariant variables.
 
-## Clustered Standard Errors
+### Clustered Standard Errors
 
 With panel data, errors are typically serially correlated within units and heteroskedastic. OLS/GLS standard errors that ignore this are invalid.
 
@@ -111,7 +99,7 @@ With panel data, errors are typically serially correlated within units and heter
 
 **Driscoll-Kraay standard errors**: Robust to cross-sectional dependence, heteroskedasticity, and serial correlation. Appropriate when the cross-sectional dimension N is large and errors are spatially correlated.
 
-## Dynamic Panels: Arellano-Bond and Extensions
+### Dynamic Panels: Arellano-Bond and Extensions
 
 When the model includes a lagged dependent variable:
 
@@ -135,7 +123,7 @@ Y_it = rho * Y_{i,t-1} + X_it * beta + alpha_i + epsilon_it
 - **AR(2) test**: Serial correlation test on differenced residuals. AR(1) is expected (by construction); AR(2) indicates serial correlation in levels, which would invalidate instruments.
 - **Rule of thumb**: Number of instruments should not exceed number of groups (Roodman 2009).
 
-## Panel Unit Root Tests
+### Panel Unit Root Tests
 
 With macro panels (long T, potentially non-stationary series):
 
@@ -146,7 +134,7 @@ With macro panels (long T, potentially non-stationary series):
 
 With non-stationary panels, consider panel cointegration methods (Pedroni, Westerlund) or error correction models.
 
-## First Differencing vs Fixed Effects
+### First Differencing vs Fixed Effects
 
 Both eliminate time-invariant heterogeneity. FD uses the transformation Y_it - Y_{i,t-1}; FE uses Y_it - Y_i_bar.
 
@@ -155,7 +143,7 @@ Both eliminate time-invariant heterogeneity. FD uses the transformation Y_it - Y
 - FD requires only sequential exogeneity (weaker than strict exogeneity).
 - In practice, compare FE and FD results. Large discrepancies may indicate serial correlation or violations of strict exogeneity.
 
-## Practical Checklist
+### Practical Checklist
 
 1. Start with pooled OLS, then FE, then RE. Compare coefficients across specifications.
 2. Run the Hausman test (robust version) to guide the FE vs RE choice.
@@ -168,7 +156,7 @@ Both eliminate time-invariant heterogeneity. FD uses the transformation Y_it - Y
 9. Report within R-squared for FE models (overall R-squared is misleading).
 10. Consider the economic meaning of "within" vs "between" variation in your context.
 
-## Key References
+### Key References
 
 - Wooldridge, J. (2010). Econometric Analysis of Cross Section and Panel Data, 2nd ed. MIT Press.
 - Arellano, M. and Bond, S. (1991). Some tests of specification for panel data. Review of Economic Studies.
@@ -176,28 +164,3 @@ Both eliminate time-invariant heterogeneity. FD uses the transformation Y_it - Y
 - Cameron, A. and Trivedi, P. (2005). Microeconometrics: Methods and Applications. Cambridge.
 - Roodman, D. (2009). How to do xtabond2: An introduction to difference and system GMM in Stata. Stata Journal.
 - Mundlak, Y. (1978). On the pooling of time series and cross section data. Econometrica.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/econometrics/panel-data.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>analysis</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>data-analysis</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/econometrics-panel-data/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

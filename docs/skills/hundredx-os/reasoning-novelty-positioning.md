@@ -4,23 +4,11 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>audit</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/reasoning/novelty-positioning.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Novelty and Contribution Positioning
 
----
-
-# Novelty and Contribution Positioning
-
-## Purpose
+### Purpose
 
 A paper's contribution is not what it does -- it's what it does that hasn't been done before. But the *motivation* for the paper must come from the world, not from the literature. The strongest papers start with a phenomenon, puzzle, or paradox that demands explanation, and only then show that existing knowledge does not resolve it. The literature check is confirmatory -- it verifies that the question is open, it does not generate the question.
 
@@ -28,7 +16,7 @@ This procedure structures the process from phenomenon to positioned contribution
 
 ---
 
-## Step 0: Anchor in a Phenomenon
+### Step 0: Anchor in a Phenomenon
 
 Before touching the literature, answer these three questions:
 
@@ -50,7 +38,7 @@ If you cannot answer these three questions without referencing other papers, the
 
 ---
 
-## Step 1: Confirm the Gap via Literature
+### Step 1: Confirm the Gap via Literature
 
 Now -- and only now -- check whether existing work already resolves the phenomenon identified in Step 0.
 
@@ -73,7 +61,7 @@ For each prior paper, document:
 
 ---
 
-## Step 2: Construct the Contribution Matrix
+### Step 2: Construct the Contribution Matrix
 
 Create a comparison table:
 
@@ -90,31 +78,31 @@ The contribution lives in the cells where this paper differs from ALL prior work
 
 ---
 
-## Step 3: Classify the Contribution Type
+### Step 3: Classify the Contribution Type
 
 Every economics paper's contribution falls into one or more categories:
 
-### Empirical contributions
+#### Empirical contributions
 - **New fact**: Documents something that wasn't known (requires genuinely new data or measurement)
 - **New identification**: Tests a known question with a more credible strategy
 - **New setting**: Applies known methods to a setting where the answer might differ
 - **Quantification**: Puts a number on something previously only theorized about
 - **Mechanism**: Identifies WHY an established result holds, not just THAT it holds
 
-### Theoretical contributions
+#### Theoretical contributions
 - **New model**: A framework that generates predictions not available from existing models
 - **New mechanism**: A theoretical channel that explains an empirical puzzle
 - **Unification**: Shows that apparently different phenomena arise from the same mechanism
 - **Impossibility/existence**: Proves something can or cannot happen under stated conditions
 
-### Methodological contributions
+#### Methodological contributions
 - **New estimator**: A statistical method that solves a problem existing methods don't
 - **New data**: Construction of a dataset that enables research not previously possible
 - **New measurement**: A way to measure something previously unmeasurable
 
 ---
 
-## Step 4: Stress-Test the Contribution Claim
+### Step 4: Stress-Test the Contribution Claim
 
 For each claimed contribution, ask:
 
@@ -134,7 +122,7 @@ For each claimed contribution, ask:
 
 ---
 
-## Step 5: Write the Positioning Paragraph
+### Step 5: Write the Positioning Paragraph
 
 The contribution paragraph (typically at the end of the introduction) must do three things:
 
@@ -144,11 +132,11 @@ The contribution paragraph (typically at the end of the introduction) must do th
 
 3. **Explain why the difference matters**. Not just that you use different data, but why your data answers the question better or answers a different question worth answering.
 
-### Template (adapt, don't copy verbatim):
+#### Template (adapt, don't copy verbatim):
 
 "Our paper relates most closely to [Prior 1] and [Prior 2]. [Prior 1] [what they did]. We differ in [specific difference], which allows us to [what this enables]. [Prior 2] [what they did]. Relative to their work, our contribution is [specific contribution]. Our findings [complement/contradict/extend] theirs by showing that [specific finding]."
 
-### Anti-patterns:
+#### Anti-patterns:
 - "To the best of our knowledge, this is the first paper to..." -- Almost always false. Be specific about what's new instead.
 - Listing 20 papers in the contribution paragraph. Focus on the 3-5 closest.
 - Claiming contribution by combining dimensions: "We are the first to study X in country Y using method Z." This is technically true but usually not a real contribution unless you explain why the combination matters.
@@ -156,7 +144,7 @@ The contribution paragraph (typically at the end of the introduction) must do th
 
 ---
 
-## Step 6: Map Contribution to Outlet Standards
+### Step 6: Map Contribution to Outlet Standards
 
 Different outlets value different types of contributions:
 
@@ -165,28 +153,3 @@ Different outlets value different types of contributions:
 - **Good field journals**: Accept solid execution of established methods on questions relevant to the field. Still need a clear "what's new" statement.
 
 Match the paper's actual contribution type against what the target outlet publishes. If there's a mismatch, flag it -- the paper may need to be repositioned or targeted to a different outlet.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/reasoning/novelty-positioning.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>audit</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/reasoning-novelty-positioning/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

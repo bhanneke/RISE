@@ -4,28 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>none declared</code></div><div><b>Updated:</b> 2026-05-11</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/new-project/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/new-project/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: new-project
-description: Full research pipeline from idea to paper. Orchestrates all phases — discovery, strategy, analysis, writing, peer review, and submission. Use when starting a new research project from scratch.
-argument-hint: "[research topic or 'interactive' for guided start]"
-allowed-tools: Read,Grep,Glob,Write,Edit,Bash,Task,WebSearch,WebFetch
----
-
-# New Project
+## New Project
 
 Launch a full research pipeline from idea to paper, orchestrated through the dependency graph.
 
@@ -33,7 +14,7 @@ Launch a full research pipeline from idea to paper, orchestrated through the dep
 
 ---
 
-## Pipeline Overview
+### Pipeline Overview
 
 This skill orchestrates the full dependency graph. Each phase activates when its dependencies are met. The orchestrator manages agent dispatch, three-strikes escalation, and quality gates.
 
@@ -63,9 +44,9 @@ Phase 5: Submission (depends on Phase 4, score >= 95)
 
 ---
 
-## Workflow
+### Workflow
 
-### Step 0: Enter Plan Mode
+#### Step 0: Enter Plan Mode
 
 Before any work begins:
 1. **Enter plan mode** — use `EnterPlanMode`
@@ -75,7 +56,7 @@ Before any work begins:
 5. **Present to user** — wait for approval before proceeding
 6. **Exit plan mode** — only after approval
 
-### Step 1: Discovery Phase
+#### Step 1: Discovery Phase
 
 1. **If `interactive` or no research spec exists:**
    Run `/discover interview` to produce:
@@ -93,7 +74,7 @@ Before any work begins:
 
 **Gate:** Research spec and literature review must exist before proceeding.
 
-### Step 2: Strategy Phase
+#### Step 2: Strategy Phase
 
 4. **Run `/strategize`** to design the empirical strategy:
    - Strategist proposes identification strategy
@@ -109,7 +90,7 @@ Before any work begins:
 
 **Gate:** Strategy memo must pass strategist-critic review (score >= 80). If theory section exists, theorist-critic must also pass (score >= 80).
 
-### Step 3: Execution Phase
+#### Step 3: Execution Phase
 
 5. **Run `/analyze`** to implement the strategy:
    - Data-engineer cleans data and creates figures
@@ -122,7 +103,7 @@ Before any work begins:
 
 **Gate:** Code must pass coder-critic review. Paper sections must exist.
 
-### Step 4: Peer Review Phase
+#### Step 4: Peer Review Phase
 
 7. **Run `/review --all`** for comprehensive review:
    - strategist-critic + coder-critic + writer-critic + Verifier in parallel
@@ -135,7 +116,7 @@ Before any work begins:
 
 **Gate:** Aggregate score >= 80 (commit-ready). Score >= 90 for submission.
 
-### Step 5: Submission Phase (optional, user-triggered)
+#### Step 5: Submission Phase (optional, user-triggered)
 
 9. **Run `/submit target`** for journal recommendations
 10. **Run `/submit package`** for replication package
@@ -143,7 +124,7 @@ Before any work begins:
 
 ---
 
-## User Interaction Points
+### User Interaction Points
 
 The pipeline pauses for user input at these points:
 - After interview (approve research spec)
@@ -156,7 +137,7 @@ Between pauses, the orchestrator runs autonomously per `workflow.md`.
 
 ---
 
-## Bundled Resources (Level 3)
+### Bundled Resources (Level 3)
 
 | Resource | Path | When |
 |----------|------|------|
@@ -165,40 +146,10 @@ Between pauses, the orchestrator runs autonomously per `workflow.md`.
 
 ---
 
-## Principles
+### Principles
 
 - **This is always orchestrated.** Unlike other skills, `/new-project` always runs through the full pipeline.
 - **Dependency-driven.** Phases activate by dependency, not forced sequence.
 - **Quality-gated.** Each phase transition requires passing quality checks.
 - **User retains control.** Pipeline pauses at key decision points.
 - **Resumable.** If interrupted, the pipeline resumes from the last completed phase.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/new-project/ --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>hugosantanna/clo-author</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../clo-author.md">Clo-Author skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>none declared</dd>
-<dt><b>Last update</b></dt><dd>2026-05-11</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/hugosantanna/clo-author">⭐ hugosantanna/clo-author</a><br><img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/hugosantanna/clo-author" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/clo-author/new-project/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/clo-author.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

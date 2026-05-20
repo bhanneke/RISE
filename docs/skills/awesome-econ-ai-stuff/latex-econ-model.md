@@ -4,54 +4,24 @@
 
 Write and typeset economic models in LaTeX with proper notation.
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../awesome-econ-ai-stuff/">awesome-econ-ai-stuff (Antonio Mele)</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>Other (see repo)</code></div><div><b>Updated:</b> 2026</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code> · <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/theory/latex-econ-model/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/latex-econ-model/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/theory/latex-econ-model/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## LaTeX Economic Model Writer
 
----
-
----
-name: latex-econ-model
-description: Write and typeset economic models in LaTeX with proper notation
-workflow_stage: theory
-compatibility:
-  - claude-code
-  - cursor
-  - codex
-  - gemini-cli
-author: Awesome Econ AI Community
-version: 1.0.0
-tags:
-  - LaTeX
-  - economic-models
-  - theory
-  - equations
----
-
-# LaTeX Economic Model Writer
-
-## Purpose
+### Purpose
 
 This skill helps economists write and typeset economic models in LaTeX with proper mathematical notation, consistent formatting, and academic conventions. It covers utility maximization, equilibrium conditions, dynamic programming, and game theory models.
 
-## When to Use
+### When to Use
 
 - Writing the theory section of a paper
 - Formalizing an economic model
 - Creating lecture notes with equations
 - Typesetting optimization problems and equilibrium conditions
 
-## Instructions
+### Instructions
 
-### Step 1: Understand the Model Type
+#### Step 1: Understand the Model Type
 
 Ask the user:
 1. What type of model? (Static optimization, dynamic programming, game theory, general equilibrium)
@@ -59,7 +29,7 @@ Ask the user:
 3. What constraints apply?
 4. Should it include proofs or just the setup?
 
-### Step 2: Use Standard Notation
+#### Step 2: Use Standard Notation
 
 Follow economics conventions:
 - Utility: $U$, $u$, or $v$
@@ -69,7 +39,7 @@ Follow economics conventions:
 - Time subscripts: $t$, $t+1$
 - Greek letters for parameters: $\alpha$, $\beta$, $\gamma$, $\delta$
 
-### Step 3: Structure the Model
+#### Step 3: Structure the Model
 
 Organize as:
 1. **Environment** - Agents, goods, time horizon
@@ -78,7 +48,7 @@ Organize as:
 4. **Equilibrium concept** - Definition and conditions
 5. **Solution** - First-order conditions, closed-form solutions
 
-## Example Output
+### Example Output
 
 ```latex
 \documentclass{article}
@@ -187,7 +157,7 @@ The Bellman equation is:
 \end{document}
 ```
 
-## LaTeX Packages to Include
+### LaTeX Packages to Include
 
 ```latex
 % Essential packages for economics papers
@@ -199,7 +169,7 @@ The Bellman equation is:
 \usepackage{dsfont}     % \mathds for indicator functions
 ```
 
-## Useful Custom Commands
+### Useful Custom Commands
 
 ```latex
 % Expectation and probability
@@ -225,7 +195,7 @@ The Bellman equation is:
 \newcommand{\Z}{\mathbb{Z}}
 ```
 
-## Best Practices
+### Best Practices
 
 1. **Use `align` environment** for multiline equations
 2. **Label important equations** with `\label{}` and reference with `\eqref{}`
@@ -234,7 +204,7 @@ The Bellman equation is:
 5. **Define custom commands** for repeated notation
 6. **Use consistent subscript conventions** ($t$ for time, $i$ for individuals)
 
-## Common Pitfalls
+### Common Pitfalls
 
 - ❌ Using `*` for multiplication (use `\cdot` or implicit multiplication)
 - ❌ Forgetting `\left(` and `\right)` for auto-sizing brackets
@@ -242,43 +212,13 @@ The Bellman equation is:
 - ❌ Not aligning equations at `=` signs
 - ❌ Using `$$ ... $$` instead of proper environments
 
-## References
+### References
 
 - [AMS-LaTeX User's Guide](https://www.ams.org/arc/resources/amslatex-about.html)
 - [The Not So Short Introduction to LaTeX](https://tobi.oetiker.ch/lshort/lshort.pdf)
 - [Mathpix](https://mathpix.com/) - Convert handwritten equations to LaTeX
 
-## Changelog
+### Changelog
 
-### v1.0.0
+#### v1.0.0
 - Initial release with consumer, firm, and game theory templates
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/theory/latex-econ-model/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>meleantonio/awesome-econ-ai-stuff</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../awesome-econ-ai-stuff.md">awesome-econ-ai-stuff (Antonio Mele)</a></dd>
-<dt><b>Category</b></dt><dd><code>modeling</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>formal-modeling</code> <code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>Other (see repo)</dd>
-<dt><b>Last update</b></dt><dd>2026</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff">⭐ meleantonio/awesome-econ-ai-stuff</a><br><img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/theory/latex-econ-model/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/latex-econ-model/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/awesome-econ-ai-stuff.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

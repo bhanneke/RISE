@@ -4,32 +4,13 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>ideation</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>rq-formulation</code> · <code>hypothesis-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/idea-discovery/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/idea-discovery/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
----
-name: idea-discovery
-description: "Workflow 1: Full idea discovery pipeline. Orchestrates research-lit → idea-creator → novelty-check → research-review to go from a broad research direction to validated, pilot-tested ideas. Use when user says \"找idea全流程\", \"idea discovery pipeline\", \"从零开始找方向\", or wants the complete idea exploration workflow."
-argument-hint: [research-direction]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
----
-
-# Workflow 1: Idea Discovery Pipeline
+## Workflow 1: Idea Discovery Pipeline
 
 Orchestrate a complete idea discovery workflow for: **$ARGUMENTS**
 
-## Overview
+### Overview
 
 This skill chains sub-skills into a single automated pipeline:
 
@@ -40,7 +21,7 @@ This skill chains sub-skills into a single automated pipeline:
 
 Each phase builds on the previous one's output. The final deliverables are a validated `idea-stage/IDEA_REPORT.md` with ranked ideas, plus a refined proposal (`refine-logs/FINAL_PROPOSAL.md`) and experiment plan (`refine-logs/EXPERIMENT_PLAN.md`) for the top idea.
 
-## Constants
+### Constants
 
 - **PILOT_MAX_HOURS = 2** — Skip any pilot experiment estimated to take > 2 hours per GPU. Flag as "needs manual pilot" in the report.
 - **PILOT_TIMEOUT_HOURS = 3** — Hard timeout: kill any running pilot that exceeds 3 hours. Collect partial results if available.
@@ -55,9 +36,9 @@ Each phase builds on the previous one's output. The final deliverables are a val
 
 > 💡 These are defaults. Override by telling the skill, e.g., `/idea-discovery "topic" — ref paper: https://arxiv.org/abs/2406.04329` or `/idea-discovery "topic" — compact: true`.
 
-## Pipeline
+### Pipeline
 
-### Phase 0: Load Research Brief (if available)
+#### Phase 0: Load Research Brief (if available)
 
 Before starting any other phase, check for a detailed research brief in the project:
 
@@ -75,7 +56,7 @@ If no brief exists, proceed normally with `$ARGUMENTS` as the research direction
 
 > 💡 Create a brief from the template: `cp templates/RESEARCH_BRIEF_TEMPLATE.md RESEARCH_BRIEF.md`
 
-### Phase 0.5: Reference Paper Summary (when REF_PAPER is set)
+#### Phase 0.5: Reference Paper Summary (when REF_PAPER is set)
 
 **Skip entirely if `REF_PAPER` is `false`.**
 
@@ -94,25 +75,25 @@ Summarize the reference paper before searching the literature:
 4. **Generate `idea-stage/REF_PAPER_SUMMARY.md`**:
 
 ```markdown
-# Reference Paper Summary
+## Reference Paper Summary
 
 **Title**: [paper title]
 **Authors**: [authors]
 **Venue**: [venue, year]
 
-## What They Did
+### What They Did
 [2-3 sentences: core method and contribution]
 
-## Key Results
+### Key Results
 [Main quantitative findings]
 
-## Limitations & Open Questions
+### Limitations & Open Questions
 [What the paper didn't solve, acknowledged weaknesses, future work suggestions]
 
-## Potential Improvement Directions
+### Potential Improvement Directions
 [Based on the limitations, what could be improved or extended?]
 
-## Codebase
+### Codebase
 [If `base repo` is also set: link to the repo and note which parts correspond to the paper]
 ```
 
@@ -129,16 +110,16 @@ Proceeding to literature survey with this as context.
 
 Phase 1 and Phase 2 will use `idea-stage/REF_PAPER_SUMMARY.md` as additional context — `/research-lit` searches for related and competing work, `/idea-creator` generates ideas that build on or improve the reference paper.
 
-### Phase 1: Literature Survey
+#### Phase 1: Literature Survey
 
 Invoke `/research-lit` to map the research landscape. Idea discovery is exactly the place where Gemini's AI-driven broad coverage adds value, so include `gemini` as a source by default unless the user already specified an explicit `— sources:` directive in their idea-discovery invocation:
 
 ```
-# If $ARGUMENTS already contains "— sources:", pass through unchanged
-# (the user is in control of source selection):
+## If $ARGUMENTS already contains "— sources:", pass through unchanged
+## (the user is in control of source selection):
 /research-lit "$ARGUMENTS"
 
-# Otherwise (the common case), include gemini explicitly for broader discovery:
+## Otherwise (the common case), include gemini explicitly for broader discovery:
 /research-lit "$ARGUMENTS" — sources: all, gemini
 ```
 
@@ -164,7 +145,7 @@ Does this match your understanding? Should I adjust the scope before generating 
 - **User approves** (or no response + AUTO_PROCEED=true) → proceed to Phase 2 with best direction.
 - **User requests changes** (e.g., "focus more on X", "ignore Y", "too broad") → refine the search with updated queries, re-run `/research-lit` with adjusted scope, and present again. Repeat until the user is satisfied.
 
-### Phase 2: Idea Generation + Filtering + Pilots
+#### Phase 2: Idea Generation + Filtering + Pilots
 
 Invoke `/idea-creator` with the landscape context (and `idea-stage/REF_PAPER_SUMMARY.md` if available):
 
@@ -198,7 +179,7 @@ Which ideas should I validate further? Or should I regenerate with different con
 - **User unhappy with all ideas** → collect feedback ("what's missing?", "what direction do you prefer?"), update the prompt with user's constraints, and re-run Phase 2 (idea generation). Repeat until the user selects at least 1 idea.
 - **User wants to adjust scope** → go back to Phase 1 with refined direction.
 
-### Phase 3: Deep Novelty Verification
+#### Phase 3: Deep Novelty Verification
 
 For each top idea (positive pilot signal), run a thorough novelty check:
 
@@ -215,7 +196,7 @@ For each top idea (positive pilot signal), run a thorough novelty check:
 
 **Update `idea-stage/IDEA_REPORT.md`** with deep novelty results. Eliminate any idea that turns out to be already published.
 
-### Phase 4: External Critical Review
+#### Phase 4: External Critical Review
 
 For the surviving top idea(s), get brutal feedback:
 
@@ -230,7 +211,7 @@ For the surviving top idea(s), get brutal feedback:
 
 **Update `idea-stage/IDEA_REPORT.md`** with reviewer feedback and revised plan.
 
-### Phase 4.5: Method Refinement + Experiment Planning
+#### Phase 4.5: Method Refinement + Experiment Planning
 
 After review, refine the top idea into a concrete proposal and plan experiments:
 
@@ -261,57 +242,57 @@ Proceed to implementation? Or adjust the proposal?
 - **User requests changes** → pass feedback to `/research-refine` for another round.
 - **Lite mode:** If reviewer score < 6 or pilot was weak, run `/research-refine` only (skip `/experiment-plan`) and note remaining risks in the report.
 
-### Phase 5: Final Report
+#### Phase 5: Final Report
 
 Finalize `idea-stage/IDEA_REPORT.md` with all accumulated information:
 
 ```markdown
-# Idea Discovery Report
+## Idea Discovery Report
 
 **Direction**: $ARGUMENTS
 **Date**: [today]
 **Pipeline**: research-lit → idea-creator → novelty-check → research-review → research-refine-pipeline
 
-## Executive Summary
+### Executive Summary
 [2-3 sentences: best idea, key evidence, recommended next step]
 
-## Literature Landscape
+### Literature Landscape
 [from Phase 1]
 
-## Ranked Ideas
+### Ranked Ideas
 [from Phase 2, updated with Phase 3-4 results]
 
-### 🏆 Idea 1: [title] — RECOMMENDED
+#### 🏆 Idea 1: [title] — RECOMMENDED
 - Pilot: POSITIVE (+X%)
 - Novelty: CONFIRMED (closest: [paper], differentiation: [what's different])
 - Reviewer score: X/10
 - Next step: implement full experiment → /auto-review-loop
 
-### Idea 2: [title] — BACKUP
+#### Idea 2: [title] — BACKUP
 ...
 
-## Eliminated Ideas
+### Eliminated Ideas
 [ideas killed at each phase, with reasons]
 
-## Refined Proposal
+### Refined Proposal
 - Proposal: `refine-logs/FINAL_PROPOSAL.md`
 - Experiment plan: `refine-logs/EXPERIMENT_PLAN.md`
 - Tracker: `refine-logs/EXPERIMENT_TRACKER.md`
 
-## Next Steps
+### Next Steps
 - [ ] /run-experiment to deploy experiments from the plan
 - [ ] /auto-review-loop to iterate until submission-ready
 - [ ] Or invoke /research-pipeline for the complete end-to-end flow
 ```
 
-### Phase 5.5: Write Compact Files (when COMPACT = true)
+#### Phase 5.5: Write Compact Files (when COMPACT = true)
 
 **Skip entirely if `COMPACT` is `false`.**
 
 Write `idea-stage/IDEA_CANDIDATES.md` — a lean summary of the top 3-5 surviving ideas:
 
 ```markdown
-# Idea Candidates
+## Idea Candidates
 
 | # | Idea | Pilot Signal | Novelty | Reviewer Score | Status |
 |---|------|-------------|---------|---------------|--------|
@@ -319,7 +300,7 @@ Write `idea-stage/IDEA_CANDIDATES.md` — a lean summary of the top 3-5 survivin
 | 2 | [title] | +Y% | Confirmed | X/10 | BACKUP |
 | 3 | [title] | Negative | — | — | ELIMINATED |
 
-## Active Idea: #1 — [title]
+### Active Idea: #1 — [title]
 - Hypothesis: [one sentence]
 - Key evidence: [pilot result]
 - Next step: /experiment-bridge or /research-refine
@@ -327,14 +308,14 @@ Write `idea-stage/IDEA_CANDIDATES.md` — a lean summary of the top 3-5 survivin
 
 This file is intentionally small (~30 lines) so downstream skills and session recovery can read it without loading the full `idea-stage/IDEA_REPORT.md` (~200+ lines).
 
-## Output Protocols
+### Output Protocols
 
 > Follow these shared protocols for all output files:
 > - **[Output Versioning Protocol](../shared-references/output-versioning.md)** — write timestamped file first, then copy to fixed name
 > - **[Output Manifest Protocol](../shared-references/output-manifest.md)** — log every output to MANIFEST.md
 > - **[Output Language Protocol](../shared-references/output-language.md)** — respect the project's language setting
 
-## Key Rules
+### Key Rules
 
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 
@@ -346,7 +327,7 @@ This file is intentionally small (~30 lines) so downstream skills and session re
 - **Be honest with the reviewer.** Include negative results and failed pilots in the review prompt.
 - **Feishu notifications are optional.** If `~/.claude/feishu.json` exists, send `checkpoint` at each phase transition and `pipeline_done` at final report. If absent/off, skip silently.
 
-## Composing with Workflow 2
+### Composing with Workflow 2
 
 After this pipeline produces a validated top idea:
 
@@ -357,33 +338,3 @@ After this pipeline produces a validated top idea:
 
 Or use /research-pipeline for the full end-to-end flow.
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/idea-discovery/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>wanshuiyin/Auto-claude-code-research-in-sleep</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../aris.md">ARIS skills</a></dd>
-<dt><b>Category</b></dt><dd><code>ideation</code></dd>
-<dt><b>Field</b></dt><dd>—</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>rq-formulation</code> <code>hypothesis-generation</code></dd>
-<dt><b>License</b></dt><dd>MIT</dd>
-<dt><b>Last update</b></dt><dd>2026-05-18</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">⭐ wanshuiyin/Auto-claude-code-research-in-sleep</a><br><img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/aris/idea-discovery/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/aris.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

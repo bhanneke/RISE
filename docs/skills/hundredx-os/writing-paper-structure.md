@@ -4,21 +4,9 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/writing/paper-structure.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
-
----
-
-# Paper Structure for IS & Management Science Journals
+## Paper Structure for IS & Management Science Journals
 
 Standard structure for papers targeting Management Science, Information Systems
 Research, MIS Quarterly, JMIS, and BISE. Deviations should be deliberate and
@@ -26,7 +14,7 @@ justified. The order below reflects what referees at these outlets expect.
 
 ---
 
-## 1. Introduction (2--3 pages)
+### 1. Introduction (2--3 pages)
 
 The introduction is the most important section. Referees form their judgment
 here. It must accomplish five things in a tight sequence:
@@ -89,7 +77,7 @@ Brief final paragraph mapping the rest of the paper. Short and functional.
 
 ---
 
-## 2. Related Work (2--3 pages)
+### 2. Related Work (2--3 pages)
 
 IS journals typically expect a standalone Related Work section (unlike pure
 economics journals where it is often folded into the introduction).
@@ -110,7 +98,7 @@ economics journals where it is often folded into the introduction).
 
 ---
 
-## 3. Analytical Model (if applicable)
+### 3. Analytical Model (if applicable)
 
 For papers with a formal model. This section is expected when the paper makes
 theoretical contributions or when empirical predictions are derived from a model.
@@ -136,12 +124,12 @@ section that has no equations.
 
 ---
 
-## 4. Methodology (including Data)
+### 4. Methodology (including Data)
 
 This section covers both the data and the empirical strategy. The goal is to
 convince the reader that your estimates are credible.
 
-### 4.1 Data
+#### 4.1 Data
 
 1. **Data sources.** Where does the data come from? Administrative records,
    on-chain data, platform APIs, surveys? Is it publicly available?
@@ -160,7 +148,7 @@ convince the reader that your estimates are credible.
 - For scraped data: describe the scraping methodology, coverage, and any
   deduplication procedures.
 
-### 4.2 Empirical Strategy / Identification
+#### 4.2 Empirical Strategy / Identification
 
 **For all methods:**
 - Write out the estimating equation(s) explicitly.
@@ -180,7 +168,7 @@ convince the reader that your estimates are credible.
 
 ---
 
-## 5. Empirical Estimation Results
+### 5. Empirical Estimation Results
 
 **Main results first.** Present the core finding in the first table. Walk the
 reader through the table column by column. Discuss magnitude (economic
@@ -213,7 +201,7 @@ the finding and connects it to the paper's argument. Do not write
 
 ---
 
-## 6. Discussion (1--2 pages)
+### 6. Discussion (1--2 pages)
 
 IS journals value a Discussion section more than pure economics journals do.
 This is where you connect findings back to theory and practice.
@@ -239,7 +227,7 @@ This is where you connect findings back to theory and practice.
 
 ---
 
-## 7. Conclusion (0.5--1 page)
+### 7. Conclusion (0.5--1 page)
 
 Short and punchy. Three purposes:
 
@@ -255,7 +243,7 @@ Short and punchy. Three purposes:
 
 ---
 
-## Formatting Conventions
+### Formatting Conventions
 
 - **Tables and figures** are numbered sequentially and referenced in the text.
   Every table and figure must be discussed.
@@ -269,7 +257,7 @@ Short and punchy. Three purposes:
 - **Length:** Management Science expects ~30 pages main text. ISR/MISQ similar.
   Appendices and online appendices can be longer.
 
-### No Bullet Points in the Body — MANDATORY
+#### No Bullet Points in the Body — MANDATORY
 
 Results, discussion, limitations, future research, and conclusion sections
 must be written as **flowing prose paragraphs**. Bullet points and numbered
@@ -282,7 +270,7 @@ If you are tempted to write a bulleted list of results or limitations,
 restructure as connected paragraphs where each point flows into the next
 with proper transitions.
 
-### Em-dash Restraint
+#### Em-dash Restraint
 
 Use em-dashes sparingly — at most 1-2 per page. Prefer commas, semicolons,
 or parentheticals. Overuse of em-dashes makes text look informal and
@@ -290,7 +278,7 @@ AI-generated.
 
 ---
 
-## Section-Level Checklist
+### Section-Level Checklist
 
 - [ ] Introduction opens with a phenomenon, puzzle, or paradox (not a literature gap)
 - [ ] Introduction states the question within the first half-page
@@ -309,11 +297,11 @@ AI-generated.
 
 ---
 
-## Publication Readiness: What Makes Reviewers Say Yes
+### Publication Readiness: What Makes Reviewers Say Yes
 
 High-quality papers at Q1 journals are less about "interesting" and more about proof. Before submitting, verify that the paper passes every item below. These are the inverse of the most common rejection reasons.
 
-### Motivation and Contribution Clarity
+#### Motivation and Contribution Clarity
 
 - [ ] The paper is motivated by a real-world phenomenon, puzzle, or paradox -- not by a gap in the literature
 - [ ] The literature is used to confirm the question is open, not to generate the motivation
@@ -321,20 +309,20 @@ High-quality papers at Q1 journals are less about "interesting" and more about p
 - [ ] The contribution is substantive, not cosmetic (new mechanism or insight, not just a new label on an existing approach)
 - [ ] It is clear what the paper adds beyond the 3-5 closest prior papers
 
-### Methods-Claim Alignment
+#### Methods-Claim Alignment
 
 - [ ] The empirical strategy supports the headline claim -- no scope mismatch between what the method identifies and what the paper claims to show
 - [ ] Causal language is used only when the identification strategy warrants it
 - [ ] If the paper tests a model, the empirical tests map directly to model predictions
 
-### Fair Benchmarking
+#### Fair Benchmarking
 
 - [ ] Baselines are state-of-the-art, not outdated or weak
 - [ ] All comparisons use matched conditions: same data, same metrics, same time period
 - [ ] Exclusions of competing approaches are explained and justified
 - [ ] The paper does not cherry-pick which comparisons to report
 
-### Uncertainty and Robustness
+#### Uncertainty and Robustness
 
 - [ ] Sensitivity analysis on the top 3 assumptions that drive the result
 - [ ] At least one robustness check per major threat to identification
@@ -342,47 +330,22 @@ High-quality papers at Q1 journals are less about "interesting" and more about p
 - [ ] Placebo or falsification tests included where applicable
 - [ ] The paper is explicit about what the results are NOT robust to
 
-### Assumption Transparency
+#### Assumption Transparency
 
 - [ ] All key identifying assumptions are stated in plain language (not only in notation)
 - [ ] Each assumption is justified on substantive grounds with evidence or institutional knowledge
 - [ ] The paper discusses what happens if the most critical assumption is violated
 
-### Auditability
+#### Auditability
 
 - [ ] Methods are described in the order they were executed
 - [ ] Key methodological decisions are in the main text, not buried in footnotes
 - [ ] Results can be traced from the estimating equation to the coefficient in the table
 - [ ] Reproduction is possible: data availability statement, code, or enough procedural detail to replicate the workflow
 
-### Interpretation Discipline
+#### Interpretation Discipline
 
 - [ ] Results are separated from interpretation; speculation is labeled as speculation
 - [ ] Magnitude claims are benchmarked (against means, prior estimates, or policy-relevant thresholds)
 - [ ] Null results are described accurately ("no evidence that X" rather than "X does not exist")
 - [ ] The conclusion does not introduce claims beyond the paper's evidence
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/writing/paper-structure.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/writing-paper-structure/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

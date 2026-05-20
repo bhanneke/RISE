@@ -4,23 +4,11 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/review/consistency-check.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Consistency Check
 
----
-
-# Consistency Check
-
-## Purpose
+### Purpose
 
 This skill describes how to perform a mechanical number verification audit on an
 academic paper draft. The goal is to cross-reference every quantitative claim in
@@ -33,34 +21,34 @@ paper accurately reflect what the pipeline actually produced.
 
 ---
 
-## Step 1: Extract Numerical Claims from the Draft
+### Step 1: Extract Numerical Claims from the Draft
 
 Systematically scan the draft for every quantitative statement:
 
-### In-text claims
+#### In-text claims
 - "The sample contains N observations"
 - "The coefficient on X is 0.45 (SE = 0.12)"
 - "This represents a Y% increase relative to the mean"
 - "The effect is significant at the Z% level"
 - "The mean of X is M (SD = S)"
 
-### Tables
+#### Tables
 - Every cell in every table is a checkable claim
 - Pay special attention to: N rows, coefficient cells, SE/t-stat cells,
   R-squared values, number of fixed effects/clusters
 
-### Figures
+#### Figures
 - Axis labels with specific values
 - Annotated data points
 - Reported statistics in figure notes
 
-### Abstract and conclusion
+#### Abstract and conclusion
 - These often contain rounded or paraphrased versions of key results —
   verify they are consistent with the precise values in the body
 
 ---
 
-## Step 2: Match Claims Against Source Artifacts
+### Step 2: Match Claims Against Source Artifacts
 
 For each numerical claim, identify the source artifact:
 
@@ -77,17 +65,17 @@ For each numerical claim, identify the source artifact:
 
 ---
 
-## Step 3: Apply Tolerance Rules
+### Step 3: Apply Tolerance Rules
 
 Not every small difference is a discrepancy. Apply these rules:
 
-### Exact match required
+#### Exact match required
 - Sample sizes (integers): must match exactly
 - Signs of coefficients: must match exactly
 - Significance levels: if the paper says "significant at 5%", the p-value
   must actually be < 0.05
 
-### Rounding tolerance
+#### Rounding tolerance
 - A value is consistent if it rounds to the reported value at the reported
   precision level
 - Example: actual = 0.4527, reported as 0.45 → **consistent**
@@ -95,7 +83,7 @@ Not every small difference is a discrepancy. Apply these rules:
 - Example: actual = 0.4527, reported as 0.46 → **inconsistent** (minor)
 - Example: actual = 0.4527, reported as 0.54 → **inconsistent** (critical — transposed digits)
 
-### Derived quantity tolerance
+#### Derived quantity tolerance
 - For percentage changes: (coefficient / mean) × 100
   - Allow 0.5 percentage point tolerance for rounding in the chain
 - For standard deviation units: coefficient / SD
@@ -103,23 +91,23 @@ Not every small difference is a discrepancy. Apply these rules:
 
 ---
 
-## Step 4: Classify Discrepancies by Severity
+### Step 4: Classify Discrepancies by Severity
 
-### Critical
+#### Critical
 - Wrong sign on a coefficient
 - Sample size off by more than 10%
 - Main result coefficient off by more than 20% of its value
 - Claiming significance when p-value > reported threshold
 - Transposed digits (0.45 vs 0.54)
 
-### Major
+#### Major
 - Coefficient off by 5-20% of its value
 - Standard error off by more than 10%
 - Summary statistic (mean/SD) off by more than 10%
 - Economic magnitude incorrectly computed
 - Robustness result direction inconsistent with text description
 
-### Minor
+#### Minor
 - Rounding differences within 5% of value
 - R-squared differences in third decimal place
 - Number of observations off by a small count (< 1%)
@@ -127,7 +115,7 @@ Not every small difference is a discrepancy. Apply these rules:
 
 ---
 
-## Step 5: Common Error Patterns
+### Step 5: Common Error Patterns
 
 Watch for these frequent mistakes:
 
@@ -147,7 +135,7 @@ Watch for these frequent mistakes:
 
 ---
 
-## Step 6: Handle Unverifiable Claims
+### Step 6: Handle Unverifiable Claims
 
 Some claims cannot be checked against available artifacts:
 
@@ -161,54 +149,29 @@ suggests the artifacts don't fully document the analysis.
 
 ---
 
-## Output Structure
+### Output Structure
 
 The consistency report should be organized as:
 
 ```
-# Consistency Check Report
+## Consistency Check Report
 
-## Summary
+### Summary
 - Total claims checked: N
 - Consistent: N (X%)
 - Inconsistent: N (Y%)
 - Unverifiable: N (Z%)
 - Overall verdict: PASS / FAIL
 
-## Critical Discrepancies
+### Critical Discrepancies
 [If any — these must be fixed before the paper can proceed]
 
-## Major Discrepancies
+### Major Discrepancies
 [These should be fixed]
 
-## Minor Discrepancies
+### Minor Discrepancies
 [Nice to fix but not blocking]
 
-## Detailed Check Log
+### Detailed Check Log
 [Every claim, its source, and the verification result]
 ```
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/review/consistency-check.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>review</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>referee-simulation</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/review-consistency-check/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

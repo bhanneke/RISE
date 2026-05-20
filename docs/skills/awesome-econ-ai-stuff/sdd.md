@@ -4,55 +4,21 @@
 
 Spec-driven development framework for structured feature creation.
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../awesome-econ-ai-stuff/">awesome-econ-ai-stuff (Antonio Mele)</a></div><div><b>Category:</b> <code>design</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>Other (see repo)</code></div><div><b>Updated:</b> 2026</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>research-design</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/engineering/sdd/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/sdd/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/engineering/sdd/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Spec-Driven Development (SDD)
 
----
-
----
-name: sdd
-description: >
-  Implements the Spec-Driven Development lifecycle (Intent, Requirements, Design, Tasks, Build)
-  for structured feature development. Use when the user wants to scaffold a new feature spec,
-  generate EARS requirements, create a technical design, break work into tasks, or check spec status.
-  Trigger on keywords: sdd, spec-driven, ears requirements, feature spec.
-workflow_stage: engineering
-compatibility:
-  - claude-code
-  - cursor
-  - codex
-  - gemini-cli
-author: Awesome Econ AI Community
-version: 1.0.0
-tags:
-  - spec-driven-development
-  - requirements
-  - design
-  - documentation
----
-
-# Spec-Driven Development (SDD)
-
-## Core Philosophy
+### Core Philosophy
 
 1. **Clarity before Code:** Never generate code until requirements and design are approved.
 2. **Iterative Refinement:** Loop through Req → Design → Tasks until solid.
 3. **Code via Docs:** The truth is in the markdown files, not the chat.
 
-## Commands
+### Commands
 
 Execute in the **project root** (where `spec/` and `steering/` live).
 
-### `init`
+#### `init`
 
 Scaffold the SDD folder structure and template files.
 
@@ -65,7 +31,7 @@ Scaffold the SDD folder structure and template files.
    - `templates/spec/tasks.md` → `spec/tasks.md`
    - `templates/steering/coding-standards.md` → `steering/coding-standards.md`
 
-### `reqs`
+#### `reqs`
 
 Generate EARS requirements from intent.
 
@@ -74,7 +40,7 @@ Generate EARS requirements from intent.
 3. Write to `spec/requirements.md`.
 4. Ask for user approval before proceeding.
 
-### `design`
+#### `design`
 
 Generate technical design from requirements.
 
@@ -83,7 +49,7 @@ Generate technical design from requirements.
 3. Write to `spec/design.md`.
 4. Ask for user approval before proceeding.
 
-### `tasks`
+#### `tasks`
 
 Generate implementation tasks from design.
 
@@ -92,14 +58,14 @@ Generate implementation tasks from design.
 3. Write to `spec/tasks.md`.
 4. Ask for user approval before proceeding.
 
-### `status`
+#### `status`
 
 Report current state of the spec.
 
 1. List files in `spec/` (and optionally `steering/`).
 2. If `spec/tasks.md` exists, count unchecked `[ ]` vs checked `[x]` and summarize.
 
-## EARS Quick Reference
+### EARS Quick Reference
 
 - **Ubiquitous:** `<system> shall <response>`
 - **Event-Driven:** `WHEN <trigger> [precondition] the <system> shall <response>`
@@ -109,48 +75,18 @@ Report current state of the spec.
 
 Use IDs like `[REQ-001]`; add a **Properties (Invariants)** section for universal correctness statements.
 
-## Design Checklist
+### Design Checklist
 
 - Edit ruthlessly (remove over-engineering).
 - Check for circular dependencies; fix via interface extraction, layering, or events.
 - Ensure alignment with steering documents.
 
-## Task Rules
+### Task Rules
 
 - Two-level hierarchy maximum (Task > Subtask).
 - Sequential order (each task builds on previous).
 - Traceability: each task or subtask links back to requirement IDs (e.g. *Traceability:* Implements `REQ-001`).
 
-## Additional Resources
+### Additional Resources
 
 - For full framework detail (workflow, refinement, iteration triggers), see [reference.md](reference.md).
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<button onclick="navigator.clipboard.writeText(`gh api repos/meleantonio/awesome-econ-ai-stuff/contents/_skills/engineering/sdd/SKILL.md --jq .content | base64 -d`); this.textContent='✓ copied';"
-  style="background:#00897b; color:white; border:none; padding:0.5em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em;">📋 copy fetch command</button>
-<p style="font-size:0.85em; color:#666; margin:0.6em 0;">Pulls the raw SKILL.md from <code>meleantonio/awesome-econ-ai-stuff</code>.</p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../awesome-econ-ai-stuff.md">awesome-econ-ai-stuff (Antonio Mele)</a></dd>
-<dt><b>Category</b></dt><dd><code>design</code></dd>
-<dt><b>Field</b></dt><dd>general</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>research-design</code></dd>
-<dt><b>License</b></dt><dd>Other (see repo)</dd>
-<dt><b>Last update</b></dt><dd>2026</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.5em 0;">Upstream</h4>
-<p style="font-size:0.85em; margin:0.3em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff">⭐ meleantonio/awesome-econ-ai-stuff</a><br><img src="https://img.shields.io/github/stars/meleantonio/awesome-econ-ai-stuff?style=flat" alt="stars"></p>
-<p style="margin:0.6em 0;"><a href="https://github.com/meleantonio/awesome-econ-ai-stuff/blob/main/_skills/engineering/sdd/SKILL.md" style="font-size:0.9em;">↗ view SKILL.md on source</a></p>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/awesome-econ-ai-stuff/sdd/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/awesome-econ-ai-stuff.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>

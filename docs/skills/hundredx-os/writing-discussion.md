@@ -4,29 +4,17 @@
 
 
 
-<style>
-.skill-layout { display: grid; grid-template-columns: minmax(0, 2fr) 18em; gap: 2em; }
-@media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
-.skill-sidebar { background: #fafafa; border:1px solid #eaeaea; border-radius:8px; padding:1em; position:sticky; top:1em; align-self:start; font-size:0.95em; }
-.skill-sidebar h3, .skill-sidebar h4 { color:#00695c; }
-.skill-sidebar dl dt { margin-top:0.5em; }
-.skill-sidebar dl dd { margin:0.1em 0 0 0; }
-</style>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../hundredx-os/">100xOS shared skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>private (curator-owned)</code></div><div><b>Updated:</b> 2026-05-20</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><p style="font-size:0.9em; color:#555;">Curator-private skill — copy text from <code>100xOS/shared/skills/writing/discussion.md</code>.</p></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a></div></div>
 
-<div class="skill-layout">
-<div class="skill-content" markdown>
+## Discussion Section
 
----
-
-# Discussion Section
-
-## Purpose
+### Purpose
 
 The Discussion section **interprets** results — it does not restate them.
 It connects findings to theory, prior literature, and practice, then
 honestly addresses limitations and future directions.
 
-## 5 DOs
+### 5 DOs
 
 1. **Interpret**: Explain *what results mean*, not what numbers are.
    "The negative coefficient on X implies that agents respond to…"
@@ -43,7 +31,7 @@ honestly addresses limitations and future directions.
    that emerge from your findings. Not "more research is needed" — instead,
    "a natural extension would be to test whether Z holds when…"
 
-## 5 DON'Ts
+### 5 DON'Ts
 
 1. **Don't repeat results**: The reader just read the Results section. No
    "As shown in Table 3, we found that…" — instead, synthesize.
@@ -58,7 +46,7 @@ honestly addresses limitations and future directions.
    speculative than the Conclusion. Keep the Conclusion tight and forward-
    looking.
 
-## Structure Template (1.5–2 pages)
+### Structure Template (1.5–2 pages)
 
 ```
 \section{Discussion}
@@ -89,13 +77,13 @@ honestly addresses limitations and future directions.
 %    Written as prose, NOT as a list. Keep it tight.
 ```
 
-## Formatting — MANDATORY
+### Formatting — MANDATORY
 
 The entire discussion section must be written as **flowing prose paragraphs**. No bullet points. No numbered lists. No enumerated items. This includes limitations and future research subsections.
 
 If a limitation or future research direction deserves mention, it gets woven into a paragraph. If it cannot be woven in, it is probably not important enough to include.
 
-## Common Mistakes and Fixes
+### Common Mistakes and Fixes
 
 | Mistake | Fix |
 |---------|-----|
@@ -108,7 +96,7 @@ If a limitation or future research direction deserves mention, it gets woven int
 | 500+ word limitations section | Keep to 150-300 words, 3-4 key scope conditions |
 | Generic future research wish list | 1 paragraph, 2-3 specific questions, 100-150 words |
 
-## IS / Management Science Conventions
+### IS / Management Science Conventions
 
 - **Explicit theoretical contribution**: State which propositions/hypotheses
   from your model are supported and which need refinement.
@@ -118,28 +106,3 @@ If a limitation or future research direction deserves mention, it gets woven int
   transfer to and which contextual factors moderate the effects.
 - **Boundary conditions**: State the conditions under which your theory
   applies. Good theory has clear boundaries.
-
-
-</div>
-
-<div class="skill-sidebar">
-<h3 style="margin-top:0;">Use this skill</h3>
-<pre style="white-space:pre-wrap;"># curator-private; copy text from
-# /Users/hanneke/Documents/Projects/100xOS/shared/skills/writing/discussion.md</pre>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<h4 style="margin:0 0 0.3em 0;">Metadata</h4>
-<dl style="font-size:0.85em; margin:0;">
-<dt><b>Pack</b></dt><dd><a href="../hundredx-os.md">100xOS shared skills</a></dd>
-<dt><b>Category</b></dt><dd><code>drafting</code></dd>
-<dt><b>Field</b></dt><dd>economics</dd>
-<dt><b>Pipeline stages</b></dt><dd><code>paper-drafting</code></dd>
-<dt><b>License</b></dt><dd>private (curator-owned)</dd>
-<dt><b>Last update</b></dt><dd>2026-05-20</dd>
-</dl>
-<hr style="margin:1em 0; border:none; border-top:1px solid #eee;">
-<button onclick="navigator.clipboard.writeText('https://bhanneke.github.io/RISE/skills/hundredx-os/writing-discussion/'); this.textContent='✓ copied';"
-  style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.85em;">🔗 copy share link</button>
-<p style="font-size:0.8em; color:#666; margin:0.8em 0 0;">Suggest improvements via <a href="https://github.com/bhanneke/RISE/issues/new">GitHub issue</a> or <a href="https://github.com/bhanneke/RISE/edit/main/skills/hundredx-os.yml">edit on GitHub</a>.</p>
-</div>
-
-</div>
