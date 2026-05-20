@@ -1,0 +1,63 @@
+# Editor's Picks for the Skills catalog.
+#
+# Curated, NOT crowd-voted. Listed here = surfaced in the
+# "Editor's Picks" section at the top of /skills/ and marked with
+# ★ in the all-skills table. Re-curate periodically.
+#
+# Filename starts with `_` so build_skills_index.py can skip it
+# as a pack (it isn't one — it's an overlay).
+
+featured:
+  # Anthropic core
+  - {pack: anthropic-skills, slug: skill-creator,
+     reason: "Meta-skill — start here to author your own SKILL.md."}
+  - {pack: anthropic-skills, slug: doc-coauthoring,
+     reason: "Anthropic's reference pattern for long-document drafting workflows."}
+
+  # End-to-end orchestration
+  - {pack: academic-research-skills, slug: academic-pipeline,
+     reason: "Full chain: deep-research → academic-paper → academic-paper-reviewer with quality gates."}
+  - {pack: academic-research-skills, slug: academic-paper,
+     reason: "12-agent drafting skill with style calibration, anti-leakage and VLM figure verification."}
+  - {pack: academic-research-skills, slug: academic-paper-reviewer,
+     reason: "7-agent multi-perspective peer review with a Devil's Advocate and traceability matrix."}
+  - {pack: academic-research-skills, slug: deep-research,
+     reason: "13-agent PRISMA-grade literature pipeline with Semantic Scholar verification."}
+
+  # Causal-inference practitioner patterns
+  - {pack: cunningham-substack, slug: did-with-claude,
+     reason: "Scott Cunningham's reference DID workflow — parallel trends, event-study, robust SEs."}
+  - {pack: cunningham-substack, slug: iv-with-claude,
+     reason: "IV estimation with weak-instrument checks (AR, K, MOP) and overid tests."}
+  - {pack: markus-academy, slug: panel-data-with-claude,
+     reason: "Brunnermeier-school panel-data pattern — FE/RE, cluster-robust SEs, dynamic panel diagnostics."}
+  - {pack: markus-academy, slug: referee-response-econ,
+     reason: "Structured R&R response pattern (point-by-point, what-changed table)."}
+
+  # Blattman — research-side picks (skipping his personal-workflow skills)
+  - {pack: claudeblattman, slug: deep-research,
+     reason: "Multi-agent deep research with paste-loop UX and reusable subagent templates."}
+  - {pack: claudeblattman, slug: proposal-write,
+     reason: "Grant / research proposal drafting from the author of Why We Fight."}
+  - {pack: claudeblattman, slug: review-plan,
+     reason: "Structured feedback pass over a research plan."}
+  - {pack: claudeblattman, slug: review-methodology,
+     reason: "Methodology-review agent for early-stage research designs."}
+
+  # 100xOS shared skills (high-leverage local picks)
+  - {pack: hundredx-os, slug: reasoning-anti-slop,
+     reason: "Anti-slop guardrails — keeps generated text grounded and quote-checked."}
+  - {pack: hundredx-os, slug: reasoning-identification-strategy,
+     reason: "Identification-strategy reasoning skill — pressure-tests causal claims."}
+  - {pack: hundredx-os, slug: review-referee-simulation,
+     reason: "Simulated referee report with calibrated severity."}
+
+  # Econ data + tooling
+  - {pack: awesome-econ-ai-stuff, slug: api-data-fetcher,
+     reason: "Common-source fetcher (FRED, World Bank) — quickest path to a clean macro panel."}
+  - {pack: awesome-econ-ai-stuff, slug: r-econometrics,
+     reason: "R workflows for IV / DiD / RDD with proper diagnostics."}
+
+  # Pedro Sant'Anna's reproducibility-first workflow
+  - {pack: psantanna-workflow, slug: audit-reproducibility,
+     reason: "Pre-submission reproducibility audit pass — the most-cited author on DID's own pattern."}

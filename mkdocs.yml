@@ -87,6 +87,9 @@ nav:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - assets/goatcounter.js
+
 extra:
   social:
     - icon: fontawesome/brands/github

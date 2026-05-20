@@ -157,6 +157,8 @@ INDEX_AUTO_END = "<!-- AUTO-GENERATED:skills-end -->"
 def load_packs() -> list[dict[str, Any]]:
     packs = []
     for f in sorted(SKILLS_DIR.glob("*.yml")):
+        if f.name.startswith("_"):
+            continue  # overlays (e.g. _featured.yml), not packs
         with f.open("r", encoding="utf-8") as fh:
             data = yaml.safe_load(fh)
         if not data or "pack" not in data:
@@ -164,6 +166,23 @@ def load_packs() -> list[dict[str, Any]]:
         data["_path"] = f.relative_to(REPO_ROOT).as_posix()
         packs.append(data)
     return packs
+
+
+def load_featured() -> tuple[set[tuple[str, str]], dict[tuple[str, str], str]]:
+    """Load editor's-picks overlay. Returns (set-of-(pack,slug), reasons-by-key)."""
+    f = SKILLS_DIR / "_featured.yml"
+    if not f.exists():
+        return set(), {}
+    data = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
+    items = data.get("featured") or []
+    keys = set()
+    reasons: dict[tuple[str, str], str] = {}
+    for it in items:
+        k = (it.get("pack", ""), it.get("slug", ""))
+        keys.add(k)
+        if it.get("reason"):
+            reasons[k] = it["reason"]
+    return keys, reasons
 
 
 PAGE_HEADER = "<!-- DO NOT EDIT — auto-generated from {path} by scripts/build_skills_index.py -->"
@@ -255,8 +274,63 @@ def render_pack_page(pack_data: dict[str, Any]) -> str:
 def render_index(packs: list[dict[str, Any]]) -> str:
     out: list[str] = []
     total_skills = sum(len(p.get("skills") or []) for p in packs)
-    out.append(f"*{len(packs)} skill packs · {total_skills} skills indexed.*")
+    featured_keys, featured_reasons = load_featured()
+    out.append(f"*{len(packs)} skill packs · {total_skills} skills indexed · "
+               f"{len(featured_keys)} editor's picks.*")
     out.append("")
+
+    # ─── Editor's Picks ───────────────────────────────────────────────
+    if featured_keys:
+        # Build a lookup of skill metadata by (pack_slug, skill_slug)
+        meta_by_key: dict[tuple[str, str], tuple[dict, dict]] = {}
+        for p in packs:
+            pk = p["pack"]
+            for s in p.get("skills") or []:
+                meta_by_key[(pk["slug"], s.get("slug", ""))] = (pk, s)
+
+        out.append("## ★ Editor's Picks")
+        out.append("")
+        out.append("*Hand-curated entry points across the catalog. Not crowd-voted; "
+                   "re-curated periodically. See <a href=\"#all-skills\">All skills</a> "
+                   "for the full filterable table.*")
+        out.append("")
+        out.append('<div style="display:grid; grid-template-columns:repeat(auto-fill, '
+                   'minmax(20em, 1fr)); gap:1em; margin:1em 0;">')
+        # Order: keep the YAML curation order
+        ordered = [k for k in featured_keys]
+        # Read again to preserve list order
+        try:
+            data = yaml.safe_load((SKILLS_DIR / "_featured.yml").read_text(encoding="utf-8")) or {}
+            ordered = [(it.get("pack", ""), it.get("slug", "")) for it in (data.get("featured") or [])]
+        except Exception:
+            pass
+        for key in ordered:
+            entry = meta_by_key.get(key)
+            if not entry:
+                continue
+            pk, s = entry
+            pack_slug = pk["slug"]
+            s_slug = s.get("slug", "")
+            name = s.get("name", s_slug)
+            desc = s.get("description", "") or ""
+            reason = featured_reasons.get(key, "")
+            pack_details_dir = SKILLS_DIR / pack_slug / "details"
+            have_detail = (pack_details_dir / f"{s_slug}.md").exists()
+            link = f'<a href="{pack_slug}/{s_slug}/">view</a>' if have_detail else \
+                   f'<a href="{pack_slug}/">view pack</a>'
+            out.append(
+                '<div style="border:1px solid #e0e0e0; border-radius:8px; '
+                'padding:0.8em 1em; background:#fffbe8;">'
+                f'<div style="font-weight:600; color:#b07000;">★ <code>{name}</code></div>'
+                f'<div style="font-size:0.85em; color:#666; margin:0.2em 0 0.6em;">'
+                f'<a href="{pack_slug}/">{pk["name"]}</a></div>'
+                f'<div style="font-size:0.9em; margin-bottom:0.5em;">{reason or desc}</div>'
+                f'<div style="font-size:0.85em;">{link} '
+                f'· <a href="{s.get("details_url","")}" target="_blank" rel="noopener">↗ source</a></div>'
+                '</div>'
+            )
+        out.append("</div>")
+        out.append("")
 
     # Cross-pack matrix
     out.append("## Pack overview")
@@ -276,7 +350,7 @@ def render_index(packs: list[dict[str, Any]]) -> str:
     out.append("")
 
     # Filterable all-skills table with per-column header filters
-    out.append("## All skills")
+    out.append('<h2 id="all-skills">All skills</h2>')
     out.append("")
 
     # Collect facet values
@@ -295,8 +369,13 @@ def render_index(packs: list[dict[str, Any]]) -> str:
   <input type="text" id="skillFilter" placeholder="🔍 free-text search across all fields…"
     style="width:100%; padding:0.5em 0.7em; font-size:1em; border:1px solid #ccc; border-radius:4px;"
     oninput="applyFilters()">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5em;">
-    <button onclick="resetFilters()" style="padding:0.3em 0.8em; font-size:0.85em;">reset all</button>
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5em; gap:1em;">
+    <div>
+      <button onclick="resetFilters()" style="padding:0.3em 0.8em; font-size:0.85em;">reset all</button>
+      <label style="font-size:0.9em; margin-left:1em;">
+        <input type="checkbox" id="featuredOnly" onchange="applyFilters()"> ★ featured only
+      </label>
+    </div>
     <span id="skillCount" style="color:#666; font-size:0.9em;"></span>
   </div>
 </div>
@@ -304,6 +383,7 @@ def render_index(packs: list[dict[str, Any]]) -> str:
 <script>
 function applyFilters() {{
   var q = (document.getElementById('skillFilter').value || '').toLowerCase().trim();
+  var featuredOnly = document.getElementById('featuredOnly') && document.getElementById('featuredOnly').checked;
   var facets = {{}};
   document.querySelectorAll('select[data-filter-col]').forEach(function(sel) {{
     if (sel.value) facets[sel.dataset.filterCol] = sel.value;
@@ -321,7 +401,8 @@ function applyFilters() {{
         if (rowVal !== facets[col]) {{ matchesFacets = false; break; }}
       }}
     }}
-    var show = matchesText && matchesFacets;
+    var matchesFeatured = !featuredOnly || row.dataset.featured === '1';
+    var show = matchesText && matchesFacets && matchesFeatured;
     row.style.display = show ? '' : 'none';
     if (show) n_visible++;
   }});
@@ -373,14 +454,20 @@ document.addEventListener('DOMContentLoaded', applyFilters);
             stages_attr = " ".join(stages_list)
             desc = s.get("description", "—") or "—"
             source_url = s.get("details_url", "")
-            source_cell = f'<a href="{source_url}">↗</a>' if source_url else "—"
-            # Use DIRECTORY URL (not .md) so raw HTML <a> resolves correctly
+            source_cell = f'<a href="{source_url}" target="_blank" rel="noopener">↗</a>' if source_url else "—"
             detail_cell = (f'<a href="{pack_slug}/{s_slug}/">view</a>'
                            if s_slug in have_details else "—")
-            rows.append((cat, name, pack_slug,
+            is_featured = (pack_slug, s_slug) in featured_keys
+            star = ('<span title="Editor\'s Pick" '
+                    'style="color:#d4a000;">★ </span>') if is_featured else ""
+            featured_attr = "1" if is_featured else "0"
+            # Sort key: featured first, then alpha
+            sort_key = (0 if is_featured else 1, cat, name, pack_slug)
+            rows.append((sort_key,
                          f'<tr data-pack="{pack_slug}" data-category="{cat}" '
-                         f'data-field="{field}" data-stages="{stages_attr}">'
-                         f"<td><code>{name}</code></td>"
+                         f'data-field="{field}" data-stages="{stages_attr}" '
+                         f'data-featured="{featured_attr}">'
+                         f"<td>{star}<code>{name}</code></td>"
                          f'<td><a href="{pack_slug}/">{pack_name}</a></td>'
                          f"<td>{field}</td>"
                          f"<td><code>{cat}</code></td>"
@@ -389,7 +476,7 @@ document.addEventListener('DOMContentLoaded', applyFilters);
                          f"<td>{detail_cell}</td>"
                          f"<td>{source_cell}</td>"
                          f"</tr>"))
-    for _, _, _, row_html in sorted(rows):
+    for _, row_html in sorted(rows, key=lambda r: r[0]):
         out.append(row_html)
     out.append("</tbody></table>")
     out.append("</div>")
