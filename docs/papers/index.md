@@ -10,7 +10,7 @@ from [`papers/references.bib`](https://github.com/bhanneke/RISE/blob/main/papers
 [`docs/papers/notes/`](https://github.com/bhanneke/RISE/tree/main/docs/papers/notes).
 
 <!-- AUTO-GENERATED:papers-table-start -->
-*64 bibliographic entries; 60 have curator notes (44 fully read). Filter via the column headers or the search box.*
+*64 bibliographic entries; 61 have curator notes (45 fully read). Filter via the column headers or the search box.*
 
 <div style="margin:1em 0; display:flex; gap:0.5em; align-items:center;">
   <input type="text" id="paperFilter" placeholder="🔍 search author / title / venue / theme / citekey…"
@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 <option value="National Bureau of Economic Research">National Bureau of Economic Research</option>
 <option value="Nature">Nature</option>
 <option value="Nature Editorial, d41586-025-01880-9">Nature Editorial, d41586-025-01880-9</option>
-<option value="NeurIPS Blog">NeurIPS Blog</option>
 <option value="Organization Science">Organization Science</option>
 <option value="Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology">Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology</option>
 <option value="Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics">Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics</option>
@@ -132,12 +131,12 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 <tr data-year="2023" data-venue="Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology" data-themes="autonomous-research-agents|sociotechnical|llm-cognition" data-status="read"><td>2023</td><td>Park & others</td><td><a href="notes/park2023generative/">Generative Agents: Interactive Simulacra of Human Behavior</a></td><td>Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology</td><td><a href="https://doi.org/10.1145/3586183.3606763" target="_blank" rel="noopener">doi</a></td><td><code>autonomous-research-agents</code> <code>sociotechnical</code> <code>llm-cognition</code></td><td><code>park2023generative</code></td><td>read</td></tr>
 <tr data-year="2023" data-venue="Advances in Neural Information Processing Systems" data-themes="agentic-tool-use" data-status="read"><td>2023</td><td>Schick & others</td><td><a href="notes/schick2023toolformer/">Toolformer: Language Models Can Teach Themselves to Use Tools</a></td><td>Advances in Neural Information Processing Systems</td><td><a href="https://doi.org/10.52202/075280-2997" target="_blank" rel="noopener">doi</a></td><td><code>agentic-tool-use</code></td><td><code>schick2023toolformer</code></td><td>read</td></tr>
 <tr data-year="2023" data-venue="Information Systems Research" data-themes="is-methodology|sociotechnical|ai-publishing-ecosystems" data-status="read"><td>2023</td><td>Susarla et al.</td><td><a href="notes/susarla2023janus/">The Janus Effect of Generative AI: Charting the Path for Responsible Conduct of Scholarly Activities in Information Systems</a></td><td>Information Systems Research</td><td><a href="https://doi.org/10.1287/isre.2023.ed.v34.n2" target="_blank" rel="noopener">doi</a></td><td><code>is-methodology</code> <code>sociotechnical</code> <code>ai-publishing-ecosystems</code></td><td><code>susarla2023janus</code></td><td>read</td></tr>
-<tr data-year="2024" data-venue="NeurIPS Blog" data-themes="" data-status="—"><td>2024</td><td>?</td><td>Results of the NeurIPS 2024 Experiment on the Usefulness of LLMs as an Author Checklist Assistant for Scientific Papers</td><td>NeurIPS Blog</td><td><a href="https://blog.neurips.cc/2024/12/10/results-of-the-neurips-2024-experiment-on-the-usefulness-of-llms-as-an-author-checklist-assistant-for-scientific-papers/" target="_blank" rel="noopener">link</a></td><td></td><td><code>neurips2024checklist</code></td><td>—</td></tr>
 <tr data-year="2024" data-venue="National Bureau of Economic Research" data-themes="research-productivity|human-ai-research-collaboration|llm-cognition|sociotechnical" data-status="read"><td>2024</td><td>Agrawal et al.</td><td><a href="notes/agrawal2024aiscience/">AI in Science</a></td><td>National Bureau of Economic Research</td><td><a href="https://www.nber.org/papers/w34953" target="_blank" rel="noopener">link</a></td><td><code>research-productivity</code> <code>human-ai-research-collaboration</code> <code>llm-cognition</code> <code>sociotechnical</code></td><td><code>agrawal2024aiscience</code></td><td>read</td></tr>
 <tr data-year="2024" data-venue="Journal of the Association for Information Systems" data-themes="sociotechnical|is-methodology" data-status="skimmed"><td>2024</td><td>Alavi et al.</td><td><a href="notes/alavi2024kmperspective/">A Knowledge Management Perspective of Generative Artificial Intelligence</a></td><td>Journal of the Association for Information Systems</td><td><a href="https://doi.org/10.17705/1jais.00859" target="_blank" rel="noopener">doi</a></td><td><code>sociotechnical</code> <code>is-methodology</code></td><td><code>alavi2024kmperspective</code></td><td>skimmed</td></tr>
 <tr data-year="2024" data-venue="Journal of the Association for Information Systems" data-themes="sociotechnical|ai-publishing-ecosystems" data-status="skimmed"><td>2024</td><td>Avital</td><td><a href="notes/avital2024decentralization/">Digital Transformation of Academic Publishing: A Call for the Decentralization and Democratization of Academic Journals</a></td><td>Journal of the Association for Information Systems</td><td><a href="https://doi.org/10.17705/1jais.00873" target="_blank" rel="noopener">doi</a></td><td><code>sociotechnical</code> <code>ai-publishing-ecosystems</code></td><td><code>avital2024decentralization</code></td><td>skimmed</td></tr>
 <tr data-year="2024" data-venue="Journal of the Association for Information Systems" data-themes="sociotechnical|research-productivity" data-status="skimmed"><td>2024</td><td>Benbya et al.</td><td><a href="notes/benbya2024navigating/">Navigating Generative Artificial Intelligence Promises and Perils for Knowledge and Creative Work</a></td><td>Journal of the Association for Information Systems</td><td><a href="https://doi.org/10.17705/1jais.00861" target="_blank" rel="noopener">doi</a></td><td><code>sociotechnical</code> <code>research-productivity</code></td><td><code>benbya2024navigating</code></td><td>skimmed</td></tr>
 <tr data-year="2024" data-venue="Journal of the Association for Information Systems" data-themes="ai-peer-review|human-ai-research-collaboration" data-status="skimmed"><td>2024</td><td>Drori & Te'eni</td><td><a href="notes/drori2024humanloop/">Human-in-the-Loop AI Reviewing: Feasibility, Opportunities, and Risks</a></td><td>Journal of the Association for Information Systems</td><td><a href="https://doi.org/10.17705/1jais.00867" target="_blank" rel="noopener">doi</a></td><td><code>ai-peer-review</code> <code>human-ai-research-collaboration</code></td><td><code>drori2024humanloop</code></td><td>skimmed</td></tr>
+<tr data-year="2024" data-venue="arXiv" data-themes="peer-review|ai-publishing-ecosystems|evaluation-rigor" data-status="read"><td>2024</td><td>Goldberg et al.</td><td><a href="notes/neurips2024checklist/">Usefulness of LLMs as an Author Checklist Assistant for Scientific Papers: NeurIPS'24 Experiment</a></td><td>arXiv</td><td><a href="https://doi.org/10.48550/arXiv.2411.03417" target="_blank" rel="noopener">doi (arXiv)</a></td><td><code>peer-review</code> <code>ai-publishing-ecosystems</code> <code>evaluation-rigor</code></td><td><code>neurips2024checklist</code></td><td>read</td></tr>
 <tr data-year="2024" data-venue="Journal of the Association for Information Systems" data-themes="ai-peer-review|sociotechnical|is-methodology" data-status="skimmed"><td>2024</td><td>Gregor</td><td><a href="notes/gregor2024responsible/">Responsible Artificial Intelligence and Journal Publishing</a></td><td>Journal of the Association for Information Systems</td><td><a href="https://doi.org/10.17705/1jais.00863" target="_blank" rel="noopener">doi</a></td><td><code>ai-peer-review</code> <code>sociotechnical</code> <code>is-methodology</code></td><td><code>gregor2024responsible</code></td><td>skimmed</td></tr>
 <tr data-year="2024" data-venue="NEJM AI" data-themes="agentic-pipelines|traceability-verifiability|end-to-end-research" data-status="read"><td>2024</td><td>Ifargan et al.</td><td><a href="notes/ifargan2024datatopaper/">Autonomous LLM-Driven Research --- from Data to Human-Verifiable Research Papers</a></td><td>NEJM AI</td><td><a href="https://doi.org/10.1056/AIoa2400555" target="_blank" rel="noopener">doi</a></td><td><code>agentic-pipelines</code> <code>traceability-verifiability</code> <code>end-to-end-research</code></td><td><code>ifargan2024datatopaper</code></td><td>read</td></tr>
 <tr data-year="2024" data-venue="Journal of the Association for Information Systems" data-themes="is-methodology|human-ai-research-collaboration" data-status="skimmed"><td>2024</td><td>Jarvenpaa & Klein</td><td><a href="notes/jarvenpaa2024theorizing/">New Frontiers in Information Systems Theorizing: Human-gAI Collaboration</a></td><td>Journal of the Association for Information Systems</td><td><a href="https://doi.org/10.17705/1jais.00868" target="_blank" rel="noopener">doi</a></td><td><code>is-methodology</code> <code>human-ai-research-collaboration</code></td><td><code>jarvenpaa2024theorizing</code></td><td>skimmed</td></tr>
@@ -236,6 +235,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 - **2023** — Susarla et al.. [*The Janus Effect of Generative AI: Charting the Path for Responsible Conduct of Scholarly Activities in Information Systems*](notes/susarla2023janus.md) `susarla2023janus`
 - **2024** — Avital. [*Digital Transformation of Academic Publishing: A Call for the Decentralization and Democratization of Academic Journals*](notes/avital2024decentralization.md) `avital2024decentralization` · skimmed
 - **2024** — Lund et al.. [*The Impact of AI on Academic Research and Publishing*](notes/lund2024aiacademic.md) `lund2024aiacademic`
+- **2024** — Goldberg et al.. [*Usefulness of LLMs as an Author Checklist Assistant for Scientific Papers: NeurIPS'24 Experiment*](notes/neurips2024checklist.md) `neurips2024checklist`
 - **2024** — Russo Latona et al.. [*The AI Review Lottery: Widespread AI-Assisted Peer Reviews Boost Paper Scores and Acceptance Rates*](notes/russo2024reviewlottery.md) `russo2024reviewlottery`
 - **2024** — Schwartz & Te'eni. [*AI for Knowledge Creation, Curation, and Consumption in Context*](notes/schwartz2024kcc.md) `schwartz2024kcc`
 - **2025** — Bick et al.. [*The Rapid Adoption of Generative AI*](notes/bick2025rapidadoption.md) `bick2025rapidadoption`
@@ -284,6 +284,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 
 ### `evaluation-rigor`
 
+- **2024** — Goldberg et al.. [*Usefulness of LLMs as an Author Checklist Assistant for Scientific Papers: NeurIPS'24 Experiment*](notes/neurips2024checklist.md) `neurips2024checklist`
 - **2026** — Yang et al.. [*ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration*](notes/yang2026aris.md) `yang2026aris`
 
 ### `hallucination`
@@ -356,6 +357,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 ### `peer-review`
 
 - **2024** — Lund et al.. [*The Impact of AI on Academic Research and Publishing*](notes/lund2024aiacademic.md) `lund2024aiacademic`
+- **2024** — Goldberg et al.. [*Usefulness of LLMs as an Author Checklist Assistant for Scientific Papers: NeurIPS'24 Experiment*](notes/neurips2024checklist.md) `neurips2024checklist`
 
 ### `reasoning-faithfulness`
 
@@ -438,7 +440,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 ??? note "Browse by year"
 
     <!-- AUTO-GENERATED:papers-by-year-start -->
-*60/60 notes have been filled with abstract-grounded summaries; 0 remain as stubs marked ⚠️ (front-matter verified, but Summary / Contribution / Method / Critique not yet written).*
+*61/61 notes have been filled with abstract-grounded summaries; 0 remain as stubs marked ⚠️ (front-matter verified, but Summary / Contribution / Method / Critique not yet written).*
 
 ### 2026
 
@@ -488,6 +490,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 - Liang et al.. [*Mapping the Increasing Use of LLMs in Scientific Papers*](notes/liang2024mapping.md) `liang2024mapping`
 - Liang et al.. [*Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews*](notes/liang2024monitoring.md) `liang2024monitoring`
 - Lund et al.. [*The Impact of AI on Academic Research and Publishing*](notes/lund2024aiacademic.md) `lund2024aiacademic`
+- Goldberg et al.. [*Usefulness of LLMs as an Author Checklist Assistant for Scientific Papers: NeurIPS'24 Experiment*](notes/neurips2024checklist.md) `neurips2024checklist`
 - Ngwenyama & Rowe. [*Should We Collaborate with AI to Conduct Literature Reviews? Changing Epistemic Values in a Flattening World*](notes/ngwenyama2024literature.md) `ngwenyama2024literature` · skimmed
 - Novy-Marx & Velikov. [*AI-Powered (Finance) Scholarship*](notes/novymarx2024aifinance.md) `novymarx2024aifinance`
 - Riemer & Peter. [*Conceptualizing Generative AI as Style Engines: Application Archetypes and Implications*](notes/riemer2024styleengines.md) `riemer2024styleengines`

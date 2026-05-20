@@ -64,4 +64,4 @@ Treats peer review as a structured engineering problem with explicit schemas, va
 
 - Gartenberg, C. et al. (2026). [*More Versus Better: Artificial Intelligence, Incentives, and the Emerging Crisis in Peer Review*](../papers/notes/gartenberg2026morebetter.md) `gartenberg2026morebetter`
 - Naddaf, M. (2025). [*AI Is Transforming Peer Review — and Many Scientists Are Worried*](../papers/notes/naddaf2025aipeer.md) `naddaf2025aipeer`
-- `neurips2024checklist` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
+- Goldberg, A. et al. (2024). [*Usefulness of LLMs as an Author Checklist Assistant for Scientific Papers: NeurIPS'24 Experiment*](../papers/notes/neurips2024checklist.md) `neurips2024checklist`
