@@ -517,14 +517,20 @@ def render_papers_table(papers: list[dict[str, Any]], bib: dict[str, dict[str, s
         themes = " ".join(f"`{t}`" for t in (note.get("themes") or []))
         status = (note.get("status") or "—")
 
-        # Build link cell — external links open in a new tab
+        # Build link cell — prefer DOI (real journal DOI > derived arXiv DOI),
+        # then bib url field, then howpublished URL. arXiv has assigned DOIs of
+        # the form 10.48550/arXiv.<eprint> since 2022, so we always derive one
+        # when an eprint is present and no real DOI is set.
         if doi:
             doi_url = doi if doi.startswith("http") else "https://doi.org/" + doi
             link = f'<a href="{doi_url}" target="_blank" rel="noopener">doi</a>'
         elif arxiv:
-            link = f'<a href="https://arxiv.org/abs/{arxiv}" target="_blank" rel="noopener">arXiv</a>'
+            doi_url = f"https://doi.org/10.48550/arXiv.{arxiv}"
+            link = f'<a href="{doi_url}" target="_blank" rel="noopener">doi (arXiv)</a>'
         elif entry.get("url"):
             link = f'<a href="{entry["url"]}" target="_blank" rel="noopener">link</a>'
+        elif entry.get("howpublished", "").startswith("http"):
+            link = f'<a href="{entry["howpublished"]}" target="_blank" rel="noopener">link</a>'
         else:
             link = "—"
 
