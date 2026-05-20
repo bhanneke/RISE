@@ -494,6 +494,19 @@ def status_badge(status: str) -> str:
     }.get(status or "", "")
 
 
+def _open_access_label(url: str) -> str:
+    """Short, recognizable label for a secondary open-access URL."""
+    u = url.lower()
+    if "nber.org" in u:           return "NBER"
+    if "ssrn.com" in u:           return "SSRN"
+    if "arxiv.org" in u:          return "arXiv"
+    if "openreview.net" in u:     return "OpenReview"
+    if "papers.nips.cc" in u or "papers.neurips.cc" in u: return "NeurIPS"
+    if "aclanthology.org" in u:   return "ACL"
+    if "blog." in u:              return "blog"
+    return "open"
+
+
 def render_papers_table(papers: list[dict[str, Any]], bib: dict[str, dict[str, str]]) -> str:
     """Render the full filterable papers table — bib is the source of truth.
 
@@ -511,6 +524,8 @@ def render_papers_table(papers: list[dict[str, Any]], bib: dict[str, dict[str, s
         authors = short_authors(entry.get("author", "") or
                                 " and ".join(note.get("authors", []) or []))
         title = entry.get("title") or note.get("title", "") or ""
+        # Convert BibTeX dash conventions to real Unicode dashes
+        title = title.replace("---", "—").replace("--", "–")
         venue = venue_short(entry) or note.get("venue", "")
         doi = entry.get("doi", "")
         arxiv = entry.get("eprint", "")
@@ -520,19 +535,26 @@ def render_papers_table(papers: list[dict[str, Any]], bib: dict[str, dict[str, s
         # Build link cell — prefer DOI (real journal DOI > derived arXiv DOI),
         # then bib url field, then howpublished URL. arXiv has assigned DOIs of
         # the form 10.48550/arXiv.<eprint> since 2022, so we always derive one
-        # when an eprint is present and no real DOI is set.
+        # when an eprint is present and no real DOI is set. When an entry has
+        # BOTH a journal DOI and an open-access URL (e.g., NBER/SSRN preprint),
+        # render both so readers can reach a freely-readable copy.
+        links = []
         if doi:
             doi_url = doi if doi.startswith("http") else "https://doi.org/" + doi
-            link = f'<a href="{doi_url}" target="_blank" rel="noopener">doi</a>'
+            links.append(f'<a href="{doi_url}" target="_blank" rel="noopener">doi</a>')
+            # Secondary open-access link if explicitly provided
+            extra = entry.get("url", "")
+            if extra and extra.startswith("http"):
+                label = _open_access_label(extra)
+                links.append(f'<a href="{extra}" target="_blank" rel="noopener">{label}</a>')
         elif arxiv:
             doi_url = f"https://doi.org/10.48550/arXiv.{arxiv}"
-            link = f'<a href="{doi_url}" target="_blank" rel="noopener">doi (arXiv)</a>'
+            links.append(f'<a href="{doi_url}" target="_blank" rel="noopener">doi (arXiv)</a>')
         elif entry.get("url"):
-            link = f'<a href="{entry["url"]}" target="_blank" rel="noopener">link</a>'
+            links.append(f'<a href="{entry["url"]}" target="_blank" rel="noopener">link</a>')
         elif entry.get("howpublished", "").startswith("http"):
-            link = f'<a href="{entry["howpublished"]}" target="_blank" rel="noopener">link</a>'
-        else:
-            link = "—"
+            links.append(f'<a href="{entry["howpublished"]}" target="_blank" rel="noopener">link</a>')
+        link = " · ".join(links) if links else "—"
 
         # Title links to note if note exists; else plain (raw HTML)
         if note.get("_filename"):

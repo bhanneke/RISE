@@ -1,5 +1,5 @@
 ---
-citekey: bick2025rapidadoption
+citekey: bick2026rapidadoption
 title: The Rapid Adoption of Generative AI
 authors:
 - Bick, A.

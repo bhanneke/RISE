@@ -58,7 +58,7 @@ focuses on the *publishing-side governance* problem they create —
 useful when arguing for the sociotechnical layer of the RISE concept
 diagram. Pairs well with [gartenberg2026morebetter](gartenberg2026morebetter.md),
 [naddaf2025aipeer](naddaf2025aipeer.md), and
-[russo2024reviewlottery](russo2024reviewlottery.md) on the
+[latona2024reviewlottery](latona2024reviewlottery.md) on the
 peer-review side of the literature.
 
 ## Critique / open questions

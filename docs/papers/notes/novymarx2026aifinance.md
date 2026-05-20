@@ -1,5 +1,5 @@
 ---
-citekey: novymarx2024aifinance
+citekey: novymarx2026aifinance
 title: AI-Powered (Finance) Scholarship
 authors:
 - Novy-Marx, R.

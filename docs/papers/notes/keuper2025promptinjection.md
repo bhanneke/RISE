@@ -35,7 +35,7 @@ Generate 1,000 LLM reviews of real ICLR 2024 papers using a wide range of LLMs, 
 
 ## Relevance to RISE
 
-Directly informs the adversarial-robustness requirements for the ai-peer-review thread in the RISE catalog, alongside collu2026misleading and the prevalence work of liang2024monitoring. Any deployment of [`reviewer`](../../projects/reviewer.md), [`marg`](../../projects/marg.md), or [`ape`](../../projects/ape.md) must contend not only with hidden prompts but also with the baseline >95% acceptance bias documented here, which has implications for how LLM-augmented reviews are calibrated against human reviews.
+Directly informs the adversarial-robustness requirements for the ai-peer-review thread in the RISE catalog, alongside collu2025misleading and the prevalence work of liang2024monitoring. Any deployment of [`reviewer`](../../projects/reviewer.md), [`marg`](../../projects/marg.md), or [`ape`](../../projects/ape.md) must contend not only with hidden prompts but also with the baseline >95% acceptance bias documented here, which has implications for how LLM-augmented reviews are calibrated against human reviews.
 
 ## Critique / open questions
 

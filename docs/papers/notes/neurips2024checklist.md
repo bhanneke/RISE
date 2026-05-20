@@ -64,7 +64,7 @@ reviewer side. Directly relevant to the evaluation-rigor and
 peer-review threads in the RISE catalog. Pairs naturally with
 [gartenberg2026morebetter](gartenberg2026morebetter.md),
 [naddaf2025aipeer](naddaf2025aipeer.md), and
-[russo2024reviewlottery](russo2024reviewlottery.md) on the broader
+[latona2024reviewlottery](latona2024reviewlottery.md) on the broader
 peer-review-with-AI literature, but is one of the few that reports
 *actual deployment* data rather than survey-only or observational
 findings. The gameability finding is also a concrete example of the

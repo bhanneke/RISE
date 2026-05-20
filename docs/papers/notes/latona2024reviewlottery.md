@@ -1,5 +1,5 @@
 ---
-citekey: russo2024reviewlottery
+citekey: latona2024reviewlottery
 title: 'The AI Review Lottery: Widespread AI-Assisted Peer Reviews Boost Paper Scores
   and Acceptance Rates'
 authors:

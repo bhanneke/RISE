@@ -1,5 +1,5 @@
 ---
-citekey: collu2026misleading
+citekey: collu2025misleading
 title: Misleading Large Language Models Used (or Misused) in Scientific Peer-Reviewing
   via Hidden Prompt-Injection Attacks
 authors:
