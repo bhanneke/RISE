@@ -10,7 +10,7 @@ from [`papers/references.bib`](https://github.com/bhanneke/RISE/blob/main/papers
 [`docs/papers/notes/`](https://github.com/bhanneke/RISE/tree/main/docs/papers/notes).
 
 <!-- AUTO-GENERATED:papers-table-start -->
-*65 bibliographic entries; 62 have curator notes (46 fully read). Filter via the column headers or the search box.*
+*66 bibliographic entries; 63 have curator notes (47 fully read). Filter via the column headers or the search box.*
 
 <div style="margin:1em 0; display:flex; gap:0.5em; align-items:center;">
   <input type="text" id="paperFilter" placeholder="🔍 search author / title / venue / theme / citekey…"
@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 <option value="NEJM AI">NEJM AI</option>
 <option value="National Bureau of Economic Research">National Bureau of Economic Research</option>
 <option value="Nature">Nature</option>
+<option value="Nature Biotechnology">Nature Biotechnology</option>
 <option value="Nature Editorial, d41586-025-01880-9">Nature Editorial, d41586-025-01880-9</option>
 <option value="Organization Science">Organization Science</option>
 <option value="Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology">Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology</option>
@@ -184,6 +185,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 <tr data-year="2026" data-venue="arXiv" data-themes="is-methodology|sociotechnical|ai-publishing-ecosystems" data-status="read"><td>2026</td><td>Jarzębowicz et al.</td><td><a href="notes/jarzebowicz2026landscape/">The Landscape of Generative AI in Information Systems: A Synthesis of Secondary Reviews and Research Agendas</a></td><td>arXiv</td><td><a href="https://doi.org/10.48550/arXiv.2603.11842" target="_blank" rel="noopener">doi (arXiv)</a></td><td><code>is-methodology</code> <code>sociotechnical</code> <code>ai-publishing-ecosystems</code></td><td><code>jarzebowicz2026landscape</code></td><td>read</td></tr>
 <tr data-year="2026" data-venue="Information \& Management" data-themes="autonomous-research-agents|is-methodology|sociotechnical" data-status="read"><td>2026</td><td>Kumar et al.</td><td><a href="notes/kumar2025agenticadoption/">Agentic Artificial Intelligence as a New Frontier in Information Systems: Promise, Peril, and Research Opportunities</a></td><td>Information \& Management</td><td><a href="https://doi.org/10.1016/j.im.2026.104317" target="_blank" rel="noopener">doi</a></td><td><code>autonomous-research-agents</code> <code>is-methodology</code> <code>sociotechnical</code></td><td><code>kumar2025agenticadoption</code></td><td>read</td></tr>
 <tr data-year="2026" data-venue="arXiv" data-themes="agentic-tool-use|hallucination|evaluation-of-ai-research|reasoning-faithfulness" data-status="read"><td>2026</td><td>Laban et al.</td><td><a href="notes/laban2026llmscorrupt/">LLMs Corrupt Your Documents When You Delegate</a></td><td>arXiv</td><td><a href="https://doi.org/10.48550/arXiv.2604.15597" target="_blank" rel="noopener">doi (arXiv)</a></td><td><code>agentic-tool-use</code> <code>hallucination</code> <code>evaluation-of-ai-research</code> <code>reasoning-faithfulness</code></td><td><code>laban2026llmscorrupt</code></td><td>read</td></tr>
+<tr data-year="2026" data-venue="Nature Biotechnology" data-themes="agentic-pipelines|multi-agent-systems|autonomous-research-agents|sociotechnical" data-status="read"><td>2026</td><td>Li et al.</td><td><a href="notes/li2026agenticbiomedical/">Agentic AI and the Rise of in silico Team Science in Biomedical Research</a></td><td>Nature Biotechnology</td><td><a href="https://doi.org/10.1038/s41587-026-03035-1" target="_blank" rel="noopener">doi</a></td><td><code>agentic-pipelines</code> <code>multi-agent-systems</code> <code>autonomous-research-agents</code> <code>sociotechnical</code></td><td><code>li2026agenticbiomedical</code></td><td>read</td></tr>
 <tr data-year="2026" data-venue="arXiv" data-themes="agentic-pipelines|multi-agent-systems|self-improvement|memory-systems" data-status="read"><td>2026</td><td>Lyu et al.</td><td><a href="notes/evoscientist2026techreport/">EvoScientist: Towards Multi-Agent Evolving AI Scientists for End-to-End Scientific Discovery</a></td><td>arXiv</td><td><a href="https://doi.org/10.48550/arXiv.2603.08127" target="_blank" rel="noopener">doi (arXiv)</a></td><td><code>agentic-pipelines</code> <code>multi-agent-systems</code> <code>self-improvement</code> <code>memory-systems</code></td><td><code>evoscientist2026techreport</code></td><td>read</td></tr>
 <tr data-year="2026" data-venue="European Journal of Information Systems" data-themes="sociotechnical|ai-publishing-ecosystems" data-status="read"><td>2026</td><td>Ngwenyama et al.</td><td><a href="notes/ngwenyama2026platform/">Platform Capture of Scientific Knowledge Production: Publishers' Dominance, Generative AI and Subsumption of Academic Labor</a></td><td>European Journal of Information Systems</td><td><a href="https://doi.org/10.1080/0960085X.2026.2642660" target="_blank" rel="noopener">doi</a></td><td><code>sociotechnical</code> <code>ai-publishing-ecosystems</code></td><td><code>ngwenyama2026platform</code></td><td>read</td></tr>
 <tr data-year="2026" data-venue="Journal of Economic Literature" data-themes="autonomous-research-agents|research-productivity|evaluation-of-ai-research|hallucination" data-status="read"><td>2026</td><td>Novy-Marx & Velikov</td><td><a href="notes/novymarx2026aifinance/">Artificial Intelligence–Powered (Finance) Scholarship</a></td><td>Journal of Economic Literature</td><td><a href="https://doi.org/10.1257/jel.20251821" target="_blank" rel="noopener">doi</a> · <a href="https://www.nber.org/papers/w33363" target="_blank" rel="noopener">NBER</a></td><td><code>autonomous-research-agents</code> <code>research-productivity</code> <code>evaluation-of-ai-research</code> <code>hallucination</code></td><td><code>novymarx2026aifinance</code></td><td>read</td></tr>
@@ -202,6 +204,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 - **2025** — Ifargan et al.. [*Autonomous LLM-Driven Research --- from Data to Human-Verifiable Research Papers*](notes/ifargan2024datatopaper.md) `ifargan2024datatopaper`
 - **2026** — Lyu et al.. [*EvoScientist: Towards Multi-Agent Evolving AI Scientists for End-to-End Scientific Discovery*](notes/evoscientist2026techreport.md) `evoscientist2026techreport`
 - **2026** — Ghareeb et al.. [*A Multi-Agent System for Automating Scientific Discovery*](notes/ghareeb2026robin.md) `ghareeb2026robin`
+- **2026** — Li et al.. [*Agentic AI and the Rise of in silico Team Science in Biomedical Research*](notes/li2026agenticbiomedical.md) `li2026agenticbiomedical`
 - **2026** — Yang et al.. [*ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration*](notes/yang2026aris.md) `yang2026aris`
 
 ### `agentic-reasoning`
@@ -259,6 +262,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 - **2025** — Zhang & others. [*aiXiv: A Next-Generation Open Access Ecosystem for Scientific Discovery Generated by AI Scientists*](notes/zhang2025aixiv.md) `zhang2025aixiv`
 - **2026** — Ghareeb et al.. [*A Multi-Agent System for Automating Scientific Discovery*](notes/ghareeb2026robin.md) `ghareeb2026robin`
 - **2026** — Kumar et al.. [*Agentic Artificial Intelligence as a New Frontier in Information Systems: Promise, Peril, and Research Opportunities*](notes/kumar2025agenticadoption.md) `kumar2025agenticadoption`
+- **2026** — Li et al.. [*Agentic AI and the Rise of in silico Team Science in Biomedical Research*](notes/li2026agenticbiomedical.md) `li2026agenticbiomedical`
 
 ### `end-to-end-research`
 
@@ -358,6 +362,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 
 - **2026** — Lyu et al.. [*EvoScientist: Towards Multi-Agent Evolving AI Scientists for End-to-End Scientific Discovery*](notes/evoscientist2026techreport.md) `evoscientist2026techreport`
 - **2026** — Ghareeb et al.. [*A Multi-Agent System for Automating Scientific Discovery*](notes/ghareeb2026robin.md) `ghareeb2026robin`
+- **2026** — Li et al.. [*Agentic AI and the Rise of in silico Team Science in Biomedical Research*](notes/li2026agenticbiomedical.md) `li2026agenticbiomedical`
 - **2026** — Yang et al.. [*ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration*](notes/yang2026aris.md) `yang2026aris`
 
 ### `peer-review`
@@ -431,6 +436,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 - **2025** — Collu et al.. [*Misleading Large Language Models Used (or Misused) in Scientific Peer-Reviewing via Hidden Prompt-Injection Attacks*](notes/collu2025misleading.md) `collu2025misleading`
 - **2026** — Jarzębowicz et al.. [*The Landscape of Generative AI in Information Systems: A Synthesis of Secondary Reviews and Research Agendas*](notes/jarzebowicz2026landscape.md) `jarzebowicz2026landscape`
 - **2026** — Kumar et al.. [*Agentic Artificial Intelligence as a New Frontier in Information Systems: Promise, Peril, and Research Opportunities*](notes/kumar2025agenticadoption.md) `kumar2025agenticadoption`
+- **2026** — Li et al.. [*Agentic AI and the Rise of in silico Team Science in Biomedical Research*](notes/li2026agenticbiomedical.md) `li2026agenticbiomedical`
 - **2026** — Ngwenyama et al.. [*Platform Capture of Scientific Knowledge Production: Publishers' Dominance, Generative AI and Subsumption of Academic Labor*](notes/ngwenyama2026platform.md) `ngwenyama2026platform`
 
 ### `style-engines`
@@ -446,7 +452,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 ??? note "Browse by year"
 
     <!-- AUTO-GENERATED:papers-by-year-start -->
-*62/62 notes have been filled with abstract-grounded summaries; 0 remain as stubs marked ⚠️ (front-matter verified, but Summary / Contribution / Method / Critique not yet written).*
+*63/63 notes have been filled with abstract-grounded summaries; 0 remain as stubs marked ⚠️ (front-matter verified, but Summary / Contribution / Method / Critique not yet written).*
 
 ### 2026
 
@@ -459,6 +465,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 - Jarzębowicz et al.. [*The Landscape of Generative AI in Information Systems: A Synthesis of Secondary Reviews and Research Agendas*](notes/jarzebowicz2026landscape.md) `jarzebowicz2026landscape`
 - Kumar et al.. [*Agentic Artificial Intelligence as a New Frontier in Information Systems: Promise, Peril, and Research Opportunities*](notes/kumar2025agenticadoption.md) `kumar2025agenticadoption`
 - Laban et al.. [*LLMs Corrupt Your Documents When You Delegate*](notes/laban2026llmscorrupt.md) `laban2026llmscorrupt`
+- Li et al.. [*Agentic AI and the Rise of in silico Team Science in Biomedical Research*](notes/li2026agenticbiomedical.md) `li2026agenticbiomedical`
 - Ngwenyama et al.. [*Platform Capture of Scientific Knowledge Production: Publishers' Dominance, Generative AI and Subsumption of Academic Labor*](notes/ngwenyama2026platform.md) `ngwenyama2026platform`
 - Novy-Marx & Velikov. [*Artificial Intelligence--Powered (Finance) Scholarship*](notes/novymarx2026aifinance.md) `novymarx2026aifinance`
 - Yang et al.. [*ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration*](notes/yang2026aris.md) `yang2026aris`
