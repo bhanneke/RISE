@@ -10,7 +10,7 @@ from [`papers/references.bib`](https://github.com/bhanneke/RISE/blob/main/papers
 [`docs/papers/notes/`](https://github.com/bhanneke/RISE/tree/main/docs/papers/notes).
 
 <!-- AUTO-GENERATED:papers-table-start -->
-*64 bibliographic entries; 61 have curator notes (45 fully read). Filter via the column headers or the search box.*
+*65 bibliographic entries; 62 have curator notes (46 fully read). Filter via the column headers or the search box.*
 
 <div style="margin:1em 0; display:flex; gap:0.5em; align-items:center;">
   <input type="text" id="paperFilter" placeholder="🔍 search author / title / venue / theme / citekey…"
@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 <tr data-year="2026" data-venue="Management Science" data-themes="research-productivity|sociotechnical|ai-publishing-ecosystems" data-status="read"><td>2026</td><td>Bick et al.</td><td><a href="notes/bick2026rapidadoption/">The Rapid Adoption of Generative AI</a></td><td>Management Science</td><td><a href="https://doi.org/10.1287/mnsc.2025.02523" target="_blank" rel="noopener">doi</a></td><td><code>research-productivity</code> <code>sociotechnical</code> <code>ai-publishing-ecosystems</code></td><td><code>bick2026rapidadoption</code></td><td>read</td></tr>
 <tr data-year="2026" data-venue="Organization Science" data-themes="research-productivity|human-ai-research-collaboration|evaluation-of-ai-research" data-status="read"><td>2026</td><td>Dell'Acqua et al.</td><td><a href="notes/dellacqua2026jagged/">Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of Artificial Intelligence on Knowledge Worker Productivity and Quality</a></td><td>Organization Science</td><td><a href="https://doi.org/10.1287/orsc.2025.21838" target="_blank" rel="noopener">doi</a></td><td><code>research-productivity</code> <code>human-ai-research-collaboration</code> <code>evaluation-of-ai-research</code></td><td><code>dellacqua2026jagged</code></td><td>read</td></tr>
 <tr data-year="2026" data-venue="Organization Science" data-themes="ai-peer-review|ai-publishing-ecosystems|research-productivity" data-status="read"><td>2026</td><td>Gartenberg et al.</td><td><a href="notes/gartenberg2026morebetter/">More Versus Better: Artificial Intelligence, Incentives, and the Emerging Crisis in Peer Review</a></td><td>Organization Science</td><td><a href="https://doi.org/10.1287/orsc.2026.ed.v37.n3" target="_blank" rel="noopener">doi</a></td><td><code>ai-peer-review</code> <code>ai-publishing-ecosystems</code> <code>research-productivity</code></td><td><code>gartenberg2026morebetter</code></td><td>read</td></tr>
+<tr data-year="2026" data-venue="Nature" data-themes="agentic-pipelines|multi-agent-systems|autonomous-research-agents|end-to-end-research" data-status="read"><td>2026</td><td>Ghareeb et al.</td><td><a href="notes/ghareeb2026robin/">A Multi-Agent System for Automating Scientific Discovery</a></td><td>Nature</td><td><a href="https://doi.org/10.1038/s41586-026-10652-y" target="_blank" rel="noopener">doi</a> · <a href="https://arxiv.org/abs/2505.13400" target="_blank" rel="noopener">arXiv</a></td><td><code>agentic-pipelines</code> <code>multi-agent-systems</code> <code>autonomous-research-agents</code> <code>end-to-end-research</code></td><td><code>ghareeb2026robin</code></td><td>read</td></tr>
 <tr data-year="2026" data-venue="arXiv" data-themes="is-methodology|sociotechnical|ai-publishing-ecosystems" data-status="read"><td>2026</td><td>Jarzębowicz et al.</td><td><a href="notes/jarzebowicz2026landscape/">The Landscape of Generative AI in Information Systems: A Synthesis of Secondary Reviews and Research Agendas</a></td><td>arXiv</td><td><a href="https://doi.org/10.48550/arXiv.2603.11842" target="_blank" rel="noopener">doi (arXiv)</a></td><td><code>is-methodology</code> <code>sociotechnical</code> <code>ai-publishing-ecosystems</code></td><td><code>jarzebowicz2026landscape</code></td><td>read</td></tr>
 <tr data-year="2026" data-venue="Information \& Management" data-themes="autonomous-research-agents|is-methodology|sociotechnical" data-status="read"><td>2026</td><td>Kumar et al.</td><td><a href="notes/kumar2025agenticadoption/">Agentic Artificial Intelligence as a New Frontier in Information Systems: Promise, Peril, and Research Opportunities</a></td><td>Information \& Management</td><td><a href="https://doi.org/10.1016/j.im.2026.104317" target="_blank" rel="noopener">doi</a></td><td><code>autonomous-research-agents</code> <code>is-methodology</code> <code>sociotechnical</code></td><td><code>kumar2025agenticadoption</code></td><td>read</td></tr>
 <tr data-year="2026" data-venue="arXiv" data-themes="agentic-tool-use|hallucination|evaluation-of-ai-research|reasoning-faithfulness" data-status="read"><td>2026</td><td>Laban et al.</td><td><a href="notes/laban2026llmscorrupt/">LLMs Corrupt Your Documents When You Delegate</a></td><td>arXiv</td><td><a href="https://doi.org/10.48550/arXiv.2604.15597" target="_blank" rel="noopener">doi (arXiv)</a></td><td><code>agentic-tool-use</code> <code>hallucination</code> <code>evaluation-of-ai-research</code> <code>reasoning-faithfulness</code></td><td><code>laban2026llmscorrupt</code></td><td>read</td></tr>
@@ -200,6 +201,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 
 - **2025** — Ifargan et al.. [*Autonomous LLM-Driven Research --- from Data to Human-Verifiable Research Papers*](notes/ifargan2024datatopaper.md) `ifargan2024datatopaper`
 - **2026** — Lyu et al.. [*EvoScientist: Towards Multi-Agent Evolving AI Scientists for End-to-End Scientific Discovery*](notes/evoscientist2026techreport.md) `evoscientist2026techreport`
+- **2026** — Ghareeb et al.. [*A Multi-Agent System for Automating Scientific Discovery*](notes/ghareeb2026robin.md) `ghareeb2026robin`
 - **2026** — Yang et al.. [*ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration*](notes/yang2026aris.md) `yang2026aris`
 
 ### `agentic-reasoning`
@@ -255,11 +257,13 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 - **2025** — Gridach et al.. [*Agentic AI for Scientific Discovery: A Survey of Progress, Challenges, and Future Directions*](notes/gridach2025agenticsurvey.md) `gridach2025agenticsurvey` · skimmed
 - **2025** — Tie et al.. [*A Survey of AI Scientists*](notes/tie2025aiscientistsurvey.md) `tie2025aiscientistsurvey`
 - **2025** — Zhang & others. [*aiXiv: A Next-Generation Open Access Ecosystem for Scientific Discovery Generated by AI Scientists*](notes/zhang2025aixiv.md) `zhang2025aixiv`
+- **2026** — Ghareeb et al.. [*A Multi-Agent System for Automating Scientific Discovery*](notes/ghareeb2026robin.md) `ghareeb2026robin`
 - **2026** — Kumar et al.. [*Agentic Artificial Intelligence as a New Frontier in Information Systems: Promise, Peril, and Research Opportunities*](notes/kumar2025agenticadoption.md) `kumar2025agenticadoption`
 
 ### `end-to-end-research`
 
 - **2025** — Ifargan et al.. [*Autonomous LLM-Driven Research --- from Data to Human-Verifiable Research Papers*](notes/ifargan2024datatopaper.md) `ifargan2024datatopaper`
+- **2026** — Ghareeb et al.. [*A Multi-Agent System for Automating Scientific Discovery*](notes/ghareeb2026robin.md) `ghareeb2026robin`
 
 ### `evaluation-of-ai-research`
 
@@ -353,6 +357,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 ### `multi-agent-systems`
 
 - **2026** — Lyu et al.. [*EvoScientist: Towards Multi-Agent Evolving AI Scientists for End-to-End Scientific Discovery*](notes/evoscientist2026techreport.md) `evoscientist2026techreport`
+- **2026** — Ghareeb et al.. [*A Multi-Agent System for Automating Scientific Discovery*](notes/ghareeb2026robin.md) `ghareeb2026robin`
 - **2026** — Yang et al.. [*ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration*](notes/yang2026aris.md) `yang2026aris`
 
 ### `peer-review`
@@ -441,7 +446,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 ??? note "Browse by year"
 
     <!-- AUTO-GENERATED:papers-by-year-start -->
-*61/61 notes have been filled with abstract-grounded summaries; 0 remain as stubs marked ⚠️ (front-matter verified, but Summary / Contribution / Method / Critique not yet written).*
+*62/62 notes have been filled with abstract-grounded summaries; 0 remain as stubs marked ⚠️ (front-matter verified, but Summary / Contribution / Method / Critique not yet written).*
 
 ### 2026
 
@@ -450,6 +455,7 @@ document.addEventListener('DOMContentLoaded', applyPaperFilters);
 - Dell'Acqua et al.. [*Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of Artificial Intelligence on Knowledge Worker Productivity and Quality*](notes/dellacqua2026jagged.md) `dellacqua2026jagged`
 - Lyu et al.. [*EvoScientist: Towards Multi-Agent Evolving AI Scientists for End-to-End Scientific Discovery*](notes/evoscientist2026techreport.md) `evoscientist2026techreport`
 - Gartenberg et al.. [*More Versus Better: Artificial Intelligence, Incentives, and the Emerging Crisis in Peer Review*](notes/gartenberg2026morebetter.md) `gartenberg2026morebetter`
+- Ghareeb et al.. [*A Multi-Agent System for Automating Scientific Discovery*](notes/ghareeb2026robin.md) `ghareeb2026robin`
 - Jarzębowicz et al.. [*The Landscape of Generative AI in Information Systems: A Synthesis of Secondary Reviews and Research Agendas*](notes/jarzebowicz2026landscape.md) `jarzebowicz2026landscape`
 - Kumar et al.. [*Agentic Artificial Intelligence as a New Frontier in Information Systems: Promise, Peril, and Research Opportunities*](notes/kumar2025agenticadoption.md) `kumar2025agenticadoption`
 - Laban et al.. [*LLMs Corrupt Your Documents When You Delegate*](notes/laban2026llmscorrupt.md) `laban2026llmscorrupt`

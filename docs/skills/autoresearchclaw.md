@@ -22,32 +22,32 @@ license: `MIT` · 9 skills · last update: 2026-04-23
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `statistical-reporting` | — | `data-analysis` | — | [view](autoresearchclaw/statistical-reporting.md) | — | — |
+| [`statistical-reporting`](autoresearchclaw/statistical-reporting.md) | — | `data-analysis` | — | [view](autoresearchclaw/statistical-reporting.md) | — | — |
 
 ### `drafting` (4)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `a-evolve` | — | `paper-drafting` | — | [view](autoresearchclaw/a-evolve.md) | — | — |
-| `biology-biopython` | — | `paper-drafting` | — | [view](autoresearchclaw/biology-biopython.md) | — | — |
-| `chemistry-rdkit` | — | `paper-drafting` | — | [view](autoresearchclaw/chemistry-rdkit.md) | — | — |
-| `scientific-writing` | — | `paper-drafting` | — | [view](autoresearchclaw/scientific-writing.md) | — | — |
+| [`a-evolve`](autoresearchclaw/a-evolve.md) | — | `paper-drafting` | — | [view](autoresearchclaw/a-evolve.md) | — | — |
+| [`biology-biopython`](autoresearchclaw/biology-biopython.md) | — | `paper-drafting` | — | [view](autoresearchclaw/biology-biopython.md) | — | — |
+| [`chemistry-rdkit`](autoresearchclaw/chemistry-rdkit.md) | — | `paper-drafting` | — | [view](autoresearchclaw/chemistry-rdkit.md) | — | — |
+| [`scientific-writing`](autoresearchclaw/scientific-writing.md) | — | `paper-drafting` | — | [view](autoresearchclaw/scientific-writing.md) | — | — |
 
 ### `figures` (1)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `scientific-visualization` | — | `paper-drafting` | — | [view](autoresearchclaw/scientific-visualization.md) | — | — |
+| [`scientific-visualization`](autoresearchclaw/scientific-visualization.md) | — | `paper-drafting` | — | [view](autoresearchclaw/scientific-visualization.md) | — | — |
 
 ### `ideation` (1)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `hypothesis-formulation` | — | `rq-formulation` `hypothesis-generation` | — | [view](autoresearchclaw/hypothesis-formulation.md) | — | — |
+| [`hypothesis-formulation`](autoresearchclaw/hypothesis-formulation.md) | — | `rq-formulation` `hypothesis-generation` | — | [view](autoresearchclaw/hypothesis-formulation.md) | — | — |
 
 ### `literature` (2)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `literature-search` | — | `literature-discovery` `literature-synthesis` | — | [view](autoresearchclaw/literature-search.md) | — | — |
-| `researchclaw` | — | `literature-discovery` `literature-synthesis` | — | [view](autoresearchclaw/researchclaw.md) | — | — |
+| [`literature-search`](autoresearchclaw/literature-search.md) | — | `literature-discovery` `literature-synthesis` | — | [view](autoresearchclaw/literature-search.md) | — | — |
+| [`researchclaw`](autoresearchclaw/researchclaw.md) | — | `literature-discovery` `literature-synthesis` | — | [view](autoresearchclaw/researchclaw.md) | — | — |

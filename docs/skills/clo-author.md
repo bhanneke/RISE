@@ -22,42 +22,42 @@ license: `none declared` · 14 skills · last update: 2026-05-11
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `analyze` | — | `data-analysis` | — | [view](clo-author/analyze.md) | — | — |
+| [`analyze`](clo-author/analyze.md) | — | `data-analysis` | — | [view](clo-author/analyze.md) | — | — |
 
 ### `drafting` (9)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `careful` | — | `paper-drafting` | — | [view](clo-author/careful.md) | — | — |
-| `checkpoint` | — | `paper-drafting` | — | [view](clo-author/checkpoint.md) | — | — |
-| `dashboard` | — | `paper-drafting` | — | [view](clo-author/dashboard.md) | — | — |
-| `freeze` | — | `paper-drafting` | — | [view](clo-author/freeze.md) | — | — |
-| `new-project` | — | `paper-drafting` | — | [view](clo-author/new-project.md) | — | — |
-| `revise` | — | `paper-drafting` | — | [view](clo-author/revise.md) | — | — |
-| `strategize` | — | `paper-drafting` | — | [view](clo-author/strategize.md) | — | — |
-| `tools` | — | `paper-drafting` | — | [view](clo-author/tools.md) | — | — |
-| `write` | — | `paper-drafting` | — | [view](clo-author/write.md) | — | — |
+| [`careful`](clo-author/careful.md) | — | `paper-drafting` | — | [view](clo-author/careful.md) | — | — |
+| [`checkpoint`](clo-author/checkpoint.md) | — | `paper-drafting` | — | [view](clo-author/checkpoint.md) | — | — |
+| [`dashboard`](clo-author/dashboard.md) | — | `paper-drafting` | — | [view](clo-author/dashboard.md) | — | — |
+| [`freeze`](clo-author/freeze.md) | — | `paper-drafting` | — | [view](clo-author/freeze.md) | — | — |
+| [`new-project`](clo-author/new-project.md) | — | `paper-drafting` | — | [view](clo-author/new-project.md) | — | — |
+| [`revise`](clo-author/revise.md) | — | `paper-drafting` | — | [view](clo-author/revise.md) | — | — |
+| [`strategize`](clo-author/strategize.md) | — | `paper-drafting` | — | [view](clo-author/strategize.md) | — | — |
+| [`tools`](clo-author/tools.md) | — | `paper-drafting` | — | [view](clo-author/tools.md) | — | — |
+| [`write`](clo-author/write.md) | — | `paper-drafting` | — | [view](clo-author/write.md) | — | — |
 
 ### `ideation` (1)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `discover` | — | `rq-formulation` `hypothesis-generation` | — | [view](clo-author/discover.md) | — | — |
+| [`discover`](clo-author/discover.md) | — | `rq-formulation` `hypothesis-generation` | — | [view](clo-author/discover.md) | — | — |
 
 ### `review` (1)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `review` | — | `referee-simulation` | — | [view](clo-author/review.md) | — | — |
+| [`review`](clo-author/review.md) | — | `referee-simulation` | — | [view](clo-author/review.md) | — | — |
 
 ### `slides` (1)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `talk` | — | `dissemination` | — | [view](clo-author/talk.md) | — | — |
+| [`talk`](clo-author/talk.md) | — | `dissemination` | — | [view](clo-author/talk.md) | — | — |
 
 ### `submission` (1)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| `submit` | — | `dissemination` | — | [view](clo-author/submit.md) | — | — |
+| [`submit`](clo-author/submit.md) | — | `dissemination` | — | [view](clo-author/submit.md) | — | — |

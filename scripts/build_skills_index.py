@@ -281,8 +281,18 @@ def render_pack_page(pack_data: dict[str, Any]) -> str:
             updated = s.get("last_update", "") or "—"
             # Source-tree-relative link: from docs/skills/<pack>.md → docs/skills/<pack>/<skill>.md
             full_cell = f"[view]({slug}/{s_slug}.md)" if s_slug in have_details else "—"
+            # Make the skill name clickable: prefer the bundled detail page,
+            # else fall back to the external origin URL (so packs without
+            # bundled SKILL.md text — e.g., cunningham-substack — still link
+            # somewhere). Otherwise render as plain code.
+            if s_slug in have_details:
+                name_cell = f"[`{name}`]({slug}/{s_slug}.md)"
+            elif details:
+                name_cell = f"[`{name}`]({details}){{ target=_blank rel=noopener }}"
+            else:
+                name_cell = f"`{name}`"
             out.append(
-                f"| `{name}` | {field} | {stages} | {desc} | {full_cell} | {origin_cell} | {updated} |"
+                f"| {name_cell} | {field} | {stages} | {desc} | {full_cell} | {origin_cell} | {updated} |"
             )
         out.append("")
 
