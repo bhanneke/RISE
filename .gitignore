@@ -19,7 +19,7 @@ papers/pdfs/
 # Built Zenodo release bundles
 dist/
 
-# macOS Finder numbered duplicates
-docs/skills/**/* [0-9].md
-docs/skills/**/* [0-9]
-docs/skills/**/* [0-9][0-9].md
+# macOS Finder numbered duplicates (anywhere under docs/)
+docs/**/* [0-9].md
+docs/**/* [0-9]
+docs/**/* [0-9][0-9].md
