@@ -1,0 +1,128 @@
+slug: recast-causal-ai
+name: "RECAST (Replication and Extension with Causal AI Statistical Toolkit)"
+type: external
+status: active
+url: "https://github.com/qgallea/recast-causal-ai"
+docs_url: "https://qgallea.github.io/recast-causal-ai/"
+license: "MIT"
+maintainers:
+  - "Quentin Gallea (thecausalmindset.com)"
+year_started: 2026
+
+positioning: >
+  An end-to-end autonomous pipeline for the *replication + extension + peer-review*
+  arc of the RISE concept diagram. Given a published econometrics paper and its
+  replication data, RECAST reproduces the original results, extends them using
+  Double/Debiased Machine Learning (7 ML methods, 20+ sample splits) and Causal
+  Forests, runs the extended findings through a structured three-referee AI
+  review, and emits a final synthesis report.
+
+distinctive_contribution: >
+  Couples *replication* with *methodological extension* — most agentic-replication
+  tools stop at "did we get the same numbers?"; RECAST proposes that the same
+  agentic infrastructure should also push existing papers forward with modern
+  causal-ML estimators and have its own output stress-tested by AI referees
+  before publication.
+
+focus: replication
+
+pipeline_stages:
+  - replication
+  - data-acquisition
+  - data-analysis
+  - code-generation
+  - peer-review
+  - drafting
+
+architectural_features:
+  - tool-use
+  - multi-agent-review
+  - dag-orchestration
+  - artifact-versioning
+  - claude-code-skill-files
+
+discipline: econometrics
+
+inputs:
+  - target-paper
+  - target-dataset
+
+outputs:
+  - replication-report
+  - extension-results
+  - referee-reports
+  - synthesis-report
+  - code
+
+data_sources:
+  - target-paper-data
+
+knowledge_sources:
+  - target-paper
+  - doubleml-literature
+  - causal-forest-literature
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Spans six pipeline stages (replication, data, analysis, code, peer review, drafting) — broader than pure replication tools."
+  autonomy_level:
+    score: 2
+    note: "Supervised: user supplies target paper + data; system runs the rest autonomously, including the multi-referee review."
+  architectural_transparency:
+    score: 3
+    note: "MIT-licensed; pipeline is implemented as Claude-Code skill (.md) files which are themselves the architecture documentation."
+  inputs_supported:
+    score: 2
+    note: "Accepts target paper PDF/text + replication dataset; integrates external knowledge via Claude Code tool use."
+  outputs_reproducibility:
+    score: 2
+    note: "Replicated tables, extension results, code, and referee reports all persisted as durable artifacts."
+  internal_evaluation:
+    score: 2
+    note: "Built-in three-referee AI review acts as runtime quality control on each run; no large external benchmark of replication-success rates yet."
+  openness:
+    score: 3
+    note: "MIT license; public GitHub repo; documentation site on GitHub Pages."
+  maturity_traction:
+    score: 1
+    note: "Active early-stage project (single-developer, low star count as of 2026-05)."
+  cross_family_policy:
+    score: 0
+    note: "Single-LLM-family pipeline (Claude Code); referees are isolated instances of the same model family."
+  assurance_runtime:
+    score: 3
+    note: "Structured three-isolated-referee review + synthesis loop is the assurance layer; among the most explicit in the catalog."
+  cross_platform_portability:
+    score: 1
+    note: "Claude-Code-specific (skill files); not portable to other agent harnesses without rewriting."
+scored_on: "2026-05-22"
+
+limitations:
+  - "Tied to the Claude Code skill-file orchestration model — porting requires reimplementing the pipeline."
+  - "Replication-success depends on availability of target paper's data and reproducibility of its code."
+  - "Same-family AI referees may share blind spots with the executor; no cross-family review by default."
+
+related:
+  - social-science-replicability
+  - e2er
+
+# ── Papers describing methodology used by this project ─────────
+papers:
+  - title: 'Double Machine Learning: A Practical Guide'
+    authors:
+      - 'Baiardi, A.'
+      - 'Naghi, A. A.'
+    year: 2024
+    venue: 'The Econometrics Journal'
+    doi: '10.1093/ectj/utae004'
+  - title: 'How to Write an Effective Referee Report and Improve the Scientific Review Process'
+    authors:
+      - 'Berk, J. B.'
+      - 'Harvey, C. R.'
+      - 'Hirshleifer, D.'
+    year: 2017
+    venue: 'Journal of Economic Perspectives 31(1):231–244'
+    doi: '10.1257/jep.31.1.231'
+
+references: []

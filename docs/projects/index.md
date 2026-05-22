@@ -40,6 +40,7 @@ sources.
 | [OpenScholar (AI2)](open-scholar.md) | external | `literature` | 0 | 2 | 3 | 2 | 2 | 3 | 3 | 2 | 1 | 1 | 1 | general |
 | [PaperQA2 (FutureHouse)](paper-qa.md) | external | `literature` | 0 | 2 | 3 | 2 | 2 | 3 | 3 | 3 | 1 | 3 | 3 | general |
 | [PaperCoder (Paper2Code)](paper2code.md) | external | `replication` | 1 | 3 | 3 | 2 | 3 | 3 | 3 | 3 | 0 | 2 | 2 | computer-science |
+| [RECAST (Replication and Extension with Causal AI Statistical Toolkit)](recast-causal-ai.md) | external | `replication` | 2 | 2 | 3 | 2 | 2 | 2 | 3 | 1 | 0 | 3 | 1 | econometrics |
 | [Refine (refine.ink)](refine-ink.md) | external | `review` | 0 | 2 | 1 | 1 | 1 | 1 | 0 | 2 | 0 | 1 | 0 | general |
 | [ResearchTown](research-town.md) | external | `ideation` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 0 | 1 | 1 | general |
 | [ResearchAgent (NAACL 2025)](researchagent.md) | external | `ideation` | 1 | 2 | 3 | 2 | 2 | 2 | 1 | 1 | 0 | 2 | 0 | general |
@@ -82,6 +83,7 @@ sources.
 - **[OpenScholar (AI2)](open-scholar.md)** — A retrieval-augmented LM designed to answer scientific queries by searching the literature and generating responses grounded in sources.
 - **[PaperQA2 (FutureHouse)](paper-qa.md)** — A high-accuracy retrieval-augmented generation package focused on scientific PDFs (and Office docs, source code).
 - **[PaperCoder (Paper2Code)](paper2code.md)** — An ICLR 2026 multi-agent system (arXiv:2504.17192) that transforms a machine-learning paper into a working code repository via a three-stage pipeline (planning, analysis, code generation) with specialized agents per stage.
+- **[RECAST (Replication and Extension with Causal AI Statistical Toolkit)](recast-causal-ai.md)** — An end-to-end autonomous pipeline for the *replication + extension + peer-review* arc of the RISE concept diagram.
 - **[Refine (refine.ink)](refine-ink.md)** — A commercial AI peer-review service that produces reviewer-grade feedback on academic papers within ~20–40 minutes by running multi-hour parallel compute jobs (~2+ hours per review).
 - **[ResearchTown](research-town.md)** — An ICML 2025 multi-agent platform for *community-level* automatic research simulation.
 - **[ResearchAgent (NAACL 2025)](researchagent.md)** — The NAACL 2025 reference implementation (arXiv:2404.07738) of *iterative research idea generation over scientific literature*.
