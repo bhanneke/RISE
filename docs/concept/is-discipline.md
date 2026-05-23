@@ -106,6 +106,14 @@ the *epistemic* status of scholarly work, not only its volume.
   foundational KM scholars in IS — frame GenAI through the
   knowledge-management tradition. Establishes the genealogical link
   from KM to RISE.
+- **The "in silico team science" frame** ([@li2026agenticbiomedical]).
+  Adjacent to IS rather than within it: Li, Saini, Hernandez & Moore
+  (Nature Biotechnology 2026) reframe agentic-AI systems as *teams of
+  computational collaborators* rather than autonomous tools, organising
+  the design space around three algorithms and seven building-block
+  characteristics. A useful theoretical anchor that complements
+  Jarvenpaa & Klein's theorizing-partner argument with a concrete
+  team-science vocabulary borrowed from the biomedical literature.
 
 The 2025 ISR editorial ([@gopal2025inventing]) reads as the
 institutional successor to all of this: it explicitly invites IS
@@ -192,16 +200,23 @@ Israel, Singapore, Hsinchu. The 2026 EJIS papers in particular are
 non-US-led. RISE positioning that is *only* US-centric is missing
 where the discipline is actually thinking.
 
-### The empirical work is thin (so far)
+### The empirical work is thin — but no longer absent
 
-The cluster is overwhelmingly *conceptual* / *editorial* /
-*position-paper* in genre. Empirical IS work on GenAI in research
-practice exists (e.g., [@kwon2025inequality],
-[@filimonovic2025genai], [@filimonovic2025genai],
-[@bapna2025analytics]) but is the minority. **This is the open
-opportunity for new RISE contributions:** empirical evaluation of
-agentic-research systems against the methodological claims the
-conceptual literature makes.
+The IS-discipline cluster itself remains overwhelmingly *conceptual*
+/ *editorial* / *position-paper* in genre. Empirical IS work on
+GenAI in research practice exists ([@kwon2025inequality],
+[@filimonovic2025genai], [@bapna2025analytics]) but is the
+minority within IS. Outside IS, the empirical situation is shifting
+fast: [@ghareeb2026robin] (Nature 2026) reports the first agentic
+system to autonomously discover *and* wet-lab validate a novel
+therapeutic candidate, and [@li2026agenticbiomedical] (Nature
+Biotechnology 2026) reviews the broader class of biomedical
+agentic systems through an "in silico team science" lens. **The open
+opportunity for new RISE contributions in IS is to do for the
+agentic-research-pipeline literature what these Nature-level
+biomedical papers have begun to do for drug discovery: take the
+methodological claims of the conceptual cluster and test them
+empirically against deployed systems.**
 
 ## Reading paths
 

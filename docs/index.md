@@ -5,12 +5,14 @@ Systems Engineering* — the design and study of information systems
 that **produce scholarly knowledge**, with a focus on agentic research
 pipelines.
 
-The repository maintains two curated catalogs:
+The repository maintains three curated catalogs:
 
 1. an **academic-papers database** of structured notes on the literature
    that frames RISE;
 2. a **projects database** that evaluates agentic research systems
-   against a [standard rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).
+   against a [standard rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md);
+3. a **skills database** of reusable Markdown skill files curated from
+   open agentic-research projects.
 
 ---
 

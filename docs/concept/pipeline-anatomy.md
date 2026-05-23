@@ -26,7 +26,7 @@ point*. Catalog entries declare an `inputs:` field; common values:
   ([`ape`](../projects/ape.md), [`reviewer`](../projects/reviewer.md),
   [`marg`](../projects/marg.md)).
 
-The breadth of supported inputs is one of the eight evaluation
+The breadth of supported inputs is one of the eleven evaluation
 dimensions; an input-narrow system can still be excellent at what it
 does.
 
