@@ -1,0 +1,137 @@
+slug: alphaevolve
+name: "AlphaEvolve (Google DeepMind)"
+type: external
+status: active
+url: "https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/"
+license: "proprietary (closed; Early Access Program)"
+maintainers:
+  - "Google DeepMind"
+year_started: 2025
+
+positioning: >
+  A Gemini-powered evolutionary coding agent that combines LLM
+  generative capabilities with automated evaluators in an iterative
+  propose-test-refine loop. Targets the *algorithmic and scientific
+  discovery* arc of the RISE pipeline: given a well-defined evaluator,
+  AlphaEvolve searches the space of programs that improve the metric
+  the evaluator scores. Demonstrated on data-center scheduling,
+  hardware-circuit design, kernel optimization, and — most relevant to
+  RISE — open mathematical problems.
+
+distinctive_contribution: >
+  An evolutionary-search harness over LLM-generated code that
+  decouples *generation* (Gemini Pro / Flash) from *evaluation* (a
+  domain-specific automated scoring function). In Georgiev,
+  Gómez-Serrano, Tao & Wagner (2025) the system rediscovers
+  best-known constructions for 56 of 67 mathematical problems and
+  improves on the best-known result in several, occasionally
+  generalizing finite-case results into closed-form expressions valid
+  for all inputs. Distinctive among RISE-landscape projects because
+  it does not write papers — it discovers algorithmic / mathematical
+  *artifacts*, leaving the scholarly framing to humans.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - code-generation
+  - data-analysis
+
+architectural_features:
+  - evolutionary-search
+  - tool-use
+  - iterative-loop
+  - automated-evaluation
+
+discipline: mathematics
+
+inputs:
+  - problem-specification
+  - automated-evaluator
+
+outputs:
+  - algorithmic-artifacts
+  - improved-constructions
+  - closed-form-expressions
+
+data_sources:
+  - none-required
+
+knowledge_sources:
+  - llm-internal
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three stages (hypothesis, code, analysis) bundled into the evolutionary loop; no literature, drafting, or peer-review components."
+  autonomy_level:
+    score: 3
+    note: "Autonomous within the search loop — given problem + evaluator, runs without human intervention until budget exhausted."
+  architectural_transparency:
+    score: 1
+    note: "Whitepaper (Novikov et al., arXiv 2506.13131) describes the architecture; system itself is closed-source."
+  inputs_supported:
+    score: 1
+    note: "Accepts a problem specification + an automated evaluator function; cannot handle problems without a scorable evaluation oracle."
+  outputs_reproducibility:
+    score: 2
+    note: "Discovered artifacts (programs, mathematical constructions) are durable and verifiable; the discovery *process* requires Google compute and is not externally reproducible."
+  internal_evaluation:
+    score: 3
+    note: "Evaluation is by construction — every candidate is scored by the automated evaluator. 67-problem benchmark in Georgiev et al. provides external validation."
+  openness:
+    score: 0
+    note: "Closed-source, gated behind Google DeepMind's Early Access Program for selected academic users."
+  maturity_traction:
+    score: 2
+    note: "Active research project at Google DeepMind; whitepaper + multiple high-profile follow-up papers (including Terence Tao as co-author on Georgiev et al.)."
+  cross_family_policy:
+    score: 0
+    note: "Single model family (Gemini Pro/Flash) within Google DeepMind."
+  assurance_runtime:
+    score: 3
+    note: "Automated evaluator runs on every candidate as part of the search loop; this is the assurance layer by construction."
+  cross_platform_portability:
+    score: 0
+    note: "Tightly coupled to Google internal infrastructure and Gemini API; not portable."
+scored_on: "2026-05-23"
+
+limitations:
+  - "Requires a well-defined automated evaluator; not applicable to open-ended discovery without a scorable target."
+  - "Closed-source and gated access — outside users cannot independently reproduce discovery runs."
+  - "Computation-heavy: evolutionary search over LLM-generated programs requires substantial Gemini API budget."
+  - "Does not produce scholarly artifacts (papers, references, methodological discussion) — leaves the writing to human collaborators."
+
+related:
+  - sakana-ai-scientist
+  - sakana-ai-scientist-v1
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'AlphaEvolve: A Coding Agent for Scientific and Algorithmic Discovery'
+    authors:
+      - 'Novikov, A.'
+      - 'Vũ, N.'
+      - 'Eisenberger, M.'
+      - 'Dupont, E.'
+      - 'Huang, P.-S.'
+      - 'Wagner, A. Z.'
+      - 'et al.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2506.13131'
+    note: 'Original whitepaper from Google DeepMind.'
+  - title: 'Mathematical Exploration and Discovery at Scale'
+    authors:
+      - 'Georgiev, B.'
+      - 'Gómez-Serrano, J.'
+      - 'Tao, T.'
+      - 'Wagner, A. Z.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2511.02864'
+    note: 'Applies AlphaEvolve to 67 open mathematical problems; Terence Tao co-author.'
+
+references:
+  - novikov2025alphaevolve
+  - georgiev2025alphaevolvemath
