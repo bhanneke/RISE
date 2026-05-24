@@ -68,6 +68,7 @@ validation:
 
 nav:
   - Home: index.md
+  - Get started: getting-started.md
   - Concept:
       - concept/definition.md
       - concept/history.md

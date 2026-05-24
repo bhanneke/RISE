@@ -41,6 +41,7 @@ these dimensions using the [evaluation rubric](https://github.com/bhanneke/RISE/
 
 | If you are… | Start at |
 |-------------|----------|
+| **A researcher wanting to actually try this in your workflow** | [**Get started**](getting-started.md) |
 | New to the topic | [Concept → Definition](concept/definition.md) |
 | Looking for the diagram explained | [Concept → Pipeline anatomy](concept/pipeline-anatomy.md) |
 | Surveying existing systems | [Projects](projects/index.md) |
