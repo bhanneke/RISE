@@ -9,6 +9,14 @@ authors:
     email: hanneke@wiwi.uni-frankfurt.de
 repository-code: "https://github.com/bhanneke/RISE"
 url: "https://bhanneke.github.io/RISE/"
+doi: "10.5281/zenodo.20396428"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.20396427"
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: "10.5281/zenodo.20396428"
+    description: "Version-specific DOI (v0.2.0)"
 abstract: >
   RISE is a public knowledge base introducing Research Information
   Systems Engineering — the design and study of information systems

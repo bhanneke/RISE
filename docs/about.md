@@ -55,6 +55,18 @@ researcher's perspective.
 If you reference this knowledge base in academic or technical
 work, please use the citation below.
 
+### DOIs
+
+The Zenodo deposit issues two DOIs:
+
+- **Concept DOI** (always resolves to the latest version):
+  [`10.5281/zenodo.20396427`](https://doi.org/10.5281/zenodo.20396427) — use
+  this when citing *the project*.
+- **Version DOI** (this release, v0.2.0):
+  [`10.5281/zenodo.20396428`](https://doi.org/10.5281/zenodo.20396428) — use
+  this when citing *a specific snapshot* (recommended for academic
+  work, so your citation does not silently drift as the site grows).
+
 ### BibTeX
 
 ```bibtex
@@ -64,10 +76,14 @@ work, please use the citation below.
                   ({Knowledge Base})},
   year         = {2026},
   version      = {0.2.0},
-  url          = {https://bhanneke.github.io/RISE/},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.20396428},
+  url          = {https://doi.org/10.5281/zenodo.20396428},
   howpublished = {GitHub Pages knowledge base},
   note         = {CC-BY-4.0 licensed; source at
-                  \url{https://github.com/bhanneke/RISE}}
+                  \url{https://github.com/bhanneke/RISE};
+                  concept DOI for all versions:
+                  \url{https://doi.org/10.5281/zenodo.20396427}}
 }
 ```
 
@@ -75,7 +91,7 @@ work, please use the citation below.
 
 > Hanneke, B. (2026). *RISE — Research Information Systems
 > Engineering (Knowledge Base)* (Version 0.2.0) [Knowledge base].
-> <https://bhanneke.github.io/RISE/>
+> Zenodo. <https://doi.org/10.5281/zenodo.20396428>
 
 ### CITATION.cff
 
@@ -85,15 +101,15 @@ File Format v1.2.0.
 
 ### Citing a specific snapshot
 
-For a frozen-in-time reference, cite a tagged release on GitHub
-([releases page](https://github.com/bhanneke/RISE/releases)), e.g.
-*RISE v0.2.0 (2026-05-26)*. Each tagged release ships a Zenodo-ready
-zip bundle (`rise-knowledge-base-v<VERSION>.zip`) containing the
-papers BibTeX, the project YAMLs, the rubric, the concept pages, and
-the bundled skill packs at that point in time.
+For a frozen-in-time reference, use the version-specific Zenodo DOI
+above (e.g. `10.5281/zenodo.20396428` for v0.2.0). Each tagged
+release on GitHub triggers an automatic Zenodo deposit via the
+GitHub–Zenodo integration, so every published version has its own
+DOI alongside the concept DOI.
 
-A Zenodo DOI for the release archive is planned but not yet minted;
-this section will be updated when it is.
+The Zenodo record ships a zip bundle (`rise-knowledge-base-v<VERSION>.zip`)
+containing the papers BibTeX, the project YAMLs, the rubric, the
+concept pages, and the bundled skill packs as of that release.
 
 ## Licensing
 
