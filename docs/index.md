@@ -48,6 +48,7 @@ these dimensions using the [evaluation rubric](https://github.com/bhanneke/RISE/
 | Looking for the literature | [Papers](papers/index.md) |
 | Looking for reusable agent skills | [Skills](skills/index.md) |
 | Wanting to contribute | [Contributing](contributing.md) |
+| Wanting to cite this site | [About / Cite](about.md) |
 
 ## Provenance
 

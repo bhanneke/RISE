@@ -89,6 +89,7 @@ nav:
       - skills/index.md
   - Glossary: glossary.md
   - Contributing: contributing.md
+  - About / Cite: about.md
 
 extra_css:
   - stylesheets/extra.css

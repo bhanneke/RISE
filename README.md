@@ -50,19 +50,21 @@ packages, datasets).
 
 ## What's in this repo?
 
-Two curated catalogs and a documentation site that exposes them.
+Three curated catalogs and a documentation site that exposes them.
 
 | Path | Contents |
 |------|----------|
-| `docs/` | The MkDocs site (concept, projects, papers, glossary) |
+| `docs/` | The MkDocs site (concept, get-started, projects, papers, skills, glossary) |
 | `papers/references.bib` | BibTeX database of academic references |
 | `papers/notes/` | One structured markdown note per paper |
 | `papers/schema.md` | Front-matter schema for paper notes |
 | `projects/e2er.yml` | Owned project entry (E2ER) |
-| `projects/landscape/` | External agentic-research projects (Sakana AI Scientist, zeropaper, APE, …) |
+| `projects/landscape/` | External agentic-research projects (Sakana AI Scientist, Robin, RECAST, AlphaEvolve, …) |
 | `projects/EVALUATION.md` | Standard evaluation rubric used to score every project |
 | `projects/VOCABULARY.md` | Controlled vocabularies (themes, pipeline stages, architectural features) |
+| `skills/` | Skill packs — YAML manifests + bundled SKILL.md text from curated upstream projects |
 | `scripts/build_indexes.py` | Regenerates `docs/papers/index.md` and `docs/projects/index.md` from sources |
+| `scripts/build_skills_index.py` | Regenerates the skills catalog pages |
 
 ## How to read it
 

@@ -30,7 +30,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 
-DEFAULT_VERSION = f"0.1.0-{date.today().isoformat()}"
+DEFAULT_VERSION = f"0.2.0-{date.today().isoformat()}"
 
 INCLUDE = [
     ("README_BUNDLE.md",        "_README_BUNDLE_GENERATED.md"),   # generated below

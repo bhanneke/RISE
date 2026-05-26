@@ -13,15 +13,20 @@ abstract: >
   RISE is a public knowledge base introducing Research Information
   Systems Engineering — the design and study of information systems
   that produce scholarly knowledge, with a focus on agentic research
-  pipelines. It maintains two curated catalogs: (i) an academic-papers
-  database with structured notes, and (ii) a projects database
-  evaluating agentic research systems against a standard rubric.
+  pipelines. It maintains three curated catalogs: (i) an
+  academic-papers database with structured notes, (ii) a projects
+  database evaluating agentic research systems against a standard
+  rubric, and (iii) a skills database of reusable Markdown skill
+  files curated from open agentic-research projects. The site also
+  ships a Get-started guide for researchers adopting coding agents.
 keywords:
   - research-information-systems
   - agentic-research
   - ai-scientist
   - knowledge-base
   - research-infrastructure
+  - skills
+  - claude-code
 license: CC-BY-4.0
-version: "0.1.0"
-date-released: "2026-05-14"
+version: "0.2.0"
+date-released: "2026-05-26"
