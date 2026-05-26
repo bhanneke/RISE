@@ -46,9 +46,7 @@ Curation is done through [Claude Code](https://docs.claude.com/en/docs/claude-co
 
 The same operational approach the site documents — *augmentation,
 not automation*, with human verification at every commit — is the
-one used to produce the site itself. See
-[Get started](getting-started/index.md) for the same stack from a
-researcher's perspective.
+one used to produce the site itself.
 
 ## How to cite
 

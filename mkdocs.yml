@@ -68,11 +68,6 @@ validation:
 
 nav:
   - Home: index.md
-  - Get started:
-      - getting-started/index.md
-      - 1. Manuscript stack: getting-started/manuscript.md
-      - 2. Agent stack: getting-started/agent.md
-      - 3. First workflow: getting-started/first-workflow.md
   - Concept:
       - concept/definition.md
       - concept/history.md
