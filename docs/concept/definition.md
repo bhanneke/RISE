@@ -1,10 +1,54 @@
 # What is Research Information Systems Engineering?
 
+## Why now: GenAI is becoming research infrastructure
+
+Generative AI is no longer a novelty tool used at the edges of
+scholarly work. It is becoming part of the **infrastructure** of
+scientific work itself — drafting literature reviews, generating
+analysis code, writing manuscript sections, simulating peer
+review, proposing hypotheses, and (in a growing class of systems)
+running parts of the discovery loop end-to-end.
+
+Ad-hoc adoption of these systems creates institutional risks the
+existing apparatus of scholarship was not designed to absorb:
+hallucinated citations enter the published record, replication
+credit drifts to opaque pipelines, reviewer labor reallocates
+without policy, and the line between "human contribution" and
+"AI contribution" blurs in ways that current authorship and
+disclosure norms do not address.
+
+The institutional response — guardrails set by journals, funding
+bodies, departments, and the broader research community — needs to
+be grounded in a **systematic understanding** of these systems, not
+in enthusiasm or skepticism alone. That understanding has to span at
+least five dimensions:
+
+- **Architectures.** How the pipeline is composed: single-agent,
+  multi-agent, human-in-the-loop, evolutionary search, RAG-grounded.
+  What the orchestration topology is. Which tools are wired in.
+- **Human roles.** Who decides, who verifies, who is accountable for
+  the output. Where the augmentation–automation slider sits, and how
+  it shifts across stages of the pipeline.
+- **Provenance mechanisms.** How each claim in the output can be
+  traced back to its source — the data, the prompt, the intermediate
+  artifact, the code commit, the cited paper, the model version.
+- **Failure modes.** What *plausible-sounding wrong* outputs look
+  like (hallucinated citations, unfaithful reasoning, scope drift,
+  fabricated quotes), and how they are detected and contained.
+- **Evaluation criteria.** How the system's outputs are judged — as
+  code, as artifact, as scholarly contribution — and how those
+  criteria differ from the ones used for traditional human-only
+  research.
+
+**Research Information Systems Engineering** is the framework that
+does this systematic work.
+
 ## Working definition
 
-**Research Information Systems Engineering (RISE)** is the discipline
-concerned with the design, construction, and study of information
-systems whose primary purpose is to *produce scholarly knowledge*.
+**Research Information Systems Engineering (RISE)** is a framework
+for **designing, operating, and governing AI-enabled research
+systems** — information systems whose primary purpose is to produce
+scholarly knowledge with at least partial mediation by AI agents.
 
 A RISE system is distinguished from neighboring artifacts by three
 commitments:
@@ -30,6 +74,13 @@ papers but does not engage methodological standards (no
 identification, no citation grounding, no review) is a *style
 engine* — see [@riemer2024styleengines] — useful, but not RISE.
 
+The *framework* framing matters: RISE is not a single artifact, a
+single project, or a single discipline. It is the set of design
+principles, evaluation rubrics, vocabularies, and governance
+norms that let researchers, builders, and institutions reason
+about AI-enabled research systems coherently — across the design,
+operation, and oversight phases of their lifecycle.
+
 ## Why a separate name?
 
 The umbrella terms in use — *AI for science*, *AI scientist*,
@@ -43,11 +94,12 @@ prejudges the sociotechnical question (cf.
 *method* but underspecifies the *output* and *accountability*
 dimensions.
 
-RISE names the engineering and methodological discipline that sits
-across these — borrowing from information-systems design science,
-e-Science research infrastructure, and AI4Science — and treats the
-agentic research pipeline itself as its primary object of design and
-study.
+RISE names the engineering, methodological, and governance
+framework that sits across these — borrowing from
+information-systems design science, e-Science research
+infrastructure, and AI4Science — and treats the agentic research
+pipeline itself as its primary object of design, operation, and
+oversight.
 
 ## What RISE is not
 

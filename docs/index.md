@@ -1,9 +1,17 @@
 # Research Information Systems Engineering
 
 **RISE** is a public knowledge base introducing *Research Information
-Systems Engineering* — the design and study of information systems
-that **produce scholarly knowledge**, with a focus on agentic research
-pipelines.
+Systems Engineering* — a framework for **designing, operating, and
+governing AI-enabled research systems**: information systems whose
+primary purpose is to produce scholarly knowledge with at least
+partial mediation by AI agents.
+
+The motivating premise is that GenAI is becoming part of the
+*infrastructure* of scientific work, which creates a need for
+institutional guardrails grounded in a systematic understanding of
+these systems — their architectures, human roles, provenance
+mechanisms, failure modes, and evaluation criteria. See
+[Concept → Definition](concept/definition.md) for the full framing.
 
 The repository maintains three curated catalogs:
 
