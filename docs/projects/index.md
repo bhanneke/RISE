@@ -32,6 +32,7 @@ sources.
 | [CORAL](coral.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 1 | 2 | 2 | general |
 | [data-to-paper](data-to-paper.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 3 | 3 | 3 | 2 | 0 | 2 | 1 | general |
 | [DeepResearcher (GAIR-NLP)](deepresearcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 3 | 3 | 2 | 0 | 2 | 1 | general |
+| [EconCS Bench](econcs-bench.md) | external | `end-to-end` | 0 | 0 | 3 | 1 | 0 | 1 | 1 | 1 | 0 | 0 | 3 | economics |
 | [EvoScientist](evoscientist.md) | external | `end-to-end` | 3 | 3 | 3 | 2 | 2 | 3 | 3 | 3 | 1 | 2 | 3 | general |
 | [GPT Researcher](gpt-researcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 1 | 3 | 3 | 0 | 1 | 2 | general |
 | [Kosmos (jimmc414 implementation)](kosmos.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 2 | 1 | 2 | 1 | 2 | 1 | general |
@@ -76,6 +77,7 @@ sources.
 - **[CORAL](coral.md)** — Infrastructure (arXiv:2604.01658) for *multi-agent autonomous self-evolution* — organizations of AI agents that run experiments, share knowledge through persistent stores, and continuously improve solutions against a user-supplied grading script.
 - **[data-to-paper](data-to-paper.md)** — An end-to-end framework that takes annotated data and produces *backward-traceable* scientific manuscripts: every numeric value in the output can be click-traced to the specific code line that generated it.
 - **[DeepResearcher (GAIR-NLP)](deepresearcher.md)** — An end-to-end RL-trained deep-research agent (arXiv:2504.03160) that learns to plan, retrieve, cross-validate, and self-reflect via reinforcement learning in real-world web environments rather than in simulated retrieval.
+- **[EconCS Bench](econcs-bench.md)** — A benchmark suite of open research challenges in Economics and Computation (EconCS), associated with the AI-Driven Research in EconCS workshop at EC 2026.
 - **[EvoScientist](evoscientist.md)** — A self-evolving AI scientist system (arXiv:2603.08127) built on the DeepAgents framework.
 - **[GPT Researcher](gpt-researcher.md)** — An autonomous "deep research" agent that produces long-form, cited reports on any topic from web and local sources.
 - **[Kosmos (jimmc414 implementation)](kosmos.md)** — An open-source implementation of the Kosmos AI scientist architecture (Lu et al., arXiv:2511.02824), adapted to run via Claude Code or the Anthropic / OpenAI APIs.

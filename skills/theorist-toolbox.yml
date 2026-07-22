@@ -1,0 +1,157 @@
+pack:
+  slug: theorist-toolbox
+  name: 'Theorist Toolbox'
+  source_url: 'https://github.com/morankor/theorist-toolbox'
+  maintainers:
+    - 'Moran Koren (Ben-Gurion University of the Negev, Economics)'
+  license: 'MIT'
+  total_skills: 11
+  last_update: '2026-07-12'
+  related_project: ''
+  compatibility:
+    - claude-code
+    - codex
+  notes: >
+    Shared tooling for doing economic theory with LLMs — three bets on the
+    same problem (machine help on a theorem you cannot already prove, with a
+    trustable answer): math-proof (one careful single-shot pass), codex-math
+    (OpenAI Codex as adversarial co-processor and hostile verifier), and
+    co-math (a multi-agent proof-building project with strict unproven-gap
+    flagging, reviewer sign-off gates, and optional Lean 4 verification,
+    modelled on DeepMind's AI co-mathematician, Zheng et al. 2026).
+    5 skills + 6 sub-agents; Codex CLI port and ChatGPT prompts included.
+    Companion paper: arXiv:2606.22337 (Koren 2026).
+
+skills:
+  - slug: math-proof
+    name: '/math-proof'
+    kind: skill
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: 'Single-pass discipline for full, gap-free proofs: state what you will show before showing it, sign every term, no "clearly", no overgeneralizing from examples.'
+    source_path: 'skills/math-proof/SKILL.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/skills/math-proof/SKILL.md'
+    provenance: 'theorist-toolbox repo curation 2026-07-22'
+    last_update: '2026-07'
+  - slug: codex-math
+    name: '/codex-math'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: 'Drives OpenAI Codex as an adversarial mathematical co-processor — verify, write, and explore modes; every output is a lead, not a verdict.'
+    source_path: 'skills/codex-math/skill.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/skills/codex-math/skill.md'
+    provenance: 'theorist-toolbox repo curation 2026-07-22'
+    last_update: '2026-07'
+  - slug: co-math-init
+    name: '/co-math-init'
+    kind: skill
+    category: infra
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: 'Scaffolds a structured proof-building project (paper.tex, goals, decisions log, workstreams) with strict mode: every gap flagged unproven, nothing complete without reviewer sign-off.'
+    source_path: 'skills/co-math-init/SKILL.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/skills/co-math-init/SKILL.md'
+    provenance: 'theorist-toolbox repo curation 2026-07-22'
+    last_update: '2026-07'
+  - slug: co-math-status
+    name: '/co-math-status'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: 'Renders a compact status view of a co-math project — goals, active workstreams, blocked items, pending reviews, recent decisions — as an ASCII diagram.'
+    source_path: 'skills/co-math-status/SKILL.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/skills/co-math-status/SKILL.md'
+    provenance: 'theorist-toolbox repo curation 2026-07-22'
+    last_update: '2026-07'
+  - slug: proof-readability
+    name: '/proof-readability'
+    kind: skill
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Post-verification exposition pass for already-verified proofs — six layers (architecture, signposting, justification, notation, intuition, grammar) without changing the mathematics.'
+    source_path: 'skills/proof-readability/SKILL.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/skills/proof-readability/SKILL.md'
+    provenance: 'theorist-toolbox repo curation 2026-07-22'
+    last_update: '2026-07'
+  - slug: project-coordinator
+    name: 'agent:project-coordinator'
+    kind: agent
+    category: infra
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: 'Front door of a co-math project — reads goals.md, formalises research intent, dispatches and steers workstreams, filters low-level chatter from the user.'
+    source_path: 'agents/project-coordinator.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/agents/project-coordinator.md'
+    provenance: 'theorist-toolbox repo curation 2026-07-22'
+    last_update: '2026-07'
+  - slug: literature-reviewer
+    name: 'agent:literature-reviewer'
+    kind: agent
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    field: economics
+    description: 'Literature searches and verified, cited workstream reports; confirms prior art and validates supporting citations for claims in paper.tex.'
+    source_path: 'agents/literature-reviewer.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/agents/literature-reviewer.md'
+    provenance: 'theorist-toolbox repo curation 2026-07-22'
+    last_update: '2026-07'
+  - slug: prover
+    name: 'agent:prover'
+    kind: agent
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: 'Drafts proofs into paper.tex with strict discipline — every step justified, cited, or explicitly marked unproven; never hand-waves.'
+    source_path: 'agents/prover.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/agents/prover.md'
+    provenance: 'theorist-toolbox repo curation 2026-07-22'
+    last_update: '2026-07'
+  - slug: coder
+    name: 'agent:coder'
+    kind: agent
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    field: economics
+    description: 'Python for computational exploration and numerical verification, with mandatory tests and golden values; cannot complete until tests pass and a reviewer accepts.'
+    source_path: 'agents/coder.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/agents/coder.md'
+    provenance: 'theorist-toolbox repo curation 2026-07-22'
+    last_update: '2026-07'
+  - slug: lean-prover
+    name: 'agent:lean-prover'
+    kind: agent
+    category: audit
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: 'Formalises a lemma in Lean 4 and verifies it with lake build — a green build is the strongest "proven" the system supports; the reviewer re-runs the build rather than re-checking the mathematics.'
+    source_path: 'agents/lean-prover.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/agents/lean-prover.md'
+    provenance: 'theorist-toolbox repo curation 2026-07-22'
+    last_update: '2026-07'
+  - slug: paper-reviewer
+    name: 'agent:paper-reviewer'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: 'Adversarial gate — a workstream cannot be marked complete until this agent writes an explicit approval file; cross-checks references, unproven blocks, and code-vs-claim consistency.'
+    source_path: 'agents/paper-reviewer.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/agents/paper-reviewer.md'
+    provenance: 'theorist-toolbox repo curation 2026-07-22'
+    last_update: '2026-07'

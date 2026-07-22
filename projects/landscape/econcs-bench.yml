@@ -1,0 +1,103 @@
+slug: econcs-bench
+name: "EconCS Bench"
+type: external
+status: active
+url: "https://github.com/aieconcs/econcs-bench"
+maintainers:
+  - "AI-driven Research in EconCS workshop organizers (EC 2026)"
+year_started: 2026
+
+positioning: >
+  A benchmark suite of open research challenges in Economics and
+  Computation (EconCS), associated with the AI-Driven Research in
+  EconCS workshop at EC 2026. 24 open problems — mechanism design,
+  fair division (EFX, MMS, PMMS), prophet inequalities, information
+  design, complexity of equilibria — each a markdown PROBLEM.md with
+  YAML metadata, contributor attribution, known results, and an
+  optional difficulty rating (Approachable / Challenging / Hard).
+  Sits in the RISE evaluation-infrastructure layer alongside
+  AstaBench, Aviary, and MLGym, but targets formal *theory* research
+  rather than empirical, coding, or literature tasks.
+
+distinctive_contribution: >
+  The first community-curated open-problem benchmark aimed at
+  AI-driven theory research: problems are contributed via pull
+  requests by many of the field's leading researchers (Nisan,
+  Papadimitriou, Procaccia, Conitzer, Feldman, Mirrokni, Weinberg,
+  Dobzinski, Chen, Babaioff, Rubinstein, Duetting, Lucier, Branzei,
+  Paes Leme), making it both a live registry of what experts consider
+  genuinely open and a difficulty-graded target set for proof-capable
+  research agents. Success has no harness: a solved benchmark problem
+  is a publishable research result.
+
+focus: end-to-end
+
+pipeline_stages:
+  - formal-modeling
+
+architectural_features: []
+
+discipline: economics
+
+inputs:
+  - open-problem-submissions
+
+outputs:
+  - problem-statements
+  - difficulty-ratings
+
+data_sources: []
+
+knowledge_sources:
+  - contributor-expertise
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Problem catalog / evaluation target; does not produce scholarship itself."
+  autonomy_level:
+    score: 0
+    note: "Static problem statements curated by humans via PR review; any agency lives in the systems attempting the problems."
+  architectural_transparency:
+    score: 3
+    note: "Fully public markdown problem statements with YAML metadata, contributor attribution, and a documented difficulty rubric; contribution process is PR-based and transparent."
+  inputs_supported:
+    score: 1
+    note: "Single input form (PROBLEM.md with name/contributor/rating metadata); no execution harness or standardized agent interface."
+  outputs_reproducibility:
+    score: 0
+    note: "No system outputs; solutions arrive as ordinary research papers outside the repo."
+  internal_evaluation:
+    score: 1
+    note: "Expert curation and optional contributor-assigned difficulty ratings; no scoring harness, baselines, or leaderboard yet."
+  openness:
+    score: 1
+    note: "Public repo with open PR-based contribution, but no license file at scoring date."
+  maturity_traction:
+    score: 1
+    note: "Young (June 2026) and small (9 stars), but anchored to the EC 2026 workshop with problems from many of the field's most prominent researchers."
+  cross_family_policy:
+    score: 0
+    note: "Not applicable — model-agnostic problem statements with no runtime; no policy on solving systems."
+  assurance_runtime:
+    score: 0
+    note: "No runtime; problem statements only."
+  cross_platform_portability:
+    score: 3
+    note: "Plain markdown + YAML, consumable by any agent framework or by humans; deliberately format-minimal."
+scored_on: "2026-07-22"
+
+limitations:
+  - "No license file at scoring date — reuse terms are unclear."
+  - "Problem statements only: no execution harness, automated scoring, or leaderboard; verifying a claimed solution requires expert peer review."
+  - "Coverage reflects contributor interests — heavily weighted toward mechanism design and fair division."
+
+related:
+  - asta-bench
+  - aviary
+  - mlgym
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper yet; workshop site: https://sites.google.com/view/aieconcs26/
+
+references: []
