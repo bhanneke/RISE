@@ -1,0 +1,303 @@
+pack:
+  slug: auto-empirical-research-skills
+  name: 'Auto-Empirical Research Skills (AERS) — first-party skills'
+  source_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills'
+  maintainers:
+    - 'Bryce Wang (Stanford REAP / CoPaper.AI)'
+  license: 'CC BY-SA 4.0 (repo default); MIT for the mirrored first-party collections (StatsPAI, AER-skills, Paper-WorkFlow)'
+  total_skills: 22
+  last_update: '2026-07-22'
+  related_project: 'auto-empirical-research-skills'
+  compatibility:
+    - claude-code
+    - codex
+    - cursor
+  notes: >
+    Repo bundles 1,094 skills across 74 collections, ~90% vendored
+    third-party (clo-author, academic-research-skills, ARIS,
+    awesome-econ-ai-stuff, etc. — cataloged separately in RISE); this
+    manifest catalogs the 22 first-party skills: the root router, the
+    four flagship full-pipeline analysis skills (StatsPAI / Python /
+    Stata / R backends), the chinese-de-aigc editing skill, the
+    15-skill AER-skills collection (mirror of
+    brycewang-stanford/AER-skills), and the Paper-WorkFlow
+    meta-orchestrator (git submodule of
+    brycewang-stanford/Paper-WorkFlow). First-party status taken from
+    the repo's own catalog/provenance.json origin labels.
+
+skills:
+  - slug: aers-router
+    name: auto-empirical-research-skills
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Root router for whole-repo installs — classifies an empirical-research request by stage/method and dispatches to one of the 1,094 vendored skills via catalog JSON lookups instead of reading the repo wholesale.'
+    source_path: 'SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: statspai-skill
+    name: StatsPAI_skill
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: economics
+    description: 'Full empirical/causal analysis in Python via the StatsPAI vertical engine — AER/QJE-style DID/RD/IV/SCM/DML pipeline with estimating equation + identifying assumption, Table 1/2, event-study figure, robustness gauntlet; plus epidemiology, ML-causal, and Oaxaca-style decomposition modes and Word/Excel/LaTeX table export.'
+    source_path: 'skills/00-Full-empirical-analysis-skill_StatsPAI/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/00-Full-empirical-analysis-skill_StatsPAI/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: full-empirical-analysis-python
+    name: Full-empirical-analysis-skill
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: economics
+    description: 'Classical 8-step end-to-end empirical workflow in the traditional Python stack (pandas/statsmodels/linearmodels/pyfixest/econml) — cleaning through publication tables/figures in AER house style, with epidemiology and ML-causal parallel modes; the non-StatsPAI, estimator-explicit counterpart.'
+    source_path: 'skills/00.1-Full-empirical-analysis-skill_Python/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/00.1-Full-empirical-analysis-skill_Python/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: full-empirical-analysis-stata
+    name: Full-empirical-analysis-skill-Stata
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: economics
+    description: 'Same 8-step empirical pipeline as a reproducible Stata .do workflow — reghdfe/ivreg2/csdid/did_imputation/sdid/rdrobust/synth/psmatch2 estimation, bacondecomp/honestdid/rwolf/oster robustness, esttab/coefplot outputs; epidemiology and ML-causal modes included.'
+    source_path: 'skills/00.2-Full-empirical-analysis-skill_Stata/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/00.2-Full-empirical-analysis-skill_Stata/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: full-empirical-analysis-r
+    name: Full-empirical-analysis-skill-R
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: economics
+    description: 'Same 8-step empirical pipeline in the tidyverse + fixest R ecosystem — did/HonestDiD/rdrobust/gsynth/MatchIt/grf/DoubleML estimation with modelsummary/gt/ggplot2 publication outputs and Quarto reproducibility; epidemiology and ML-causal modes included.'
+    source_path: 'skills/00.3-Full-empirical-analysis-skill_R/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/00.3-Full-empirical-analysis-skill_R/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: chinese-de-aigc
+    name: chinese-de-aigc
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: general
+    description: 'Chinese academic de-AIGC rewriting targeting CNKI/Wanfang/VIP/Turnitin-zh detectors — a five-step locate/diagnose/rewrite/self-score/recheck loop over 17 diagnostic rules for the five structural signatures of Chinese LLM prose, with per-section strategies.'
+    source_path: 'skills/48-copaper-ai-chinese-de-aigc/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/48-copaper-ai-chinese-de-aigc/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-workflow
+    name: aer-workflow
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: 'Router for the 15-skill AER-skills collection — sequences manuscript work from topic selection through rebuttal for AER, AER:Insights, and AEJ journals; routes, does not replace, the specialized skills.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-workflow/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-workflow/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-topic-selection
+    name: aer-topic-selection
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+    field: economics
+    description: 'Evaluates whether a research idea clears the AER top-5 bar, routes between AER, AER:Insights, and the AEJ family, and sharpens a fuzzy contribution sentence into one publishable claim.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-topic-selection/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-topic-selection/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-literature
+    name: aer-literature
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    field: economics
+    description: 'Positions a manuscript against the economics literature — antecedents map for the introduction, cite/no-cite decisions, and verification that every bibliography entry is real, correctly attributed, and cited to the published version.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-literature/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-literature/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-identification
+    name: aer-identification
+    category: design
+    pipeline_stages:
+      - research-design
+    field: economics
+    description: 'Selects, implements, or stress-tests the causal identification strategy — DID (incl. staggered), IV (incl. weak-IV-robust inference), RDD, synthetic control, shift-share/Bartik — before introduction or results are written.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-identification/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-identification/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-preregistration
+    name: aer-preregistration
+    category: design
+    pipeline_stages:
+      - research-design
+    field: economics
+    description: 'For primary-data and experimental projects, before the intervention: writes the pre-analysis plan, sizes the sample from a power calculation, and registers with the AEA RCT Registry.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-preregistration/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-preregistration/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-statspai
+    name: aer-statspai
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: economics
+    description: 'Runs the AER-track analysis with StatsPAI — the agent-native Python engine and MCP server for causal inference, robustness, sensitivity, and publication-ready table export — after aer-identification fixes the design.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-statspai/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-statspai/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-robustness
+    name: aer-robustness
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: 'Builds the robustness, heterogeneity, mechanism, and placebo battery AER referees demand, once main results exist and before the introduction''s value-added paragraph is written.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-robustness/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-robustness/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-tables-figures
+    name: aer-tables-figures
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: 'Constructs and revises regression tables, descriptive-statistics tables, and figures in AER booktabs house style, with regression-table layout and figure-note conventions.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-tables-figures/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-tables-figures/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-paper-body
+    name: aer-paper-body
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: 'Drafts and revises the body sections of an AER/AEJ manuscript — background, data, empirical strategy, results, mechanisms, conclusion — including equation conventions, results-paragraph narration, magnitude interpretation, and back-of-envelope policy calculations.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-paper-body/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-paper-body/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-introduction
+    name: aer-introduction
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: 'Drafts or rewrites the introduction to the Keith Head / Bellemare five-paragraph formula with AER-specific conventions, and compresses abstracts to the mandatory 100-word limit.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-introduction/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-introduction/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-consistency
+    name: aer-consistency
+    category: audit
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Internal-consistency audit of a near-final manuscript: headline numbers across abstract/introduction/results/tables, sample sizes, log-point vs percentage-point conversions, cross-references, and citation-bibliography matching.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-consistency/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-consistency/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-referee-sim
+    name: aer-referee-sim
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: 'Adversarial internal review before submission — simulates the AER desk screen plus three referee reports with calibrated severity, scores against the editorial rubric, and produces a prioritized revise list; rerun until the simulated verdict is at least major R&R.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-referee-sim/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-referee-sim/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-rebuttal
+    name: aer-rebuttal
+    category: revision
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Handles a Revise & Resubmit from AER/AEJ journals — triage, the concede/clarify/push-back decision per comment, and the point-by-point response-letter format editors actually read, aligned with manuscript revisions.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-rebuttal/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-rebuttal/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-replication
+    name: aer-replication
+    category: replication
+    pipeline_stages:
+      - replication
+      - dissemination
+    field: economics
+    description: 'Assembles the AEA Data and Code Availability deposit — README writing and replication-package audit against the current AEA policy (including the February 2026 Data and Code Availability Policy) before the AEA Data Editor review.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-replication/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-replication/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: aer-submission
+    name: aer-submission
+    category: submission
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: 'Final pre-submission audit for AER/AEJ journals — length, format, cover letter, per-author disclosure statements, file packaging, and routing among the AEA journal family.'
+    source_path: 'skills/50-brycewang-aer-skills/skills/aer-submission/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-submission/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'
+
+  - slug: paper-workflow
+    name: paper-workflow
+    category: infra
+    pipeline_stages:
+      - rq-formulation
+      - research-design
+      - data-acquisition
+      - data-analysis
+      - paper-drafting
+      - revision-editing
+      - referee-simulation
+      - dissemination
+    field: economics
+    description: 'Meta-orchestrator for a complete empirical paper (econ/social science): Stage 0-9 resumable pipeline from topic selection to submission with two hard human gates (Method Gate after estimation, Draft Quality Gate after polish); routes Python/StatsPAI, Stata, or R analysis backends and invokes existing skills rather than reimplementing them. Git submodule mirroring brycewang-stanford/Paper-WorkFlow.'
+    source_path: 'skills/69-Paper-WorkFlow/SKILL.md'
+    details_url: 'https://github.com/brycewang-stanford/Paper-WorkFlow/blob/main/SKILL.md'
+    provenance: 'Auto-Empirical-Research-Skills repo curation 2026-07-23'
+    last_update: '2026-07-22'

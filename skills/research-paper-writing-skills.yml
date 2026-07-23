@@ -1,0 +1,40 @@
+pack:
+  slug: research-paper-writing-skills
+  name: 'Research Paper Writing Skills'
+  source_url: 'https://github.com/Master-cai/Research-Paper-Writing-Skills'
+  maintainers:
+    - 'Master-cai (GitHub)'
+  license: 'MIT'
+  total_skills: 1
+  last_update: '2026-06-23'
+  related_project: 'research-paper-writing-skills'
+  compatibility:
+    - claude-code
+    - codex
+    - gemini-cli
+    - agnostic
+  notes: >
+    Single-skill pack curated from Prof. Peng Sida's open research-writing
+    notes (github.com/pengsida/learning_research): one SKILL.md orchestrating
+    eight on-demand reference guides (Introduction, Abstract, Related Work,
+    Method, Experiments, Conclusion, paper review, paragraph-flow source)
+    plus a worked example bank of section templates and an agents/openai.yaml
+    metadata file. Targets ML/CV/NLP-style papers; README documents install
+    paths for Codex, Claude Code, and Gemini CLI, and the pure-Markdown
+    layout is usable by any SKILL.md-aware agent.
+
+skills:
+  - slug: research-paper-writing
+    name: 'research-paper-writing'
+    kind: skill
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+      - revision-editing
+      - referee-simulation
+    field: computer-science
+    description: 'Draft or rewrite ML/CV/NLP paper sections into reviewer-friendly form via section-specific template guides, paragraph-by-paragraph rewriting with reverse outlining, claim-evidence mapping, and an adversarial five-dimension self-review before submission.'
+    source_path: 'research-paper-writing/SKILL.md'
+    details_url: 'https://github.com/Master-cai/Research-Paper-Writing-Skills/blob/main/research-paper-writing/SKILL.md'
+    provenance: 'cloned from github.com/Master-cai/Research-Paper-Writing-Skills 2026-07-23'
+    last_update: '2026-06-23'

@@ -1,0 +1,77 @@
+pack:
+  slug: econ-research-skills
+  name: 'Econ Research Skills (Hanlu Long)'
+  source_url: 'https://github.com/hanlulong/econ-paper-review-skill'
+  maintainers:
+    - 'Hanlu Long (hanlulong on GitHub; also maintains awesome-ai-for-economists)'
+  license: 'PolyForm-Noncommercial-1.0.0 (econ-review); MIT (econ-slides, econ-write)'
+  total_skills: 4
+  last_update: '2026-07-19'
+  related_project: ''
+  compatibility:
+    - claude-code
+    - codex
+  notes: >
+    Three sibling repos by the same maintainer cataloged as one pack: the
+    flagship econ-review referee skill (staged workflow with claim
+    reconstruction before critique, exhaustive audit passes, per-comment
+    verification, PDF ingestion, benchmark cases, tests, and a local
+    "Review Desk" web viewer), the paper-to-Beamer-talk skill from
+    https://github.com/hanlulong/econ-slides-skill (bundled themes, templates,
+    deck/script checkers), and the econ-write paper-writing skill from
+    https://github.com/hanlulong/econ-writing-skill (synthesizes 50+ writing
+    guides; the review skill hands off to it for implementing edits). Young
+    pack overall — the review and slides repos were created mid-July 2026,
+    days before curation; the writing repo dates to Feb 2026. A fourth
+    sibling, econ-auto-research, is a vision-statement README with no skill
+    content and is not cataloged.
+
+skills:
+  - slug: econ-review
+    name: '/econ-review'
+    kind: skill
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: 'Referee-grade review of an economics paper: reconstructs claims and evidence before judging, runs exhaustive parallel audit passes (identification, inference, proofs, tables, figures, numbers, literature frontier, writing), challenges and verifies every surviving comment, and delivers a typeset referee report plus prioritized fix plan — never rewrites the paper.'
+    source_path: 'econ-review/SKILL.md'
+    details_url: 'https://github.com/hanlulong/econ-paper-review-skill/blob/main/econ-review/SKILL.md'
+    provenance: 'econ-paper-review-skill repo curation 2026-07-23'
+    last_update: '2026-07'
+  - slug: econ-review-setup
+    name: '/econ-review-setup'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: 'Prepares, verifies, repairs, or removes the user-owned Python runtime and local Review Desk behind an installed econ-review plugin — dry-run shown first, no silent package downloads or system-software installs.'
+    source_path: 'econ-review/skills/econ-review-setup/SKILL.md'
+    details_url: 'https://github.com/hanlulong/econ-paper-review-skill/blob/main/econ-review/skills/econ-review-setup/SKILL.md'
+    provenance: 'econ-paper-review-skill repo curation 2026-07-23'
+    last_update: '2026-07'
+  - slug: econ-slides
+    name: '/econ-slides'
+    kind: skill
+    category: slides
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: 'Turns an economics paper into a compiled LaTeX/Beamer talk (conference, seminar, job-market, discussant) with strict number provenance, slide-table surgery, timed speaker scripts, and mandatory rendered-page inspection via bundled deck and script checkers.'
+    source_path: 'SKILL.md'
+    details_url: 'https://github.com/hanlulong/econ-slides-skill/blob/main/SKILL.md'
+    provenance: 'econ-slides-skill repo curation 2026-07-23'
+    last_update: '2026-07'
+  - slug: econ-write
+    name: '/econ-write'
+    kind: skill
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+      - revision-editing
+    field: economics
+    description: 'Writes and rewrites economics paper prose across every section and paper type, applying rules synthesized from 50+ guides (Cochrane, McCloskey, Shapiro, Head, Bellemare, Goldin, Kremer): reader-first triangular structure, one central contribution, concrete findings over vague previews; includes identification-strategy, LaTeX, and review-checklist references.'
+    source_path: 'skills/econ-write/SKILL.md'
+    details_url: 'https://github.com/hanlulong/econ-writing-skill/blob/main/skills/econ-write/SKILL.md'
+    provenance: 'econ-writing-skill repo curation 2026-07-23'
+    last_update: '2026-07'
