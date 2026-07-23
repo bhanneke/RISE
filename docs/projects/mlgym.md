@@ -2,7 +2,7 @@
 
 # MLGym (Meta)
 
-`external` · status: `active` · focus: `end-to-end` · discipline: `computer-science` · started: 2025
+`external` · status: `dormant` · focus: `end-to-end` · discipline: `computer-science` · started: 2025
 
 **Project page:** <https://github.com/facebookresearch/MLGym>
 

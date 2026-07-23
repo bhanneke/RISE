@@ -1,0 +1,107 @@
+slug: lifescibench
+name: "LifeSciBench"
+type: external
+status: active
+url: "https://openai.com/index/introducing-life-sci-bench/"
+maintainers:
+  - "OpenAI"
+year_started: 2026
+
+positioning: >
+  OpenAI's expert-authored benchmark (announced 2026-06-17) for
+  measuring how well AI models support real-world life-science
+  research. 750 free-response tasks span seven workflows — evidence
+  handling, analysis, design/optimization, scientific reasoning,
+  validation/operations, translation, and scientific communication —
+  across seven biological domains, each pairing a scientific prompt,
+  supporting artifacts, and an expert-written grading rubric. Sits in
+  the RISE evaluation-infrastructure layer alongside AstaBench and
+  EconCS Bench, but targets biomedical research capability.
+
+distinctive_contribution: >
+  Grades models against ~19,020 rubric criteria (~25 per task)
+  decomposing each expected answer into individual claims,
+  calculations, decisions, justifications, and caveats — authored by
+  173 PhD-level biotech/pharma scientists and validated by 453
+  independent expert reviewers (97% doctorate-holding, >96%
+  agreement). Roughly 53% of tasks attach real scientific artifacts
+  (genomic sequences, chemical structures, figures, tables, PDFs),
+  and the best model (GPT-Rosalind) clears only 36.1% of tasks —
+  with a sharp drop from text-only to artifact-bearing tasks.
+
+focus: end-to-end
+
+pipeline_stages:
+  - literature-synthesis
+  - research-design
+  - data-analysis
+  - paper-drafting
+
+architectural_features: []
+
+discipline: biomedical
+
+inputs:
+  - task-prompts
+  - scientific-artifacts
+
+outputs:
+  - rubric-scores
+  - model-pass-rates
+
+data_sources: []
+
+knowledge_sources:
+  - expert-authored-rubrics
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Benchmark spans evidence handling through communication, but is an evaluation target — it does not itself produce scholarship."
+  autonomy_level:
+    score: 0
+    note: "Static, human-authored task/rubric set; any agency lives in the models being scored."
+  architectural_transparency:
+    score: 1
+    note: "Preprint and blog document task authoring, rubric construction, and validation methodology, but no tasks, rubrics, prompts, or grading code are released."
+  inputs_supported:
+    score: 2
+    note: "Multiple input forms — text prompts plus 1,062 multimodal artifacts (genomic sequences, chemical structures, figures, tables, PDFs)."
+  outputs_reproducibility:
+    score: 0
+    note: "No public artifact; reported scores cannot be reproduced without the withheld tasks, rubrics, and grader."
+  internal_evaluation:
+    score: 2
+    note: "Systematic evaluation of five models across families with rubric-based scoring and 453 independent validators, but OpenAI selected tasks and ran the scoring — no third-party replication."
+  openness:
+    score: 0
+    note: "Benchmark not publicly downloadable at scoring date — no verifiable Hugging Face or GitHub release of tasks, rubrics, or harness; only a preprint describing it."
+  maturity_traction:
+    score: 1
+    note: "New (June 2026), professionally constructed and widely covered, but a one-off OpenAI release with no public leaderboard or external adoption yet."
+  cross_family_policy:
+    score: 0
+    note: "Not applicable — model-agnostic benchmark with no runtime or reviewer role."
+  assurance_runtime:
+    score: 0
+    note: "No runtime; task set and rubrics only."
+  cross_platform_portability:
+    score: 1
+    note: "Internally model-agnostic (evaluated GPT, Gemini, and Grok families), but the harness is not distributed, so it cannot be deployed externally."
+scored_on: "2026-07-23"
+
+limitations:
+  - "Neither the dataset nor the grading harness is publicly released, so scores cannot be independently reproduced or audited."
+  - "Single-turn evaluation only; real research is iterative and multi-turn."
+  - "OpenAI authored the tasks, ran the scoring, and chose the comparison set (which omits Claude), inviting self-evaluation bias."
+
+related:
+  - econcs-bench
+  - asta-bench
+  - naturebench
+  - robin
+
+# ── Papers describing this project ─────────────────────
+papers: []  # OpenAI preprint referenced in the announcement; no canonical arXiv ID verified at scoring date.
+
+references: []

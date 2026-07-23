@@ -2,7 +2,7 @@
 
 # data-to-paper
 
-`external` · status: `active` · focus: `end-to-end` · discipline: `general` · started: 2023
+`external` · status: `dormant` · focus: `end-to-end` · discipline: `general` · started: 2023
 
 **Project page:** <https://github.com/Technion-Kishony-lab/data-to-paper>
 

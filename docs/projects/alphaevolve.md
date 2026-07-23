@@ -27,7 +27,7 @@ An evolutionary-search harness over LLM-generated code that decouples *generatio
 | Outputs / reproducibility | 2 | Discovered artifacts (programs, mathematical constructions) are durable and verifiable; the discovery *process* requires Google compute and is not externally reproducible. |
 | Internal evaluation | 3 | Evaluation is by construction — every candidate is scored by the automated evaluator. 67-problem benchmark in Georgiev et al. provides external validation. |
 | Openness | 0 | Closed-source, gated behind Google DeepMind's Early Access Program for selected academic users. |
-| Maturity / traction | 2 | Active research project at Google DeepMind; whitepaper + multiple high-profile follow-up papers (including Terence Tao as co-author on Georgiev et al.). |
+| Maturity / traction | 2 | Reached general availability on Google Cloud (Gemini Enterprise Agent Platform) 2026-07-19 with enterprise customers (BASF, JetBrains, Klarna); whitepaper + high-profile follow-up papers (including Terence Tao as co-author on Georgiev et al.). |
 | Cross-family policy | 0 | Single model family (Gemini Pro/Flash) within Google DeepMind. |
 | Runtime assurance | 3 | Automated evaluator runs on every candidate as part of the search loop; this is the assurance layer by construction. |
 | Cross-platform portability | 0 | Tightly coupled to Google internal infrastructure and Gemini API; not portable. |

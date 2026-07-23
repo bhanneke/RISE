@@ -1,0 +1,119 @@
+slug: reprorepo
+name: "ReproRepo"
+type: external
+status: active
+url: "https://github.com/LithiumDA/ReproRepo"
+maintainers:
+  - "Shanda Li and collaborators (Carnegie Mellon University)"
+year_started: 2026
+
+positioning: >
+  A framework (arXiv:2606.18237) for building issue-grounded
+  reproducibility-audit benchmarks from paper-repository pairs: it
+  collects conference paper metadata and repo links, curates
+  reproducibility-related GitHub issues via LLM review, pins fixed
+  paper/repository snapshots, runs blind static-audit agents, and
+  scores whether agent findings match hidden human-reported
+  reproduction blockers. Evaluated at scale on 1,149 ML papers. Sits
+  in the RISE evaluation-infrastructure layer and speaks directly to
+  the replication-infrastructure interest.
+
+distinctive_contribution: >
+  Uses human-raised GitHub issues as naturally occurring ground truth
+  for reproducibility auditing — sidestepping both expensive expert
+  annotation and full re-execution — under a blind protocol in which
+  agents audit paper + repo snapshots without ever seeing the hidden
+  issues. The best baseline (Codex with GPT-5.5) surfaces at least
+  one semantically related human-reported blocker for roughly 90% of
+  papers; the CMU team includes Shah, Talwalkar, Dettmers, and Yang.
+
+focus: replication
+
+pipeline_stages:
+  - replication
+
+architectural_features:
+  - tool-use
+
+discipline: computer-science
+
+inputs:
+  - paper-repository-pairs
+  - github-issues
+
+outputs:
+  - benchmark-case-sets
+  - audit-findings
+  - alignment-scores
+
+data_sources:
+  - github-issues
+  - openreview-metadata
+
+knowledge_sources:
+  - human-reported-issues
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Audit / benchmark infrastructure targeting the replication stage; does not produce scholarship itself."
+  autonomy_level:
+    score: 0
+    note: "Scripted benchmark-construction pipeline; the audit agents (Codex, Claude Code) are baselines under evaluation, not the system's own agency."
+  architectural_transparency:
+    score: 3
+    note: "Full pipeline code, prompt and repository-text ablation variants, runner wrappers with Dockerfiles, and step-by-step pipeline documentation."
+  inputs_supported:
+    score: 1
+    note: "One composite input form (paper PDF + pinned repository snapshot) plus GitHub-issue and OpenReview/Paper-Copilot metadata access."
+  outputs_reproducibility:
+    score: 1
+    note: "Only lightweight aggregate CSVs are released; benchmark cases, snapshots, and agent outputs must be regenerated with credentials and nondeterministic LLM stages."
+  internal_evaluation:
+    score: 2
+    note: "Systematic evaluation across 1,149 papers with ablations and run-variance analysis; arXiv preprint, not yet peer-reviewed."
+  openness:
+    score: 2
+    note: "MIT-licensed, uv-managed, with an API-free smoke test; full pipeline requires GitHub plus model API credentials and data regeneration."
+  maturity_traction:
+    score: 1
+    note: "Weeks old (June 2026), 6 stars, single-team use; prominent CMU authorship (Shah, Talwalkar, Dettmers, Yang)."
+  cross_family_policy:
+    score: 1
+    note: "Audit runners (Codex CLI, Claude Code, DeepSeek-backed) and the LLM issue-review/alignment stages are separately configurable — cross-family judging is possible but not a stated policy."
+  assurance_runtime:
+    score: 1
+    note: "Structured issue-case schema, LLM accept/reject case filtering, and the blind-snapshot protocol gate benchmark construction; no runtime audit stack."
+  cross_platform_portability:
+    score: 2
+    note: "Three runner back-ends (Codex CLI, Claude Code, Claude Code with DeepSeek) with Dockerfiles — three model providers."
+scored_on: "2026-07-23"
+
+limitations:
+  - "Ground truth covers only blockers users chose to report as GitHub issues; silent or unreported reproducibility failures are invisible to the benchmark."
+  - "Static audits only — agents read paper and repository without executing code, so failures that surface only at runtime are out of scope."
+  - "Released artifacts are aggregate result tables; rebuilding the full benchmark depends on live GitHub state, API credentials, and nondeterministic LLM curation stages."
+
+related:
+  - social-science-replicability
+  - paper2code
+  - asta-bench
+  - mlgym
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'ReproRepo: Scaling Reproducibility Audits with GitHub Repository Issues'
+    authors:
+      - 'Li, S.'
+      - 'Wei, Q. A.'
+      - 'Tang, J.'
+      - 'Chen, V.'
+      - 'Shah, N. B.'
+      - 'Dettmers, T.'
+      - 'Yang, Y.'
+      - 'Talwalkar, A.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2606.18237'
+
+references: []

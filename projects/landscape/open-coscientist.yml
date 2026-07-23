@@ -1,7 +1,7 @@
 slug: open-coscientist
 name: "Open CoScientist Agents"
 type: external
-status: dormant
+status: archived
 url: "https://github.com/conradry/open-coscientist-agents"
 maintainers:
   - "conradry"

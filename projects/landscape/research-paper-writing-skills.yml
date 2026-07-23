@@ -1,0 +1,107 @@
+slug: research-paper-writing-skills
+name: "Research Paper Writing Skills"
+type: external
+status: active
+url: "https://github.com/Master-cai/Research-Paper-Writing-Skills"
+maintainers:
+  - "Xudong Cai (Renmin University of China)"
+year_started: 2026
+
+positioning: >
+  A single portable skill package (`research-paper-writing/`) for
+  ML/CV/NLP paper writing: a SKILL.md core workflow plus eight
+  section-specific reference guides (abstract, introduction, related
+  work, method, experiments, conclusion, paper review, paragraph
+  flow) and an example bank, curated and adapted from Prof. Peng
+  Sida's (Zhejiang University) widely used open research-writing
+  notes. Installs by directory copy into Codex, Claude Code, or
+  Gemini CLI. Sits in the skills/knowledge-asset layer alongside
+  Academic Research Skills, but is content-first: distilled human
+  writing pedagogy packaged as agent-consumable markdown rather than
+  an engineered agent pipeline.
+
+distinctive_contribution: >
+  Packages a respected researcher's writing methodology — reverse
+  outlining, one-message-per-paragraph, claim-evidence alignment as
+  a hard constraint, adversarial self-review from a reviewer mindset
+  — into a runtime-portable skill with explicit provenance (MIT,
+  with attribution to Peng's notes and repository). 5.4k stars in
+  under four months is the clearest demonstration in the catalog
+  that expert-curated writing knowledge, not orchestration
+  machinery, is itself a distributable artifact.
+
+focus: drafting
+
+pipeline_stages:
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+
+architectural_features:
+  - single-llm
+
+discipline: computer-science
+
+inputs:
+  - paper-draft
+  - section-drafts
+
+outputs:
+  - revised-paper-sections
+  - self-review-reports
+
+data_sources: []
+
+knowledge_sources:
+  - curated-writing-guides
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three adjacent stages (drafting, revision, reviewer-style self-review); no literature, analysis, or dissemination coverage."
+  autonomy_level:
+    score: 0
+    note: "Pure assist content: the host agent rewrites paragraph-by-paragraph under prescribed human iteration; no autonomous pipeline of its own."
+  architectural_transparency:
+    score: 3
+    note: "The entire artifact is public markdown — SKILL.md workflow, all reference guides, example bank, and agent metadata; nothing is hidden."
+  inputs_supported:
+    score: 1
+    note: "One input form (draft prose for any section) plus a bundled reference/example knowledge base; no live literature or data access."
+  outputs_reproducibility:
+    score: 1
+    note: "Revised prose persists only via the host runtime's file edits; the skill itself versions or packages nothing."
+  internal_evaluation:
+    score: 0
+    note: "No evaluation of skill effectiveness; credibility rests on the provenance of the source notes."
+  openness:
+    score: 3
+    note: "MIT-licensed plain markdown; install is a documented directory copy that reproduces the full artifact on any machine."
+  maturity_traction:
+    score: 2
+    note: "5,449 stars / 269 forks within ~4 months (created 2026-03-05) show broad adoption, but the repo is a 6-commit content drop with no releases, no issue activity, and a single curator; last push 2026-06-23."
+  cross_family_policy:
+    score: 0
+    note: "Not applicable — passive model-agnostic content with no executor/reviewer configuration."
+  assurance_runtime:
+    score: 1
+    note: "Claim-evidence alignment as a 'hard constraint' and a final adversarial review pass are mandated in the workflow, but purely at prompt level — nothing enforces or gates them."
+  cross_platform_portability:
+    score: 3
+    note: "Deliberately skills-as-Markdown: three officially documented runtimes (Codex, Claude Code, Gemini CLI) and the plain SKILL.md format is consumable by any skills-capable agent runtime."
+scored_on: "2026-07-23"
+
+limitations:
+  - "Writing-block only: assumes finished research; no literature, data, or analysis support, and guidance is tuned to ML/CV/NLP conference conventions."
+  - "Effectiveness is unevaluated — value depends entirely on how faithfully the host model follows the prescribed workflow; the mandated claim-evidence checks are unenforced prompt instructions."
+  - "Essentially static since creation (6 commits, no releases, single curator); derivative curation of Peng Sida's notes, so upstream updates do not propagate automatically."
+
+related:
+  - academic-research-skills
+  - auto-empirical-research-skills
+  - clo-author
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper; source material is Peng Sida's open notes (github.com/pengsida/learning_research).
+
+references: []

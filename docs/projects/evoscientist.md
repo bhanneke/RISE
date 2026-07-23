@@ -27,12 +27,12 @@ Strongest external-benchmark trajectory in the catalog: #1 on DeepResearch Bench
 | Outputs / reproducibility | 2 | Persistent memory enables session-to-session continuity; benchmark submissions have reproducible runs. |
 | Internal evaluation | 3 | External validation: top-ranked on four agentic-research benchmarks; ICAIS 2025 peer-reviewed acceptance with multiple awards. |
 | Openness | 3 | Apache-2.0; PyPI package; companion EvoSkills repo; multi-provider configuration. |
-| Maturity / traction | 3 | 3.1k+ stars; sustained leaderboard performance; multi-IDE + multi-channel deployments; ICAIS 2025 recognition. |
+| Maturity / traction | 3 | 4.3k+ stars; 13 releases 2026-05→07 (v0.2.3, incl. v0.2.0 'Autonomy milestone'); PyPI package + evoscientist.ai site; sustained leaderboard performance; ICAIS 2025 recognition. |
 | Cross-family policy | 1 | Multi-provider configuration (Anthropic, OpenAI, Google, MiniMax, NVIDIA) supports cross-family setups but no required policy. |
 | Runtime assurance | 2 | Per-turn adaptive tool selection + context editing + 'More Effort' code-generation refinement loop provide moderate runtime gating; no published claim-audit harness comparable to ARIS or ARS. |
 | Cross-platform portability | 3 | Framework-agnostic by design: CLI hub + Telegram + Slack + Feishu + WeChat + mobile; multi-provider config. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

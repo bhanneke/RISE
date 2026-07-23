@@ -65,4 +65,4 @@ Focuses the agentic-research conversation on *replication of existing papers* ra
 
 ## Papers describing this project
 
-- **Read the Paper, Write the Code: Agentic Reproduction of Social-Science Results** — Köhler, B., Zollikofer, D., Einsiedler, A., Hoyle, A., Ash, E. (2026). *working paper*. [link](https://elliottash.com/wp-content/uploads/2026/04/Kohler-Zollikofer-Einsiedler-Hoyle-Ash-Read-Paper-Write-Code-Agentic-Reproduction-Social-Science-Results.pdf)
+- **Read the Paper, Write the Code: Agentic Reproduction of Social-Science Results** — Köhler, B., Zollikofer, D., Einsiedler, A., Hoyle, A., Ash, E. (2026). *arXiv*. [arXiv:2604.21965](https://arxiv.org/abs/2604.21965)

@@ -2,7 +2,7 @@
 
 # Open CoScientist Agents
 
-`external` · status: `dormant` · focus: `ideation` · discipline: `general` · started: 2025
+`external` · status: `archived` · focus: `ideation` · discipline: `general` · started: 2025
 
 **Project page:** <https://github.com/conradry/open-coscientist-agents>
 

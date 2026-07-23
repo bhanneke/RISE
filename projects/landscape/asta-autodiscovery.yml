@@ -1,0 +1,119 @@
+slug: asta-autodiscovery
+name: "Asta AutoDiscovery"
+type: external
+status: active
+url: "https://allenai.org/blog/autodiscovery"
+maintainers:
+  - "Allen Institute for AI (Ai2)"
+year_started: 2025
+
+positioning: >
+  Ai2's autonomous data-driven discovery agent (formerly AutoDS;
+  relaunched inside AstaLabs on 2026-02-12): pointed at a structured
+  dataset, it generates natural-language hypotheses, proposes
+  experiment plans, writes and executes Python analyses — up to 500
+  experiments in a session — and ranks the resulting findings by
+  Bayesian surprise, the shift from the LLM's prior to posterior
+  belief in each hypothesis. Sits at the hypothesis-generation →
+  data-analysis → code-generation slice of the pipeline; no
+  literature layer and no paper drafting.
+
+distinctive_contribution: >
+  The first production discovery agent to use Bayesian surprise as
+  the objective: an MCTS search with progressive widening treats
+  surprisal as reward, so the system hunts belief-shifting findings
+  rather than confirmations. Early-access users have generated 46K+
+  hypotheses across oncology, neuroscience, climate science, and the
+  social sciences, and several independently verified social-science
+  findings were published in a peer-reviewed paper (arXiv:2511.12529).
+
+focus: ideation
+
+pipeline_stages:
+  - hypothesis-generation
+  - data-analysis
+  - code-generation
+
+architectural_features:
+  - tool-use
+  - iterative-loop
+
+discipline: general
+
+inputs:
+  - structured-dataset
+
+outputs:
+  - ranked-hypotheses
+  - experiment-code
+  - statistical-results
+
+data_sources:
+  - user-provided
+
+knowledge_sources:
+  - llm-prior-beliefs
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three adjacent stages (hypothesis generation, analysis, code); no literature discovery, drafting, or review."
+  autonomy_level:
+    score: 3
+    note: "User points it at a dataset; it then runs hundreds of hypothesis-experiment cycles over several hours without per-step approval."
+  architectural_transparency:
+    score: 3
+    note: "NeurIPS 2025 paper plus open code: research implementation (allenai/autodiscovery, with DiscoveryBench/BLADE evaluation) and Apache-2.0 production code (allenai/asta-autodiscovery)."
+  inputs_supported:
+    score: 1
+    note: "Single input form — a structured dataset with metadata; data access but no literature-corpus integration."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists hypotheses, executable Python code, and statistical results per run, but hosted service deletes source datasets after 7 days and MCTS/LLM stochasticity limits exact reruns."
+  internal_evaluation:
+    score: 3
+    note: "Peer-reviewed at NeurIPS 2025 (21-dataset evaluation, expert judgment on two-thirds of discoveries); downstream social-science findings independently verified and published."
+  openness:
+    score: 2
+    note: "Apache-2.0 code and pip/conda install for the research implementation, but end-to-end reproduction of the hosted product's runs not demonstrated; hosted access is credit-gated early access through 2026-07-31."
+  maturity_traction:
+    score: 2
+    note: "Early-access beta inside AstaLabs with external users across many domains (46K+ hypotheses); production repo under active development."
+  cross_family_policy:
+    score: 0
+    note: "Exploration and belief models are configurable, but documented setups are single-family (OpenAI gpt-4o for both); no cross-family review design."
+  assurance_runtime:
+    score: 1
+    note: "Hypotheses are checked by actually executing statistical experiments before ranking, but there is no independent claim audit, citation grounding, or multiple-testing gate."
+  cross_platform_portability:
+    score: 1
+    note: "Two execution paths — hosted AstaLabs app and self-hosted CLI — with OpenAI-model examples only."
+scored_on: "2026-07-23"
+
+limitations:
+  - "Structured-dataset discovery only: 'surprise' is measured against the LLM's beliefs, not the published literature, so rediscoveries and spurious-correlation artifacts must be screened by domain experts."
+  - "Hosted service is gated early access (hypothesis credits, costs subsidized only through 2026-07-31) and deletes source datasets 7 days after analysis."
+  - "Surprisal-driven search over hundreds of automated experiments raises multiple-comparisons risk; flagged findings are candidates for validation, not conclusions."
+
+related:
+  - asta-bench
+  - kosmos
+  - data-to-paper
+  - google-co-scientist
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'AutoDiscovery: Open-ended Scientific Discovery via Bayesian Surprise'
+    authors:
+      - 'Agarwal, D.'
+      - 'Majumder, B. P.'
+      - 'Adamson, R.'
+      - 'Chakravorty, M.'
+      - 'Gavireddy, S. R.'
+      - 'Parashar, A.'
+      - 'et al.'
+    year: 2025
+    venue: 'NeurIPS 2025'
+    arxiv_id: '2507.00310'
+
+references: []

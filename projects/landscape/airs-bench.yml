@@ -1,0 +1,118 @@
+slug: airs-bench
+name: "AIRS-Bench (Meta FAIR)"
+type: external
+status: active
+url: "https://github.com/facebookresearch/airs-bench"
+maintainers:
+  - "Meta AI / FAIR"
+year_started: 2026
+
+positioning: >
+  A benchmark (arXiv:2602.06855) quantifying the end-to-end AI
+  research abilities of LLM agents: 20 tasks sourced from 17
+  state-of-the-art ML papers across language modeling, code
+  generation, mathematics, biochemical modeling, and time-series
+  forecasting. Each task is a <problem, dataset, metric> triplet with
+  a published SOTA anchor that agents must match or exceed — spanning
+  idea, experiment, and refinement work — with no baseline code
+  provided. Sits in the RISE evaluation-infrastructure layer
+  alongside AstaBench, MLGym, and Aviary.
+
+distinctive_contribution: >
+  Anchors agent performance to *published human SOTA* rather than
+  synthetic targets: a normalized score (0 = worst observed, 1 =
+  SOTA) plus Elo ratings and valid-submission rates, computed over
+  14 agent configurations at 10-20 seeds each. The companion paper
+  reports agents exceeding human SOTA on four tasks while failing to
+  match it on sixteen — an explicitly unsaturated target set for
+  end-to-end ML research agents.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - data-analysis
+  - code-generation
+
+architectural_features: []
+
+discipline: computer-science
+
+inputs:
+  - task-specification
+  - agent-implementation
+
+outputs:
+  - evaluation-metrics
+  - agent-trajectories
+
+data_sources:
+  - benchmark-datasets
+
+knowledge_sources:
+  - source-papers
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Evaluation infrastructure; quantifies the research ability of other systems, does not produce scholarship itself."
+  autonomy_level:
+    score: 0
+    note: "Static task specs plus a scoring harness; all agency lives in the LLM agents being evaluated."
+  architectural_transparency:
+    score: 3
+    note: "Public code, YAML task definitions, HuggingFace-hosted datasets, scoring notebooks, and a 36-author arXiv paper documenting the full evaluation setup."
+  inputs_supported:
+    score: 2
+    note: "20 standardized task specs across five ML domains, runnable under two documented scaffolding frameworks (aira-dojo and MLGym)."
+  outputs_reproducibility:
+    score: 2
+    note: "Fixed <problem, dataset, metric> triplets with SOTA anchors and seeded multi-run reporting; agent-run stochasticity limits exact reruns."
+  internal_evaluation:
+    score: 2
+    note: "Systematic evaluation of 14 agent configurations at 10-20 seeds in the companion arXiv paper; not yet peer-reviewed or third-party replicated."
+  openness:
+    score: 1
+    note: "Fully public but CC BY-NC 4.0 — non-permissive, research-only reuse (stricter reading of the rubric than mlgym's earlier score)."
+  maturity_traction:
+    score: 2
+    note: "104 stars, Meta institutional backing, active development Jan-May 2026, companion paper with headline cross-model results."
+  cross_family_policy:
+    score: 0
+    note: "Not applicable — model-agnostic evaluation target; baselines span families (GPT-4o, o3-mini, gpt-oss, Devstral, CWM) but there is no executor/reviewer pairing of its own."
+  assurance_runtime:
+    score: 1
+    note: "Automated metric scoring plus valid-submission checks; no in-flight integrity gating during agent runs."
+  cross_platform_portability:
+    score: 2
+    note: "YAML task specs consumable by two agent runtimes (aira-dojo, MLGym) and any model provider; Python 3.12 + conda required."
+scored_on: "2026-07-23"
+
+limitations:
+  - "CC BY-NC 4.0 license restricts commercial reuse of tasks and code."
+  - "Evaluation infrastructure — value depends on downstream agent systems being benchmarked."
+  - "SOTA anchors are snapshots: normalized scores will drift in meaning as human state of the art advances; matching them requires substantial GPU budgets."
+
+related:
+  - mlgym
+  - asta-bench
+  - aviary
+  - econcs-bench
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'AIRS-Bench: a Suite of Tasks for Frontier AI Research Science Agents'
+    authors:
+      - 'Lupidi, A.'
+      - 'Gauri, B.'
+      - 'Foster, T. S.'
+      - 'Al Omari, B.'
+      - 'Magka, D.'
+      - 'Pepe, A.'
+      - 'et al.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2602.06855'
+
+references: []

@@ -70,7 +70,7 @@ scores:
     note: "Apache-2.0; PyPI; MCP registry listing; community channels (Slack, WeChat)."
   maturity_traction:
     score: 2
-    note: "1.3k+ stars; Harvard institutional backing; recent and active (last push 2026-05)."
+    note: "1.6k+ stars; Harvard institutional backing; very active (v1.3.1 2026-07-02, ~100 commits since May); featured in Nature Methods (May 2026)."
   cross_family_policy:
     score: 1
     note: 'Tool registry; LLM-agnostic by design — cross-family configurable.'

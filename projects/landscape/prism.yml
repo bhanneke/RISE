@@ -1,0 +1,115 @@
+slug: prism
+name: "Prism"
+type: external
+status: active
+url: "https://openai.com/prism/"
+maintainers:
+  - "OpenAI"
+year_started: 2026
+
+positioning: >
+  OpenAI's free AI-native LaTeX workspace for scientific writing and
+  collaboration, launched late January 2026 on Crixet, a cloud LaTeX
+  platform OpenAI acquired. GPT-5.2 (upgraded to GPT-5.3 with Codex
+  CLI in March 2026) operates inside the document with access to the
+  paper's structure, equations, citations, and figures, covering
+  drafting, revision, real-time collaboration, arXiv-backed
+  referencing, and publication prep. Sits in the writing layer of
+  the RISE pipeline — the manuscript-workspace counterpart to
+  workbench products like Claude Science.
+
+distinctive_contribution: >
+  First big-lab product to make the manuscript itself the AI-native
+  surface: the model is embedded in the LaTeX project rather than
+  bolted on as a chat sidecar, and the workspace is free with
+  unlimited projects and collaborators on a personal ChatGPT
+  account. Converts whiteboard/handwritten sketches to LaTeX,
+  auto-finds and formats arXiv references, and — since the March
+  2026 Codex integration — runs Python/R in-workspace with
+  compile-check-revise self-repair loops for LaTeX errors.
+
+focus: drafting
+
+pipeline_stages:
+  - literature-discovery
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+  - dissemination
+
+architectural_features:
+  - single-llm
+  - tool-use
+  - iterative-loop
+
+discipline: general
+
+inputs:
+  - latex-project
+  - natural-language-instructions
+  - whiteboard-sketches
+  - data-files
+
+outputs:
+  - latex-manuscripts
+  - formatted-bibliographies
+  - figures
+  - compiled-pdfs
+
+data_sources:
+  - user-provided
+
+knowledge_sources:
+  - arxiv
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Six stages centered on the writing layer (reference search, in-workspace analysis/code since March 2026, drafting, revision, publication prep); nothing upstream of the manuscript."
+  autonomy_level:
+    score: 1
+    note: "Copilot: the researcher authors the paper; the in-document model drafts, edits, and self-repairs LaTeX on request, with the human approving changes."
+  architectural_transparency:
+    score: 1
+    note: "Model identity (GPT-5.2/5.3-Codex), Crixet foundation, and in-document context integration disclosed; no prompts, code, or architecture documentation beyond marketing."
+  inputs_supported:
+    score: 2
+    note: "Multiple input forms (LaTeX projects, natural-language and voice instructions, sketch photos, data files) plus arXiv literature access; no private-corpus integration."
+  outputs_reproducibility:
+    score: 2
+    note: "Cloud projects persist LaTeX source, bibliographies, and (post-March) executed code and generated figures; no Git integration, limited version-history transparency, no reproducibility manifest."
+  internal_evaluation:
+    score: 0
+    note: "No published evaluation, benchmark, or systematic quality evidence in launch or upgrade coverage at scoring date."
+  openness:
+    score: 1
+    note: "Closed-source, but the hosted service is free with a personal ChatGPT account (unlimited projects/collaborators); advanced AI features expected to move behind paid tiers."
+  maturity_traction:
+    score: 2
+    note: "Production launch (Jan 2026) on an acquired platform, open globally to ChatGPT Free/Go/Plus/Pro with a major March upgrade; no adoption numbers disclosed."
+  cross_family_policy:
+    score: 0
+    note: "OpenAI models only (GPT-5.2, then GPT-5.3 with Codex CLI); no cross-family configuration."
+  assurance_runtime:
+    score: 1
+    note: "Compile-check-revise self-repair loops and arXiv-grounded citation insertion; no claim-audit, fact-check, or figure-integrity gates."
+  cross_platform_portability:
+    score: 0
+    note: "Single hosted web surface tied to one provider; no self-hosting, IDE integrations, or alternative runtimes."
+scored_on: "2026-07-23"
+
+limitations:
+  - "Closed-source hosted service: manuscripts live in OpenAI's cloud with only the standard ChatGPT training opt-out; no self-hosting or audit path."
+  - "No native Git integration and limited version-history transparency; early reviews describe it as a functional silo disconnected from external codebases."
+  - "Locked to OpenAI models, and the free tier is strategic — advanced AI features are slated to require paid ChatGPT subscriptions."
+
+related:
+  - storm
+  - autosurvey
+  - research-paper-writing-skills
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper; launch post: https://openai.com/index/introducing-prism/
+
+references: []

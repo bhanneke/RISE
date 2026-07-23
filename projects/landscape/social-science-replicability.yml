@@ -101,7 +101,8 @@ papers:
       - 'Hoyle, A.'
       - 'Ash, E.'
     year: 2026
-    venue: 'working paper'
+    venue: 'arXiv'
+    arxiv_id: '2604.21965'
     url: 'https://elliottash.com/wp-content/uploads/2026/04/Kohler-Zollikofer-Einsiedler-Hoyle-Ash-Read-Paper-Write-Code-Agentic-Reproduction-Social-Science-Results.pdf'
 
 references: []

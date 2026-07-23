@@ -77,7 +77,7 @@ scores:
     note: "Source open under Apache-2.0, but full functionality gated behind commercial API credits."
   maturity_traction:
     score: 2
-    note: "301 stars; FutureHouse backing; recent (April 2026)."
+    note: "633 stars; FutureHouse backing; published in Nature 2026-05-19, though repo unchanged since 2026-04."
   cross_family_policy:
     score: 1
     note: 'Edison platform agents + OpenAI/other via LiteLLM — cross-family supported.'
@@ -110,8 +110,9 @@ papers:
       - 'Szostkiewicz, C. J.'
       - 'Laurent, J. M.'
       - 'et al.'
-    year: 2025
-    venue: 'arXiv'
+    year: 2026
+    venue: 'Nature'
+    doi: '10.1038/s41586-026-10652-y'
     arxiv_id: '2505.13400'
 
 

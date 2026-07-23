@@ -1,7 +1,7 @@
 slug: open-scholar
 name: "OpenScholar (AI2)"
 type: external
-status: active
+status: dormant
 url: "https://github.com/AkariAsai/OpenScholar"
 maintainers:
   - "Akari Asai"

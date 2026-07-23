@@ -1,0 +1,126 @@
+slug: openscience
+name: "OpenScience"
+type: external
+status: active
+url: "https://github.com/synthetic-sciences/openscience"
+maintainers:
+  - "Synthetic Sciences (Ishaan Gangwani, Aayam Bansal)"
+year_started: 2026
+
+positioning: >
+  An open-source (Apache-2.0), model-agnostic AI workbench for
+  scientific research, launched 2026-07-03 as an explicit open
+  alternative to Claude Science: a Bun/TypeScript monorepo whose CLI
+  starts a local server hosting a browser workspace, an agent
+  runtime (default `research` agent plus `biology`/`physics`/`ml`
+  specialists with critique and literature-review sub-agents), 292
+  bundled markdown skills, and ~30 scientific-database connectors
+  (UniProt, PDB, ChEMBL, PubChem, arXiv, OpenAlex, Semantic
+  Scholar). Sits in the big-lab workbench layer alongside Claude
+  Science, Prism, and Google Co-Scientist, but self-hosted and
+  bring-your-own-key.
+
+distinctive_contribution: >
+  The first credible open-source counterweight to the closed
+  research workbenches: per-request model routing across 75+
+  providers, local-first operation with no account required, and
+  the entire stack — prompts, agents, skills, connectors, SDK,
+  plugin runtime — auditable and editable in one repo, with an
+  optional managed platform (Atlas) kept strictly non-required.
+  Ships an RSI trajectory critic (correctness / efficiency /
+  coverage / reproducibility, 0-100) and an optional blind-reviewer
+  gate at session finalize.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - literature-discovery
+  - literature-synthesis
+  - data-acquisition
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - iterative-loop
+  - persistent-memory
+  - artifact-versioning
+
+discipline: general
+
+inputs:
+  - research-goal-prompt
+  - project-directory
+  - user-datasets
+
+outputs:
+  - analysis-artifacts
+  - experiment-code
+  - figures
+  - manuscript-drafts
+
+data_sources:
+  - scientific-databases
+  - user-provided
+
+knowledge_sources:
+  - arxiv
+  - openalex
+  - semantic-scholar
+  - curated-skill-library
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Eight stages from hypothesis through write-up; the peer-review skill and blind-reviewer gate are optional runtime checks, not a declared referee-simulation or dissemination stage."
+  autonomy_level:
+    score: 2
+    note: "Supervised agent: user sets a goal, the agent runs the research loop with tool permissions and a read-only plan mode; user reviews the resulting artifacts."
+  architectural_transparency:
+    score: 3
+    note: "Full code, agent prompts (per-provider prompt files), skills, connectors, config schema, ARCHITECTURE.md and AGENTS.md all public; released builds fetch the skill catalog from the Atlas index, source builds bundle it."
+  inputs_supported:
+    score: 3
+    note: "Goal prompts, existing project directories, and local datasets; literature APIs (arXiv, OpenAlex, Semantic Scholar, Europe PMC) plus ~30 scientific databases, with private local data by construction."
+  outputs_reproducibility:
+    score: 2
+    note: "Sessions, artifacts, and provenance persist on disk and are shareable as links, and the critic scores reproducibility — but end-to-end re-runnability from declared inputs is not demonstrated."
+  internal_evaluation:
+    score: 1
+    note: "Demo sessions and launch write-ups only; no benchmark results or third-party evaluation of research-output quality published."
+  openness:
+    score: 2
+    note: "Apache-2.0, npm-installable, BYOK free and non-gated; demo examples need paid provider keys and heavier experiments need cloud compute, so reproducibility on commodity hardware is partial."
+  maturity_traction:
+    score: 1
+    note: "2,696 stars / 374 forks in under three weeks amid a coordinated 'open Claude Science alternative' press cycle; velocity is plausible for the niche and no direct evidence of star manipulation was found (star-timestamp audit unavailable), but the core team is 2-3 people and v1.3.4 landed eight days after repo creation — too young to call durable adoption."
+  cross_family_policy:
+    score: 1
+    note: "Per-request routing across 75+ providers makes cross-family executor/reviewer setups configurable (e.g., critique sub-agent on another family), but cross-family review is neither default nor required."
+  assurance_runtime:
+    score: 1
+    note: "Optional blind-reviewer gate at finalize plus RSI trajectory critic and tool-permission prompts; all optional, with no mandatory claim-audit or citation-verification gating."
+  cross_platform_portability:
+    score: 2
+    note: "75+ model providers and macOS/Windows/Linux via npm or platform binaries, but a single self-contained runtime — not deployable across other agent frameworks."
+scored_on: "2026-07-23"
+
+limitations:
+  - "Near-twin disambiguation: ai4s-research/open-science (~900 stars, created the same day, since rebranded 'Open Science Desktop') is not a fork or mirror but an independently built Tauri desktop app on an attributed OpenCode sidecar, from an anonymous org registered 2026-06-27 with bot-named commits and the name-adjacent domain openedscience.com; org identity (Synthetic Sciences, est. 2025, named maintainers), npm distribution (@synsci/openscience), the openscience.sh docs domain, and launch press mark synthetic-sciences/openscience as the canonical OpenScience — but the namespace confusion persists."
+  - "Runtime provenance is under-disclosed: the agent core closely mirrors the MIT-licensed OpenCode CLI (identical provider-prompt file set — anthropic.txt, beast.txt, gemini.txt, qwen.txt — and session-module layout), yet the NOTICE file credits no OpenCode lineage."
+  - "Three weeks old with a 2-3 person team and no published evaluation of output quality; by the project's own security note the agent is not sandboxed — the permission system is not an isolation boundary."
+
+related:
+  - claude-science
+  - google-co-scientist
+  - kosmos
+  - tooluniverse
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper; launch coverage: MarkTechPost 2026-07-05, docs at https://openscience.sh/docs
+
+references: []

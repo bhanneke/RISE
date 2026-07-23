@@ -1,0 +1,123 @@
+slug: claude-science
+name: "Claude Science"
+type: external
+status: active
+url: "https://claude.com/product/claude-science"
+maintainers:
+  - "Anthropic"
+year_started: 2026
+
+positioning: >
+  Anthropic's AI workbench for researchers ("Claude Code for
+  science"), announced 2026-06-30: a desktop app (macOS/Linux) in
+  which a generalist coordinating agent with 60+ curated skills and
+  connectors spawns specialist agents to run literature analysis,
+  database queries, multistep data analyses, figure iteration, and
+  manuscript drafting, with compute spanning the local machine, HPC
+  clusters via SSH, and Modal GPUs. Covers a broad slice of the RISE
+  pipeline from literature work through manuscript refinement, in
+  the same big-lab workbench layer as Prism and Google Co-Scientist.
+
+distinctive_contribution: >
+  Auditable-artifact design: every figure ships with a
+  reproducibility package (exact code, computational environment,
+  plain-language methodology, full message history), and a
+  background reviewer agent flags incorrect citations, untraceable
+  numbers, and figures that don't match their underlying code as
+  work progresses. Deepest pre-configured life-science stack of any
+  big-lab offering — 60+ databases (UniProt, PDB, Ensembl, ChEMBL),
+  NVIDIA BioNeMo Agent Toolkit, Evo 2, Boltz-2, OpenFold3 — backed
+  by a grants program of $30,000 in credits for up to 50 AI-for-
+  science projects (applications closed 2026-07-15).
+
+focus: end-to-end
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - research-design
+  - data-acquisition
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - persistent-memory
+  - iterative-loop
+  - artifact-versioning
+
+discipline: general
+
+inputs:
+  - research-task-prompt
+  - user-datasets
+  - custom-skills-connectors
+
+outputs:
+  - analysis-artifacts
+  - reproducibility-packages
+  - figures
+  - manuscript-drafts
+
+data_sources:
+  - scientific-databases
+  - user-provided
+
+knowledge_sources:
+  - curated-skills-connectors
+  - scientific-literature
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Eight stages from literature through manuscript refinement, but no declared referee-simulation or dissemination stage; the background reviewer is a runtime check, not a review stage."
+  autonomy_level:
+    score: 2
+    note: "Supervised agent: user sets the task; coordinating agent spawns specialists, manages compute, and self-corrects, with the user reviewing resulting artifacts."
+  architectural_transparency:
+    score: 1
+    note: "Coordinator/specialist/reviewer agent topology, skills-and-connectors model, and compute management documented at a high level; no code, prompts, or orchestration internals."
+  inputs_supported:
+    score: 3
+    note: "Research prompts, own datasets, and custom skills/connectors to lab tools; both literature access and 60+ scientific databases, plus private data via SSH to users' own clusters."
+  outputs_reproducibility:
+    score: 3
+    note: "Headline design: every artifact ships with exact code, computational environment, plain-language methodology, and full message history — vendor-described, not yet independently verified."
+  internal_evaluation:
+    score: 1
+    note: "Vendor-selected case studies (Manifold Bio, Allen Institute, UCSF Brain Tumor Center); no benchmark results or third-party evaluation."
+  openness:
+    score: 0
+    note: "Closed-source; beta gated behind paid Claude subscriptions (Pro/Max/Team/Enterprise); no free tier."
+  maturity_traction:
+    score: 2
+    note: "Public beta (June 2026) with external users across paid tiers, named institutional early adopters, discounted academic Team plan, and a grants program; weeks old at scoring date."
+  cross_family_policy:
+    score: 0
+    note: "Anthropic models only; no cross-family executor/reviewer configuration."
+  assurance_runtime:
+    score: 2
+    note: "Background reviewer agent flags incorrect citations, untraceable numbers, and figure-code mismatches in-flight and self-corrects; gating behavior not documented."
+  cross_platform_portability:
+    score: 1
+    note: "Single provider and dedicated macOS/Linux app, but compute targets span local machines, HPC via SSH, and Modal GPUs."
+scored_on: "2026-07-23"
+
+limitations:
+  - "Closed-source and subscription-gated; cannot be audited, self-hosted, or pointed at non-Anthropic models."
+  - "Pre-configured depth is life-science-specific (genomics, proteomics, structural biology, cheminformatics) and the grants program prioritizes biology — other disciplines start from a generic baseline."
+  - "Effectiveness evidence is vendor-selected case studies rather than independent benchmarks; macOS/Linux only, no Windows."
+
+related:
+  - google-co-scientist
+  - kosmos
+  - robin
+  - tooluniverse
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper; announcement: https://www.anthropic.com/news/claude-science-ai-workbench
+
+references: []

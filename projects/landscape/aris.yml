@@ -106,7 +106,7 @@ scores:
     note: "MIT-licensed; pure-Markdown skills (no framework lock-in); standalone CLI; multi-IDE adaptations documented; supports free-tier ModelScope path."
   maturity_traction:
     score: 3
-    note: "9.8k+ stars, Hugging Face Daily Paper #1, featured in awesome-agent-skills, 7-release polish sequence in May 2026; active community."
+    note: "13.7k+ stars, Hugging Face Daily Paper #1, featured in awesome-agent-skills; steady patch cadence through v0.4.22 (2026-07-12); active community."
 
   cross_family_policy:
     score: 2

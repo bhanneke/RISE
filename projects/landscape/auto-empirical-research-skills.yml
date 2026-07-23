@@ -1,0 +1,126 @@
+slug: auto-empirical-research-skills
+name: "Auto-Empirical Research Skills (AERS)"
+type: external
+status: active
+url: "https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills"
+maintainers:
+  - "Bryce Wang (Stanford REAP / CoPaper.AI)"
+year_started: 2026
+
+positioning: >
+  A Claude-plugin-structured mega-catalog of agent skills for
+  empirical social-science research: 74 collections / 1,094 vendored
+  skills — 7 first-party Stanford REAP × CoPaper.AI collections
+  (including the StatsPAI causal engine and the Paper-WorkFlow
+  meta-orchestrator) plus 67 curated, security-audited community
+  collections — spanning topic refinement, literature review, data
+  acquisition, identification strategy, estimation (Python/Stata/R),
+  robustness audit, publication tables, writing, review simulation,
+  AI-trace removal, and journal submission. The headline "23,000+
+  skills" refers to an accompanying awesome-list map of 119 ecosystem
+  repos; the vendored, cataloged content is 1,094 skills.
+
+distinctive_contribution: >
+  The largest empirical-social-science skills distribution in the
+  catalog, and unusually serious about verification for a skills
+  list: a numeric benchmark of 17 tasks whose gold values are
+  recomputed from real data each run (encoding classic traps such as
+  the LaLonde naive-ATT sign flip and Card IV recovery), a behavioral
+  eval harness (37 scenarios / 183 rubric items), per-skill
+  provenance and license audits in catalog JSON, and a root SKILL.md
+  router so 1,094 skills are dispatched without flooding context.
+  Vendors several standalone entries of this catalog (clo-author,
+  academic-research-skills) as collections.
+
+focus: end-to-end
+
+pipeline_stages:
+  - rq-formulation
+  - literature-discovery
+  - literature-synthesis
+  - data-acquisition
+  - research-design
+  - data-analysis
+  - code-generation
+  - replication
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+  - dissemination
+
+architectural_features:
+  - tool-use
+  - artifact-versioning
+
+discipline: social-sciences
+
+inputs:
+  - research-topic
+  - user-dataset
+  - paper-draft
+
+outputs:
+  - paper-draft
+  - analysis-code
+  - publication-tables
+  - figures
+  - replication-audit-report
+
+data_sources:
+  - user-provided
+  - sec-edgar
+
+knowledge_sources:
+  - openalex
+
+scores:
+  lifecycle_coverage:
+    score: 3
+    note: "12 declared stages from RQ refinement through submission, including paper-drafting and referee-simulation; the 9-stage flagship pipeline maps skills to every stage."
+  autonomy_level:
+    score: 2
+    note: "Paper-WorkFlow meta-orchestrator claims one-command idea-to-draft runs with optional human takeover at each persisted stage; most collections are copilot-style skills a human invokes."
+  architectural_transparency:
+    score: 3
+    note: "All 1,094 skills vendored as public markdown/code, catalog JSON with provenance and per-skill audit, benchmark and eval harness fully public with CI."
+  inputs_supported:
+    score: 2
+    note: "Topic / draft / dataset inputs; literature (OpenAlex) and data connectors (EDGAR) exist but live in heterogeneous vendored collections rather than one unified interface."
+  outputs_reproducibility:
+    score: 2
+    note: "Artifact-idempotent pipeline persists code, tables, and drafts at each stage; end-to-end reproducibility demonstrated only for reference implementations, not arbitrary papers."
+  internal_evaluation:
+    score: 2
+    note: "17 numeric benchmark tasks with data-recomputed golds plus 37-scenario/183-item eval harness in CI — but these score the reference pipelines, not typical agent output, and there is no external validation."
+  openness:
+    score: 2
+    note: "CC BY-SA 4.0 (copyleft, commercial use allowed); vendored collections keep their own licenses, tracked in a published license audit."
+  maturity_traction:
+    score: 2
+    note: "3,029 stars / 399 forks within ~4 months, five-language docs, commercial deployment via CoPaper.AI — but too young for 'sustained' adoption."
+  cross_family_policy:
+    score: 0
+    note: "Runtime manifests target multiple providers, but no cross-model-family review or verification mechanism exists."
+  assurance_runtime:
+    score: 1
+    note: "Audit-style stages (10-item replication-package check, proofreading, AI-trace audits) run inside the flagship pipeline, but no documented gate-blocking on failure."
+  cross_platform_portability:
+    score: 3
+    note: "Skills-as-markdown with a router SKILL.md and deployment manifests for Claude Code, Cursor, Aider, CodeBuddy, and OpenAI/Codex-style runtimes."
+scored_on: "2026-07-23"
+
+limitations:
+  - "The repo description's '23,000+ skills' counts an awesome-list ecosystem map (119 repos); the repo vendors 1,094 skills across 74 collections — the README is explicit about this distinction, the GitHub description is not."
+  - "Roughly 90% of collections are vendored third-party work of heterogeneous quality; only the 7 first-party collections are behaviorally pinned by the numeric benchmark."
+  - "Chinese-first documentation (default README) and CC BY-SA copyleft stacked on per-collection upstream licenses complicate reuse for some audiences."
+
+related:
+  - statspai
+  - academic-research-skills
+  - clo-author
+  - research-paper-writing-skills
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper; CITATION.cff is a software citation only (released 2026-05-31).
+
+references: []

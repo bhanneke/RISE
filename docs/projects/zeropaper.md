@@ -26,13 +26,13 @@ Treats subscription-tier coding-agent CLIs (Claude Code / Codex / Gemini CLI) as
 | Inputs supported | 2 | Multiple variants (finance, macro), modes (--seed, --faithful, --manual, --light, empirical-first); empirical extension integrates external financial corpora. |
 | Outputs / reproducibility | 2 | Per-project git repositories isolate outputs; sandboxed execution; watermarked PDF provenance. |
 | Internal evaluation | 2 | In-pipeline adversarial gates (math-auditor, novelty-checker, simulated referees); companion benchmarks paper referenced. |
-| Openness | 1 | Source on GitHub but under a restrictive 'Other' license — prior notice, AI-disclosure, watermark, non-commercial clauses all encumber reuse. |
-| Maturity / traction | 1 | Active development (last push 2026-05-18); single-developer / Institute for Automated Research; modest star count. |
+| Openness | 1 | Source on GitHub but under the custom 'Research Use License v1.1' (adopted 2026-07-07) — prior notice, AI-disclosure, watermark-preservation, non-commercial clauses all encumber reuse; not OSI open source. |
+| Maturity / traction | 1 | Very active development (100+ commits since May 2026, last push 2026-07-23) but single-developer / Institute for Automated Research; ~60 stars. |
 | Cross-family policy | 1 | Optional cross-family setup (Claude Code / Codex / Gemini CLI as dispatcher); not required. |
 | Runtime assurance | 3 | Math-auditor + novelty-checker + simulated referees as adversarial gates; sandboxed execution (bubblewrap/Seatbelt); watermarking. |
 | Cross-platform portability | 1 | Three dispatcher CLIs (Claude Code, Codex, Gemini CLI); finance/macro variants but single template runtime. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -56,7 +56,7 @@ Treats subscription-tier coding-agent CLIs (Claude Code / Codex / Gemini CLI) as
 
 ## Limitations
 
-- Restrictive license: submission requires prior written notice; AI-disclosure mandatory; watermark removal terminates license; commercial use prohibited.
+- Restrictive license (Research Use License v1.1, 2026-07-07): submission requires prior written notice; AI-disclosure mandatory; watermark removal terminates license; commercial use prohibited; 'Assisted Output' exemption for human-led work.
 - Designed for finance/macro/empirical-finance papers — portability to other empirical disciplines requires variant authoring.
 - Watermarking is non-cosmetic; detection methodology shared only with journal editors.
 - Subscription path (~$200/mo, ~$2/paper) recommended; pay-per-token path is ~$2,000/paper.

@@ -84,7 +84,7 @@ scores:
     note: "Closed-source, gated behind Google DeepMind's Early Access Program for selected academic users."
   maturity_traction:
     score: 2
-    note: "Active research project at Google DeepMind; whitepaper + multiple high-profile follow-up papers (including Terence Tao as co-author on Georgiev et al.)."
+    note: "Reached general availability on Google Cloud (Gemini Enterprise Agent Platform) 2026-07-19 with enterprise customers (BASF, JetBrains, Klarna); whitepaper + high-profile follow-up papers (including Terence Tao as co-author on Georgiev et al.)."
   cross_family_policy:
     score: 0
     note: "Single model family (Gemini Pro/Flash) within Google DeepMind."

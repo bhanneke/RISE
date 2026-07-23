@@ -89,7 +89,7 @@ scores:
     note: "CC BY-NC 4.0 (non-commercial); sponsor-supported; Codex CLI sibling distribution available."
   maturity_traction:
     score: 3
-    note: "9.3k+ stars; v3.9.0 with multi-version release cadence; English + Traditional Chinese docs; multi-IDE support."
+    note: "39k+ stars; rapid release cadence through v3.19.0 (2026-07-22) incl. claim-drift guards and PDF read-integrity preflight; English + Traditional Chinese docs; multi-IDE support."
   cross_family_policy:
     score: 1
     note: 'ARS_CROSS_MODEL flag enables cross-family verification; not the default.'

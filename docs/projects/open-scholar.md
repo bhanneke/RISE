@@ -2,7 +2,7 @@
 
 # OpenScholar (AI2)
 
-`external` · status: `active` · focus: `literature` · discipline: `general` · started: 2024
+`external` · status: `dormant` · focus: `literature` · discipline: `general` · started: 2024
 
 **Project page:** <https://github.com/AkariAsai/OpenScholar>
 

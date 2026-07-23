@@ -93,7 +93,7 @@ scores:
     note: "MIT-licensed; multi-language documentation; active Discord community; community-contributed skill ecosystem."
   maturity_traction:
     score: 3
-    note: "12.3k+ stars (largest in the catalog); regular releases (v0.4.x in 2026-04); broad community adoption signals."
+    note: "13.8k+ stars; regular releases (v0.5.0 2026-05-20, active through 2026-07); companion paper claims +54.7% over AI Scientist v2 on ARC-Bench."
   cross_family_policy:
     score: 1
     note: "Multiple back-ends (Claude/Codex/Copilot/Gemini/Kimi CLI) make cross-family configurations easy, but no required cross-family review policy in the architecture."
@@ -120,7 +120,18 @@ related:
   - academic-research-skills
 
 # ── Papers describing this project ─────────────────────
-papers: []  # No paper-about-AutoResearchClaw at this scoring date.
+papers:
+  - title: 'AutoResearchClaw: Self-Reinforcing Autonomous Research with Human-AI Collaboration'
+    authors:
+      - 'Liu, J.'
+      - 'Qiu, S.'
+      - 'Li, M.'
+      - 'Li, B.'
+      - 'Ji, H.'
+      - 'et al.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2605.20025'
 
 # ── Also compared in ────────────────────────────────────
 compared_in:

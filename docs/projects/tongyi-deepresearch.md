@@ -27,7 +27,7 @@ Treats agentic-research capability as a *model-training* problem, not just an or
 | Outputs / reproducibility | 2 | Open weights and inference scripts; full training pipeline partially released. |
 | Internal evaluation | 3 | Extensive benchmark results reported on BrowseComp, FRAMES, HLE, SimpleQA; state-of-the-art on several. |
 | Openness | 3 | Apache-2.0; HuggingFace + ModelScope checkpoints; commercial deployment via Bailian. |
-| Maturity / traction | 3 | 18k+ stars; production deployment via Aliyun Bailian; widely-discussed model release. |
+| Maturity / traction | 3 | 19.7k+ stars; production deployment via Aliyun Bailian; technical report revised (arXiv 2510.24701 v3, 2026-05-19); repo itself quiet since 2026-02. |
 | Cross-family policy | 0 | Self-trained model; no architectural cross-family policy. |
 | Runtime assurance | 1 | IterResearch 'Heavy' mode adds test-time deliberation; no published claim-audit harness. |
 | Cross-platform portability | 2 | HuggingFace + ModelScope + Bailian deployment; ReAct + IterResearch inference modes. |

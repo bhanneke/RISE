@@ -89,7 +89,7 @@ scores:
     note: "Apache-2.0; PyPI package; companion EvoSkills repo; multi-provider configuration."
   maturity_traction:
     score: 3
-    note: "3.1k+ stars; sustained leaderboard performance; multi-IDE + multi-channel deployments; ICAIS 2025 recognition."
+    note: "4.3k+ stars; 13 releases 2026-05→07 (v0.2.3, incl. v0.2.0 'Autonomy milestone'); PyPI package + evoscientist.ai site; sustained leaderboard performance; ICAIS 2025 recognition."
   cross_family_policy:
     score: 1
     note: "Multi-provider configuration (Anthropic, OpenAI, Google, MiniMax, NVIDIA) supports cross-family setups but no required policy."
@@ -100,7 +100,7 @@ scores:
     score: 3
     note: "Framework-agnostic by design: CLI hub + Telegram + Slack + Feishu + WeChat + mobile; multi-provider config."
 
-scored_on: "2026-05-18"
+scored_on: "2026-07-23"
 
 limitations:
   - "Benchmark dominance does not directly demonstrate methodological novelty of papers produced."

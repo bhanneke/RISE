@@ -74,7 +74,7 @@ scores:
     note: "Apache-2.0; HuggingFace + ModelScope checkpoints; commercial deployment via Bailian."
   maturity_traction:
     score: 3
-    note: "18k+ stars; production deployment via Aliyun Bailian; widely-discussed model release."
+    note: "19.7k+ stars; production deployment via Aliyun Bailian; technical report revised (arXiv 2510.24701 v3, 2026-05-19); repo itself quiet since 2026-02."
   cross_family_policy:
     score: 0
     note: 'Self-trained model; no architectural cross-family policy.'

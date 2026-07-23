@@ -1,0 +1,122 @@
+slug: naturebench
+name: "NatureBench"
+type: external
+status: active
+url: "https://github.com/FrontisAI/NatureBench"
+maintainers:
+  - "FrontisAI"
+year_started: 2026
+
+positioning: >
+  A cross-discipline benchmark (arXiv:2606.24530) of 90 tasks
+  distilled from peer-reviewed Nature-family papers across six
+  scientific domains, asking whether AI coding agents can match — or
+  surpass — the published state of the art. Each task is a
+  containerized package (task brief, the paper's dataset, a held-out
+  test set with hidden ground truth, an automated evaluator) built by
+  NatureGym, an automated Claude-Code-skills pipeline that converts a
+  published paper into an executable Docker task. Sits in the RISE
+  evaluation-infrastructure layer alongside AstaBench, MLGym, and
+  EconCS Bench, but targets empirical scientific ML with executable,
+  SOTA-anchored scoring.
+
+distinctive_contribution: >
+  Scores agents against each source paper's *reported SOTA*
+  (Surpass-SOTA rate) rather than mere reproduction, with an
+  information firewall that strips the source method from the task
+  brief so agents must discover solutions. Ships a full harness with
+  built-in adapters for Claude Code, Codex CLI, and Gemini CLI, a
+  post-hoc validity judge, and a public leaderboard: across twelve
+  harness-model configurations the best reaches a 17.8% Surpass-SOTA
+  rate, with failures dominated by method-selection errors.
+
+focus: analysis
+
+pipeline_stages:
+  - data-analysis
+  - code-generation
+
+architectural_features:
+  - tool-use
+
+discipline: general
+
+inputs:
+  - nature-family-papers
+  - coding-agent-configurations
+
+outputs:
+  - containerized-task-packages
+  - surpass-sota-scores
+  - leaderboard
+
+data_sources:
+  - paper-datasets
+  - huggingface-dataset
+
+knowledge_sources:
+  - source-papers
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Benchmark / evaluation infrastructure; produces task packages and scores, not scholarship."
+  autonomy_level:
+    score: 0
+    note: "Evaluation harness — agency lives in the agents under test; NatureGym automates task construction but is a build pipeline, not a research agent."
+  architectural_transparency:
+    score: 3
+    note: "Full code: harness, agent adapters, evaluators, post-hoc judge, NatureGym construction skills, docs, HuggingFace dataset, and public leaderboard."
+  inputs_supported:
+    score: 1
+    note: "Single input form (containerized task package) with each task bundling the source paper's dataset; no broader literature or private-corpus access."
+  outputs_reproducibility:
+    score: 2
+    note: "Dockerized tasks, hidden test sets, versioned dataset, and persisted results directories; agent nondeterminism precludes exact reruns."
+  internal_evaluation:
+    score: 2
+    note: "Systematic evaluation of twelve harness-model configurations with public leaderboard and failure analysis in the arXiv paper; not yet peer-reviewed."
+  openness:
+    score: 2
+    note: "MIT for original work (NOTICE-scoped); third-party task data under heterogeneous per-task licenses; full runs need agent API keys and 24-80 GB GPUs."
+  maturity_traction:
+    score: 1
+    note: "Young (June 2026) but active: 77 stars in the first month, a v2 paper revision, and a leaderboard refresh adding new models."
+  cross_family_policy:
+    score: 1
+    note: "Post-hoc validity judge is configured independently of the executing agent, so cross-family judging is possible via config but neither default nor required."
+  assurance_runtime:
+    score: 1
+    note: "Hidden-ground-truth evaluator plus a post-hoc validity judge screen scored outputs; no in-flight gating while the agent runs."
+  cross_platform_portability:
+    score: 2
+    note: "Built-in adapters for Claude Code, Codex CLI, and Gemini CLI plus a documented custom-agent interface."
+scored_on: "2026-07-23"
+
+limitations:
+  - "Heavy compute footprint: gpu_high tasks assume A100-class (80 GB) GPUs, so full benchmark runs are beyond commodity hardware."
+  - "The information firewall removes the source method from task briefs, but the underlying Nature-family papers are public, so pretraining contamination cannot be ruled out."
+  - "Third-party data bundled per task is governed by heterogeneous per-task license notices, complicating redistribution."
+
+related:
+  - asta-bench
+  - mlgym
+  - airs-bench
+  - lifescibench
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'NatureBench: Can Coding Agents Match the Published SOTA of Nature-Family Papers?'
+    authors:
+      - 'Wang, Y.'
+      - 'Cheng, L.'
+      - 'Zuo, Y.'
+      - 'Zeng, S.'
+      - 'He, B.'
+      - 'Jiang, C.'
+      - 'et al.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2606.24530'
+
+references: []

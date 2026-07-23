@@ -4,7 +4,7 @@
 
 `external` · status: `active` · focus: `replication` · discipline: `econometrics` · started: 2026
 
-**Project page:** <https://github.com/qgallea/recast-causal-ai>
+**Project page:** <https://github.com/qgallea/recast-showcase>
 
 **Source:** [`projects/landscape/recast-causal-ai.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/recast-causal-ai.yml)
 
@@ -22,17 +22,17 @@ Couples *replication* with *methodological extension* — most agentic-replicati
 |---|:---:|---|
 | Lifecycle coverage | 2 | Spans six pipeline stages (replication, data, analysis, code, peer review, drafting) — broader than pure replication tools. |
 | Autonomy level | 2 | Supervised: user supplies target paper + data; system runs the rest autonomously, including the multi-referee review. |
-| Architectural transparency | 3 | MIT-licensed; pipeline is implemented as Claude-Code skill (.md) files which are themselves the architecture documentation. |
+| Architectural transparency | 1 | Was 3 (MIT, skill files as self-documenting architecture); original repo removed/made private mid-2026 — pipeline internals no longer publicly inspectable, only the showcase description. |
 | Inputs supported | 2 | Accepts target paper PDF/text + replication dataset; integrates external knowledge via Claude Code tool use. |
 | Outputs / reproducibility | 2 | Replicated tables, extension results, code, and referee reports all persisted as durable artifacts. |
 | Internal evaluation | 2 | Built-in three-referee AI review acts as runtime quality control on each run; no large external benchmark of replication-success rates yet. |
-| Openness | 3 | MIT license; public GitHub repo; documentation site on GitHub Pages. |
+| Openness | 1 | Was 3 (MIT, public repo); source repo taken private/deleted mid-2026 — only the public successor 'recast-showcase' (under construction, GitHub Pages site) remains. |
 | Maturity / traction | 1 | Active early-stage project (single-developer, low star count as of 2026-05). |
 | Cross-family policy | 0 | Single-LLM-family pipeline (Claude Code); referees are isolated instances of the same model family. |
 | Runtime assurance | 3 | Structured three-isolated-referee review + synthesis loop is the assurance layer; among the most explicit in the catalog. |
 | Cross-platform portability | 1 | Claude-Code-specific (skill files); not portable to other agent harnesses without rewriting. |
 
-*Scored on 2026-05-22. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -56,6 +56,7 @@ Couples *replication* with *methodological extension* — most agentic-replicati
 
 ## Limitations
 
+- Original repo (qgallea/recast-causal-ai) was removed or made private around mid-2026; the public successor qgallea/recast-showcase (created 2026-06-17) is explicitly 'under construction' — source access currently unavailable.
 - Tied to the Claude Code skill-file orchestration model — porting requires reimplementing the pipeline.
 - Replication-success depends on availability of target paper's data and reproducibility of its code.
 - Same-family AI referees may share blind spots with the executor; no cross-family review by default.

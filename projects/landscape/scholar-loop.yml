@@ -1,0 +1,116 @@
+slug: scholar-loop
+name: "Scholar Loop"
+type: external
+status: active
+url: "https://github.com/renee-jia/scholar-loop"
+maintainers:
+  - "renee-jia"
+year_started: 2026
+
+positioning: >
+  A single-maintainer "autonomous AI scientist" that runs the full PhD
+  loop on a single-GPU budget: literature scouting (arXiv + OpenAlex,
+  citation-ranked), grounded hypothesis generation, debate-gated real
+  PyTorch experiments in a smoke -> verify -> full funnel, reflection
+  into a time-decaying skill library, and a number-grounded write-up
+  with self-review — all under a self-stopping budget governor. Sits
+  with the AI-scientist family (Sakana, Agent Laboratory) but leads
+  with deterministic anti-reward-hacking guards rather than scale.
+
+distinctive_contribution: >
+  Treats the outer loop and its integrity guards as the product:
+  two-phase frozen scoring the experiment code cannot fake, an edit
+  allowlist, a VerifiedRegistry that grounds every number in the
+  draft, and universal predict-then-verify calibration that scores
+  each agent's checkable claims against ground truth — with a bundled
+  adversarial "cheater" engine to prove the guards hold, and the whole
+  eight-agent loop testable deterministically without an API key or GPU.
+
+focus: end-to-end
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - hypothesis-generation
+  - code-generation
+  - data-analysis
+  - paper-drafting
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - iterative-loop
+  - persistent-memory
+  - debate-consensus
+
+discipline: computer-science
+
+inputs:
+  - domain-profile
+  - budget-config
+
+outputs:
+  - paper-draft
+  - review-report
+  - run-ledger
+  - skill-library
+
+data_sources:
+  - bundled-datasets
+
+knowledge_sources:
+  - arxiv
+  - openalex
+  - skill-library
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Seven stages from literature through drafting and self-review; domains are pre-defined YAML profiles with fixed metrics, so no open research-question formulation."
+  autonomy_level:
+    score: 3
+    note: "Runs unattended under a self-stopping governor (dollar budget, round cap, convergence); the user supplies only the domain profile and budget up front."
+  architectural_transparency:
+    score: 3
+    note: "MIT-licensed full code with typed JSON-schema agent I/O, 108 tests, CI, and captured end-to-end runs publishing paper, run log, and raw ledger."
+  inputs_supported:
+    score: 1
+    note: "One input form (a domain profile plus engine pair; two shipped) with live literature access via arXiv and OpenAlex."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists drafts, run ledgers, and logs — every reported number traces to a frozen-metric measurement in the jsonl — but exact re-runs are deterministic only under the MockLLM."
+  internal_evaluation:
+    score: 1
+    note: "Two captured live Opus runs on toy tasks (digits 5.0%->3.82% err, diabetes RMSE 56.5->55.24) plus a reward-hacking stress test; no benchmark evaluation or external validation."
+  openness:
+    score: 3
+    note: "MIT; pip-installable; the entire loop runs deterministically in under a second on CPU with no API key via the bundled MockLLM."
+  maturity_traction:
+    score: 1
+    note: "462 stars and 36 forks within weeks of release, but a 26-commit single-maintainer research preview with no pushes since 2026-06-23 (one month idle at scoring)."
+  cross_family_policy:
+    score: 0
+    note: "Single family — the optional [llm] extra ships only an Anthropic client, and writer and reviewer share the same model; the optimization loop deliberately uses no LLM-as-judge."
+  assurance_runtime:
+    score: 3
+    note: "Heavy deterministic guard stack with gating: frozen two-phase scoring, edit allowlist, VerifiedRegistry number-grounding, schema validate-retry, per-agent predict-then-verify calibration, and tiered promotion gates — adversarially tested via the cheater engine."
+  cross_platform_portability:
+    score: 0
+    note: "Pure-Python package runs anywhere, but live runs support only the Anthropic backend; the MockLLM is a test double, not a deployment target."
+scored_on: "2026-07-23"
+
+limitations:
+  - "Watch item: no commits since 2026-06-23 despite rapid star growth — a single-maintainer 'research preview' that may already be stalled; status here assumes <3 months idle still counts as active."
+  - "Shipped domains are toy sklearn/PyTorch tasks with weak baselines, and the system's own reviewer rejects both captured papers as too marginal (the README concedes it is not wrong)."
+  - "Anthropic-only live backend and no container sandboxing yet — the author names sandboxing as the open residual boundary."
+
+related:
+  - sakana-ai-scientist
+  - agent-laboratory
+  - data-to-paper
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No companion paper as of scoring date.
+
+references: []

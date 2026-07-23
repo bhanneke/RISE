@@ -27,7 +27,7 @@ Earliest and most-adopted general-purpose deep-research agent; the planner/execu
 | Outputs / reproducibility | 2 | Pip-installable, Docker image, Colab; outputs depend on live web state — not bitwise reproducible. |
 | Internal evaluation | 1 | Demonstration-quality evaluation; no rigorous benchmark in the README at this scoring date. |
 | Openness | 3 | Apache-2.0; broad distribution; active community. |
-| Maturity / traction | 3 | 27k+ stars, regular releases, Claude Skill integration, large Discord community. |
+| Maturity / traction | 3 | 28.5k+ stars, regular releases through v3.6.0 (2026-07-18, LangChain deep-agents integration + OpenAlex retriever), Claude Skill integration, large Discord community. |
 | Cross-family policy | 0 | Multi-LLM-provider but no cross-family policy. |
 | Runtime assurance | 1 | Planner/executor split with summary aggregation; no claim-audit harness. |
 | Cross-platform portability | 2 | Multi-provider, Claude Skill, Docker, Colab, PyPI; deliberately portable. |

@@ -92,10 +92,10 @@ scores:
     note: "In-pipeline adversarial gates (math-auditor, novelty-checker, simulated referees); companion benchmarks paper referenced."
   openness:
     score: 1
-    note: "Source on GitHub but under a restrictive 'Other' license — prior notice, AI-disclosure, watermark, non-commercial clauses all encumber reuse."
+    note: "Source on GitHub but under the custom 'Research Use License v1.1' (adopted 2026-07-07) — prior notice, AI-disclosure, watermark-preservation, non-commercial clauses all encumber reuse; not OSI open source."
   maturity_traction:
     score: 1
-    note: "Active development (last push 2026-05-18); single-developer / Institute for Automated Research; modest star count."
+    note: "Very active development (100+ commits since May 2026, last push 2026-07-23) but single-developer / Institute for Automated Research; ~60 stars."
 
   cross_family_policy:
     score: 1
@@ -106,10 +106,10 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Three dispatcher CLIs (Claude Code, Codex, Gemini CLI); finance/macro variants but single template runtime.'
-scored_on: "2026-05-18"
+scored_on: "2026-07-23"
 
 limitations:
-  - "Restrictive license: submission requires prior written notice; AI-disclosure mandatory; watermark removal terminates license; commercial use prohibited."
+  - "Restrictive license (Research Use License v1.1, 2026-07-07): submission requires prior written notice; AI-disclosure mandatory; watermark removal terminates license; commercial use prohibited; 'Assisted Output' exemption for human-led work."
   - "Designed for finance/macro/empirical-finance papers — portability to other empirical disciplines requires variant authoring."
   - "Watermarking is non-cosmetic; detection methodology shared only with journal editors."
   - "Subscription path (~$200/mo, ~$2/paper) recommended; pay-per-token path is ~$2,000/paper."

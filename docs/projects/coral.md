@@ -27,7 +27,7 @@ Treats the *organization* of agents (workspaces, shared knowledge, judges) as a 
 | Outputs / reproducibility | 2 | Isolated workspaces + persistent knowledge stores; LLM nondeterminism limits exact reruns. |
 | Internal evaluation | 2 | Rubric-judge packages provide structured internal evaluation; arXiv paper presents systematic results. |
 | Openness | 3 | MIT-licensed; uv-installable; broad agent-back-end support. |
-| Maturity / traction | 2 | 655 stars; active 2026 development; integrated with major coding agents. |
+| Maturity / traction | 2 | 835 stars; rapid release cadence (v0.7.9-v0.7.11 in July 2026); paper accepted at COLM 2026; integrated with major coding agents. |
 | Cross-family policy | 1 | Multi-agent coding-agent integration (Claude Code, Codex, OpenCode, Cursor) — cross-family configurable. |
 | Runtime assurance | 2 | Rubric judges (race_japan_grader, apex_judge) + isolated workspaces + persistent shared knowledge = moderate gating. |
 | Cross-platform portability | 2 | Multiple coding-agent back-ends (Claude Code, OpenCode, Codex, Cursor, Kiro) — broad portability. |
@@ -67,7 +67,7 @@ Treats the *organization* of agents (workspaces, shared knowledge, judges) as a 
 
 ## Papers describing this project
 
-- **CORAL: Towards Autonomous Multi-Agent Evolution for Open-Ended Discovery** — Qu, A., Zheng, H., Zhou, Z., Yan, Y., Tang, Y., Ong, S. Y., et al. (2026). *arXiv*. [arXiv:2604.01658](https://arxiv.org/abs/2604.01658)
+- **CORAL: Towards Autonomous Multi-Agent Evolution for Open-Ended Discovery** — Qu, A., Zheng, H., Zhou, Z., Yan, Y., Tang, Y., Ong, S. Y., et al. (2026). *COLM 2026*. [arXiv:2604.01658](https://arxiv.org/abs/2604.01658)
 
 ## Related references (literature catalog)
 

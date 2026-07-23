@@ -1,0 +1,131 @@
+slug: ai-co-mathematician
+name: "AI Co-Mathematician (Google DeepMind)"
+type: external
+status: active
+url: "https://arxiv.org/abs/2605.06651"
+maintainers:
+  - "Google DeepMind"
+year_started: 2026
+
+positioning: >
+  A closed, agentic multi-agent workbench (arXiv:2605.06651) built on
+  Gemini 3.1 for open-ended *mathematics* research. A hierarchy of
+  specialized agents runs under a top-level project coordinator across
+  asynchronous, parallel workstreams — ideation, literature search,
+  computational exploration, theorem proving, theory building —
+  managing uncertainty, tracking failed hypotheses, and producing LaTeX
+  write-ups with margin annotations and provenance notes. Explicitly
+  modelled on agentic coding environments (e.g. Claude Code), it spans
+  the full pipeline from research intent to a written mathematical
+  result rather than optimizing a single stage.
+
+distinctive_contribution: >
+  One of the first agentic systems to demonstrate open-ended
+  mathematical *discovery* rather than benchmark problem-solving alone:
+  it scored 48% (23/48) on FrontierMath Tier 4 — versus 19% for the
+  Gemini 3.1 Pro base model — and Oxford mathematician Marc Lackenby
+  used it to resolve Problem 21.10 of the Kourovka Notebook, a
+  group-theory question open since 1965. The RISE skills catalog's
+  theorist-toolbox (co-math skills) explicitly emulates this system's
+  coordinator + workstream + reviewer-gate design in an open,
+  skills-as-Markdown form.
+
+focus: end-to-end
+
+pipeline_stages:
+  - rq-formulation
+  - hypothesis-generation
+  - literature-discovery
+  - literature-synthesis
+  - formal-modeling
+  - code-generation
+  - paper-drafting
+
+architectural_features:
+  - multi-agent
+  - human-in-loop
+  - tool-use
+  - persistent-memory
+  - iterative-loop
+  - artifact-versioning
+
+discipline: general
+
+inputs:
+  - open-problem
+  - research-direction
+
+outputs:
+  - proofs
+  - latex-writeups
+  - computational-results
+  - literature-references
+
+data_sources: []
+
+knowledge_sources:
+  - mathematical-literature
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Seven stages from refining research intent through proving to LaTeX write-up; no dedicated referee-simulation or dissemination stage."
+  autonomy_level:
+    score: 2
+    note: "Designed as a collaborative workbench (mathematician sets direction and reviews artifacts); async workstreams run without per-step approval, and it solved FrontierMath Tier 4 problems autonomously."
+  architectural_transparency:
+    score: 1
+    note: "Paper describes the hierarchical agent topology and coordinator/workstream design, but no code, prompts, or configs are released."
+  inputs_supported:
+    score: 2
+    note: "Accepts both well-posed open problems and open-ended research directions, with literature search and computational-exploration tooling."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists LaTeX write-ups plus code from computational exploration with provenance notes; closed system and LLM nondeterminism preclude external end-to-end reproduction."
+  internal_evaluation:
+    score: 2
+    note: "Systematic benchmark result (48% on FrontierMath Tier 4) plus an expert-verified new result (Kourovka Notebook 21.10); still an arXiv preprint, not peer-reviewed."
+  openness:
+    score: 0
+    note: "Closed research system; no code, weights, or public access at scoring date."
+  maturity_traction:
+    score: 1
+    note: "DeepMind research prototype (arXiv, May 2026), not a product; demonstrated real use by an external mathematician but no general availability."
+  cross_family_policy:
+    score: 0
+    note: "Single model family — all agents run on Gemini 3.1."
+  assurance_runtime:
+    score: 2
+    note: "In-pipeline review cycles, failed-hypothesis tracking, provenance annotations, and proof/computational verification act as moderate runtime gates."
+  cross_platform_portability:
+    score: 0
+    note: "Closed system locked to DeepMind infrastructure and Gemini; not deployable elsewhere."
+scored_on: "2026-07-23"
+
+limitations:
+  - "Closed system: no code, prompts, or public access — architecture is known only from the paper, and the FrontierMath and Kourovka results cannot be independently reproduced."
+  - "Benchmarked and demonstrated in pure mathematics; transfer to empirical or applied research disciplines is unshown."
+  - "Autonomous benchmark performance still leaves the majority of Tier 4 problems unsolved, and headline discoveries required an expert mathematician in the loop."
+
+related:
+  - sakana-ai-scientist
+  - alphaevolve
+  - econcs-bench
+  - google-co-scientist
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'AI co-mathematician: Accelerating mathematicians with agentic AI'
+    authors:
+      - 'Zheng, D.'
+      - 'von Glehn, I.'
+      - 'Zwols, Y.'
+      - 'Beloshapka, I.'
+      - 'Buesing, L.'
+      - 'Roy, D. M.'
+      - 'et al.'
+    year: 2026
+    venue: 'arXiv (Google DeepMind)'
+    arxiv_id: '2605.06651'
+
+references: []

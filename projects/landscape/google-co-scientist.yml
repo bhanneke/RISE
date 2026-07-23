@@ -1,0 +1,141 @@
+slug: google-co-scientist
+name: "AI Co-Scientist (Google DeepMind)"
+type: external
+status: active
+url: "https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/"
+maintainers:
+  - "Google DeepMind"
+  - "Google Research"
+year_started: 2025
+
+positioning: >
+  Google's closed multi-agent research partner (announced Feb 2025,
+  published in Nature 2026-05-19) that generates, debates, and evolves
+  novel research hypotheses. Built on Gemini, it orchestrates six
+  specialized agents — Generation, Reflection, Ranking, Proximity,
+  Evolution, Meta-review — under a Supervisor, using Elo-based
+  tournaments and simulated scientific debate to surface and refine
+  ideas. It sits in the upstream *ideation* layer: it proposes
+  hypotheses and experiments but does not run experiments, analyze
+  data, or draft papers.
+
+distinctive_contribution: >
+  The most externally validated hypothesis-generation system on the
+  landscape: peer-reviewed in Nature, with wet-lab confirmation of
+  AI-proposed leads in AML drug repurposing, liver-fibrosis reversal,
+  and antimicrobial-resistance gene transfer, and active use by
+  infectious-disease, aging, and ALS research teams across 100+
+  institutions. RISE separately catalogs the open-source
+  reimplementation open-coscientist; this entry is the closed,
+  first-party system whose design that project reverse-engineers.
+
+focus: ideation
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - hypothesis-generation
+  - research-design
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - rag-knowledge-base
+  - iterative-loop
+  - debate-consensus
+
+discipline: general
+
+inputs:
+  - research-goal
+
+outputs:
+  - ranked-hypotheses
+  - research-proposals
+  - research-overview
+
+data_sources:
+  - web-search
+  - chembl
+  - uniprot
+  - alphafold
+
+knowledge_sources:
+  - scientific-literature
+  - web-search
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Four tightly clustered upstream stages culminating in ranked hypotheses and proposed experiments; no execution, analysis, or drafting."
+  autonomy_level:
+    score: 3
+    note: "Supervisor agent autonomously orchestrates the generate-debate-evolve tournament loop; scientist supplies the goal and reviews the ranked hypotheses."
+  architectural_transparency:
+    score: 1
+    note: "Nature paper and the 2025 arXiv preprint document the agent roles and Elo-tournament design, but no code, prompts, or configs are released."
+  inputs_supported:
+    score: 2
+    note: "Natural-language research goal plus access to literature and specialized databases (ChEMBL, UniProt) and tools such as AlphaFold."
+  outputs_reproducibility:
+    score: 1
+    note: "Persists prose hypotheses and cited research overviews; closed and hosted, with no reproducible artifact package."
+  internal_evaluation:
+    score: 3
+    note: "Peer-reviewed in Nature (10.1038/s41586-026-10644-y) with experimental wet-lab validation of AI-proposed leads and sustained multi-institution adoption."
+  openness:
+    score: 1
+    note: "No source or prompts released; a heavily gated trusted-tester tool (Hypothesis Generation in Gemini for Science) is the only access path."
+  maturity_traction:
+    score: 3
+    note: "Peer-reviewed, Google-backed, and in active real-world use across 100+ institutions with reported drug-discovery outcomes."
+  cross_family_policy:
+    score: 0
+    note: "Single model family — all agents run on Gemini."
+  assurance_runtime:
+    score: 2
+    note: "Reflection (peer-review) agent, Elo ranking tournament, and Meta-review provide multiple in-pipeline debate gates, with citations grounding outputs."
+  cross_platform_portability:
+    score: 0
+    note: "Closed, hosted on Google infrastructure and locked to Gemini; not deployable on other stacks."
+scored_on: "2026-07-23"
+
+limitations:
+  - "Closed source with trusted-tester-only access; the architecture is known from the papers but neither code nor prompts are published, so results are not independently reproducible."
+  - "Covers ideation only — proposes hypotheses and experiments but does not execute them; all wet-lab validation and downstream work is performed by human teams."
+  - "Runs entirely within the Gemini family, so it lacks cross-model-family review and is subject to that family's blind spots and single-vendor lock-in."
+
+related:
+  - open-coscientist
+  - robin
+  - researchagent
+  - ai-co-mathematician
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'Accelerating scientific discovery with Co-Scientist'
+    authors:
+      - 'Gottweis, J.'
+      - 'Weng, W.-H.'
+      - 'Daryin, A.'
+      - 'Tu, T.'
+      - 'Palepu, A.'
+      - 'Sirkovic, P.'
+      - 'et al.'
+    year: 2026
+    venue: 'Nature'
+    doi: '10.1038/s41586-026-10644-y'
+  - title: 'Towards an AI co-scientist'
+    authors:
+      - 'Gottweis, J.'
+      - 'Weng, W.-H.'
+      - 'Daryin, A.'
+      - 'Tu, T.'
+      - 'Palepu, A.'
+      - 'Sirkovic, P.'
+      - 'et al.'
+    year: 2025
+    venue: 'arXiv (Google DeepMind)'
+    arxiv_id: '2502.18864'
+
+references: []

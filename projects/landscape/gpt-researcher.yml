@@ -77,7 +77,7 @@ scores:
     note: "Apache-2.0; broad distribution; active community."
   maturity_traction:
     score: 3
-    note: "27k+ stars, regular releases, Claude Skill integration, large Discord community."
+    note: "28.5k+ stars, regular releases through v3.6.0 (2026-07-18, LangChain deep-agents integration + OpenAlex retriever), Claude Skill integration, large Discord community."
   cross_family_policy:
     score: 0
     note: 'Multi-LLM-provider but no cross-family policy.'

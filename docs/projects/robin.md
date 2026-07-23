@@ -27,7 +27,7 @@ One of the few openly-documented RISE systems that explicitly separates *hypothe
 | Outputs / reproducibility | 1 | Hypothesis/experiment paths runnable offline; full analysis path requires paid Edison API. |
 | Internal evaluation | 2 | Demonstrated end-to-end run on a biological discovery task in the arXiv paper. |
 | Openness | 2 | Source open under Apache-2.0, but full functionality gated behind commercial API credits. |
-| Maturity / traction | 2 | 301 stars; FutureHouse backing; recent (April 2026). |
+| Maturity / traction | 2 | 633 stars; FutureHouse backing; published in Nature 2026-05-19, though repo unchanged since 2026-04. |
 | Cross-family policy | 1 | Edison platform agents + OpenAI/other via LiteLLM — cross-family supported. |
 | Runtime assurance | 2 | Multi-agent literature → hypothesis → experiment loop with EdisonScientific platform validation. |
 | Cross-platform portability | 2 | Docker setup + LiteLLM multi-provider; Edison API integration. |
@@ -68,7 +68,7 @@ One of the few openly-documented RISE systems that explicitly separates *hypothe
 
 ## Papers describing this project
 
-- **Robin: A multi-agent system for automating scientific discovery** — Ghareeb, A. E., Chang, B., Mitchener, L., Yiu, A., Szostkiewicz, C. J., Laurent, J. M., et al. (2025). *arXiv*. [arXiv:2505.13400](https://arxiv.org/abs/2505.13400)
+- **Robin: A multi-agent system for automating scientific discovery** — Ghareeb, A. E., Chang, B., Mitchener, L., Yiu, A., Szostkiewicz, C. J., Laurent, J. M., et al. (2026). *Nature*. [arXiv:2505.13400](https://arxiv.org/abs/2505.13400) · [doi](https://doi.org/10.1038/s41586-026-10652-y)
 
 ## Also compared in
 
