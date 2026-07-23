@@ -772,7 +772,9 @@ def replace_between(text: str, start: str, end: str, replacement: str) -> str:
     )
     new_block = f"{start}\n{replacement}\n{end}"
     if pattern.search(text):
-        return pattern.sub(new_block, text)
+        # literal replacement: bibtex-derived content may contain LaTeX
+        # escapes (e.g. {\^\i}) that re.sub would misparse as escape sequences
+        return pattern.sub(lambda _m: new_block, text)
     return text + "\n\n" + new_block + "\n"
 
 
