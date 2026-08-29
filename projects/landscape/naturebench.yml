@@ -119,4 +119,5 @@ papers:
     venue: 'arXiv'
     arxiv_id: '2606.24530'
 
-references: []
+references:
+  - wang2026naturebench

@@ -71,6 +71,7 @@ Among the earliest peer-reviewed treatments of agentic peer review, with an expl
 
 ## Related references (literature catalog)
 
+- D'Arcy, M. et al. (2024). [*MARG: Multi-Agent Review Generation for Scientific Papers*](../papers/notes/darcy2024marg.md) `darcy2024marg`
 - Gartenberg, C. et al. (2026). [*More Versus Better: Artificial Intelligence, Incentives, and the Emerging Crisis in Peer Review*](../papers/notes/gartenberg2026morebetter.md) `gartenberg2026morebetter`
 - Naddaf, M. (2025). [*AI Is Transforming Peer Review — and Many Scientists Are Worried*](../papers/notes/naddaf2025aipeer.md) `naddaf2025aipeer`
 - Goldberg, A. et al. (2024). [*Usefulness of LLMs as an Author Checklist Assistant for Scientific Papers: NeurIPS'24 Experiment*](../papers/notes/neurips2024checklist.md) `neurips2024checklist`

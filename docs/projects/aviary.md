@@ -70,4 +70,5 @@ Provides a standardized environment-and-agent abstraction (paired with the LDP l
 
 ## Related references (literature catalog)
 
+- Narayanan, S. et al. (2024). [*Aviary: training language agents on challenging scientific tasks*](../papers/notes/narayanan2024aviary.md) `narayanan2024aviary`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

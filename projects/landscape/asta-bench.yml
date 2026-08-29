@@ -112,4 +112,5 @@ papers:
     arxiv_id: '2510.21652'
 
 references:
+  - bragg2025astabench
   - wu2025agenticreasoning

@@ -120,5 +120,6 @@ compared_in:
     note: 'Covered as a retrieval-augmented LM for scholarly literature.'
 
 references:
+  - asai2024openscholar
   - wu2025agenticreasoning
   - ji2023hallucination

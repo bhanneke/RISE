@@ -115,4 +115,5 @@ papers:
     arxiv_id: '2604.01658'
 
 references:
+  - qu2026coral
   - wu2025agenticreasoning

@@ -140,6 +140,7 @@ compared_in:
     note: "Noted as 'very recently' built; no detailed comparison."
 
 references:
+  - liu2026autoresearchclaw
   - wu2025agenticreasoning
   - schick2023toolformer
   - ji2023hallucination

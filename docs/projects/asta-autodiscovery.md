@@ -70,3 +70,7 @@ The first production discovery agent to use Bayesian surprise as the objective: 
 ## Papers describing this project
 
 - **AutoDiscovery: Open-ended Scientific Discovery via Bayesian Surprise** — Agarwal, D., Majumder, B. P., Adamson, R., Chakravorty, M., Gavireddy, S. R., Parashar, A., et al. (2025). *NeurIPS 2025*. [arXiv:2507.00310](https://arxiv.org/abs/2507.00310)
+
+## Related references (literature catalog)
+
+- Agarwal, D. et al. (2025). [*AutoDiscovery: Open-ended Scientific Discovery via Bayesian Surprise*](../papers/notes/agarwal2025autodiscovery.md) `agarwal2025autodiscovery`

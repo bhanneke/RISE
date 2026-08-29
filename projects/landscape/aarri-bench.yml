@@ -117,4 +117,5 @@ papers:
     venue: 'arXiv'
     arxiv_id: '2606.07462'
 
-references: []
+references:
+  - wang2026aarribench

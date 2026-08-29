@@ -71,4 +71,5 @@ Treats the *organization* of agents (workspaces, shared knowledge, judges) as a 
 
 ## Related references (literature catalog)
 
+- Qu, A. et al. (2026). [*CORAL: Towards Autonomous Multi-Agent Evolution for Open-Ended Discovery*](../papers/notes/qu2026coral.md) `qu2026coral`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

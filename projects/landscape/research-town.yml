@@ -110,5 +110,6 @@ papers:
     url: 'https://github.com/ulab-uiuc/research-town'
 
 references:
+  - yu2025researchtown
   - park2023generative
   - wu2025agenticreasoning

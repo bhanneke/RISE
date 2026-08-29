@@ -74,4 +74,5 @@ First gym environment specifically for *ML research tasks* — not general QA or
 
 ## Related references (literature catalog)
 
+- Nathani, D. et al. (2025). [*MLGym: A New Framework and Benchmark for Advancing AI Research Agents*](../papers/notes/nathani2025mlgym.md) `nathani2025mlgym`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

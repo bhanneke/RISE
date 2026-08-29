@@ -76,5 +76,6 @@ Among the earliest publicly released systems to demonstrate a single agentic pip
 
 ## Related references (literature catalog)
 
+- Yamada, Y. et al. (2025). [*The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search*](../papers/notes/yamada2025aiscientistv2.md) `yamada2025aiscientistv2`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Schick, T. et al. (2023). [*Toolformer: Language Models Can Teach Themselves to Use Tools*](../papers/notes/schick2023toolformer.md) `schick2023toolformer`

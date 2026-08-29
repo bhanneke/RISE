@@ -132,4 +132,6 @@ compared_in:
     note: 'Covered as a flagship literature-synthesis agent.'
 
 references:
+  - jiang2024costorm
+  - shao2024storm
   - wu2025agenticreasoning

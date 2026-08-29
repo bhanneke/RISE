@@ -111,4 +111,5 @@ papers:
     arxiv_id: '2502.14776'
 
 references:
+  - liang2025surveyx
   - wu2025agenticreasoning
