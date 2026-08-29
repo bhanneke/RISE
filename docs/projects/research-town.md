@@ -69,5 +69,6 @@ Studies *community dynamics* rather than single-pipeline output: how groups of a
 
 ## Related references (literature catalog)
 
+- Yu, H. et al. (2025). [*ResearchTown: Simulator of Human Research Community*](../papers/notes/yu2025researchtown.md) `yu2025researchtown`
 - Park, J. S. et al. (2023). [*Generative Agents: Interactive Simulacra of Human Behavior*](../papers/notes/park2023generative.md) `park2023generative`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

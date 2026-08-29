@@ -108,5 +108,6 @@ papers:
     arxiv_id: '2509.23426'
 
 references:
+  - gao2025tooluniverse
   - schick2023toolformer
   - wu2025agenticreasoning

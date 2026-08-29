@@ -77,4 +77,6 @@ Treats the *pre-writing* problem (deciding what questions to ask) as the central
 
 ## Related references (literature catalog)
 
+- Jiang, Y. et al. (2024). [*Into the Unknown Unknowns: Engaged Human Learning through Participation in Language Model Agent Conversations*](../papers/notes/jiang2024costorm.md) `jiang2024costorm`
+- Shao, Y. et al. (2024). [*Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models*](../papers/notes/shao2024storm.md) `shao2024storm`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

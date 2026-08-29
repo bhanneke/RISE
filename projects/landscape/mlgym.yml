@@ -115,4 +115,5 @@ papers:
     arxiv_id: '2502.14499'
 
 references:
+  - nathani2025mlgym
   - wu2025agenticreasoning

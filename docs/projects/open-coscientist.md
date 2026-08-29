@@ -72,5 +72,6 @@ Makes a major closed industrial design (DeepMind's co-scientist) inspectable and
 
 ## Related references (literature catalog)
 
+- Gottweis, J. et al. (2026). [*Accelerating scientific discovery with Co-Scientist*](../papers/notes/gottweis2026coscientist.md) `gottweis2026coscientist`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Park, J. S. et al. (2023). [*Generative Agents: Interactive Simulacra of Human Behavior*](../papers/notes/park2023generative.md) `park2023generative`

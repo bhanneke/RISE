@@ -116,5 +116,6 @@ papers:
     arxiv_id: '2502.18864'
 
 references:
+  - gottweis2026coscientist
   - wu2025agenticreasoning
   - park2023generative

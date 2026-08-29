@@ -70,3 +70,7 @@ The hypothesis tree as first-class research memory: results, failure modes, and 
 ## Papers describing this project
 
 - **Toward Generalist Autonomous Research via Hypothesis-Tree Refinement** — Jin, J., Hu, Y., Qiu, K., Dai, Q., Luo, C., Dong, G., et al. (2026). *arXiv*. [arXiv:2606.11926](https://arxiv.org/abs/2606.11926)
+
+## Related references (literature catalog)
+
+- Jin, J. et al. (2026). [*Toward Generalist Autonomous Research via Hypothesis-Tree Refinement*](../papers/notes/jin2026arbor.md) `jin2026arbor`

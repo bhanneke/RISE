@@ -116,4 +116,5 @@ papers:
     venue: 'NeurIPS 2025'
     arxiv_id: '2507.00310'
 
-references: []
+references:
+  - agarwal2025autodiscovery

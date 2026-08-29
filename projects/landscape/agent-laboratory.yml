@@ -131,5 +131,6 @@ compared_in:
     note: 'Covered as a three-phase research-assistant pipeline.'
 
 references:
+  - schmidgall2025agentlaboratory
   - wu2025agenticreasoning
   - schick2023toolformer

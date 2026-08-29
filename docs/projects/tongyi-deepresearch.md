@@ -77,4 +77,5 @@ Treats agentic-research capability as a *model-training* problem, not just an or
 
 ## Related references (literature catalog)
 
+- Tongyi DeepResearch Team et al. (2025). [*Tongyi DeepResearch Technical Report*](../papers/notes/tongyi2025deepresearch.md) `tongyi2025deepresearch`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

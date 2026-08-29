@@ -128,5 +128,6 @@ compared_in:
     note: 'Covered as a foundational AI-scientist system.'
 
 references:
+  - lu2024aiscientist
   - wu2025agenticreasoning
   - schick2023toolformer

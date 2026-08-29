@@ -110,4 +110,5 @@ papers:
     arxiv_id: '2406.10252'
 
 references:
+  - wang2024autosurvey
   - wu2025agenticreasoning

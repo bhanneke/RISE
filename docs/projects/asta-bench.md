@@ -72,4 +72,5 @@ The most-scoped benchmark suite for scholarly-research agent abilities specifica
 
 ## Related references (literature catalog)
 
+- Bragg, J. et al. (2025). [*AstaBench: Rigorous Benchmarking of AI Agents with a Scientific Research Suite*](../papers/notes/bragg2025astabench.md) `bragg2025astabench`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

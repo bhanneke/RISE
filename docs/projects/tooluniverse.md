@@ -72,5 +72,6 @@ Reframes the AI-scientist problem as an *interface* problem: scientific tools ne
 
 ## Related references (literature catalog)
 
+- Gao, S. et al. (2025). [*ToolUniverse: An open platform for democratizing AI scientists*](../papers/notes/gao2025tooluniverse.md) `gao2025tooluniverse`
 - Schick, T. et al. (2023). [*Toolformer: Language Models Can Teach Themselves to Use Tools*](../papers/notes/schick2023toolformer.md) `schick2023toolformer`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

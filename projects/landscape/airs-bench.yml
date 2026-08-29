@@ -115,4 +115,5 @@ papers:
     venue: 'arXiv'
     arxiv_id: '2602.06855'
 
-references: []
+references:
+  - lupidi2026airsbench

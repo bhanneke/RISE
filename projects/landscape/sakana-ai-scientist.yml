@@ -125,5 +125,6 @@ compared_in:
     note: 'Covered as the v2 release of the foundational AI-scientist line.'
 
 references:
+  - yamada2025aiscientistv2
   - wu2025agenticreasoning
   - schick2023toolformer

@@ -79,6 +79,7 @@ Among the largest user communities in the catalog (12.3k stars, multi-language l
 
 ## Related references (literature catalog)
 
+- Liu, J. et al. (2026). [*AutoResearchClaw: Self-Reinforcing Autonomous Research with Human-AI Collaboration*](../papers/notes/liu2026autoresearchclaw.md) `liu2026autoresearchclaw`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Schick, T. et al. (2023). [*Toolformer: Language Models Can Teach Themselves to Use Tools*](../papers/notes/schick2023toolformer.md) `schick2023toolformer`
 - Ji, Z. et al. (2023). [*Survey of Hallucination in Natural Language Generation*](../papers/notes/ji2023hallucination.md) `ji2023hallucination`

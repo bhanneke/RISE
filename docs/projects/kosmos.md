@@ -78,5 +78,6 @@ Operationalizes the Kosmos architecture as a runnable system on commodity infras
 
 ## Related references (literature catalog)
 
+- Mitchener, L. et al. (2025). [*Kosmos: An AI Scientist for Autonomous Discovery*](../papers/notes/mitchener2025kosmos.md) `mitchener2025kosmos`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Park, J. S. et al. (2023). [*Generative Agents: Interactive Simulacra of Human Behavior*](../papers/notes/park2023generative.md) `park2023generative`

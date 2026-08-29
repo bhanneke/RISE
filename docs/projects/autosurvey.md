@@ -72,4 +72,5 @@ Among the first systems to treat *long-form survey writing* (not short-form QA o
 
 ## Related references (literature catalog)
 
+- Wang, Y. et al. (2024). [*AutoSurvey: Large Language Models Can Automatically Write Surveys*](../papers/notes/wang2024autosurvey.md) `wang2024autosurvey`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

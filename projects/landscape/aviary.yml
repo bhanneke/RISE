@@ -107,4 +107,5 @@ papers:
     arxiv_id: '2412.21154'
 
 references:
+  - narayanan2024aviary
   - wu2025agenticreasoning
