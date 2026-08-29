@@ -1,6 +1,6 @@
 ---
 citekey: riemer2026generative
-title: 'Generative <scp>AI</scp> Is Neither Just Another <scp>IT</scp> Artefact nor a Colleague: Methodological Guidance for <scp>IS</scp> Scholarship'
+title: 'Generative AI Is Neither Just Another IT Artefact nor a Colleague: Methodological Guidance for IS Scholarship'
 authors:
 - 'Riemer, K.'
 - 'Peter, S.'

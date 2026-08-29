@@ -1,6 +1,6 @@
 ---
 citekey: davison2026research
-title: 'Research Integrity Matters, But It Is Undermined by Generative <scp>AI</scp>'
+title: 'Research Integrity Matters, But It Is Undermined by Generative AI'
 authors:
 - 'Davison, R. M.'
 - 'Andrade, A. D.'

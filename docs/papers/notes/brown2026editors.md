@@ -1,6 +1,6 @@
 ---
 citekey: brown2026editors
-title: 'Editor’s Comments'
+title: 'Editor''s Comments: The Evolution of Research in MIS Quarterly Over Five Decades'
 authors:
 - 'Brown, S.'
 year: 2026
