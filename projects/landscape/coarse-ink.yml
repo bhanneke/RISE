@@ -32,6 +32,7 @@ pipeline_stages:
 architectural_features:
   - tool-use
   - human-in-loop
+  - rag-knowledge-base
 
 discipline: general
 
@@ -44,7 +45,8 @@ outputs:
 
 data_sources: []
 
-knowledge_sources: []
+knowledge_sources:
+  - web-search
 
 scores:
   lifecycle_coverage:
