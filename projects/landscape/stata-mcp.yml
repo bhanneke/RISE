@@ -1,0 +1,103 @@
+slug: stata-mcp
+name: "Stata MCP"
+type: external
+status: active
+url: "https://github.com/hanlulong/stata-mcp"
+maintainers:
+  - "Lu Han (OpenEcon.ai)"
+year_started: 2026
+
+positioning: >
+  An MCP server plus VS Code / Cursor / Antigravity IDE extension that
+  lets AI coding assistants (GitHub Copilot, Claude Code, Claude
+  Desktop, Cline, Cursor AI) run Stata .do-file selections, view
+  results and graphs, and interact with datasets directly inside the
+  editor. Sits in the data-analysis / code-generation layer of RISE,
+  alongside StatsPAI and Auto-Empirical-Research-Skills' Stata
+  backend, but as an IDE-integration bridge rather than a Python
+  causal-inference library or skill collection.
+
+distinctive_contribution: >
+  The only Stata-to-modern-IDE MCP bridge in the catalog: dual
+  transport (streamable HTTP + SSE), isolated per-session Stata
+  instances with multi-session support, a persistent-daemon-free
+  direct execution model, syntax highlighting for .do/.ado/.mata/.doh
+  files, and an in-editor data viewer — published as an installable VS
+  Code Marketplace extension (DeepEcon.stata-mcp) rather than a
+  source-only repo.
+
+focus: analysis
+
+pipeline_stages:
+  - data-analysis
+  - code-generation
+
+architectural_features:
+  - tool-use
+
+discipline: economics
+
+inputs:
+  - stata-do-files
+  - user-dataset
+
+outputs:
+  - execution-results
+  - figures
+  - analysis-code
+
+data_sources:
+  - user-provided
+
+knowledge_sources: []
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Touches two adjacent stages (data-analysis, code-generation) via Stata execution; no literature, drafting, or review stages."
+  autonomy_level:
+    score: 0
+    note: "Pure tool: every run/stop action is a human- or calling-agent-issued command against a live Stata session; no independent task planning."
+  architectural_transparency:
+    score: 2
+    note: "Full MIT-licensed extension and MCP-server source published with a documented dual-endpoint architecture; no 'prompts' concept since the server is invoked by external AI assistants rather than running its own agent loop."
+  inputs_supported:
+    score: 1
+    note: "One input form (Stata code/selection) plus direct dataset access via the bundled data viewer; no literature or external-corpus access."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists Stata output logs, tables, and graphs in the editor/webview; deterministic re-runs depend on the user's Stata license and data, no bundled data manifest."
+  internal_evaluation:
+    score: 1
+    note: "Video demo and PDF report examples only; no benchmark or systematic evaluation of correctness reported."
+  openness:
+    score: 2
+    note: "MIT-licensed extension code, but requires a paid Stata 17+ license to run — not reproducible on a free/commodity stack end-to-end."
+  maturity_traction:
+    score: 2
+    note: "491 stars / 85 forks / 218 commits, published on the VS Code Marketplace with per-client (Copilot, Claude, Cline, Cursor) configuration docs — beta-stage external adoption."
+  cross_family_policy:
+    score: 0
+    note: "Not applicable — a tool invoked by whichever AI assistant the user has configured; no cross-model review mechanism of its own."
+  assurance_runtime:
+    score: 1
+    note: "Structured real-time output/error display in the editor; no claim-audit or verification gates beyond surfacing Stata's own error messages."
+  cross_platform_portability:
+    score: 2
+    note: "Three IDEs (VS Code, Cursor, Antigravity) and multiple AI-assistant integrations (Copilot, Claude, Cline) via a protocol-based MCP server."
+scored_on: "2026-09-01"
+
+limitations:
+  - "Requires a paid Stata 17+ installation (17+ preferred for the pystata backend); not usable without proprietary software."
+  - "No accuracy or correctness evaluation reported beyond demo videos — the tool executes Stata faithfully but does not audit results."
+  - "Single-maintainer project (Lu Han / OpenEcon.ai); only 2 open issues tracked, limited external contribution history."
+
+related:
+  - stata-code
+  - statspai
+  - openecon-data
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper; distributed as a VS Code Marketplace extension (DeepEcon.stata-mcp) with in-repo documentation only.
+
+references: []
