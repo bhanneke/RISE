@@ -89,7 +89,7 @@ scores:
     note: "CC BY-NC 4.0 (non-commercial); sponsor-supported; Codex CLI sibling distribution available."
   maturity_traction:
     score: 3
-    note: "39k+ stars; rapid release cadence through v3.19.0 (2026-07-22) incl. claim-drift guards and PDF read-integrity preflight; English + Traditional Chinese docs; multi-IDE support."
+    note: "44.5k+ stars (up from 39k+); rapid release cadence through v3.21.1 (2026-08-24); English + Traditional Chinese docs; multi-IDE support."
   cross_family_policy:
     score: 1
     note: 'ARS_CROSS_MODEL flag enables cross-family verification; not the default.'
@@ -99,7 +99,7 @@ scores:
   cross_platform_portability:
     score: 3
     note: 'Claude Code + VS Code + JetBrains + Codex CLI sibling distribution + 5 install methods.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Non-commercial license restricts deployment options."
