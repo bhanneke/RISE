@@ -71,7 +71,7 @@ scores:
     note: "MIT-licensed; setup scripts for Windows and macOS/Linux; reproducible workflow."
   maturity_traction:
     score: 1
-    note: "Very new (initialized 2026-05-14); single-developer research prototype."
+    note: "94 stars and 20 forks by 2026-09 (up from a 2026-05-14 initialization) — real early adoption for a 4-month-old solo project — but no commits since 2026-05-15 and no tagged releases yet; still a single-developer research prototype."
   cross_family_policy:
     score: 0
     note: 'Single-family (Codex CLI); reviewer agents within one model family.'
@@ -81,7 +81,7 @@ scores:
   cross_platform_portability:
     score: 0
     note: 'Codex-CLI-locked; Windows + macOS/Linux setup scripts but single agent framework.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Single-stage tool (review only); requires upstream paper provenance."
