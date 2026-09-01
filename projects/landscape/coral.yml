@@ -78,7 +78,7 @@ scores:
     note: "MIT-licensed; uv-installable; broad agent-back-end support."
   maturity_traction:
     score: 2
-    note: "835 stars; rapid release cadence (v0.7.9-v0.7.11 in July 2026); paper accepted at COLM 2026; integrated with major coding agents."
+    note: "937 stars as of 2026-09 (up from 835); release cadence continues (past v0.7.20, up from v0.7.9-11); paper accepted at COLM 2026; integrated with major coding agents."
   cross_family_policy:
     score: 1
     note: 'Multi-agent coding-agent integration (Claude Code, Codex, OpenCode, Cursor) — cross-family configurable.'
@@ -88,7 +88,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: 'Multiple coding-agent back-ends (Claude Code, OpenCode, Codex, Cursor, Kiro) — broad portability.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Optimization-focused: best fit for *grade-against-script* tasks, not open-ended scholarly authoring."

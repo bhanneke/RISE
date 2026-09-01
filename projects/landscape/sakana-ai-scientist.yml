@@ -71,14 +71,14 @@ scores:
     score: 2
     note: "Persists papers + code + experiment logs; reproducibility depends on the seeded template."
   internal_evaluation:
-    score: 2
-    note: "Self-review pass and reported metrics on generated papers; external validation contested."
-  openness:
     score: 3
-    note: "Open source under permissive license."
+    note: "External validation: a v2-generated manuscript passed workshop-level human peer review (ICLR 2025 ICBINB, avg. score 6.33); the underlying research was subsequently peer-reviewed and published in Nature 651, 914-919 (26 Mar 2026)."
+  openness:
+    score: 1
+    note: "Relicensed Dec 2025 from permissive terms to the custom 'AI Scientist Source Code License v1.0' (based on the Responsible AI Source Code License, confirmed in this repo's LICENSE) — a non-permissive, restriction-bearing license (mandatory AI-disclosure clause, use restrictions, termination-on-violation)."
   maturity_traction:
-    score: 2
-    note: "Released, widely discussed, multiple iterations (v1 → v2)."
+    score: 3
+    note: "7.1k+ stars; multiple iterations (v1 → v2); capstone research published in Nature (Mar 2026), satisfying the 'citations'/production-adoption band."
   cross_family_policy:
     score: 0
     note: 'Same-model self-refinement is the canonical failure mode ARIS Table 4 identifies in this lineage.'
@@ -88,12 +88,13 @@ scores:
   cross_platform_portability:
     score: 0
     note: 'Linux + NVIDIA GPU locked; single-template runtime.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "ML-paper focus; portability to non-CS domains unclear."
   - "Quality of produced papers strongly dependent on seed templates."
   - "Self-review is not a substitute for external peer review."
+  - "Non-permissive license (AI Scientist Source Code License v1.0, Dec 2025), unlike the permissive license this project shipped under previously."
 
 related:
   - e2er
@@ -113,6 +114,19 @@ papers:
     year: 2025
     venue: 'arXiv'
     arxiv_id: '2504.08066'
+  - title: 'Towards end-to-end automation of AI research'
+    authors:
+      - 'Lu, C.'
+      - 'Lange, R. T.'
+      - 'Yamada, Y.'
+      - 'Hu, S.'
+      - 'Foerster, J.'
+      - 'Ha, D.'
+      - 'Clune, J.'
+    year: 2026
+    venue: 'Nature'
+    doi: '10.1038/s41586-026-10265-5'
+    arxiv_id: '2606.15497'
 
 
 # ── Also compared in ────────────────────────────────────

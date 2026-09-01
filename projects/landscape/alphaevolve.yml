@@ -78,7 +78,7 @@ scores:
     note: "Discovered artifacts (programs, mathematical constructions) are durable and verifiable; the discovery *process* requires Google compute and is not externally reproducible."
   internal_evaluation:
     score: 3
-    note: "Evaluation is by construction — every candidate is scored by the automated evaluator. 67-problem benchmark in Georgiev et al. provides external validation."
+    note: "Evaluation is by construction — every candidate is scored by the automated evaluator. 67-problem benchmark in Georgiev et al. provides external validation; a 2026-08 DeepMind paper (arXiv:2608.16884) reports AlphaEvolve-assisted improvement of the matrix-multiplication exponent upper bound to ω < 2.371177, a further concrete, checkable external result."
   openness:
     score: 0
     note: "Closed-source, gated behind Google DeepMind's Early Access Program for selected academic users."
@@ -94,7 +94,7 @@ scores:
   cross_platform_portability:
     score: 0
     note: "Tightly coupled to Google internal infrastructure and Gemini API; not portable."
-scored_on: "2026-05-23"
+scored_on: "2026-09-01"
 
 limitations:
   - "Requires a well-defined automated evaluator; not applicable to open-ended discovery without a scorable target."
@@ -131,6 +131,22 @@ papers:
     venue: 'arXiv'
     arxiv_id: '2511.02864'
     note: 'Applies AlphaEvolve to 67 open mathematical problems; Terence Tao co-author.'
+  - title: 'Improving the Matrix Multiplication Exponent with Modern Optimization and AlphaEvolve'
+    authors:
+      - 'Dupont, E.'
+      - 'Eisenberger, M.'
+      - 'Kozlovskii, B.'
+      - 'Mehrabian, A.'
+      - 'Ruiz, F. J. R.'
+      - 'See, A.'
+      - 'Zhou, R.'
+      - 'Alman, J.'
+      - 'Vassilevska Williams, V.'
+      - 'Balog, M.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2608.16884'
+    note: 'DeepMind team uses AlphaEvolve to refine a new optimization algorithm, improving the upper bound on the matrix-multiplication exponent to ω < 2.371177.'
 
 references:
   - novikov2025alphaevolve

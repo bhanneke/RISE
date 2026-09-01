@@ -25,14 +25,14 @@ An autonomous system that generates empirical economic policy research papers en
 | Architectural transparency | 3 | Stated commitment: 'everything is public — papers, code, data, failures.' TrueSkill scoring + benchmark set are open. |
 | Inputs supported | 2 | Policy-question inputs; integrates public-data sources; uses AER / AEJ:Policy corpus as benchmark. |
 | Outputs / reproducibility | 3 | Replication-verification step: 'Checks whether code executes and outputs match.' Full artifact transparency by design. |
-| Internal evaluation | 3 | Tournament evaluation against peer-reviewed human-benchmark papers from top economics journals — strongest internal-eval design in the catalog. |
+| Internal evaluation | 3 | Tournament evaluation against peer-reviewed human-benchmark papers from top economics journals — strongest internal-eval design in the catalog. 2026-07 follow-up ('Verifying the Verifiers') adds a versioned CRED error-taxonomy and benchmarks 60+ LLMs as verifiers against it. |
 | Openness | 3 | Fully open: papers, code, data, failures. |
-| Maturity / traction | 1 | Active hosted project in 2026; adoption / external use signals not yet clear. |
+| Maturity / traction | 1 | Companion GitHub repo (SocialCatalystLab/ape-papers, 433 stars) generated 1,000+ AI papers Jan–Apr 2026, then paused production to build the CRED error-taxonomy and verifier benchmark; an independent arXiv paper (Li, 2026, 'The Ideation Bottleneck', arXiv:2604.03338) uses its human/AI tournament corpus. Still single-team (Social Catalyst Lab); no evidence of external adoption of the tool itself. |
 | Cross-family policy | 1 | Judge is Gemini 3.1 Flash Lite, distinct from execution back-end — implicit cross-family setup. |
 | Runtime assurance | 2 | TrueSkill tournament vs human benchmarks + replication-verification step (code-execution + output-match check). |
 | Cross-platform portability | 1 | Hosted service; back-end choice is the maintainers', not user-facing. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -67,6 +67,11 @@ An autonomous system that generates empirical economic policy research papers en
 - [`clo-author`](clo-author.md)
 - [`sakana-ai-scientist`](sakana-ai-scientist.md)
 - [`social-science-replicability`](social-science-replicability.md)
+
+## Papers describing this project
+
+- **Verifying the Verifiers: Towards Autonomous Policy Evaluation** — Yanagizawa-Drott, D., Willner, O. (2026). *Social Catalyst Lab working paper*. [link](https://ape.socialcatalystlab.org/verify)
+- **The Ideation Bottleneck: Decomposing the Quality Gap Between AI-Generated and Human Economics Research** — Li, N. (2026). *arXiv*. [arXiv:2604.03338](https://arxiv.org/abs/2604.03338)
 
 ## Related references (literature catalog)
 

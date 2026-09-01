@@ -25,14 +25,14 @@ An evolutionary-search harness over LLM-generated code that decouples *generatio
 | Architectural transparency | 1 | Whitepaper (Novikov et al., arXiv 2506.13131) describes the architecture; system itself is closed-source. |
 | Inputs supported | 1 | Accepts a problem specification + an automated evaluator function; cannot handle problems without a scorable evaluation oracle. |
 | Outputs / reproducibility | 2 | Discovered artifacts (programs, mathematical constructions) are durable and verifiable; the discovery *process* requires Google compute and is not externally reproducible. |
-| Internal evaluation | 3 | Evaluation is by construction — every candidate is scored by the automated evaluator. 67-problem benchmark in Georgiev et al. provides external validation. |
+| Internal evaluation | 3 | Evaluation is by construction — every candidate is scored by the automated evaluator. 67-problem benchmark in Georgiev et al. provides external validation; a 2026-08 DeepMind paper (arXiv:2608.16884) reports AlphaEvolve-assisted improvement of the matrix-multiplication exponent upper bound to ω < 2.371177, a further concrete, checkable external result. |
 | Openness | 0 | Closed-source, gated behind Google DeepMind's Early Access Program for selected academic users. |
 | Maturity / traction | 2 | Reached general availability on Google Cloud (Gemini Enterprise Agent Platform) 2026-07-19 with enterprise customers (BASF, JetBrains, Klarna); whitepaper + high-profile follow-up papers (including Terence Tao as co-author on Georgiev et al.). |
 | Cross-family policy | 0 | Single model family (Gemini Pro/Flash) within Google DeepMind. |
 | Runtime assurance | 3 | Automated evaluator runs on every candidate as part of the search loop; this is the assurance layer by construction. |
 | Cross-platform portability | 0 | Tightly coupled to Google internal infrastructure and Gemini API; not portable. |
 
-*Scored on 2026-05-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -70,6 +70,7 @@ An evolutionary-search harness over LLM-generated code that decouples *generatio
 
 - **AlphaEvolve: A Coding Agent for Scientific and Algorithmic Discovery** — Novikov, A., Vũ, N., Eisenberger, M., Dupont, E., Huang, P.-S., Wagner, A. Z., et al. (2025). *arXiv*. [arXiv:2506.13131](https://arxiv.org/abs/2506.13131)
 - **Mathematical Exploration and Discovery at Scale** — Georgiev, B., Gómez-Serrano, J., Tao, T., Wagner, A. Z. (2025). *arXiv*. [arXiv:2511.02864](https://arxiv.org/abs/2511.02864)
+- **Improving the Matrix Multiplication Exponent with Modern Optimization and AlphaEvolve** — Dupont, E., Eisenberger, M., Kozlovskii, B., Mehrabian, A., Ruiz, F. J. R., See, A., Zhou, R., Alman, J., Vassilevska Williams, V., Balog, M. (2026). *arXiv*. [arXiv:2608.16884](https://arxiv.org/abs/2608.16884)
 
 ## Related references (literature catalog)
 

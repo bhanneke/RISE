@@ -78,7 +78,7 @@ scores:
     note: "MIT-licensed; reproducible setup with PyPI install path."
   maturity_traction:
     score: 1
-    note: "53 stars; last push 2025-07; appears semi-maintained."
+    note: "Confirmed still archived by the owner (archived 2026-04-14, read-only); 69 stars; last push 2025-07 — matches the entry's existing 'archived' status."
   cross_family_policy:
     score: 3
     note: 'Requires Gemini 2.5 Pro + Claude Sonnet 4 + o3 in collaboration — explicitly multi-family by design.'
@@ -88,7 +88,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'LangGraph + GPT-Researcher dependency; single Python entry.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Requires API keys from multiple commercial providers (Gemini + Anthropic + OpenAI) for the full design."

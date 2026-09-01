@@ -27,12 +27,12 @@ Treats the outer loop and its integrity guards as the product: two-phase frozen 
 | Outputs / reproducibility | 2 | Persists drafts, run ledgers, and logs — every reported number traces to a frozen-metric measurement in the jsonl — but exact re-runs are deterministic only under the MockLLM. |
 | Internal evaluation | 1 | Two captured live Opus runs on toy tasks (digits 5.0%->3.82% err, diabetes RMSE 56.5->55.24) plus a reward-hacking stress test; no benchmark evaluation or external validation. |
 | Openness | 3 | MIT; pip-installable; the entire loop runs deterministically in under a second on CPU with no API key via the bundled MockLLM. |
-| Maturity / traction | 1 | 462 stars and 36 forks within weeks of release, but a 26-commit single-maintainer research preview with no pushes since 2026-06-23 (one month idle at scoring). |
+| Maturity / traction | 1 | 468 stars and 35 forks — essentially flat since last review (462/36) — confirming the single-maintainer research preview has had no pushes since 2026-06-23, now over two months idle at scoring; growth has stalled along with development. |
 | Cross-family policy | 0 | Single family — the optional [llm] extra ships only an Anthropic client, and writer and reviewer share the same model; the optimization loop deliberately uses no LLM-as-judge. |
 | Runtime assurance | 3 | Heavy deterministic guard stack with gating: frozen two-phase scoring, edit allowlist, VerifiedRegistry number-grounding, schema validate-retry, per-agent predict-then-verify calibration, and tiered promotion gates — adversarially tested via the cheater engine. |
 | Cross-platform portability | 0 | Pure-Python package runs anywhere, but live runs support only the Anthropic backend; the MockLLM is a test double, not a deployment target. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -56,7 +56,7 @@ Treats the outer loop and its integrity guards as the product: two-phase frozen 
 
 ## Limitations
 
-- Watch item: no commits since 2026-06-23 despite rapid star growth — a single-maintainer 'research preview' that may already be stalled; status here assumes <3 months idle still counts as active.
+- No commits since 2026-06-23 (over two months idle at this review) and star/fork counts have plateaued (468/35, up from 462/36) — the single-maintainer 'research preview' looks stalled rather than merely quiet; status here assumes <3 months idle still counts as active.
 - Shipped domains are toy sklearn/PyTorch tasks with weak baselines, and the system's own reviewer rejects both captured papers as too marginal (the README concedes it is not wrong).
 - Anthropic-only live backend and no container sandboxing yet — the author names sandboxing as the open residual boundary.
 

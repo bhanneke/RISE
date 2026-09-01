@@ -1,7 +1,7 @@
 slug: surveyx
 name: "SurveyX"
 type: external
-status: active
+status: dormant
 url: "https://github.com/IAAR-Shanghai/SurveyX"
 maintainers:
   - "IAAR Shanghai"
@@ -72,8 +72,8 @@ scores:
     score: 1
     note: "No declared license in repository metadata; substantial functionality reserved for the commercial service."
   maturity_traction:
-    score: 2
-    note: "970 stars; active development; live hosted service at surveyx.cn."
+    score: 0
+    note: "990 stars but the open-source repo has had no commits since 2025-06-22 (>12 months of inactivity, single branch); status revised active→dormant. Hosted service at surveyx.cn may still operate but was not independently verified."
   cross_family_policy:
     score: 0
     note: 'No cross-family policy in open release.'
@@ -83,12 +83,13 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Offline (markdown) + hosted-service (closed) paths.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Open-source release deliberately omits the most capability-relevant components (crawler, paper DB, multimodal parser)."
   - "No declared open-source license."
   - "Output quality on the open path depends entirely on the references the user supplies."
+  - "Open-source repository dormant since 2025-06-22 (no commits in over a year as of this scoring); unclear whether the hosted surveyx.cn service is still maintained."
 
 related:
   - autosurvey

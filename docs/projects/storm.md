@@ -27,12 +27,12 @@ Treats the *pre-writing* problem (deciding what questions to ask) as the central
 | Outputs / reproducibility | 2 | Pip-installable `knowledge-storm` package; outputs are deterministic given the retrieval back-end and model. |
 | Internal evaluation | 2 | Both papers report systematic evaluations against baselines and Wikipedia editors. |
 | Openness | 3 | MIT-licensed, pip-installable, demo site, public papers. |
-| Maturity / traction | 3 | 28k+ stars, live research preview with 70k+ users, integrated into multiple downstream projects. |
+| Maturity / traction | 3 | 31.2k+ stars, live research preview with 70k+ users, integrated into multiple downstream projects; most recent repo commit 2025-09-30. |
 | Cross-family policy | 0 | Single LLM provider per run. |
 | Runtime assurance | 1 | Perspective-guided question asking + simulated conversation provide light internal review. |
 | Cross-platform portability | 2 | Multiple retrieval back-ends (Bing, You.com, VectorRM); knowledge-storm pip package usable across providers. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

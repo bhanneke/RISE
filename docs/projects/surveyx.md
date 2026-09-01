@@ -2,7 +2,7 @@
 
 # SurveyX
 
-`external` · status: `active` · focus: `literature` · discipline: `general` · started: 2025
+`external` · status: `dormant` · focus: `literature` · discipline: `general` · started: 2025
 
 **Project page:** <https://github.com/IAAR-Shanghai/SurveyX>
 
@@ -27,12 +27,12 @@ Two-tier deployment — an open offline pipeline plus a commercial online servic
 | Outputs / reproducibility | 1 | Open path is reproducible given user-supplied references; hosted-service runs are not. |
 | Internal evaluation | 2 | ArXiv paper reports comparative evaluation; the hosted-service variant has not been independently audited. |
 | Openness | 1 | No declared license in repository metadata; substantial functionality reserved for the commercial service. |
-| Maturity / traction | 2 | 970 stars; active development; live hosted service at surveyx.cn. |
+| Maturity / traction | 0 | 990 stars but the open-source repo has had no commits since 2025-06-22 (>12 months of inactivity, single branch); status revised active→dormant. Hosted service at surveyx.cn may still operate but was not independently verified. |
 | Cross-family policy | 0 | No cross-family policy in open release. |
 | Runtime assurance | 1 | Offline path has reference-grounding only; full crawler + paper-DB closed. |
 | Cross-platform portability | 1 | Offline (markdown) + hosted-service (closed) paths. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -59,6 +59,7 @@ Two-tier deployment — an open offline pipeline plus a commercial online servic
 - Open-source release deliberately omits the most capability-relevant components (crawler, paper DB, multimodal parser).
 - No declared open-source license.
 - Output quality on the open path depends entirely on the references the user supplies.
+- Open-source repository dormant since 2025-06-22 (no commits in over a year as of this scoring); unclear whether the hosted surveyx.cn service is still maintained.
 
 ## Related projects in this catalog
 
