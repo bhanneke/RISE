@@ -106,7 +106,6 @@ limitations:
   - "Requires a paid Claude Code/API subscription to run; not reproducible on free infrastructure."
 
 related:
-  - theorist-toolbox
   - econcs-bench
   - ai-co-mathematician
 

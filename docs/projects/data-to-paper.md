@@ -27,12 +27,12 @@ The "data-chained" provenance design is unique in the catalog: the manuscript is
 | Outputs / reproducibility | 3 | Backward-traceable manuscripts where any numeric value resolves to its generating code line — strongest reproducibility design in the catalog. |
 | Internal evaluation | 3 | Peer-reviewed publication in NEJM AI demonstrating the framework; example papers across diabetes, social-network, and clinical datasets. |
 | Openness | 3 | MIT-licensed; pip-installable; example datasets + example papers all public. |
-| Maturity / traction | 2 | 793 stars; NEJM AI publication; last push 2025-07 — slower cadence but stable mature release. |
+| Maturity / traction | 0 | 818 stars but no commits since 2025-07-19 (confirmed via GitHub API pushed_at) — over 14 months of inactivity as of 2026-09, crossing the rubric's >12-month dormancy threshold despite the NEJM AI publication and continued star growth. |
 | Cross-family policy | 0 | Single-LLM design with rule-based agents alongside; no cross-family review architecture. |
 | Runtime assurance | 2 | Coding guardrails (overridden statistical packages), data-chaining provenance checks, and AI-review-on-demand in Copilot mode. |
 | Cross-platform portability | 1 | Pip package; works with multiple LLM back-ends, but no native multi-IDE adaptation layer. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

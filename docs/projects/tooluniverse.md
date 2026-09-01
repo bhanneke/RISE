@@ -27,12 +27,12 @@ Reframes the AI-scientist problem as an *interface* problem: scientific tools ne
 | Outputs / reproducibility | 2 | Tool calls are deterministic by the underlying APIs; pipeline-level reproducibility depends on the wrapping agent. |
 | Internal evaluation | 2 | ArXiv paper validates the tool registry against scientific-agent benchmarks; broader uptake metrics public. |
 | Openness | 3 | Apache-2.0; PyPI; MCP registry listing; community channels (Slack, WeChat). |
-| Maturity / traction | 2 | 1.6k+ stars; Harvard institutional backing; very active (v1.3.1 2026-07-02, ~100 commits since May); featured in Nature Methods (May 2026). |
+| Maturity / traction | 2 | 1.7k+ stars; Harvard institutional backing; very active (v1.4.1 released 2026-08-12, 930+ commits); featured in Nature Methods (May 2026). |
 | Cross-family policy | 1 | Tool registry; LLM-agnostic by design — cross-family configurable. |
 | Runtime assurance | 2 | Tool-call validation + biomedical-API-specific guardrails. |
 | Cross-platform portability | 2 | MCP server + Python SDK + agent-skills bundle = multiple consumer surfaces. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

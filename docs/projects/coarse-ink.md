@@ -23,29 +23,32 @@ Open-source (MIT) and explicitly anti-commercial in framing — "Academic peer r
 | Lifecycle coverage | 0 | Single stage (referee simulation). |
 | Autonomy level | 2 | Supervised: user uploads paper and receives a report; optional 'reviewer focus' notes steer emphasis. |
 | Architectural transparency | 2 | Open source under MIT; multiple back-end models exposed (Claude, GPT-5, Gemini, DeepSeek). Internal orchestration not deeply documented in marketing. |
-| Inputs supported | 1 | PDF + optional focus note; no integration of literature corpora or prior reviews. |
+| Inputs supported | 2 | PDF + optional focus note, plus a new optional --deep-literature-search mode (Perplexity Sonar Pro / Sonar Deep Research) that pulls in external literature during review — confirmed on the underlying GitHub repo (davidvandijcke/coarse, MIT, 182 stars, v1.9.2). |
 | Outputs / reproducibility | 1 | Reports are persisted client-side; not deterministic across runs by design (different model choices). |
 | Internal evaluation | 1 | Self-reported blind evaluation vs. refine.ink, Stanford Agentic Reviewer, reviewer3.com; no third-party benchmark. |
 | Openness | 3 | MIT-licensed; BYOK (bring-your-own-key) model; transparent pricing (~under $2/review with OpenRouter). |
-| Maturity / traction | 1 | Active hosted service in 2026; user-base scope not publicly disclosed. |
+| Maturity / traction | 1 | Active hosted service in 2026; underlying open-source repo (davidvandijcke/coarse) shows 182 GitHub stars and a v1.9.2 release; hosted-service user base still not publicly disclosed. |
 | Cross-family policy | 1 | BYOK OpenRouter exposes Claude / GPT-5 / Gemini / DeepSeek as user-selectable executor — cross-family by user choice. |
 | Runtime assurance | 1 | Single-pass review with focus-note steering; no published claim-audit harness. |
 | Cross-platform portability | 2 | Multi-provider via OpenRouter + local Claude Code/Codex/Gemini CLI fallback. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
 **Pipeline stages:** `referee-simulation`
 
 
-**Architectural features:** `tool-use` `human-in-loop`
+**Architectural features:** `tool-use` `human-in-loop` `rag-knowledge-base`
 
 
 **Inputs:** `submitted-paper-pdf` `reviewer-focus-note`
 
 
 **Outputs:** `referee-report`
+
+
+**Knowledge sources:** `web-search`
 
 
 ## Limitations

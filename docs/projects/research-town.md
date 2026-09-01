@@ -2,7 +2,7 @@
 
 # ResearchTown
 
-`external` · status: `active` · focus: `ideation` · discipline: `general` · started: 2024
+`external` · status: `dormant` · focus: `ideation` · discipline: `general` · started: 2024
 
 **Project page:** <https://github.com/ulab-uiuc/research-town>
 
@@ -27,12 +27,12 @@ Studies *community dynamics* rather than single-pipeline output: how groups of a
 | Outputs / reproducibility | 2 | PyPI-installable; trajectories persisted; LLM nondeterminism limits exact reproduction. |
 | Internal evaluation | 2 | ICML paper presents systematic evaluation of community-level metrics. |
 | Openness | 3 | Apache-2.0; pip-installable; active community channels. |
-| Maturity / traction | 2 | 204 stars; ICML 2025 acceptance; active development through 2026-05. |
+| Maturity / traction | 0 | 211 stars and ICML 2025 acceptance, but no human-authored commit since 2025-07-10 (14+ months); 15 open Dependabot dependency-bump PRs sit unmerged, several auto-flagged Stale since Jul 2026 — effectively unmaintained despite the published-paper pedigree. |
 | Cross-family policy | 0 | Single-family agent population in published runs. |
 | Runtime assurance | 1 | Community-level metrics + state-machine engines provide some structural gating. |
 | Cross-platform portability | 1 | Pip-installable; OpenAI-tied in default config. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -55,6 +55,7 @@ Studies *community dynamics* rather than single-pipeline output: how groups of a
 
 - Community simulation, not a deployable RISE pipeline — outputs are research about RISE, not research output.
 - OpenAI API + database required to run end-to-end.
+- No maintainer activity since 2025-07; only automated dependency-bump PRs open, several stale and unmerged since mid-2026.
 
 ## Related projects in this catalog
 

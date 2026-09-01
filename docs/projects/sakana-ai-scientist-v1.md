@@ -25,14 +25,14 @@ First widely-noticed system to demonstrate a complete machine-learning paper pro
 | Architectural transparency | 3 | Code, prompts, templates, and example outputs publicly released; arXiv paper documents the design. |
 | Inputs supported | 1 | Narrow input form (area + curated template); limited external data integration. |
 | Outputs / reproducibility | 2 | Papers + code + logs persisted; reproducibility tied to the seeded template. |
-| Internal evaluation | 2 | Self-review pass and qualitative evaluation in the arXiv paper; external evaluations of output quality are mixed. |
-| Openness | 2 | Open source under a non-OSI 'Other' license (verify terms before reuse); requires Linux + NVIDIA GPU. |
-| Maturity / traction | 3 | 13k+ stars, peer attention, basis for follow-up systems and the v2 release. |
+| Internal evaluation | 3 | External validation: the underlying research (Lu, C. et al.) was peer-reviewed and published in Nature 651, 914-919 (26 Mar 2026), reporting that an AI Scientist-v2-generated manuscript passed workshop-level human peer review (ICLR 2025 ICBINB, avg. score 6.33). |
+| Openness | 1 | Relicensed Dec 2025 from permissive terms to the custom 'AI Scientist Source Code License v1.0' (based on the Responsible AI Source Code License) — a non-permissive, restriction-bearing license (mandatory AI-disclosure clause, use restrictions, termination-on-violation); requires Linux + NVIDIA GPU. |
+| Maturity / traction | 3 | 14.5k+ stars; peer attention; basis for the v2 release; capstone research published in Nature (Mar 2026). |
 | Cross-family policy | 0 | Same as v2 — self-refinement within one model family. |
 | Runtime assurance | 1 | Self-review pass + per-template scaffold checks. |
 | Cross-platform portability | 0 | Linux + NVIDIA GPU + texlive locked. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -58,7 +58,7 @@ First widely-noticed system to demonstrate a complete machine-learning paper pro
 
 - Locked to three CS templates; portability to other domains community-maintained.
 - Self-review correlates weakly with external peer-review judgments.
-- Non-permissive license; requires Linux + NVIDIA GPU + texlive-full.
+- Non-permissive license (AI Scientist Source Code License v1.0, Dec 2025); requires Linux + NVIDIA GPU + texlive-full.
 - Executes LLM-written code; security/containment is the user's responsibility.
 
 ## Related projects in this catalog
@@ -71,6 +71,7 @@ First widely-noticed system to demonstrate a complete machine-learning paper pro
 ## Papers describing this project
 
 - **The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery** — Lu, C., Lu, C., Lange, R. T., Foerster, J., Clune, J., Ha, D. (2024). *arXiv*. [arXiv:2408.06292](https://arxiv.org/abs/2408.06292)
+- **Towards end-to-end automation of AI research** — Lu, C., Lange, R. T., Yamada, Y., Hu, S., Foerster, J., Ha, D., Clune, J. (2026). *Nature*. [arXiv:2606.15497](https://arxiv.org/abs/2606.15497) · [doi](https://doi.org/10.1038/s41586-026-10265-5)
 
 ## Also compared in
 
