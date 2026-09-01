@@ -70,7 +70,7 @@ scores:
     note: "Apache-2.0; PyPI; MCP registry listing; community channels (Slack, WeChat)."
   maturity_traction:
     score: 2
-    note: "1.6k+ stars; Harvard institutional backing; very active (v1.3.1 2026-07-02, ~100 commits since May); featured in Nature Methods (May 2026)."
+    note: "1.7k+ stars; Harvard institutional backing; very active (v1.4.1 released 2026-08-12, 930+ commits); featured in Nature Methods (May 2026)."
   cross_family_policy:
     score: 1
     note: 'Tool registry; LLM-agnostic by design — cross-family configurable.'
@@ -80,7 +80,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: 'MCP server + Python SDK + agent-skills bundle = multiple consumer surfaces.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Biomedical orientation; coverage for empirical economics, social sciences thin or absent."
