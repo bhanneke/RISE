@@ -71,7 +71,7 @@ scores:
     note: "Apache-2.0; PyPI as `fhaviary`; sister library LDP also open."
   maturity_traction:
     score: 2
-    note: "261 stars; active development; embedded in FutureHouse evaluation stack."
+    note: "278 stars (up from 261); active development through at least 2026-07-20 (new Jupyter-notebook environment added); embedded in FutureHouse evaluation stack."
   cross_family_policy:
     score: 1
     note: 'Environment-agnostic; cross-family possible by user setup.'
@@ -81,7 +81,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: 'Pip-installable; pairs with LDP; multi-environment by design.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Evaluation infrastructure, not a RISE pipeline — included here for completeness, scored conservatively on lifecycle coverage."

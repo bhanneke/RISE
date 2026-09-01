@@ -59,8 +59,8 @@ scores:
     score: 2
     note: "Open source under MIT; multiple back-end models exposed (Claude, GPT-5, Gemini, DeepSeek). Internal orchestration not deeply documented in marketing."
   inputs_supported:
-    score: 1
-    note: "PDF + optional focus note; no integration of literature corpora or prior reviews."
+    score: 2
+    note: "PDF + optional focus note, plus a new optional --deep-literature-search mode (Perplexity Sonar Pro / Sonar Deep Research) that pulls in external literature during review — confirmed on the underlying GitHub repo (davidvandijcke/coarse, MIT, 182 stars, v1.9.2)."
   outputs_reproducibility:
     score: 1
     note: "Reports are persisted client-side; not deterministic across runs by design (different model choices)."
@@ -72,7 +72,7 @@ scores:
     note: "MIT-licensed; BYOK (bring-your-own-key) model; transparent pricing (~under $2/review with OpenRouter)."
   maturity_traction:
     score: 1
-    note: "Active hosted service in 2026; user-base scope not publicly disclosed."
+    note: "Active hosted service in 2026; underlying open-source repo (davidvandijcke/coarse) shows 182 GitHub stars and a v1.9.2 release; hosted-service user base still not publicly disclosed."
 
   cross_family_policy:
     score: 1
@@ -83,7 +83,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: 'Multi-provider via OpenRouter + local Claude Code/Codex/Gemini CLI fallback.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Single-stage tool; needs upstream paper provenance."

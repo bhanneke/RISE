@@ -114,6 +114,19 @@ papers:
     year: 2025
     venue: 'arXiv'
     arxiv_id: '2504.08066'
+  - title: 'Towards end-to-end automation of AI research'
+    authors:
+      - 'Lu, C.'
+      - 'Lange, R. T.'
+      - 'Yamada, Y.'
+      - 'Hu, S.'
+      - 'Foerster, J.'
+      - 'Ha, D.'
+      - 'Clune, J.'
+    year: 2026
+    venue: 'Nature'
+    doi: '10.1038/s41586-026-10265-5'
+    arxiv_id: '2606.15497'
 
 
 # ── Also compared in ────────────────────────────────────
