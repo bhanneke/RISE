@@ -112,6 +112,13 @@ related:
 
 # ── Papers describing this project ─────────────────────
 papers:
-  - "arXiv:2607.21268 — 'pAI-Econ-claude: A Gated Human-in-the-Loop Multi-Agent Architecture for AI-Assisted Economic Theory Development' (Zhu, Wang, Zhang 2026)"
+  - title: 'pAI-Econ-claude: A Gated Human-in-the-Loop Multi-Agent Architecture for AI-Assisted Economic Theory Development'
+    authors:
+      - 'Zhu, C.'
+      - 'Wang, X.'
+      - 'Zhang, W.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2607.21268'
 
 references: []
