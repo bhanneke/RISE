@@ -69,7 +69,7 @@ scores:
     note: "Released retrieval results, model checkpoints, and inference scripts make pipeline runs reproducible."
   internal_evaluation:
     score: 3
-    note: "ScholarQABench + expert evaluation interfaces; both quantitative and human evaluation reported."
+    note: "Now peer-reviewed: published in Nature (2026-02-04, DOI 10.1038/s41586-025-10072-4), with a 16-scientist preference study (OpenScholar answers preferred over human-expert answers 51% of the time) plus the ScholarQABench automatic benchmark."
   openness:
     score: 3
     note: "Apache-2.0; open weights for Llama-3.1_OpenScholar-8B; data and benchmark publicly released."
