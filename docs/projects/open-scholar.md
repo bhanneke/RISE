@@ -25,14 +25,14 @@ Pairs the inference system with two purpose-built evaluation artifacts — Schol
 | Architectural transparency | 3 | Open under Apache-2.0; arXiv:2411.14199 documents method; training + retrieval code published. |
 | Inputs supported | 2 | Scientific queries with optional retrieval-result inputs; supports both open and proprietary LMs. |
 | Outputs / reproducibility | 2 | Released retrieval results, model checkpoints, and inference scripts make pipeline runs reproducible. |
-| Internal evaluation | 3 | ScholarQABench + expert evaluation interfaces; both quantitative and human evaluation reported. |
+| Internal evaluation | 3 | Now peer-reviewed: published in Nature (2026-02-04, DOI 10.1038/s41586-025-10072-4), with a 16-scientist preference study (OpenScholar answers preferred over human-expert answers 51% of the time) plus the ScholarQABench automatic benchmark. |
 | Openness | 3 | Apache-2.0; open weights for Llama-3.1_OpenScholar-8B; data and benchmark publicly released. |
-| Maturity / traction | 2 | 1.5k+ stars; cited as a baseline; demo at open-scholar.allen.ai; backed by AI2. |
+| Maturity / traction | 3 | Nature publication (2026-02-04) drew wide science-press coverage (UW News, EurekAlert, The Scientist, Newswise); 1.6k+ GitHub stars; demo at open-scholar.allen.ai; backed by AI2 — sustained citation and adoption as a literature-synthesis baseline, despite the code repo itself being inactive since 2025-08. |
 | Cross-family policy | 1 | 8B open-weight model + optional commercial LLMs; cross-family configurable. |
 | Runtime assurance | 1 | ScholarQABench evaluation set + retrieval verification; runtime gating is light. |
 | Cross-platform portability | 1 | HuggingFace + Semantic Scholar API + You.com; not multi-IDE. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -68,7 +68,7 @@ Pairs the inference system with two purpose-built evaluation artifacts — Schol
 
 ## Papers describing this project
 
-- **OpenScholar: Synthesizing Scientific Literature with Retrieval-augmented LMs** — Asai, A., He, J., Shao, R., Shi, W., Singh, A., Chang, J. C., et al. (2024). *arXiv*. [arXiv:2411.14199](https://arxiv.org/abs/2411.14199)
+- **Synthesizing scientific literature with retrieval-augmented language models** — Asai, A., He, J., Shao, R., Shi, W., Singh, A., Chang, J. C., et al. (2026). *Nature*. [arXiv:2411.14199](https://arxiv.org/abs/2411.14199) · [doi](https://doi.org/10.1038/s41586-025-10072-4)
 
 ## Also compared in
 

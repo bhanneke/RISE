@@ -78,7 +78,7 @@ scores:
     note: "MIT-licensed, pip-installable, demo site, public papers."
   maturity_traction:
     score: 3
-    note: "28k+ stars, live research preview with 70k+ users, integrated into multiple downstream projects."
+    note: "31.2k+ stars, live research preview with 70k+ users, integrated into multiple downstream projects; most recent repo commit 2025-09-30."
   cross_family_policy:
     score: 0
     note: 'Single LLM provider per run.'
@@ -88,7 +88,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: 'Multiple retrieval back-ends (Bing, You.com, VectorRM); knowledge-storm pip package usable across providers.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Stated explicitly by authors: output is not publication-ready and requires significant editing."

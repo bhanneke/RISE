@@ -84,8 +84,8 @@ scores:
     score: 3
     note: "MIT-licensed; pip-installable; example datasets + example papers all public."
   maturity_traction:
-    score: 2
-    note: "793 stars; NEJM AI publication; last push 2025-07 — slower cadence but stable mature release."
+    score: 0
+    note: "818 stars but no commits since 2025-07-19 (confirmed via GitHub API pushed_at) — over 14 months of inactivity as of 2026-09, crossing the rubric's >12-month dormancy threshold despite the NEJM AI publication and continued star growth."
   cross_family_policy:
     score: 0
     note: "Single-LLM design with rule-based agents alongside; no cross-family review architecture."
@@ -96,7 +96,7 @@ scores:
     score: 1
     note: "Pip package; works with multiple LLM back-ends, but no native multi-IDE adaptation layer."
 
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Designed for 'relatively simple research goals and simple datasets' per the authors — does not yet target deep theoretical or large-scale studies."

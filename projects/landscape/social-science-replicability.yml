@@ -72,7 +72,7 @@ scores:
     note: "Open source under permissive license."
   maturity_traction:
     score: 1
-    note: "Active prototype; single-developer-led."
+    note: "Active prototype; single-developer-led; 30 stars but repo remains actively committed to (42 commits, most recent 2026-08-31)."
   cross_family_policy:
     score: 0
     note: 'Single-LLM-family pipeline; methodology extractor + replicator within one family.'
@@ -82,7 +82,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Python-CLI tool; back-end LLM swappable but not multi-IDE.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Success rate depends heavily on availability of target paper's data + code."

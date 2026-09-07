@@ -25,14 +25,14 @@ The most-scoped benchmark suite for scholarly-research agent abilities specifica
 | Architectural transparency | 3 | Open under Apache-2.0; AstaBench paper at allenai.org; built on documented InspectAI framework. |
 | Inputs supported | 3 | 11 benchmarks spanning research skills; standardized agent interface; leaderboard submission supported. |
 | Outputs / reproducibility | 3 | Docker-based execution; standardized scoring; decoupled solve/score for cross-version comparison. |
-| Internal evaluation | 2 | Self-application: AI2 uses AstaBench to evaluate its own agents; broader cross-system results on leaderboard. |
+| Internal evaluation | 3 | AstaBench paper accepted as an oral presentation at ICLR 2026 (peer-reviewed venue); Spring 2026 update reports new frontier-model results (incl. GPT-5.5) plus third-party leaderboard submissions from Elicit, SciSpace, Distyl AI, and EvoScientist. |
 | Openness | 3 | Apache-2.0; AI2 institutional backing; public leaderboard. |
-| Maturity / traction | 2 | 104 stars; active development; AI2 institutional backing; recent (2025–2026). |
+| Maturity / traction | 3 | 132 stars (up from 104); ICLR 2026 oral presentation; Spring 2026 blog update reports adoption beyond AI2 including the UK AI Security Institute and leaderboard submissions from Elicit, SciSpace, Distyl AI, and EvoScientist. |
 | Cross-family policy | 1 | InspectAI framework allows cross-family agent submissions; not a policy on the system itself. |
 | Runtime assurance | 1 | Per-task scoring against rubrics; not a runtime audit during pipeline execution. |
 | Cross-platform portability | 2 | InspectAI compatibility + Docker + decoupled solve/score paths. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -68,7 +68,7 @@ The most-scoped benchmark suite for scholarly-research agent abilities specifica
 
 ## Papers describing this project
 
-- **AstaBench: Rigorous Benchmarking of AI Agents with a Scientific Research Suite** — Bragg, J., D'Arcy, M., Balepur, N., Bareket, D., Dalvi, B., Feldman, S., et al. (2025). *arXiv*. [arXiv:2510.21652](https://arxiv.org/abs/2510.21652)
+- **AstaBench: Rigorous Benchmarking of AI Agents with a Scientific Research Suite** — Bragg, J., D'Arcy, M., Balepur, N., Bareket, D., Dalvi, B., Feldman, S., et al. (2025). *arXiv; oral presentation, ICLR 2026*. [arXiv:2510.21652](https://arxiv.org/abs/2510.21652)
 
 ## Related references (literature catalog)
 

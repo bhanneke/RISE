@@ -81,8 +81,8 @@ scores:
     score: 3
     note: "MIT-licensed; broad community translations of README; LaTeX optional via flag."
   maturity_traction:
-    score: 3
-    note: "5.6k+ stars; active in 2025; AgentRxiv extension shows continued development direction."
+    score: 0
+    note: "5.8k+ stars but no activity in >12 months (last commit 2025-08-20, per rubric's abandoned band); 38 open issues and 21 open PRs unaddressed."
   cross_family_policy:
     score: 0
     note: 'No required cross-family policy; multi-back-end (OpenAI o-series + DeepSeek) without architectural separation.'
@@ -92,7 +92,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Multi-back-end (OpenAI, DeepSeek) but framework-level (not multi-IDE).'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Computer-science orientation; portability to empirical social sciences untested."

@@ -67,14 +67,14 @@ scores:
     score: 3
     note: "Docker-based execution; standardized scoring; decoupled solve/score for cross-version comparison."
   internal_evaluation:
-    score: 2
-    note: "Self-application: AI2 uses AstaBench to evaluate its own agents; broader cross-system results on leaderboard."
+    score: 3
+    note: "AstaBench paper accepted as an oral presentation at ICLR 2026 (peer-reviewed venue); Spring 2026 update reports new frontier-model results (incl. GPT-5.5) plus third-party leaderboard submissions from Elicit, SciSpace, Distyl AI, and EvoScientist."
   openness:
     score: 3
     note: "Apache-2.0; AI2 institutional backing; public leaderboard."
   maturity_traction:
-    score: 2
-    note: "104 stars; active development; AI2 institutional backing; recent (2025–2026)."
+    score: 3
+    note: "132 stars (up from 104); ICLR 2026 oral presentation; Spring 2026 blog update reports adoption beyond AI2 including the UK AI Security Institute and leaderboard submissions from Elicit, SciSpace, Distyl AI, and EvoScientist."
   cross_family_policy:
     score: 1
     note: 'InspectAI framework allows cross-family agent submissions; not a policy on the system itself.'
@@ -84,7 +84,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: 'InspectAI compatibility + Docker + decoupled solve/score paths.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Evaluation infrastructure — value depends on downstream agent systems being benchmarked."
@@ -108,7 +108,7 @@ papers:
       - 'Feldman, S.'
       - 'et al.'
     year: 2025
-    venue: 'arXiv'
+    venue: 'arXiv; oral presentation, ICLR 2026'
     arxiv_id: '2510.21652'
 
 references:

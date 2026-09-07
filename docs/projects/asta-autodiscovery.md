@@ -14,7 +14,7 @@ Ai2's autonomous data-driven discovery agent (formerly AutoDS; relaunched inside
 
 ## Distinctive contribution
 
-The first production discovery agent to use Bayesian surprise as the objective: an MCTS search with progressive widening treats surprisal as reward, so the system hunts belief-shifting findings rather than confirmations. Early-access users have generated 46K+ hypotheses across oncology, neuroscience, climate science, and the social sciences, and several independently verified social-science findings were published in a peer-reviewed paper (arXiv:2511.12529).
+The first production discovery agent to use Bayesian surprise as the objective: an MCTS search with progressive widening treats surprisal as reward, so the system hunts belief-shifting findings rather than confirmations. Early-access users have generated 46K+ hypotheses across oncology, neuroscience, climate science, and the social sciences, and several independently verified social-science findings were published in a peer-reviewed paper (arXiv:2511.12529). In an August 2026 partnership with Providence Swedish Cancer Institute's Paul G. Allen Research Center, AutoDiscovery applied to TCGA data flagged a stronger-than-expected immune signature in invasive lobular carcinoma, validated on an independent cohort and posted as a preprint.
 
 ## Evaluation scores
 

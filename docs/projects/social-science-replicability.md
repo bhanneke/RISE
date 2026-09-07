@@ -27,12 +27,12 @@ Focuses the agentic-research conversation on *replication of existing papers* ra
 | Outputs / reproducibility | 2 | Reports + code persisted; reproducibility-by-design as a stated goal. |
 | Internal evaluation | 1 | Demonstrated on example papers; no broad benchmark of replication success rates. |
 | Openness | 3 | Open source under permissive license. |
-| Maturity / traction | 1 | Active prototype; single-developer-led. |
+| Maturity / traction | 1 | Active prototype; single-developer-led; 30 stars but repo remains actively committed to (42 commits, most recent 2026-08-31). |
 | Cross-family policy | 0 | Single-LLM-family pipeline; methodology extractor + replicator within one family. |
 | Runtime assurance | 2 | Code-execution + output-match comparison against target paper is the runtime assurance. |
 | Cross-platform portability | 1 | Python-CLI tool; back-end LLM swappable but not multi-IDE. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

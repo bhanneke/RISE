@@ -69,13 +69,13 @@ scores:
     note: "Released retrieval results, model checkpoints, and inference scripts make pipeline runs reproducible."
   internal_evaluation:
     score: 3
-    note: "ScholarQABench + expert evaluation interfaces; both quantitative and human evaluation reported."
+    note: "Now peer-reviewed: published in Nature (2026-02-04, DOI 10.1038/s41586-025-10072-4), with a 16-scientist preference study (OpenScholar answers preferred over human-expert answers 51% of the time) plus the ScholarQABench automatic benchmark."
   openness:
     score: 3
     note: "Apache-2.0; open weights for Llama-3.1_OpenScholar-8B; data and benchmark publicly released."
   maturity_traction:
-    score: 2
-    note: "1.5k+ stars; cited as a baseline; demo at open-scholar.allen.ai; backed by AI2."
+    score: 3
+    note: "Nature publication (2026-02-04) drew wide science-press coverage (UW News, EurekAlert, The Scientist, Newswise); 1.6k+ GitHub stars; demo at open-scholar.allen.ai; backed by AI2 — sustained citation and adoption as a literature-synthesis baseline, despite the code repo itself being inactive since 2025-08."
   cross_family_policy:
     score: 1
     note: '8B open-weight model + optional commercial LLMs; cross-family configurable.'
@@ -85,7 +85,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'HuggingFace + Semantic Scholar API + You.com; not multi-IDE.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Single-stage focus (literature synthesis), not an end-to-end pipeline."
@@ -99,7 +99,7 @@ related:
 
 # ── Papers describing this project ─────────────────────
 papers:
-  - title: 'OpenScholar: Synthesizing Scientific Literature with Retrieval-augmented LMs'
+  - title: 'Synthesizing scientific literature with retrieval-augmented language models'
     authors:
       - 'Asai, A.'
       - 'He, J.'
@@ -108,8 +108,9 @@ papers:
       - 'Singh, A.'
       - 'Chang, J. C.'
       - 'et al.'
-    year: 2024
-    venue: 'arXiv'
+    year: 2026
+    venue: 'Nature'
+    doi: '10.1038/s41586-025-10072-4'
     arxiv_id: '2411.14199'
 
 

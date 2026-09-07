@@ -106,7 +106,7 @@ scores:
     note: "MIT-licensed; pure-Markdown skills (no framework lock-in); standalone CLI; multi-IDE adaptations documented; supports free-tier ModelScope path."
   maturity_traction:
     score: 3
-    note: "13.7k+ stars, Hugging Face Daily Paper #1, featured in awesome-agent-skills; steady patch cadence through v0.4.22 (2026-07-12); active community."
+    note: "15.5k+ stars (up from 13.7k+), Hugging Face Daily Paper #1, featured in awesome-agent-skills; steady patch cadence through v0.4.24 (2026-08-09); active community."
 
   cross_family_policy:
     score: 2
@@ -117,7 +117,7 @@ scores:
   cross_platform_portability:
     score: 3
     note: 'Claude Code + Codex + Cursor + Trae + Antigravity + Copilot CLI + OpenClaw + Windsurf — 8+ documented adaptations.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "ML-research orientation; portability to empirical economics or biomedical research requires skill rewriting."

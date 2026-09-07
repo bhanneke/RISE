@@ -27,12 +27,12 @@ Treats *cumulative agentic research* as a first-class concern via AgentRxiv: age
 | Outputs / reproducibility | 2 | Versioned artifacts via AgentRxiv; full bitwise reproducibility depends on LLM determinism. |
 | Internal evaluation | 2 | ArXiv paper reports systematic evaluation across phases; external validation pending. |
 | Openness | 3 | MIT-licensed; broad community translations of README; LaTeX optional via flag. |
-| Maturity / traction | 3 | 5.6k+ stars; active in 2025; AgentRxiv extension shows continued development direction. |
+| Maturity / traction | 0 | 5.8k+ stars but no activity in >12 months (last commit 2025-08-20, per rubric's abandoned band); 38 open issues and 21 open PRs unaddressed. |
 | Cross-family policy | 0 | No required cross-family policy; multi-back-end (OpenAI o-series + DeepSeek) without architectural separation. |
 | Runtime assurance | 1 | Phase-level review gates; AgentRxiv enables cross-project artifact reuse but no in-pipeline claim audit. |
 | Cross-platform portability | 1 | Multi-back-end (OpenAI, DeepSeek) but framework-level (not multi-IDE). |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

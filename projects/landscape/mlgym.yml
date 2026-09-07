@@ -74,8 +74,8 @@ scores:
     score: 2
     note: "CC BY-NC 4.0 license — open for research and non-commercial use; not permissive for commercial deployment."
   maturity_traction:
-    score: 2
-    note: "599 stars; Meta institutional backing; last push 2025-08; flagged as 'experimental, under heavy development'."
+    score: 0
+    note: "620 stars; last commit 2025-08-10 (confirmed via GitHub commit log) — over 13 months of inactivity as of 2026-09, crossing the rubric's >12-month dormancy threshold; Meta institutional backing but development appears stalled despite the README's 'under heavy development' flag."
   cross_family_policy:
     score: 0
     note: 'Single-family in published baselines; framework agnostic but no policy.'
@@ -85,7 +85,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Open framework, multiple agents pluggable; not multi-IDE.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Non-commercial license restricts deployment options."

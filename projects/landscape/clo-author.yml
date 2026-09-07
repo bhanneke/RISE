@@ -96,7 +96,7 @@ scores:
     note: "Source is public on GitHub but no declared open-source license — reuse rights are uncertain."
   maturity_traction:
     score: 1
-    note: "Created 2026-02; 193 stars; very active development through May 2026; single-author project at this date."
+    note: "Created 2026-02; 251 stars as of 2026-09 (up from 193); pushed as recently as 2026-08-07; still a single-author project."
   cross_family_policy:
     score: 0
     note: 'Worker-critic pairs within Claude Code (single model family).'
@@ -106,7 +106,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Claude Code primary back-end; multi-language analysis (R, Python, Julia) is data-side, not agent-side.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "No declared open-source license; reuse rights uncertain."

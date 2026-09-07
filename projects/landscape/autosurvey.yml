@@ -71,8 +71,8 @@ scores:
     score: 1
     note: "No license declared in repository metadata — defaults to all rights reserved; database access via OneDrive link from maintainers."
   maturity_traction:
-    score: 1
-    note: "468 stars; activity slowed sharply after the NeurIPS publication (last push 2025-02)."
+    score: 0
+    note: "474 stars; no commits since 2025-02-07 (>18 months), crossing the rubric's abandoned/no-activity-in->12-months band; effectively frozen post-NeurIPS-2024 publication."
   cross_family_policy:
     score: 0
     note: 'Single LLM per run.'
@@ -82,12 +82,12 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Code + paper-DB available; single back-end.'
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "No declared open-source license — reuse rights are uncertain."
   - "Database limited to CS-arXiv abstracts in the public release; full-text version requires contacting authors."
-  - "Last commit ~2025-02; appears semi-maintained."
+  - "No commits since 2025-02-07; project appears abandoned rather than merely slow."
 
 related:
   - surveyx

@@ -80,13 +80,13 @@ scores:
     note: "Replication-verification step: 'Checks whether code executes and outputs match.' Full artifact transparency by design."
   internal_evaluation:
     score: 3
-    note: "Tournament evaluation against peer-reviewed human-benchmark papers from top economics journals — strongest internal-eval design in the catalog."
+    note: "Tournament evaluation against peer-reviewed human-benchmark papers from top economics journals — strongest internal-eval design in the catalog. 2026-07 follow-up ('Verifying the Verifiers') adds a versioned CRED error-taxonomy and benchmarks 60+ LLMs as verifiers against it."
   openness:
     score: 3
     note: "Fully open: papers, code, data, failures."
   maturity_traction:
     score: 1
-    note: "Active hosted project in 2026; adoption / external use signals not yet clear."
+    note: "Companion GitHub repo (SocialCatalystLab/ape-papers, 433 stars) generated 1,000+ AI papers Jan–Apr 2026, then paused production to build the CRED error-taxonomy and verifier benchmark; an independent arXiv paper (Li, 2026, 'The Ideation Bottleneck', arXiv:2604.03338) uses its human/AI tournament corpus. Still single-team (Social Catalyst Lab); no evidence of external adoption of the tool itself."
 
   cross_family_policy:
     score: 1
@@ -97,7 +97,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: "Hosted service; back-end choice is the maintainers', not user-facing."
-scored_on: "2026-05-18"
+scored_on: "2026-09-01"
 
 limitations:
   - "Explicit author disclaimer that outputs should not be used for evidence-based policy making."
@@ -112,7 +112,22 @@ related:
   - social-science-replicability
 
 # ── Papers describing this project ─────────────────────
-papers: []  # No project-describing paper located.
+papers:
+  - title: 'Verifying the Verifiers: Towards Autonomous Policy Evaluation'
+    authors:
+      - 'Yanagizawa-Drott, D.'
+      - 'Willner, O.'
+    year: 2026
+    venue: 'Social Catalyst Lab working paper'
+    url: 'https://ape.socialcatalystlab.org/verify'
+    note: 'Introduces the CRED error/defect taxonomy and a benchmark scoring 60+ LLMs on their ability to detect known errors inserted into 100 papers.'
+  - title: 'The Ideation Bottleneck: Decomposing the Quality Gap Between AI-Generated and Human Economics Research'
+    authors:
+      - 'Li, N.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2604.03338'
+    note: 'Uses Project APE AI-generated papers vs. 43 human AER/AEJ:Policy papers to decompose the quality gap into ideation (~71%) vs. execution (~29%).'
 
 references:
   - wu2025agenticreasoning
