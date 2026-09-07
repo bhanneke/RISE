@@ -130,5 +130,7 @@ papers:
     note: 'Uses Project APE AI-generated papers vs. 43 human AER/AEJ:Policy papers to decompose the quality gap into ideation (~71%) vs. execution (~29%).'
 
 references:
+  - willner2026verifying
+  - li2026ideation
   - wu2025agenticreasoning
   - filimonovic2025genai

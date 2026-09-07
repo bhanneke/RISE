@@ -120,4 +120,5 @@ papers:
     venue: 'arXiv'
     arxiv_id: '2607.21268'
 
-references: []
+references:
+  - zhu2026paieconclaude

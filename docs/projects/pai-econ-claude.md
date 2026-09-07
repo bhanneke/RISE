@@ -68,3 +68,7 @@ A 40+ template "model_library" of canonical economic-theory models (micro/labor/
 ## Papers describing this project
 
 - **pAI-Econ-claude: A Gated Human-in-the-Loop Multi-Agent Architecture for AI-Assisted Economic Theory Development** — Zhu, C., Wang, X., Zhang, W. (2026). *arXiv*. [arXiv:2607.21268](https://arxiv.org/abs/2607.21268)
+
+## Related references (literature catalog)
+
+- Zhu, C. et al. (2026). [*pAI-Econ-claude: A Gated Human-in-the-Loop Multi-Agent Architecture for AI-Assisted Economic Theory Development*](../papers/notes/zhu2026paieconclaude.md) `zhu2026paieconclaude`

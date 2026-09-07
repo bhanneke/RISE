@@ -149,5 +149,6 @@ papers:
     note: 'DeepMind team uses AlphaEvolve to refine a new optimization algorithm, improving the upper bound on the matrix-multiplication exponent to ω < 2.371177.'
 
 references:
+  - dupont2026matrix
   - novikov2025alphaevolve
   - georgiev2025alphaevolvemath

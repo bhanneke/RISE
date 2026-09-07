@@ -74,5 +74,6 @@ An evolutionary-search harness over LLM-generated code that decouples *generatio
 
 ## Related references (literature catalog)
 
+- Dupont, E. et al. (2026). [*Improving the matrix multiplication exponent with modern optimization and AlphaEvolve*](../papers/notes/dupont2026matrix.md) `dupont2026matrix`
 - `novikov2025alphaevolve` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))
 - `georgiev2025alphaevolvemath` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))

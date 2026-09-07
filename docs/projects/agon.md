@@ -71,3 +71,7 @@ A Claude Code plugin that drives a research project from a one-line topic throug
 ## Papers describing this project
 
 - **Agon: An Autonomous Large-Scale Omnidisciplinary Research System Built on Prompt Economy** — Sun, Youran, Ren, Xingyu, Yi, Chugang, Guo, Jiaxuan, Zhang, Kejia, Du, Jianda, Yang, Haizhao (2026). *arXiv preprint*. [arXiv:2606.24177](https://arxiv.org/abs/2606.24177)
+
+## Related references (literature catalog)
+
+- Sun, Y. et al. (2026). [*Agon: An Autonomous Large-Scale Omnidisciplinary Research System Built on Prompt Economy*](../papers/notes/sun2026agon.md) `sun2026agon`

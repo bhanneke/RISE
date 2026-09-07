@@ -136,4 +136,5 @@ papers:
     venue: 'arXiv preprint'
     arxiv_id: '2606.24177'
 
-references: []
+references:
+  - sun2026agon
