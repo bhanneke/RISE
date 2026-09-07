@@ -480,7 +480,9 @@ def replace_between(text: str, start: str, end: str, replacement: str) -> str:
     pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.DOTALL)
     new_block = f"{start}\n{replacement}\n{end}"
     if pattern.search(text):
-        return pattern.sub(new_block, text)
+        # literal replacement: skill descriptions may contain backslashes
+        # (e.g. LaTeX \Cref) that re.sub would misparse as escape sequences
+        return pattern.sub(lambda _m: new_block, text)
     return text + "\n\n" + new_block + "\n"
 
 

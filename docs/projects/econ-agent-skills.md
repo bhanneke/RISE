@@ -1,0 +1,73 @@
+<!-- DO NOT EDIT — auto-generated from projects/landscape/econ-agent-skills.yml by scripts/build_indexes.py -->
+
+# EconAgentSkills
+
+`external` · status: `dormant` · focus: `analysis` · discipline: `economics` · started: 2026
+
+**Project page:** <https://github.com/JonasWeinert/EconAgentSkills>
+
+**Source:** [`projects/landscape/econ-agent-skills.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/econ-agent-skills.yml)
+
+## Positioning
+
+Ten opinionated agent skills covering the applied-econometrics workbench in four stages: data (working-with-data, api-data-fetcher, stata-data-cleaning), analysis (r-econometrics, stata-regression, python-panel-data), writing (academic-paper-writer, latex-tables) and communication (econ-visualization, beamer-presentation). Each ships a SKILL.md routing layer plus reference.md and runnable examples in R, Python, Stata, Julia and LaTeX. Sits in the RISE analysis layer beside statspai, stata-code and stata-mcp, but supplies *method guidance* to a coding agent rather than an execution surface.
+
+## Distinctive contribution
+
+The only pack in the catalog that pins the modern heterogeneity-robust estimators by name rather than gesturing at "econometrics": Callaway-Sant'Anna, Sun-Abraham, Borusyak-Jaravel-Spiess and de Chaisemartin-D'Haultfoeuille for staggered DiD, weak-IV-robust inference with first-stage F-tests and Anderson-Rubin confidence sets, rdrobust optimal bandwidths, and wild cluster bootstrap — written explicitly to stop an agent reaching for plain TWFE on staggered treatment. Its second contribution is AGENT_POLICY.md, a four-level escalation ladder (ASK = block and present options; DEFAULT+flag = use the stated default and notify; DOCUMENT = record the assumption in a decisions log and continue; PROCEED = execute) with every generated script carrying a decisions-log header whose uncertain items are tagged "[HUMAN: please confirm]".
+
+## Evaluation scores
+
+| Dimension | Score (0–3) | Note |
+|---|:---:|---|
+| Lifecycle coverage | 2 | Four stages — API data fetching, panel/DiD/IV/RDD analysis, script generation, and LaTeX table + manuscript writing — with large gaps: no literature discovery or synthesis, no referee simulation, no replication. |
+| Autonomy level | 1 | Copilot by explicit policy: the ASK level of AGENT_POLICY.md blocks and presents options without proceeding, and every generated script carries a decisions-log header with '[HUMAN: please confirm]' items — human approval is designed into each significant methodological choice. |
+| Architectural transparency | 3 | Every SKILL.md, its reference.md, the runnable R/Python/Stata/Julia/LaTeX examples and AGENT_POLICY.md are in the repo; the README states the CC0 dedication and documents the routing and decision-tree design. No evaluation harness exists to publish. |
+| Inputs supported | 2 | Multiple input forms (user datasets in several formats, a free-text analysis request, an existing draft for latex-tables / academic-paper-writer) plus data-source access via api-data-fetcher; no literature corpus or bibliographic connector of any kind. |
+| Outputs / reproducibility | 2 | Produces runnable analysis scripts, LaTeX tables and vector figures, and mandates a decisions-log header plus DIME master-do-file discipline — genuine provenance for the choices made — but there is no end-to-end reproducibility guarantee and no manifest tying outputs back to inputs. |
+| Internal evaluation | 0 | No evaluation, test suite, or worked-benchmark comparison reported; the method choices are asserted from the literature, not validated against a gold standard. Verified by reading the README on 2026-09-08. |
+| Openness | 2 | README dedicates the work under CC0 1.0 (maximally permissive) and the skills are plain markdown with runnable examples, but the GitHub API cannot parse the license and reports 'Other (NOASSERTION)', so the formal reuse terms are ambiguous; the three Stata skills additionally require a commercial Stata license to reproduce. |
+| Maturity / traction | 1 | 18 stars, 3 forks, 3 commits — all on 2026-05-05, the day the repo was created, with nothing pushed since. A well-made single-drop personal pack, not a maintained project. |
+| Cross-family policy | 0 | No cross-family review mechanism: the skills are runtime-portable markdown but say nothing about which model executes versus which reviews, and no second-family check is defined anywhere. Portability is not a cross-family policy. |
+| Runtime assurance | 1 | One light in-flight mechanism, applied consistently: the ASK/DEFAULT+flag/DOCUMENT/PROCEED ladder plus the decisions-log header surface and escalate methodological assumptions. Nothing verifies the numbers — no result audit, no re-estimation check, no figure or claim inspection. |
+| Cross-platform portability | 2 | Built on the open SKILL.md standard with a Python installer targeting Claude Code, Cursor and Codex, and examples in five languages — 3 documented runtimes, short of the 5+ environments band 3 requires. |
+
+*Scored on 2026-09-08. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+
+## Tags
+
+**Pipeline stages:** `data-acquisition` `data-analysis` `code-generation` `paper-drafting`
+
+
+**Architectural features:** `human-in-loop` `tool-use`
+
+
+**Inputs:** `user-dataset` `analysis-request` `paper-draft`
+
+
+**Outputs:** `analysis-code` `latex-tables` `figures` `decisions-log` `beamer-slides`
+
+
+**Data sources:** `user-provided` `public-apis`
+
+
+**Knowledge sources:** `modern-did-iv-rdd-literature` `dime-analytics-conventions`
+
+
+## Limitations
+
+- Dormant: 3 commits, all on the creation date 2026-05-05, none in the four months since.
+- License is formally ambiguous — the README dedicates CC0 1.0 but GitHub reports NOASSERTION, so downstream reuse rests on the README text alone.
+- Deliberately opinionated: the defaults are one defensible position in live methodological debates, and a research design the author did not anticipate will fight the skill rather than be served by it.
+- Method coverage is a mid-2026 snapshot; a named-estimator pack ages faster than a generic one, and there is no maintainer activity to refresh it.
+- No evaluation of whether following the skills produces better estimates than an unguided agent.
+- The three Stata skills are unusable without a commercial Stata license.
+- No literature, review, or replication coverage — it must be paired with a review pack to cover a paper's lifecycle.
+
+## Related projects in this catalog
+
+- [`statspai`](statspai.md)
+- [`stata-code`](stata-code.md)
+- [`stata-mcp`](stata-mcp.md)
+- [`auto-empirical-research-skills`](auto-empirical-research-skills.md)
+- [`ai-research-feedback`](ai-research-feedback.md)

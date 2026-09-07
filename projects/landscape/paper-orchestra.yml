@@ -1,0 +1,132 @@
+slug: paper-orchestra
+name: "PaperOrchestra"
+type: external
+status: dormant
+url: "https://github.com/google-research/paper-orchestra"
+maintainers:
+  - "Yiwen Song"
+  - "Yale Song"
+  - "Tomas Pfister"
+  - "Jinsung Yoon"
+year_started: 2026
+
+positioning: >
+  A write-up-only multi-agent pipeline from Google Research: point it at
+  a directory of raw research materials (the idea plus experimental logs)
+  and a LaTeX template directory, and five specialised agents — outline
+  generation, literature review, section writing, content refinement and
+  plotting — return a submission-ready manuscript with a synthesised
+  related-work section and generated plots and conceptual diagrams.
+  Everything upstream of the write-up must already be done, so it sits
+  squarely in the RISE drafting layer next to autosurvey, clo-author and
+  zeropaper rather than in the end-to-end lane.
+
+distinctive_contribution: >
+  It publishes its judges: the repo ships the full autorater stack —
+  citation F1 scoring, literature-review quality rubrics, side-by-side
+  literature-review and whole-paper quality comparators, an agent-review
+  module, and the prompt templates all of them use — which is a reusable
+  evaluation harness for AI-written manuscripts independent of the
+  generator, and rarer in this catalog than the generator itself. The
+  companion arXiv paper (2604.05018) reports human-evaluation win-rate
+  margins of 50–68% on literature-review quality and 14–38% on overall
+  manuscript quality against autonomous baselines, and introduces
+  PaperWritingBench, derived from 200 top-tier AI conference papers.
+
+focus: drafting
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - paper-drafting
+  - revision-editing
+  - dissemination
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - dag-orchestration
+
+discipline: computer-science
+
+inputs:
+  - raw-materials-directory
+  - experimental-logs
+  - latex-template
+
+outputs:
+  - latex-manuscript
+  - literature-review-section
+  - figures
+  - conceptual-diagrams
+
+data_sources:
+  - user-provided
+
+knowledge_sources:
+  - semantic-scholar
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Five write-up-side stages (outline, literature review, section writing, refinement, plotting into a conference-compliant template) with everything upstream missing — no ideation, research design, data acquisition, analysis or code generation; the experiments must already exist."
+  autonomy_level:
+    score: 2
+    note: "Supervised agent: the human assembles the materials directory and template and reviews the returned manuscript; the interactive Streamlit frontend allows step-level involvement but the CLI path runs the five agents through without approval gates."
+  architectural_transparency:
+    score: 3
+    note: "Apache-2.0 with the five-agent pipeline in methods/, the CLI, the templates, and — unusually — the complete autorater evaluation harness plus its prompts/ directory published, alongside an arXiv paper documenting the architecture and human-evaluation protocol; only the evaluation dataset is withheld."
+  inputs_supported:
+    score: 2
+    note: "Multiple input forms (a raw-materials directory of ideas and experimental logs, plus a LaTeX template directory) combined with live literature access through the Semantic Scholar API; no private-corpus or dataset connector."
+  outputs_reproducibility:
+    score: 2
+    note: "Produces a complete, version-controllable LaTeX manuscript with generated figures and a synthesised bibliography from a declared materials directory, but no seeds, run manifest or provenance linking claimed numbers back to the supplied logs."
+  internal_evaluation:
+    score: 2
+    note: "Systematic internal evaluation reported in the arXiv paper — human-evaluation win-rate margins of 50–68% (literature-review quality) and 14–38% (overall manuscript quality) against autonomous baselines, on the 200-paper PaperWritingBench — but the preprint is not peer-reviewed and the benchmark dataset is not released, so no third party can reproduce or contest the numbers."
+  openness:
+    score: 2
+    note: "Apache-2.0 and the pipeline plus autoraters are runnable against your own materials, so examples are partially reproducible; but the evaluation dataset is explicitly withheld ('released separately at a later date'), no example materials directory is shipped, and OpenAI or Vertex/Gemini plus Semantic Scholar keys are required."
+  maturity_traction:
+    score: 1
+    note: "124 stars and 19 forks on a two-commit code drop with no releases, nothing pushed since 2026-05-17, and an explicit note that it is not an officially supported Google product — attention without maintenance."
+  cross_family_policy:
+    score: 0
+    note: "The backend is configured globally as OpenAI or Vertex AI/Gemini with no documented per-agent model assignment, so the section writer and the refinement agent run in the same family; unverified whether per-agent overrides exist, scored low accordingly."
+  assurance_runtime:
+    score: 1
+    note: "One light in-pipeline check — a dedicated content-refinement agent making a single-pass review over the draft, with related work grounded in Semantic Scholar retrieval; the citation-F1 and quality autoraters are post-hoc evaluation tooling, not gates in the generation path."
+  cross_platform_portability:
+    score: 1
+    note: "Two documented backends (OpenAI, or Vertex AI/Gemini) behind one Python CLI plus a Streamlit frontend — a small adapter set, one runtime."
+scored_on: '2026-09-08'
+
+limitations:
+  - "Only 2 commits on main and nothing pushed since 2026-05-17 — a one-shot code drop rather than a maintained project, despite living in the google-research organisation (which the README notes is not an official Google product)."
+  - "The PaperWritingBench evaluation dataset is explicitly not included and 'will be released separately at a later date', so the reported 50–68% and 14–38% win-rate margins cannot be checked or reproduced."
+  - "Targets AI/ML conference papers: the writing machinery (outline, related work, refinement, plotting) may transfer, but the disciplinary conventions of economics — identification narratives, robustness batteries, table norms, referee expectations — are not modelled."
+  - "It is a write-up tool, not a research pipeline: it presumes finished experiments and does no analysis, code generation or verification of the numbers it is handed."
+  - "Requires paid OpenAI or Vertex/Gemini keys plus a Semantic Scholar API key; no free-tier path."
+  - "No per-agent model configuration is documented, so cross-family review could not be verified either way."
+
+related:
+  - autosurvey
+  - clo-author
+  - zeropaper
+  - research-paper-writing-skills
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'PaperOrchestra: A Multi-Agent Framework for Automated AI Research Paper Writing'
+    authors:
+      - 'Song, Y.'
+      - 'Song, Y.'
+      - 'Pfister, T.'
+      - 'Yoon, J.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2604.05018'
+
+references:
+  - song2026paperorchestra
