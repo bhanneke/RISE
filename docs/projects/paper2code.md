@@ -72,5 +72,6 @@ Explicitly targets the *paper-to-implementation* gap rather than paper-from-scra
 
 ## Related references (literature catalog)
 
+- Seo, M. et al. (2025). [*Paper2Code: Automating Code Generation from Scientific Papers in Machine Learning*](../papers/notes/seo2025paper2code.md) `seo2025paper2code`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Schick, T. et al. (2023). [*Toolformer: Language Models Can Teach Themselves to Use Tools*](../papers/notes/schick2023toolformer.md) `schick2023toolformer`

@@ -27,12 +27,12 @@ Provides a standardized environment-and-agent abstraction (paired with the LDP l
 | Outputs / reproducibility | 3 | Pip-installable; deterministic given fixed model + environment; designed for benchmark reproducibility. |
 | Internal evaluation | 2 | Used by FutureHouse to evaluate their own agents (Robin, PaperQA); benchmarks published in the arXiv paper. |
 | Openness | 3 | Apache-2.0; PyPI as `fhaviary`; sister library LDP also open. |
-| Maturity / traction | 2 | 261 stars; active development; embedded in FutureHouse evaluation stack. |
+| Maturity / traction | 2 | 278 stars (up from 261); active development through at least 2026-07-20 (new Jupyter-notebook environment added); embedded in FutureHouse evaluation stack. |
 | Cross-family policy | 1 | Environment-agnostic; cross-family possible by user setup. |
 | Runtime assurance | 1 | Trajectory logging + environment-level scoring; not a runtime claim-audit harness. |
 | Cross-platform portability | 2 | Pip-installable; pairs with LDP; multi-environment by design. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -70,4 +70,5 @@ Provides a standardized environment-and-agent abstraction (paired with the LDP l
 
 ## Related references (literature catalog)
 
+- Narayanan, S. et al. (2024). [*Aviary: training language agents on challenging scientific tasks*](../papers/notes/narayanan2024aviary.md) `narayanan2024aviary`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

@@ -14,7 +14,7 @@ Ai2's autonomous data-driven discovery agent (formerly AutoDS; relaunched inside
 
 ## Distinctive contribution
 
-The first production discovery agent to use Bayesian surprise as the objective: an MCTS search with progressive widening treats surprisal as reward, so the system hunts belief-shifting findings rather than confirmations. Early-access users have generated 46K+ hypotheses across oncology, neuroscience, climate science, and the social sciences, and several independently verified social-science findings were published in a peer-reviewed paper (arXiv:2511.12529).
+The first production discovery agent to use Bayesian surprise as the objective: an MCTS search with progressive widening treats surprisal as reward, so the system hunts belief-shifting findings rather than confirmations. Early-access users have generated 46K+ hypotheses across oncology, neuroscience, climate science, and the social sciences, and several independently verified social-science findings were published in a peer-reviewed paper (arXiv:2511.12529). In an August 2026 partnership with Providence Swedish Cancer Institute's Paul G. Allen Research Center, AutoDiscovery applied to TCGA data flagged a stronger-than-expected immune signature in invasive lobular carcinoma, validated on an independent cohort and posted as a preprint.
 
 ## Evaluation scores
 
@@ -70,3 +70,7 @@ The first production discovery agent to use Bayesian surprise as the objective: 
 ## Papers describing this project
 
 - **AutoDiscovery: Open-ended Scientific Discovery via Bayesian Surprise** — Agarwal, D., Majumder, B. P., Adamson, R., Chakravorty, M., Gavireddy, S. R., Parashar, A., et al. (2025). *NeurIPS 2025*. [arXiv:2507.00310](https://arxiv.org/abs/2507.00310)
+
+## Related references (literature catalog)
+
+- Agarwal, D. et al. (2025). [*AutoDiscovery: Open-ended Scientific Discovery via Bayesian Surprise*](../papers/notes/agarwal2025autodiscovery.md) `agarwal2025autodiscovery`

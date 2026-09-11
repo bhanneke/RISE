@@ -1,0 +1,139 @@
+slug: scholar-eval
+name: "ScholarEval"
+type: external
+status: dormant
+url: "https://github.com/skai-research/ScholarEval"
+maintainers:
+  - "Hanane Nour Moussa"
+  - "Patrick Queiroz Da Silva"
+  - "Huan Sun"
+  - "Sachin Kumar"
+year_started: 2025
+
+positioning: >
+  A retrieval-augmented system that reviews a *research idea* before
+  any work is done, along two declared dimensions — Soundness (are the
+  proposed methods empirically valid given what the literature already
+  establishes?) and Contribution (does it advance on prior work?) —
+  with every judgement grounded in papers retrieved via the Semantic
+  Scholar API under a user-declared literature cutoff date rather than
+  in model priors. Ships as both a system (Streamlit app, CLI pipeline,
+  and a hosted web app at go.osu.edu/scholar-eval) and a benchmark:
+  ScholarIdeas, an expert-annotated set of 117 research ideas across
+  AI, neuroscience, biochemistry and ecology carrying 1,076 review
+  rubrics. It occupies the one slot the RISE review layer was missing —
+  appraisal at the idea stage, upstream of drafting, where `reviewer`,
+  `marg` and the referee-simulation entries all act on finished
+  manuscripts.
+
+distinctive_contribution: >
+  It separates *soundness* from *contribution* and makes the second
+  falsifiable by construction: the cutoff date fixes what the system is
+  allowed to have read, so a novelty verdict can be checked against a
+  defined corpus rather than asserted from a model's training data. The
+  companion evaluation covers more of the expert-annotated rubric set
+  than baselines including OpenAI's o4-mini-deep-research, and a user
+  study reports gains in literature engagement and idea refinement —
+  the closest thing in the catalog to a measured pre-work triage tool.
+
+focus: review
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - rag-knowledge-base
+  - tool-use
+
+discipline: general
+
+inputs:
+  - research-idea
+  - literature-cutoff-date
+
+outputs:
+  - soundness-review
+  - contribution-review
+  - retrieved-citations
+
+data_sources: []
+
+knowledge_sources:
+  - semantic-scholar
+  - unpaywall
+  - grobid-parsed-pdfs
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three adjacent stages — literature discovery, synthesis, and referee-style appraisal of an idea; no research design, analysis, drafting or revision."
+  autonomy_level:
+    score: 2
+    note: "The user submits an idea file and a cutoff date and the pipeline retrieves, reasons and returns a structured review without per-step approval — supervised agent, reviewed at the artifact."
+  architectural_transparency:
+    score: 3
+    note: "MIT-licensed repo publishes the system (`ScholarEval/`), the dataset-construction code (`dataset_creation/`), the benchmark harness (`evaluation/`), the ScholarIdeas rubrics, and the GROBID config — architecture plus prompts plus evaluation code."
+  inputs_supported:
+    score: 1
+    note: "A single input form (a research-idea text file plus a cutoff date) with literature access only — no dataset, no manuscript, no private-corpus ingestion."
+  outputs_reproducibility:
+    score: 1
+    note: "Outputs are prose reviews plus their retrieved reference lists written to an output folder; there is no versioning, seeding or run manifest, and re-running the same idea against the live Semantic Scholar index need not reproduce the review."
+  internal_evaluation:
+    score: 2
+    note: "Systematic benchmarking on the authors' own ScholarIdeas (117 ideas, 1,076 expert rubrics) against baselines including o4-mini-deep-research, plus a user study; arXiv-only (v1 2025-10-17, v2 2026-02-28) with no venue in the comments field and no third-party replication."
+  openness:
+    score: 2
+    note: "MIT licence with code, dataset (HuggingFace `hananour/ScholarIdeas`) and three documented deployment paths, but a run needs a LiteLLM API endpoint plus a Semantic Scholar key, and the hosted app is metered at $15 of free academic credit — permissive, not free-tier reproducible."
+  maturity_traction:
+    score: 1
+    note: "21 stars, 2 forks, 32 commits, no push since 2025-10-28 even though the paper was revised in February 2026; a hosted OSU-linked web app exists but no evidence of sustained external use."
+  cross_family_policy:
+    score: 1
+    note: "The LLM engine is a per-run flag with both gpt-4o and claude-sonnet-4 documented, so a cross-family setup is possible, but the soundness and contribution agents run on whichever single engine is passed — nothing pairs families."
+  assurance_runtime:
+    score: 2
+    note: "Grounding is the mechanism, not an afterthought: claims are tied to Semantic Scholar retrievals with an enforced literature cutoff and GROBID-parsed full text, i.e. RAG citation grounding as an in-pipeline check on both review dimensions."
+  cross_platform_portability:
+    score: 2
+    note: "LiteLLM as the model layer means many providers behind one config, and there are three execution paths (local Streamlit, CLI script, hosted web app)."
+scored_on: "2026-09-08"
+
+limitations:
+  - "No code push since 2025-10-28 while the paper reached v2 in February 2026 — the repo may lag the evaluated system."
+  - "Reviews inherit their coverage from Semantic Scholar and Unpaywall: anything paywalled, unindexed or after the declared cutoff is invisible to the soundness verdict."
+  - "ScholarIdeas spans AI, neuroscience, biochemistry and ecology — no economics, finance or information-systems ideas, so rubric transfer to Björn's own fields is untested."
+  - "Both the system and the benchmark it is scored on come from the same team; no third-party evaluation, and the arXiv page carries no venue as of scoring date."
+  - "Requires a LiteLLM endpoint and a Semantic Scholar API key; the free hosted route is credit-metered."
+  - "Appraises ideas only — it does not check executed work, data, or a manuscript, and gives no verdict a referee could be held to."
+
+related:
+  - reviewer
+  - marg
+  - ai-research-feedback
+  - open-scholar
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'ScholarEval: Research Idea Evaluation Grounded in Literature'
+    authors:
+      - 'Moussa, H. N.'
+      - 'Da Silva, P. Q.'
+      - 'Adu-Ampratwum, D.'
+      - 'East, A.'
+      - 'Lu, Z.'
+      - 'Puccetti, N.'
+      - 'Xue, M.'
+      - 'Sun, H.'
+      - 'Majumder, B. P.'
+      - 'Kumar, S.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2510.16234'
+
+references: []  # No citekey for arXiv 2510.16234 in papers/references.bib at scoring date
+references:
+  - moussa2025scholareval

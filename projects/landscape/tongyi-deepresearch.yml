@@ -114,4 +114,5 @@ compared_in:
     note: 'Covered as a deep-research agent trained via RL.'
 
 references:
+  - tongyi2025deepresearch
   - wu2025agenticreasoning

@@ -27,12 +27,12 @@ Treats *long-running plausible-unsupported-success* as the central failure mode 
 | Outputs / reproducibility | 2 | Persistent Research Wiki + per-project artifacts; non-determinism intrinsic to LLM execution. |
 | Internal evaluation | 3 | Cross-model adversarial review IS the evaluation harness; three-stage evidence verification + claim audit + math-proof checks + visual PDF inspection; 5-round Codex MCP cross-review reported in v0.4.11 release notes. |
 | Openness | 3 | MIT-licensed; pure-Markdown skills (no framework lock-in); standalone CLI; multi-IDE adaptations documented; supports free-tier ModelScope path. |
-| Maturity / traction | 3 | 13.7k+ stars, Hugging Face Daily Paper #1, featured in awesome-agent-skills; steady patch cadence through v0.4.22 (2026-07-12); active community. |
+| Maturity / traction | 3 | 15.5k+ stars (up from 13.7k+), Hugging Face Daily Paper #1, featured in awesome-agent-skills; steady patch cadence through v0.4.24 (2026-08-09); active community. |
 | Cross-family policy | 2 | Cross-family is the DEFAULT (executor + reviewer from different model families recommended out-of-the-box). |
 | Runtime assurance | 3 | Three-stage evidence verification + claim auditing + 5-pass scientific editing + math-proof checks + visual PDF inspection. |
 | Cross-platform portability | 3 | Claude Code + Codex + Cursor + Trae + Antigravity + Copilot CLI + OpenClaw + Windsurf — 8+ documented adaptations. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

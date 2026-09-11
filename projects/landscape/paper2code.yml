@@ -110,5 +110,6 @@ papers:
     arxiv_id: '2504.17192'
 
 references:
+  - seo2025paper2code
   - wu2025agenticreasoning
   - schick2023toolformer

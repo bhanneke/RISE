@@ -27,12 +27,12 @@ First gym environment specifically for *ML research tasks* — not general QA or
 | Outputs / reproducibility | 3 | Reproducible by design — gym-style task specs + trajectory artifacts. |
 | Internal evaluation | 2 | Used to benchmark AI research agents in the arXiv paper; framework described as experimental. |
 | Openness | 2 | CC BY-NC 4.0 license — open for research and non-commercial use; not permissive for commercial deployment. |
-| Maturity / traction | 2 | 599 stars; Meta institutional backing; last push 2025-08; flagged as 'experimental, under heavy development'. |
+| Maturity / traction | 0 | 620 stars; last commit 2025-08-10 (confirmed via GitHub commit log) — over 13 months of inactivity as of 2026-09, crossing the rubric's >12-month dormancy threshold; Meta institutional backing but development appears stalled despite the README's 'under heavy development' flag. |
 | Cross-family policy | 0 | Single-family in published baselines; framework agnostic but no policy. |
 | Runtime assurance | 1 | Task-level trajectory + leaderboard scoring; runtime gating minimal. |
 | Cross-platform portability | 1 | Open framework, multiple agents pluggable; not multi-IDE. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -74,4 +74,5 @@ First gym environment specifically for *ML research tasks* — not general QA or
 
 ## Related references (literature catalog)
 
+- Nathani, D. et al. (2025). [*MLGym: A New Framework and Benchmark for Advancing AI Research Agents*](../papers/notes/nathani2025mlgym.md) `nathani2025mlgym`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

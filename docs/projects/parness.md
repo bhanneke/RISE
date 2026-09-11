@@ -1,0 +1,78 @@
+<!-- DO NOT EDIT — auto-generated from projects/landscape/parness.yml by scripts/build_indexes.py -->
+
+# PARNESS
+
+`external` · status: `dormant` · focus: `end-to-end` · discipline: `general` · started: 2026
+
+**Project page:** <https://github.com/gtrhythm/PARNESS>
+
+**Source:** [`projects/landscape/parness.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/parness.yml)
+
+## Positioning
+
+A declarative "paper harness": research pipelines are composed in YAML over a thin (~900-line) DAG kernel that does topological sorting and data flow, while control flow is agent-driven — modules emit `_route` signals to branch, iterate or stop. The catalog of 140+ lazy-loaded modules covers 18 research agents, 17 paper crawlers (arXiv, Semantic Scholar, OpenAlex, Crossref, NCBI, bioRxiv, DBLP, ACL, CVF, IEEE, SSRN, Springer, ACS, PLOS, ICLR, Europe PMC, Frontiers), a 9-module idea pipeline, a 12-module experiment system with plan generation and a verifier, 20 knowledge-graph modules, 9 paper-writing modules ending in LaTeX generation, 7 iteration controllers and 19 gate/persistence modules, with 38 example pipelines including a four-phase idea-to-paper run. Sits in the RISE end-to-end layer beside AI-Scientist, Agent Laboratory and AutoResearchClaw, differing by treating the pipeline as editable configuration rather than code.
+
+## Distinctive contribution
+
+Pipelines are data, not Python: a run is fully specified by a YAML file with explicit dot-path `input_mapping`/`output_mapping` dependencies, a validation script that checks every connection before execution, per-node subprocess isolation that releases GPU memory on exit, and incremental JSONL persistence taps that write each node's results in real time so a crashed run resumes rather than restarts. The paper additionally claims full-text PDF indexing with fallbacks, scenario-typed knowledge-graph retrieval and cross-run knowledge accumulation as the four design components that distinguish it from context-bounded pipelines — of which only the indexing and knowledge-graph layers are visible in the public module catalog.
+
+## Evaluation scores
+
+| Dimension | Score (0–3) | Note |
+|---|:---:|---|
+| Lifecycle coverage | 3 | The 38 shipped pipelines span crawling and indexing, idea generation with an Evaluator/Judge, experiment plan/run/verify, and a LaTeX write-up with Editor and Coherence Checker — eight declared stages including paper-drafting plus in-pipeline result gates as the validation layer. |
+| Autonomy level | 3 | No human approval gates are documented anywhere: the human selects or edits a YAML pipeline and launches one command, after which routing, iteration (threshold, patience, LLM-judged) and stopping are all agent- or controller-decided. |
+| Architectural transparency | 2 | src/, scripts/, skills/ and config/ with 38 YAML pipelines are public and the README documents the full module catalog and the DAG kernel, but no evaluation harness ships and per-module prompt files were not verified as published. |
+| Inputs supported | 2 | Accepts a research topic plus PDF corpora, with 17 literature crawler sources behind the discovery layer; no connectors for empirical datasets, so data access is whatever the user mounts. |
+| Outputs / reproducibility | 2 | A run is declared entirely by its YAML config and every node's output is written incrementally to JSONL, which is unusually close to a run manifest — but nothing demonstrates a rerun, and the LaTeX/BibTeX outputs come with no reproducibility claim. |
+| Internal evaluation | 1 | The paper's only evidence is one verbatim machine-generated paper in its appendix; the README reports no benchmark, baseline, ablation or success rate, and 0 forks means no external run exists to check. |
+| Openness | 1 | The README states 'MIT' in prose but the repository has no LICENSE file and the GitHub API reports license: null (both verified 2026-09-08), so reuse terms are legally undeclared rather than permissive. |
+| Maturity / traction | 1 | 10 stars, 0 forks, 5 commits total, nothing pushed since 2026-06-15 and no tagged release — substantive code (src/ plus 140+ modules) published as a one-off drop alongside the paper, so it sits at the floor of the research-prototype band. |
+| Cross-family policy | 1 | A provider dispatcher abstracts OpenAI, Anthropic, MiniMax, GLM and others with per-module model assignment, so a cross-family writer/reviewer pairing is configurable — but no cross-family policy is stated, recommended or defaulted. |
+| Runtime assurance | 2 | Multiple in-pipeline gates: 19 gate/persistence modules including result gates, an idea Evaluator and Judge, an experiment Verifier, a Coherence Checker, per-node timeouts, retry with backoff and a global max_rounds ceiling. No claim-faithfulness, citation-grounding or figure-inspection audit. |
+| Cross-platform portability | 2 | Four-plus LLM providers behind the dispatcher and AI coding skills shipped for two agent runtimes (Claude Code and OpenCode); pip-installable, but the PDF-parsing extra requires CUDA. |
+
+*Scored on 2026-09-08. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+
+## Tags
+
+**Pipeline stages:** `hypothesis-generation` `literature-discovery` `literature-synthesis` `research-design` `data-analysis` `code-generation` `paper-drafting` `revision-editing`
+
+
+**Architectural features:** `multi-agent` `dag-orchestration` `iterative-loop` `tool-use` `rag-knowledge-base` `artifact-versioning`
+
+
+**Inputs:** `research-topic` `pipeline-yaml-config` `pdf-corpus`
+
+
+**Outputs:** `latex-paper-draft` `bibtex-references` `idea-records` `experiment-results-jsonl` `knowledge-graph`
+
+
+**Data sources:** `user-provided`
+
+
+**Knowledge sources:** `literature-crawlers` `full-text-paper-index` `knowledge-graph`
+
+
+## Limitations
+
+- No LICENSE file despite the README's prose claim of MIT — the GitHub API reports no license and a root directory listing on 2026-09-08 confirms no LICENSE/COPYING file, so reuse terms are undeclared.
+- Two of the paper's four headline contributions could not be confirmed from public material: extracting and cloning repository URLs found in paper bodies (paper-to-code linking), and cross-run knowledge accumulation. The README documents full and incremental paper indexing and knowledge-graph retrieval, but not either of those mechanisms.
+- No evaluation of any kind. One appended machine-generated paper is the entire evidence base; there is no reported success rate, no comparison against AI-Scientist-class baselines, and no ablation of the features the paper argues for.
+- 5 commits, 10 stars, 0 forks, nothing pushed since 2026-06-15: a 140-module framework that no external user has demonstrably run.
+- Generality is asserted rather than shown — the crawler set is heavily life-science and CS, and the single demonstration is an ML-style paper, so the claim that YAML workflows adapt across disciplines is untested.
+
+## Related projects in this catalog
+
+- [`sakana-ai-scientist`](sakana-ai-scientist.md)
+- [`agent-laboratory`](agent-laboratory.md)
+- [`autoresearchclaw`](autoresearchclaw.md)
+- [`nano-scientist`](nano-scientist.md)
+
+## Papers describing this project
+
+- **PARNESS: A Paper Harness for End-to-End Automated Scientific Research with Dynamic Workflows, Full-Text Indexing, and Cross-Run Knowledge Accumulation** — Wang, Y., Luan, Z. (2026). *arXiv*. [arXiv:2605.05258](https://arxiv.org/abs/2605.05258)
+
+## Related references (literature catalog)
+
+- `wang2026parness` ([BibTeX](https://github.com/bhanneke/RISE/blob/main/papers/references.bib))

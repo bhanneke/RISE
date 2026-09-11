@@ -27,12 +27,12 @@ Makes a major closed industrial design (DeepMind's co-scientist) inspectable and
 | Outputs / reproducibility | 1 | Tournament transcripts persisted; LLM nondeterminism and live web search limit run-to-run determinism. |
 | Internal evaluation | 1 | Demo-quality evaluation; tournament metrics are internal to the loop, not external validation. |
 | Openness | 3 | MIT-licensed; reproducible setup with PyPI install path. |
-| Maturity / traction | 1 | 53 stars; last push 2025-07; appears semi-maintained. |
+| Maturity / traction | 1 | Confirmed still archived by the owner (archived 2026-04-14, read-only); 69 stars; last push 2025-07 — matches the entry's existing 'archived' status. |
 | Cross-family policy | 3 | Requires Gemini 2.5 Pro + Claude Sonnet 4 + o3 in collaboration — explicitly multi-family by design. |
 | Runtime assurance | 2 | ELO tournament + meta-review + reflection agents provide debate-based runtime gating. |
 | Cross-platform portability | 1 | LangGraph + GPT-Researcher dependency; single Python entry. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -72,5 +72,6 @@ Makes a major closed industrial design (DeepMind's co-scientist) inspectable and
 
 ## Related references (literature catalog)
 
+- Gottweis, J. et al. (2026). [*Accelerating scientific discovery with Co-Scientist*](../papers/notes/gottweis2026coscientist.md) `gottweis2026coscientist`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Park, J. S. et al. (2023). [*Generative Agents: Interactive Simulacra of Human Behavior*](../papers/notes/park2023generative.md) `park2023generative`

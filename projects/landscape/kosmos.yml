@@ -128,5 +128,6 @@ compared_in:
     note: 'Covered as an autonomous-discovery system.'
 
 references:
+  - mitchener2025kosmos
   - wu2025agenticreasoning
   - park2023generative

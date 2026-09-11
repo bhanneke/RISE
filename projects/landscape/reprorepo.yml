@@ -116,4 +116,5 @@ papers:
     venue: 'arXiv'
     arxiv_id: '2606.18237'
 
-references: []
+references:
+  - li2026reprorepo

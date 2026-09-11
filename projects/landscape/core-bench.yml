@@ -1,0 +1,131 @@
+slug: core-bench
+name: "CORE-Bench"
+type: external
+status: dormant
+url: "https://github.com/siegelz/core-bench"
+maintainers:
+  - "Zachary S. Siegel"
+  - "Sayash Kapoor"
+  - "Nitya Nadgir"
+  - "Benedikt Stroebl"
+  - "Arvind Narayanan"
+year_started: 2024
+
+positioning: >
+  A computational-reproducibility benchmark: 270 tasks built from 90
+  published papers (Code Ocean capsules) in computer science, social
+  science and medicine, written in Python or R, each asking an agent to
+  reproduce the reported results and then answer written and
+  vision-based questions about the output into a supplied
+  `report.json`. Three difficulty tiers strip away scaffolding on the
+  same 90 papers: CORE-Bench-Easy hands the agent the complete output
+  of a successful run, Medium supplies the Dockerfile plus a README,
+  Hard gives only the README so the agent must install dependencies and
+  work out the run command itself. Sits in the RISE
+  evaluation-infrastructure layer next to socsci-repro-bench,
+  reprorepo and NatureBench, and is the reference benchmark for the
+  reproducibility end of that layer.
+
+distinctive_contribution: >
+  The tiered design isolates *where* reproducibility agents fail
+  rather than reporting one pass rate: with the same papers at every
+  level, CORE-Agent on GPT-4o scores 60.00% (Easy), 57.78% (Medium)
+  and 21.48% (Hard), which localises the bottleneck in environment
+  setup rather than in reading results, while the split between 87.88%
+  correct on written questions and 59.26% on vision questions isolates
+  figure reading as a separate failure mode. It also ships a
+  task-specialised agent (CORE-Agent, derived from a general AutoGPT
+  baseline) alongside the harness and publishes its own cost curve —
+  $0.6407 / $1.2005 / $2.9643 average per task under a $4 cap — one of
+  the few benchmarks in the catalog that reports what running it costs.
+
+focus: replication
+
+pipeline_stages:
+  - replication
+
+architectural_features:
+  - tool-use
+
+discipline: general
+
+inputs:
+  - code-capsule
+  - task-questions
+  - dockerfile-or-readme
+
+outputs:
+  - task-reports
+  - accuracy-scores
+
+data_sources:
+  - code-ocean-capsules
+
+knowledge_sources: []
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Single stage (replication): an evaluation target for reproducibility agents, not a system that produces scholarship."
+  autonomy_level:
+    score: 2
+    note: "Once configured (Azure credentials or local privileged Docker, model API keys), the harness runs agents and grades report.json against ground truth with no per-task human intervention; the score describes the bundled harness and baseline agents, not a research pipeline."
+  architectural_transparency:
+    score: 3
+    note: "MIT-licensed harness, both baseline agent implementations (AutoGPT and CORE-Agent with GPT-4o), the task dataset, config templates and the paper-figures notebook are all in the repo."
+  inputs_supported:
+    score: 1
+    note: "One task format (capsule plus question set, differing only by difficulty tier) with bundled code and data; no literature corpus, no external data connectors, no paper PDF given to the agent."
+  outputs_reproducibility:
+    score: 2
+    note: "Per-task report.json is graded deterministically against ground truth and results are reported with 95% prediction intervals over stochastic runs, but the pinned Azure/Docker environment is no longer maintained and agent runs are not bit-reproducible."
+  internal_evaluation:
+    score: 3
+    note: "Published in Transactions on Machine Learning Research (OpenReview BsMMc4MEGS) with a systematic two-agent x two-model evaluation across three tiers; 111 citations on Semantic Scholar and adopted as a task suite by the Holistic Agent Leaderboard (arXiv:2510.11977)."
+  openness:
+    score: 2
+    note: "MIT license and a publicly downloadable test set (GPG-encrypted with the published password 'reproducibility'), but reproducing the reported numbers needs paid OpenAI credits plus Azure VMs or privileged Docker-in-Docker — not commodity-hardware reproducible."
+  maturity_traction:
+    score: 3
+    note: "Peer-reviewed in TMLR, 111 citations, 79 stars / 9 forks, and folded into the Holistic Agent Leaderboard harness — sustained external adoption, though this repo itself is now explicitly deprecated."
+  cross_family_policy:
+    score: 0
+    note: "Agent-agnostic harness with no cross-family requirement or recommendation; the published baselines are GPT-4o and GPT-4o-mini only."
+  assurance_runtime:
+    score: 1
+    note: "Light in-flight mechanisms only: Docker/VM isolation per task, a $4-per-task cost cap, and schema-shaped report.json validation; correctness checking is post-hoc grading."
+  cross_platform_portability:
+    score: 2
+    note: "Two documented execution environments (local privileged Docker and parallelised Azure VMs) behind an agent-agnostic interface (any agent that writes report.json), with a third path via the Holistic Agent Leaderboard harness; baseline agents are OpenAI-only."
+scored_on: '2026-09-08'
+
+limitations:
+  - "Deprecated: the README states 'this current harness is no longer actively maintained' and directs users to the Holistic Agent Leaderboard harness; last push 2025-11-23, 8 open issues."
+  - "Running it requires paid infrastructure — Azure VMs (Standard_E2as_v5 / NC4as_T4_v3) or local Docker-in-Docker with --privileged, plus model API credits averaging $2.96 per Hard task."
+  - "Tasks are drawn from Code Ocean capsules, i.e. papers that already shipped a runnable container, so accuracy on CORE-Bench overstates reproducibility on the general published literature."
+  - "Measures reproducing the code's own output, not whether that output matches the paper's claims — the assessment question REPRO-Bench targets instead."
+  - "Published baselines are 2024 models (GPT-4o, GPT-4o-mini); the reported 21.48% Hard-tier ceiling is stale as a capability estimate."
+  - "The test set is GPG-encrypted with a password published in the README, which deters casual training-data contamination but does not prevent it."
+
+related:
+  - repro-bench
+  - socsci-repro-bench
+  - reprorepo
+  - naturebench
+  - paper2code
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'CORE-Bench: Fostering the Credibility of Published Research Through a Computational Reproducibility Agent Benchmark'
+    authors:
+      - 'Siegel, Z. S.'
+      - 'Kapoor, S.'
+      - 'Nadgir, N.'
+      - 'Stroebl, B.'
+      - 'Narayanan, A.'
+    year: 2024
+    venue: 'Transactions on Machine Learning Research (TMLR)'
+    arxiv_id: '2409.11363'
+
+references:
+  - siegel2024corebench
