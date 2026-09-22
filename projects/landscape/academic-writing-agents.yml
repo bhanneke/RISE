@@ -1,0 +1,129 @@
+slug: academic-writing-agents
+name: "academic-writing-agents"
+type: external
+status: dormant
+url: "https://github.com/andrehuang/academic-writing-agents"
+maintainers:
+  - "Haiwen Huang (University of Tübingen)"
+year_started: 2026
+
+positioning: >
+  A Claude Code plugin that puts a manuscript-audit orchestrator over
+  twelve specialist agents: five read-only reviewers
+  (consistency-checker, logic-reviewer, technical-reviewer,
+  writing-reviewer, latex-layout-auditor), a bibliography-auditor, two
+  web-enabled research agents (research-analyst for related work,
+  novelty and positioning; brainstormer for alternative framings), a
+  paper-crawler over the DBLP and OpenAlex APIs, and three agents that
+  modify the source (prose-polisher, section-drafter,
+  latex-figure-specialist). Invoked as `/academic <task>` or
+  auto-triggered on `.tex` files, it fans the independent reviewers out
+  in parallel, synthesises one report prioritised Critical / Important /
+  Minor, then runs a sequential fix-and-verify pass. Sits in the
+  drafting/revision band of RISE next to research-paper-writing-skills
+  and Academic Research Skills, but is narrower and manuscript-first.
+
+distinctive_contribution: >
+  Review persistence. Findings are written to
+  `.review/YYYY-MM-DD-<scope>.md`; a later pass compares file
+  timestamps and re-reviews only sections that changed, and the action
+  agents read the stored findings so each edit is traceable to the
+  reviewer concern that motivated it — incremental review state that
+  the larger skill catalogs in this band do not carry. Behaviour is
+  pinned to a codified 30 Principles document (18.8 KB, six categories
+  from structure and narrative through process and meta), and agent
+  files declare their own tool set and model in frontmatter — the
+  sampled consistency-checker declares `tools: Read, Glob, Grep` and
+  `model: opus`, so the read-only reviewers structurally cannot edit
+  the manuscript they are auditing.
+
+focus: revision
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - human-in-loop
+  - tool-use
+  - persistent-memory
+  - iterative-loop
+
+discipline: general
+
+inputs:
+  - latex-manuscript
+  - project-directory
+
+outputs:
+  - review-reports
+  - revised-prose
+  - latex-sections
+  - tikz-figures
+
+data_sources:
+  - dblp-api
+  - openalex-api
+
+knowledge_sources:
+  - thirty-principles-document
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Five stages — literature collection (paper-crawler), related-work/gap synthesis (research-analyst), section drafting, prose and layout revision, and pre-submission review — with no research design, data analysis, estimation or replication anywhere in scope."
+  autonomy_level:
+    score: 1
+    note: "Copilot: the orchestrator names the agents it will deploy and 'proceed[s] with deployment unless the user objects', findings are surfaced as a prioritised report and proposed fixes are presented for approval before the action agents write to the manuscript."
+  architectural_transparency:
+    score: 3
+    note: "Everything the system consists of is inspectable in-repo despite not rendering on the repo landing page: all 12 agent definitions under agents/ (1.6–4.4 KB each, with YAML frontmatter declaring tools and model), the 14.8 KB orchestrator skills/academic/SKILL.md, the 18.8 KB principles/academic-writing.md, and marketplace.json — under MIT. No evaluation harness exists to publish."
+  inputs_supported:
+    score: 1
+    note: "One input form (a LaTeX manuscript / project directory) plus literature access through DBLP, OpenAlex and WebSearch/WebFetch; no dataset, database or private-corpus connector."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists dated review reports under .review/ and writes prose, LaTeX sections and TikZ figures directly into the source tree, but versioning is whatever the user's git provides and no run is reproducible from a declared input set."
+  internal_evaluation:
+    score: 0
+    note: "No benchmark, no paper, no example outputs or transcripts in the repo; the design is grounded in Michael Black's 'Writing a Good Scientific Paper' and the author's thesis-supervision experience."
+  openness:
+    score: 2
+    note: "MIT license, whole plugin is markdown, one-command install from the Claude plugin marketplace or the GitHub URL, but it requires a paid Claude Code subscription and the agents pin model: opus — not free-tier reproducible."
+  maturity_traction:
+    score: 1
+    note: "190 stars / 19 forks and marketplace-installable with a v2.1 feature set, but 5 commits total, 93 KB, one author, and no push since 2026-05-11 — a research prototype in single-team use."
+  cross_family_policy:
+    score: 0
+    note: "Claude Code plugin with model: opus pinned in agent frontmatter; no reviewer from a second model family is supported or suggested."
+  assurance_runtime:
+    score: 2
+    note: "Several in-pipeline integrity mechanisms: bibliography-auditor checks entry completeness and arXiv updates against external records, consistency-checker resolves cross-references and detects orphan floats, latex-layout-auditor inspects the compiled PDF, findings must cite file:line, and a verification stage re-runs the checkers after edits — but the checks are advisory, not blocking."
+  cross_platform_portability:
+    score: 0
+    note: "Single platform: .claude-plugin/ marketplace layout, /academic slash command, Claude Code agent-spawning semantics and an opus model pin; no other IDE, runtime or provider path is documented."
+scored_on: '2026-09-08'
+
+limitations:
+  - "Dormant at scoring date: 5 commits total, last push 2026-05-11, and the repo description still advertises '10 specialist agents' while 12 agent definition files are present."
+  - "No evaluation of any kind — no benchmark, no paper, no worked examples in the repo — so the 30 Principles are asserted pedagogy, not measured effect."
+  - "Approval is opt-out rather than opt-in: the orchestrator proceeds unless the user objects, and the action agents apply fixes in place to the LaTeX source, so it is only safe under version control."
+  - "Reviewer output is LLM judgement, not verification: only the bibliography-auditor (external records) and latex-layout-auditor (compiled PDF) check anything outside the model, and no finding blocks a subsequent step."
+  - "Locked to Claude Code — marketplace plugin layout, /academic command, model: opus in frontmatter — so nothing here ports to another runtime without a rewrite."
+  - "Scope is LaTeX and ML-paper-shaped: no data acquisition, estimation or replication stage, and tasks without a matching specialist fall back to general-purpose agents."
+  - "Agent files are substantive but small (1.6–4.4 KB each); the depth of each specialist is thin relative to the orchestrator (14.8 KB) and the principles document (18.8 KB) that carry most of the behaviour."
+
+related:
+  - research-paper-writing-skills
+  - academic-research-skills
+  - clo-author
+  - reviewer
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper; README grounds the design in M. Black, "Writing a Good Scientific Paper".
+
+references: []

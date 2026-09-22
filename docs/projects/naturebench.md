@@ -70,3 +70,7 @@ Scores agents against each source paper's *reported SOTA* (Surpass-SOTA rate) ra
 ## Papers describing this project
 
 - **NatureBench: Can Coding Agents Match the Published SOTA of Nature-Family Papers?** — Wang, Y., Cheng, L., Zuo, Y., Zeng, S., He, B., Jiang, C., et al. (2026). *arXiv*. [arXiv:2606.24530](https://arxiv.org/abs/2606.24530)
+
+## Related references (literature catalog)
+
+- Wang, Y. et al. (2026). [*NatureBench: Can Coding Agents Match the Published SOTA of Nature-Family Papers?*](../papers/notes/wang2026naturebench.md) `wang2026naturebench`

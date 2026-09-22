@@ -113,4 +113,5 @@ papers:
     arxiv_id: '2404.07738'
 
 references:
+  - baek2024researchagent
   - wu2025agenticreasoning

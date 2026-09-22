@@ -70,3 +70,7 @@ Uses human-raised GitHub issues as naturally occurring ground truth for reproduc
 ## Papers describing this project
 
 - **ReproRepo: Scaling Reproducibility Audits with GitHub Repository Issues** — Li, S., Wei, Q. A., Tang, J., Chen, V., Shah, N. B., Dettmers, T., Yang, Y., Talwalkar, A. (2026). *arXiv*. [arXiv:2606.18237](https://arxiv.org/abs/2606.18237)
+
+## Related references (literature catalog)
+
+- Li, S. et al. (2026). [*ReproRepo: Scaling Reproducibility Audits with GitHub Repository Issues*](../papers/notes/li2026reprorepo.md) `li2026reprorepo`

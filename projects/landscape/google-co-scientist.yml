@@ -138,4 +138,5 @@ papers:
     venue: 'arXiv (Google DeepMind)'
     arxiv_id: '2502.18864'
 
-references: []
+references:
+  - gottweis2026coscientist

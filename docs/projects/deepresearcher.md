@@ -76,4 +76,5 @@ Argues that *end-to-end RL on real web environments* — not prompt engineering 
 
 ## Related references (literature catalog)
 
+- Zheng, Y. et al. (2025). [*DeepResearcher: Scaling Deep Research via Reinforcement Learning in Real-world Environments*](../papers/notes/zheng2025deepresearcher.md) `zheng2025deepresearcher`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

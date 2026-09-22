@@ -125,4 +125,5 @@ papers:
     venue: 'arXiv'
     arxiv_id: '2606.11926'
 
-references: []
+references:
+  - jin2026arbor

@@ -1,0 +1,185 @@
+pack:
+  slug: econ-agent-skills
+  name: 'Econ Agent Skills (Jonas Weinert)'
+  source_url: 'https://github.com/JonasWeinert/EconAgentSkills'
+  maintainers:
+    - 'Jonas Weinert (JonasWeinert on GitHub)'
+  license: 'CC0-1.0 per the repo LICENSE file and README ("CC0 1.0 — public domain"); GitHub''s API reports the licence as NOASSERTION / "Other" — record both'
+  total_skills: 11
+  last_update: '2026-05-05'
+  related_project: 'econ-agent-skills'
+  compatibility:
+    - claude-code
+    - cursor
+    - codex
+    - gemini-cli
+  notes: >
+    Ten opinionated SKILL.md skills across four workflow stages — data
+    (working-with-data, api-data-fetcher, stata-data-cleaning), analysis
+    (r-econometrics, stata-regression, python-panel-data), writing
+    (academic-paper-writer, latex-tables), and communication
+    (econ-visualization, beamer-presentation) — plus the repo-wide
+    AGENT_POLICY.md decision ladder, cataloged here as an eleventh entry
+    because the README calls it "the most important file in the project" and
+    every skill defers to it. The opinions are the whole point: each analysis
+    skill carries a decision tree that pins the agent to the modern DiD
+    literature (Callaway-Sant'Anna, Sun-Abraham, Borusyak-Jaravel-Spiess,
+    de Chaisemartin-D'Haultfoeuille, with at least two estimators reported)
+    instead of the 2010-era TWFE it would otherwise reach for, to weak-IV-robust
+    Anderson-Rubin inference instead of "first-stage F > 10", to rdrobust at
+    the MSE-optimal bandwidth for RDD, and to wild cluster bootstrap below
+    roughly 30 clusters — while DIME Analytics conventions (iefolder,
+    iecodebook, ieboilstart, master do-files, immutable raw data, the four-tier
+    replicability standard, the Reviewing Graphs and Submit Table checklists)
+    supply the reproducibility layer, translated to Python, R, and LaTeX where
+    DIME's own guidance is Stata-only. Three caveats a user should know.
+    First, licensing: the repo LICENSE is the full CC0 1.0 text and the README
+    says "CC0 1.0 — public domain", but GitHub's licence API reports
+    NOASSERTION, so the public-domain dedication is the maintainer's stated
+    intent rather than a platform-detected licence. Second, `academic-paper-writer`
+    and `beamer-presentation` cross-link to a `latex-econ-model` skill that does
+    not exist anywhere in the repo — a dangling reference, not a missing
+    install. Third, the framing as an econometrics pack undersells the spread:
+    four of the ten skills are writing and presentation rather than
+    estimation. Upstream each skill also ships a deeper `reference.md` and
+    runnable `examples/` (R, Python, Stata, Julia, LaTeX); only the SKILL.md
+    routing layer is bundled here. The repo has been unchanged since
+    2026-05-05.
+
+skills:
+  - slug: working-with-data
+    name: '/working-with-data'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+      - data-analysis
+    field: economics
+    description: 'The foundational data discipline every other skill in the pack assumes: state and assert the unit of analysis before any merge, regression, or figure; treat an ID as a contract (unique, non-missing, immutable, type-stable, documented); declare merge cardinality up front and inspect every non-match, with no such thing as a safe m:m; keep `data/raw/` write-once; log every filter with N before and after; and maintain one master dataset per unit of observation. Gives parallel patterns for Stata, R, and pandas.'
+    source_path: '_skills/data/working-with-data/SKILL.md'
+    details_url: 'https://github.com/JonasWeinert/EconAgentSkills/blob/main/_skills/data/working-with-data/SKILL.md'
+    provenance: 'EconAgentSkills repo curation 2026-09-08'
+    last_update: '2026-05-05'
+
+  - slug: api-data-fetcher
+    name: '/api-data-fetcher'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: economics
+    description: 'Builds reproducible Python acquisition pipelines for economic APIs (FRED, World Bank, BLS, OECD SDMX, IMF, Eurostat, Yahoo Finance) with DIME conventions ported to Python: an immutable `data/raw/` layer written with vintage suffixes, a `run_all.py` master orchestrator, dynamic absolute paths via pathlib, API keys treated as PII and read only from env vars, content-addressed deterministic caching, and a source codebook recording series ID, units, frequency, transformation, vintage, and access date.'
+    source_path: '_skills/data/api-data-fetcher/SKILL.md'
+    details_url: 'https://github.com/JonasWeinert/EconAgentSkills/blob/main/_skills/data/api-data-fetcher/SKILL.md'
+    provenance: 'EconAgentSkills repo curation 2026-09-08'
+    last_update: '2026-05-05'
+
+  - slug: stata-data-cleaning
+    name: '/stata-data-cleaning'
+    category: data-handling
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: 'Generates DIME-conventional Stata cleaning workflows — ieboilstart, the iefolder DataWork structure, `iecodebook template`/`apply` for repetitive renames and recodes, ieduplicates and iecompdup for duplicate resolution, extended missing values for survey codes, numerically stored labelled categoricals, isid and assert validation, encryption for PII. Follows DIME''s rule of identifying and documenting irregularities before correcting them, because many fixes depend on design choices the PI owns.'
+    source_path: '_skills/data/stata-data-cleaning/SKILL.md'
+    details_url: 'https://github.com/JonasWeinert/EconAgentSkills/blob/main/_skills/data/stata-data-cleaning/SKILL.md'
+    provenance: 'EconAgentSkills repo curation 2026-09-08'
+    last_update: '2026-05-05'
+
+  - slug: r-econometrics
+    name: '/r-econometrics'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: econometrics
+    description: 'Modern reproducible R for causal inference and panel econometrics built on fixest, with a decision tree that routes staggered adoption away from plain TWFE to Callaway-Sant''Anna (the default), Sun-Abraham, Borusyak-Jaravel-Spiess, or de Chaisemartin-D''Haultfoeuille and asks for at least two estimators when possible. IV gets weak-IV-robust Anderson-Rubin confidence sets rather than a first-stage F threshold, sharp RDD gets rdrobust at the MSE-optimal bandwidth with h/2, h, 2h sensitivity, and fewer than 30 clusters gets wild cluster bootstrap via fwildclusterboot.'
+    source_path: '_skills/analysis/r-econometrics/SKILL.md'
+    details_url: 'https://github.com/JonasWeinert/EconAgentSkills/blob/main/_skills/analysis/r-econometrics/SKILL.md'
+    provenance: 'EconAgentSkills repo curation 2026-09-08'
+    last_update: '2026-05-05'
+
+  - slug: stata-regression
+    name: '/stata-regression'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: econometrics
+    description: 'Stata regression workflows on DIME Analytics conventions (ietoolkit, iefolder, a master do-file, ieboilstart, dynamic absolute path globals, iebaltab for balance, esttab for output) with modern estimators as the default: reghdfe for fixed effects, csdid / eventstudyinteract / did_imputation / jwdid for staggered DiD, ivreg2 with `weakid` plus weakivtest for weak instruments, boottest when clusters are few, and rdrobust for RDD. Every table is written to file by code — never copy-pasted from the console.'
+    source_path: '_skills/analysis/stata-regression/SKILL.md'
+    details_url: 'https://github.com/JonasWeinert/EconAgentSkills/blob/main/_skills/analysis/stata-regression/SKILL.md'
+    provenance: 'EconAgentSkills repo curation 2026-09-08'
+    last_update: '2026-05-05'
+
+  - slug: python-panel-data
+    name: '/python-panel-data'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: econometrics
+    description: 'Panel and causal-inference code in Python via pyfixest, linearmodels.PanelOLS, and statsmodels, with correct fixed effects, two-way clustering, IV2SLS, event studies through `sunab`, weak-IV diagnostics, and the wildboottest package below 30 clusters. Unusually candid about the ecosystem gap: for Callaway-Sant''Anna, Borusyak-Jaravel-Spiess, or de Chaisemartin-D''Haultfoeuille it routes the user to the R or Stata skill (or rpy2) rather than improvising, and documents the cross-language jump in the decisions log.'
+    source_path: '_skills/analysis/python-panel-data/SKILL.md'
+    details_url: 'https://github.com/JonasWeinert/EconAgentSkills/blob/main/_skills/analysis/python-panel-data/SKILL.md'
+    provenance: 'EconAgentSkills repo curation 2026-09-08'
+    last_update: '2026-05-05'
+
+  - slug: academic-paper-writer
+    name: '/academic-paper-writer'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+      - revision-editing
+    field: economics
+    description: 'Drafts and revises economics papers in journal structure on the premise that the identification argument carries the paper — the methods section leads with what variation drives the coefficient, not with the regression equation — and polices causal language, reserving "causes" and "drives" for a defended design and "is associated with" for descriptive results. Refuses to invent the headline number or the identification strategy: both are blocking questions for the author.'
+    source_path: '_skills/writing/academic-paper-writer/SKILL.md'
+    details_url: 'https://github.com/JonasWeinert/EconAgentSkills/blob/main/_skills/writing/academic-paper-writer/SKILL.md'
+    provenance: 'EconAgentSkills repo curation 2026-09-08'
+    last_update: '2026-05-05'
+
+  - slug: latex-tables
+    name: '/latex-tables'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: 'Produces publication-ready LaTeX tables from code — esttab/outreg2 in Stata, modelsummary or fixest::etable in R, stargazer or pyfixest.etable in Python — written directly into the paper''s `tabs/` folder at DIME''s "full replicability" tier, with booktabs three-line styling, threeparttable notes carrying SE type and cluster level, siunitx decimal alignment, and `Cref`-friendly labels. The .tex file is never hand-edited; the script is re-run instead.'
+    source_path: '_skills/writing/latex-tables/SKILL.md'
+    details_url: 'https://github.com/JonasWeinert/EconAgentSkills/blob/main/_skills/writing/latex-tables/SKILL.md'
+    provenance: 'EconAgentSkills repo curation 2026-09-08'
+    last_update: '2026-05-05'
+
+  - slug: econ-visualization
+    name: '/econ-visualization'
+    category: figures
+    pipeline_stages:
+      - data-analysis
+      - paper-drafting
+    field: economics
+    description: 'Code-produced publication figures in ggplot2, matplotlib/seaborn, or Stata twoway/coefplot, exported as vector PDF straight into the paper''s `figs/` folder, with a chart-type decision tree (event-study coefficient plots, balance plots, recession-shaded time series, binscatters, density plots, choropleths) and colourblind-safe Okabe-Ito or viridis palettes — never red-green for treatment versus control. Follows DIME''s Reviewing Graphs checklist and separates caption-dependent paper figures from standalone visuals that need an in-figure title and a source line.'
+    source_path: '_skills/communication/econ-visualization/SKILL.md'
+    details_url: 'https://github.com/JonasWeinert/EconAgentSkills/blob/main/_skills/communication/econ-visualization/SKILL.md'
+    provenance: 'EconAgentSkills repo curation 2026-09-08'
+    last_update: '2026-05-05'
+
+  - slug: beamer-presentation
+    name: '/beamer-presentation'
+    category: slides
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: 'Builds LaTeX Beamer talks that share the paper''s `notation.tex` macros and the same `tabs/` and `figs/` artefacts, so one rerun of the analysis updates paper and slides together and no number is ever re-typeset on a slide. Structures to an explicit time budget (15-20 min conference, 45-60 min seminar, 75-90 min job-market talk, 10-15 min policy briefing), one claim per slide, the claim in the frame title and the evidence in the body, detail pushed to backup slides for Q&A.'
+    source_path: '_skills/communication/beamer-presentation/SKILL.md'
+    details_url: 'https://github.com/JonasWeinert/EconAgentSkills/blob/main/_skills/communication/beamer-presentation/SKILL.md'
+    provenance: 'EconAgentSkills repo curation 2026-09-08'
+    last_update: '2026-05-05'
+
+  - slug: agent-policy
+    name: 'AGENT_POLICY.md'
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: 'The repo-wide human-in-the-loop decision ladder every skill defers to, sorting each choice into four levels: ASK and block (unit of analysis, treatment and outcome definitions, identification strategy, cluster level, sample restrictions, anything touching PII or raw data), DEFAULT and flag with an override, DOCUMENT in the decisions log and proceed, or simply PROCEED. Also fixes the cross-cutting rules — raw data immutable, numbers never typed into prose, no silent estimator swaps, every dropped observation logged with N before and after — and supplies the decisions-log header template whose `[HUMAN: please confirm]` tags let an unattended agent surface what it inferred.'
+    source_path: '_skills/AGENT_POLICY.md'
+    details_url: 'https://github.com/JonasWeinert/EconAgentSkills/blob/main/_skills/AGENT_POLICY.md'
+    provenance: 'EconAgentSkills repo curation 2026-09-08'
+    last_update: '2026-05-05'

@@ -103,6 +103,7 @@ papers:
     arxiv_id: '2401.04259'
 
 references:
+  - darcy2024marg
   - gartenberg2026morebetter
   - naddaf2025aipeer
   - neurips2024checklist

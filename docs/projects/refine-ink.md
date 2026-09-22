@@ -25,14 +25,14 @@ Positions itself as enterprise-grade with explicit security and privacy commitme
 | Architectural transparency | 1 | Marketing-level descriptions only; internals not publicly documented. |
 | Inputs supported | 1 | PDF inputs; no integration of literature corpora or co-author context. |
 | Outputs / reproducibility | 1 | Reports persisted to user account; not designed for byte-level reproducibility. |
-| Internal evaluation | 1 | Marketing claims of reviewer-grade quality; no publicly verifiable benchmark. |
+| Internal evaluation | 2 | Aug 2026 self-published benchmark (150 economics preprints, 1,349 head-to-head matches vs. 9 competitor systems): Refine won 90.4% overall (94.8% vs. single-shot LLM referees, 85.0% vs. scaffolded review systems), broken out by subfield — a systematic internal evaluation, though still self-conducted rather than third-party. |
 | Openness | 0 | Closed-source commercial product. |
-| Maturity / traction | 2 | Active commercial offering with named institutional adoption signals; user-base size not disclosed. |
+| Maturity / traction | 3 | 2026-08-06: formal partnership with the American Economic Association and the Econometric Society for technical-verification checks on revise-and-resubmit papers; AEA-journal pilot reported ~90% author approval for incorporating Refine into the editorial process — production-grade deployment inside a major scholarly body's workflow. |
 | Cross-family policy | 0 | Closed; single internal stack. |
 | Runtime assurance | 1 | ~2-hour parallel compute per review implies multiple internal passes; mechanism not public. |
 | Cross-platform portability | 0 | Closed commercial product; single web surface. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -52,8 +52,9 @@ Positions itself as enterprise-grade with explicit security and privacy commitme
 
 - Closed-source; cannot be audited, extended, or self-hosted.
 - Per-review compute cost passed to user via subscription; pricing not transparent on landing page.
-- Marketing-driven adoption claims; no published systematic comparison against alternatives.
+- Its head-to-head benchmark against competitor systems is self-published, not third-party or peer-reviewed.
 - Targets the same review niche as coarse.ink and reviewer3.com; differentiation is per-review compute intensity.
+- AEA/Econometric Society deployment is scoped to a technical-verification check only — it does not assess contribution, importance, or screen submissions en masse.
 
 ## Related projects in this catalog
 

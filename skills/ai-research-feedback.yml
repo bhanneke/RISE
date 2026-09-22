@@ -1,0 +1,160 @@
+pack:
+  slug: ai-research-feedback
+  name: 'AI Research Feedback (Claes Bäckman)'
+  source_url: 'https://github.com/claesbackman/AI-research-feedback'
+  maintainers:
+    - 'Claes Bäckman (claesbackman.com)'
+  license: 'MIT'
+  total_skills: 10
+  last_update: '2026-08-27'
+  related_project: 'ai-research-feedback'
+  compatibility:
+    - claude-code
+  notes: >
+    Ten Claude Code skills for getting critical feedback on economics and
+    finance research — the most-starred single-author econ skill pack in this
+    catalog (~477 stars at curation). The review tier is deliberately
+    graduated by cost, so a draft can be iterated cheaply and audited
+    expensively: `review-paper` runs eight parallel referee agents against a
+    named journal persona (top-5 economics, finance, macro),
+    `review-paper-light` runs two for contribution and overclaiming, and
+    `review-paper-checks` runs three that hunt only mechanical errors and
+    issue no editorial judgment at all. Two skills are not reviews:
+    `explain-diff` builds an offline HTML explainer with a five-question quiz
+    (the idea taken from Geoffrey Litt's "Understanding is the new
+    bottleneck"), and `audit-analysis` hands changed analysis code to an
+    isolated subagent — the clean context is the point, so that whoever wrote
+    the code, including the Claude session that helped, cannot steer the
+    findings. Every review skill sets `disable-model-invocation: true`, so
+    Claude never launches a multi-agent review on its own; `pdf-to-markdown`
+    is the deliberate exception and may be auto-invoked when reading a PDF.
+    A notable design detail: the review skills pass agents exactly the main
+    .tex file plus its include-graph and explicitly exclude prior review
+    reports, response letters, and old drafts — the fix for review-on-review
+    contamination, which is the standard failure mode of running these tools
+    repeatedly in one folder. All skills except `explain-diff` and
+    `pdf-to-markdown` require access to the `general-purpose` subagent.
+    Reports are written into a `reviews/` subfolder with date-versioned
+    filenames.
+
+skills:
+  - slug: review-paper
+    name: '/review-paper'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: 'Eight parallel referee agents produce a pre-submission report against a named journal persona: spelling and style, internal consistency and cross-references, unsupported claims and identification integrity, mathematics and notation, tables and figures, referee assessment, plus a contribution advocate and a contribution skeptic whose opposing ratings are reconciled in a synthesis section. Novelty claims that cannot be verified from the paper''s own bibliography are flagged rather than asserted.'
+    source_path: 'Skills/review-paper/SKILL.md'
+    details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/review-paper/SKILL.md'
+    provenance: 'AI-research-feedback repo curation 2026-09-08'
+    last_update: '2026-07-05'
+
+  - slug: review-paper-light
+    name: '/review-paper-light'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: 'Fast two-agent pre-submission check on contribution, identification, and causal overclaiming — one agent plays a demanding associate editor who rates the contribution and names identification threats, the other hunts causal overclaiming, mechanisms asserted as facts, and missing caveats. Runs in about a minute, for iteration between full reviews.'
+    source_path: 'Skills/review-paper-light/SKILL.md'
+    details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/review-paper-light/SKILL.md'
+    provenance: 'AI-research-feedback repo curation 2026-09-08'
+    last_update: '2026-07-05'
+
+  - slug: review-paper-checks
+    name: '/review-paper-checks'
+    category: audit
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Three-agent check for what is wrong rather than what is debatable: misspellings and grammar, numbers in the text that disagree with the tables, terminology and sample drift, cross-references and citations that point to nothing, and claims the design does not license. Issues no contribution or publication judgment, and afterwards offers to apply only the unambiguous fixes to the .tex files.'
+    source_path: 'Skills/review-paper-checks/SKILL.md'
+    details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/review-paper-checks/SKILL.md'
+    provenance: 'AI-research-feedback repo curation 2026-09-08'
+    last_update: '2026-08-27'
+
+  - slug: review-paper-code
+    name: '/review-paper-code'
+    category: replication
+    pipeline_stages:
+      - replication
+    field: economics
+    description: 'Reviews an empirical project''s LaTeX paper against its Stata, R, or Python code on three fronts: reproducibility (paths, seeds, outputs, dependencies, run order, documentation), code quality, and paper-to-code alignment of tables, variables, sample restrictions, methods, clustering, and fixed effects. Calibrated to treat gaps as items to verify rather than accusations.'
+    source_path: 'Skills/review-paper-code/SKILL.md'
+    details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/review-paper-code/SKILL.md'
+    provenance: 'AI-research-feedback repo curation 2026-09-08'
+    last_update: '2026-07-05'
+
+  - slug: review-pap
+    name: '/review-pap'
+    category: review
+    pipeline_stages:
+      - research-design
+    field: economics
+    description: 'Six-agent review of a pre-analysis plan against a chosen trial registry (AEA, EGAP, OSF, ClinicalTrials, ISRCTN) or journal standard, covering pre-specification completeness, hypothesis and outcome coverage, identification and causal claims, the statistical analysis plan including power and multiple testing, data and implementation feasibility, and registry fit. Pulls in power calculations, survey instruments, randomization protocols, and mock tables when it finds them.'
+    source_path: 'Skills/review-pap/SKILL.md'
+    details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/review-pap/SKILL.md'
+    provenance: 'AI-research-feedback repo curation 2026-09-08'
+    last_update: '2026-07-05'
+
+  - slug: review-grant
+    name: '/review-grant'
+    category: review
+    pipeline_stages:
+      - research-design
+    field: general
+    description: 'Six-agent panel review of a grant proposal against a target funder (NSF, NIH, ERC, Horizon Europe) or general standards, judging clarity and compliance signals, internal consistency and deliverables, significance and innovation, research design and feasibility, and the budget, timeline, team, and management plan. Inspects budgets, biosketches, data-management plans, and letters of support alongside the narrative.'
+    source_path: 'Skills/review-grant/SKILL.md'
+    details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/review-grant/SKILL.md'
+    provenance: 'AI-research-feedback repo curation 2026-09-08'
+    last_update: '2026-07-05'
+
+  - slug: audit-analysis
+    name: '/audit-analysis'
+    category: audit
+    pipeline_stages:
+      - code-generation
+      - data-analysis
+    field: economics
+    description: 'Hands a diff of changed empirical code to an isolated subagent instructed to break it: N before and after every filter, merge, and collapse taken from logs; merge keys, uniqueness, and the fate of unmatched observations; variable units, logs versus levels, deflation, lag alignment; silent failures such as missings coerced to zero, `destring ... force`, and `fillna(0)`; and the clustering level and what the fixed effects absorb. Every finding must quote a file and line and is tagged CONFIRMED or SUSPECTED; nothing is written to the repository.'
+    source_path: 'Skills/audit-analysis/SKILL.md'
+    details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/audit-analysis/SKILL.md'
+    provenance: 'AI-research-feedback repo curation 2026-09-08'
+    last_update: '2026-08-26'
+
+  - slug: explain-diff
+    name: '/explain-diff'
+    category: infra
+    pipeline_stages:
+      - code-generation
+    field: economics
+    description: 'Writes one self-contained offline HTML page explaining a code change well enough that someone who did not write it could defend it: what the code did before, what changed in prose with no code, the verified consequences for sample and coefficients, a walkthrough grouped by purpose, and a five-question quiz of which at least two must test empirical consequences. Re-reads the diff and surrounding code from scratch — ignoring any account already in the conversation — and saves the page outside the repository under a dated, ref-tagged filename.'
+    source_path: 'Skills/explain-diff/SKILL.md'
+    details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/explain-diff/SKILL.md'
+    provenance: 'AI-research-feedback repo curation 2026-09-08'
+    last_update: '2026-08-02'
+
+  - slug: paper-version
+    name: '/paper-version'
+    category: drafting
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: 'Turns a LaTeX paper into a policy brief, one-page, or five-page lay summary through four sequential agents — a reader that extracts claims and numbers verbatim, a writer, a reviewer that checks every number and causal claim in the draft against the extraction, and a page builder — then emits a standalone HTML page ready for GitHub Pages. Pauses after the review so the author can edit before the page is built.'
+    source_path: 'Skills/paper-version/SKILL.md'
+    details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/paper-version/SKILL.md'
+    provenance: 'AI-research-feedback repo curation 2026-09-08'
+    last_update: '2026-08-26'
+
+  - slug: pdf-to-markdown
+    name: '/pdf-to-markdown'
+    category: infra
+    pipeline_stages:
+      - literature-discovery
+    field: general
+    description: 'Converts a PDF to markdown beside the original with page markers every twenty pages and the text trimmed at the references or appendix, so only the main text enters the context window. Uses `pdftotext` when poppler is installed — orders of magnitude faster and free of model context cost — and falls back to chunked reading otherwise.'
+    source_path: 'Skills/pdf-to-markdown/SKILL.md'
+    details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/pdf-to-markdown/SKILL.md'
+    provenance: 'AI-research-feedback repo curation 2026-09-08'
+    last_update: '2026-08-26'

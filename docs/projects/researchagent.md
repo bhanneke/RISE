@@ -72,4 +72,5 @@ Among the earliest peer-reviewed treatments of agentic ideation *grounded in lit
 
 ## Related references (literature catalog)
 
+- Baek, J. et al. (2024). [*ResearchAgent: Iterative Research Idea Generation over Scientific Literature with Large Language Models*](../papers/notes/baek2024researchagent.md) `baek2024researchagent`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`

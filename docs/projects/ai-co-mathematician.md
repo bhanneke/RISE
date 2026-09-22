@@ -67,3 +67,7 @@ One of the first agentic systems to demonstrate open-ended mathematical *discove
 ## Papers describing this project
 
 - **AI co-mathematician: Accelerating mathematicians with agentic AI** — Zheng, D., von Glehn, I., Zwols, Y., Beloshapka, I., Buesing, L., Roy, D. M., et al. (2026). *arXiv (Google DeepMind)*. [arXiv:2605.06651](https://arxiv.org/abs/2605.06651)
+
+## Related references (literature catalog)
+
+- Zheng, D. et al. (2026). [*AI co-mathematician: Accelerating mathematicians with agentic AI*](../papers/notes/zheng2026comathematician.md) `zheng2026comathematician`

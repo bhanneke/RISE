@@ -88,7 +88,7 @@ scores:
     note: "MIT; pip-installable; the entire loop runs deterministically in under a second on CPU with no API key via the bundled MockLLM."
   maturity_traction:
     score: 1
-    note: "462 stars and 36 forks within weeks of release, but a 26-commit single-maintainer research preview with no pushes since 2026-06-23 (one month idle at scoring)."
+    note: "468 stars and 35 forks — essentially flat since last review (462/36) — confirming the single-maintainer research preview has had no pushes since 2026-06-23, now over two months idle at scoring; growth has stalled along with development."
   cross_family_policy:
     score: 0
     note: "Single family — the optional [llm] extra ships only an Anthropic client, and writer and reviewer share the same model; the optimization loop deliberately uses no LLM-as-judge."
@@ -98,10 +98,10 @@ scores:
   cross_platform_portability:
     score: 0
     note: "Pure-Python package runs anywhere, but live runs support only the Anthropic backend; the MockLLM is a test double, not a deployment target."
-scored_on: "2026-07-23"
+scored_on: "2026-09-01"
 
 limitations:
-  - "Watch item: no commits since 2026-06-23 despite rapid star growth — a single-maintainer 'research preview' that may already be stalled; status here assumes <3 months idle still counts as active."
+  - "No commits since 2026-06-23 (over two months idle at this review) and star/fork counts have plateaued (468/35, up from 462/36) — the single-maintainer 'research preview' looks stalled rather than merely quiet; status here assumes <3 months idle still counts as active."
   - "Shipped domains are toy sklearn/PyTorch tasks with weak baselines, and the system's own reviewer rejects both captured papers as too marginal (the README concedes it is not wrong)."
   - "Anthropic-only live backend and no container sandboxing yet — the author names sandboxing as the open residual boundary."
 

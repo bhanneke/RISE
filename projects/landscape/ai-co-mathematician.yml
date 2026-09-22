@@ -128,4 +128,5 @@ papers:
     venue: 'arXiv (Google DeepMind)'
     arxiv_id: '2605.06651'
 
-references: []
+references:
+  - zheng2026comathematician

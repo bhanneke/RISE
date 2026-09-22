@@ -71,3 +71,7 @@ The most externally validated hypothesis-generation system on the landscape: pee
 
 - **Accelerating scientific discovery with Co-Scientist** — Gottweis, J., Weng, W.-H., Daryin, A., Tu, T., Palepu, A., Sirkovic, P., et al. (2026). *Nature*. [doi](https://doi.org/10.1038/s41586-026-10644-y)
 - **Towards an AI co-scientist** — Gottweis, J., Weng, W.-H., Daryin, A., Tu, T., Palepu, A., Sirkovic, P., et al. (2025). *arXiv (Google DeepMind)*. [arXiv:2502.18864](https://arxiv.org/abs/2502.18864)
+
+## Related references (literature catalog)
+
+- Gottweis, J. et al. (2026). [*Accelerating scientific discovery with Co-Scientist*](../papers/notes/gottweis2026coscientist.md) `gottweis2026coscientist`

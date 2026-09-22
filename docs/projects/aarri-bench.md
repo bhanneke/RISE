@@ -67,3 +67,7 @@ Isolates the micro-level judgment failures that end-to-end benchmarks average aw
 ## Papers describing this project
 
 - **Act As a Real Researcher: A Suite of Benchmarks Evaluating Frontier LLMs and Agentic Harnesses in Research Lifecycle** — Wang, J., Lv, W., Fu, B., Fu, J., Song, J., Zhang, L., et al. (2026). *arXiv*. [arXiv:2606.07462](https://arxiv.org/abs/2606.07462)
+
+## Related references (literature catalog)
+
+- Wang, J. et al. (2026). [*Act As a Real Researcher: A Suite of Benchmarks Evaluating Frontier LLMs and Agentic Harnesses in Research Lifecycle*](../papers/notes/wang2026aarribench.md) `wang2026aarribench`

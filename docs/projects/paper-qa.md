@@ -79,5 +79,7 @@ Reports superhuman performance on scientific QA, summarization, and contradictio
 
 ## Related references (literature catalog)
 
+- Lála, J. et al. (2023). [*PaperQA: Retrieval-Augmented Generative Agent for Scientific Research*](../papers/notes/lala2023paperqa.md) `lala2023paperqa`
+- Skarlinski, M. D. et al. (2024). [*Language agents achieve superhuman synthesis of scientific knowledge*](../papers/notes/skarlinski2024paperqa2.md) `skarlinski2024paperqa2`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Ji, Z. et al. (2023). [*Survey of Hallucination in Natural Language Generation*](../papers/notes/ji2023hallucination.md) `ji2023hallucination`

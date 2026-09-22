@@ -27,12 +27,12 @@ Among the largest user communities in the catalog (12.3k stars, multi-language l
 | Outputs / reproducibility | 2 | Per-project workspaces; experiment diagnosis & repair loop; 2699 tests passing — but not bitwise-deterministic by design. |
 | Internal evaluation | 2 | Anti-fabrication VerifiedRegistry, paper showcase across 8 domains, active testing program; no published peer-reviewed evaluation paper at this scoring date. |
 | Openness | 3 | MIT-licensed; multi-language documentation; active Discord community; community-contributed skill ecosystem. |
-| Maturity / traction | 3 | 13.8k+ stars; regular releases (v0.5.0 2026-05-20, active through 2026-07); companion paper claims +54.7% over AI Scientist v2 on ARC-Bench. |
+| Maturity / traction | 3 | 14.3k+ stars (up from 13.8k+); latest tagged release still v0.5.0 (2026-05-20) but commit activity continues through at least 2026-08-19 (bug fixes, ACP config, code-extraction hardening); companion paper claims +54.7% over AI Scientist v2 on ARC-Bench. |
 | Cross-family policy | 1 | Multiple back-ends (Claude/Codex/Copilot/Gemini/Kimi CLI) make cross-family configurations easy, but no required cross-family review policy in the architecture. |
 | Runtime assurance | 3 | Anti-fabrication system (VerifiedRegistry + experiment diagnosis & repair loop), SmartPause (confidence-driven dynamic intervention), ALHF intervention learning, cost budget guardrails. |
 | Cross-platform portability | 3 | 5+ CLI back-ends (Claude Code, Codex CLI, Copilot CLI, Gemini CLI, Kimi CLI) + 4 messaging platforms (Discord, Telegram, Lark, WeChat) via OpenClaw bridge. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -79,6 +79,7 @@ Among the largest user communities in the catalog (12.3k stars, multi-language l
 
 ## Related references (literature catalog)
 
+- Liu, J. et al. (2026). [*AutoResearchClaw: Self-Reinforcing Autonomous Research with Human-AI Collaboration*](../papers/notes/liu2026autoresearchclaw.md) `liu2026autoresearchclaw`
 - Wu, J. et al. (2025). [*Agentic Reasoning: A Streamlined Framework for Enhancing LLM Reasoning with Agentic Tools*](../papers/notes/wu2025agenticreasoning.md) `wu2025agenticreasoning`
 - Schick, T. et al. (2023). [*Toolformer: Language Models Can Teach Themselves to Use Tools*](../papers/notes/schick2023toolformer.md) `schick2023toolformer`
 - Ji, Z. et al. (2023). [*Survey of Hallucination in Natural Language Generation*](../papers/notes/ji2023hallucination.md) `ji2023hallucination`

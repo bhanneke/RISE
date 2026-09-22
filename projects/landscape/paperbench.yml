@@ -1,0 +1,143 @@
+slug: paperbench
+name: "PaperBench (OpenAI)"
+type: external
+status: dormant
+url: "https://github.com/openai/frontier-evals/tree/main/project/paperbench"
+maintainers:
+  - "OpenAI"
+  - "Giulio Starace"
+  - "Oliver Jaffe"
+  - "Dane Sherburn"
+  - "Tejal Patwardhan"
+year_started: 2025
+
+positioning: >
+  The reference replication benchmark for AI research: agents must
+  reproduce 20 ICML 2024 Spotlight and Oral papers from scratch —
+  understanding the contribution, writing the codebase, and executing
+  the experiments — with no starter code. Each sample pairs the paper
+  (PDF and Markdown) with a hierarchical rubric co-developed with that
+  paper's own authors, decomposing replication into 8,316 individually
+  gradable leaves across three requirement types (Code Development,
+  Execution, Result Match). The harness runs three containers per
+  attempt: agent rollout, then re-execution of the submitted codebase
+  in a fresh GPU container, then LLM grading against the rubric. Sits
+  at the replication block of the RISE pipeline as the target that
+  `paper2code` and the replication agents are measured against, and as
+  the AI-research counterpart to `mle-bench`'s Kaggle framing.
+
+distinctive_contribution: >
+  Author-co-developed hierarchical rubrics are the mechanism nothing
+  else in the catalog has: replication stops being a binary pass and
+  becomes 8,316 graded claims, which is what makes partial credit
+  meaningful and lets Code-Dev (code only, no GPUs, ~85% cheaper
+  grading) exist as a lighter variant of the same target. It also
+  benchmarks its own grader — JudgeEval is a separate evaluation of
+  judge accuracy — and anchors agents against recruited top ML PhDs,
+  reporting that the best agent (Claude 3.5 Sonnet with open-source
+  scaffolding, 21.0%) still did not beat the human baseline.
+
+focus: replication
+
+pipeline_stages:
+  - code-generation
+  - data-analysis
+  - replication
+
+architectural_features:
+  - tool-use
+
+discipline: computer-science
+
+inputs:
+  - paper-pdf-and-markdown
+  - replication-rubric
+  - agent-implementation
+
+outputs:
+  - replication-scores
+  - graded-rubric-trees
+  - executed-submissions
+
+data_sources:
+  - git-lfs-paper-dataset
+
+knowledge_sources:
+  - icml-2024-papers
+  - author-co-developed-rubrics
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Evaluation infrastructure: the declared stages are what it grades in other systems; PaperBench itself produces scores, not scholarship."
+  autonomy_level:
+    score: 0
+    note: "Fixed papers, rubrics and a three-stage grading harness; all agency belongs to the evaluated agents, which the baselines ran unattended for 12–36 hours."
+  architectural_transparency:
+    score: 3
+    note: "The monorepo publishes the 20 papers with their `rubric.json` trees and judge addenda, the DummySolver and BasicAgent/IterativeAgent scaffolds, the SimpleJudge implementation, the Dockerfiles, a rubric-viewing GUI, and JudgeEval."
+  inputs_supported:
+    score: 2
+    note: "Each sample carries multiple input forms (paper PDF, Markdown, rubric, optional judge addendum) over three splits (debug/dev/all), with a documented interface for plugging in any agent — plus the papers themselves as literature."
+  outputs_reproducibility:
+    score: 2
+    note: "Papers and rubrics are pinned in Git-LFS and the reproduction container re-executes submissions deterministically, but final scores come from an LLM judge and expensive stochastic agent rollouts, so exact reruns are not guaranteed."
+  internal_evaluation:
+    score: 2
+    note: "Systematic multi-model evaluation with 3 runs per configuration, a human baseline of recruited ML PhDs, and JudgeEval validating the grader — but the arXiv page carries no venue in its comments field, and no peer-reviewed publication or third-party replication could be verified on 2026-09-08."
+  openness:
+    score: 2
+    note: "MIT licence at the root of openai/frontier-evals with the full harness public, but running it needs Docker with NVIDIA GPU containers and an OpenAI-keyed judge (`GRADER_OPENAI_API_KEY`), and some JudgeEval tarballs cannot be redistributed — permissive, not commodity-reproducible."
+  maturity_traction:
+    score: 2
+    note: "Hosted in a 1,291-star / 176-fork OpenAI eval monorepo and widely used as a frontier replication eval, but the README leaderboard contains only the authors' own baselines dated 2025-04-02, there is no submission process, and no commit has touched project/paperbench since 2025-12-06."
+  cross_family_policy:
+    score: 1
+    note: "The judge's completer is configurable and the reported runs graded Claude, DeepSeek and Gemini agents with an OpenAI judge, but nothing requires or defaults to cross-family pairing — grading an OpenAI agent uses a same-family judge."
+  assurance_runtime:
+    score: 1
+    note: "The harness re-executes each submission in a clean GPU container before grading and JudgeEval bounds the grader's accuracy, but these are grading-time checks on a finished submission rather than in-flight gates during the agent's run."
+  cross_platform_portability:
+    score: 1
+    note: "Depends on OpenAI's own nanoeval + alcatraz runtime (a custom `ComputerRuntime` is a documented extension point) and on an OpenAI-compatible completer for the judge; agents themselves can come from any provider."
+scored_on: "2026-09-08"
+
+limitations:
+  - "The code URL printed in the paper (github.com/openai/preparedness) now redirects: PaperBench lives at project/paperbench inside openai/frontier-evals, and that subtree has had no commit since 2025-12-06."
+  - "The leaderboard is a static README table of the authors' own April 2025 baseline runs — no external submission process, so no independent scores exist to compare against."
+  - "Grading is LLM-based and costly: the Code-Dev variant exists chiefly because it cuts roughly 85% of judge spend, and every score inherits the judge's error rate as measured by JudgeEval."
+  - "Twenty ICML 2024 papers is a frozen and narrowing target — those papers' own code and derivative discussion are now in model training data, so scores drift upward for reasons unrelated to replication ability."
+  - "The papers dataset is Git-LFS-gated and some JudgeEval tarballs must be regenerated locally rather than downloaded."
+  - "Requires Docker plus NVIDIA GPU containers for the reproduction stage; the full split is out of reach on commodity hardware."
+  - "Scope is machine-learning papers only: nothing about identification, data acquisition from the field, or empirical social-science replication."
+
+related:
+  - mle-bench
+  - core-bench
+  - repro-bench
+  - paper2code
+  - social-science-replicability
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: "PaperBench: Evaluating AI's Ability to Replicate AI Research"
+    authors:
+      - 'Starace, G.'
+      - 'Jaffe, O.'
+      - 'Sherburn, D.'
+      - 'Aung, J.'
+      - 'Chan, J. S.'
+      - 'Maksin, L.'
+      - 'Dias, R.'
+      - 'Mays, E.'
+      - 'Kinsella, B.'
+      - 'Thompson, W.'
+      - 'Heidecke, J.'
+      - 'Glaese, A.'
+      - 'Patwardhan, T.'
+    year: 2025
+    venue: 'arXiv'
+    arxiv_id: '2504.01848'
+
+references:
+  - starace2025paperbench

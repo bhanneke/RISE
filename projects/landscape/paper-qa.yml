@@ -137,5 +137,7 @@ compared_in:
     note: 'Covered as a high-accuracy scientific-document RAG system.'
 
 references:
+  - lala2023paperqa
+  - skarlinski2024paperqa2
   - wu2025agenticreasoning
   - ji2023hallucination

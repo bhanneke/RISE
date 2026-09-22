@@ -1,0 +1,132 @@
+slug: swarmresearch
+name: "SwarmResearch"
+type: external
+status: active
+url: "https://github.com/SwarmResearch/SwarmResearch"
+maintainers:
+  - "Yuvraj Virk"
+  - "Zack Edds"
+  - "Chunqiu Steven Xia"
+  - "Lingming Zhang"
+year_started: 2026
+
+positioning: >
+  An orchestrator-subagent harness for open-ended discovery, from a
+  four-author group at UIUC. A Shepherd Agent holds the global
+  picture and spawns waves of Search Agents by launching
+  non-interactive Codex or Claude Code sessions: Explorers start from
+  a fresh context and attack a new approach, Optimizers fork a
+  parent's conversation history and refine an existing solution, and
+  the Shepherd steers the population through three levers — parent
+  selection, agent type and prompt. Every major edit lands on its own
+  git branch. Sits beside AlphaEvolve and CORAL in the
+  discovery-not-drafting corner of the landscape: it produces
+  algorithms and solutions, not manuscripts.
+
+distinctive_contribution: >
+  It ships as agent skills, not as a framework — three Markdown skills
+  (swarmresearch, swarmresearch-explorer, swarmresearch-optimizer) in
+  `.claude/skills` and `.codex/skills`, with the README noting that
+  other coding agents are supported by changing the spawn commands, so
+  the prompts *are* the implementation. The architectural claim is
+  about breadth over depth: a single long-running agent converges on
+  one high-level approach and then grinds on low-level edits, whereas
+  branch-isolated waves keep competing approaches alive and scale
+  parallelism adaptively with search depth. Reported to match or beat
+  SOTA LLM-guided evolution and multi-agent baselines on 13 of 15
+  tasks at a $50-per-task budget.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - code-generation
+  - data-analysis
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - iterative-loop
+  - artifact-versioning
+
+discipline: computer-science
+
+inputs:
+  - problem-description
+  - external-evaluator
+  - baseline-solution
+
+outputs:
+  - solution-implementations
+  - git-branch-history
+  - evaluator-scores
+
+data_sources: []
+
+knowledge_sources:
+  - user-supplied-evaluator
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Three adjacent stages — propose an approach, implement it, score it against the evaluator. No literature access, no write-up, no review of scholarship."
+  autonomy_level:
+    score: 3
+    note: "The Shepherd spawns non-interactive Codex/Claude Code sessions and steers them without human gates; the paper's reference run put 50 agents through ~3 hours unattended on a $50 budget."
+  architectural_transparency:
+    score: 2
+    note: "The three skills are plain Markdown in .claude/skills and .codex/skills, so the orchestration prompts and spawn logic are fully readable — but the repo holds only those plus assets/ and one spec_dec_example, has no license, and the paper's experiment harness lives in a separate reproduction repo."
+  inputs_supported:
+    score: 0
+    note: "One narrow input form — a working directory holding prompt.md, an executable evaluator and an optional baseline — with no literature retrieval and no dataset connectors of any kind."
+  outputs_reproducibility:
+    score: 2
+    note: "Competing approaches persist as first-class git branches, so the search history is inspectable rather than collapsed; but there is no run manifest or seed control, and the reported 13/15 result is not reproducible from this repository."
+  internal_evaluation:
+    score: 2
+    note: "The paper evaluates 15 tasks across three families — 5 math (circle packing, Erdős min overlap, signal processing, MMD-14-3, 3rd autocorrelation), 5 ADRS systems tasks (EPLB, LLM-SQL, txn scheduling, Cloudcast, PRISM) and 5 ALE-Bench-Lite AtCoder heuristics — against CORAL, EvoX and fixed-scaling baselines; arXiv preprint, not peer-reviewed or third-party replicated."
+  openness:
+    score: 1
+    note: "No LICENSE file and the GitHub API reports license: null (verified 2026-09-08), so the skills are readable but not legally reusable; a run also needs a paid Codex or Claude Code subscription, budgeted at $50 per task in the paper."
+  maturity_traction:
+    score: 1
+    note: "16 stars, 3 forks, 13 commits, nothing pushed since 2026-07-07; a single-team research prototype attached to one preprint, with no release or packaging."
+  cross_family_policy:
+    score: 1
+    note: "Skills ship for two runtimes and the paper's own configurations mix families across roles (Claude Code for the swarm, Opus 4.6 for EvoX, Minimax-M2.5 subagents under a Sonnet-4.6 orchestrator), so cross-family setups are supported — but nothing requires one, and there is no LLM reviewer role to pair, because scoring is delegated to a deterministic external evaluator."
+  assurance_runtime:
+    score: 1
+    note: "One in-flight check: every candidate is scored by the user-supplied external evaluator, which the README frames as reward-hacking prevention, and branch isolation stops a failed approach contaminating others. No second integrity gate, and no manuscript to audit."
+  cross_platform_portability:
+    score: 2
+    note: "Skills-as-Markdown for two agent runtimes (Claude Code and Codex) with a documented path to others by changing spawn commands, and the paper exercises several model families; only two runtimes actually ship, so short of the framework-agnostic band."
+scored_on: "2026-09-08"
+
+limitations:
+  - "No LICENSE file (verified 2026-09-08 via the GitHub API and a root directory listing) — the skills are readable but reuse terms are undeclared."
+  - "Requires the user to supply an executable evaluator, which confines it to problems with a cheap machine-checkable objective. Most empirical economics questions have no such scorer: the quantity of interest is an identified effect, not a number a script can rank."
+  - "Scope is algorithm and heuristic design, not scholarship — no literature access, no citation handling, no write-up stage, so nothing here produces or checks a paper."
+  - "The reported 13/15 result cannot be reproduced from this repository: it holds the skills and one speculative-decoding example, while the paper's experiment code sits in a separate reproduction repo."
+  - "Expensive and slow at the demonstrated scale: $50 per task in the benchmark, and the speculative-decoding case study ran roughly 11 hours per phase on Claude Code Opus 4.8."
+  - "16 stars, 3 forks, 13 commits, unchanged since 2026-07-07 — the adaptive-parallelism claim rests entirely on the authors' own runs."
+
+related:
+  - alphaevolve
+  - coral
+  - agon
+  - deepscientist
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'SwarmResearch: Orchestrating Coding Agents for Open-Ended Discovery'
+    authors:
+      - 'Virk, Y.'
+      - 'Edds, Z.'
+      - 'Xia, C. S.'
+      - 'Zhang, L.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2607.02807'
+
+references:
+  - virk2026swarmresearch

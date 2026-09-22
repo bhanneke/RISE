@@ -1,0 +1,69 @@
+<!-- DO NOT EDIT — auto-generated from projects/landscape/faros.yml by scripts/build_indexes.py -->
+
+# FAROS (Foundation AutoResearch Operating System)
+
+`external` · status: `active` · focus: `end-to-end` · discipline: `computer-science` · started: 2026
+
+**Project page:** <https://github.com/OpenNSWM-Lab/FAROS>
+
+**Source:** [`projects/landscape/faros.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/faros.yml)
+
+## Positioning
+
+A self-hosted, web-app multi-agent system spanning the full research lifecycle: topic coaching → literature-gated idea selection → a structured `PlanPackage` (hypothesis, variables, acceptance criteria, evidence citations) → sandboxed code generation and execution → experiment/metric tracking → paper drafting with citation management and LaTeX/PDF output → ReviewX, a claim-evidence-experiment consistency auditor. Human decision points are preserved at plan approval, experiment interpretation, and final review rather than running fully unattended. Currently targets LLM/AI-Scientist research specifically, on a Blueprint+Capability+Profile+Provider runtime intended to extend to other domains.
+
+## Distinctive contribution
+
+Widest single-repo lifecycle coverage seen in this sweep — idea through paper through automated peer review in one system, with a `PlanPackage` object used as an explicit typed contract between modules (rather than passing free-text between agent calls) so downstream stages don't have to re-infer upstream intent. ReviewX, its automated-review module, is evaluated against real peer-review benchmarks (PeerQA, NLPeer pilots with gold labels and human-eval export scripts committed in `experiments/reviewx_eval/`) rather than only demoed anecdotally. Ships as a full deployable app (FastAPI/Alembic backend, tested frontend, Docker deploy config) rather than a prompt pack.
+
+## Evaluation scores
+
+| Dimension | Score (0–3) | Note |
+|---|:---:|---|
+| Lifecycle coverage | 3 | Nine stages end-to-end (topic coaching → idea → plan → code → experiment → paper → ReviewX) including both paper-drafting and a dedicated review/validation stage (ReviewX). |
+| Autonomy level | 2 | README explicitly names three preserved human-decision checkpoints (plan approval, experiment interpretation, final review) rather than a fully unattended loop or per-step approval of every action. |
+| Architectural transparency | 3 | 323 backend Python files and 124 frontend files public, including module-level prompt files (e.g. modules/idea/treesearch_prompts.py) and a committed ReviewX evaluation harness (experiments/reviewx_eval/) with baselines, gold labels, and bootstrap scoring scripts. |
+| Inputs supported | 2 | Natural-language research interest (topic-coached into a scoped task) plus user dataset upload in the Experiment module and literature-corpus retrieval in the Idea module; no private/institutional corpus integration observed. |
+| Outputs / reproducibility | 2 | Project/run/experiment/chart/paper/ReviewX artifacts share traceable identifiers per the README, but no end-to-end reproducibility was independently verified and no data/code manifest format is documented. |
+| Internal evaluation | 2 | experiments/reviewx_eval/ contains real benchmark harnesses (PeerQA and NLPeer pilot imports, gold_labels schema, human-eval export, bootstrap_scores.py) — systematic internal evaluation against external peer-review datasets, though no published paper or third-party validation yet. |
+| Openness | 1 | Public GitHub repo, but no LICENSE file and no license mentioned anywhere in the README as of scoring date — source-visible but not permissively licensed for reuse. |
+| Maturity / traction | 2 | ~3,000 stars / 389 forks / 269 watchers by Sept 2026 on a repo whose first commit was 2026-05-13 (168 commits since); tagged release 1.1.0-rc1 with 608 backend + 30 frontend tests passing — beta-stage traction, but the README itself calls it a 'release candidate for competition validation and research prototyping', not production. |
+| Cross-family policy | 0 | Provider abstraction supports swapping LLM backends, but Qwen is the recommended/primary provider throughout and no cross-family executor/reviewer split is documented. |
+| Runtime assurance | 3 | Evidence-first gating before idea generation (literature quality gate, not just retrieval count), multi-reviewer checks in PlanPackage, and ReviewX performing claim extraction, evidence alignment, consistency checking, and reliability scoring with a human-feedback loop — a fairly complete audit stack, though without math-proof verification. |
+| Cross-platform portability | 1 | Single self-hosted web application (FastAPI + frontend + Docker); Provider abstraction gives multi-LLM support but it is not deployable as a plugin/skill across other agent runtimes or IDEs. |
+
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+
+## Tags
+
+**Pipeline stages:** `rq-formulation` `hypothesis-generation` `literature-discovery` `literature-synthesis` `research-design` `code-generation` `data-analysis` `paper-drafting` `referee-simulation`
+
+
+**Architectural features:** `multi-agent` `human-in-loop` `tool-use` `rag-knowledge-base` `dag-orchestration` `iterative-loop` `artifact-versioning`
+
+
+**Inputs:** `natural-language-research-interest` `uploaded-datasets`
+
+
+**Outputs:** `plan-package` `experiment-code` `experiment-metrics-and-charts` `paper-draft-latex-pdf` `reviewx-audit-report`
+
+
+**Data sources:** `user-uploaded-datasets`
+
+
+**Knowledge sources:** `literature-retrieval-corpus`
+
+
+## Limitations
+
+- No LICENSE file in the repository as of scoring date — legal reuse terms are unclear despite the code being publicly visible.
+- README explicitly labels the current release a 'release candidate for competition validation and research prototyping' with acknowledged gaps in cross-domain execution and large-scale scheduling.
+- Primarily documented in Chinese (README is bilingual but most internal docs and prompt-adjacent filenames are Chinese-first); Qwen is the only LLM provider actively recommended.
+- No published paper describing the system; evaluation evidence (PeerQA/NLPeer harnesses) exists in-repo but has not been peer-reviewed or externally replicated.
+
+## Related projects in this catalog
+
+- [`asta-autodiscovery`](asta-autodiscovery.md)
+- [`open-coscientist`](open-coscientist.md)
+- [`reviewer`](reviewer.md)
+- [`agon`](agon.md)

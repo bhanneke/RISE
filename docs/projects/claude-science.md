@@ -14,7 +14,7 @@ Anthropic's AI workbench for researchers ("Claude Code for science"), announced 
 
 ## Distinctive contribution
 
-Auditable-artifact design: every figure ships with a reproducibility package (exact code, computational environment, plain-language methodology, full message history), and a background reviewer agent flags incorrect citations, untraceable numbers, and figures that don't match their underlying code as work progresses. Deepest pre-configured life-science stack of any big-lab offering — 60+ databases (UniProt, PDB, Ensembl, ChEMBL), NVIDIA BioNeMo Agent Toolkit, Evo 2, Boltz-2, OpenFold3 — backed by a grants program of $30,000 in credits for up to 50 AI-for- science projects (applications closed 2026-07-15).
+Auditable-artifact design: every figure ships with a reproducibility package (exact code, computational environment, plain-language methodology, full message history), and a background reviewer agent flags incorrect citations, untraceable numbers, and figures that don't match their underlying code as work progresses. Deepest pre-configured life-science stack of any big-lab offering — 60+ databases (UniProt, PDB, Ensembl, ChEMBL), NVIDIA BioNeMo Agent Toolkit, Evo 2, Boltz-2, OpenFold3 — backed by an AI-for-Science credit program (originally $30,000/project, applications closed 2026-07-15) that Anthropic expanded on 2026-08-27 to up to $50,000 in API credits per project and beyond biology into mathematics and engineering, alongside 10,000 free or discounted Claude Team seats for verified academic PIs.
 
 ## Evaluation scores
 
@@ -26,13 +26,13 @@ Auditable-artifact design: every figure ships with a reproducibility package (ex
 | Inputs supported | 3 | Research prompts, own datasets, and custom skills/connectors to lab tools; both literature access and 60+ scientific databases, plus private data via SSH to users' own clusters. |
 | Outputs / reproducibility | 3 | Headline design: every artifact ships with exact code, computational environment, plain-language methodology, and full message history — vendor-described, not yet independently verified. |
 | Internal evaluation | 1 | Vendor-selected case studies (Manifold Bio, Allen Institute, UCSF Brain Tumor Center); no benchmark results or third-party evaluation. |
-| Openness | 0 | Closed-source; beta gated behind paid Claude subscriptions (Pro/Max/Team/Enterprise); no free tier. |
+| Openness | 1 | Closed-source, but since 2026-08-27 Anthropic's 'Claude Team plan for scientists' gives verified PIs at accredited universities/nonprofits a free standard seat (premium seats $15/mo, price locked one year) covering the Team tier Claude Science runs on — a genuine free tier, heavily gated behind PI verification and, for biology/chemistry, Opus-class-only model limits. |
 | Maturity / traction | 2 | Public beta (June 2026) with external users across paid tiers, named institutional early adopters, discounted academic Team plan, and a grants program; weeks old at scoring date. |
 | Cross-family policy | 0 | Anthropic models only; no cross-family executor/reviewer configuration. |
 | Runtime assurance | 2 | Background reviewer agent flags incorrect citations, untraceable numbers, and figure-code mismatches in-flight and self-corrects; gating behavior not documented. |
 | Cross-platform portability | 1 | Single provider and dedicated macOS/Linux app, but compute targets span local machines, HPC via SSH, and Modal GPUs. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

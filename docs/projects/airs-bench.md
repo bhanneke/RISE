@@ -68,3 +68,7 @@ Anchors agent performance to *published human SOTA* rather than synthetic target
 ## Papers describing this project
 
 - **AIRS-Bench: a Suite of Tasks for Frontier AI Research Science Agents** — Lupidi, A., Gauri, B., Foster, T. S., Al Omari, B., Magka, D., Pepe, A., et al. (2026). *arXiv*. [arXiv:2602.06855](https://arxiv.org/abs/2602.06855)
+
+## Related references (literature catalog)
+
+- Lupidi, A. et al. (2026). [*AIRS-Bench: a Suite of Tasks for Frontier AI Research Science Agents*](../papers/notes/lupidi2026airsbench.md) `lupidi2026airsbench`

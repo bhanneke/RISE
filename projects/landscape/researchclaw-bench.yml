@@ -1,0 +1,133 @@
+slug: researchclaw-bench
+name: "ResearchClawBench"
+type: external
+status: active
+url: "https://github.com/InternScience/ResearchClawBench"
+maintainers:
+  - "InternScience"
+  - "Wanghan Xu (lead author of a 51-author consortium)"
+year_started: 2026
+
+positioning: >
+  A benchmark for end-to-end autonomous research: 40 tasks (4 each
+  across astronomy, chemistry, earth science, energy, information
+  science, life science, materials science, mathematics, neuroscience
+  and physics), each anchored to a real published paper and shipped
+  with that paper's raw data and related literature. Two stages: the
+  agent explores the data, writes code and produces a research report
+  with figures and methodology; then a multimodal LLM judge scores the
+  report against the original paper using an expert-written weighted
+  rubric, in a quantitative mode (numbers and metrics) and a
+  diagnostic mode (theoretical reasoning and evidence quality). Sits
+  in the RISE evaluation-infrastructure layer alongside AstaBench,
+  AIRS-Bench and AARRI-Bench.
+
+distinctive_contribution: >
+  The scale is calibrated to human work rather than to a pass rate:
+  0-100 where 50 means parity with the published paper and 70+ means
+  surpassing it, which turns the leaderboard into a direct readout of
+  the autonomy gap — the companion paper's best autonomous agent
+  (Claude Code) averages 21.5, i.e. under half of parity. It also
+  ships the harness rather than only the tasks: built-in adapters for
+  nine agent runtimes (Claude Code, Codex CLI, ARIS Codex, OpenClaw,
+  Nanobot, EvoScientist, ResearchClaw, LingTai) plus a ResearchHarness
+  baseline for arbitrary standalone LLMs, a Hugging Face dataset
+  carrying 16 community-contributed tasks on top of the 40 base tasks,
+  and a hosted board with a task-submission route.
+
+focus: end-to-end
+
+pipeline_stages:
+  - research-design
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - replication
+
+architectural_features: []
+
+discipline: general
+
+inputs:
+  - task-bundle
+  - raw-data
+  - source-literature
+  - agent-adapter
+
+outputs:
+  - rubric-scores
+  - agent-research-reports
+  - leaderboard-entries
+
+data_sources:
+  - task-bundled-raw-data
+  - huggingface-dataset
+
+knowledge_sources:
+  - source-papers
+  - task-bundled-literature
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Evaluation infrastructure: it measures whether other systems can carry a task from raw data to a report, and produces no scholarship of its own."
+  autonomy_level:
+    score: 0
+    note: "Static task bundles plus a scoring harness; all agency sits in the agents being evaluated."
+  architectural_transparency:
+    score: 3
+    note: "MIT-licensed with tasks/, evaluation/, eval_configs/, workspaces/ and the weighted rubrics public, nine runtime adapters in-repo, and a 51-author paper documenting the two-stage judging design."
+  inputs_supported:
+    score: 2
+    note: "Each of the 40 tasks bundles raw data with the related literature, 16 further tasks arrive via the Hugging Face dataset, and nine documented adapters accept different agent runtimes; no private-corpus support, so short of the top band."
+  outputs_reproducibility:
+    score: 2
+    note: "Runs persist the agent's report, figures and code in workspaces/ alongside per-criterion rubric scores; LLM-judge scoring plus agent stochasticity means a rerun reproduces the procedure, not the number."
+  internal_evaluation:
+    score: 2
+    note: "The companion arXiv preprint scores nine agent integrations and a frontier-LLM sweep on all 40 tasks (best agent 21.5, best LLM 20.7, frontier average 26.5) and names three failure modes; five arXiv versions but no peer-reviewed venue or third-party replication found."
+  openness:
+    score: 2
+    note: "MIT license with tasks, rubrics, harness and adapters public and the dataset on Hugging Face, but a leaderboard-grade run needs a paid frontier agent working a full study per task, so the demonstrated examples are not reproducible on commodity hardware."
+  maturity_traction:
+    score: 2
+    note: "258 stars, 22 forks, 184 commits, pushed 2026-09-05, with a hosted leaderboard, a Hugging Face dataset and a community task-contribution route already used for 16 tasks — beta-stage with external participation, single-consortium origin."
+  cross_family_policy:
+    score: 0
+    note: "Model-agnostic target with no executor/reviewer pairing of its own; the judge model is set in eval_configs but nothing requires or recommends that it differ from the agent under test."
+  assurance_runtime:
+    score: 1
+    note: "Rubric judging is post-hoc (dimension 6); in flight there is only workspace isolation and task/eval config validation, with no gate that stops a run producing an ungrounded report."
+  cross_platform_portability:
+    score: 3
+    note: "Nine agent-runtime adapters ship in-repo plus a generic ResearchHarness path for standalone LLMs — well past the five-environment threshold, and the task format is a data bundle rather than framework-specific code."
+scored_on: "2026-09-08"
+
+limitations:
+  - "Could not confirm a populated leaderboard: the hosted board at internscience.github.io/ResearchClawBench-Home renders client-side and returned no scored runs when fetched on 2026-09-08, so the cross-agent scores are verifiable only from the preprint, not from the live board."
+  - "Scoring depends on a multimodal LLM judge with no stated model-family separation from the agent under test, so self-favouring bias is not ruled out; the rubrics are expert-written but the grader is not."
+  - "No economics or social-science tasks. The ten domains are natural sciences plus mathematics and information science, and 'matching the paper' there means matching a measured result — not defending an identification strategy, which is where economics agents fail."
+  - "Anchoring to published findings makes the target a moving one and rewards re-discovery: a task is scored against what the original authors concluded, which penalises a correct agent that disagrees with a flawed paper."
+  - "Per-task cost and runtime are not documented in the repository, so the price of a full 40-task submission cannot be estimated from public material."
+
+related:
+  - asta-bench
+  - airs-bench
+  - aarri-bench
+  - evoscientist
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'ResearchClawBench: A Benchmark for End-to-End Autonomous Scientific Research'
+    authors:
+      - 'Xu, W.'
+      - 'Li, S.'
+      - 'Ye, T.'
+      - 'Cao, Q.'
+      - 'et al.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2606.07591'
+
+references:
+  - xu2026researchclawbench

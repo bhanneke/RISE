@@ -10,7 +10,7 @@
 
 ## Positioning
 
-A benchmark suite of open research challenges in Economics and Computation (EconCS), associated with the AI-Driven Research in EconCS workshop at EC 2026. 24 open problems — mechanism design, fair division (EFX, MMS, PMMS), prophet inequalities, information design, complexity of equilibria — each a markdown PROBLEM.md with YAML metadata, contributor attribution, known results, and an optional difficulty rating (Approachable / Challenging / Hard). Sits in the RISE evaluation-infrastructure layer alongside AstaBench, Aviary, and MLGym, but targets formal *theory* research rather than empirical, coding, or literature tasks.
+A benchmark suite of open research challenges in Economics and Computation (EconCS), associated with the AI-Driven Research in EconCS workshop at EC 2026. 26 open problems — mechanism design, fair division (EFX, MMS, PMMS), prophet inequalities, information design, complexity of equilibria — each a markdown PROBLEM.md with YAML metadata, contributor attribution, known results, and an optional difficulty rating (Approachable / Challenging / Hard). Sits in the RISE evaluation-infrastructure layer alongside AstaBench, Aviary, and MLGym, but targets formal *theory* research rather than empirical, coding, or literature tasks.
 
 ## Distinctive contribution
 

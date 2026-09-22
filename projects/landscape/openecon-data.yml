@@ -1,0 +1,110 @@
+slug: openecon-data
+name: "OpenEcon Data"
+type: external
+status: active
+url: "https://github.com/hanlulong/openecon-data"
+maintainers:
+  - "Lu Han (OpenEcon.ai)"
+year_started: 2026
+
+positioning: >
+  An MCP server plus web app giving AI agents natural-language access
+  to 330K+ economic indicators indexed across 11 providers (FRED,
+  World Bank, IMF, Eurostat, UN Comtrade, BIS, Statistics Canada,
+  OECD, ExchangeRate-API, CoinGecko, ChinaMacro). Sits in the
+  data-acquisition layer of RISE, complementary to StatsPAI/stata-code
+  (which analyze data the agent already has) rather than overlapping
+  with them.
+
+distinctive_contribution: >
+  The only economic-data-acquisition MCP tool in the catalog: an
+  LLM-parser → semantic-provider-routing → fetch-with-fallback
+  pipeline that resolves natural-language requests (including
+  multi-language queries and automatic regional-group expansion like
+  G7/BRICS/EU) into indicator series, with conversational follow-ups
+  and multi-format export (CSV/JSON/Stata/Python code) carrying source
+  attribution.
+
+focus: analysis
+
+pipeline_stages:
+  - data-acquisition
+
+architectural_features:
+  - tool-use
+  - persistent-memory
+
+discipline: economics
+
+inputs:
+  - natural-language-query
+
+outputs:
+  - datasets
+  - csv-json-stata-python-exports
+
+data_sources:
+  - fred
+  - world-bank
+  - imf
+  - eurostat
+  - un-comtrade
+  - bis
+  - statistics-canada
+  - oecd
+  - exchangerate-api
+  - coingecko
+  - chinamacro
+
+knowledge_sources: []
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Touches one stage only (data-acquisition); no analysis, drafting, or review functionality."
+  autonomy_level:
+    score: 0
+    note: "Tool: every query is human- or agent-issued; conversational follow-ups persist context but do not amount to independent task execution."
+  architectural_transparency:
+    score: 2
+    note: "Three-stage pipeline (LLM parser → semantic routing → fetch-with-fallback) documented and open-sourced (FastAPI/React/Redis stack); no published prompts for the LLM-parser stage."
+  inputs_supported:
+    score: 1
+    note: "One input form (natural-language query) plus data-source access across 11 providers; no literature-corpus access."
+  outputs_reproducibility:
+    score: 1
+    note: "Persists structured data exports (CSV/JSON/Stata/Python) with source attribution and cached deterministic re-fetch; no paper/code/data-manifest bundle — it is a data tool, not a paper-producing pipeline."
+  internal_evaluation:
+    score: 0
+    note: "Only latency metrics reported (~0.1s cached, several seconds first query); no evaluation of query-to-indicator mapping accuracy."
+  openness:
+    score: 1
+    note: "AGPL-3.0 (copyleft, source-sharing required for hosted service); free hosted demo gated at 20 queries before signup."
+  maturity_traction:
+    score: 2
+    note: "69 stars, 885 commits, live production demo (data.openecon.ai/chat) — active beta with external users, single-maintainer team."
+  cross_family_policy:
+    score: 0
+    note: "Not applicable — a data-fetching tool with no cross-model review process."
+  assurance_runtime:
+    score: 1
+    note: "Automatic fallback mechanisms when a preferred data provider fails; no claim-verification or citation-audit layer."
+  cross_platform_portability:
+    score: 2
+    note: "MCP server usable from Claude Code, Codex, and any compatible MCP client, plus a self-hostable stack and a browser demo."
+scored_on: "2026-09-01"
+
+limitations:
+  - "AGPL-3.0 license requires source-sharing for hosted deployments, a heavier obligation than the catalog's typical MIT/Apache entries."
+  - "No reported evaluation of whether natural-language queries are correctly mapped to the intended indicator series across providers."
+  - "Free demo capped at 20 queries; self-hosting requires OpenRouter API credentials and infrastructure (Redis, Node.js, Python)."
+
+related:
+  - stata-mcp
+  - statspai
+  - stata-code
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper found; documented via in-repo README and live demo at data.openecon.ai.
+
+references: []
