@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/hanlulong/stata-mcp>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/stata-mcp.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/stata-mcp.yml)
 
 ## Positioning

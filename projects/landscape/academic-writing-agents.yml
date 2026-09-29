@@ -3,6 +3,7 @@ name: "academic-writing-agents"
 type: external
 status: dormant
 url: "https://github.com/andrehuang/academic-writing-agents"
+license: "MIT"
 maintainers:
   - "Haiwen Huang (University of Tübingen)"
 year_started: 2026

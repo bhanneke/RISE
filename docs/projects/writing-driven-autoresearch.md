@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/happyhappy-jun/writing-driven-autoresearch>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/writing-driven-autoresearch.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/writing-driven-autoresearch.yml)
 
 ## Positioning

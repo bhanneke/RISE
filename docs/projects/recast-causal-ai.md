@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/qgallea/recast-showcase>
 
+**Licence:** `unknown (original MIT repo no longer public)`
+
 **Source:** [`projects/landscape/recast-causal-ai.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/recast-causal-ai.yml)
 
 ## Positioning

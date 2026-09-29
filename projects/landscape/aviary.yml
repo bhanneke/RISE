@@ -3,6 +3,7 @@ name: "Aviary (FutureHouse)"
 type: external
 status: active
 url: "https://github.com/Future-House/aviary"
+license: "Apache-2.0"
 maintainers:
   - "FutureHouse"
 year_started: 2024

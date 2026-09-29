@@ -3,6 +3,7 @@ name: "Writing-Driven Autoresearch"
 type: external
 status: active
 url: "https://github.com/happyhappy-jun/writing-driven-autoresearch"
+license: "Apache-2.0"
 maintainers:
   - "Byungjun Yoon (happyhappy-jun)"
 year_started: 2026

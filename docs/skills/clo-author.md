@@ -2,7 +2,7 @@
 
 # Clo-Author skills
 
-license: `none declared` · 14 skills · last update: 2026-05-11
+license: `MIT (stated in README; no licence file)` · 14 skills · last update: 2026-05-11
 
 **Source:** <https://github.com/hugosantanna/clo-author>
 

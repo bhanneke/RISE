@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/gtrhythm/PARNESS>
 
+**Licence:** `MIT (stated in README; no licence file)`
+
 **Source:** [`projects/landscape/parness.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/parness.yml)
 
 ## Positioning

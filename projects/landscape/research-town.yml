@@ -3,6 +3,7 @@ name: "ResearchTown"
 type: external
 status: dormant
 url: "https://github.com/ulab-uiuc/research-town"
+license: "Apache-2.0"
 maintainers:
   - "ULab, UIUC"
 year_started: 2024

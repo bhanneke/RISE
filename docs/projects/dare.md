@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/yogsoth-ai/de-anthropocentric-research-engine>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/dare.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/dare.yml)
 
 ## Positioning

@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/siegelz/core-bench>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/core-bench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/core-bench.yml)
 
 ## Positioning

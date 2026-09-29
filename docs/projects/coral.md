@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/Human-Agent-Society/CORAL>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/coral.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/coral.yml)
 
 ## Positioning

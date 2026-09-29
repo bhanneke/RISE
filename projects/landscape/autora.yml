@@ -3,6 +3,7 @@ name: "AutoRA (Automated Research Assistant)"
 type: external
 status: dormant
 url: "https://github.com/autoresearch/autora"
+license: "MIT"
 maintainers:
   - "Autonomous Empirical Research Group (Sebastian Musslick, Brown University)"
 year_started: 2020

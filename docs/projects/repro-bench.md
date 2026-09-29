@@ -6,6 +6,13 @@
 
 **Project page:** <https://github.com/uiuc-kang-lab/REPRO-Bench>
 
+**Licence:** `none`
+
+!!! warning "No licence declared"
+    The repository declares no licence, so its code cannot be reused,
+    modified or redistributed without the maintainer's permission. RISE
+    describes and links to the project; nothing from it is reproduced here.
+
 **Source:** [`projects/landscape/repro-bench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/repro-bench.yml)
 
 ## Positioning

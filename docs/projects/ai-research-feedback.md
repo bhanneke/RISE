@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/claesbackman/AI-research-feedback>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/ai-research-feedback.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/ai-research-feedback.yml)
 
 ## Positioning

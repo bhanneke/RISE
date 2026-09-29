@@ -3,6 +3,7 @@ name: "AARRI-Bench"
 type: external
 status: active
 url: "https://github.com/AARR-bench/AARRI-bench"
+license: "none"
 maintainers:
   - "AARR-bench team"
 year_started: 2026

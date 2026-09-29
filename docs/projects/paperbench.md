@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/openai/frontier-evals/tree/main/project/paperbench>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/paperbench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/paperbench.yml)
 
 ## Positioning

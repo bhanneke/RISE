@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/hugosantanna/clo-author>
 
+**Licence:** `MIT (stated in README; no licence file)`
+
 **Source:** [`projects/landscape/clo-author.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/clo-author.yml)
 
 ## Positioning

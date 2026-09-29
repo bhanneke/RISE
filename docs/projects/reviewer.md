@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/Ingar30/reviewer>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/reviewer.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/reviewer.yml)
 
 ## Positioning

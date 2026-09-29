@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/Future-House/robin>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/robin.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/robin.yml)
 
 ## Positioning

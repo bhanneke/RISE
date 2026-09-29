@@ -3,6 +3,7 @@ name: "PaperCoder (Paper2Code)"
 type: external
 status: active
 url: "https://github.com/going-doer/Paper2Code"
+license: "Apache-2.0"
 maintainers:
   - "Minju Seo, Jinheon Baek, Seongyun Lee, Sung Ju Hwang (KAIST)"
 year_started: 2025

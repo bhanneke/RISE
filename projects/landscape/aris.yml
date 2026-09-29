@@ -3,6 +3,7 @@ name: "ARIS (Auto-Research-In-Sleep)"
 type: external
 status: active
 url: "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+license: "MIT"
 maintainers:
   - "Ruofeng Yang"
   - "Yongcan Li"

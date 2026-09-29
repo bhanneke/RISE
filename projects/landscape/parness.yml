@@ -3,6 +3,7 @@ name: "PARNESS"
 type: external
 status: dormant
 url: "https://github.com/gtrhythm/PARNESS"
+license: "MIT (stated in README; no licence file)"
 maintainers:
   - "Yuchen Wang"
   - "Zhongzhi Luan"

@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/Master-cai/Research-Paper-Writing-Skills>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/research-paper-writing-skills.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/research-paper-writing-skills.yml)
 
 ## Positioning

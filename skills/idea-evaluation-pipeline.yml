@@ -1,0 +1,126 @@
+pack:
+  slug: idea-evaluation-pipeline
+  name: 'Research Idea Evaluation Pipeline (Alejandro Lopez-Lira)'
+  source_url: 'https://github.com/alejandroll10/idea-evaluation-pipeline'
+  maintainers:
+    - 'Alejandro Lopez-Lira (alejandroll10 on GitHub)'
+  license: 'none'
+  total_skills: 8
+  last_update: '2026-03-12'
+  related_project: ''
+  compatibility:
+    - agnostic
+    - claude-code
+    - cursor
+    - codex
+    - windsurf
+  notes: >
+    A prompt-based loop for stress-testing a finance or economics research idea
+    against the bar of the top finance and economics journals: evaluate, have
+    the evaluation reviewed for fairness, pivot and re-evaluate until the score
+    clears a threshold, then run a threat-focused literature search, verify
+    every citation, and issue and review a final verdict. The prompts are
+    plain text files driven by an AGENTS.md runner, so any coding agent or a
+    manual copy-paste workflow can use them; the explicit citation-verification
+    step against hallucinated references is what stands out. No licence
+    declared: skill texts are not reproduced here; each skill links to its
+    source.
+
+skills:
+  - slug: pipeline-runner
+    name: 'AGENTS.md'
+    category: infra
+    pipeline_stages:
+      - hypothesis-generation
+      - literature-discovery
+    field: finance
+    description: 'Agent-facing instructions that run the eight evaluation steps in order, name the input and output files for each step, and control the loop back to pivoting whenever a score falls short.'
+    source_path: 'AGENTS.md'
+    details_url: 'https://github.com/alejandroll10/idea-evaluation-pipeline/blob/main/AGENTS.md'
+    provenance: 'idea-evaluation-pipeline repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-03-12'
+
+  - slug: evaluate-idea
+    name: 'prompt_ideas.txt'
+    category: ideation
+    pipeline_stages:
+      - hypothesis-generation
+    field: finance
+    description: 'Scores a research idea against its three closest papers on marginal contribution, method, impact, feasibility and related criteria; used both for the first evaluation and for each pivot.'
+    source_path: 'prompt_ideas.txt'
+    details_url: 'https://github.com/alejandroll10/idea-evaluation-pipeline/blob/main/prompt_ideas.txt'
+    provenance: 'idea-evaluation-pipeline repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-03-12'
+
+  - slug: review-evaluation
+    name: 'review_eval_prompt.txt'
+    category: review
+    pipeline_stages:
+      - hypothesis-generation
+    field: finance
+    description: 'Second-opinion check on an idea evaluation, judging whether the critique and its score are fair and well reasoned before the pipeline acts on them.'
+    source_path: 'review_eval_prompt.txt'
+    details_url: 'https://github.com/alejandroll10/idea-evaluation-pipeline/blob/main/review_eval_prompt.txt'
+    provenance: 'idea-evaluation-pipeline repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-03-12'
+
+  - slug: pivot-idea
+    name: 'pivot_prompt.txt'
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+      - hypothesis-generation
+    field: finance
+    description: 'Reshapes an idea that scored below the threshold, using the full evaluation history to fix its weak points while staying on the same topic.'
+    source_path: 'pivot_prompt.txt'
+    details_url: 'https://github.com/alejandroll10/idea-evaluation-pipeline/blob/main/pivot_prompt.txt'
+    provenance: 'idea-evaluation-pipeline repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-03-12'
+
+  - slug: threat-literature-review
+    name: 'lit_review_prompt.txt'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+    field: finance
+    description: 'Web-search step that looks for papers the author did not cite which undermine the novelty claim, requiring a link for every paper it names.'
+    source_path: 'lit_review_prompt.txt'
+    details_url: 'https://github.com/alejandroll10/idea-evaluation-pipeline/blob/main/lit_review_prompt.txt'
+    provenance: 'idea-evaluation-pipeline repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-03-12'
+
+  - slug: verify-literature-review
+    name: 'verify_lit_review_prompt.txt'
+    category: audit
+    pipeline_stages:
+      - literature-discovery
+    field: finance
+    description: 'Checks each citation in the generated literature review against the web, correcting wrong bibliographic details and removing papers that cannot be found.'
+    source_path: 'verify_lit_review_prompt.txt'
+    details_url: 'https://github.com/alejandroll10/idea-evaluation-pipeline/blob/main/verify_lit_review_prompt.txt'
+    provenance: 'idea-evaluation-pipeline repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-03-12'
+
+  - slug: final-verdict
+    name: 'final_verdict_prompt.txt'
+    category: review
+    pipeline_stages:
+      - hypothesis-generation
+    field: finance
+    description: 'Synthesises the whole evaluation history into a final score with justification and a recommendation on whether the idea is ready to pursue.'
+    source_path: 'final_verdict_prompt.txt'
+    details_url: 'https://github.com/alejandroll10/idea-evaluation-pipeline/blob/main/final_verdict_prompt.txt'
+    provenance: 'idea-evaluation-pipeline repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-03-12'
+
+  - slug: review-final-verdict
+    name: 'review_final_verdict_prompt.txt'
+    category: review
+    pipeline_stages:
+      - hypothesis-generation
+    field: finance
+    description: 'Audits the final verdict for consistency with the evidence gathered earlier in the pipeline and decides whether the idea passes or goes back for another pivot.'
+    source_path: 'review_final_verdict_prompt.txt'
+    details_url: 'https://github.com/alejandroll10/idea-evaluation-pipeline/blob/main/review_final_verdict_prompt.txt'
+    provenance: 'idea-evaluation-pipeline repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-03-12'

@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/alejandroll10/zeropaper>
 
+**Licence:** `unclassified (licence file present; see repository)`
+
 **Source:** [`projects/landscape/zeropaper.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/zeropaper.yml)
 
 ## Positioning

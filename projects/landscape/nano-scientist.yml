@@ -3,6 +3,7 @@ name: "nano-scientist"
 type: external
 status: dormant
 url: "https://github.com/AI4Scientist/nano-scientist"
+license: "MIT (stated in README; no licence file)"
 maintainers:
   - "AI4Scientist (organisation; individual maintainers not named in the repo)"
 year_started: 2024

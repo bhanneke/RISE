@@ -3,6 +3,7 @@ name: "EvoScientist"
 type: external
 status: active
 url: "https://github.com/EvoScientist/EvoScientist"
+license: "Apache-2.0"
 maintainers:
   - "EvoScientist team"
 year_started: 2026

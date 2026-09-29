@@ -1,0 +1,136 @@
+slug: ai-researcher
+name: "AI-Researcher (HKUDS)"
+type: external
+status: dormant
+url: "https://github.com/HKUDS/AI-Researcher"
+license: "none"
+maintainers:
+  - "Jiabin Tang"
+  - "Lianghao Xia"
+  - "Zhonghang Li"
+  - "Chao Huang (Data Intelligence Lab@HKU)"
+year_started: 2025
+
+positioning: >
+  An autonomous multi-agent system for ML research (arXiv 2505.18705,
+  NeurIPS 2025 spotlight) that takes either a detailed idea (Level 1) or
+  only a set of reference papers (Level 2) and runs resource collection
+  from arXiv, GitHub and Hugging Face, idea generation, algorithm design,
+  implementation and experiments inside a Docker container, an iterative
+  validate-and-refine cycle, and hierarchical paper writing. Sits beside
+  sakana-ai-scientist, agent-laboratory and deepscientist in the
+  computer-science end-to-end cluster; a hosted successor runs at
+  novix.science.
+
+distinctive_contribution: >
+  Scientist-Bench, released with the system: tasks built from
+  state-of-the-art papers in CV, NLP, data mining and information
+  retrieval, with the human-written paper as ground truth, split into
+  guided (Level 1) and open-ended (Level 2) tasks and scored by evaluator
+  agents on novelty, experimental comprehensiveness, theoretical
+  foundation, result analysis and writing quality. The benchmark data and
+  its construction pipeline are published in the repo, so other AI
+  scientists can be run against the same tasks.
+
+focus: end-to-end
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - hypothesis-generation
+  - research-design
+  - code-generation
+  - data-analysis
+  - paper-drafting
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - iterative-loop
+
+discipline: computer-science
+
+inputs:
+  - research-idea
+  - reference-papers
+
+outputs:
+  - paper-draft
+  - code
+  - experiment-results
+
+data_sources:
+  - benchmark-datasets
+  - hugging-face
+
+knowledge_sources:
+  - arxiv
+  - github
+  - hugging-face
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Seven stages from literature collection through implementation, experiments and paper writing; review exists only as Scientist-Bench evaluator agents scoring finished outputs, not as a stage inside the research pipeline."
+  autonomy_level:
+    score: 3
+    note: "Runs from an idea or a list of reference papers to a full manuscript without per-step approval; the README and paper describe it as fully autonomous."
+  architectural_transparency:
+    score: 3
+    note: "Agent code, prompts, Docker environment, run scripts and the Scientist-Bench data and collection pipeline are all public in the repo."
+  inputs_supported:
+    score: 2
+    note: "Two input forms (detailed idea, reference-paper list) with literature, code and dataset collection from arXiv, GitHub and Hugging Face; no private corpus or user data connector."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists code, experiment logs and a LaTeX paper in the agent workplace; LLM-driven runs are not regenerable from declared inputs and there is no artifact manifest."
+  internal_evaluation:
+    score: 3
+    note: "Peer-reviewed at NeurIPS 2025 (spotlight) with a purpose-built benchmark; a third-party audit (ScientistOne, arXiv 2605.26340) found that every audited baseline system had at least one systematic integrity failure."
+  openness:
+    score: 1
+    note: "Source is public but no licence is declared, so reuse is not permitted; runs also need paid LLM API keys and a GPU container."
+  maturity_traction:
+    score: 2
+    note: "About 5.8k stars and 724 forks with a hosted product (novix.science), but no tagged releases and no push since 2025-10-16, so the open-source line is dormant."
+  cross_family_policy:
+    score: 0
+    note: "Separate COMPLETION_MODEL and CHEEP_MODEL settings pick a strong and a cheap model, but no role reviews another's work across model families."
+  assurance_runtime:
+    score: 1
+    note: "The implementation phase executes and tests code and refines on the results; there is no in-pipeline citation, claim or method-code audit before the paper is written."
+  cross_platform_portability:
+    score: 2
+    note: "LiteLLM routing supports several providers (Claude, OpenAI, DeepSeek, Gemini via OpenRouter), but execution is tied to the project's own Docker image."
+scored_on: "2026-09-29"
+
+limitations:
+  - "No licence declared: the code cannot be reused, modified or redistributed without the maintainer's permission."
+  - "Dormant: last push 2025-10-16 and 65 open issues; development appears to have moved to the hosted novix.science service."
+  - "The ScientistOne CoE Audit (arXiv 2605.26340) covered 75 papers from five systems, AI-Researcher among the four baselines, and reports that every baseline showed at least one systematic failure mode (hallucinated reference rates up to 21%, score verification passing in as few as 42% of papers, method-code alignment between 20% and 80%); the abstract gives these as ranges across baselines, not per system."
+  - "Scope is ML/AI research (CV, NLP, data mining, IR); no evidence in economics, finance or the social sciences."
+  - "Scientist-Bench quality scores come from LLM evaluator agents, not human referees."
+  - "The README's paper-writing example contains a literal OPENAI_API_KEY value, a secrets-hygiene problem in the published instructions."
+
+related:
+  - sakana-ai-scientist
+  - agent-laboratory
+  - deepscientist
+  - autoresearchclaw
+  - zochi
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'AI-Researcher: Autonomous Scientific Innovation'
+    authors:
+      - 'Tang, J.'
+      - 'Xia, L.'
+      - 'Li, Z.'
+      - 'Huang, C.'
+    year: 2025
+    venue: 'NeurIPS 2025'
+    arxiv_id: '2505.18705'
+
+references:
+  - tang2025airesearcher
+  - meng2026scientistone

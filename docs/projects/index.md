@@ -26,6 +26,7 @@ sources.
 | [AI Co-Mathematician (Google DeepMind)](ai-co-mathematician.md) | external | `end-to-end` | 2 | 2 | 1 | 2 | 2 | 2 | 0 | 1 | 0 | 2 | 0 | general |
 | [ai-peer-review-skill](ai-peer-review-skill.md) | external | `review` | 0 | 2 | 3 | 0 | 2 | 0 | 2 | 1 | 0 | 1 | 0 | general |
 | [AI Research Feedback](ai-research-feedback.md) | external | `review` | 1 | 2 | 3 | 1 | 1 | 0 | 2 | 2 | 0 | 1 | 0 | economics |
+| [AI-Researcher (HKUDS)](ai-researcher.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 3 | 1 | 2 | 0 | 1 | 2 | computer-science |
 | [AIRS-Bench (Meta FAIR)](airs-bench.md) | external | `end-to-end` | 0 | 0 | 3 | 2 | 2 | 2 | 1 | 2 | 0 | 1 | 2 | computer-science |
 | [AlphaEvolve (Google DeepMind)](alphaevolve.md) | external | `end-to-end` | 1 | 3 | 1 | 1 | 2 | 3 | 0 | 2 | 0 | 3 | 0 | mathematics |
 | [Project APE](ape.md) | external | `end-to-end` | 3 | 3 | 3 | 2 | 3 | 3 | 3 | 1 | 1 | 2 | 1 | economics |
@@ -60,6 +61,7 @@ sources.
 | [LifeSciBench](lifescibench.md) | external | `end-to-end` | 0 | 0 | 1 | 2 | 0 | 2 | 0 | 1 | 0 | 0 | 1 | biomedical |
 | [Luxas](luxas.md) | external | `end-to-end` | 3 | 3 | 3 | 1 | 2 | 1 | 2 | 2 | 1 | 3 | 2 | general |
 | [MARG (Multi-Agent Review Generation)](marg.md) | external | `review` | 0 | 2 | 3 | 1 | 3 | 2 | 3 | 1 | 0 | 1 | 0 | general |
+| [mcp-stata (Stata agentic toolkit)](mcp-stata.md) | external | `analysis` | 1 | 0 | 3 | 1 | 2 | 1 | 1 | 2 | 0 | 1 | 3 | economics |
 | [MLE-bench (OpenAI)](mle-bench.md) | external | `analysis` | 0 | 0 | 3 | 2 | 2 | 3 | 2 | 3 | 0 | 1 | 2 | computer-science |
 | [MLGym (Meta)](mlgym.md) | external | `end-to-end` | 0 | 2 | 3 | 2 | 3 | 2 | 2 | 0 | 0 | 1 | 1 | computer-science |
 | [nano-scientist](nano-scientist.md) | external | `end-to-end` | 3 | 3 | 2 | 1 | 2 | 1 | 1 | 1 | 1 | 2 | 2 | general |
@@ -75,6 +77,7 @@ sources.
 | [PaperBench (OpenAI)](paperbench.md) | external | `replication` | 0 | 0 | 3 | 2 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | computer-science |
 | [PARNESS](parness.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 1 | 1 | 1 | 1 | 2 | 2 | general |
 | [Prism](prism.md) | external | `drafting` | 2 | 1 | 1 | 2 | 2 | 0 | 1 | 2 | 0 | 1 | 0 | general |
+| [ralph-wiggum-asset-pricing](ralph-wiggum-asset-pricing.md) | external | `drafting` | 2 | 2 | 3 | 2 | 2 | 1 | 1 | 1 | 1 | 3 | 1 | finance |
 | [RD-Agent (R&D-Agent)](rd-agent.md) | external | `analysis` | 2 | 3 | 3 | 2 | 2 | 3 | 2 | 3 | 1 | 2 | 2 | general |
 | [RECAST (Replication and Extension with Causal AI Statistical Toolkit)](recast-causal-ai.md) | external | `replication` | 2 | 2 | 1 | 2 | 2 | 2 | 1 | 1 | 0 | 3 | 1 | econometrics |
 | [Refine (refine.ink)](refine-ink.md) | external | `review` | 0 | 2 | 1 | 1 | 1 | 2 | 0 | 3 | 0 | 1 | 0 | general |
@@ -117,6 +120,7 @@ sources.
 - **[AI Co-Mathematician (Google DeepMind)](ai-co-mathematician.md)** — A closed, agentic multi-agent workbench (arXiv:2605.06651) built on Gemini 3.1 for open-ended *mathematics* research.
 - **[ai-peer-review-skill](ai-peer-review-skill.md)** — A single-purpose Claude Code skill sitting squarely in the referee-simulation stage: hand it a manuscript (PDF, DOCX, TXT or MD) and it extracts the text, spawns N parallel Claude subagents (default 5, named with NATO codenames alfa through echo) that each return an independent structured review — summary, major concerns, minor concerns, verdict — with one slot optionally given to an AI-Alignment-Forum-style critic red-teaming narrative, novelty, baselines, ablations and reproducibility, then synthesises a meta-review separating shared from unique concerns and issuing a final verdict.
 - **[AI Research Feedback](ai-research-feedback.md)** — Ten Claude Code skills that referee economics and finance research artifacts before they leave the author's hands.
+- **[AI-Researcher (HKUDS)](ai-researcher.md)** — An autonomous multi-agent system for ML research (arXiv 2505.18705, NeurIPS 2025 spotlight) that takes either a detailed idea (Level 1) or only a set of reference papers (Level 2) and runs resource collection from arXiv, GitHub and Hugging Face, idea generation, algorithm design, implementation and experiments inside a Docker container, an iterative validate-and-refine cycle, and hierarchical paper writing.
 - **[AIRS-Bench (Meta FAIR)](airs-bench.md)** — A benchmark (arXiv:2602.06855) quantifying the end-to-end AI research abilities of LLM agents: 20 tasks sourced from 17 state-of-the-art ML papers across language modeling, code generation, mathematics, biochemical modeling, and time-series forecasting.
 - **[AlphaEvolve (Google DeepMind)](alphaevolve.md)** — A Gemini-powered evolutionary coding agent that combines LLM generative capabilities with automated evaluators in an iterative propose-test-refine loop.
 - **[Project APE](ape.md)** — An autonomous system that generates empirical economic policy research papers end-to-end from publicly available data, then scores them via a TrueSkill tournament in which AI-generated papers compete head-to-head against peer-reviewed human benchmarks from AER and AEJ:Policy (judged by Gemini 3.1 Flash Lite).
@@ -151,6 +155,7 @@ sources.
 - **[LifeSciBench](lifescibench.md)** — OpenAI's expert-authored benchmark (announced 2026-06-17) for measuring how well AI models support real-world life-science research.
 - **[Luxas](luxas.md)** — An unattended question-to-manuscript harness: a Claude Opus "brain" agent coordinates 13 specialised sub-agent kinds (search, reader, worker, experiment, tool_impl, tool_review, experiment_reviewer, math, illustrator, illustrator_write, typesetter, reviewer, fixer) through literature discovery over OpenAlex/arXiv/CrossRef, experiment design, parallel implementation and testing, figure generation, LaTeX writing and a three-layer adversarial review, ending in a compiled PDF.
 - **[MARG (Multi-Agent Review Generation)](marg.md)** — A research artifact (arXiv:2401.04259) and reusable demo for generating peer reviews of scientific papers using multiple specialized agents.
+- **[mcp-stata (Stata agentic toolkit)](mcp-stata.md)** — A stdio MCP server, distributed on PyPI and run through uvx, that gives an AI agent control of a local licensed Stata 17+ installation: run commands or .do files (including background jobs), inspect and lint data and code, read r()/e()/s() stored results as structured JSON, export graphs, and diff session state.
 - **[MLE-bench (OpenAI)](mle-bench.md)** — Seventy-five Kaggle competitions repackaged as an offline agent benchmark: an agent gets the competition description and data and must produce a submission CSV, graded deterministically against the held-out test set and scored against the *human* medal thresholds from that competition's original leaderboard.
 - **[MLGym (Meta)](mlgym.md)** — A gym-style framework and benchmark (MLGym-Bench, arXiv:2502.14499) for advancing AI research agents on 13 diverse ML research tasks (CV, NLP, RL, game theory).
 - **[nano-scientist](nano-scientist.md)** — A budget-first autonomous report generator: `python main.py "topic" --budget 2.00` runs four self-terminating loops — literature, experimentation, writing with an internal peer-review pass, and compilation — and lands a LaTeX source, a deduplicated CrossRef-checked BibTeX file and a compiled PDF in `outputs/<uuid>/` alongside `cost_log.json`, `history.json` and `summary.json`.
@@ -166,6 +171,7 @@ sources.
 - **[PaperBench (OpenAI)](paperbench.md)** — The reference replication benchmark for AI research: agents must reproduce 20 ICML 2024 Spotlight and Oral papers from scratch — understanding the contribution, writing the codebase, and executing the experiments — with no starter code.
 - **[PARNESS](parness.md)** — A declarative "paper harness": research pipelines are composed in YAML over a thin (~900-line) DAG kernel that does topological sorting and data flow, while control flow is agent-driven — modules emit `_route` signals to branch, iterate or stop.
 - **[Prism](prism.md)** — OpenAI's free AI-native LaTeX workspace for scientific writing and collaboration, launched late January 2026 on Crixet, a cloud LaTeX platform OpenAI acquired.
+- **[ralph-wiggum-asset-pricing](ralph-wiggum-asset-pricing.md)** — Geoff Huntley's "Ralph Wiggum" loop applied to an academic asset-pricing paper: the human writes a paper specification (the paper in bullet points), an economic-background file and a test selection; then Claude Code or Codex, running with permissions disabled inside a firewalled dev container, repeats plan → improve → test on the LaTeX paper and R code until every PASS/FAIL test passes.
 - **[RD-Agent (R&D-Agent)](rd-agent.md)** — Microsoft's framework for automating data-driven R&D as a two-role loop: a Research agent proposes a hypothesis, a Development agent implements it as executable code, the result is run against real data, and the measured feedback drives the next iteration.
 - **[RECAST (Replication and Extension with Causal AI Statistical Toolkit)](recast-causal-ai.md)** — An end-to-end autonomous pipeline for the *replication + extension + peer-review* arc of the RISE concept diagram.
 - **[Refine (refine.ink)](refine-ink.md)** — A commercial AI peer-review service that produces reviewer-grade feedback on academic papers within ~20–40 minutes by running multi-hour parallel compute jobs (~2+ hours per review).

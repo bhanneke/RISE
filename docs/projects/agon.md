@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/AutoResearch-Factory/Agon>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/agon.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/agon.yml)
 
 ## Positioning

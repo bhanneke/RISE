@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/ulab-uiuc/research-town>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/research-town.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/research-town.yml)
 
 ## Positioning

@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/Muuuun/luxas>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/luxas.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/luxas.yml)
 
 ## Positioning

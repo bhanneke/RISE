@@ -3,6 +3,7 @@ name: "Zochi (Intology)"
 type: external
 status: active
 url: "https://github.com/IntologyAI/Zochi"
+license: "MIT"
 maintainers:
   - "Andy Zhou and Intology team"
 year_started: 2025

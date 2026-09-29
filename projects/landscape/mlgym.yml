@@ -3,6 +3,7 @@ name: "MLGym (Meta)"
 type: external
 status: dormant
 url: "https://github.com/facebookresearch/MLGym"
+license: "unclassified (licence file present; see repository)"
 maintainers:
   - "Meta AI / FAIR"
 year_started: 2025

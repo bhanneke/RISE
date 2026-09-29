@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/openai/mle-bench>
 
+**Licence:** `unclassified (licence file present; see repository)`
+
 **Source:** [`projects/landscape/mle-bench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/mle-bench.yml)
 
 ## Positioning

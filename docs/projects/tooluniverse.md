@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/mims-harvard/ToolUniverse>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/tooluniverse.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/tooluniverse.yml)
 
 ## Positioning

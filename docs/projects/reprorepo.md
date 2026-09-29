@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/LithiumDA/ReproRepo>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/reprorepo.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/reprorepo.yml)
 
 ## Positioning

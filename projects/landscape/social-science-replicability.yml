@@ -3,6 +3,7 @@ name: "Social Science Replicability Infrastructure"
 type: external
 status: active
 url: "https://github.com/benjamin-kohler/social_science_replicability"
+license: "none"
 maintainers:
   - "Benjamin Köhler"
 year_started: 2025

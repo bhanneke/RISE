@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/mlbio-epfl/HeurekaBench>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/heureka-bench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/heureka-bench.yml)
 
 ## Positioning

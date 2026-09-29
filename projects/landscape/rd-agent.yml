@@ -3,6 +3,7 @@ name: "RD-Agent (R&D-Agent)"
 type: external
 status: active
 url: "https://github.com/microsoft/RD-Agent"
+license: "MIT"
 maintainers:
   - "Microsoft (R&D-Agent team)"
 year_started: 2024

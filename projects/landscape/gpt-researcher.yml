@@ -3,6 +3,7 @@ name: "GPT Researcher"
 type: external
 status: active
 url: "https://github.com/assafelovic/gpt-researcher"
+license: "Apache-2.0"
 maintainers:
   - "Assaf Elovic"
   - "community"

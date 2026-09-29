@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/EvoScientist/EvoScientist>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/evoscientist.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/evoscientist.yml)
 
 ## Positioning

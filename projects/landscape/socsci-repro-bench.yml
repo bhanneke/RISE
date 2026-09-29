@@ -3,6 +3,7 @@ name: "SocSci-Repro-Bench"
 type: external
 status: dormant
 url: "https://github.com/malizad/SocSci-Repro-Bench"
+license: "unclassified (licence file present; see repository)"
 maintainers:
   - "Meysam Alizadeh"
   - "Mohsen Mosleh"

@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/IntologyAI/Zochi>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/zochi.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/zochi.yml)
 
 ## Positioning

@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/AI4Scientist/nano-scientist>
 
+**Licence:** `MIT (stated in README; no licence file)`
+
 **Source:** [`projects/landscape/nano-scientist.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/nano-scientist.yml)
 
 ## Positioning

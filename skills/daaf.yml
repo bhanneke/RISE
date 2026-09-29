@@ -1,0 +1,741 @@
+pack:
+  slug: daaf
+  name: 'DAAF — Data Analyst Augmentation Framework (Brian Heseung Kim)'
+  source_url: 'https://github.com/DAAF-Contribution-Community/daaf'
+  maintainers:
+    - 'Brian Heseung Kim (brhkim on GitHub), for the DAAF-Contribution-Community organisation'
+  license: 'LGPL-3.0-or-later (as declared in the README, badge and CITATION.cff; the repo ships the GPL-3.0 text as LICENSE plus COPYING.LESSER)'
+  total_skills: 56
+  last_update: '2026-08-18'
+  related_project: ''
+  compatibility:
+    - claude-code
+  notes: >
+    DAAF is a Claude Code instruction framework, run inside a Docker container,
+    that turns the agent into a file-first quantitative research assistant:
+    every data step is a script on disk, a 15-agent roster works under an
+    orchestrator skill, and the analysis runs through a staged pipeline whose
+    Stage 9 archives the executed scripts into marimo (Python) or Quarto (R)
+    notebooks. All 56 SKILL.md files under .claude/skills/ are catalogued here.
+    A provenance audit (md5 plus difflib word-sequence ratio, 2026-09-29)
+    against every details copy RISE already holds, against
+    K-Dense-AI/claude-scientific-skills, anthropics/skills,
+    meleantonio/awesome-econ-ai-stuff, hanlulong/econ-paper-review-skill,
+    JonasWeinert/EconAgentSkills and pedrohcgs/claude-code-my-workflow, and
+    against the 69 other repos in the Auto-Empirical-Research-Skills bundle
+    finds no vendored copies: the best external match is 0.077 (DAAF polars
+    against K-Dense polars), and the library skills that share names with
+    K-Dense skills (polars, scikit-learn, statsmodels, geopandas, plotly) are
+    independent rewrites. The skills fall into five groups: framework internals
+    (orchestrator, agent and skill authoring, shell scripting, deployment smoke
+    tests, web retrieval), method routing (data-scientist,
+    creative-verification, synthetic-data-workflow, science-communication),
+    paired Python and R library skills (pyfixest and fixest, statsmodels and
+    r-stats, linearmodels and plm, svy and survey-r, scikit-learn and
+    tidymodels, geopandas and sf-terra, igraph and igraph-r, plotnine and
+    ggplot2, plotly and plotly-r, great-tables and gt, polars and tidyverse,
+    marimo and quarto), four Stata, R and Python translation skills, and 17
+    data-source skills, 16 of them for the Urban Institute Education Data Portal
+    and its mirror (CCD, IPEDS, CRDC, Scorecard, EDFacts and others) plus MIT
+    MEDSL county presidential returns. The education-data focus reflects the
+    project's proof of concept; the method skills are domain-general. Several
+    skills are framework plumbing rather than research guidance
+    (daaf-orchestrator is loaded only by the orchestrator,
+    daaf-deploy-smoke-testing needs the DAAF_DEV=1 dev image). The details
+    copies are verbatim and are redistributed under LGPL-3.0-or-later with
+    attribution to Brian Heseung Kim and the DAAF contributors; each upstream
+    skill also ships reference files that are not copied here.
+
+skills:
+  - slug: agent-authoring
+    name: '/agent-authoring'
+    category: meta
+    pipeline_stages:
+      - code-generation
+    field: general
+    description: 'Template and checklist for writing DAAF agent definition files: a 12-section agent layout, hook registration, skills declared in frontmatter, naming conventions and an integration checklist. Points SKILL.md work to skill-authoring.'
+    source_path: '.claude/skills/agent-authoring/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/agent-authoring/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: creative-verification
+    name: '/creative-verification'
+    category: audit
+    pipeline_stages:
+      - data-analysis
+      - research-design
+    field: general
+    description: 'Turns a researcher''s doubt about a finding into competing explanations and pre-specified discriminating tests, drawn from 12 challenge families organised by validity type, with sensitivity statistics, pre-committed interpretation rules and anti-fishing guardrails. The results go into a hypothesis and evidence ledger in place of line-by-line code review.'
+    source_path: '.claude/skills/creative-verification/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/creative-verification/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-08'
+
+  - slug: daaf-deploy-smoke-testing
+    name: '/daaf-deploy-smoke-testing'
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Contributor tool that checks a live DAAF install end to end on its configured provider route, from a free preflight through one paid round trip to a six-probe functional battery and a zero-cost deterministic test tier. Requires the DAAF_DEV=1 developer image.'
+    source_path: '.claude/skills/daaf-deploy-smoke-testing/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/daaf-deploy-smoke-testing/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-08'
+
+  - slug: daaf-orchestrator
+    name: '/daaf-orchestrator'
+    category: infra
+    pipeline_stages:
+      - data-analysis
+    field: general
+    description: 'Operating manual for the DAAF orchestrator agent: engagement-mode classification, the user confirmation protocol, subagent dispatch, context budgeting and which references to load next. Loaded only by the orchestrator, not by subagents.'
+    source_path: '.claude/skills/daaf-orchestrator/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/daaf-orchestrator/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: data-scientist
+    name: '/data-scientist'
+    category: analysis
+    pipeline_stages:
+      - research-design
+      - data-analysis
+    field: general
+    description: 'Method-selection hub for quantitative work covering EDA, validation, causal designs (IV, DiD, RD, synthetic control), unsupervised and supervised ML, spatial and network analysis and visualisation. Holds the routing tree that sends each method to the matching Python or R library skill before any code is written.'
+    source_path: '.claude/skills/data-scientist/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/data-scientist/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: education-data-context
+    name: '/education-data-context'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+      - data-analysis
+    field: social-sciences
+    description: 'Interpretation rules for Urban Institute Education Data Portal data: integer-coded categoricals, the -1/-2/-3 missing codes, year and grade conventions (grade -1 means Pre-K), suppression, licensing and cross-source join keys. Meant to be loaded before any Portal analysis and routes to the per-source skills.'
+    source_path: '.claude/skills/education-data-context/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-context/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-explorer
+    name: '/education-data-explorer'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Read-only discovery reference that maps a research question to the Education Data mirror files that answer it, giving path, row grain, year coverage, key variables and join keys for 14 sources at a pinned mirror vintage. Used before education-data-query, which handles retrieval.'
+    source_path: '.claude/skills/education-data-explorer/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-explorer/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-query
+    name: '/education-data-query'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Fetch-script guidance for downloading education datasets from the configured parquet or CSV mirrors with local Polars filtering, including pinning a fetch to a versioned mirror vintage for reproducibility.'
+    source_path: '.claude/skills/education-data-query/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-query/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-campus-safety
+    name: '/education-data-source-campus-safety'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to Clery Act campus crime and fire-safety data, keyed by IPEDS unitid, with the warning that the Portal carries only hate-crime tables (2005-2021) and the other offence tables must come from the Education Department directly.'
+    source_path: '.claude/skills/education-data-source-campus-safety/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-campus-safety/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-ccd
+    name: '/education-data-source-ccd'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to the Common Core of Data, the federal universe of U.S. public K-12 schools and districts, covering its components (enrollment, staffing, finance, directory), coverage from 1986, and pitfalls such as the exclusion of private and postsecondary schools.'
+    source_path: '.claude/skills/education-data-source-ccd/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-ccd/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-crdc
+    name: '/education-data-source-crdc'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to the Civil Rights Data Collection on discipline, course access, harassment and restraint by race, sex, disability and English-learner status, with notes on which years are universe collections and on the COVID-affected 2020-21 wave.'
+    source_path: '.claude/skills/education-data-source-crdc/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-crdc/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-eada
+    name: '/education-data-source-eada'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to Equity in Athletics college sports data (participation, coaching, salaries, expenses, revenue and aid by gender), stressing that it is not Title IX compliance data and needs an IPEDS join for institution type.'
+    source_path: '.claude/skills/education-data-source-eada/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-eada/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-edfacts
+    name: '/education-data-source-edfacts'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to EDFacts assessment proficiency, graduation-rate and accountability data for schools and districts (2009-2020), with a prominent warning that proficiency cannot be compared across states.'
+    source_path: '.claude/skills/education-data-source-edfacts/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-edfacts/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-fsa
+    name: '/education-data-source-fsa'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to institution-level Federal Student Aid data (Pell, Direct and PLUS loans, campus-based aid, financial responsibility scores and 90/10 metrics, 1999-2021), with a truth hierarchy for conflicting sources and join guidance.'
+    source_path: '.claude/skills/education-data-source-fsa/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-fsa/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-03'
+
+  - slug: education-data-source-ipeds
+    name: '/education-data-source-ipeds'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to IPEDS, the main federal postsecondary dataset, across its survey components (enrollment, completions, graduation rates, finance, aid, admissions, staff), with caveats on first-time full-time graduation rates and GASB versus FASB finance data.'
+    source_path: '.claude/skills/education-data-source-ipeds/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-ipeds/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-meps
+    name: '/education-data-source-meps'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to the Urban Institute''s Model Estimates of Poverty in Schools, a modelled school-level poverty share offered as a more consistent alternative to free and reduced-price lunch counts distorted by community eligibility.'
+    source_path: '.claude/skills/education-data-source-meps/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-meps/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-nacubo
+    name: '/education-data-source-nacubo'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to the NACUBO endowment data in the Portal, which carries only seven columns (total endowment, per-FTE value, year-on-year change) for about 650 institutions, and points to IPEDS finance for full coverage.'
+    source_path: '.claude/skills/education-data-source-nacubo/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-nacubo/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-nccs
+    name: '/education-data-source-nccs'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to IRS Form 990 financial data for private nonprofit colleges as matched to IPEDS in the Portal (1993-2016), with how it differs from IPEDS finance and why public institutions are absent.'
+    source_path: '.claude/skills/education-data-source-nccs/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-nccs/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-nhgis
+    name: '/education-data-source-nhgis'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to the NHGIS geography linkage tables that attach schools and colleges to census tracts, block groups and CBSAs, noting that the Portal holds only the crosswalks and census demographics must be extracted from IPUMS NHGIS separately.'
+    source_path: '.claude/skills/education-data-source-nhgis/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-nhgis/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-pseo
+    name: '/education-data-source-pseo'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to Census Post-Secondary Employment Outcomes, graduate earnings percentiles one, five and ten years out by institution, degree and field from LEHD wage records, with its partial and changing institutional coverage.'
+    source_path: '.claude/skills/education-data-source-pseo/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-pseo/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-saipe
+    name: '/education-data-source-saipe'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to Census Small Area Income and Poverty Estimates for school districts, with the lag, the absence of race breakdowns at district level and when to switch to ACS five-year estimates.'
+    source_path: '.claude/skills/education-data-source-saipe/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-saipe/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: education-data-source-scorecard
+    name: '/education-data-source-scorecard'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to College Scorecard earnings, repayment and debt outcomes built from aid and tax records, stressing that it tracks only Title IV aid recipients and comparing it with IPEDS.'
+    source_path: '.claude/skills/education-data-source-scorecard/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/education-data-source-scorecard/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: election-data-source-countypres
+    name: '/election-data-source-countypres'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: social-sciences
+    description: 'Source guide to MIT MEDSL county presidential returns 2000-2024 via Harvard Dataverse, whose main pitfall is that filtering on the TOTAL vote mode silently drops about 1,000 counties after 2020; it gives a three-pattern reconstruction of county totals.'
+    source_path: '.claude/skills/election-data-source-countypres/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/election-data-source-countypres/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-07'
+
+  - slug: fixest
+    name: '/fixest'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: econometrics
+    description: 'R guide to fixest for high-dimensional fixed-effects OLS, Poisson and GLM models, IV, TWFE and Sun-Abraham event studies, clustered standard errors and etable or iplot output, with routing to plm and r-stats for other model classes.'
+    source_path: '.claude/skills/fixest/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/fixest/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-03'
+
+  - slug: geopandas
+    name: '/geopandas'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: general
+    description: 'Python guide to geopandas for spatial data: GeoDataFrames, spatial joins, coordinate reference systems, choropleth and interactive maps, and PySAL spatial statistics.'
+    source_path: '.claude/skills/geopandas/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/geopandas/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: ggplot2
+    name: '/ggplot2'
+    category: figures
+    pipeline_stages:
+      - data-analysis
+    field: general
+    description: 'R guide to ggplot2 figures (geoms, scales, facets, coordinates, themes and extensions such as patchwork and ggrepel), including the breaking changes of the 4.0 release.'
+    source_path: '.claude/skills/ggplot2/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/ggplot2/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: great-tables
+    name: '/great-tables'
+    category: figures
+    pipeline_stages:
+      - data-analysis
+    field: general
+    description: 'Python guide to great-tables for publication-quality display tables from Polars or pandas frames, covering formatting, spanners, styling and HTML or LaTeX export, and noting that regression tables should come from the estimator''s own output.'
+    source_path: '.claude/skills/great-tables/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/great-tables/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-14'
+
+  - slug: gt
+    name: '/gt'
+    category: figures
+    pipeline_stages:
+      - data-analysis
+    field: general
+    description: 'R guide to presentation tables with gt, kableExtra and modelsummary: table grammar, number formatting, structure and export.'
+    source_path: '.claude/skills/gt/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/gt/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: igraph-r
+    name: '/igraph-r'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: general
+    description: 'R guide to network analysis with igraph through tidygraph and ggraph: building graphs from edge lists, centrality measures, seeded community detection, paths, bipartite projection and seeded layouts for figures.'
+    source_path: '.claude/skills/igraph-r/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/igraph-r/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-15'
+
+  - slug: igraph
+    name: '/igraph'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: general
+    description: 'Python guide to network analysis with python-igraph: graphs from Polars edge lists, centrality, seeded community detection (Leiden, Louvain, walktrap), paths and components, bipartite projection and static plots.'
+    source_path: '.claude/skills/igraph/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/igraph/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: linearmodels
+    name: '/linearmodels'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: econometrics
+    description: 'Python guide to linearmodels for panel estimators (fixed, random and between effects, Fama-MacBeth), IV by 2SLS, LIML and GMM, SUR and 3SLS systems, and Driscoll-Kraay standard errors.'
+    source_path: '.claude/skills/linearmodels/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/linearmodels/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: marimo
+    name: '/marimo'
+    category: infra
+    pipeline_stages:
+      - code-generation
+      - replication
+    field: general
+    description: 'Guide to marimo reactive notebooks stored as plain .py files, DAAF''s Python notebook format, with the rule that the Stage 9 notebook only archives already-executed scripts and their logs and must not run new analysis.'
+    source_path: '.claude/skills/marimo/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/marimo/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: plm
+    name: '/plm'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: econometrics
+    description: 'R guide to plm panel models (within, random, between, first difference, Fama-MacBeth), Hausman and panel unit-root tests, plus estimatr for robust inference and lme4 for mixed effects.'
+    source_path: '.claude/skills/plm/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/plm/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-07'
+
+  - slug: plotly-r
+    name: '/plotly-r'
+    category: figures
+    pipeline_stages:
+      - data-analysis
+    field: general
+    description: 'R guide to interactive plotly charts with plot_ly, conversion of ggplot2 objects through ggplotly, layout customisation and HTML widget export.'
+    source_path: '.claude/skills/plotly-r/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/plotly-r/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: plotly
+    name: '/plotly'
+    category: figures
+    pipeline_stages:
+      - data-analysis
+    field: general
+    description: 'Python guide to interactive Plotly charts through Express and Graph Objects, including subplots, styling and export, for cases where hover and zoom are needed.'
+    source_path: '.claude/skills/plotly/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/plotly/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: plotnine
+    name: '/plotnine'
+    category: figures
+    pipeline_stages:
+      - data-analysis
+    field: general
+    description: 'Python guide to plotnine, the ggplot2 grammar of graphics for static publication figures: geoms, aesthetics, scales, facets and themes.'
+    source_path: '.claude/skills/plotnine/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/plotnine/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: polars
+    name: '/polars'
+    category: data-handling
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: general
+    description: 'Python guide to Polars, DAAF''s default DataFrame library, covering lazy and eager execution, expressions, Parquet and CSV I/O, joins and aggregations, performance patterns, anti-patterns and migration from pandas.'
+    source_path: '.claude/skills/polars/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/polars/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: pyfixest
+    name: '/pyfixest'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: econometrics
+    description: 'Python guide to pyfixest for high-dimensional fixed-effects OLS, Poisson and IV, difference-in-differences via TWFE, did2s and Sun-Abraham, clustered standard errors and etable or iplot reporting.'
+    source_path: '.claude/skills/pyfixest/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/pyfixest/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-24'
+
+  - slug: python-r-translation
+    name: '/python-r-translation'
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    field: general
+    description: 'Maps Python data-analysis idioms (polars, plotnine, pyfixest, statsmodels, svy, geopandas) to their R counterparts, with the main paradigm differences and a protocol for annotating R pipelines with Python equivalents for Python-trained users.'
+    source_path: '.claude/skills/python-r-translation/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/python-r-translation/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-24'
+
+  - slug: quarto
+    name: '/quarto'
+    category: infra
+    pipeline_stages:
+      - code-generation
+      - replication
+    field: general
+    description: 'Guide to Quarto .qmd documents with the knitr engine, DAAF''s R notebook format, with the same rule as for marimo that the Stage 9 notebook archives already-executed scripts in non-evaluating chunks and runs no new analysis.'
+    source_path: '.claude/skills/quarto/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/quarto/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: r-python-translation
+    name: '/r-python-translation'
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    field: general
+    description: 'Maps R packages (tidyverse, ggplot2, fixest, survey, sf, plm) to Python equivalents, with paradigm differences and an annotation protocol that adds R-equivalent comments to Python code for R-trained users.'
+    source_path: '.claude/skills/r-python-translation/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/r-python-translation/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-24'
+
+  - slug: r-stats
+    name: '/r-stats'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: econometrics
+    description: 'R guide to base-R modelling with lm and glm (OLS, WLS, logit, probit, Poisson, negative binomial), robust and clustered errors via sandwich and lmtest, diagnostics via car and tidy output via broom.'
+    source_path: '.claude/skills/r-stats/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/r-stats/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: science-communication
+    name: '/science-communication'
+    category: drafting
+    pipeline_stages:
+      - dissemination
+    field: general
+    description: 'Guidance for translating technical results for non-technical readers: Pyramid Principle and SCQA structures, plain-language rewriting, executive summaries, policy briefs and careful causal language.'
+    source_path: '.claude/skills/science-communication/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/science-communication/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-06-10'
+
+  - slug: scikit-learn
+    name: '/scikit-learn'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: general
+    description: 'Python guide to scikit-learn for clustering, dimension reduction (PCA, t-SNE, UMAP), classification, penalised and ensemble prediction, cross-validation and Pipelines, routing econometric regression elsewhere.'
+    source_path: '.claude/skills/scikit-learn/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/scikit-learn/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: sf-terra
+    name: '/sf-terra'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: general
+    description: 'R guide to spatial analysis with sf vectors and terra rasters, spdep and spatialreg spatial statistics, leaflet maps and geom_sf choropleths, including CRS handling and spatial joins.'
+    source_path: '.claude/skills/sf-terra/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/sf-terra/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-07'
+
+  - slug: shell-scripting
+    name: '/shell-scripting'
+    category: infra
+    pipeline_stages:
+      - code-generation
+    field: general
+    description: 'Coding standards for DAAF''s Bash and PowerShell scripts (preambles, quoting, error handling, cleanup, exit codes, testing) and for the double-click launcher shims.'
+    source_path: '.claude/skills/shell-scripting/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/shell-scripting/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-02'
+
+  - slug: skill-authoring
+    name: '/skill-authoring'
+    category: meta
+    pipeline_stages:
+      - code-generation
+    field: general
+    description: 'Guide for writing and auditing DAAF SKILL.md files: frontmatter and metadata vocabulary, progressive disclosure through reference files, decision trees, and the metadata references expected of data-source skills.'
+    source_path: '.claude/skills/skill-authoring/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/skill-authoring/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-17'
+
+  - slug: stata-python-translation
+    name: '/stata-python-translation'
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    field: econometrics
+    description: 'Maps Stata commands (reghdfe, xtreg, ivregress, margins, esttab, svy) to Python with polars, pyfixest, statsmodels and svy, with paradigm differences and Stata-equivalent code comments for Stata-trained users.'
+    source_path: '.claude/skills/stata-python-translation/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/stata-python-translation/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-24'
+
+  - slug: stata-r-translation
+    name: '/stata-r-translation'
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    field: econometrics
+    description: 'Maps Stata commands (reghdfe, xtreg, ivregress, margins, esttab, svy) to R with fixest, plm, survey, marginaleffects and modelsummary, with paradigm differences and Stata-equivalent code comments.'
+    source_path: '.claude/skills/stata-r-translation/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/stata-r-translation/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-24'
+
+  - slug: statsmodels
+    name: '/statsmodels'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: econometrics
+    description: 'Python guide to statsmodels for OLS, WLS and GLS, GLMs, ARIMA and VAR time series, mixed effects and diagnostics through the formula API, for models without high-dimensional fixed effects.'
+    source_path: '.claude/skills/statsmodels/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/statsmodels/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-03'
+
+  - slug: survey-r
+    name: '/survey-r'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: social-sciences
+    description: 'R guide to Lumley''s survey package: survey designs, weighted means and totals, svyglm, domain estimates and replicate weights, with the warning that lm with weights is not survey analysis.'
+    source_path: '.claude/skills/survey-r/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/survey-r/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-15'
+
+  - slug: svy
+    name: '/svy'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: social-sciences
+    description: 'Python guide to the Polars-native svy package for complex samples (strata, PSUs, weights, Taylor and replicate variance, survey GLMs, calibration), warning that WLS or clustered errors are not substitutes for design-based inference.'
+    source_path: '.claude/skills/svy/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/svy/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-15'
+
+  - slug: synthetic-data-workflow
+    name: '/synthetic-data-workflow'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+      - code-generation
+    field: general
+    description: 'Workflow for sensitive data that must never enter the container: the user profiles it locally at one of four disclosure tiers, only the summary report crosses over, and DAAF builds a synthetic scaffold dataset and data skill from it, checked by three separate QA passes.'
+    source_path: '.claude/skills/synthetic-data-workflow/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/synthetic-data-workflow/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-03'
+
+  - slug: tidymodels
+    name: '/tidymodels'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: general
+    description: 'R guide to machine learning with tidymodels (recipes, parsnip, workflows, tune, rsample) using ranger, glmnet, xgboost and kknn engines, plus model interpretation, fairness checks and UMAP.'
+    source_path: '.claude/skills/tidymodels/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/tidymodels/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-07-16'
+
+  - slug: tidyverse
+    name: '/tidyverse'
+    category: data-handling
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: general
+    description: 'R guide to data manipulation with dplyr, tidyr, readr, purrr, stringr, forcats and lubridate, Parquet via arrow, and data.table for speed.'
+    source_path: '.claude/skills/tidyverse/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/tidyverse/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-09'
+
+  - slug: web-retrieval
+    name: '/web-retrieval'
+    category: infra
+    pipeline_stages:
+      - literature-discovery
+    field: general
+    description: 'DAAF''s rule for reading web pages: fetch them with the framework''s web_fetch.sh script, which saves the raw response, a deterministic text extract and a provenance manifest, since the built-in WebFetch returns a paraphrase. Covers flags, exit codes, untrusted-content handling and size rules.'
+    source_path: '.claude/skills/web-retrieval/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/web-retrieval/SKILL.md'
+    provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
+    last_update: '2026-08-08'

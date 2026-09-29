@@ -3,6 +3,7 @@ name: "Agent Laboratory"
 type: external
 status: dormant
 url: "https://github.com/SamuelSchmidgall/AgentLaboratory"
+license: "MIT"
 maintainers:
   - "Samuel Schmidgall"
   - "community"

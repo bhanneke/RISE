@@ -3,6 +3,7 @@ name: "StatsPAI"
 type: external
 status: active
 url: "https://github.com/brycewang-stanford/StatsPAI"
+license: "MIT"
 maintainers:
   - "Biaoyue (Bryce) Wang (Stanford REAP)"
   - "Scott Rozelle (Stanford REAP)"

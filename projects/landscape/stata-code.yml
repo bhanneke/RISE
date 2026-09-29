@@ -3,6 +3,7 @@ name: "stata-code"
 type: external
 status: active
 url: "https://github.com/brycewang-stanford/stata-code"
+license: "MIT"
 maintainers:
   - "Bryce Wang (Stanford REAP / CoPaper.AI)"
 year_started: 2026

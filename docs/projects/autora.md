@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/autoresearch/autora>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/autora.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/autora.yml)
 
 ## Positioning

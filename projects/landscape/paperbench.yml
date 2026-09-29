@@ -3,6 +3,7 @@ name: "PaperBench (OpenAI)"
 type: external
 status: dormant
 url: "https://github.com/openai/frontier-evals/tree/main/project/paperbench"
+license: "MIT"
 maintainers:
   - "OpenAI"
   - "Giulio Starace"

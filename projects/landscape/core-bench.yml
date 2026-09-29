@@ -3,6 +3,7 @@ name: "CORE-Bench"
 type: external
 status: dormant
 url: "https://github.com/siegelz/core-bench"
+license: "MIT"
 maintainers:
   - "Zachary S. Siegel"
   - "Sayash Kapoor"

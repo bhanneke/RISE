@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/assafelovic/gpt-researcher>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/gpt-researcher.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/gpt-researcher.yml)
 
 ## Positioning

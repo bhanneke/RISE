@@ -3,6 +3,7 @@ name: "HeurekaBench"
 type: external
 status: dormant
 url: "https://github.com/mlbio-epfl/HeurekaBench"
+license: "MIT"
 maintainers:
   - "Siba Smarak Panigrahi"
   - "Jovana Videnović"

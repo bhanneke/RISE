@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/karpathy/autoresearch>
 
+**Licence:** `MIT (stated in README; no licence file)`
+
 **Source:** [`projects/landscape/karpathy-autoresearch.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/karpathy-autoresearch.yml)
 
 ## Positioning

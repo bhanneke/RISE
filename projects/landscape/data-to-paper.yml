@@ -3,6 +3,7 @@ name: "data-to-paper"
 type: external
 status: dormant
 url: "https://github.com/Technion-Kishony-lab/data-to-paper"
+license: "MIT"
 maintainers:
   - "Roy Kishony Lab (Technion)"
 year_started: 2023

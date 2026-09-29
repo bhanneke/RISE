@@ -56,6 +56,15 @@ def _strip_broken_relative_links(text: str) -> tuple[str, int]:
     return _MD_LINK_RE.sub(repl, text), stripped
 
 
+def no_licence(value) -> bool:
+    """True when a pack or project records that no licence is declared.
+
+    The convention is `license: "none"`; free-text qualifiers after it
+    ("none declared", "none (README only)") are accepted.
+    """
+    return str(value or "").strip().lower().startswith("none")
+
+
 def copy_skill_details(packs: list[dict]) -> int:
     """Build marketplace-style per-skill pages from skills/<pack>/details/."""
     n_total = 0
@@ -246,6 +255,14 @@ def render_pack_page(pack_data: dict[str, Any]) -> str:
     if pack.get("compatibility"):
         chips = " ".join(f"`{c}`" for c in pack["compatibility"])
         out.append(f"**Compatibility:** {chips}")
+        out.append("")
+
+    if no_licence(pack.get("license")):
+        out.append('!!! warning "No licence declared"')
+        out.append("    The source repository declares no licence, so its skill texts are not")
+        out.append("    reproduced here. The skills are listed by name with RISE's own short")
+        out.append("    descriptions, and each links to its file in the source repository.")
+        out.append("    Ask the maintainer before reusing or adapting the material.")
         out.append("")
 
     if pack.get("notes"):

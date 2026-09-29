@@ -3,6 +3,7 @@ name: "REPRO-Bench"
 type: external
 status: dormant
 url: "https://github.com/uiuc-kang-lab/REPRO-Bench"
+license: "none"
 maintainers:
   - "Chuxuan Hu"
   - "Liyun Zhang"

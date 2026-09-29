@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/skai-research/ScholarEval>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/scholar-eval.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/scholar-eval.yml)
 
 ## Positioning

@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/microsoft/RD-Agent>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/rd-agent.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/rd-agent.yml)
 
 ## Positioning

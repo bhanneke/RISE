@@ -3,6 +3,7 @@ name: "DARE (De-Anthropocentric Research Engine)"
 type: external
 status: active
 url: "https://github.com/yogsoth-ai/de-anthropocentric-research-engine"
+license: "Apache-2.0"
 maintainers:
   - "Yogsoth-AI (GitHub organisation; no individual maintainers named)"
 year_started: 2026

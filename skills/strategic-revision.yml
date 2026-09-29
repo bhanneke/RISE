@@ -1,0 +1,36 @@
+pack:
+  slug: strategic-revision
+  name: 'Strategic Revision (jusi-aalto)'
+  source_url: 'https://github.com/jusi-aalto/strategic-revision'
+  maintainers:
+    - 'jusi-aalto on GitHub (no real name given on the profile)'
+  license: 'none'
+  total_skills: 1
+  last_update: '2026-02-01'
+  related_project: ''
+  compatibility:
+    - claude-code
+  notes: >
+    A single skill for planning a revise-and-resubmit: it breaks referee and
+    editor reports into atomic tasks, classifies them, has the user map
+    dependencies between them, and checks that graph with a bundled NetworkX
+    script before grouping the work into sequenced blocks with decision and
+    co-author sync points. The skill ships as a packaged .skill archive meant
+    for upload through the Claude settings rather than as a browsable
+    SKILL.md, and the README is candid about its limits (no effort estimates,
+    no response-letter drafting, a block template tuned to empirical
+    accounting and finance papers). No licence declared: skill texts are not
+    reproduced here; each skill links to its source.
+
+skills:
+  - slug: strategic-revision
+    name: '/strategic-revision'
+    category: revision
+    pipeline_stages:
+      - revision-editing
+    field: general
+    description: 'Turns a set of peer review reports plus the submitted manuscript into a revision roadmap, with every reviewer request traced to its source, dependencies validated as an acyclic graph, and tasks sequenced into execution blocks.'
+    source_path: 'strategic-revision.skill'
+    details_url: 'https://github.com/jusi-aalto/strategic-revision/blob/main/strategic-revision.skill'
+    provenance: 'strategic-revision repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-02-01'

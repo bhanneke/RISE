@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/Technion-Kishony-lab/data-to-paper>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/data-to-paper.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/data-to-paper.yml)
 
 ## Positioning

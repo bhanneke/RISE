@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/facebookresearch/airs-bench>
 
+**Licence:** `unclassified (licence file present; see repository)`
+
 **Source:** [`projects/landscape/airs-bench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/airs-bench.yml)
 
 ## Positioning

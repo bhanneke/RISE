@@ -3,6 +3,7 @@ name: "Agon"
 type: external
 status: active
 url: "https://github.com/AutoResearch-Factory/Agon"
+license: "MIT"
 maintainers:
   - "Youran Sun, Xingyu Ren, Chugang Yi, Jiaxuan Guo, Kejia Zhang, Jianda Du, Haizhao Yang"
 year_started: 2026

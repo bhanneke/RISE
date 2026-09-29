@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/conradry/open-coscientist-agents>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/open-coscientist.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/open-coscientist.yml)
 
 ## Positioning

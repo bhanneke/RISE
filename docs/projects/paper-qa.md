@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/Future-House/paper-qa>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/paper-qa.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/paper-qa.yml)
 
 ## Positioning

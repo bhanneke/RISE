@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/malizad/SocSci-Repro-Bench>
 
+**Licence:** `unclassified (licence file present; see repository)`
+
 **Source:** [`projects/landscape/socsci-repro-bench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/socsci-repro-bench.yml)
 
 ## Positioning

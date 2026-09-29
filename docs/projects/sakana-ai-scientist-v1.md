@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/SakanaAI/AI-Scientist>
 
+**Licence:** `unclassified (licence file present; see repository)`
+
 **Source:** [`projects/landscape/sakana-ai-scientist-v1.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/sakana-ai-scientist-v1.yml)
 
 ## Positioning

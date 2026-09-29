@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/EdisonScientific/BixBench3>
 
+**Licence:** `CC-BY-SA-4.0`
+
 **Source:** [`projects/landscape/bixbench3.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/bixbench3.yml)
 
 ## Positioning

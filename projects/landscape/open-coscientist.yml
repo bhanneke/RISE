@@ -3,6 +3,7 @@ name: "Open CoScientist Agents"
 type: external
 status: archived
 url: "https://github.com/conradry/open-coscientist-agents"
+license: "MIT"
 maintainers:
   - "conradry"
 year_started: 2025

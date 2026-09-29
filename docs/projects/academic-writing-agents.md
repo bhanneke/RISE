@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/andrehuang/academic-writing-agents>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/academic-writing-agents.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/academic-writing-agents.yml)
 
 ## Positioning

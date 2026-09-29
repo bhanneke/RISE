@@ -3,6 +3,7 @@ name: "Kosmos (jimmc414 implementation)"
 type: external
 status: research-prototype
 url: "https://github.com/jimmc414/Kosmos"
+license: "MIT (stated in README; no licence file)"
 maintainers:
   - "jimmc414"
 year_started: 2025
@@ -78,7 +79,7 @@ scores:
     note: "Built-in 8-dimension quality framework; broader external evaluation pending."
   openness:
     score: 1
-    note: "Source public but no declared license in repo metadata — reuse rights uncertain."
+    note: "Source public; the README states MIT, but there is no LICENSE file and the GitHub API reports none (checked 2026-09-29), so the grant rests on the README alone."
   maturity_traction:
     score: 2
     note: "511 stars; alpha-stage release; active community uptake post-Kosmos paper."

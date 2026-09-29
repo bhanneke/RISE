@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/facebookresearch/MLGym>
 
+**Licence:** `unclassified (licence file present; see repository)`
+
 **Source:** [`projects/landscape/mlgym.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/mlgym.yml)
 
 ## Positioning

@@ -3,6 +3,7 @@ name: "Robin (FutureHouse)"
 type: external
 status: active
 url: "https://github.com/Future-House/robin"
+license: "Apache-2.0"
 maintainers:
   - "FutureHouse"
 year_started: 2025

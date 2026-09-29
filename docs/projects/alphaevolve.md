@@ -6,6 +6,8 @@
 
 **Project page:** <https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/>
 
+**Licence:** `proprietary (closed; Early Access Program)`
+
 **Source:** [`projects/landscape/alphaevolve.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/alphaevolve.yml)
 
 ## Positioning

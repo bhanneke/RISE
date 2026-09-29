@@ -3,6 +3,7 @@ name: "PaperOrchestra"
 type: external
 status: dormant
 url: "https://github.com/google-research/paper-orchestra"
+license: "Apache-2.0"
 maintainers:
   - "Yiwen Song"
   - "Yale Song"

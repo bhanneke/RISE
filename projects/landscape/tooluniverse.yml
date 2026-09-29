@@ -3,6 +3,7 @@ name: "ToolUniverse"
 type: external
 status: active
 url: "https://github.com/mims-harvard/ToolUniverse"
+license: "Apache-2.0"
 maintainers:
   - "Mims Lab, Harvard Medical School (Zitnik Lab)"
 year_started: 2025

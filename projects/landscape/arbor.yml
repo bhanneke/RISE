@@ -3,6 +3,7 @@ name: "Arbor"
 type: external
 status: active
 url: "https://github.com/RUC-NLPIR/Arbor"
+license: "Apache-2.0"
 maintainers:
   - "RUC-NLPIR (Gaoling School of Artificial Intelligence, Renmin University of China)"
   - "Microsoft Research"

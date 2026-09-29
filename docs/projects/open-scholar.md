@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/AkariAsai/OpenScholar>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/open-scholar.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/open-scholar.yml)
 
 ## Positioning

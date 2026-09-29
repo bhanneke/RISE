@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/ResearAI/DeepScientist>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/deepscientist.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/deepscientist.yml)
 
 ## Positioning

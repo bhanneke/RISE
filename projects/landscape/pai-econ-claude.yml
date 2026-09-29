@@ -3,6 +3,7 @@ name: "pAI-Econ-claude"
 type: external
 status: active
 url: "https://github.com/maxwell2732/pAI-Econ-claude"
+license: "unclassified (licence file present; see repository)"
 maintainers:
   - "Chen Zhu"
   - "Xiaolu Wang"

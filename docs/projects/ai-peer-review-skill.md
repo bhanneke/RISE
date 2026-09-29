@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/AlexWortega/ai-peer-review-skill>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/ai-peer-review-skill.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/ai-peer-review-skill.yml)
 
 ## Positioning

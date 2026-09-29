@@ -3,6 +3,7 @@ name: "Sakana AI Scientist v2"
 type: external
 status: active
 url: "https://github.com/SakanaAI/AI-Scientist-v2"
+license: "unclassified (licence file present; see repository)"
 maintainers:
   - "Sakana AI"
 year_started: 2024

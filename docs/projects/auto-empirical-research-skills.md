@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills>
 
+**Licence:** `unclassified (licence file present; see repository)`
+
 **Source:** [`projects/landscape/auto-empirical-research-skills.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/auto-empirical-research-skills.yml)
 
 ## Positioning

@@ -1,0 +1,122 @@
+pack:
+  slug: claude-wrds-toolkit
+  name: 'Claude Code WRDS Toolkit (Piotr Orłowski)'
+  source_url: 'https://github.com/piotrek-orlowski/claude-wrds-public'
+  maintainers:
+    - 'Piotr Orłowski (piotrek-orlowski on GitHub)'
+  license: 'none'
+  total_skills: 8
+  last_update: '2026-05-06'
+  related_project: ''
+  compatibility:
+    - claude-code
+  notes: >
+    A Claude Code setup for pulling empirical-finance data from WRDS: five
+    subagents (database specialists for CRSP with CCM/Compustat linking,
+    OptionMetrics and TAQ, a multi-database orchestrator, and a general
+    academic-paper reader) plus three connection and schema skills, shipped
+    with a permissions file that pre-approves the psql, ssh and scp calls.
+    Its distinctive design choice is routing TAQ work through SAS batch jobs
+    on the WRDS grid over SSH while everything else goes through a static
+    psql service entry, which keeps the agents from tripping approval prompts.
+    Requires a WRDS account with SSH-key access and Duo MFA. No licence
+    declared: skill texts are not reproduced here; each skill links to its
+    source.
+
+skills:
+  - slug: crsp-wrds-expert
+    name: 'crsp-wrds-expert'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: finance
+    description: 'Subagent specialised in the CRSP stock files on WRDS, covering returns, price and share adjustments, delisting returns, identifiers, and linking CRSP to Compustat fundamentals through the CCM table, all via PostgreSQL.'
+    source_path: 'agents/crsp-wrds-expert.md'
+    details_url: 'https://github.com/piotrek-orlowski/claude-wrds-public/blob/main/agents/crsp-wrds-expert.md'
+    provenance: 'claude-wrds-public repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-05-06'
+
+  - slug: optionmetrics-wrds-expert
+    name: 'optionmetrics-wrds-expert'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: finance
+    description: 'Subagent for OptionMetrics IvyDB extraction on WRDS: option prices, implied volatilities, Greeks, volatility surfaces and standardised options, plus mapping option security IDs to CRSP PERMNOs.'
+    source_path: 'agents/optionmetrics-wrds-expert.md'
+    details_url: 'https://github.com/piotrek-orlowski/claude-wrds-public/blob/main/agents/optionmetrics-wrds-expert.md'
+    provenance: 'claude-wrds-public repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-02-27'
+
+  - slug: taq-wrds-expert
+    name: 'taq-wrds-expert'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+      - data-analysis
+    field: finance
+    description: 'Subagent for NYSE TAQ tick data that writes SAS programs, submits them as batch jobs on the WRDS cloud over SSH, and retrieves results, aimed at tasks such as NBBO spreads, trade filtering and realized variance.'
+    source_path: 'agents/taq-wrds-expert.md'
+    details_url: 'https://github.com/piotrek-orlowski/claude-wrds-public/blob/main/agents/taq-wrds-expert.md'
+    provenance: 'claude-wrds-public repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-02-27'
+
+  - slug: wrds-query-orchestrator
+    name: 'wrds-query-orchestrator'
+    category: infra
+    pipeline_stages:
+      - data-acquisition
+    field: finance
+    description: 'Coordinating subagent for requests that span several WRDS databases; it dispatches the specialist agents, assembles the merged query via the appropriate link tables, and keeps query files organised and version-controlled.'
+    source_path: 'agents/wrds-query-orchestrator.md'
+    details_url: 'https://github.com/piotrek-orlowski/claude-wrds-public/blob/main/agents/wrds-query-orchestrator.md'
+    provenance: 'claude-wrds-public repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-02-27'
+
+  - slug: paper-reader
+    name: 'paper-reader'
+    category: literature
+    pipeline_stages:
+      - literature-synthesis
+    field: finance
+    description: 'General-purpose subagent that reads academic papers in finance, economics, statistics and related fields and writes structured summaries of their contributions, methods and findings; not WRDS-specific.'
+    source_path: 'agents/paper-reader.md'
+    details_url: 'https://github.com/piotrek-orlowski/claude-wrds-public/blob/main/agents/paper-reader.md'
+    provenance: 'claude-wrds-public repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-02-27'
+
+  - slug: wrds-psql
+    name: '/wrds-psql'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: finance
+    description: 'Connection and query conventions for hitting WRDS PostgreSQL from the local machine with stored credentials, including how to shape commands so they run without approval prompts and how to export large extracts.'
+    source_path: 'skills/wrds-psql/SKILL.md'
+    details_url: 'https://github.com/piotrek-orlowski/claude-wrds-public/blob/main/skills/wrds-psql/SKILL.md'
+    provenance: 'claude-wrds-public repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-02-27'
+
+  - slug: wrds-ssh
+    name: '/wrds-ssh'
+    category: infra
+    pipeline_stages:
+      - data-acquisition
+    field: finance
+    description: 'Patterns for working on the WRDS servers over SSH: running SAS, submitting and monitoring batch jobs, and moving files between the local machine and WRDS scratch space.'
+    source_path: 'skills/wrds-ssh/SKILL.md'
+    details_url: 'https://github.com/piotrek-orlowski/claude-wrds-public/blob/main/skills/wrds-ssh/SKILL.md'
+    provenance: 'claude-wrds-public repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-02-27'
+
+  - slug: wrds-schema
+    name: '/wrds-schema'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: finance
+    description: 'Session-start helper that has the specialist agents query table and column metadata for the chosen WRDS databases and return a compact reference card, so later queries need fewer exploratory round-trips.'
+    source_path: 'skills/wrds-schema/SKILL.md'
+    details_url: 'https://github.com/piotrek-orlowski/claude-wrds-public/blob/main/skills/wrds-schema/SKILL.md'
+    provenance: 'claude-wrds-public repo curation 2026-09-29 (link-only, no licence)'
+    last_update: '2026-02-27'

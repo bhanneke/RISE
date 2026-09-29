@@ -3,6 +3,7 @@ name: "OpenScholar (AI2)"
 type: external
 status: dormant
 url: "https://github.com/AkariAsai/OpenScholar"
+license: "Apache-2.0"
 maintainers:
   - "Akari Asai"
   - "Allen Institute for AI"

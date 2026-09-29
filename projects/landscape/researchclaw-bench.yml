@@ -3,6 +3,7 @@ name: "ResearchClawBench"
 type: external
 status: active
 url: "https://github.com/InternScience/ResearchClawBench"
+license: "MIT"
 maintainers:
   - "InternScience"
   - "Wanghan Xu (lead author of a 51-author consortium)"

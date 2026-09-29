@@ -3,6 +3,7 @@ name: "BixBench3"
 type: external
 status: active
 url: "https://github.com/EdisonScientific/BixBench3"
+license: "CC-BY-SA-4.0"
 maintainers:
   - "Edison Scientific"
   - "Zane Koch"

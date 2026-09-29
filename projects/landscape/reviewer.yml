@@ -3,6 +3,7 @@ name: "Reviewer (Ingar30)"
 type: external
 status: active
 url: "https://github.com/Ingar30/reviewer"
+license: "MIT"
 maintainers:
   - "Ingar30"
 year_started: 2026

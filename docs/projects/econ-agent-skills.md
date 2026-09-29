@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/JonasWeinert/EconAgentSkills>
 
+**Licence:** `unclassified (licence file present; see repository)`
+
 **Source:** [`projects/landscape/econ-agent-skills.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/econ-agent-skills.yml)
 
 ## Positioning

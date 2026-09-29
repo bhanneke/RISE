@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/brycewang-stanford/stata-code>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/stata-code.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/stata-code.yml)
 
 ## Positioning

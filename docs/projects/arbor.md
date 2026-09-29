@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/RUC-NLPIR/Arbor>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/arbor.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/arbor.yml)
 
 ## Positioning

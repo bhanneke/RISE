@@ -3,6 +3,7 @@ name: "Scholar Loop"
 type: external
 status: active
 url: "https://github.com/renee-jia/scholar-loop"
+license: "MIT"
 maintainers:
   - "renee-jia"
 year_started: 2026

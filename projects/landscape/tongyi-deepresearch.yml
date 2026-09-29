@@ -3,6 +3,7 @@ name: "Tongyi DeepResearch"
 type: external
 status: active
 url: "https://github.com/Alibaba-NLP/DeepResearch"
+license: "Apache-2.0"
 maintainers:
   - "Tongyi Lab, Alibaba"
 year_started: 2025

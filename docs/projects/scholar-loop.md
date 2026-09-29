@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/renee-jia/scholar-loop>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/scholar-loop.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/scholar-loop.yml)
 
 ## Positioning

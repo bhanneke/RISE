@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/jimmc414/Kosmos>
 
+**Licence:** `MIT (stated in README; no licence file)`
+
 **Source:** [`projects/landscape/kosmos.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/kosmos.yml)
 
 ## Positioning
@@ -26,7 +28,7 @@ Operationalizes the Kosmos architecture as a runnable system on commodity infras
 | Inputs supported | 2 | Research-area + data inputs; Anthropic or OpenAI back-ends; Docker-sandboxed execution. |
 | Outputs / reproducibility | 2 | Knowledge graph + validated-discovery artifacts persisted; cycle outputs deterministic given fixed inputs and model. |
 | Internal evaluation | 2 | Built-in 8-dimension quality framework; broader external evaluation pending. |
-| Openness | 1 | Source public but no declared license in repo metadata — reuse rights uncertain. |
+| Openness | 1 | Source public; the README states MIT, but there is no LICENSE file and the GitHub API reports none (checked 2026-09-29), so the grant rests on the README alone. |
 | Maturity / traction | 2 | 511 stars; alpha-stage release; active community uptake post-Kosmos paper. |
 | Cross-family policy | 1 | Anthropic or OpenAI API back-ends — cross-family possible by config. |
 | Runtime assurance | 2 | Built-in 8-dimension quality framework + knowledge-graph consistency checks + sandboxed Docker execution. |

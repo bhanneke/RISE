@@ -259,6 +259,16 @@ def render_project_page(
     if project.get("url"):
         out.append(f"**Project page:** <{project['url']}>")
         out.append("")
+    licence = str(project.get("license") or "").strip()
+    if licence:
+        out.append(f"**Licence:** `{licence}`")
+        out.append("")
+    if licence.lower().startswith("none"):
+        out.append('!!! warning "No licence declared"')
+        out.append("    The repository declares no licence, so its code cannot be reused,")
+        out.append("    modified or redistributed without the maintainer's permission. RISE")
+        out.append("    describes and links to the project; nothing from it is reproduced here.")
+        out.append("")
     out.append(f"**Source:** [`{src_path}`]({GITHUB_BASE}/{src_path})")
     out.append("")
 

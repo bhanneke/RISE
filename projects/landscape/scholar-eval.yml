@@ -3,6 +3,7 @@ name: "ScholarEval"
 type: external
 status: dormant
 url: "https://github.com/skai-research/ScholarEval"
+license: "MIT"
 maintainers:
   - "Hanane Nour Moussa"
   - "Patrick Queiroz Da Silva"

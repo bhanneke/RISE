@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/Imbad0202/academic-research-skills>
 
+**Licence:** `unclassified (licence file present; see repository)`
+
 **Source:** [`projects/landscape/academic-research-skills.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/academic-research-skills.yml)
 
 ## Positioning

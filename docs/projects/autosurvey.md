@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/AutoSurveys/AutoSurvey>
 
+**Licence:** `MIT (stated in README; no licence file)`
+
 **Source:** [`projects/landscape/autosurvey.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/autosurvey.yml)
 
 ## Positioning
@@ -26,7 +28,7 @@ Among the first systems to treat *long-form survey writing* (not short-form QA o
 | Inputs supported | 1 | Topic input only; database is fixed (CS-arXiv abstracts in the public release). |
 | Outputs / reproducibility | 2 | Code + database + commands published for paper experiments. |
 | Internal evaluation | 3 | Systematic evaluation across multiple survey lengths in the NeurIPS paper. |
-| Openness | 1 | No license declared in repository metadata — defaults to all rights reserved; database access via OneDrive link from maintainers. |
+| Openness | 1 | The README states the code is licensed under MIT, but the repository has no LICENSE file and the GitHub API reports none (checked 2026-09-29), so the grant rests on the README alone; database access via OneDrive link from maintainers. |
 | Maturity / traction | 0 | 474 stars; no commits since 2025-02-07 (>18 months), crossing the rubric's abandoned/no-activity-in->12-months band; effectively frozen post-NeurIPS-2024 publication. |
 | Cross-family policy | 0 | Single LLM per run. |
 | Runtime assurance | 1 | Citation-quality and content-quality scoring in NeurIPS paper; no in-pipeline claim audit harness. |

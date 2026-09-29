@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/hanlulong/openecon-data>
 
+**Licence:** `unclassified (licence file present; see repository)`
+
 **Source:** [`projects/landscape/openecon-data.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/openecon-data.yml)
 
 ## Positioning

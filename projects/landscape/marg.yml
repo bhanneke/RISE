@@ -3,6 +3,7 @@ name: "MARG (Multi-Agent Review Generation)"
 type: external
 status: active
 url: "https://github.com/allenai/marg-reviewer"
+license: "Apache-2.0"
 maintainers:
   - "Allen Institute for AI"
 year_started: 2024

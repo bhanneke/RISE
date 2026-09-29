@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/google-research/paper-orchestra>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/paper-orchestra.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/paper-orchestra.yml)
 
 ## Positioning

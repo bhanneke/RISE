@@ -3,6 +3,7 @@ name: "EconCS Bench"
 type: external
 status: active
 url: "https://github.com/aieconcs/econcs-bench"
+license: "none"
 maintainers:
   - "AI-driven Research in EconCS workshop organizers (EC 2026)"
 year_started: 2026

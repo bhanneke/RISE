@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/allenai/asta-bench>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/asta-bench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/asta-bench.yml)
 
 ## Positioning

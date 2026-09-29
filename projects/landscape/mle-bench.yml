@@ -3,6 +3,7 @@ name: "MLE-bench (OpenAI)"
 type: external
 status: dormant
 url: "https://github.com/openai/mle-bench"
+license: "unclassified (licence file present; see repository)"
 maintainers:
   - "OpenAI"
   - "Jun Shern Chan"

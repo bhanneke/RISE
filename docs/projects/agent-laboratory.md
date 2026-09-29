@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/SamuelSchmidgall/AgentLaboratory>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/agent-laboratory.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/agent-laboratory.yml)
 
 ## Positioning

@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/FrontisAI/NatureBench>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/naturebench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/naturebench.yml)
 
 ## Positioning

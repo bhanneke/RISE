@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/brycewang-stanford/StatsPAI>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/statspai.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/statspai.yml)
 
 ## Positioning

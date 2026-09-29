@@ -1,0 +1,129 @@
+slug: ralph-wiggum-asset-pricing
+name: "ralph-wiggum-asset-pricing"
+type: external
+status: active
+url: "https://github.com/chenandrewy/ralph-wiggum-asset-pricing"
+license: "none"
+maintainers:
+  - "Andrew Y. Chen (Federal Reserve Board)"
+year_started: 2026
+
+positioning: >
+  Geoff Huntley's "Ralph Wiggum" loop applied to an academic asset-pricing
+  paper: the human writes a paper specification (the paper in bullet
+  points), an economic-background file and a test selection; then Claude
+  Code or Codex, running with permissions disabled inside a firewalled dev
+  container, repeats plan → improve → test on the LaTeX paper and R code
+  until every PASS/FAIL test passes. The human stays "on the loop",
+  watching logs and editing the spec between stretches. Sits in the
+  drafting-and-revision layer of RISE for finance theory, next to ape and
+  clo-author on the empirical side.
+
+distinctive_contribution: >
+  The loop's stopping rule is a test suite written for a finance paper:
+  25 agent-run tests in six families (required elements, fact checks of
+  claims against code output, literature and each other, conformance to
+  the spec, theory-paper quality, figure rendering, writing) plus
+  optional open-ended referee agents. It produced a public case study,
+  "Hedging the Singularity" (arXiv 2604.16997), whose abstract discloses
+  that it was AI-generated and whose human preface reports that the
+  author could not reach "human as Clockmaker" (set up the loop, then
+  accept the output unedited). Every iteration is a git commit, and the
+  full run, a human-written preface and three human referee reports on
+  an earlier paper are kept on separate branches for comparison.
+
+focus: drafting
+
+pipeline_stages:
+  - formal-modeling
+  - code-generation
+  - data-analysis
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+
+architectural_features:
+  - tool-use
+  - human-in-loop
+  - iterative-loop
+  - artifact-versioning
+
+discipline: finance
+
+inputs:
+  - paper-specification
+  - economic-background
+  - baseline-paper-and-code
+  - wrds-data
+
+outputs:
+  - paper-draft
+  - latex-source
+  - analysis-code
+  - figures
+  - test-reports
+
+data_sources:
+  - wrds
+  - user-provided
+
+knowledge_sources:
+  - user-supplied-literature
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Six stages from model and code through drafting, test-driven revision and optional referee agents; research-question and design choices stay in the human-written spec, and literature is supplied rather than discovered."
+  autonomy_level:
+    score: 2
+    note: "Once the spec, tests and baseline are committed the loop runs unattended, but the human watches, stops and re-steers between stretches and edited the final paper by hand."
+  architectural_transparency:
+    score: 3
+    note: "Loop scripts, agent wrapper, prompts, all 25 test and referee scripts, config and dev container are public, and the full run that produced the paper is kept on its own branch."
+  inputs_supported:
+    score: 2
+    note: "Spec, background file and an optional starting paper/code, with credentialed WRDS access for data; literature is supplied by the user rather than searched."
+  outputs_reproducibility:
+    score: 2
+    note: "Paper LaTeX, R code, figures and test reports are committed once per iteration (rloop-NN) with per-iteration PDF snapshots; agent runs are not regenerable from the inputs and there is no data manifest."
+  internal_evaluation:
+    score: 1
+    note: "One worked case (Hedging the Singularity) with the author's own preface assessing where the loop fell short; no systematic evaluation across papers and no external review of the output."
+  openness:
+    score: 1
+    note: "Source is public but no licence is declared, so reuse is not permitted; the case-study run consumed two $200/month Claude Code subscriptions."
+  maturity_traction:
+    score: 1
+    note: "17 stars, 0 forks, single author, last push 2026-09-11: an active research prototype."
+  cross_family_policy:
+    score: 1
+    note: "Each author and test script sets its own AGENT (Claude or Codex), so tests can run on a different family from the author, but the shipped default is Claude only."
+  assurance_runtime:
+    score: 3
+    note: "The loop cannot stop until the selected tests pass, and the full suite fact-checks claims against code output, literature and theory, checks spec conformance and inspects rendered figures; main ships a 6-test subset."
+  cross_platform_portability:
+    score: 1
+    note: "Two agent CLIs (Claude Code, Codex) on macOS/Linux or WSL2, recommended inside the project's dev container."
+scored_on: "2026-09-29"
+
+limitations:
+  - "No licence declared: the code cannot be reused, modified or redistributed without the maintainer's permission."
+  - "Runs agents with --dangerously-skip-permissions (Claude) or --sandbox danger-full-access (Codex); safety rests on the dev-container firewall, which archival branches implement in a way that can fail open."
+  - "By the author's own account the spec had to be tight and the open-ended referee agents did not work well; the goal of an unedited paper was not reached."
+  - "Built and tested on one asset-pricing theory paper; empirical papers need tests ported from a separate repo (HumanxAI-ChenAY)."
+  - "Costly: the full 25-test run used two $200/month Claude Code subscriptions."
+
+related:
+  - karpathy-autoresearch
+  - writing-driven-autoresearch
+  - ape
+  - clo-author
+  - pai-econ-claude
+
+# ── Papers describing this project ─────────────────────
+# The loop's output, "Hedging the Singularity" (Chen, arXiv 2604.16997), is an
+# asset-pricing paper, not a paper about the system; its abstract discloses AI
+# generation and its preface describes the process. Not in papers/references.bib.
+papers: []
+
+references: []

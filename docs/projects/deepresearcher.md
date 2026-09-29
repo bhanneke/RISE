@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/GAIR-NLP/DeepResearcher>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/deepresearcher.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/deepresearcher.yml)
 
 ## Positioning

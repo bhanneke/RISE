@@ -3,6 +3,7 @@ name: "DeepResearcher (GAIR-NLP)"
 type: external
 status: active
 url: "https://github.com/GAIR-NLP/DeepResearcher"
+license: "Apache-2.0"
 maintainers:
   - "GAIR-NLP, Shanghai Jiao Tong University"
 year_started: 2025

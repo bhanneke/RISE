@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/allenai/marg-reviewer>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/marg.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/marg.yml)
 
 ## Positioning

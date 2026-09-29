@@ -4,7 +4,7 @@ pack:
   source_url: 'https://github.com/hugosantanna/clo-author'
   maintainers:
     - 'Hugo Sant''Anna (UAB Economics)'
-  license: 'none declared'
+  license: 'MIT (stated in README; no licence file)'
   total_skills: 14
   last_update: '2026-05-11'
   related_project: 'clo-author'

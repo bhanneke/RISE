@@ -3,6 +3,7 @@ name: "DeepScientist"
 type: external
 status: active
 url: "https://github.com/ResearAI/DeepScientist"
+license: "Apache-2.0"
 maintainers:
   - "Yixuan Weng"
   - "Minjun Zhu"

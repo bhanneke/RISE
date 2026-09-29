@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/aris.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/aris.yml)
 
 ## Positioning

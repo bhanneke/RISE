@@ -3,6 +3,7 @@ name: "STORM / Co-STORM"
 type: external
 status: dormant
 url: "https://github.com/stanford-oval/storm"
+license: "MIT"
 maintainers:
   - "Stanford OVAL"
 year_started: 2024

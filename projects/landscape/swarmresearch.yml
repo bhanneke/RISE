@@ -3,6 +3,7 @@ name: "SwarmResearch"
 type: external
 status: active
 url: "https://github.com/SwarmResearch/SwarmResearch"
+license: "none"
 maintainers:
   - "Yuvraj Virk"
   - "Zack Edds"

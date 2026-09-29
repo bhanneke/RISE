@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/maxwell2732/pAI-Econ-claude>
 
+**Licence:** `unclassified (licence file present; see repository)`
+
 **Source:** [`projects/landscape/pai-econ-claude.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/pai-econ-claude.yml)
 
 ## Positioning

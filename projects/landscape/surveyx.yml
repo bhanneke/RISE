@@ -3,6 +3,7 @@ name: "SurveyX"
 type: external
 status: dormant
 url: "https://github.com/IAAR-Shanghai/SurveyX"
+license: "none"
 maintainers:
   - "IAAR Shanghai"
 year_started: 2025

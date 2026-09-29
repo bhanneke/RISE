@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/aiming-lab/AutoResearchClaw>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/autoresearchclaw.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/autoresearchclaw.yml)
 
 ## Positioning

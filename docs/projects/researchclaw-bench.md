@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/InternScience/ResearchClawBench>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/researchclaw-bench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/researchclaw-bench.yml)
 
 ## Positioning

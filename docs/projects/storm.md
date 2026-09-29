@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/stanford-oval/storm>
 
+**Licence:** `MIT`
+
 **Source:** [`projects/landscape/storm.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/storm.yml)
 
 ## Positioning

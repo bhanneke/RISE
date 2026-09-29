@@ -3,6 +3,7 @@ name: "ResearchAgent (NAACL 2025)"
 type: external
 status: dormant
 url: "https://github.com/JinheonBaek/ResearchAgent"
+license: "none"
 maintainers:
   - "Jinheon Baek, Sujay Kumar Jauhar, Silviu Cucerzan, Sung Ju Hwang"
 year_started: 2025

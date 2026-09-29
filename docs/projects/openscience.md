@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/synthetic-sciences/openscience>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/openscience.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/openscience.yml)
 
 ## Positioning

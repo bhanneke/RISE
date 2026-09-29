@@ -6,6 +6,8 @@
 
 **Project page:** <https://github.com/Alibaba-NLP/DeepResearch>
 
+**Licence:** `Apache-2.0`
+
 **Source:** [`projects/landscape/tongyi-deepresearch.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/tongyi-deepresearch.yml)
 
 ## Positioning

@@ -1,0 +1,118 @@
+pack:
+  slug: mixtapetools
+  name: 'MixtapeTools (Scott Cunningham)'
+  source_url: 'https://github.com/scunning1975/MixtapeTools'
+  maintainers:
+    - 'Scott Cunningham (scunning1975 on GitHub; Baylor University)'
+  license: 'informal permission in README ("Use freely. Attribution appreciated but not required."); no licence file'
+  total_skills: 10
+  last_update: '2026-08-26'
+  related_project: ''
+  compatibility:
+    - claude-code
+  notes: >
+    The Claude Code toolkit of the author of Causal Inference: The Mixtape,
+    and the most-cited economist skill repository in Velikov's AI-in-economics
+    wiki (464 stars). Ten skills cover the empirical-economics workflow around
+    a project rather than the estimation itself: an adversarial second referee
+    for decks and for cross-language code replication, a many-agent
+    bibliography audit that checks each citation's DOI and fields, a
+    "blindspot" audit for problems and missed opportunities in empirical
+    output, Beamer deck design and compilation built on the author's Rhetoric
+    of Decks, figure-collision checks, careful chunked reading of PDFs,
+    project and book scaffolding, and a warrant-first research task system.
+    The repository has no licence file; its README grants informal
+    permission to use the material freely. Because that permission does not
+    spell out redistribution terms, RISE links to each skill rather than
+    reproducing it.
+
+skills:
+  - slug: referee2
+    name: 'referee2'
+    category: review
+    description: 'An adversarial second-referee audit in two modes: reviewing a slide deck for rhetoric, visual quality and clean compilation, or re-implementing a paper''s code in another language to check that the results replicate.'
+    source_path: '.claude/skills/referee2/SKILL.md'
+    details_url: 'https://github.com/scunning1975/MixtapeTools/blob/main/.claude/skills/referee2/SKILL.md'
+    provenance: 'MixtapeTools curation 2026-09-29 (link-only)'
+    last_update: '2026-08'
+
+  - slug: bibcheck
+    name: 'bibcheck'
+    category: audit
+    description: 'Audits a .bib file by giving each citation to its own narrowly scoped agent, which confirms the DOI or URL and checks that every field belongs to the same paper, catching mismatched or invented references.'
+    source_path: '.claude/skills/bibcheck/SKILL.md'
+    details_url: 'https://github.com/scunning1975/MixtapeTools/blob/main/.claude/skills/bibcheck/SKILL.md'
+    provenance: 'MixtapeTools curation 2026-09-29 (link-only)'
+    last_update: '2026-08'
+
+  - slug: blindspot
+    name: 'blindspot'
+    category: review
+    description: 'Reviews empirical output for what its author is too close to see, listing both problems hidden in plain sight and overlooked opportunities in the results.'
+    source_path: '.claude/skills/blindspot/SKILL.md'
+    details_url: 'https://github.com/scunning1975/MixtapeTools/blob/main/.claude/skills/blindspot/SKILL.md'
+    provenance: 'MixtapeTools curation 2026-09-29 (link-only)'
+    last_update: '2026-08'
+
+  - slug: beautiful_deck
+    name: 'beautiful_deck'
+    category: slides
+    description: 'Builds a Beamer presentation end to end, designing a theme for the intended audience and restructuring existing material around the author''s Rhetoric of Decks.'
+    source_path: '.claude/skills/beautiful_deck/SKILL.md'
+    details_url: 'https://github.com/scunning1975/MixtapeTools/blob/main/.claude/skills/beautiful_deck/SKILL.md'
+    provenance: 'MixtapeTools curation 2026-09-29 (link-only)'
+    last_update: '2026-08'
+
+  - slug: compiledeck
+    name: 'compiledeck'
+    category: slides
+    description: 'Creates and compiles Beamer slide decks following the Rhetoric of Decks conventions; the lighter-weight companion to beautiful_deck.'
+    source_path: '.claude/skills/compiledeck/SKILL.md'
+    details_url: 'https://github.com/scunning1975/MixtapeTools/blob/main/.claude/skills/compiledeck/SKILL.md'
+    provenance: 'MixtapeTools curation 2026-09-29 (link-only)'
+    last_update: '2026-08'
+
+  - slug: tikz
+    name: 'tikz'
+    category: figures
+    description: 'A quick collision check for figures, whether TikZ inside LaTeX or rendered images from R or Python, looking for overlapping labels and similar layout faults.'
+    source_path: '.claude/skills/tikz/SKILL.md'
+    details_url: 'https://github.com/scunning1975/MixtapeTools/blob/main/.claude/skills/tikz/SKILL.md'
+    provenance: 'MixtapeTools curation 2026-09-29 (link-only)'
+    last_update: '2026-08'
+
+  - slug: split-pdf
+    name: 'split-pdf'
+    category: literature
+    description: 'Downloads an academic PDF, splits it into short chunks and reads them in small batches, so that long papers are read closely rather than skimmed before a review or summary.'
+    source_path: '.claude/skills/split-pdf/SKILL.md'
+    details_url: 'https://github.com/scunning1975/MixtapeTools/blob/main/.claude/skills/split-pdf/SKILL.md'
+    provenance: 'MixtapeTools curation 2026-09-29 (link-only)'
+    last_update: '2026-08'
+
+  - slug: newproject
+    name: 'newproject'
+    category: infra
+    description: 'Scaffolds a new research project with a standard directory layout, a CLAUDE.md template and a documented README.'
+    source_path: '.claude/skills/newproject/SKILL.md'
+    details_url: 'https://github.com/scunning1975/MixtapeTools/blob/main/.claude/skills/newproject/SKILL.md'
+    provenance: 'MixtapeTools curation 2026-09-29 (link-only)'
+    last_update: '2026-08'
+
+  - slug: newbook
+    name: 'newbook'
+    category: infra
+    description: 'Scaffolds a book project: folder layout, a memoir-class LaTeX skeleton with a custom style, bibliography stub, CLAUDE.md, README and one file per chapter.'
+    source_path: '.claude/skills/newbook/SKILL.md'
+    details_url: 'https://github.com/scunning1975/MixtapeTools/blob/main/.claude/skills/newbook/SKILL.md'
+    provenance: 'MixtapeTools curation 2026-09-29 (link-only)'
+    last_update: '2026-08'
+
+  - slug: gtd
+    name: 'gtd'
+    category: ideation
+    description: 'A research task-management system for causal-inference work that organises hypotheses, insights and decisions in separate folders and asks the researcher to state the warrant for each conjecture.'
+    source_path: 'gtd/SKILL.md'
+    details_url: 'https://github.com/scunning1975/MixtapeTools/blob/main/gtd/SKILL.md'
+    provenance: 'MixtapeTools curation 2026-09-29 (link-only)'
+    last_update: '2026-08'
