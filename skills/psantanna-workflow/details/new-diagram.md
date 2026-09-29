@@ -2,8 +2,7 @@
 name: new-diagram
 description: Scaffold a new TikZ diagram from the snippet gallery with prevention rules pre-applied (explicit node dimensions, coordinate map, directional edge labels). Compiles standalone, invokes tikz-reviewer with citations from tikz-measurement.md, and loops on revisions until APPROVED.
 argument-hint: "[snippet-name] [output.tex] (both optional; interactive if omitted)"
-allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Task"]
-effort: high
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Agent", "Task"]
 disable-model-invocation: true
 ---
 

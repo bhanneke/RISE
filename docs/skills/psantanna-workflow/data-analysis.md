@@ -4,7 +4,7 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/data-analysis/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/data-analysis/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/data-analysis/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-09-26</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/data-analysis/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/data-analysis/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/data-analysis/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Data Analysis Workflow
 
@@ -78,6 +78,32 @@ Based on the research question:
 - **Standard errors:** Cluster at the appropriate level (document why)
 - **Multiple specifications:** Start simple, progressively add controls
 - **Effect sizes:** Report standardized effects alongside raw coefficients
+
+#### Specification ledger — every run, kept or not
+
+Every specification estimated in this phase, including the ones dropped and the ones that failed, gets one row appended to `quality_reports/spec-ledger.md` as it is run. It is the record a referee's "what else did you try?" deserves: it keeps the search visible rather than preventing it, and it records specifications without advising which to run.
+
+- **Append only.** Never edit or delete a row; a correction is a new row. A commit that changes a committed row fails the repo-hygiene gate.
+- **Status** is `kept`, `dropped` or `failed`; **Why** says why for anything not kept.
+- **Estimate** is optional. On restricted data, leave it empty until the number has cleared disclosure review (`confidential-data.md`).
+- Escape a `|` inside a formula as `\|`, or the table breaks. A specification containing a backtick (a Stata local macro such as `` `x' ``) goes in a double-backtick span: ``` `` reg y `controls' `` ```.
+
+```bash
+LEDGER=quality_reports/spec-ledger.md
+[ -f "$LEDGER" ] || printf '%s\n' "# Specification ledger" "" \
+  "Every specification estimated, kept or not, one row each, appended as it is run. Never edit a past row; a correction is a new row." "" \
+  "| Date | Commit | Script:line | Outcome | Specification | Sample | Status | Why | Estimate |" \
+  "|---|---|---|---|---|---|---|---|---|" > "$LEDGER"
+if REV=$(git rev-parse --short HEAD 2>/dev/null); then       # -dirty = anything uncommitted outside quality_reports/, untracked files included
+  [ -n "$(git status --porcelain -- . ':(exclude)quality_reports' 2>/dev/null)" ] && REV="$REV-dirty"
+else
+  REV="no-commit"
+fi
+printf '| %s | %s ' "$(date +%F)" "$REV" >> "$LEDGER"          # one printf + one heredoc per specification
+cat >> "$LEDGER" <<'EOF'
+| scripts/R/03_analyze.R:42 | log_wage | `feols(log_wage ~ treat + age \| id + year, cluster = ~id)` | panel 2010-2019 | kept | main specification | 0.082 (0.021) |
+EOF
+```
 
 #### Phase 4: Publication-Ready Output
 
@@ -160,8 +186,8 @@ dir.create("output/analysis", recursive = TRUE, showWarnings = FALSE)
 
 For regressions, simulations, or bootstrap loops that take more than a couple of minutes, launch via Bash with `run_in_background: true` and then use Anthropic's **Monitor tool** to stream R stdout into the conversation in real time. Pattern:
 
-1. Background-launch: `Rscript scripts/R/03_analyze.R` with `run_in_background: true`. Capture the `bash_id`.
-2. Use Monitor on the `bash_id` until a milestone fires (e.g., `Coefficients table written`, or process exit).
+1. Background-launch with Bash `run_in_background: true`, sending all output to a log: `mkdir -p output && Rscript scripts/R/03_analyze.R > output/03_analyze.log 2>&1`. The background job notifies you by itself when the process exits.
+2. Start Monitor with a command that follows that log and filters for milestones and failures, e.g. `tail -f output/03_analyze.log | grep --line-buffered -E "Coefficients table written|Error|Execution halted"`. Monitor has no job-id parameter: the stdout of its own `command` is the event stream. `tail -f` never exits, so set `timeout_ms` above the expected runtime (or `persistent: true`) and stop the monitor with TaskStop once the job finishes.
 3. Continue or course-correct based on what the stream reveals.
 
 This avoids the polling-loop anti-pattern (`sleep 30; check; sleep 30; check`) and avoids burning cache on idle waits. Especially useful when paired with the [Cost-Conscious Parallelism](https://psantanna.com/claude-code-my-workflow/workflow-guide.html#cost-conscious-parallelism) section of the guide.

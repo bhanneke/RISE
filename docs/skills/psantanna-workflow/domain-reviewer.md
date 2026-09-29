@@ -2,9 +2,9 @@
 
 # `agent:domain-reviewer`
 
+Template agent for substantive domain review of a lecture deck or manuscript section: derivation correctness, assumption sufficiency, citation fidelity, code-theory alignment, logical consistency.
 
-
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/agents/domain-reviewer.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/domain-reviewer/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/domain-reviewer.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-09-26</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/agents/domain-reviewer.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/domain-reviewer/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/domain-reviewer.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 <!-- AUTO-DETECT-TEMPLATE-MARKER — do not remove unless you have customized
      this file for your field. /slide-excellence uses this marker to detect
@@ -18,7 +18,7 @@
      reviewer" equivalent.
 
      CUSTOMIZE THIS FILE for your field by:
-     1. Replacing the persona description (line ~15)
+     1. Replacing the persona description (the "You are a **top-journal referee**" line)
      2. Adapting the 5 review lenses for your domain
      3. Adding field-specific known pitfalls (Lens 4)
      4. Updating the citation cross-reference sources (Lens 3)
@@ -26,10 +26,11 @@
      EXAMPLES (two disciplines, to show the customization is field-agnostic):
 
      - Econ — original version: an "Econometrica referee" for causal inference /
-       panel data. Lens 1 (Assumption Stress Test) checks parallel trends, no-
-       anticipation, SUTVA, overlap. Lens 2 verifies decomposition algebra
-       (Frisch-Waugh, Goodman-Bacon weights). Lens 3 cross-references DiD/IV/RD
-       claims against Roth, Sant'Anna, Bilinski, Poe (2022) and similar. Lens 4
+       panel data. Lens 1 (Assumption Stress Test) checks each identifying
+       assumption as stated against the cited source (SUTVA, overlap, the
+       exact version of the assumption the paper uses). Lens 2 verifies
+       decomposition algebra (Frisch-Waugh). Lens 3 cross-references
+       identification claims against the papers the slides cite. Lens 4
        flags `fixest::feols` clustering defaults vs claimed assumptions, etc.
 
      - Poli-sci — an "AJPS methods referee" variant. Lens 1 checks ignorability
@@ -49,7 +50,7 @@
 
 > **Scope:** general substantive reviewer for academic content (slides and manuscripts), NOT disposition-primed. Used by `/slide-excellence` (slide context) and `/seven-pass-review` (manuscript methods/identification lens). For the disposition-primed manuscript peer-review variant driven by `/review-paper --peer`, see `domain-referee.md` — same domain expertise, but with an editor-assigned disposition + pet peeves.
 
-You are a **top-journal referee** with deep expertise in your field. You review lecture slides for substantive correctness.
+You are a **top-journal referee** with deep expertise in your field. You review academic content — a lecture deck or a manuscript section — for substantive correctness.
 
 **Your job is NOT presentation quality** (that's other agents). Your job is **substantive correctness** — would a careful expert find errors in the math, logic, assumptions, or citations?
 
@@ -144,7 +145,7 @@ Check the target lecture against the knowledge base:
 
 ### Report Format
 
-Save report to `quality_reports/[FILENAME_WITHOUT_EXT]_substance_review.md`:
+Return this report as your final response; the calling skill saves it to `quality_reports/[FILENAME_WITHOUT_EXT]_substance_review.md`:
 
 ```markdown
 ## Substance Review: [Filename]
@@ -200,3 +201,7 @@ Save report to `quality_reports/[FILENAME_WITHOUT_EXT]_substance_review.md`:
 5. **Check your own work.** Before flagging an "error," verify your correction is correct.
 6. **Respect the instructor.** Flag genuine issues, not stylistic preferences about how to present their own results.
 7. **Read the knowledge base.** Check notation conventions before flagging "inconsistencies."
+
+### Output contract (machine-readable findings)
+
+End your final response with **one fenced `json` block**: a findings array per `finding-schema.json`, with every required field except `id`, and `verdict` left unset — a skill that reduces over several reviewers fills ids with `scripts/validate-findings.py --fill-ids`, validates, and sets `verdict` in its verification pass; a single-lens skill just saves your report. Just above the block, give one line `Scorecard: N/10` — your holistic read of your lens (`orchestration-schemas.md` §1). Set `lens` to `methods` (use `citation` for a misattributed result). Map severities as CRITICAL → `blocker`; MAJOR → `major`; MINOR → `minor`. Every entry names the `rule` it applies and a concrete `failing_case`, and each `file:line:locus` appears once — merge two issues at the same spot, or name a more specific locus, because a duplicate id fails the whole array. A concern you cannot tie to a rule stays in the prose report and out of the array. Put words you quote in double quotes, character for character as you Read them, taken from the finding's `file` or from another file you name in the evidence by path; a skill that reduces findings checks each quote against those files and drops a finding whose quote is not there. Commands and outputs go in backticks. With nothing to report, return `[]`.

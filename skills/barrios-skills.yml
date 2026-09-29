@@ -1,0 +1,218 @@
+pack:
+  slug: barrios-skills
+  name: 'Barrios Skills (John Manuel Barrios)'
+  source_url: 'https://github.com/Barrios88/barrios-skills'
+  maintainers:
+    - 'John Manuel Barrios (Barrios88 on GitHub)'
+  license: 'MIT (repo LICENSE, "Copyright (c) 2026 John Barrios"). The vendored third-party skills keep their own terms: the Anthropic document skills say "Proprietary. LICENSE.txt has complete terms", and the K-Dense skills carry per-library licence lines.'
+  total_skills: 12
+  last_update: '2026-09-17'
+  related_project: ''
+  compatibility:
+    - cursor
+    - claude-code
+    - codex
+    - mcp
+  notes: >
+    Mostly an aggregator. The repo ships 71 SKILL.md files, but its
+    `scripts/sync-skills.py` builds `skills/` by copying whatever is installed
+    in the author's local Cursor, Claude Code and Codex skill folders and a
+    Dropbox folder. The README gives no per-skill credits. A provenance audit
+    (md5 plus difflib word-sequence ratio against the RISE copies and against
+    upstream git histories, 2026-09-29) finds 10 first-party skills, 2 adapted
+    skills and 59 vendored copies. Only the 12 first-party and adapted skills
+    are catalogued here. The 59 vendored copies are not double-counted. They
+    are frozen snapshots, each changed only by an added `curated-by: John
+    Barrios` frontmatter line and banner:
+    35 from K-Dense-AI/claude-scientific-skills, taken from its January 2026
+    versions (0.985 to 1.000 against those commits; dask, polars, pymc,
+    seaborn, statsmodels, scientific-writing, peer-review, literature-review and
+    others);
+    12 from meleantonio/awesome-econ-ai-stuff, already in the
+    `awesome-econ-ai-stuff` pack at 0.94 to 0.99 (stata-regression,
+    latex-tables, latex-econ-model, beamer-presentation and others). These are
+    the meleantonio texts and not JonasWeinert/EconAgentSkills' rewrites, and
+    Barrios is not the origin of the `latex-econ-model` skill that
+    EconAgentSkills links to without shipping;
+    4 Anthropic document skills (docx, pdf, pptx, xlsx), taken via K-Dense's
+    `document-skills` copy;
+    4 OpenAI skills (`doc` and `notion-research-documentation` from
+    openai/skills, and the Codex built-in "PowerPoint"/"Excel" skills as
+    `slides` and `spreadsheets`);
+    2 from hanlulong (econ-write and econ-slides, credited in ATTRIBUTION.md,
+    already in `econ-research-skills`);
+    2 from lyndonkl/claude (academic-letter-architect and
+    career-document-architect, 0.93 and 0.92, uncredited).
+    The two adapted skills are `wrds`, an uncredited derivative of Edwin Hu's
+    edwinhu/workflows `wrds` skill (0.744 against its 2026-01-10 version, with
+    two reference files byte-identical) extended with a WRDS-MCP section, and
+    `paper-2-acfin-web`, an accounting and finance rewrite of K-Dense's
+    `paper-2-web` (0.115). The pack's most substantial original work is not a
+    skill. It is `mcp/wrds-mcp`, a Python MCP server (about 1,800 lines,
+    packaged as `wrds-mcp` 0.1.0 with Barrios as author) that exposes WRDS
+    through nine tools: list libraries, list tables, describe a table, sample
+    rows, run read-only SQL (validated by pydantic), download to
+    CSV/Parquet/JSON, and ready-made pulls for CRSP returns, Compustat
+    fundamentals and the CCM-linked CRSP-Compustat merge. It reaches WRDS's
+    PostgreSQL through an SSH tunnel to wrds-cloud (a paramiko or sshpass
+    daemon with `tunnel_up.sh`, `tunnel_down.sh` and `tunnel_status.sh`), so
+    Duo MFA is approved once per session, not once per query. It uses the
+    user's own WRDS_USERNAME and WRDS_PASSWORD.
+    SEC EDGAR (stefanoamorelli/sec-edgar-mcp, AGPL) and OpenEcon Data
+    (hanlulong/openecon-data) are not vendored. They get install notes only,
+    paired with the `sec-edgar` and `api-data-fetcher` skills.
+    The first-party skills lean toward accounting and finance: WRDS, EDGAR,
+    pyfixest firm-year panels, FinBERT text measures, and Cochrane-style
+    de-AI editing. Two need the author's own setup to work as shipped:
+    `econ-lit-search` queries a private Meilisearch index whose host is
+    redacted to a placeholder, and `web-scrape` assumes Yale's `curl_yale`
+    proxy tooling. Authorship of `web-scrape` is the least certain of the ten
+    first-party verdicts.
+
+skills:
+  - slug: wrds
+    name: 'wrds'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: finance
+    description: 'WRDS query discipline for Compustat, CRSP, CCM, ExecuComp, ISS, Form 4, TAQ and TRACE, with an "IRON LAW: no query without filter validation first", standard filters (Compustat INDFMT/DATAFMT/POPSRC/CONSOL, the CRSP v2 common-stock screen, Holden-Jacobsen TAQ cleaning, Dick-Nielsen TRACE cleaning), parameterized queries and per-dataset reference files. Prefers the wrds-mcp tools (`wrds_run_sql`, `wrds_get_compustat`, and others) over raw Python connections and stops to walk the user through credentials and the Duo tunnel instead of guessing them. Adapted, uncredited, from Edwin Hu''s edwinhu/workflows `wrds` skill (0.744 word-sequence similarity). Barrios added the MCP layer and the TRACE and MCP-setup references.'
+    source_path: 'skills/econometrics/wrds/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/econometrics/wrds/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (adapted from edwinhu/workflows skills/wrds @9da12674)'
+    last_update: '2026-07-23'
+
+  - slug: pyfixest
+    name: 'pyfixest'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: econometrics
+    description: 'High-dimensional fixed-effects estimation in Python with pyfixest (fixest/reghdfe grammar) for firm-year and firm-quarter panels: multi-way FE with firm clustering, fixest-style multiple specifications, IV with FE, and staggered DiD through did2s and Sun-Abraham instead of naive TWFE. Its iron law is to fix the clustering level and the FE structure before estimating. It adds accounting and finance defaults and `pf.etable` output for journal tables, and routes simple two-way FE work to `python-panel-data` and R/Stata users to the sibling skills.'
+    source_path: 'skills/econometrics/pyfixest/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/econometrics/pyfixest/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (first-party; no upstream skill found)'
+    last_update: '2026-07-23'
+
+  - slug: sec-edgar
+    name: 'sec-edgar'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: accounting
+    description: 'Companion skill for Stefano Amorelli''s sec-edgar-mcp (not vendored because it is AGPL). Covers CIK resolution, 10-K/10-Q/8-K retrieval, XBRL financial-statement facts, and Form 3/4/5 insider trades. It sets an iron law of no claim without sample inspection, requires a real SEC User-Agent, and warns that filing date and event date can differ for 8-Ks and that XBRL history is restated, so accession numbers must be pinned for replication. Sends Compustat/CRSP panel work to the `wrds` skill.'
+    source_path: 'skills/research-tools/sec-edgar/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/research-tools/sec-edgar/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (first-party; `upstream:` names the MCP server, not a skill)'
+    last_update: '2026-07-23'
+
+  - slug: financial-text-nlp
+    name: 'financial-text-nlp'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: finance
+    description: 'Sentiment and stance measurement for 10-K/10-Q MD&A, risk factors, 8-Ks, earnings-call transcripts and central-bank communication, using FinBERT (ProsusAI) as the main classifier and FinVADER as a transparent lexicon robustness check. Its iron law is to define the unit of text and the label before scoring. Scores are tied to accession or transcript IDs, boilerplate dilution is flagged, and the research design must state whether sentiment enters as outcome, covariate or instrument, with NLP error treated as measurement error.'
+    source_path: 'skills/research-tools/financial-text-nlp/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/research-tools/financial-text-nlp/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (first-party; no upstream found)'
+    last_update: '2026-07-23'
+
+  - slug: openalex-api
+    name: 'openalex-api'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+    field: general
+    description: 'Turns bibliometric questions into reproducible OpenAlex REST pulls (works, authors, institutions, sources, concepts, topics, funders, publishers) through a bundled `scripts/query_openalex.py` that builds filter-safe URLs, handles cursor pagination, and writes JSON/JSONL. Keep the raw export before cleaning, use repeated `--filter` flags for AND logic, and validate IDs, dates, citation counts and authorships before analysis.'
+    source_path: 'skills/research-tools/openalex-api/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/research-tools/openalex-api/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (first-party; no upstream found)'
+    last_update: '2026-05-26'
+
+  - slug: econ-lit-search
+    name: 'econ-lit-search'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+    field: economics
+    description: 'Staged search over a Meilisearch index of about 51k economics papers (NBER working papers plus JEL-coded journal articles): a cheap broad scan with citation-sorted snippets, then full abstracts, body-passage snippets, and full text only when needed, with filters by exact author string, JEL code, journal and year range. Caveat: the public copy redacts the index host to a placeholder URL and reads the key from `MEILI_API_KEY`, so it does not run without access to the author''s index.'
+    source_path: 'skills/research-tools/econ-lit-search/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/research-tools/econ-lit-search/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (first-party as far as can be checked; no upstream or other copy found)'
+    last_update: '2026-05-26'
+
+  - slug: web-scrape
+    name: 'web-scrape'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+      - literature-discovery
+    field: economics
+    description: 'An escalation ladder for research scraping: plain `curl` or `curl_chrome142`, then `curl_yale` over the Yale IP for paywalled JSTOR, ScienceDirect and DOI-redirect PDFs, then browserless `url-scrape`/`url-content` for JavaScript-rendered tables, then Playwright over WebSocket for logins and pagination. Includes batch-download-by-DOI and HTML-table-to-CSV patterns and asks for a success/failure log on bulk pulls. Caveat: built around Yale-specific proxy tooling, and authorship is the least certain of the first-party verdicts (possibly a Yale colleague''s).'
+    source_path: 'skills/research-tools/web-scrape/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/research-tools/web-scrape/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (first-party, attribution uncertain; no upstream found)'
+    last_update: '2026-05-26'
+
+  - slug: paper-2-acfin-web
+    name: 'paper-2-acfin-web'
+    category: slides
+    pipeline_stages:
+      - dissemination
+    field: accounting
+    description: 'Turns an empirical accounting or finance manuscript (JAR/JAE/TAR, JF/JFE/RFS) into a project website, a seminar video and a conference poster with the open-source Paper2All toolchain. It adds content priorities the generic pipeline lacks: identification design, institutional setting, archival sample and regression magnitudes up front, and a post-generation checklist for editing the generated copy. Adapted from K-Dense''s `paper-2-web` skill and largely rewritten (0.115 word-sequence similarity).'
+    source_path: 'skills/research-tools/paper-2-acfin-web/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/research-tools/paper-2-acfin-web/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (adapted from K-Dense-AI claude-scientific-skills paper-2-web)'
+    last_update: '2026-06-11'
+
+  - slug: econ-humanizer
+    name: 'econ-humanizer'
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'An editor that removes AI tells from economics, finance and accounting prose and applies John Cochrane''s style: plain words, first person, active voice, short sentences, concrete magnitudes and a stated point of view. Catalogues 13 AI patterns specific to academic economics, including inflated significance, hedge stacking, the "contributes to the literature" formula, formulaic transitions, rule-of-three claims, synonym cycling, promotional conclusions and overuse of "novel" and "robust". Adds section-by-section guidance, journal calibration and a worked example.'
+    source_path: 'skills/writing-and-review/econ-humanizer/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/writing-and-review/econ-humanizer/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (first-party; 0.021 vs blader/humanizer)'
+    last_update: '2026-05-26'
+
+  - slug: econ-humanizer-plus
+    name: 'econ-humanizer-plus'
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Rule lists to run alongside econ-humanizer: econ-specific phrases to delete on sight, a banned AI-word list ("delve", "landscape", "leverage" as a verb, "robust" outside statistics), mixed sentence-length targets, and explicit permission for em-dashes and parentheticals, because stripping them all is itself an AI tell. Also asks for calibrated hedging, natural field vocabulary by subfield, and micro-rules for naked "this", "where" versus "in which", compound-modifier hyphens and named Greek letters.'
+    source_path: 'skills/writing-and-review/econ-humanizer-plus/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/writing-and-review/econ-humanizer-plus/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (first-party; no upstream found)'
+    last_update: '2026-05-26'
+
+  - slug: econ-referee
+    name: 'econ-referee'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: accounting
+    description: 'A short pre-submission referee workflow for accounting, finance and economics papers. Its iron law is that every major comment cites a page, table or figure, and any claim the manuscript cannot support is marked Unverified, never invented. It classifies the paper, locates the contribution sentence, and audits in a fixed order that stops early only on a fatal flaw. It adds accounting- and finance-specific flags and venue checklists (JAR/TAR/JAE, JF/JFE/RFS, AEA) and always delivers three outputs: substance comments, separate editing notes and a prioritized revision plan. Self-declared original rather than a fork of the PolyForm-noncommercial OpenEcon referee.'
+    source_path: 'skills/writing-and-review/econ-referee/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/writing-and-review/econ-referee/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (first-party; 0.014 vs hanlulong econ-review)'
+    last_update: '2026-07-23'
+
+  - slug: econ-writing-plus
+    name: 'econ-writing-plus'
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+      - dissemination
+    field: economics
+    description: 'Method-specific writing conventions for identification sections, covering 13 designs (RCT, DiD, IV, RDD, synthetic control and synthetic DiD, structural, descriptive, bunching, shift-share, event studies, causal ML, multi-strategy), with modern DiD reporting guidance (Goodman-Bacon, Callaway-Sant''Anna, Sun-Abraham, de Chaisemartin-D''Haultfoeuille). Also covers AEA replication-package standards, AI-use disclosure, ERC grant structure, macro/trade/finance conventions, title evaluation, and turning significance into economic magnitudes. It is written as a supplement to writing skills that the repo does not ship.'
+    source_path: 'skills/writing-and-review/econ-writing-plus/SKILL.md'
+    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/writing-and-review/econ-writing-plus/SKILL.md'
+    provenance: 'barrios-skills provenance audit 2026-09-29 (first-party; no upstream found)'
+    last_update: '2026-05-26'

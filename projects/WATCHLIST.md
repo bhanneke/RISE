@@ -7,7 +7,7 @@ drop it with a dated note. Inclusion bar: a public artifact (repo,
 leaderboard, or hosted system) with real content — papers alone don't
 qualify.
 
-_Last reviewed: 2026-09-08._
+_Last reviewed: 2026-09-29._
 
 ## Watching
 
@@ -24,6 +24,8 @@ _Last reviewed: 2026-09-08._
 | Personalized Auto-Research | arXiv 2608.14881 | Position paper only (CC BY-NC-ND); no code | Any public artifact — until then it's a citation, not an entry |
 | poldrack/ai-peer-review | github.com/poldrack | Upstream of the catalogued `ai-peer-review-skill`; not independently verified yet | A verification pass — may be the stronger entry |
 | BixBench (v1) | Edison Scientific / FutureHouse | Predecessor of catalogued `bixbench3`; not independently verified yet | A verification pass if v1 remains the more-used baseline |
+| ScientistOne (system) | Google Cloud AI Research, arXiv 2605.26340 | Paper is in the bib (`meng2026scientistone`) and its CoE Audit is strong external evidence; only the generated papers are public, not the system (added 2026-09-29) | A public release of the system code |
+| Point by Point | Nagaraj, r-r-agent.vercel.app | Referee-response assistant (per-concern workspaces, LaTeX response letters) — research-specific, but a hosted early prototype with no public source and a data-loss warning (added 2026-09-29) | An open repo or a stable service |
 
 ## Dropped (with date and reason)
 

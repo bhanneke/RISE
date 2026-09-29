@@ -15,7 +15,8 @@ controlled vocabularies.
 1. Add the BibTeX entry to [`papers/references.bib`](https://github.com/bhanneke/RISE/blob/main/papers/references.bib).
 2. Pick a citekey of the form `lastnameYEARword` (lowercase, no
    punctuation) — e.g., `wu2025agenticreasoning`.
-3. Create `papers/notes/<citekey>.md` following the template in
+3. Create `docs/papers/notes/<citekey>.md` (under `docs/`, or the site
+   will not render it) following the template in
    [`papers/schema.md`](https://github.com/bhanneke/RISE/blob/main/papers/schema.md).
 4. Fill in the structured sections (summary, contribution, method,
    relevance to RISE, critique).

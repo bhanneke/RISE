@@ -2,7 +2,7 @@
 name: extract-tikz
 description: Extract TikZ diagrams from Beamer `.tex` source, compile each to a standalone PDF, and convert to SVG with 0-based indexing. Use when user says "extract the tikz", "regenerate the diagrams", "rebuild the SVGs", "sync tikz to quarto", or after editing TikZ blocks in a Beamer deck that also has a Quarto mirror.
 argument-hint: "[LectureN, e.g., Lecture2]"
-allowed-tools: ["Read", "Bash", "Glob", "Task"]
+allowed-tools: ["Read", "Bash", "Glob", "Agent", "Task"]
 ---
 
 # Extract TikZ Diagrams to SVG
@@ -81,7 +81,7 @@ cd ../..
 
 ### Step 8: Visual Quality Review (tikz-reviewer)
 
-Spawn the **tikz-reviewer** agent (via `Task` with `subagent_type=tikz-reviewer`) on the TikZ source blocks to catch label overlaps, geometric errors, and visual inconsistencies. The reviewer cites specific passes and formulas from [`.claude/rules/tikz-measurement.md`](../../rules/tikz-measurement.md). If it returns **NEEDS REVISION** or **REJECTED**, loop:
+Spawn the **tikz-reviewer** agent (via the `Agent` tool with `subagent_type=tikz-reviewer`) on the TikZ source blocks to catch label overlaps, geometric errors, and visual inconsistencies. The reviewer cites specific passes and formulas from [`.claude/rules/tikz-measurement.md`](../../rules/tikz-measurement.md). If it returns **NEEDS REVISION** or **REJECTED**, loop:
 
 1. Apply the recommended fixes to the Beamer `.tex` source (single source of truth).
 2. Re-copy the updated block to `extract_tikz.tex`.

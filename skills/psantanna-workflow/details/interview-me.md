@@ -2,7 +2,7 @@
 name: interview-me
 description: Interactive interview that formalizes a fuzzy research idea into a structured spec (RQ, hypotheses, identification, data needs, empirical strategy). Use when user says "interview me", "help me think through this idea", "I have a half-baked idea", "formalize this into a project", "walk me through framing a study". Multi-turn Q&A; saves spec to disk. NOT for lit review (`/lit-review`) or ideation from scratch (`/research-ideation`).
 argument-hint: "[brief topic or 'start fresh'] [--no-verify]"
-allowed-tools: ["Read", "Write", "Task"]
+allowed-tools: ["Read", "Write", "Agent", "Task"]
 ---
 
 # Research Interview
@@ -74,11 +74,11 @@ Once you have enough information (typically 5-8 exchanges), produce a **Research
 
 ## Empirical Strategy
 
-- **Method:** [e.g., Difference-in-Differences with staggered adoption]
+- **Method:** [e.g., regression discontinuity around an eligibility cutoff]
 - **Treatment:** [What varies]
 - **Control:** [Comparison group]
 - **Key identifying assumption:** [What must hold]
-- **Robustness checks:** [Pre-trends, placebo tests, etc.]
+- **Robustness checks:** [Placebo tests, bandwidth sensitivity, etc.]
 
 ## Data
 
@@ -99,7 +99,7 @@ Once you have enough information (typically 5-8 exchanges), produce a **Research
 [Issues raised during the interview that need further thought]
 ```
 
-**Save to:** `quality_reports/research_spec_[sanitized_topic].md`
+**Save to:** `quality_reports/specs/research_spec_[sanitized_topic].md` — the directory `/grant-proposal`, `/data-management-plan`, `/power-analysis`, and `/preregister` read from.
 
 ---
 
@@ -111,7 +111,7 @@ The research spec's **Motivation** and **Contribution** sections typically refer
 
 1. **Extract claims:** every paper-citation in the Motivation / Contribution sections ("Smith 2019 shows X"), any dataset-structure claims ("the CPS has field `educ_attain`"), any negative-literature assertions ("nobody has studied Y").
 2. **Generate verification questions:** specific, answerable questions per claim. "Does Smith (2019, *JEL*) Section 3 report finding X? Is the venue correct?"
-3. **Spawn `claim-verifier`** via `Task` with `subagent_type=claim-verifier` and `context=fork`. Hand it the claims + questions + source pointers (DOIs, arXiv links, `master_supporting_docs/` PDFs if the user provided any during the interview). Do NOT include the drafted spec.
+3. **Spawn `claim-verifier`** via the `Agent` tool with `subagent_type=claim-verifier`, in a fresh context — a named `Agent` call, not a conversation fork, which would inherit the draft. Hand it the claims + questions + source pointers (DOIs, arXiv links, `master_supporting_docs/` PDFs if the user provided any during the interview). Do NOT include the drafted spec.
 4. **Reconcile:** PASS → attach green block to the spec. PARTIAL → mark unverifiable citations with uncertainty flags. FAIL → rewrite the affected paragraph using the verifier's evidence before saving the spec.
 
 ### Skip conditions

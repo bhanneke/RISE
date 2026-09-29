@@ -4,7 +4,7 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>design</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>research-design</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/preregister/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/preregister/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/preregister/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>design</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-09-26</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>research-design</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/preregister/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/preregister/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/preregister/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## /preregister — Preregistration Document Generator
 
@@ -37,7 +37,7 @@ Preregistration is a written commitment to your hypotheses, design, and analysis
 
 Two input modes:
 
-1. **`--input <path>`** — a research spec produced by `/interview-me` (saved under `quality_reports/specs/`) or any structured Markdown file. Read the spec and extract: research question, hypotheses (directional!), data source, design, sample, analysis approach. If the spec already has a `paper_type:` field (e.g., `survey-experiment`), use it to bias the style choice.
+1. **`--input <path>`** — a research spec produced by `/interview-me` (saved under `quality_reports/specs/`) or any structured Markdown file. Read the spec and extract: research question, hypotheses (directional!), data source, design, sample, analysis approach. If the spec records a paper type (`/interview-me` writes it on a `**Paper type:**` line, e.g. `survey-experiment`), use it to bias the style choice.
 2. **No `--input`** — prompt the user for a 1–3 paragraph description of the study, then proceed. If the description omits a directional hypothesis, ask once. Do not fabricate.
 
 Refusal conditions (must be checked before any drafting):
@@ -51,7 +51,7 @@ Default per field (used when `--style` is not given):
 
 | Field signal | Default style |
 |---|---|
-| `paper_type: survey-experiment` or political-science / psychology context | `osf` |
+| `**Paper type:** survey-experiment` or political-science / psychology context | `osf` |
 | Field experiment in econ / labelled "RCT" / IRB-approved randomised intervention | `aea-rct` |
 | 9-question quick-form ask, lab psych experiment, time-pressure | `aspredicted` |
 | Anything else | `osf` |
@@ -88,7 +88,7 @@ Refuse to mark the document "ready" if any of these fails:
 
 - **Hypothesis directionality.** Each hypothesis must contain a direction ("higher than", "increases", "negatively predicts", "no effect" is acceptable as a directional claim under equivalence-testing). Reject "is associated with" without a sign.
 - **Estimator named.** Analysis plan names a specific estimator (OLS, logit, fixest::feols, lme4::lmer, ATT difference-in-means …) and a primary outcome variable. "Regression" alone is insufficient.
-- **Sample plan numeric.** Target N, stopping rule, or power-calc target appear. "As many as possible" is not a sample plan.
+- **Sample plan numeric.** Target N, stopping rule, or power-calc target appear. "As many as possible" is not a sample plan. For RCTs and prospective designs, follow `/power-analysis`'s `SKILL.md` (read it — the skill is user-invoked only, so it cannot be called from here) to produce the MDE / required-N and a ready-to-paste power paragraph for this field.
 - **Exclusions ex ante.** Outlier and exclusion rules are stated *before* the data is seen ("we will exclude observations with completion time < 1 minute"). Vague "we'll deal with outliers" fails.
 - **Internal consistency.** If the design is randomised, the unit of randomisation matches the unit of analysis OR the analysis plan addresses clustering. If observational, identification strategy is stated.
 
@@ -96,7 +96,7 @@ For each failure, the document gets a `[CLARIFY: …]` placeholder; the document
 
 #### PHASE 5 — Post-flight verification
 
-If the document cites prior literature in the rationale section (e.g., "Building on Hainmueller et al. 2014, we expect …"), invoke `/verify-claims` via `Task` to fact-check those citations. Pass the draft path and a list of explicit citations. The `claim-verifier` agent (forked context, never sees the draft) returns PASS / PARTIAL / FAIL per citation. Surface any FAIL/PARTIAL in the output summary.
+If the document cites prior literature in the rationale section (e.g., "Building on Hainmueller et al. 2014, we expect …"), invoke `/verify-claims` via the `Agent` tool to fact-check those citations. Pass the draft path and a list of explicit citations. The `claim-verifier` agent (fresh context, never sees the draft) returns PASS / PARTIAL / FAIL per citation. Surface any FAIL/PARTIAL in the output summary.
 
 Skip post-flight if:
 
@@ -124,6 +124,7 @@ Include the registry URL: OSF → `osf.io/registries`, AsPredicted → `aspredic
 - `templates/preregistration-template.md` — the three style templates this skill consumes.
 - `templates/requirements-spec.md` — MUST/SHOULD/MAY annotation language re-used here.
 - `.claude/skills/interview-me/SKILL.md` — produces the spec this skill consumes via `--input`.
+- `.claude/skills/power-analysis/SKILL.md` — followed (not invoked) to supply the MDE / required-N + power paragraph for the sample-plan field (RCTs).
 - `.claude/skills/verify-claims/SKILL.md` — Phase 5 invokes this for citation post-flight.
 - `.claude/references/discipline-cards.md` — field defaults that drive `--style` selection.
 - `.claude/rules/replication-protocol.md` — preregistration is the *forward* commitment; replication-protocol is the *backward* contract.
@@ -133,7 +134,7 @@ Include the registry URL: OSF → `osf.io/registries`, AsPredicted → `aspredic
 #### Example 1 — Poli-sci survey experiment from a spec
 **User says:** "Preregister this study" (with `--input quality_reports/specs/2026-04-15_priming-effects.md`)
 **Actions:**
-1. Read spec; `paper_type: survey-experiment` → default style `osf`.
+1. Read spec; `**Paper type:** survey-experiment` → default style `osf`.
 2. Extract 2 directional hypotheses, MTurk N=1,200, OLS with treatment dummies.
 3. Generate OSF document, all MUST sections filled, 1 MAY left blank.
 4. No prior-lit citations beyond the spec — skip post-flight.

@@ -5,8 +5,8 @@ pack:
   maintainers:
     - 'Moran Koren (Ben-Gurion University of the Negev, Economics)'
   license: 'MIT'
-  total_skills: 11
-  last_update: '2026-07-12'
+  total_skills: 12
+  last_update: '2026-08-09'
   related_project: ''
   compatibility:
     - claude-code
@@ -19,8 +19,17 @@ pack:
     co-math (a multi-agent proof-building project with strict unproven-gap
     flagging, reviewer sign-off gates, and optional Lean 4 verification,
     modelled on DeepMind's AI co-mathematician, Zheng et al. 2026).
-    5 skills + 6 sub-agents; Codex CLI port and ChatGPT prompts included.
+    6 skills + 6 sub-agents; Codex CLI port and ChatGPT prompts included.
     Companion paper: arXiv:2606.22337 (Koren 2026).
+    Refresh 2026-09-29 (upstream at 2026-08-09): added the second-brain skill
+    (agentic RAG over a local library of theory papers); re-copied the
+    changed texts of math-proof (new proof-strategy planning section),
+    co-math-init (standard workstream pipeline with readability pass),
+    prover, coder and paper-reviewer (new gates against unverified
+    reduction, complexity and integrality claims); corrected the codex-math
+    source path to SKILL.md; nothing was removed. The 5 SKILL.md copies
+    under codex/.agents/skills are the Codex port and are not catalogued
+    separately.
 
 skills:
   - slug: math-proof
@@ -34,7 +43,7 @@ skills:
     source_path: 'skills/math-proof/SKILL.md'
     details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/skills/math-proof/SKILL.md'
     provenance: 'theorist-toolbox repo curation 2026-07-22'
-    last_update: '2026-07'
+    last_update: '2026-07-31'
   - slug: codex-math
     name: '/codex-math'
     kind: skill
@@ -43,8 +52,8 @@ skills:
       - formal-modeling
     field: economics
     description: 'Drives OpenAI Codex as an adversarial mathematical co-processor — verify, write, and explore modes; every output is a lead, not a verdict.'
-    source_path: 'skills/codex-math/skill.md'
-    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/skills/codex-math/skill.md'
+    source_path: 'skills/codex-math/SKILL.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/skills/codex-math/SKILL.md'
     provenance: 'theorist-toolbox repo curation 2026-07-22'
     last_update: '2026-07'
   - slug: co-math-init
@@ -58,7 +67,7 @@ skills:
     source_path: 'skills/co-math-init/SKILL.md'
     details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/skills/co-math-init/SKILL.md'
     provenance: 'theorist-toolbox repo curation 2026-07-22'
-    last_update: '2026-07'
+    last_update: '2026-07-31'
   - slug: co-math-status
     name: '/co-math-status'
     kind: skill
@@ -82,6 +91,18 @@ skills:
     details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/skills/proof-readability/SKILL.md'
     provenance: 'theorist-toolbox repo curation 2026-07-22'
     last_update: '2026-07'
+  - slug: second-brain
+    name: '/second-brain'
+    kind: skill
+    category: literature
+    pipeline_stages:
+      - literature-synthesis
+    field: economics
+    description: 'Sets up and queries an agentic-RAG second brain over a local library of theory papers, with LaTeX-aware ingestion, theorem and proof lookup, and hybrid search.'
+    source_path: 'skills/second-brain/SKILL.md'
+    details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/skills/second-brain/SKILL.md'
+    provenance: 'theorist-toolbox repo curation 2026-09-29'
+    last_update: '2026-07-31'
   - slug: project-coordinator
     name: 'agent:project-coordinator'
     kind: agent
@@ -118,7 +139,7 @@ skills:
     source_path: 'agents/prover.md'
     details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/agents/prover.md'
     provenance: 'theorist-toolbox repo curation 2026-07-22'
-    last_update: '2026-07'
+    last_update: '2026-07-31'
   - slug: coder
     name: 'agent:coder'
     kind: agent
@@ -130,7 +151,7 @@ skills:
     source_path: 'agents/coder.md'
     details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/agents/coder.md'
     provenance: 'theorist-toolbox repo curation 2026-07-22'
-    last_update: '2026-07'
+    last_update: '2026-07-31'
   - slug: lean-prover
     name: 'agent:lean-prover'
     kind: agent
@@ -154,4 +175,4 @@ skills:
     source_path: 'agents/paper-reviewer.md'
     details_url: 'https://github.com/morankor/theorist-toolbox/blob/main/agents/paper-reviewer.md'
     provenance: 'theorist-toolbox repo curation 2026-07-22'
-    last_update: '2026-07'
+    last_update: '2026-07-31'

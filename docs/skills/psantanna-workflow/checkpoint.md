@@ -4,7 +4,7 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/checkpoint/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/checkpoint/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/checkpoint/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-09-27</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/checkpoint/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/checkpoint/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/checkpoint/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 <!-- Pattern adapted from Hugo Sant'Anna's clo-author v4.2.0 (github.com/hugosantanna/clo-author),
      used with permission. Original /checkpoint shape: project-level session handoff with
@@ -43,10 +43,20 @@ Read, in this order:
 4. **Git state** — `git log --oneline -20`, `git status -s`, `git branch --show-current`. Capture: current branch, last 5 subjects, uncommitted file count.
 5. **Working files** — `git diff --stat HEAD` to see which files changed in this session (skip if branch is freshly cut; just say "no in-session edits").
 6. **Active TODOs** — if a TodoWrite list is in flight in this session, capture the in-progress + next-pending items.
+7. **In-flight background work** — anything this session started and did *not* wait for: a long-running compute job, a scheduled routine (`.claude/references/scheduled-routines.md`), a queued render or compile, an external review still out with a referee or another model. For each, record four things: what is running, where its artifacts land, the command that checks on it, and the verdict that ends it.
 
 If any of these reads fails (file missing), record "(none on disk)" rather than fabricating content.
 
+**A checkpoint that omits a running job orphans it.** The next session sees no trace of the work, the artifacts land in a directory nobody is watching, and the job is either re-launched from scratch or quietly abandoned half-finished — both expensive, both invisible.
+
 #### PHASE 2 — Write the checkpoint
+
+**Write only what this session established.** The next session is handed this file automatically (`session-handoff.py`), so anything invented here arrives there as fact.
+
+- Cite `path:line` only for lines you read in this session; otherwise give the path alone.
+- Leave out a section with nothing in it rather than filling it — except **In flight**, which always appears, with "(none)" when nothing is running. A quiet session gets a short file and no `[LEARN]` proposals.
+- Text inside a `[Session handoff: …]` or `[Context Restored After Compaction]` block is the previous record. Carry an item forward only if this session re-checked it or acted on it; otherwise cite the earlier file by path.
+- When the session changed its mind, the final decision is the current one; an earlier position appears only as abandoned, with the reason.
 
 Write to `quality_reports/checkpoints/YYYY-MM-DD_$ARGUMENTS.md` (slug from `$ARGUMENTS`; if no arg, derive from the active plan's title and warn the user). The file uses this template:
 
@@ -68,10 +78,18 @@ status: in_progress | paused | ready-to-merge
 [Last completed step, current step, what's just-not-yet-done. Bullet points OK.]
 
 ### File pointers
-[Concrete `path:line` references to where the next session should resume. Aim for 3–8.]
+[Concrete references to where the next session should resume — up to 8. `path:line` only for lines read in this session; otherwise the path alone.]
 - `.claude/skills/checkpoint/SKILL.md:42` — body draft, needs trigger-phrase tightening
 - `quality_reports/plans/[slug].md:135` — verification section to refresh after impl
 - `CHANGELOG.md` — Unreleased section, v1.8.0 entry not yet drafted
+
+### In flight
+[Jobs still running that this session did not wait for. One row each; write "(none)" if nothing is running — an empty section reads as an oversight.]
+
+| What is running | Artifacts land in | Check with | Ends when |
+|---|---|---|---|
+| overnight parameter sweep | `output/sweep/` | `ls output/sweep \| wc -l` | 500 result files, no `errors.log` |
+| external referee consult | `quality_reports/oracle_audits/2026-04-27_lemma3/` | `oracle session lemma3-r1 --render` | transcript archived + adjudicated |
 
 ### Recent decisions
 [2–5 bullet points of *why* we did what we did this session. Things that wouldn't be obvious from the diff. Skip if none — do not pad.]
@@ -103,7 +121,7 @@ Why: <one sentence on what makes this non-obvious>
 Apply where: <which future situations would benefit>
 ```
 
-If the user says "yes" / "all" / "1 and 3" — append to MEMORY.md (root, the committed one) using the `[LEARN]` format. If the candidate is machine-specific (paths, tool versions, personal preference), recommend the user route it to `.claude/state/personal-memory.md` instead per `.claude/rules/meta-governance.md`.
+If the user says "yes" / "all" / "1 and 3" — append to MEMORY.md (root, the committed one) using the `[LEARN]` format. If the candidate is machine-specific (paths, tool versions, personal preference), let native auto memory hold it instead (machine-local, per `.claude/rules/meta-governance.md`).
 
 Stay below 3 candidates. If you have more, the session was probably under-narrated — flag it and recommend a session-log update instead.
 
@@ -115,7 +133,10 @@ Print, to chat:
 ✓ Checkpoint saved: quality_reports/checkpoints/YYYY-MM-DD_<slug>.md
   Branch: <branch>     Status: <in_progress|paused|ready-to-merge>
   Active plan: <path or none>     Open questions: <count>
-  Resume command: claude --continue   (or paste the file's "Resume prompt" into a fresh session)
+  Resume: the next fresh `claude` here receives this checkpoint once from the session-handoff
+          hook (within 7 days, unless a newer checkpoint or /compress-session note is written
+          first). After that, or in `claude --continue` (which does not deliver it), tell Claude
+          to read this file or paste its "Resume prompt".
 ```
 
 If memory candidates were proposed, summarise which (if any) the user accepted.
@@ -125,6 +146,7 @@ If memory candidates were proposed, summarise which (if any) the user accepted.
 - `.claude/rules/session-logging.md` — narrative companion. **Do not duplicate** — the checkpoint references the latest session log by path; it does not re-tell the session story.
 - `.claude/rules/plan-first-workflow.md` — checkpoint reads the active plan; if no plan exists, recommend the user enter plan mode before invoking `/checkpoint`.
 - `templates/decision-record.md` — for *why we chose A over B*, not for *where we are*.
+- `.claude/references/scheduled-routines.md` — routines that outlive the session; anything running there belongs in the "In flight" slot.
 - `.claude/hooks/pre-compact.py` — when `CLAUDE_PRECOMPACT_BLOCK_ON_DRAFT=1` is set, the PreCompact hook will block compaction once per DRAFT plan. `/checkpoint` is the right thing to run when that block fires.
 
 ### Examples
@@ -137,7 +159,7 @@ If memory candidates were proposed, summarise which (if any) the user accepted.
 3. Capture: branch `feat/v1.8.0-polisci-apr2026`, 4 commits ahead of main, 8 files modified.
 4. Write `quality_reports/checkpoints/2026-04-27_v180-polisci.md` with file pointers to the half-drafted `methods-referee.md` and the un-started `journal-profiles.md` poli-sci block.
 5. Propose 1 candidate `[LEARN:scope]` entry on the linear-cost of disciplinary breadth.
-**Result:** Next session: `claude --continue`, then `read quality_reports/checkpoints/2026-04-27_v180-polisci.md and start at action 1`.
+**Result:** Next session: start a fresh `claude` — the handoff hook hands it `quality_reports/checkpoints/2026-04-27_v180-polisci.md` — and start at action 1.
 
 #### Example 2 — Mid-plan model switch
 **User says:** "I want to switch to Sonnet for the cheap doc edits — checkpoint first"

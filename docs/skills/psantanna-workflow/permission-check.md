@@ -4,7 +4,7 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-04</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/permission-check/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/permission-check/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/permission-check/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../psantanna-workflow/">Pedro Sant'Anna's Claude Code Workflow</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-09-26</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/pedrohcgs/claude-code-my-workflow/contents/.claude/skills/permission-check/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/psantanna-workflow/permission-check/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/permission-check/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/pedrohcgs/claude-code-my-workflow?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Permission Check
 
@@ -19,9 +19,16 @@ Surface the full permission-mode picture across every layer Claude Code honors, 
 3. **CLI user settings** — `~/.claude/settings.json`. Key: `permissions.defaultMode`.
 4. **CLI project settings** — `<repo>/.claude/settings.json`. Same key. Wins over user.
 5. **CLI project-local settings** — `<repo>/.claude/settings.local.json`. Same key. Wins over project.
-6. **In-session mode** — set at session start from layers 1-5, then mutable via `Shift+Tab` or `/permission-mode`. Authoritative until session ends.
+6. **In-session mode** — set at session start from layers 1-5, then mutable via `Shift+Tab` (CLI) or the mode indicator (VS Code / Desktop); `/permissions` manages allow/deny rules, not the mode. Authoritative until session ends.
 
-**Key insight:** `initialPermissionMode` only fires at session start. If you toggled mid-session (or the session started before a settings change), the file-level settings are correct but the *runtime* mode differs. That's the #1 source of "bypass isn't working" confusion.
+**Two rules that override the stack** (Anthropic's permission-modes docs, re-verified 2026-09-26):
+
+- Layers 4 and 5 do **not** honor `auto` or `bypassPermissions` as a starting mode. A `bypassPermissions` there is ignored and the terminal session starts in Manual (`default`); an `auto` there is ignored in favour of the built-in default. Every other mode value applies from any layer.
+- The VS Code extension does **not** read layers 4–5 for its starting mode; it uses `claudeCode.initialPermissionMode` (which does not accept `auto`), and a bypass value needs the extension's *Allow dangerously skip permissions* toggle. With no override, Claude Code ≥ 2.1.283 starts in auto mode.
+
+So check first for "bypass set in the project settings, where it cannot take effect" — then for the mid-session override below.
+
+**Key insight:** `initialPermissionMode` only fires at session start. If you toggled mid-session (or the session started before a settings change), the file-level settings are correct but the *runtime* mode differs. That, and a bypass set only in project settings, are the two usual sources of "bypass isn't working" confusion.
 
 ### Privacy contract
 
@@ -30,7 +37,7 @@ Host-global settings files (`~/.claude/settings.json`, VSCode user settings) may
 - API keys, tokens, or provider credentials added outside this repo
 - Permission policies set by the user's org or employer
 
-This skill is designed for defense-in-depth: **Phase A runs automatically and reads only repo-local files.** Phase B reads host-global files **only after the user explicitly confirms** — never silently. When reporting host-global layers, redact any key that is not directly relevant to `permissions.*` or `claudeCode.*`.
+This skill is designed for defense-in-depth: **Phase A runs automatically and reads only repo-local files.** Phase B reads host-global files **only after the user explicitly confirms** — never silently. When reporting host-global layers, redact any key that is not directly relevant to `permissions.*`, `claudeCode.*`, or `allowDangerouslySkipPermissions`.
 
 ### Protocol
 
@@ -45,12 +52,12 @@ CLI_LOCAL="${CLAUDE_PROJECT_DIR}/.claude/settings.local.json"
 ```
 
 For each file that exists, extract:
-- **VSCode workspace:** `claudeCode.initialPermissionMode`, `claudeCode.allowDangerouslySkipPermissions`
+- **VSCode workspace:** `claudeCode.initialPermissionMode` and `allowDangerouslySkipPermissions` (no `claudeCode.` prefix — flag the prefixed `claudeCode.allowDangerouslySkipPermissions` as a silently-ignored typo if you see it)
 - **CLI project / project-local:** `permissions.defaultMode`, `permissions.allow`, `permissions.deny`
 
 Missing files are fine — report "not present" rather than erroring.
 
-Print the resolved defaultMode from these three layers alone. If that already explains the prompt behavior (e.g., CLI project-local has `defaultMode: "default"` while project has `bypassPermissions`), stop here and surface the diagnosis.
+Print the resolved defaultMode from these three layers alone, applying the two override rules above — a `bypassPermissions` or `auto` found only in layer 4 or 5 is reported as **ignored**, not as the resolved mode. If that already explains the prompt behavior (e.g. bypass set only in `.claude/settings.json`), stop here and surface the diagnosis with the fix: move it to `~/.claude/settings.json`, pass `--permission-mode bypassPermissions`, or use auto mode.
 
 #### Phase B: Host-global layers (requires explicit user confirmation)
 
@@ -60,7 +67,7 @@ If Phase A is inconclusive — e.g., all repo-local layers agree on bypass but t
 > - `~/.claude/settings.json` (CLI user-level)
 > - your VSCode user settings (`~/Library/Application Support/Code/User/settings.json` on macOS; Linux/Windows vary)
 >
-> These may contain unrelated paths or secrets. I will redact any key that isn't in `permissions.*` or `claudeCode.*`. Proceed?"
+> These may contain unrelated paths or secrets. I will redact any key that isn't in `permissions.*`, `claudeCode.*`, or `allowDangerouslySkipPermissions`. Proceed?"
 
 Only after the user confirms, read:
 
@@ -95,7 +102,7 @@ The resolved `defaultMode` is the value from the highest-precedence layer that s
 
 The live in-session mode is exposed via the status line (see `.claude/scripts/statusline.sh`). Tell the user:
 
-> "Your status line shows the current in-session mode in the top-right of the Claude Code panel. If that disagrees with the resolved `defaultMode` above, you (or Shift+Tab) overrode it mid-session. Press Shift+Tab to cycle back."
+> "If your status line shows a mode badge (`[AUTO]`, `[BYPASS]`, `[PLAN]`, `[AUTO-EDIT]`, `[PROMPT]`), that is the live in-session mode. If it disagrees with the resolved `defaultMode` above, either a mid-session toggle (Shift+Tab) changed it, or the resolution above already explains it — e.g. `[PROMPT]` from a bypass set only in project settings. No badge means Claude Code did not report the mode; the mode indicator in the Claude Code panel shows it."
 
 If the status line isn't configured, emit a warning and point at `.claude/scripts/statusline.sh`.
 
@@ -103,11 +110,12 @@ If the status line isn't configured, emit a warning and point at `.claude/script
 
 Check for and explicitly call out:
 
-1. **Layer drift:** CLI project says bypass but CLI local says default → local wins, explains the prompts.
-2. **VSCode-only bypass:** VSCode layers say bypass but no CLI layer does → terminal Claude Code will still prompt; extension may or may not.
-3. **Empty allowlist + default mode:** `defaultMode: "default"` with empty `allow` → every tool prompts, as designed.
-4. **Stale session:** settings are correct but user reports prompts → almost always a session that pre-dates the fix. Advise "Cmd+Shift+P → Developer: Reload Window, then new Claude Code session."
-5. **`deny` wins:** any match in a `deny` list blocks the tool regardless of `allow`. Rare but deadly.
+1. **Bypass or auto set only in project settings:** layers 4–5 cannot set these starting modes. A bypass there starts the session in Manual; an `auto` there falls back to the built-in default (auto on ≥ 2.1.283). Fix: remove it from the project files and set bypass in user settings or with the CLI flag — or rely on the built-in auto default.
+2. **Layer drift:** CLI user says bypass but CLI project-local says `default` → the project-local `default` wins (it is an honoured value), which explains the prompts.
+3. **VSCode-only bypass:** VSCode layers say bypass but no CLI layer does → terminal Claude Code will still prompt; the extension honours it only with *Allow dangerously skip permissions* on.
+4. **Empty allowlist + default mode:** `defaultMode: "default"` with empty `allow` → every tool prompts, as designed.
+5. **Stale session:** settings are correct but user reports prompts → almost always a session that pre-dates the fix. Advise "Cmd+Shift+P → Developer: Reload Window, then new Claude Code session."
+6. **`deny` wins:** any match in a `deny` list blocks the tool regardless of `allow`, in every mode including bypass — which is exactly why restricted-data projects use deny rules.
 
 ### Output format
 
@@ -115,19 +123,20 @@ Check for and explicitly call out:
 === PERMISSION STATE ===
 
 Layer 1 — VSCode user:       bypassPermissions      (allowDangerouslySkipPermissions: true)
-Layer 2 — VSCode workspace:  bypassPermissions
+Layer 2 — VSCode workspace:  (not set)
 Layer 3 — CLI user:          bypassPermissions      (allow: ["*"])
-Layer 4 — CLI project:       bypassPermissions      (allow: ["Edit(**)", "Bash(*)", ...])
-Layer 5 — CLI project-local: bypassPermissions      (allow: [...], deny: [])
+Layer 4 — CLI project:       (not set)              (allow: ["Edit(**)", "Bash(*)", ...])
+Layer 5 — CLI project-local: bypassPermissions      NOT HONOURED — a project-layer bypass starts the session in Manual
 
-Resolved defaultMode: bypassPermissions (set by Layer 5)
+Resolved defaultMode: default (Manual) — Layer 5's bypass overrides Layer 3 and is not honoured
 Merged allow:         Edit(**), Write(**), Bash(*), ...
 Merged deny:          (none)
 
 === RUNTIME ===
 
-Check the status line at the top of the Claude Code panel. Expected: [BYPASS].
-If it shows [PROMPT], [AUTO-EDIT], or [PLAN] — that's an in-session override. Press Shift+Tab to cycle.
+Check the status line (or the mode indicator). Expected here: [PROMPT] — the ignored Layer 5 bypass explains it.
+Remove the bypass from Layer 5 and keep it in Layer 3 (or rely on auto mode) to get [BYPASS] / [AUTO].
+Any other mismatch with the resolved mode is an in-session override — Shift+Tab cycles modes.
 
 === DIAGNOSIS ===
 

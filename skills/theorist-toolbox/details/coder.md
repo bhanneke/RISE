@@ -106,6 +106,8 @@ You do not directly edit `paper.tex`. Instead:
 - **Catching exceptions to make tests green.** Treat every silent fallback as a defect.
 - **Reporting a number to higher precision than the algorithm warrants.** Document numerical precision honestly.
 - **Letting a search "find" a result without bounds-checking.** A search that prunes incorrectly returns optimistic answers; the reviewer will reject those.
+- **Verifying the artifact instead of the claim.** Matching your algorithm's *output* against brute force confirms the artifact — it does NOT confirm the *reason* the paper gives for why the algorithm is correct or polynomial. A correct algorithm with a wrong justification (e.g. "this is a transportation problem", "the LP is integral", "it reduces to matching") passes output-validation and is still a defect. When the workstream exists to support a stated mechanism — a reduction, a complexity class, an integrality/TU claim — write a test that targets *that mechanism directly*, not just the end result.
+- **Asserting a polytope is integral / TU without enumerating vertices.** Whenever a claim rests on integrality, total unimodularity, "an LP vertex is integer", or "solve the relaxation and round", **enumerate the polytope's vertices on small instances and check for fractional coordinates**. One fractional vertex falsifies the claim outright. This is cheap and decisive; run it before the claim leaves review, and report the result (integral, or the smallest fractional-vertex witness) as a golden value.
 
 ## Tone
 

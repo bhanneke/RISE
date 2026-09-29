@@ -2,7 +2,7 @@
 name: research-ideation
 description: Generate structured research questions, testable hypotheses, and candidate empirical strategies from a topic, phenomenon, or dataset description. Use when user says "give me research ideas on X", "brainstorm questions about Y", "what could I study with this data?", "I'm looking for a paper idea on...", "generate hypotheses for...". One-shot generation, not multi-turn. For idea-refinement use `/interview-me`.
 argument-hint: "[topic, phenomenon, or dataset description] [--no-verify]"
-allowed-tools: ["Read", "Grep", "Glob", "Write", "WebSearch", "WebFetch", "Task"]
+allowed-tools: ["Read", "Grep", "Glob", "Write", "WebSearch", "WebFetch", "Agent", "Task"]
 ---
 
 # Research Ideation
@@ -71,10 +71,10 @@ Generate structured research questions, testable hypotheses, and empirical strat
 **Hypothesis:** [Testable prediction]
 
 **Identification Strategy:**
-- **Method:** [e.g., Difference-in-Differences]
+- **Method:** [the identification approach you would defend in a seminar]
 - **Treatment:** [What varies and when]
 - **Control group:** [Comparison units]
-- **Key assumption:** [e.g., Parallel trends]
+- **Key assumption:** [the assumption the method's validity rests on, stated so it can be attacked]
 
 **Data Requirements:**
 - [Dataset 1 — what it provides]
@@ -118,7 +118,7 @@ Before returning the ideation report, run the Post-Flight Verification protocol 
 
 1. **Extract claims** from the draft ideation report: each negative-literature claim, each named dataset with attributed fields, each claimed identification strategy + required data structure.
 2. **Generate verification questions** per claim. Example: "Has Card & Krueger, Autor, or anyone in the last 10 years studied X? Search Google Scholar + NBER working papers." / "Does IPUMS-CPS include the `educ_attain` variable 1990–2024?"
-3. **Spawn `claim-verifier`** via `Task` with `subagent_type=claim-verifier` and `context=fork`. Hand it claims + questions + source pointers (WebSearch allowed, NBER/SSRN URLs preferred, dataset codebooks preferred). Do NOT include the draft.
+3. **Spawn `claim-verifier`** via the `Agent` tool with `subagent_type=claim-verifier`, in a fresh context — a named `Agent` call, not a conversation fork, which would inherit the draft. Hand it claims + questions + source pointers (WebSearch allowed, NBER/SSRN URLs preferred, dataset codebooks preferred). Do NOT include the draft.
 4. **Reconcile:** PASS → attach green block; PARTIAL → mark uncertain RQs with flags; FAIL → rewrite the affected RQ/hypothesis/strategy.
 
 ### Skip conditions

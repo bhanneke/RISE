@@ -4,12 +4,12 @@
 
 Scaffolds a structured proof-building project (paper.tex, goals, decisions log, workstreams) with strict mode: every gap flagged unproven, nothing complete without reviewer sign-off.
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../theorist-toolbox/">Theorist Toolbox</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-07</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/morankor/theorist-toolbox/contents/skills/co-math-init/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/theorist-toolbox/co-math-init/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/morankor/theorist-toolbox/blob/main/skills/co-math-init/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/morankor/theorist-toolbox?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../theorist-toolbox/">Theorist Toolbox</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-07-31</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/morankor/theorist-toolbox/contents/skills/co-math-init/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/theorist-toolbox/co-math-init/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/morankor/theorist-toolbox/blob/main/skills/co-math-init/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/morankor/theorist-toolbox?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+
+## co-math-init
 
 > **Author:** Moran Koren, Ben-Gurion University of the Negev (korenmor@bgu.ac.il). Part of the [Theorist Toolbox](https://github.com/morankor/theorist-toolbox).
 
-
-## co-math-init
 
 Bootstrap a new research project for the personal AI co-mathematician system, modelled after the Google DeepMind AI Co-Mathematician paper (Zheng et al., 2026-05-07).
 
@@ -99,8 +99,54 @@ After scaffolding, output a concise message:
 - Confirm the directory was created (with absolute path).
 - Explain the files: `goals.md` for refining the question, `paper.tex` is the living working paper, `workstreams/` will fill up as the project-coordinator spawns work.
 - Tell them to invoke the `project-coordinator` sub-agent (once Phase 2 ships) to start the first workstream, OR — if Phase 2 isn't built yet — to manually edit `goals.md` and start drafting in `paper.tex`.
-- Note the verification ladder available to the coordinator: an informal `prover` proof (`\unproven{}` for any gap), or — for results worth machine-checking — a `lean-prover` workstream that formalises the lemma in Lean 4 and verifies it with `lake build`, closing the theorem with `\leanproved{W{NNN}}`. After any proof is APPROVED, a `proof-readability` pass can polish the exposition without touching the mathematics.
 - Note that hooks are not yet wired up (Phase 3 deliverable).
+- Note the verification ladder available to the coordinator: an informal `prover` proof (`\unproven{}` for any gap), or — for results worth machine-checking — a `lean-prover` workstream that formalises the lemma in Lean 4 and verifies it with `lake build`, closing the theorem with `\leanproved{W{NNN}}`. After any proof is APPROVED, a `proof-readability` pass can polish the exposition without touching the mathematics.
+
+### Standard workstream pipeline (including the readability pass)
+
+Every project scaffolded by this skill commits to the following pipeline for any
+result that is proved. The scaffolding encodes it in `co-math-config.json`
+(`review_policy.require_readability_pass_after_proof`) and documents it in the
+project `README.md`; the `project-coordinator` enforces it.
+
+```
+prover / lean-prover   →   paper-reviewer (correctness/acceptance)
+        │                            │
+        │                            ▼
+        │                  Phase 4.5: readability pass
+        │                  W{NNN}-readability-{slug}
+        │                  (prover in readability mode, per the
+        │                   `proof-readability` skill — exposition only,
+        │                   never changes the mathematics)
+        │                            │
+        │                            ▼
+        │                  paper-reviewer re-checks for content
+        │                  preservation + plumbing only
+        ▼                            ▼
+   workstream cannot be marked COMPLETE until the readability
+   pass has run and been re-approved
+```
+
+Rules the coordinator must follow:
+
+- After a `prover` or `lean-prover` workstream is APPROVED, dispatch a
+  `W{NNN}-readability-{slug}` workstream **before** marking the proving
+  workstream complete. Its `instructions.md` names exactly the approved
+  theorems/lemmas in scope and points the executing agent at the
+  `proof-readability` skill.
+- The readability pass is **exposition only**: it must never strengthen, weaken,
+  or replace any claim. If it surfaces a suspected gap, the workstream returns to
+  `prover` (it does not patch the math).
+- `paper-reviewer` re-reviews the readability output for *content preservation
+  and plumbing* (statement preservation, references resolve, paper compiles) —
+  not for re-proving.
+- A proving workstream's `complete` state is gated on the readability pass having
+  run and been re-approved. (In `strict_mode`, this gate is mandatory; in
+  pragmatic mode it may be downgraded to a recommendation, recorded in
+  `decisions.md`.)
+
+Skip the readability pass only for workstreams that produce **no proof**
+(literature surveys, pure computational evidence with no analytic claims).
 
 ### What this skill does NOT do
 

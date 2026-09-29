@@ -5,14 +5,26 @@ pack:
   maintainers:
     - "Pedro H. C. Sant'Anna (Emory University, Economics)"
   license: 'MIT'
-  total_skills: 44
-  last_update: '2026-04-27'
+  total_skills: 79
+  last_update: '2026-09-27'
   related_project: ''
   compatibility:
     - claude-code
-  notes: 'A ready-to-fork Claude Code template for academics using LaTeX/Beamer + R. 30 skills + 14 agents. 1,112 stars. Calibrated peer-review pipeline against AER, QJE, JPE, Econometrica, ReStud. Adopted by 15+ research groups.'
+  notes: 'A ready-to-fork Claude Code template for academics using LaTeX/Beamer + R. 61 skills + 18 agents. Calibrated peer-review pipeline against AER, QJE, JPE, Econometrica, ReStud. Adopted by 15+ research groups. Refresh 2026-09-29 (upstream at 2026-09-27, previously catalogued at 2026-04-27 with 30 skills + 14 agents): added 31 skills (replication packaging, environment capture, disclosure and submission checks, grant/DMP/power-analysis design aids, teaching tools, audit and verification primitives such as vaccinate, differential-audit, verify-artifact, oracle-review) and 4 agents (humanize-auditor, promote-memory-council, r-package-reviewer, sim-reviewer); 43 existing skill texts changed upstream and were re-copied (notably /commit no longer merges, /deep-audit became a general adversarial audit); nothing was removed.'
 
 skills:
+  - slug: adjudicate-review
+    name: '/adjudicate-review'
+    kind: skill
+    category: revision
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Treats every incoming review finding (referee, AI reviewer, linter, second model) as a candidate, checks it against the source, and applies only verified fixes.'
+    source_path: '.claude/skills/adjudicate-review/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/adjudicate-review/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: audit-reproducibility
     name: '/audit-reproducibility'
     kind: skill
@@ -24,7 +36,43 @@ skills:
     source_path: '.claude/skills/audit-reproducibility/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/audit-reproducibility/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: blast-radius
+    name: '/blast-radius'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - code-generation
+    field: economics
+    description: 'Before and after changing anything shared (a function, signature, schema, config default or constant), finds every consumer and runs it to catch silent downstream breakage.'
+    source_path: '.claude/skills/blast-radius/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/blast-radius/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-08-23'
+  - slug: capture-environment
+    name: '/capture-environment'
+    kind: skill
+    category: replication
+    pipeline_stages:
+      - replication
+    field: economics
+    description: 'Snapshots the computational environment (R, Stata or Python) for a replication package and writes the matching lockfiles and version records.'
+    source_path: '.claude/skills/capture-environment/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/capture-environment/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
+  - slug: challenge
+    name: '/challenge'
+    kind: skill
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: economics
+    description: 'Stress-tests a finding against the analysis forks not taken (measures, sample filters, controls, clustering, weighting, functional form) by running and reporting the specification grid.'
+    source_path: '.claude/skills/challenge/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/challenge/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-08-23'
   - slug: checkpoint
     name: '/checkpoint'
     kind: skill
@@ -35,18 +83,29 @@ skills:
     source_path: '.claude/skills/checkpoint/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/checkpoint/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-27'
+  - slug: coauthor-brief
+    name: '/coauthor-brief'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: 'Generates a co-author handoff brief: git delta since the last brief, state of manuscript, analysis and slides, open questions, and how to reproduce locally.'
+    source_path: '.claude/skills/coauthor-brief/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/coauthor-brief/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: commit
     name: '/commit'
     kind: skill
     category: infra
     pipeline_stages: []
     field: economics
-    description: ''
+    description: 'Runs the quality and consistency gates, then commits with a subject that states what is now true; pushes and opens a PR only on request and never merges without an explicit instruction.'
     source_path: '.claude/skills/commit/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/commit/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: compile-latex
     name: '/compile-latex'
     kind: skill
@@ -59,6 +118,17 @@ skills:
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/compile-latex/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
     last_update: '2026-04'
+  - slug: compress-session
+    name: '/compress-session'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: 'Distills the current conversation into a structured session note (decisions, open questions, file pointers, next actions) before auto-compression.'
+    source_path: '.claude/skills/compress-session/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/compress-session/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: context-status
     name: '/context-status'
     kind: skill
@@ -69,7 +139,7 @@ skills:
     source_path: '.claude/skills/context-status/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/context-status/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: create-lecture
     name: '/create-lecture'
     kind: skill
@@ -81,7 +151,19 @@ skills:
     source_path: '.claude/skills/create-lecture/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/create-lecture/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: credible-claims
+    name: '/credible-claims'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - research-design
+    field: economics
+    description: 'Research-brief and claim-record discipline for AI-assisted research: write the brief before a long run, and back every reported result with a claim record.'
+    source_path: '.claude/skills/credible-claims/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/credible-claims/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-08-21'
   - slug: data-analysis
     name: '/data-analysis'
     kind: skill
@@ -93,7 +175,19 @@ skills:
     source_path: '.claude/skills/data-analysis/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/data-analysis/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: data-management-plan
+    name: '/data-management-plan'
+    kind: skill
+    category: design
+    pipeline_stages:
+      - research-design
+    field: economics
+    description: 'Drafts a funder-compliant Data Management Plan (NSF, NIH, ERC, Horizon Europe) covering data description, storage, access, sharing and preservation.'
+    source_path: '.claude/skills/data-management-plan/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/data-management-plan/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: deep-audit
     name: '/deep-audit'
     kind: skill
@@ -101,11 +195,11 @@ skills:
     pipeline_stages:
       - referee-simulation
     field: economics
-    description: ''
+    description: 'Adversarial audit of a theory, proof, paper, codebase or set of claims: independent skeptics must return concrete defects, a separate judge adjudicates each, confirmed defects are fixed and re-verified.'
     source_path: '.claude/skills/deep-audit/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/deep-audit/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-27'
   - slug: deploy
     name: '/deploy'
     kind: skill
@@ -117,7 +211,7 @@ skills:
     source_path: '.claude/skills/deploy/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/deploy/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-08-22'
   - slug: devils-advocate
     name: '/devils-advocate'
     kind: skill
@@ -129,7 +223,44 @@ skills:
     source_path: '.claude/skills/devils-advocate/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/devils-advocate/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-08-21'
+  - slug: diagnose
+    name: '/diagnose'
+    kind: skill
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+      - code-generation
+    field: economics
+    description: 'Root-causes a failing or wrong empirical result with a reproduce, minimise, hypothesise, instrument, fix loop tuned for R, Stata and Python research code.'
+    source_path: '.claude/skills/diagnose/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/diagnose/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
+  - slug: differential-audit
+    name: '/differential-audit'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - replication
+    field: economics
+    description: 'Compares two implementations of the same thing (a port, reimplementation, replication package or refactor) with frozen inputs and a full output inventory so agreement is meaningful.'
+    source_path: '.claude/skills/differential-audit/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/differential-audit/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-08-21'
+  - slug: disclosure-check
+    name: '/disclosure-check'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: 'Pre-screens tables, figures and logs built on restricted data for statistical-disclosure problems (small cells, suppression gaps, dominance, re-identification risk) before release.'
+    source_path: '.claude/skills/disclosure-check/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/disclosure-check/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: extract-tikz
     name: '/extract-tikz'
     kind: skill
@@ -141,7 +272,31 @@ skills:
     source_path: '.claude/skills/extract-tikz/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/extract-tikz/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-08-21'
+  - slug: grant-proposal
+    name: '/grant-proposal'
+    kind: skill
+    category: drafting
+    pipeline_stages:
+      - research-design
+    field: economics
+    description: 'Scaffolds a research grant proposal (NSF, NIH, ERC or foundation) by composing the interview spec, data-management-plan and environment-capture skills.'
+    source_path: '.claude/skills/grant-proposal/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/grant-proposal/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-27'
+  - slug: humanize
+    name: '/humanize'
+    kind: skill
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Read-only audit of .tex, .qmd or .md prose for AI-voice tells: boilerplate transitions, cliche lexicon, em-dash overuse, symmetric paragraph shapes and hedging.'
+    source_path: '.claude/skills/humanize/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/humanize/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: interview-me
     name: '/interview-me'
     kind: skill
@@ -154,7 +309,18 @@ skills:
     source_path: '.claude/skills/interview-me/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/interview-me/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: issues
+    name: '/issues'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: 'Keeps the project to-do list and memory in GitHub issues: files findings without duplicates, lists issues relevant to the current work, and closes them with a record of the fix.'
+    source_path: '.claude/skills/issues/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/issues/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: learn
     name: '/learn'
     kind: skill
@@ -165,7 +331,7 @@ skills:
     source_path: '.claude/skills/learn/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/learn/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: lit-review
     name: '/lit-review'
     kind: skill
@@ -178,7 +344,7 @@ skills:
     source_path: '.claude/skills/lit-review/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/lit-review/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-27'
   - slug: new-diagram
     name: '/new-diagram'
     kind: skill
@@ -190,7 +356,30 @@ skills:
     source_path: '.claude/skills/new-diagram/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/new-diagram/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: new-skill
+    name: '/new-skill'
+    kind: skill
+    category: meta
+    pipeline_stages: []
+    field: economics
+    description: 'Scaffolds a new skill in the repo conventions: interviews for purpose, trigger phrases and tool needs, then writes a SKILL.md that passes the integrity gates.'
+    source_path: '.claude/skills/new-skill/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/new-skill/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-27'
+  - slug: oracle-review
+    name: '/oracle-review'
+    kind: skill
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: 'Runs an external frontier-model referee from a different vendor (via the Oracle CLI) on a paper, proof, estimator or replication package, then triages each finding as confirmed, refuted or downgraded.'
+    source_path: '.claude/skills/oracle-review/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/oracle-review/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-27'
   - slug: pedagogy-review
     name: '/pedagogy-review'
     kind: skill
@@ -202,7 +391,7 @@ skills:
     source_path: '.claude/skills/pedagogy-review/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/pedagogy-review/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: permission-check
     name: '/permission-check'
     kind: skill
@@ -213,7 +402,19 @@ skills:
     source_path: '.claude/skills/permission-check/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/permission-check/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: power-analysis
+    name: '/power-analysis'
+    kind: skill
+    category: design
+    pipeline_stages:
+      - research-design
+    field: economics
+    description: 'Computes power, required sample size and minimum detectable effect for a study design (clustered RCTs, multiple arms, simulation-based) and writes a registry-ready power section.'
+    source_path: '.claude/skills/power-analysis/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/power-analysis/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: preregister
     name: '/preregister'
     kind: skill
@@ -225,7 +426,18 @@ skills:
     source_path: '.claude/skills/preregister/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/preregister/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: promote-memory
+    name: '/promote-memory'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: 'Reviews candidate learnings in Claude Code auto memory through a five-critic council and promotes majority-approved entries to the committed MEMORY.md.'
+    source_path: '.claude/skills/promote-memory/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/promote-memory/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: proofread
     name: '/proofread'
     kind: skill
@@ -237,7 +449,7 @@ skills:
     source_path: '.claude/skills/proofread/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/proofread/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: qa-quarto
     name: '/qa-quarto'
     kind: skill
@@ -249,7 +461,32 @@ skills:
     source_path: '.claude/skills/qa-quarto/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/qa-quarto/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: r-package-check
+    name: '/r-package-check'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - code-generation
+    field: economics
+    description: 'Runs the full R package release gate (docs, tests, R CMD check --as-cran) and triages every ERROR, WARNING and NOTE against CRAN policy.'
+    source_path: '.claude/skills/r-package-check/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/r-package-check/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
+  - slug: replication-package
+    name: '/replication-package'
+    kind: skill
+    category: replication
+    pipeline_stages:
+      - replication
+      - dissemination
+    field: economics
+    description: 'Assembles a submission-ready replication package to the AEA Data and Code Availability Standard: README, dataset manifest, computational requirements, table and figure map.'
+    source_path: '.claude/skills/replication-package/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/replication-package/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: research-ideation
     name: '/research-ideation'
     kind: skill
@@ -262,7 +499,18 @@ skills:
     source_path: '.claude/skills/research-ideation/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/research-ideation/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: respond-to-eval
+    name: '/respond-to-eval'
+    kind: skill
+    category: revision
+    pipeline_stages: []
+    field: economics
+    description: 'Turns student course evaluations into a teaching-improvement plan: clusters comments into themes and classifies each as Keep, Change or Investigate.'
+    source_path: '.claude/skills/respond-to-eval/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/respond-to-eval/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-27'
   - slug: respond-to-referees
     name: '/respond-to-referees'
     kind: skill
@@ -274,7 +522,7 @@ skills:
     source_path: '.claude/skills/respond-to-referees/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/respond-to-referees/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-27'
   - slug: review-paper
     name: '/review-paper'
     kind: skill
@@ -286,7 +534,7 @@ skills:
     source_path: '.claude/skills/review-paper/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/review-paper/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: review-r
     name: '/review-r'
     kind: skill
@@ -298,7 +546,18 @@ skills:
     source_path: '.claude/skills/review-r/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/review-r/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: scaffold-exercises
+    name: '/scaffold-exercises'
+    kind: skill
+    category: drafting
+    pipeline_stages: []
+    field: economics
+    description: 'Scaffolds a graded problem set with worked solutions and short why-this-matters explainers across analytical, empirical and coding problem types.'
+    source_path: '.claude/skills/scaffold-exercises/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/scaffold-exercises/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: seven-pass-review
     name: '/seven-pass-review'
     kind: skill
@@ -310,7 +569,20 @@ skills:
     source_path: '.claude/skills/seven-pass-review/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/seven-pass-review/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-27'
+  - slug: simulation-study
+    name: '/simulation-study'
+    kind: skill
+    category: analysis
+    pipeline_stages:
+      - formal-modeling
+      - code-generation
+    field: economics
+    description: 'Scaffolds and runs a reproducible Monte Carlo simulation study in R (DGP, estimator grid, seeded replications), reporting bias, RMSE, coverage and size/power with Monte Carlo standard errors.'
+    source_path: '.claude/skills/simulation-study/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/simulation-study/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: slide-excellence
     name: '/slide-excellence'
     kind: skill
@@ -322,7 +594,54 @@ skills:
     source_path: '.claude/skills/slide-excellence/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/slide-excellence/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: stata-replication
+    name: '/stata-replication'
+    kind: skill
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+      - data-analysis
+    field: economics
+    description: 'End-to-end Stata pipeline: numbered .do files run through the stata-mcp server, logged outputs, and publication-ready esttab tables and exported figures.'
+    source_path: '.claude/skills/stata-replication/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/stata-replication/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
+  - slug: submission-disclosures
+    name: '/submission-disclosures'
+    kind: skill
+    category: submission
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: 'Generates the submission-time disclosure block: AI-use statement matched to the target journal policy, CRediT roles, conflict-of-interest and data-availability statements.'
+    source_path: '.claude/skills/submission-disclosures/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/submission-disclosures/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-06-10'
+  - slug: syllabus
+    name: '/syllabus'
+    kind: skill
+    category: drafting
+    pipeline_stages: []
+    field: economics
+    description: 'Builds or restructures a course syllabus: description and prerequisites, week-by-week schedule, measurable learning objectives, assessment scheme with rubric, and standard policies.'
+    source_path: '.claude/skills/syllabus/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/syllabus/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
+  - slug: teach-from-paper
+    name: '/teach-from-paper'
+    kind: skill
+    category: slides
+    pipeline_stages: []
+    field: economics
+    description: 'Turns a research paper into teaching materials: lecture outline, the key results with intuition, a slide skeleton for /create-lecture, discussion questions and a problem-set brief.'
+    source_path: '.claude/skills/teach-from-paper/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/teach-from-paper/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-27'
   - slug: translate-to-quarto
     name: '/translate-to-quarto'
     kind: skill
@@ -334,7 +653,29 @@ skills:
     source_path: '.claude/skills/translate-to-quarto/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/translate-to-quarto/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: triage-inbox
+    name: '/triage-inbox'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: 'Triages academic email and calendar into a prioritized digest plus a referee-obligations tracker (referee requests, R&R correspondence, co-author threads, invitations).'
+    source_path: '.claude/skills/triage-inbox/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/triage-inbox/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-27'
+  - slug: vaccinate
+    name: '/vaccinate'
+    kind: skill
+    category: audit
+    pipeline_stages: []
+    field: economics
+    description: 'Qualifies a checker before trusting it: seeds known defects into a copy of a real artifact plus a clean control and reports recall and false-positive rate.'
+    source_path: '.claude/skills/vaccinate/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/vaccinate/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: validate-bib
     name: '/validate-bib'
     kind: skill
@@ -346,7 +687,19 @@ skills:
     source_path: '.claude/skills/validate-bib/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/validate-bib/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-06-09'
+  - slug: verify-artifact
+    name: '/verify-artifact'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: 'Proves a file about to be sent or published is the intended one: rebuild from source, integrity check, diff against source, and recipient echo-back.'
+    source_path: '.claude/skills/verify-artifact/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/verify-artifact/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-08-21'
   - slug: verify-claims
     name: '/verify-claims'
     kind: skill
@@ -358,7 +711,7 @@ skills:
     source_path: '.claude/skills/verify-claims/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/verify-claims/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: visual-audit
     name: '/visual-audit'
     kind: skill
@@ -370,7 +723,19 @@ skills:
     source_path: '.claude/skills/visual-audit/SKILL.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/visual-audit/SKILL.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: voice-profile
+    name: '/voice-profile'
+    kind: skill
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Extracts a written voice profile from your own prior papers and uses it to keep new drafts sounding like you.'
+    source_path: '.claude/skills/voice-profile/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/voice-profile/SKILL.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: beamer-translator
     name: 'agent:beamer-translator'
     kind: agent
@@ -382,7 +747,7 @@ skills:
     source_path: '.claude/agents/beamer-translator.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/beamer-translator.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: claim-verifier
     name: 'agent:claim-verifier'
     kind: agent
@@ -394,7 +759,7 @@ skills:
     source_path: '.claude/agents/claim-verifier.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/claim-verifier.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: domain-referee
     name: 'agent:domain-referee'
     kind: agent
@@ -406,7 +771,7 @@ skills:
     source_path: '.claude/agents/domain-referee.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/domain-referee.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: domain-reviewer
     name: 'agent:domain-reviewer'
     kind: agent
@@ -414,11 +779,11 @@ skills:
     pipeline_stages:
       - referee-simulation
     field: economics
-    description: ''
+    description: 'Template agent for substantive domain review of a lecture deck or manuscript section: derivation correctness, assumption sufficiency, citation fidelity, code-theory alignment, logical consistency.'
     source_path: '.claude/agents/domain-reviewer.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/domain-reviewer.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: editor
     name: 'agent:editor'
     kind: agent
@@ -430,7 +795,19 @@ skills:
     source_path: '.claude/agents/editor.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/editor.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: humanize-auditor
+    name: 'agent:humanize-auditor'
+    kind: agent
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Read-only auditor for AI-voice tells in academic prose across the ten detection categories defined by /humanize.'
+    source_path: '.claude/agents/humanize-auditor.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/humanize-auditor.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: methods-referee
     name: 'agent:methods-referee'
     kind: agent
@@ -442,7 +819,7 @@ skills:
     source_path: '.claude/agents/methods-referee.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/methods-referee.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: pedagogy-reviewer
     name: 'agent:pedagogy-reviewer'
     kind: agent
@@ -454,7 +831,18 @@ skills:
     source_path: '.claude/agents/pedagogy-reviewer.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/pedagogy-reviewer.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: promote-memory-council
+    name: 'agent:promote-memory-council'
+    kind: agent
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: 'Five-critic council (generality, staleness, redundancy, evidence, format) that votes on promoting candidate learnings from local memory to the committed MEMORY.md; invoked by /promote-memory.'
+    source_path: '.claude/agents/promote-memory-council.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/promote-memory-council.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: proofreader
     name: 'agent:proofreader'
     kind: agent
@@ -466,7 +854,7 @@ skills:
     source_path: '.claude/agents/proofreader.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/proofreader.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: quarto-critic
     name: 'agent:quarto-critic'
     kind: agent
@@ -478,7 +866,7 @@ skills:
     source_path: '.claude/agents/quarto-critic.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/quarto-critic.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: quarto-fixer
     name: 'agent:quarto-fixer'
     kind: agent
@@ -490,7 +878,19 @@ skills:
     source_path: '.claude/agents/quarto-fixer.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/quarto-fixer.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-06-09'
+  - slug: r-package-reviewer
+    name: 'agent:r-package-reviewer'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - code-generation
+    field: economics
+    description: 'R package source reviewer for CRAN readiness: DESCRIPTION and dependency hygiene, NAMESPACE, roxygen completeness, testthat coverage and CRAN-policy red flags.'
+    source_path: '.claude/agents/r-package-reviewer.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/r-package-reviewer.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: r-reviewer
     name: 'agent:r-reviewer'
     kind: agent
@@ -502,7 +902,19 @@ skills:
     source_path: '.claude/agents/r-reviewer.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/r-reviewer.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
+  - slug: sim-reviewer
+    name: 'agent:sim-reviewer'
+    kind: agent
+    category: review
+    pipeline_stages:
+      - formal-modeling
+    field: economics
+    description: 'Monte Carlo simulation reviewer: assumption regime, DGP and estimand alignment, replication budget and Monte Carlo SE, coverage against the truth, and parallel-seed discipline.'
+    source_path: '.claude/agents/sim-reviewer.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/sim-reviewer.md'
+    provenance: 'psantanna repo curation 2026-09-29'
+    last_update: '2026-09-26'
   - slug: slide-auditor
     name: 'agent:slide-auditor'
     kind: agent
@@ -514,7 +926,7 @@ skills:
     source_path: '.claude/agents/slide-auditor.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/slide-auditor.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: tikz-reviewer
     name: 'agent:tikz-reviewer'
     kind: agent
@@ -526,7 +938,7 @@ skills:
     source_path: '.claude/agents/tikz-reviewer.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/tikz-reviewer.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'
   - slug: verifier
     name: 'agent:verifier'
     kind: agent
@@ -538,4 +950,4 @@ skills:
     source_path: '.claude/agents/verifier.md'
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/verifier.md'
     provenance: 'psantanna repo curation 2026-05-20'
-    last_update: '2026-04'
+    last_update: '2026-09-26'

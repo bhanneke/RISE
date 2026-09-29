@@ -2,7 +2,7 @@
 name: translate-to-quarto
 description: Translate a Beamer `.tex` lecture to a Quarto RevealJS `.qmd` mirror. Multi-phase: TikZ extraction → slide-by-slide translation → citation conversion → automatic QA parity check. Use when user says "translate to quarto", "port to revealjs", "make an html version", "convert this beamer to quarto", "mirror this lecture in qmd", or after a Beamer deck is ready for web publication. Output lands in `Quarto/`.
 argument-hint: "[LectureN_Topic.tex]"
-allowed-tools: ["Read", "Grep", "Glob", "Write", "Edit", "Bash", "Task"]
+allowed-tools: ["Read", "Grep", "Glob", "Write", "Edit", "Bash", "Agent", "Task"]
 context: fork
 ---
 
@@ -10,7 +10,7 @@ context: fork
 
 Full translation of a Beamer LaTeX lecture to Quarto RevealJS HTML slides.
 
-**CRITICAL: The Beamer .tex file is the SINGLE SOURCE OF TRUTH.**
+**The Beamer `.tex` is the source of truth:** the `.qmd` mirrors it, and corrections found during translation go back to the `.tex` (Phase 10).
 
 ---
 
@@ -60,10 +60,10 @@ Semantic colors, transition slides, framing sentences.
 Run `/proofread` on the QMD file.
 
 ## Phase 9: Final Verification & Deployment
-Render, open in browser, verify all elements.
+Render, then check the rendered output yourself (the rendered HTML, plus any screenshot or PDF export the user supplies) — every figure present, no overflow, all environments styled.
 
 ## Phase 10: Beamer Source Sync
 Apply any corrections back to Beamer source.
 
-## Phase 11: Documentation
-Update CLAUDE.md, session log, create PR.
+## Phase 11: Parity QA + Documentation
+Run `/qa-quarto` on the new mirror for Beamer↔Quarto parity. Then update the lecture row in CLAUDE.md and the session log, and tell the user the deck is ready for `/commit` — this skill does not commit or open a PR.

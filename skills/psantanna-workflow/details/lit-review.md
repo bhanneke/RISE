@@ -2,7 +2,7 @@
 name: lit-review
 description: Structured literature search + synthesis with citation extraction, thematic clustering, and gap identification. Use when user says "find papers on X", "do a lit review", "what's the literature on...", "summarize what we know about...", "where's the gap in this field", "review recent work on Y". Produces a written review with BibTeX-ready citations. Uses WebSearch/WebFetch for recent work.
 argument-hint: "[topic, paper title, or research question] [--no-verify]"
-allowed-tools: ["Read", "Grep", "Glob", "Write", "WebSearch", "WebFetch", "Task"]
+allowed-tools: ["Read", "Grep", "Glob", "Write", "WebSearch", "WebFetch", "Agent", "Task"]
 ---
 
 # Literature Review
@@ -33,6 +33,11 @@ Conduct a structured literature search and synthesis on the given topic.
    - What questions remain unanswered?
    - What data or methods could address them?
    - Where do findings conflict?
+   - **How independent is the support?** For any finding you call consistent or replicated, give
+     the apparent count and the independent count — studies that share an experiment, dataset,
+     sample or research team count once.
+   - **What went the other way?** For each headline finding, search for null results and failed
+     replications and report them, or say none were found and give the search terms used.
 
 5. **Extract citations** in BibTeX format for all papers discussed.
 
@@ -100,7 +105,7 @@ Before returning the draft literature review to the user, run the Post-Flight Ve
 
 1. **Extract claims** from the draft. Each cited paper, each paraphrased finding ("Smith 2019 shows X"), each negative-literature assertion ("no prior work studies Y") is a claim.
 2. **Generate verification questions** per claim. Specific ones: "Does Smith (2019, *JEL*) Section 3 actually report the finding that X implies Y? Is the venue correct?"
-3. **Spawn `claim-verifier`** via `Task` with `subagent_type=claim-verifier` and `context=fork`. Pass: the claims table, the verification questions, the source-material pointers (paper URLs, DOIs, `master_supporting_docs/` paths). **Do NOT pass the draft text itself** — the fresh-context independence is what makes CoVe work.
+3. **Spawn `claim-verifier`** via the `Agent` tool with `subagent_type=claim-verifier`, in a fresh context — a named `Agent` call, not a conversation fork, which would inherit the draft. Pass: the claims table, the verification questions, the source-material pointers (paper URLs, DOIs, `master_supporting_docs/` paths). **Do NOT pass the draft text itself** — the fresh-context independence is what makes CoVe work.
 4. **Reconcile:** if the verifier reports PASS, attach a green Post-Flight block to the output. If PARTIAL, mark the unverifiable claims with uncertainty flags in the BibTeX block. If FAIL, **remove or rewrite the contradicted citations** using the verifier's evidence before returning.
 
 ### Skip conditions

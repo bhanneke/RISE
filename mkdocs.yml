@@ -82,6 +82,7 @@ nav:
       - papers/index.md
   - Skills:
       - skills/index.md
+  - Related resources: resources.md
   - Glossary: glossary.md
   - Contributing: contributing.md
   - About / Cite: about.md

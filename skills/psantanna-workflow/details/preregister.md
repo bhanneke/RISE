@@ -1,11 +1,12 @@
 ---
 name: preregister
 description: Draft a structured preregistration document (OSF, AsPredicted, or AEA RCT Registry style) from a research spec or free-form study description. Output is a Markdown file with hypotheses, design, sampling plan, analysis plan, exclusions, and inference criteria — annotated with MUST / SHOULD / MAY clarity flags. Use when user says "preregister", "draft a preregistration", "OSF preregistration", "AsPredicted", "AEA RCT registry", "PAP", "preanalysis plan", or before launching an experiment / data collection / analysis on data the analyst has not yet seen. NOT a registry submission tool — produces a document the user uploads to OSF / AsPredicted / AEA themselves.
-author: Claude Code Academic Workflow
-version: 1.0.0
 argument-hint: "[--style osf|aspredicted|aea-rct] [--input <spec-or-description>] [--no-verify]"
 disable-model-invocation: true
-allowed-tools: ["Read", "Write", "Task"]
+allowed-tools: ["Read", "Write", "Agent", "Task"]
+metadata:
+  author: Claude Code Academic Workflow
+  version: 1.0.0
 ---
 
 # /preregister — Preregistration Document Generator
@@ -39,7 +40,7 @@ Preregistration is a written commitment to your hypotheses, design, and analysis
 
 Two input modes:
 
-1. **`--input <path>`** — a research spec produced by `/interview-me` (saved under `quality_reports/specs/`) or any structured Markdown file. Read the spec and extract: research question, hypotheses (directional!), data source, design, sample, analysis approach. If the spec already has a `paper_type:` field (e.g., `survey-experiment`), use it to bias the style choice.
+1. **`--input <path>`** — a research spec produced by `/interview-me` (saved under `quality_reports/specs/`) or any structured Markdown file. Read the spec and extract: research question, hypotheses (directional!), data source, design, sample, analysis approach. If the spec records a paper type (`/interview-me` writes it on a `**Paper type:**` line, e.g. `survey-experiment`), use it to bias the style choice.
 2. **No `--input`** — prompt the user for a 1–3 paragraph description of the study, then proceed. If the description omits a directional hypothesis, ask once. Do not fabricate.
 
 Refusal conditions (must be checked before any drafting):
@@ -53,7 +54,7 @@ Default per field (used when `--style` is not given):
 
 | Field signal | Default style |
 |---|---|
-| `paper_type: survey-experiment` or political-science / psychology context | `osf` |
+| `**Paper type:** survey-experiment` or political-science / psychology context | `osf` |
 | Field experiment in econ / labelled "RCT" / IRB-approved randomised intervention | `aea-rct` |
 | 9-question quick-form ask, lab psych experiment, time-pressure | `aspredicted` |
 | Anything else | `osf` |
@@ -90,7 +91,7 @@ Refuse to mark the document "ready" if any of these fails:
 
 - **Hypothesis directionality.** Each hypothesis must contain a direction ("higher than", "increases", "negatively predicts", "no effect" is acceptable as a directional claim under equivalence-testing). Reject "is associated with" without a sign.
 - **Estimator named.** Analysis plan names a specific estimator (OLS, logit, fixest::feols, lme4::lmer, ATT difference-in-means …) and a primary outcome variable. "Regression" alone is insufficient.
-- **Sample plan numeric.** Target N, stopping rule, or power-calc target appear. "As many as possible" is not a sample plan.
+- **Sample plan numeric.** Target N, stopping rule, or power-calc target appear. "As many as possible" is not a sample plan. For RCTs and prospective designs, follow [`/power-analysis`](../power-analysis/SKILL.md)'s `SKILL.md` (read it — the skill is user-invoked only, so it cannot be called from here) to produce the MDE / required-N and a ready-to-paste power paragraph for this field.
 - **Exclusions ex ante.** Outlier and exclusion rules are stated *before* the data is seen ("we will exclude observations with completion time < 1 minute"). Vague "we'll deal with outliers" fails.
 - **Internal consistency.** If the design is randomised, the unit of randomisation matches the unit of analysis OR the analysis plan addresses clustering. If observational, identification strategy is stated.
 
@@ -98,7 +99,7 @@ For each failure, the document gets a `[CLARIFY: …]` placeholder; the document
 
 ### PHASE 5 — Post-flight verification
 
-If the document cites prior literature in the rationale section (e.g., "Building on Hainmueller et al. 2014, we expect …"), invoke `/verify-claims` via `Task` to fact-check those citations. Pass the draft path and a list of explicit citations. The `claim-verifier` agent (forked context, never sees the draft) returns PASS / PARTIAL / FAIL per citation. Surface any FAIL/PARTIAL in the output summary.
+If the document cites prior literature in the rationale section (e.g., "Building on Hainmueller et al. 2014, we expect …"), invoke `/verify-claims` via the `Agent` tool to fact-check those citations. Pass the draft path and a list of explicit citations. The `claim-verifier` agent (fresh context, never sees the draft) returns PASS / PARTIAL / FAIL per citation. Surface any FAIL/PARTIAL in the output summary.
 
 Skip post-flight if:
 
@@ -126,6 +127,7 @@ Include the registry URL: OSF → `osf.io/registries`, AsPredicted → `aspredic
 - `templates/preregistration-template.md` — the three style templates this skill consumes.
 - `templates/requirements-spec.md` — MUST/SHOULD/MAY annotation language re-used here.
 - `.claude/skills/interview-me/SKILL.md` — produces the spec this skill consumes via `--input`.
+- `.claude/skills/power-analysis/SKILL.md` — followed (not invoked) to supply the MDE / required-N + power paragraph for the sample-plan field (RCTs).
 - `.claude/skills/verify-claims/SKILL.md` — Phase 5 invokes this for citation post-flight.
 - `.claude/references/discipline-cards.md` — field defaults that drive `--style` selection.
 - `.claude/rules/replication-protocol.md` — preregistration is the *forward* commitment; replication-protocol is the *backward* contract.
@@ -135,7 +137,7 @@ Include the registry URL: OSF → `osf.io/registries`, AsPredicted → `aspredic
 ### Example 1 — Poli-sci survey experiment from a spec
 **User says:** "Preregister this study" (with `--input quality_reports/specs/2026-04-15_priming-effects.md`)
 **Actions:**
-1. Read spec; `paper_type: survey-experiment` → default style `osf`.
+1. Read spec; `**Paper type:** survey-experiment` → default style `osf`.
 2. Extract 2 directional hypotheses, MTurk N=1,200, OLS with treatment dummies.
 3. Generate OSF document, all MUST sections filled, 1 MAY left blank.
 4. No prior-lit citations beyond the spec — skip post-flight.

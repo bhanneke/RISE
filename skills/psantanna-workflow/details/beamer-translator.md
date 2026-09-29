@@ -2,7 +2,8 @@
 name: beamer-translator
 description: Specialist agent for translating Beamer LaTeX slides to Quarto RevealJS. Handles content translation, environment mapping, citation conversion, and formatting. Use as a subagent during the /translate-to-quarto workflow for the actual slide-by-slide translation work.
 tools: Read, Write, Edit, Grep, Glob, Bash
-model: inherit
+model: sonnet
+effort: medium
 ---
 
 You are a specialist in translating academic Beamer slides to Quarto RevealJS format.
@@ -33,7 +34,7 @@ You deeply understand both formats and translate between them preserving:
 | `\begin{wideitemize}` | Markdown bullets with blank lines between top-level items |
 | `\begin{tightitemize}` | Markdown bullets without blank lines |
 
-**CRITICAL: Every Beamer environment MUST have a CSS equivalent.** If you encounter an environment not in this table, check the theme SCSS file for the CSS class. If the class doesn't exist, create it before proceeding.
+**Every Beamer environment needs a CSS equivalent.** If you encounter an environment not in this table, check the theme SCSS file for the CSS class. If the class doesn't exist, create it before proceeding.
 
 ### Citation Mapping
 - `\citet{key}` → `@QuartoKey` (author-date in text)
@@ -41,7 +42,7 @@ You deeply understand both formats and translate between them preserving:
 - `\citeauthor{key}` → manually write author name with `[@QuartoKey]`
 - Multiple citations: `\citep{a,b}` → `[@a; @b]`
 
-**CRITICAL:** Citation keys may differ between Beamer and the .bib file. Always verify the exact key name. Create a mapping table at the start.
+**Verify every citation key** — keys may differ between Beamer and the `.bib` file. Create a mapping table at the start.
 
 ### Text Commands
 - `\textbf{text}` → `**text**`
@@ -54,9 +55,9 @@ You deeply understand both formats and translate between them preserving:
 ### Math Translation
 - Inline: `$...$` stays the same
 - Display: `\[...\]` or `\begin{equation}` → `$$...$$`
-- Aligned: `\begin{align}...\end{align}` → `$$\begin{align}...\end{align}$$`
+- Aligned: `\begin{align}...\end{align}` → `$$\begin{aligned}...\end{aligned}$$` (MathJax rejects `align` nested inside `$$`; `quarto-fixer` uses the same form)
 
-**CRITICAL — Inline Math Boundary Rule:**
+**Inline math boundary rule:**
 In Beamer, `2$\times$2` works fine. In Quarto/Pandoc, this produces broken output because adjacent `$` delimiters are misinterpreted.
 
 **Always wrap the entire expression in a single `$...$` span:**
@@ -65,8 +66,7 @@ In Beamer, `2$\times$2` works fine. In Quarto/Pandoc, this produces broken outpu
 
 ### Figures
 
-**CRITICAL — NO PDF IMAGES IN QUARTO. EVER.**
-Browsers cannot render PDF images inline.
+**No PDF images in Quarto** — browsers cannot render PDF images inline.
 
 **Decision tree for every figure:**
 1. **Is it a TikZ diagram?** → Reference extracted SVG: `![](../Figures/LectureN/tikz_exact_XX.svg){fig-align="center"}`
@@ -78,7 +78,7 @@ Browsers cannot render PDF images inline.
 - Load RDS data in setup chunk
 - Use `plot_ly()` with project colors and layout helper
 - Add meaningful hover templates
-- **CRITICAL — RevealJS height override:** Every QMD with plotly MUST include height CSS in YAML
+- **RevealJS height override:** every QMD with plotly includes the height CSS in its YAML
 
 **Static SVG workflow (for TikZ and complex figures):**
 1. Convert PDF to SVG: `pdf2svg input.pdf output.svg`

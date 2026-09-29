@@ -71,4 +71,8 @@ Treats subscription-tier coding-agent CLIs (Claude Code / Codex / Gemini CLI) as
 
 ## Papers describing this project
 
-- **IAR-M-001: zeropaper companion paper** — Aldea, A. (2026). *Institute for Automated Research working paper series*. [link](https://instituteforautomatedresearch.org/papers/iar-m/iar-m-001)
+- **ZeroPaper: An Autonomous Research System** — Lopez-Lira, A. (2026). *Institute for Automated Research working paper IAR-M-001 (also SSRN 6687378)*. [link](https://instituteforautomatedresearch.org/papers/iar-m/iar-m-001)
+
+## Related references (literature catalog)
+
+- Lopez-Lira, A. (2026). [*ZeroPaper: An Autonomous Research System*](../papers/notes/lopezlira2026zeropaper.md) `lopezlira2026zeropaper`

@@ -2,12 +2,13 @@
 name: proofread
 description: Read-only proofreading pass over lecture `.tex` or `.qmd` files. Checks grammar, typos, overflow, terminology consistency, and academic writing quality; produces a report without editing. Use when user says "proofread", "check for typos", "look for grammar issues", "copy-edit this", "any writing errors?", or before a lecture release.
 argument-hint: "[filename or 'all']"
-allowed-tools: ["Read", "Grep", "Glob", "Write", "Task"]
+allowed-tools: ["Read", "Grep", "Glob", "Write", "Agent", "Task"]
+disallowed-tools: ["Edit", "MultiEdit"]
 ---
 
 # Proofread Lecture Files
 
-Run the mandatory proofreading protocol on lecture files. This produces a report of all issues found WITHOUT editing any source files.
+Run the proofreading protocol on lecture files. This produces a report of all issues found WITHOUT editing any source files.
 
 ## Steps
 
@@ -33,7 +34,7 @@ Run the mandatory proofreading protocol on lecture files. This produces a report
    - For `.tex` files: `quality_reports/FILENAME_report.md`
    - For `.qmd` files: `quality_reports/FILENAME_qmd_report.md`
 
-5. **IMPORTANT: Do NOT edit any source files.**
+5. **Leave source files unchanged** — fixes are applied after the user reviews the report.
    Only produce the report. Fixes are applied separately after user review.
 
 6. **Present summary** to the user:

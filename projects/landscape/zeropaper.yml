@@ -4,7 +4,7 @@ type: external
 status: active
 url: "https://github.com/alejandroll10/zeropaper"
 maintainers:
-  - "Alejandro Aldea (Institute for Automated Research)"
+  - "Alejandro Lopez-Lira (Institute for Automated Research)"
 year_started: 2025
 
 positioning: >
@@ -123,11 +123,12 @@ related:
 
 # ── Papers describing this project ─────────────────────
 papers:
-  - title: 'IAR-M-001: zeropaper companion paper'
+  - title: 'ZeroPaper: An Autonomous Research System'
     authors:
-      - 'Aldea, A.'
+      - 'Lopez-Lira, A.'
     year: 2026
-    venue: 'Institute for Automated Research working paper series'
+    venue: 'Institute for Automated Research working paper IAR-M-001 (also SSRN 6687378)'
     url: 'https://instituteforautomatedresearch.org/papers/iar-m/iar-m-001'
 
-references: []
+references:
+  - lopezlira2026zeropaper

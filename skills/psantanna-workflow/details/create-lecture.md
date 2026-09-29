@@ -2,8 +2,7 @@
 name: create-lecture
 description: Create a new Beamer lecture `.tex` from source papers and materials, with notation consistency checks and the project's preamble wired in. Use when user says "create a lecture on X", "new lecture from these papers", "start a deck on topic Y", "scaffold a new Beamer file", "build me a lecture from these PDFs". Scaffolds the full deck — NOT for compiling existing `.tex` (use `/compile-latex`).
 argument-hint: "[Topic name]"
-allowed-tools: ["Read", "Grep", "Glob", "Write", "Edit", "Bash", "Task"]
-context: fork
+allowed-tools: ["Read", "Grep", "Glob", "Write", "Edit", "Bash", "Agent", "Task"]
 disable-model-invocation: true
 ---
 
@@ -119,3 +118,10 @@ This prevents `/create-lecture` from deadlocking for every new forker.
 [ ] Session log updated
 [ ] Devil's Advocate run
 ```
+
+## Cross-references
+
+- [`.claude/skills/translate-to-quarto/SKILL.md`](../translate-to-quarto/SKILL.md) — port the finished Beamer deck to a Quarto RevealJS mirror.
+- [`.claude/skills/qa-quarto/SKILL.md`](../qa-quarto/SKILL.md) — adversarial Beamer↔Quarto parity (loop-until-dry).
+- [`.claude/skills/deploy/SKILL.md`](../deploy/SKILL.md) — render + publish the lecture to GitHub Pages.
+- [`.claude/skills/scaffold-exercises/SKILL.md`](../scaffold-exercises/SKILL.md) — problem sets + solutions to accompany the lecture.

@@ -4,11 +4,12 @@ description: |
   Extract reusable knowledge from the current session into a persistent skill.
   Use when you discover something non-obvious, create a workaround, or develop
   a multi-step workflow that future sessions would benefit from.
-author: Claude Code Academic Workflow
-version: 1.0.0
 argument-hint: "[skill-name (kebab-case)]"
 allowed-tools: ["Read", "Write", "Bash", "Glob", "Grep"]
 disable-model-invocation: true
+metadata:
+  author: Claude Code Academic Workflow
+  version: 1.0.0
 ---
 
 # /learn — Skill Extraction Workflow
@@ -65,12 +66,14 @@ Create the skill file at `.claude/skills/[skill-name]/SKILL.md`:
 ---
 name: descriptive-kebab-case-name
 description: |
-  [CRITICAL: Include specific triggers in the description]
+  [What the skill does, then the situations it applies to — the key use first.
+   Include an exact error string only when that string is the trigger.]
   - What the skill does
-  - Specific trigger conditions (exact error messages, symptoms)
+  - Trigger conditions (symptoms; an exact error message when that is the trigger)
   - When to use it (contexts, scenarios)
-author: Claude Code Academic Workflow
-version: 1.0.0
+metadata:
+  author: [you]
+  version: "1.0"
 argument-hint: "[expected arguments]"  # Optional
 ---
 
@@ -130,8 +133,9 @@ description: |
   Handle silent observation dropping in fixest when covariates have missing values.
   Use when: estimates seem wrong, sample size unexpectedly small, or comparing
   results between packages.
-author: Claude Code Academic Workflow
-version: 1.0.0
+metadata:
+  author: [you]
+  version: "1.0"
 ---
 
 # fixest Missing Covariate Handling

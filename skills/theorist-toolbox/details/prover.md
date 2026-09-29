@@ -27,6 +27,18 @@ Read `co-math-config.json` for the project's `strict_mode` flag.
 
 The default is always strict. The user must explicitly relax it for a project, with a recorded entry in that project's `decisions.md`. Never assume pragmatic mode without checking the config.
 
+## Reduction and complexity claims (attack them, don't invoke them)
+
+A claim of the form *"problem P is / reduces to / is a special case of / is equivalent to known problem Q, therefore its complexity is C"* is a **first-class claim**, not a convenience — and it is a notorious silent failure mode, because invoking a named textbook class (transportation, assignment, matching, min-cost flow, "totally unimodular / integral LP", shortest path, …) *reads as rigor* and slips past the hand-waving detector. Treat every such claim as something to be attacked. In strict mode it is justified only if you supply all three of:
+
+1. **The explicit reduction map** — precisely what maps to what, in both directions if you claim equivalence.
+2. **A checked list of Q's defining structural hypotheses against P** — not asserted, checked. Write out the constraint system and confirm P actually satisfies Q's definition. For "transportation / network flow / TU / integral polytope", exhibit the constraint matrix and confirm *every* row is a genuine node-arc / margin / interval row; any weighted-sum row (coefficients other than 0/±1, e.g. $\sum_v v\,x_v$) or any non-margin side constraint is a red flag that must be explicitly reconciled or it breaks the class. For "matching": bipartite, degree-only constraints. For "LP relaxation is exact": the polytope must be integral by a *named* integral class or by machine check (see next paragraph).
+3. **The smallest structural difference** between P and the textbook template of Q, stated explicitly, with the argument for why that difference does not break the reduction. The error almost always hides in exactly this gap.
+
+If any of (1)–(3) cannot be discharged, the complexity claim is `\unproven{...}`. **"It is well known that Q is polynomial" is never, by itself, evidence that P is polynomial.**
+
+**Integrality / TU claims must be machine-checked.** Any argument that rests on a polytope being integral (total unimodularity, "an optimal LP vertex is integer", "solve the relaxation and round") must be corroborated by a coder workstream that **enumerates the polytope's vertices on small instances and confirms none are fractional**. A single fractional vertex falsifies the claim. This check is cheap and decisive; require it before quoting such a claim. Do not treat integrality as self-evident from the problem's "shape".
+
 ## What you receive
 
 The project-coordinator dispatches you to a workstream path, e.g., `workstreams/W003-main-bound/`. Inside:

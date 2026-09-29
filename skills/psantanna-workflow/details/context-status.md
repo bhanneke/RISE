@@ -4,9 +4,11 @@ description: |
   Show current context status and session health.
   Use to check how much context has been used, whether auto-compact is
   approaching, and what state will be preserved.
-author: Claude Code Academic Workflow
-version: 1.0.0
 allowed-tools: ["Read", "Bash", "Glob"]
+disallowed-tools: ["Edit", "MultiEdit"]
+metadata:
+  author: Claude Code Academic Workflow
+  version: 1.0.0
 ---
 
 # /context-status — Check Session Health
@@ -23,12 +25,13 @@ and preservation state.
 
 ## Workflow
 
-### Step 1: Check Context Monitor Cache
+### Step 1: Check the Context Estimate
 
-Read the context monitor cache to get the current estimate:
+The context-monitor hook writes its estimate to `context-pct.txt` (and its counters and threshold flags to `context-monitor-cache.json`) in this project's session directory:
 
 ```bash
-cat ~/.claude/sessions/*/context-monitor-cache.json 2>/dev/null | head -20
+d=~/.claude/sessions/$(printf '%s' "${CLAUDE_PROJECT_DIR:-$PWD}" | python3 -c 'import sys,hashlib;print(hashlib.md5(sys.stdin.read().encode()).hexdigest()[:8])')
+cat "$d/context-pct.txt" 2>/dev/null; cat "$d/context-monitor-cache.json" 2>/dev/null | head -20
 ```
 
 ### Step 2: Find Active Plan
@@ -69,6 +72,6 @@ File:   quality_reports/session_logs/YYYY-MM-DD_description.md
 
 ## Notes
 
-- Context % is an estimate based on tool call count
+- Context % comes from Claude Code's own `context_window.used_percentage` where the status line shows it; the hook's `context-pct.txt` holds an estimate from transcript size (falling back to a tool-call count). The built-in `/context` shows exact usage
 - Actual compaction is triggered by Claude Code automatically
 - All important state is saved to disk (plans, logs, MEMORY.md)
