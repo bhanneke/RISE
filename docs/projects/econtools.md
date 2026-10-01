@@ -66,4 +66,3 @@ Two skills stand out versus other cataloged economics skill packs: Kris runs Cla
 - [`academic-research-skills`](academic-research-skills.md)
 - [`aris`](aris.md)
 - [`econ-skills`](econ-skills.md)
-- [`theorist-toolbox`](theorist-toolbox.md)
