@@ -1,0 +1,122 @@
+slug: foresci
+name: "ForeSci"
+type: external
+status: research-prototype
+url: "https://github.com/roytian1992/ResearchForesight"
+license: "none"
+maintainers:
+  - "Tian, Qiuyu"
+  - "Yin, Haojie"
+  - "Xia, Yingce"
+  - "Kong, Youyong"
+  - "Liu, Zequn"
+year_started: 2026
+
+positioning: >
+  A temporally-controlled benchmark of 500 tasks testing whether LLM
+  agents can make forward-looking research judgments — direction
+  forecasting, bottleneck/opportunity discovery, strategic research
+  planning, and venue-aware positioning — from a frozen, cutoff-dated
+  knowledge base (~7,500 documents across four fast-moving AI subfields:
+  LLM agents, fine-tuning, RAG systems, visual generative modeling),
+  with post-cutoff papers held out purely for validation. Sits in the
+  RISE evaluation-infrastructure layer testing the rq-formulation /
+  research-design front end of the pipeline, alongside `econcs-bench`
+  and `naturebench`, rather than any component that itself produces a
+  paper.
+
+distinctive_contribution: >
+  The only benchmark in the catalog scoring forward-looking research
+  judgment itself — what should be studied next, and where it would be
+  publishable — rather than execution skill, via a leakage-controlled
+  design (knowledge base frozen at a cutoff, evaluation targets drawn
+  only from post-cutoff papers) and family-specific LLM-as-judge rubrics
+  for persuasiveness and evidence traceability.
+
+focus: ideation
+
+pipeline_stages:
+  - rq-formulation
+  - hypothesis-generation
+  - research-design
+  - dissemination
+
+architectural_features: []
+
+discipline: computer-science
+
+inputs:
+  - frozen-knowledge-base
+  - task-prompt
+
+outputs:
+  - prediction-scores
+  - evidence-traceability-report
+
+data_sources: []
+
+knowledge_sources:
+  - frozen-arxiv-snapshot-kb
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Evaluation harness: grades agents' forward-looking research judgment; produces no scholarship of its own."
+  autonomy_level:
+    score: 0
+    note: "Static task files, frozen knowledge base, and grading scripts; any agency lives in the systems attempting the tasks."
+  architectural_transparency:
+    score: 3
+    note: "Pip-installable repo publishes the 500 task files (JSONL), the ~7,500-document per-domain knowledge base, evaluation scripts, prompt templates, and the LLM-as-judge rubrics for all four decision families."
+  inputs_supported:
+    score: 1
+    note: "One input form (a task prompt plus its frozen per-domain knowledge base); no live literature or data-source access — staleness is deliberate, to prevent leakage from post-cutoff papers."
+  outputs_reproducibility:
+    score: 1
+    note: "Deterministic claim-F1/evidence-traceability scoring exists, but the repo publishes no versioned leaderboard, run manifest, or release tags at review date, and the persuasiveness score depends on an LLM judge."
+  internal_evaluation:
+    score: 2
+    note: "The companion paper (arXiv:2606.00644) reports systematic evaluation of native LLMs, Hybrid RAG, and three research-agent adaptations across four backbones; no public leaderboard or third-party replication yet."
+  openness:
+    score: 1
+    note: "No license file found in the repository at scoring date — reuse terms are unclear despite the code and data being publicly visible."
+  maturity_traction:
+    score: 1
+    note: "1 star, 0 forks, single-author repo released alongside a May/June 2026 preprint — a fresh research-prototype drop with no external adoption evident yet."
+  cross_family_policy:
+    score: 0
+    note: "Not applicable — a model-agnostic evaluation harness with no executor/reviewer configuration of its own."
+  assurance_runtime:
+    score: 0
+    note: "No in-flight runtime mechanisms; this is post-hoc evaluation of submitted judgments, not a pipeline with runtime gates."
+  cross_platform_portability:
+    score: 2
+    note: "The harness evaluates native LLMs, a Hybrid-RAG baseline, and three research-agent scaffolds across four model backbones — multiple providers/runtimes, short of the 5+ band."
+scored_on: "2026-10-01"
+
+limitations:
+  - "No license file at scoring date — reuse terms are unclear."
+  - "No populated leaderboard in the repository itself; comparative model results live only in the companion paper."
+  - "Single-author repo (1 star, 0 forks) released alongside the paper — no independent validation yet that the frozen knowledge base or judge rubrics generalize beyond the four covered AI subfields."
+  - "Scope is limited to four fast-moving AI/ML subfields, not a general cross-discipline research-judgment benchmark."
+  - "Persuasiveness/research-judgment scoring depends on an LLM-as-judge rubric rather than human expert validation."
+
+related:
+  - econcs-bench
+  - naturebench
+  - scholar-eval
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: "ForeSci: Evaluating LLM Agents for Forward-Looking AI Research Judgment"
+    authors:
+      - "Tian, Q."
+      - "Yin, H."
+      - "Xia, Y."
+      - "Kong, Y."
+      - "Liu, Z."
+    year: 2026
+    venue: "arxiv"
+    arxiv_id: "2606.00644"
+
+references: []

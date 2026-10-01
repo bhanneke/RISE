@@ -16,7 +16,7 @@ A cross-discipline benchmark (arXiv:2606.24530) of 90 tasks distilled from peer-
 
 ## Distinctive contribution
 
-Scores agents against each source paper's *reported SOTA* (Surpass-SOTA rate) rather than mere reproduction, with an information firewall that strips the source method from the task brief so agents must discover solutions. Ships a full harness with built-in adapters for Claude Code, Codex CLI, and Gemini CLI, a post-hoc validity judge, and a public leaderboard: across twelve harness-model configurations the best reaches a 17.8% Surpass-SOTA rate, with failures dominated by method-selection errors.
+Scores agents against each source paper's *reported SOTA* (Surpass-SOTA rate) rather than mere reproduction, with an information firewall that strips the source method from the task brief so agents must discover solutions. Ships a full harness with built-in adapters for Claude Code, Codex CLI, and Gemini CLI, a post-hoc validity judge, and a public leaderboard: by September 2026 the leaderboard had grown to sixteen harness-model configurations (up from twelve at launch), with the best reaching a 23.3% Surpass-SOTA rate (57.8% Match-SOTA), with failures still dominated by method-selection errors.
 
 ## Evaluation scores
 
@@ -27,14 +27,14 @@ Scores agents against each source paper's *reported SOTA* (Surpass-SOTA rate) ra
 | Architectural transparency | 3 | Full code: harness, agent adapters, evaluators, post-hoc judge, NatureGym construction skills, docs, HuggingFace dataset, and public leaderboard. |
 | Inputs supported | 1 | Single input form (containerized task package) with each task bundling the source paper's dataset; no broader literature or private-corpus access. |
 | Outputs / reproducibility | 2 | Dockerized tasks, hidden test sets, versioned dataset, and persisted results directories; agent nondeterminism precludes exact reruns. |
-| Internal evaluation | 2 | Systematic evaluation of twelve harness-model configurations with public leaderboard and failure analysis in the arXiv paper; not yet peer-reviewed. |
+| Internal evaluation | 2 | Systematic evaluation grown from twelve to sixteen harness-model configurations by September 2026, including externally submitted runs (e.g. HELIX + Claude Opus 5, Luria 1.0 + DeepSeek-V4-Pro) alongside the original failure analysis; still not yet peer-reviewed. |
 | Openness | 2 | MIT for original work (NOTICE-scoped); third-party task data under heterogeneous per-task licenses; full runs need agent API keys and 24-80 GB GPUs. |
-| Maturity / traction | 1 | Young (June 2026) but active: 77 stars in the first month, a v2 paper revision, and a leaderboard refresh adding new models. |
+| Maturity / traction | 2 | Launched June 2026 (77 stars in the first month) and sustained since: a NatureBench-25 25-task track (Aug 28), a Harbor/Hugging Face task-conversion integration (Aug 31), and externally submitted leaderboard runs (Claude Opus 5, DeepSeek-V4-Pro, Qwen 3.8 Max, GLM-5.3 Flash) kept current through Sept 23, 2026 — external users and regular releases, though still short of sustained production adoption. |
 | Cross-family policy | 1 | Post-hoc validity judge is configured independently of the executing agent, so cross-family judging is possible via config but neither default nor required. |
 | Runtime assurance | 1 | Hidden-ground-truth evaluator plus a post-hoc validity judge screen scored outputs; no in-flight gating while the agent runs. |
 | Cross-platform portability | 2 | Built-in adapters for Claude Code, Codex CLI, and Gemini CLI plus a documented custom-agent interface. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

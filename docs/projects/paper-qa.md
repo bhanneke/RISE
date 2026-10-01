@@ -29,12 +29,12 @@ Reports superhuman performance on scientific QA, summarization, and contradictio
 | Outputs / reproducibility | 2 | Caching + index reuse make outputs reproducible given fixed inputs and model. |
 | Internal evaluation | 3 | Published 2024 paper with comparative benchmarks; widely cited as a reference RAG baseline. |
 | Openness | 3 | Apache-2.0; PyPI; documented API; permissive license; reproducibility scripts in repo. |
-| Maturity / traction | 3 | 8.5k+ stars, production-grade releases, embedded in downstream FutureHouse systems. |
+| Maturity / traction | 3 | 9.3k+ stars, production-grade releases now on calendar versioning (e.g. v2025.12.17), embedded in downstream FutureHouse systems. |
 | Cross-family policy | 1 | Multiple model back-ends; cross-family setups supported via LiteLLM. |
 | Runtime assurance | 3 | Retraction-Watch integration + citation grounding + metadata enrichment + multi-pass RAG = heavy runtime assurance for citation faithfulness specifically. |
 | Cross-platform portability | 3 | Pip-installable, multiple embedding back-ends, multiple LLM back-ends via LiteLLM, embeddable in other pipelines. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

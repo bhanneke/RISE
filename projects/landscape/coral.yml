@@ -76,10 +76,10 @@ scores:
     note: "Rubric-judge packages provide structured internal evaluation; arXiv paper presents systematic results."
   openness:
     score: 3
-    note: "MIT-licensed; uv-installable; broad agent-back-end support."
+    note: "Apache-2.0-licensed (corrected from an earlier note that misstated it as MIT); uv-installable; broad agent-back-end support."
   maturity_traction:
     score: 2
-    note: "937 stars as of 2026-09 (up from 835); release cadence continues (past v0.7.20, up from v0.7.9-11); paper accepted at COLM 2026; integrated with major coding agents."
+    note: "~1,000 stars as of 2026-09/10 (up from 937); latest release v0.7.21 (2026-09-06, up from v0.7.20); paper accepted at COLM 2026; integrated with major coding agents."
   cross_family_policy:
     score: 1
     note: 'Multi-agent coding-agent integration (Claude Code, Codex, OpenCode, Cursor) — cross-family configurable.'
@@ -89,7 +89,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: 'Multiple coding-agent back-ends (Claude Code, OpenCode, Codex, Cursor, Kiro) — broad portability.'
-scored_on: "2026-09-01"
+scored_on: "2026-10-01"
 
 limitations:
   - "Optimization-focused: best fit for *grade-against-script* tasks, not open-ended scholarly authoring."

@@ -29,12 +29,12 @@ The only economic-data-acquisition MCP tool in the catalog: an LLM-parser → se
 | Outputs / reproducibility | 1 | Persists structured data exports (CSV/JSON/Stata/Python) with source attribution and cached deterministic re-fetch; no paper/code/data-manifest bundle — it is a data tool, not a paper-producing pipeline. |
 | Internal evaluation | 0 | Only latency metrics reported (~0.1s cached, several seconds first query); no evaluation of query-to-indicator mapping accuracy. |
 | Openness | 1 | AGPL-3.0 (copyleft, source-sharing required for hosted service); free hosted demo gated at 20 queries before signup. |
-| Maturity / traction | 2 | 69 stars, 885 commits, live production demo (data.openecon.ai/chat) — active beta with external users, single-maintainer team. |
+| Maturity / traction | 2 | 81 stars, 891 commits, live production demo (data.openecon.ai/chat) — active beta with external users, single-maintainer team. |
 | Cross-family policy | 0 | Not applicable — a data-fetching tool with no cross-model review process. |
 | Runtime assurance | 1 | Automatic fallback mechanisms when a preferred data provider fails; no claim-verification or citation-audit layer. |
 | Cross-platform portability | 2 | MCP server usable from Claude Code, Codex, and any compatible MCP client, plus a self-hostable stack and a browser demo. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

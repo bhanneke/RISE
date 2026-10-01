@@ -27,14 +27,14 @@ Argues that *end-to-end RL on real web environments* — not prompt engineering 
 | Architectural transparency | 3 | Open under Apache-2.0; arXiv:2504.03160 documents training; checkpoint released; code public. |
 | Inputs supported | 2 | Research-question inputs; trained for real-world web environments rather than simulated retrieval. |
 | Outputs / reproducibility | 2 | Released checkpoint enables reproducible inference; full RL training pipeline released. |
-| Internal evaluation | 3 | Quantitative gains vs. prompt-engineering and RAG-RL baselines reported in the arXiv paper. |
+| Internal evaluation | 3 | Quantitative gains vs. prompt-engineering and RAG-RL baselines; now peer-reviewed, accepted to EMNLP 2025 main conference (ACL Anthology 2025.emnlp-main.22). |
 | Openness | 3 | Apache-2.0; open weights on HuggingFace; permissive license. |
-| Maturity / traction | 2 | 751 stars; active; recent academic release (2025-04). |
+| Maturity / traction | 2 | 801 stars, 55 forks; active; peer-reviewed at EMNLP 2025 (originally an arXiv preprint, 2025-04). |
 | Cross-family policy | 0 | Self-trained 7B model; single-family by design. |
 | Runtime assurance | 2 | RL-induced cognitive behaviors (cross-validation, self-reflection, honest non-answer) are emergent runtime checks, not external gates. |
 | Cross-platform portability | 1 | HuggingFace checkpoint + inference scripts; single model family. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -70,7 +70,7 @@ Argues that *end-to-end RL on real web environments* — not prompt engineering 
 
 ## Papers describing this project
 
-- **DeepResearcher: Scaling Deep Research via Reinforcement Learning in Real-world Environments** — Zheng, Y., Fu, D., Hu, X., Cai, X., Ye, L., Lu, P., et al. (2025). *arXiv*. [arXiv:2504.03160](https://arxiv.org/abs/2504.03160)
+- **DeepResearcher: Scaling Deep Research via Reinforcement Learning in Real-world Environments** — Zheng, Y., Fu, D., Hu, X., Cai, X., Ye, L., Lu, P., et al. (2025). *EMNLP 2025 (main conference)*. [arXiv:2504.03160](https://arxiv.org/abs/2504.03160)
 
 ## Also compared in
 

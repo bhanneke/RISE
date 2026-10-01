@@ -6,7 +6,7 @@
 
 **Project page:** <https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/>
 
-**Licence:** `proprietary (closed; Early Access Program)`
+**Licence:** `proprietary (closed; general availability on Google Cloud as of 2026-07)`
 
 **Source:** [`projects/landscape/alphaevolve.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/alphaevolve.yml)
 
@@ -28,13 +28,13 @@ An evolutionary-search harness over LLM-generated code that decouples *generatio
 | Inputs supported | 1 | Accepts a problem specification + an automated evaluator function; cannot handle problems without a scorable evaluation oracle. |
 | Outputs / reproducibility | 2 | Discovered artifacts (programs, mathematical constructions) are durable and verifiable; the discovery *process* requires Google compute and is not externally reproducible. |
 | Internal evaluation | 3 | Evaluation is by construction — every candidate is scored by the automated evaluator. 67-problem benchmark in Georgiev et al. provides external validation; a 2026-08 DeepMind paper (arXiv:2608.16884) reports AlphaEvolve-assisted improvement of the matrix-multiplication exponent upper bound to ω < 2.371177, a further concrete, checkable external result. |
-| Openness | 0 | Closed-source, gated behind Google DeepMind's Early Access Program for selected academic users. |
-| Maturity / traction | 2 | Reached general availability on Google Cloud (Gemini Enterprise Agent Platform) 2026-07-19 with enterprise customers (BASF, JetBrains, Klarna); whitepaper + high-profile follow-up papers (including Terence Tao as co-author on Georgiev et al.). |
+| Openness | 0 | Closed-source, no free tier — now a paid general-availability service on Google Cloud rather than an academic-only Early Access Program. |
+| Maturity / traction | 2 | Reached general availability on Google Cloud (Gemini Enterprise Agent Platform) 2026-07-19 with enterprise customers (BASF, JetBrains, Klarna); DeepMind's May-2026 impact report adds production use in data-center/TPU circuit design, disaster-risk forecasting, and genomics, plus customer results (FM Logistic, Kinaxis); whitepaper + high-profile follow-up papers (including Terence Tao as co-author on Georgiev et al.). |
 | Cross-family policy | 0 | Single model family (Gemini Pro/Flash) within Google DeepMind. |
 | Runtime assurance | 3 | Automated evaluator runs on every candidate as part of the search loop; this is the assurance layer by construction. |
 | Cross-platform portability | 0 | Tightly coupled to Google internal infrastructure and Gemini API; not portable. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

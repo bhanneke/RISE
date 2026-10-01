@@ -1,0 +1,106 @@
+pack:
+  slug: econ-skills
+  name: 'econ-skills (zbsaygin)'
+  source_url: 'https://github.com/zbsaygin/econ-skills'
+  maintainers:
+    - 'zbsaygin'
+  license: 'MIT'
+  total_skills: 7
+  last_update: '2026-09'
+  related_project: econ-skills
+  compatibility:
+    - claude-code
+  notes: >
+    Seven Claude Code skills for academic economics research, assuming a
+    Zotero + Better BibTeX bibliography workflow with citekeys in
+    authorShorttitleYear form. Requires replacing ~10 user-specific
+    placeholders (project directories, bibliography path, author
+    identity for LaTeX templates) after cloning. Distinct from the
+    separately-maintained, differently-scoped `econ-research-skills`
+    (hanlulong/econ-paper-review-skill) already in this catalog.
+
+skills:
+  - slug: read-paper
+    name: '/read-paper'
+    kind: skill
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+    field: economics
+    description: 'Reads an academic paper by citekey, author-year, or pasted PDF and produces structured summaries, methodology breakdowns, or targeted answers.'
+    source_path: 'read-paper/SKILL.md'
+    details_url: 'https://github.com/zbsaygin/econ-skills/blob/main/read-paper/SKILL.md'
+    provenance: 'econ-skills repo curation 2026-10-01'
+    last_update: '2026-09'
+  - slug: lit-review
+    name: '/lit-review'
+    kind: skill
+    category: literature
+    pipeline_stages:
+      - literature-synthesis
+    field: economics
+    description: 'Dispatches parallel sub-agents across topic-method dimensions for a multi-agent literature review, synthesizes the literature gap, and stress-tests it with an adversarial novelty referee until convergence.'
+    source_path: 'lit-review/SKILL.md'
+    details_url: 'https://github.com/zbsaygin/econ-skills/blob/main/lit-review/SKILL.md'
+    provenance: 'econ-skills repo curation 2026-10-01'
+    last_update: '2026-09'
+  - slug: audit-econ
+    name: '/audit-econ'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Audits economics research for correctness — math derivations, econometrics, code, data, proofs — by dispatching independent sub-agents, orchestrating a Delphi consensus, and presenting severity-sorted findings with a managed fix workflow.'
+    source_path: 'audit-econ/SKILL.md'
+    details_url: 'https://github.com/zbsaygin/econ-skills/blob/main/audit-econ/SKILL.md'
+    provenance: 'econ-skills repo curation 2026-10-01'
+    last_update: '2026-09'
+  - slug: notation-clean
+    name: '/notation-clean'
+    kind: skill
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Audits and simplifies mathematical notation in LaTeX/markdown to an Econometrica publication standard — one-shot inline symbols, sub-5-use ratios of parameters, Greek letters used for non-parameters, and collisions with reserved notation — triggered only on notation-specific requests.'
+    source_path: 'notation-clean/SKILL.md'
+    details_url: 'https://github.com/zbsaygin/econ-skills/blob/main/notation-clean/SKILL.md'
+    provenance: 'econ-skills repo curation 2026-10-01'
+    last_update: '2026-09'
+  - slug: latex-doc
+    name: '/latex-doc'
+    kind: skill
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: 'Creates, edits, fixes, and reviews LaTeX article documents (papers, proposals, writeups).'
+    source_path: 'latex-doc/SKILL.md'
+    details_url: 'https://github.com/zbsaygin/econ-skills/blob/main/latex-doc/SKILL.md'
+    provenance: 'econ-skills repo curation 2026-10-01'
+    last_update: '2026-09'
+  - slug: latex-slide
+    name: '/latex-slide'
+    kind: skill
+    category: slides
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: 'Builds, edits, fixes, and reviews Beamer slide decks, with an automated overflow audit.'
+    source_path: 'latex-slide/SKILL.md'
+    details_url: 'https://github.com/zbsaygin/econ-skills/blob/main/latex-slide/SKILL.md'
+    provenance: 'econ-skills repo curation 2026-10-01'
+    last_update: '2026-09'
+  - slug: graph
+    name: '/graph'
+    kind: skill
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    field: economics
+    description: 'Creates publication-quality matplotlib figures (including Lorenz curves, maps, binscatters) and LaTeX regression tables compiled to standalone PDF.'
+    source_path: 'graph/SKILL.md'
+    details_url: 'https://github.com/zbsaygin/econ-skills/blob/main/graph/SKILL.md'
+    provenance: 'econ-skills repo curation 2026-10-01'
+    last_update: '2026-09'

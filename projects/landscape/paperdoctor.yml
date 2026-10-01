@@ -1,0 +1,111 @@
+slug: paperdoctor
+name: "PaperDoctor"
+type: external
+status: active
+url: "https://github.com/QinghongLin/paperdoctor"
+license: "MIT"
+maintainers:
+  - "Lin, K.Q. (Oxford) and 16 co-authors (Stanford, NUS, Cambridge, U. Washington)"
+year_started: 2026
+
+positioning: >
+  An agent framework that gives pre-submission papers an evidence-grounded
+  diagnostic rather than a verdict: it checks writing, layout, references,
+  code, theory, prior work, and experiments, and for high-priority claims
+  reruns the paper's own code to verify them. Sits in the RISE
+  referee-simulation / revision-editing layer alongside `reviewer`,
+  `coarse-ink`, and `ai-research-feedback`, but is architected as a
+  three-layer surface/verifier/reproducer stack rather than a panel of
+  generalist reviewer personas.
+
+distinctive_contribution: >
+  Every finding is an auditable triple (observation, evidence pointer —
+  a sentence, equation, or code line — and revision suggestion), and its
+  L3 layer selectively re-executes experiments to confirm or refute
+  specific claims rather than relying on LLM judgment alone. Packaged as
+  11 Claude Code skills plus Python tooling (PDF parsing via Mathpix/MinerU,
+  code indexing), making the pipeline itself inspectable and installable.
+
+focus: review
+
+pipeline_stages:
+  - referee-simulation
+  - revision-editing
+  - replication
+
+architectural_features:
+  - multi-agent
+  - tool-use
+
+discipline: general
+
+inputs:
+  - "paper draft (PDF)"
+  - "paper's own code repository"
+
+outputs:
+  - "evidence-grounded diagnostic report"
+  - "revision suggestions"
+
+data_sources: []
+
+knowledge_sources:
+  - "paper's own cited prior work"
+  - "paper's own code/experiments"
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Covers referee-simulation, revision-editing, and selective claim re-execution (a slice of replication); no ideation/design/drafting."
+  autonomy_level:
+    score: 2
+    note: "Runs the full L1-L3 diagnostic pipeline unattended, but human sets up the run (supplies paper+repo) and reviews the final report."
+  architectural_transparency:
+    score: 3
+    note: "Full skill definitions, Python tools, and quick-start pipeline published in the repo; paper documents the 3-layer architecture in detail."
+  inputs_supported:
+    score: 2
+    note: "Two input forms (paper PDF + code repo) with access to the paper's own cited-literature and experiment artifacts."
+  outputs_reproducibility:
+    score: 1
+    note: "Persists a structured diagnostic report (prose + evidence pointers); no versioned paper+code+data manifest output."
+  internal_evaluation:
+    score: 2
+    note: "Systematically compared against human reviewers and other agentic reviewers in the paper's own study; not yet third-party validated."
+  openness:
+    score: 2
+    note: "MIT license, pip-installable with documented quick-start; requires paid Mathpix (or MinerU fallback) and LLM API credentials to run."
+  maturity_traction:
+    score: 1
+    note: "38 stars / 1 fork as of scoring date; posted September 2026, multi-institution authorship but single public release."
+  cross_family_policy:
+    score: 0
+    note: "Built as Claude Code skills; no documented cross-model-family review requirement or default."
+  assurance_runtime:
+    score: 2
+    note: "L2 typed verifiers route claims to dedicated checkers and L3 selectively reruns experiments — multiple in-pipeline gates before the report is finalized."
+  cross_platform_portability:
+    score: 0
+    note: "Tied to the Claude Code skill format; no evidence of other agent-runtime adapters."
+scored_on: "2026-10-01"
+
+limitations:
+  - "Requires paid Mathpix (or MinerU) and LLM API credentials; not free to run at scale."
+  - "Packaged specifically as Claude Code skills — portability to other agent runtimes is untested."
+  - "Very young (38 stars); evaluated only in its own benchmark study, no independent adoption evidence yet."
+
+related:
+  - ai-research-feedback
+  - reviewer
+  - coarse-ink
+  - ai-peer-review-skill
+
+papers:
+  - title: "PaperDoctor: Evidence-Grounded and Actionable Feedback for Scientific Papers in Progress"
+    authors: ["Lin, K.Q.", "Hu, S.", "Lu, P.", "and 14 others"]
+    year: 2026
+    venue: "arxiv"
+    arxiv_id: "2609.16995"
+    url: "https://arxiv.org/abs/2609.16995"
+
+references: []

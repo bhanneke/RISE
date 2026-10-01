@@ -2,7 +2,7 @@
 
 # Kosmos (jimmc414 implementation)
 
-`external` · status: `research-prototype` · focus: `end-to-end` · discipline: `general` · started: 2025
+`external` · status: `active` · focus: `end-to-end` · discipline: `general` · started: 2025
 
 **Project page:** <https://github.com/jimmc414/Kosmos>
 
@@ -29,12 +29,12 @@ Operationalizes the Kosmos architecture as a runnable system on commodity infras
 | Outputs / reproducibility | 2 | Knowledge graph + validated-discovery artifacts persisted; cycle outputs deterministic given fixed inputs and model. |
 | Internal evaluation | 2 | Built-in 8-dimension quality framework; broader external evaluation pending. |
 | Openness | 1 | Source public; the README states MIT, but there is no LICENSE file and the GitHub API reports none (checked 2026-09-29), so the grant rests on the README alone. |
-| Maturity / traction | 2 | 511 stars; alpha-stage release; active community uptake post-Kosmos paper. |
+| Maturity / traction | 2 | ~590 stars (up from 511); alpha-stage release (0.2.0-alpha); active community uptake post-Kosmos paper, with continued commits and open issue engagement into Q4 2026. |
 | Cross-family policy | 1 | Anthropic or OpenAI API back-ends — cross-family possible by config. |
 | Runtime assurance | 2 | Built-in 8-dimension quality framework + knowledge-graph consistency checks + sandboxed Docker execution. |
 | Cross-platform portability | 1 | Anthropic or OpenAI; single agent framework. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

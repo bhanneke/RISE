@@ -29,12 +29,12 @@ It publishes its judges: the repo ships the full autorater stack — citation F1
 | Outputs / reproducibility | 2 | Produces a complete, version-controllable LaTeX manuscript with generated figures and a synthesised bibliography from a declared materials directory, but no seeds, run manifest or provenance linking claimed numbers back to the supplied logs. |
 | Internal evaluation | 2 | Systematic internal evaluation reported in the arXiv paper — human-evaluation win-rate margins of 50–68% (literature-review quality) and 14–38% (overall manuscript quality) against autonomous baselines, on the 200-paper PaperWritingBench — but the preprint is not peer-reviewed and the benchmark dataset is not released, so no third party can reproduce or contest the numbers. |
 | Openness | 2 | Apache-2.0 and the pipeline plus autoraters are runnable against your own materials, so examples are partially reproducible; but the evaluation dataset is explicitly withheld ('released separately at a later date'), no example materials directory is shipped, and OpenAI or Vertex/Gemini plus Semantic Scholar keys are required. |
-| Maturity / traction | 1 | 124 stars and 19 forks on a two-commit code drop with no releases, nothing pushed since 2026-05-17, and an explicit note that it is not an officially supported Google product — attention without maintenance. |
+| Maturity / traction | 1 | 142 stars and 23 forks on a two-commit code drop with no releases, nothing pushed since 2026-05-17, and an explicit note that it is not an officially supported Google product — attention without maintenance. |
 | Cross-family policy | 0 | The backend is configured globally as OpenAI or Vertex AI/Gemini with no documented per-agent model assignment, so the section writer and the refinement agent run in the same family; unverified whether per-agent overrides exist, scored low accordingly. |
 | Runtime assurance | 1 | One light in-pipeline check — a dedicated content-refinement agent making a single-pass review over the draft, with related work grounded in Semantic Scholar retrieval; the citation-F1 and quality autoraters are post-hoc evaluation tooling, not gates in the generation path. |
 | Cross-platform portability | 1 | Two documented backends (OpenAI, or Vertex AI/Gemini) behind one Python CLI plus a Streamlit frontend — a small adapter set, one runtime. |
 
-*Scored on 2026-09-08. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

@@ -72,17 +72,17 @@ scores:
     note: "MIT-licensed; setup scripts for Windows and macOS/Linux; reproducible workflow."
   maturity_traction:
     score: 1
-    note: "94 stars and 20 forks by 2026-09 (up from a 2026-05-14 initialization) — real early adoption for a 4-month-old solo project — but no commits since 2026-05-15 and no tagged releases yet; still a single-developer research prototype."
+    note: "174 stars and 35 forks by 2026-09-30, with active commits through 2026-09-24 (95 total) and a new experimental Claude Code backend alongside the default Codex CLI — accelerating adoption for a 5-month-old solo project, but still no tagged releases; remains a single-developer research prototype."
   cross_family_policy:
     score: 0
-    note: 'Single-family (Codex CLI); reviewer agents within one model family.'
+    note: 'Single-family per run; the new --backend claude path swaps the whole pipeline to Claude Code rather than mixing families within one review.'
   assurance_runtime:
     score: 2
     note: 'Parser-quality preflight + schema validation + smoke checks gate the editor report; no claim-audit pass.'
   cross_platform_portability:
-    score: 0
-    note: 'Codex-CLI-locked; Windows + macOS/Linux setup scripts but single agent framework.'
-scored_on: "2026-09-01"
+    score: 1
+    note: 'Now runs on two agent runtimes — Codex CLI (default, GPT-6 Sol/Luna) and an experimental --backend claude path via Claude Code (Opus 5.5) — plus Windows + macOS/Linux setup scripts.'
+scored_on: "2026-10-01"
 
 limitations:
   - "Single-stage tool (review only); requires upstream paper provenance."

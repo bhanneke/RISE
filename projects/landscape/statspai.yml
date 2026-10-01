@@ -70,14 +70,14 @@ scores:
     score: 2
     note: "Structured result objects with tidy/LaTeX/DOCX export, plotting, citation, and serialization; deterministic reruns, but no end-to-end paper/data-manifest artifacts."
   internal_evaluation:
-    score: 2
-    note: "R/Stata reference-parity tests with validation_status tiers and sp.cross_validate, ~200k LOC of tests in CI; JOSS review pending, no external validation yet."
+    score: 3
+    note: "R/Stata reference-parity tests with validation_status tiers and sp.cross_validate, ~200k LOC of tests in CI; JOSS review completed and paper published 2026-09-03 (JOSS 11(125):10604) — external peer-reviewed validation."
   openness:
     score: 3
     note: "MIT license, pip-installable from PyPI, examples run offline on commodity hardware after install; Zenodo-archived releases."
   maturity_traction:
     score: 2
-    note: "282 stars / 58 forks, v1.20.0 with rapid release cadence over ~12 months, PyPI + Zenodo DOI; external adoption still modest and peer review (JOSS) not yet complete."
+    note: "328 stars / 68 forks, v1.29.0 with rapid release cadence over ~12 months, PyPI + Zenodo DOI, and a completed JOSS peer review (published 2026-09-03); external adoption still modest relative to incumbent Stata/R tooling."
   cross_family_policy:
     score: 0
     note: "Not applicable — no LLM in the loop; a deterministic library callable from any model family."
@@ -87,7 +87,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: "Three integration surfaces — plain Python API, MCP server, and skill packaging — all provider-agnostic, but deployment is confined to Python environments."
-scored_on: "2026-07-23"
+scored_on: "2026-10-01"
 
 limitations:
   - "A library, not a research system: design choice, specification, and interpretation remain entirely with the calling agent or human."
@@ -100,6 +100,14 @@ related:
   - recast-causal-ai
 
 # ── Papers describing this project ─────────────────────
-papers: []  # JOSS submission under review (status badge in README); software citable via Zenodo concept DOI 10.5281/zenodo.19933900 (CITATION.cff, v1.20.0, 2026-06-22).
+papers:
+  - title: 'StatsPAI: A Unified, Agent-Native Python Toolkit for Causal Inference and Applied Econometrics'
+    authors:
+      - 'Wang, B.'
+      - 'Rozelle, S.'
+    year: 2026
+    venue: 'Journal of Open Source Software, 11(125), 10604'
+    doi: '10.21105/joss.10604'
+  # Software also citable via Zenodo concept DOI 10.5281/zenodo.19933900 (CITATION.cff, v1.20.0, 2026-06-22).
 
 references: []

@@ -80,7 +80,7 @@ scores:
     note: "MIT-licensed code for earlier version; current system features are commercial."
   maturity_traction:
     score: 2
-    note: "305 stars; commercial backing (Intology); credible publication trajectory."
+    note: "316 stars; commercial backing (Intology); credible publication trajectory. Intology's active development focus has since moved to its successor system, Locus (announced 2026, leads PostTrainBench), while this repository's last commit remains 2025-11-19."
   cross_family_policy:
     score: 0
     note: 'Same-model self-refinement is the canonical failure mode ARIS Table 4 identifies.'
@@ -90,12 +90,13 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Public code covers earlier version; current pipeline is commercial.'
-scored_on: "2026-05-18"
+scored_on: "2026-10-01"
 
 limitations:
   - "Public code lags the current capabilities described in marketing — current pipeline is not fully open."
   - "Validation is via specific peer-reviewed papers; cross-domain generality is asserted but not separately tested."
   - "Last push 2025-11; the open repository may not reflect the live system."
+  - "Intology's subsequent product, Locus (an ML-training/experiment-orchestration system, not a paper-writing agent), appears to be the company's current flagship rather than this repository — this entry tracks the Zochi codebase specifically, not Locus."
 
 related:
   - sakana-ai-scientist

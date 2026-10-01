@@ -65,14 +65,14 @@ scores:
     score: 1
     note: "Reports are persisted client-side; not deterministic across runs by design (different model choices)."
   internal_evaluation:
-    score: 1
-    note: "Self-reported blind evaluation vs. refine.ink, Stanford Agentic Reviewer, reviewer3.com; no third-party benchmark."
+    score: 2
+    note: "Self-reported blind evaluation vs. refine.ink, Stanford Agentic Reviewer, reviewer3.com, plus a new independent third-party benchmark (Nguyen et al., 'Benchmarking Agentic Review Systems', arXiv:2606.19749, submitted 2026-06-18) that evaluates Coarse alongside OpenAIReview, Reviewer3 and a zero-shot baseline on a citation/acceptance quality-proxy study and an error-injection benchmark across six LLMs — Coarse is not reported as the top performer, and the paper is an arXiv preprint, not yet confirmed peer-reviewed."
   openness:
     score: 3
     note: "MIT-licensed; BYOK (bring-your-own-key) model; transparent pricing (~under $2/review with OpenRouter)."
   maturity_traction:
     score: 1
-    note: "Active hosted service in 2026; underlying open-source repo (davidvandijcke/coarse) shows 182 GitHub stars and a v1.9.2 release; hosted-service user base still not publicly disclosed."
+    note: "Hosted service presumed active in 2026 — direct fetch of coarse.ink is blocked by this session's network egress policy, so liveness could not be directly reverified, but the ecosystem is corroborated by third-party coverage (e.g. manusights.com reviews of refine.ink referencing Coarse) and by the arXiv:2606.19749 benchmark; underlying open-source repo (davidvandijcke/coarse) now shows 191 GitHub stars (up from 182) and release v1.9.4 (up from v1.9.2); hosted-service user base still not publicly disclosed."
 
   cross_family_policy:
     score: 1
@@ -83,7 +83,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: 'Multi-provider via OpenRouter + local Claude Code/Codex/Gemini CLI fallback.'
-scored_on: "2026-09-01"
+scored_on: "2026-10-01"
 
 limitations:
   - "Single-stage tool; needs upstream paper provenance."

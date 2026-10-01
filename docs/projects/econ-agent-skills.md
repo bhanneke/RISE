@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/JonasWeinert/EconAgentSkills>
 
-**Licence:** `unclassified (licence file present; see repository)`
+**Licence:** `CC0-1.0`
 
 **Source:** [`projects/landscape/econ-agent-skills.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/econ-agent-skills.yml)
 
@@ -28,13 +28,13 @@ The only pack in the catalog that pins the modern heterogeneity-robust estimator
 | Inputs supported | 2 | Multiple input forms (user datasets in several formats, a free-text analysis request, an existing draft for latex-tables / academic-paper-writer) plus data-source access via api-data-fetcher; no literature corpus or bibliographic connector of any kind. |
 | Outputs / reproducibility | 2 | Produces runnable analysis scripts, LaTeX tables and vector figures, and mandates a decisions-log header plus DIME master-do-file discipline — genuine provenance for the choices made — but there is no end-to-end reproducibility guarantee and no manifest tying outputs back to inputs. |
 | Internal evaluation | 0 | No evaluation, test suite, or worked-benchmark comparison reported; the method choices are asserted from the literature, not validated against a gold standard. Verified by reading the README on 2026-09-08. |
-| Openness | 2 | README dedicates the work under CC0 1.0 (maximally permissive) and the skills are plain markdown with runnable examples, but the GitHub API cannot parse the license and reports 'Other (NOASSERTION)', so the formal reuse terms are ambiguous; the three Stata skills additionally require a commercial Stata license to reproduce. |
-| Maturity / traction | 1 | 18 stars, 3 forks, 3 commits — all on 2026-05-05, the day the repo was created, with nothing pushed since. A well-made single-drop personal pack, not a maintained project. |
+| Openness | 2 | A LICENSE file in the repo confirms CC0 1.0 Universal (maximally permissive; re-verified 2026-10-01, resolving the earlier GitHub-API NOASSERTION ambiguity), and the skills are plain markdown with runnable examples, but the three Stata skills additionally require a commercial Stata license to reproduce, so not all examples are commodity-hardware reproducible. |
+| Maturity / traction | 1 | 24 stars, 3 forks, still only 3 commits — all on 2026-05-05, the day the repo was created, with nothing pushed since (confirmed 2026-10-01). A well-made single-drop personal pack, not a maintained project. |
 | Cross-family policy | 0 | No cross-family review mechanism: the skills are runtime-portable markdown but say nothing about which model executes versus which reviews, and no second-family check is defined anywhere. Portability is not a cross-family policy. |
 | Runtime assurance | 1 | One light in-flight mechanism, applied consistently: the ASK/DEFAULT+flag/DOCUMENT/PROCEED ladder plus the decisions-log header surface and escalate methodological assumptions. Nothing verifies the numbers — no result audit, no re-estimation check, no figure or claim inspection. |
 | Cross-platform portability | 2 | Built on the open SKILL.md standard with a Python installer targeting Claude Code, Cursor and Codex, and examples in five languages — 3 documented runtimes, short of the 5+ environments band 3 requires. |
 
-*Scored on 2026-09-08. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -58,8 +58,8 @@ The only pack in the catalog that pins the modern heterogeneity-robust estimator
 
 ## Limitations
 
-- Dormant: 3 commits, all on the creation date 2026-05-05, none in the four months since.
-- License is formally ambiguous — the README dedicates CC0 1.0 but GitHub reports NOASSERTION, so downstream reuse rests on the README text alone.
+- Dormant: 3 commits, all on the creation date 2026-05-05, none in the five months since (confirmed 2026-10-01).
+- License confirmed as CC0 1.0 Universal via the repo's LICENSE file (earlier GitHub-API NOASSERTION reading was a parsing artifact, not a real ambiguity).
 - Deliberately opinionated: the defaults are one defensible position in live methodological debates, and a research design the author did not anticipate will fight the skill rather than be served by it.
 - Method coverage is a mid-2026 snapshot; a named-estimator pack ages faster than a generic one, and there is no maintainer activity to refresh it.
 - No evaluation of whether following the skills produces better estimates than an unguided agent.

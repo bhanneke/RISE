@@ -76,7 +76,7 @@ scores:
     note: "Public repo with open PR-based contribution, but no license file at scoring date."
   maturity_traction:
     score: 1
-    note: "Young (June 2026) and small (9 stars), but anchored to the EC 2026 workshop with problems from many of the field's most prominent researchers."
+    note: "Young (June 2026) and still small (16 stars as of 2026-10-01, up from 9), but active curation continues (45 commits, most recent 2026-09-09) and it remains anchored to the EC 2026 workshop with problems from many of the field's most prominent researchers."
   cross_family_policy:
     score: 0
     note: "Not applicable — model-agnostic problem statements with no runtime; no policy on solving systems."
@@ -86,7 +86,7 @@ scores:
   cross_platform_portability:
     score: 3
     note: "Plain markdown + YAML, consumable by any agent framework or by humans; deliberately format-minimal."
-scored_on: "2026-07-22"
+scored_on: "2026-10-01"
 
 limitations:
   - "No license file at scoring date — reuse terms are unclear."

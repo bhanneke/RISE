@@ -78,8 +78,8 @@ scores:
     score: 1
     note: "Code is public but no declared open-source license — reuse rights are uncertain."
   maturity_traction:
-    score: 1
-    note: "37 stars; published-paper artifact with limited community uptake; last push 2025-08."
+    score: 0
+    note: "61 stars (up from 37), but no push since 2025-08-24 — now 14+ months without activity, past the rubric's 12-month dormancy threshold; a published-paper artifact that has stopped seeing maintenance."
   cross_family_policy:
     score: 0
     note: 'Single LLM family.'
@@ -89,7 +89,7 @@ scores:
   cross_platform_portability:
     score: 0
     note: 'Single Python pipeline; OpenAI-API-locked.'
-scored_on: "2026-05-18"
+scored_on: "2026-10-01"
 
 limitations:
   - "No declared open-source license."

@@ -34,12 +34,12 @@ The first community-curated open-problem benchmark aimed at AI-driven theory res
 | Outputs / reproducibility | 0 | No system outputs; solutions arrive as ordinary research papers outside the repo. |
 | Internal evaluation | 1 | Expert curation and optional contributor-assigned difficulty ratings; no scoring harness, baselines, or leaderboard yet. |
 | Openness | 1 | Public repo with open PR-based contribution, but no license file at scoring date. |
-| Maturity / traction | 1 | Young (June 2026) and small (9 stars), but anchored to the EC 2026 workshop with problems from many of the field's most prominent researchers. |
+| Maturity / traction | 1 | Young (June 2026) and still small (16 stars as of 2026-10-01, up from 9), but active curation continues (45 commits, most recent 2026-09-09) and it remains anchored to the EC 2026 workshop with problems from many of the field's most prominent researchers. |
 | Cross-family policy | 0 | Not applicable — model-agnostic problem statements with no runtime; no policy on solving systems. |
 | Runtime assurance | 0 | No runtime; problem statements only. |
 | Cross-platform portability | 3 | Plain markdown + YAML, consumable by any agent framework or by humans; deliberately format-minimal. |
 
-*Scored on 2026-07-22. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

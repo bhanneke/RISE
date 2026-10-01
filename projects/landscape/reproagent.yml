@@ -1,0 +1,116 @@
+slug: reproagent
+name: "ReproAgent"
+type: external
+status: active
+url: "https://github.com/kernel-14/ReproAgent"
+license: "MIT"
+maintainers:
+  - "Hu, X."
+  - "Pan, Z."
+  - "Wang, Z."
+  - "Liu, Z."
+  - "Su, Z."
+  - "Zhang, W."
+year_started: 2026
+
+positioning: >
+  A contract-guided paper-to-code reproduction agent: given a research
+  paper, a four-stage Prepare-Plan-Generate-Repair pipeline extracts
+  implementation requirements, binds them to evidence from related
+  repositories, and generates a dependency-ordered, repair-validated
+  codebase. Sits in the RISE code-generation/replication layer alongside
+  `paper2code`, `repro-bench`, and `core-bench`, evaluated directly on
+  PaperBench Code-Dev.
+
+distinctive_contribution: >
+  Maintains a persistent "implementation contract" with two channels — an
+  implementation-requirement channel (paper snippets to code obligations)
+  and a reference-evidence channel (retrieved structure/content from
+  related repos) — both projected into file-level contracts that are
+  carried through generation and repair. On PaperBench Code-Dev it beats
+  same-backbone baselines (BasicAgent, IterAgent, an AI-Scientist-style
+  scaffold) under both Claude-Sonnet-4.5 and Gemini-3-Flash.
+
+focus: replication
+
+pipeline_stages:
+  - code-generation
+  - replication
+
+architectural_features:
+  - dag-orchestration
+  - iterative-loop
+  - tool-use
+
+discipline: computer-science
+
+inputs:
+  - "research paper (PDF/text)"
+
+outputs:
+  - "executable code repository"
+  - "coverage/validation report"
+
+data_sources: []
+
+knowledge_sources:
+  - "related code repositories (reference-evidence channel)"
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Declared stages are code-generation and replication only; no ideation, design, data-analysis, or write-up coverage."
+  autonomy_level:
+    score: 3
+    note: "Runs the full Prepare-Plan-Generate-Repair pipeline end-to-end to produce a complete repository without per-step approval."
+  architectural_transparency:
+    score: 3
+    note: "Full pipeline code, dual-channel contract implementation, and ablation-study runners published under MIT."
+  inputs_supported:
+    score: 1
+    note: "Single input form (the paper itself); related-repo retrieval is an internal knowledge source, not a separate user-facing input."
+  outputs_reproducibility:
+    score: 2
+    note: "Produces a versioned generated repository with a coverage report; no accompanying data manifest or claim about full paper+data reproducibility."
+  internal_evaluation:
+    score: 3
+    note: "Evaluated on the established external PaperBench Code-Dev benchmark and accepted to Findings of EMNLP 2026 — peer-reviewed external validation."
+  openness:
+    score: 2
+    note: "MIT license, pip-installable with documented quick-start; requires Gemini or Claude API credentials to run."
+  maturity_traction:
+    score: 1
+    note: "2 stars / 0 forks, 7 commits as of scoring date; posted August 2026, single public evaluation study."
+  cross_family_policy:
+    score: 1
+    note: "Demonstrated under two different model families (Claude-Sonnet-4.5 and Gemini-3-Flash) as interchangeable backbones, but not required by design."
+  assurance_runtime:
+    score: 2
+    note: "Repair stage validates contract coverage and fixes gaps before completion — an in-pipeline gate beyond a single-pass generation."
+  cross_platform_portability:
+    score: 1
+    note: "Supports at least two LLM backbones (Claude, Gemini); no evidence of broader runtime/IDE portability."
+scored_on: "2026-10-01"
+
+limitations:
+  - "Generates code only; does not address missing data or model weights (untested on fully artifact-absent 'Reimplement'-style cases)."
+  - "Very young repository (2 stars, 7 commits); evaluated in a single published study (PaperBench Code-Dev) so far."
+  - "ML/CS-specific; untested on economics/social-science replication workflows (e.g., Stata/R-based pipelines)."
+
+related:
+  - paper2code
+  - repro-bench
+  - core-bench
+  - reprorepo
+  - reclaim
+  - researchclaw-bench
+
+papers:
+  - title: "ReproAgent: Contract-Guided Paper-to-Code Reproduction"
+    authors: ["Hu, X.", "Pan, Z.", "Wang, Z.", "Liu, Z.", "Su, Z.", "Zhang, W."]
+    year: 2026
+    venue: "EMNLP 2026 Findings / arxiv"
+    arxiv_id: "2608.24291"
+    url: "https://arxiv.org/abs/2608.24291"
+
+references: []

@@ -78,7 +78,7 @@ scores:
     note: "Apache-2.0; broad distribution; active community."
   maturity_traction:
     score: 3
-    note: "28.5k+ stars, regular releases through v3.6.0 (2026-07-18, LangChain deep-agents integration + OpenAlex retriever), Claude Skill integration, large Discord community."
+    note: "29.9k+ stars, 4.1k forks; releases continue through v3.7.0 (2026-09-26, smarter usefulness-based context filtering with embeddings now optional) and v3.6.1 (2026-08-23), Claude Skill integration, large Discord community."
   cross_family_policy:
     score: 0
     note: 'Multi-LLM-provider but no cross-family policy.'
@@ -88,7 +88,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: 'Multi-provider, Claude Skill, Docker, Colab, PyPI; deliberately portable.'
-scored_on: "2026-05-18"
+scored_on: "2026-10-01"
 
 limitations:
   - "Optimized for general-purpose research; not tuned for academic-rigor outputs (no method/identification awareness)."

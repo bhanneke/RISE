@@ -71,14 +71,14 @@ scores:
     score: 1
     note: "Only lightweight aggregate CSVs are released; benchmark cases, snapshots, and agent outputs must be regenerated with credentials and nondeterministic LLM stages."
   internal_evaluation:
-    score: 2
-    note: "Systematic evaluation across 1,149 papers with ablations and run-variance analysis; arXiv preprint, not yet peer-reviewed."
+    score: 3
+    note: "Systematic evaluation across 1,149 papers (7,553 human-reported reproduction blockers) with ablations and run-variance analysis; the paper is now accepted to EMNLP 2026, giving it peer-reviewed external validation."
   openness:
     score: 2
     note: "MIT-licensed, uv-managed, with an API-free smoke test; full pipeline requires GitHub plus model API credentials and data regeneration."
   maturity_traction:
     score: 1
-    note: "Weeks old (June 2026), 6 stars, single-team use; prominent CMU authorship (Shah, Talwalkar, Dettmers, Yang)."
+    note: "Released June 2026, 9 stars, single-team use; prominent CMU authorship (Shah, Talwalkar, Dettmers, Yang); paper now accepted to EMNLP 2026."
   cross_family_policy:
     score: 1
     note: "Audit runners (Codex CLI, Claude Code, DeepSeek-backed) and the LLM issue-review/alignment stages are separately configurable — cross-family judging is possible but not a stated policy."
@@ -88,7 +88,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: "Three runner back-ends (Codex CLI, Claude Code, Claude Code with DeepSeek) with Dockerfiles — three model providers."
-scored_on: "2026-07-23"
+scored_on: "2026-10-01"
 
 limitations:
   - "Ground truth covers only blockers users chose to report as GitHub issues; silent or unreported reproducibility failures are invisible to the benchmark."
@@ -114,7 +114,7 @@ papers:
       - 'Yang, Y.'
       - 'Talwalkar, A.'
     year: 2026
-    venue: 'arXiv'
+    venue: 'EMNLP 2026'
     arxiv_id: '2606.18237'
 
 references:

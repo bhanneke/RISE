@@ -32,14 +32,14 @@ Focuses the agentic-research conversation on *replication of existing papers* ra
 | Architectural transparency | 2 | Open source; architecture documented in README; prompts visible. |
 | Inputs supported | 2 | Accepts target paper + target dataset; integrates external sources. |
 | Outputs / reproducibility | 2 | Reports + code persisted; reproducibility-by-design as a stated goal. |
-| Internal evaluation | 1 | Demonstrated on example papers; no broad benchmark of replication success rates. |
+| Internal evaluation | 2 | Systematic benchmark across 48 papers with human-verified reproducibility, run against 4 agent scaffolds and 4 LLMs, with root-cause analysis of failures; paper now forthcoming at EMNLP 2026 but not yet third-party replicated. |
 | Openness | 3 | Open source under permissive license. |
-| Maturity / traction | 1 | Active prototype; single-developer-led; 30 stars but repo remains actively committed to (42 commits, most recent 2026-08-31). |
+| Maturity / traction | 1 | Active prototype; single-developer-led; 29 stars, 7 forks, 42 commits, most recent 2026-08-31; no further commits since. |
 | Cross-family policy | 0 | Single-LLM-family pipeline; methodology extractor + replicator within one family. |
 | Runtime assurance | 2 | Code-execution + output-match comparison against target paper is the runtime assurance. |
 | Cross-platform portability | 1 | Python-CLI tool; back-end LLM swappable but not multi-IDE. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -64,7 +64,7 @@ Focuses the agentic-research conversation on *replication of existing papers* ra
 ## Limitations
 
 - Success rate depends heavily on availability of target paper's data + code.
-- Limited published benchmarks of replication accuracy.
+- The 48-paper benchmark (4 scaffolds x 4 LLMs) lives in the companion paper, not as a runnable harness in this repo; success varies substantially by model, scaffold and paper.
 
 ## Related projects in this catalog
 
@@ -72,7 +72,7 @@ Focuses the agentic-research conversation on *replication of existing papers* ra
 
 ## Papers describing this project
 
-- **Read the Paper, Write the Code: Agentic Reproduction of Social-Science Results** — Köhler, B., Zollikofer, D., Einsiedler, A., Hoyle, A., Ash, E. (2026). *arXiv*. [arXiv:2604.21965](https://arxiv.org/abs/2604.21965)
+- **Read the Paper, Write the Code: Agentic Reproduction of Social-Science Results** — Köhler, B., Zollikofer, D., Einsiedler, A., Hoyle, A., Ash, E. (2026). *arXiv (forthcoming at EMNLP 2026)*. [arXiv:2604.21965](https://arxiv.org/abs/2604.21965)
 
 ## Related references (literature catalog)
 

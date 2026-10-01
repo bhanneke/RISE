@@ -80,7 +80,7 @@ scores:
     note: "MIT-licensed plain markdown; install is a documented directory copy that reproduces the full artifact on any machine."
   maturity_traction:
     score: 2
-    note: "5,449 stars / 269 forks within ~4 months (created 2026-03-05) show broad adoption, but the repo is a 6-commit content drop with no releases, no issue activity, and a single curator; last push 2026-06-23."
+    note: "7.2k stars / 341 forks by Oct 2026 (created 2026-03-05, up from 5.4k/269 in July) show continued viral pickup, but the repo is still a 6-commit content drop with no releases and no issue activity — growth is attention to the content, not project development."
   cross_family_policy:
     score: 0
     note: "Not applicable — passive model-agnostic content with no executor/reviewer configuration."
@@ -90,7 +90,7 @@ scores:
   cross_platform_portability:
     score: 3
     note: "Deliberately skills-as-Markdown: three officially documented runtimes (Codex, Claude Code, Gemini CLI) and the plain SKILL.md format is consumable by any skills-capable agent runtime."
-scored_on: "2026-07-23"
+scored_on: "2026-10-01"
 
 limitations:
   - "Writing-block only: assumes finished research; no literature, data, or analysis support, and guidance is tuned to ML/CV/NLP conference conventions."

@@ -77,7 +77,7 @@ scores:
     note: "MIT license (explicitly chosen over AGPL to avoid copyleft transmission), pip-installable; still requires a paid Stata 13+ (17+ preferred) license to actually execute analyses."
   maturity_traction:
     score: 1
-    note: "42 stars, 161 commits, v0.12 (July 2026) — active single-maintainer research prototype, pre-1.0."
+    note: "46 stars, 5 forks, 161 commits, VS Code extension at v0.12.2 (10 Aug 2026 release) — active single-maintainer research prototype, pre-1.0."
   cross_family_policy:
     score: 0
     note: "Not applicable — an execution tool invoked by whichever AI assistant (Claude Code, Cursor, etc.) the user configures; no cross-model review of its own."
@@ -87,7 +87,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: "Four execution surfaces (MCP, Jupyter kernel, VS Code extension, CLI) over one core, usable from Claude Code, Cursor, Claude Desktop, and plain Jupyter/VS Code."
-scored_on: "2026-09-01"
+scored_on: "2026-10-01"
 
 limitations:
   - "Requires a paid Stata 13+ installation (17+ preferred for the pystata in-memory backend); not runnable end-to-end on free/commodity software alone."

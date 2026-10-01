@@ -29,12 +29,12 @@ Packages a respected researcher's writing methodology — reverse outlining, one
 | Outputs / reproducibility | 1 | Revised prose persists only via the host runtime's file edits; the skill itself versions or packages nothing. |
 | Internal evaluation | 0 | No evaluation of skill effectiveness; credibility rests on the provenance of the source notes. |
 | Openness | 3 | MIT-licensed plain markdown; install is a documented directory copy that reproduces the full artifact on any machine. |
-| Maturity / traction | 2 | 5,449 stars / 269 forks within ~4 months (created 2026-03-05) show broad adoption, but the repo is a 6-commit content drop with no releases, no issue activity, and a single curator; last push 2026-06-23. |
+| Maturity / traction | 2 | 7.2k stars / 341 forks by Oct 2026 (created 2026-03-05, up from 5.4k/269 in July) show continued viral pickup, but the repo is still a 6-commit content drop with no releases and no issue activity — growth is attention to the content, not project development. |
 | Cross-family policy | 0 | Not applicable — passive model-agnostic content with no executor/reviewer configuration. |
 | Runtime assurance | 1 | Claim-evidence alignment as a 'hard constraint' and a final adversarial review pass are mandated in the workflow, but purely at prompt level — nothing enforces or gates them. |
 | Cross-platform portability | 3 | Deliberately skills-as-Markdown: three officially documented runtimes (Codex, Claude Code, Gemini CLI) and the plain SKILL.md format is consumable by any skills-capable agent runtime. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

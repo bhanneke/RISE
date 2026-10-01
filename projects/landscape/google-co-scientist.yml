@@ -15,9 +15,17 @@ positioning: >
   specialized agents — Generation, Reflection, Ranking, Proximity,
   Evolution, Meta-review — under a Supervisor, using Elo-based
   tournaments and simulated scientific debate to surface and refine
-  ideas. It sits in the upstream *ideation* layer: it proposes
-  hypotheses and experiments but does not run experiments, analyze
-  data, or draft papers.
+  ideas. Originally an upstream *ideation*-only system, a follow-up
+  preprint (arXiv:2608.26701, 2026-08-28) documents an
+  execution-grounded configuration that closes the loop in specific
+  case studies: interfacing with a real chemical-vapor-deposition
+  reactor and Gemini 3 Deep Think to design and run materials-science
+  syntheses, building a data-analysis pipeline for biology imaging
+  data, and autonomously producing a working inference-time-scaling
+  architecture in computer science — i.e. beyond pure ideation into
+  research-design, data-analysis and code-generation in these
+  demonstrated cases, though the publicly described default product
+  remains hypothesis/proposal generation.
 
 distinctive_contribution: >
   The most externally validated hypothesis-generation system on the
@@ -25,9 +33,17 @@ distinctive_contribution: >
   AI-proposed leads in AML drug repurposing, liver-fibrosis reversal,
   and antimicrobial-resistance gene transfer, and active use by
   infectious-disease, aging, and ALS research teams across 100+
-  institutions. RISE separately catalogs the open-source
-  reimplementation open-coscientist; this entry is the closed,
-  first-party system whose design that project reverse-engineers.
+  institutions. A 2026-08-28 follow-up preprint extends this with
+  closed-loop, execution-grounded validation across three disciplines:
+  single-attempt synthesis of monolayer MoS2/MoSe2/WS2 semiconductors
+  and a novel MXene precursor route in materials science, a biology
+  prediction pipeline matching unpublished wet-lab measurements, and a
+  CS architecture that outperformed six frontier models on HealthBench
+  — plus enterprise previews reported at Daiichi Sankyo, Bayer Crop
+  Science and US National Laboratories. RISE separately catalogs the
+  open-source reimplementation open-coscientist; this entry is the
+  closed, first-party system whose design that project
+  reverse-engineers.
 
 focus: ideation
 
@@ -36,6 +52,8 @@ pipeline_stages:
   - literature-synthesis
   - hypothesis-generation
   - research-design
+  - data-analysis
+  - code-generation
 
 architectural_features:
   - multi-agent
@@ -66,8 +84,8 @@ knowledge_sources:
 
 scores:
   lifecycle_coverage:
-    score: 1
-    note: "Four tightly clustered upstream stages culminating in ranked hypotheses and proposed experiments; no execution, analysis, or drafting."
+    score: 2
+    note: "Six stages: the original four upstream stages plus data-analysis and code-generation, now demonstrated in a 2026-08-28 follow-up preprint's closed-loop materials-science, biology and CS case studies; still no paper-drafting or referee-simulation stage, and the demonstrated execution capability is case-study-specific rather than the documented default product."
   autonomy_level:
     score: 3
     note: "Supervisor agent autonomously orchestrates the generate-debate-evolve tournament loop; scientist supplies the goal and reviews the ranked hypotheses."
@@ -82,27 +100,27 @@ scores:
     note: "Persists prose hypotheses and cited research overviews; closed and hosted, with no reproducible artifact package."
   internal_evaluation:
     score: 3
-    note: "Peer-reviewed in Nature (10.1038/s41586-026-10644-y) with experimental wet-lab validation of AI-proposed leads and sustained multi-institution adoption."
+    note: "Peer-reviewed in Nature (10.1038/s41586-026-10644-y) with experimental wet-lab validation of AI-proposed leads and sustained multi-institution adoption; reinforced by a 2026-08-28 arXiv follow-up (2608.26701) reporting closed-loop execution results across materials science, biology and CS, including single-attempt monolayer-semiconductor synthesis and outperforming six frontier models on HealthBench."
   openness:
     score: 1
     note: "No source or prompts released; a heavily gated trusted-tester tool (Hypothesis Generation in Gemini for Science) is the only access path."
   maturity_traction:
     score: 3
-    note: "Peer-reviewed, Google-backed, and in active real-world use across 100+ institutions with reported drug-discovery outcomes."
+    note: "Peer-reviewed, Google-backed, and in active real-world use across 100+ institutions with reported drug-discovery outcomes; as of 2026-08-28 enterprise previews are also named at Daiichi Sankyo, Bayer Crop Science and US National Laboratories, with closed-loop materials/biology/CS case studies published."
   cross_family_policy:
     score: 0
     note: "Single model family — all agents run on Gemini."
   assurance_runtime:
-    score: 2
-    note: "Reflection (peer-review) agent, Elo ranking tournament, and Meta-review provide multiple in-pipeline debate gates, with citations grounding outputs."
+    score: 3
+    note: "Reflection (peer-review) agent, Elo ranking tournament, and Meta-review provide multiple in-pipeline debate gates; the 2026-08-28 follow-up preprint adds real execution feedback as a runtime check (synthesis outcomes, lab measurements, benchmark scores feeding back into the loop), reporting a drop in severe methodological errors from 100% in baseline models to 24% — a heavier audit stack than debate-only gating."
   cross_platform_portability:
     score: 0
     note: "Closed, hosted on Google infrastructure and locked to Gemini; not deployable on other stacks."
-scored_on: "2026-07-23"
+scored_on: "2026-10-01"
 
 limitations:
   - "Closed source with trusted-tester-only access; the architecture is known from the papers but neither code nor prompts are published, so results are not independently reproducible."
-  - "Covers ideation only — proposes hypotheses and experiments but does not execute them; all wet-lab validation and downstream work is performed by human teams."
+  - "Execution-grounded closed-loop capability (materials/biology/CS) is demonstrated in named case studies in the 2026-08-28 preprint, not confirmed as the generally available default product; most deployments remain hypothesis-and-proposal generation with human teams executing downstream work."
   - "Runs entirely within the Gemini family, so it lacks cross-model-family review and is subject to that family's blind spots and single-vendor lock-in."
 
 related:
@@ -137,6 +155,18 @@ papers:
     year: 2025
     venue: 'arXiv (Google DeepMind)'
     arxiv_id: '2502.18864'
+  - title: 'Accelerating Scientific Research with Gemini in the Real-World'
+    authors:
+      - 'Schmidgall, S.'
+      - 'Zhu, X.'
+      - 'Shaw, M.'
+      - 'Yang, L.'
+      - 'Liévin, V.'
+      - 'Yang, J.'
+      - 'et al.'
+    year: 2026
+    venue: 'arXiv (Google DeepMind)'
+    arxiv_id: '2608.26701'
 
 references:
   - gottweis2026coscientist

@@ -61,3 +61,7 @@ Grades models against ~19,020 rubric criteria (~25 per task) decomposing each ex
 - [`asta-bench`](asta-bench.md)
 - [`naturebench`](naturebench.md)
 - [`robin`](robin.md)
+
+## Papers describing this project
+
+- **LifeSciBench: Evaluating Language Models on Realistic, Expert-Level Tasks in the Life Sciences** — Liu, A., Ho, A., Droste, A. M., Martin, D., Wong, E., Zhou, E., Zhou, I., Park, J., Jiao, J., Skelly, K.-R., Kim, K., Rao, K., Uehara, M., Marion, M., Fitzgerald, N., Dias, R., Shringarpure, S., Yuan, Y., Wang, Y. (2026). *bioRxiv preprint (OpenAI / Tacit Labs)*. [doi](https://doi.org/10.64898/2026.08.13.744657)

@@ -29,12 +29,12 @@ Treats peer review as a structured engineering problem with explicit schemas, va
 | Outputs / reproducibility | 2 | Schema-validated reviewer JSON and structured editor report persisted; deterministic given fixed model + prompts. |
 | Internal evaluation | 1 | Smoke checks on report structure and traceability; no published systematic benchmark yet. |
 | Openness | 3 | MIT-licensed; setup scripts for Windows and macOS/Linux; reproducible workflow. |
-| Maturity / traction | 1 | 94 stars and 20 forks by 2026-09 (up from a 2026-05-14 initialization) — real early adoption for a 4-month-old solo project — but no commits since 2026-05-15 and no tagged releases yet; still a single-developer research prototype. |
-| Cross-family policy | 0 | Single-family (Codex CLI); reviewer agents within one model family. |
+| Maturity / traction | 1 | 174 stars and 35 forks by 2026-09-30, with active commits through 2026-09-24 (95 total) and a new experimental Claude Code backend alongside the default Codex CLI — accelerating adoption for a 5-month-old solo project, but still no tagged releases; remains a single-developer research prototype. |
+| Cross-family policy | 0 | Single-family per run; the new --backend claude path swaps the whole pipeline to Claude Code rather than mixing families within one review. |
 | Runtime assurance | 2 | Parser-quality preflight + schema validation + smoke checks gate the editor report; no claim-audit pass. |
-| Cross-platform portability | 0 | Codex-CLI-locked; Windows + macOS/Linux setup scripts but single agent framework. |
+| Cross-platform portability | 1 | Now runs on two agent runtimes — Codex CLI (default, GPT-6 Sol/Luna) and an experimental --backend claude path via Claude Code (Opus 5.5) — plus Windows + macOS/Linux setup scripts. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

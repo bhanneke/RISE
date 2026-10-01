@@ -29,12 +29,12 @@ Most-adopted Claude Code-native research plugin (9k+ stars) with an explicit "AI
 | Outputs / reproducibility | 3 | Three-layer citation anchors enable claim-level audits; replication packages; versioned releases. |
 | Internal evaluation | 3 | Calibration mode with gold-set FNR/FPR measurement; cross-model verification (`ARS_CROSS_MODEL`); engages published failure-mode literature directly. |
 | Openness | 2 | CC BY-NC 4.0 (non-commercial); sponsor-supported; Codex CLI sibling distribution available. |
-| Maturity / traction | 3 | 44.5k+ stars (up from 39k+); rapid release cadence through v3.21.1 (2026-08-24); English + Traditional Chinese docs; multi-IDE support. |
+| Maturity / traction | 3 | 50k+ stars (up from 44.5k+); rapid release cadence continues through v3.22.2 (2026-09-25, adding a deterministic run-ledger/handoff-check and acronym checker); English + Traditional Chinese docs; multi-IDE support. |
 | Cross-family policy | 1 | ARS_CROSS_MODEL flag enables cross-family verification; not the default. |
 | Runtime assurance | 3 | Claim-faithfulness audit pass (ARS_CLAIM_AUDIT) with 5 HIGH-WARN classes + 3-stage citation anchors + cross-model verification = heaviest claim-audit harness in the catalog alongside ARIS. |
 | Cross-platform portability | 3 | Claude Code + VS Code + JetBrains + Codex CLI sibling distribution + 5 install methods. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

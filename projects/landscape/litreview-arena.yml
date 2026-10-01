@@ -1,0 +1,108 @@
+slug: litreview-arena
+name: "LitReview Arena"
+type: external
+status: active
+url: "https://github.com/VanellopeAsher/LitReview-Arena"
+license: "MIT"
+maintainers:
+  - "Zhao, R. (Tsinghua University) and co-authors"
+year_started: 2026
+
+positioning: >
+  A benchmark and evaluation platform for literature-review-writing agents:
+  it collects blind pairwise ("battle-style") expert preferences between
+  AI-generated and human/baseline literature-review drafts across five
+  dimensions (coverage, claim support, structure, research suggestions,
+  overall utility), then converts them into a reproducible offline
+  benchmark. Sits in the RISE evaluation-infrastructure layer next to
+  `asta-bench` and `surveyx`, but targets literature-synthesis quality
+  specifically rather than end-to-end research-agent capability.
+
+distinctive_contribution: >
+  Replaces citation-overlap metrics and generic LLM-as-judge scoring with
+  ~2,754 recruited-expert pairwise judgments (experts constrained to
+  researchers with AI paper-writing experience), and ships `LitJudge`, a
+  calibrated evaluator whose alignment with human judgment (Spearman's
+  rho 0.78) approaches inter-expert consistency — far above a naive
+  LLM-judge baseline (rho 0.467).
+
+focus: literature
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+
+architectural_features: []
+
+discipline: computer-science
+
+inputs:
+  - "literature-review draft"
+  - "research topic/query"
+
+outputs:
+  - "pairwise win/loss judgments"
+  - "dimension-wise scores"
+  - "leaderboard"
+
+data_sources: []
+
+knowledge_sources:
+  - "arxiv (source papers for review topics)"
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Evaluation target/platform; it judges literature-synthesis output rather than producing scholarship itself."
+  autonomy_level:
+    score: 0
+    note: "Static benchmark + judging pipeline; agency lives in the literature-review agents being evaluated (e.g., Sonar Deep Research, STORM)."
+  architectural_transparency:
+    score: 3
+    note: "Full data (2,754 judgments), LitJudge evaluator code, and calibration protocol published under MIT."
+  inputs_supported:
+    score: 1
+    note: "Single input form (review drafts to compare); no agent-facing data/knowledge access of its own."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists structured judgment data and leaderboard scripts; reproducible from released data but not an end-to-end paper+code+data pipeline."
+  internal_evaluation:
+    score: 3
+    note: "Accepted at ICML 2026; large-scale recruited-expert study is itself the paper's external validation."
+  openness:
+    score: 2
+    note: "MIT license, data and evaluator code public; running the full expert-judgment pipeline needs recruited annotators, not just commodity compute."
+  maturity_traction:
+    score: 1
+    note: "3 stars / 0 forks as of scoring date; posted August 2026, single-team artifact validated via one peer-reviewed study."
+  cross_family_policy:
+    score: 0
+    note: "Not applicable — an evaluation benchmark, not a review/executor-reviewer system."
+  assurance_runtime:
+    score: 0
+    note: "Offline benchmark; no in-flight integrity mechanisms."
+  cross_platform_portability:
+    score: 2
+    note: "Format-agnostic text comparisons already used to score 3+ distinct systems/backbones (e.g., Sonar Deep Research, STORM, base LLMs)."
+scored_on: "2026-10-01"
+
+limitations:
+  - "Pairwise expert 'battles' require recruiting researchers with AI paper-writing experience — costly to scale beyond the fixed dataset snapshot."
+  - "Built and validated on AI-domain literature reviews only; not tested on economics/social-science review writing."
+  - "Very young repository (3 stars); no sustained external leaderboard submissions yet."
+
+related:
+  - asta-bench
+  - surveyx
+  - storm
+  - open-scholar
+
+papers:
+  - title: "LitReview Arena: Evaluating Literature Review Agents with Battle-Style Peer Review Platform"
+    authors: ["Zhao, R.", "Chen, Z.", "Liu, X.", "and others"]
+    year: 2026
+    venue: "ICML 2026 / arxiv"
+    arxiv_id: "2608.21374"
+    url: "https://arxiv.org/abs/2608.21374"
+
+references: []

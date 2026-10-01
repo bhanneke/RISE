@@ -1,0 +1,104 @@
+slug: ai-peer-review
+name: "AI Peer Review (poldrack)"
+type: external
+status: active
+url: "https://github.com/poldrack/ai-peer-review"
+license: "MIT"
+maintainers:
+  - "Russell Poldrack"
+year_started: 2026
+
+positioning: >
+  A CLI tool for AI-assisted meta-review of scientific papers: submits a
+  manuscript to up to six proprietary LLMs (GPT-4o, GPT-4o-mini, Claude
+  3.7 Sonnet, Gemini 2.5 Pro, DeepSeek R1, Llama 4 Maverick) for
+  independent review, then synthesizes a meta-review plus a
+  concerns-by-reviewer matrix. Sits in the RISE referee-simulation lane
+  alongside `reviewer` and `marg`; it is the upstream original of the
+  catalogued `ai-peer-review-skill`, which replaces the six-provider
+  panel with parallel Claude subagents.
+
+distinctive_contribution: >
+  A genuine cross-model-family review panel (six different providers by
+  default) rather than N instances of one model family — the exact
+  trade-off its Claude-only fork gives up for convenience — plus a
+  "scientific-validity-only" review profile that screens out
+  presentation nitpicks to focus on substantive concerns.
+
+focus: review
+
+pipeline_stages:
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - tool-use
+
+discipline: general
+
+inputs:
+  - manuscript-pdf
+
+outputs:
+  - reviewer-reports
+  - meta-review
+  - concerns-matrix-csv
+  - results-json
+
+data_sources: []
+
+knowledge_sources: []
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Single stage: referee simulation on a finished manuscript."
+  autonomy_level:
+    score: 2
+    note: "One invocation submits the manuscript to all configured models and returns reviews plus a synthesized meta-review; the human supplies the paper and API keys and reads the final bundle, with no intermediate approval step."
+  architectural_transparency:
+    score: 3
+    note: "MIT; the CLI, per-model review prompts, meta-review synthesis logic, and configuration profiles (including a neuroscience-tuned default and a scientific-validity-only mode) are all in the repo. No evaluation harness exists to publish."
+  inputs_supported:
+    score: 0
+    note: "One input form (a manuscript) with no literature corpus or data access of any kind."
+  outputs_reproducibility:
+    score: 2
+    note: "Four durable artifacts per paper (per-model markdown reviews, a markdown meta-review, a CSV concerns matrix, and a JSON results bundle) organized by paper name; no seeding or model-version pinning, so reruns on the same manuscript can differ."
+  internal_evaluation:
+    score: 0
+    note: "No agreement statistics against human referee reports, and no comparison of review quality across the six supported models, reported in the repository."
+  openness:
+    score: 2
+    note: "MIT license and a documented pip install -e . setup, but running the full six-model panel requires paid API keys across up to four providers (OpenAI, Anthropic, Google, Together AI) — not free-tier reproducible."
+  maturity_traction:
+    score: 2
+    note: "154 stars, 25 forks, and commits as recent as 2026-07 — actively maintained, with enough external pickup to have spawned at least one derivative skill (`ai-peer-review-skill`, 61 stars)."
+  cross_family_policy:
+    score: 2
+    note: "Running independent reviewers across six different proprietary model families is the out-of-the-box default configuration, not an opt-in — the opposite trade-off from the single-family Claude fork."
+  assurance_runtime:
+    score: 1
+    note: "Each model produces a single-pass structured review, synthesized once into a meta-review; nothing checks a reviewer's claim back against the manuscript text or flags a likely confabulated concern."
+  cross_platform_portability:
+    score: 1
+    note: "A standalone Python CLI callable from any environment with API keys configured — not locked to one agent runtime like its Claude-Code-only fork — but it is a single tool, not a multi-IDE or multi-runtime skill package."
+scored_on: "2026-10-01"
+
+limitations:
+  - "Requires paid API keys across up to four providers (OpenAI, Anthropic, Google, Together AI) to run the full six-model panel — the most expensive single review tool in the catalog's review lane."
+  - "No evaluation of review quality or agreement against human referee reports or ground truth."
+  - "Default review profile and prompts were built for neuroscience/biomedical papers; adapting to other fields means editing prompts directly rather than passing a parameter (contrast the catalogued fork, which turns this into a config option)."
+  - "The README discloses that all code was AI-generated via Claude Code, with no independent code review reported."
+  - "No seeding or model-version pinning, so two runs on the same manuscript can yield materially different panels."
+
+related:
+  - ai-peer-review-skill
+  - reviewer
+  - marg
+  - ai-research-feedback
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper; the author documents the tool in a Substack series ("Reviewing scientific papers with AI").
+
+references: []

@@ -27,14 +27,14 @@ Uses human-raised GitHub issues as naturally occurring ground truth for reproduc
 | Architectural transparency | 3 | Full pipeline code, prompt and repository-text ablation variants, runner wrappers with Dockerfiles, and step-by-step pipeline documentation. |
 | Inputs supported | 1 | One composite input form (paper PDF + pinned repository snapshot) plus GitHub-issue and OpenReview/Paper-Copilot metadata access. |
 | Outputs / reproducibility | 1 | Only lightweight aggregate CSVs are released; benchmark cases, snapshots, and agent outputs must be regenerated with credentials and nondeterministic LLM stages. |
-| Internal evaluation | 2 | Systematic evaluation across 1,149 papers with ablations and run-variance analysis; arXiv preprint, not yet peer-reviewed. |
+| Internal evaluation | 3 | Systematic evaluation across 1,149 papers (7,553 human-reported reproduction blockers) with ablations and run-variance analysis; the paper is now accepted to EMNLP 2026, giving it peer-reviewed external validation. |
 | Openness | 2 | MIT-licensed, uv-managed, with an API-free smoke test; full pipeline requires GitHub plus model API credentials and data regeneration. |
-| Maturity / traction | 1 | Weeks old (June 2026), 6 stars, single-team use; prominent CMU authorship (Shah, Talwalkar, Dettmers, Yang). |
+| Maturity / traction | 1 | Released June 2026, 9 stars, single-team use; prominent CMU authorship (Shah, Talwalkar, Dettmers, Yang); paper now accepted to EMNLP 2026. |
 | Cross-family policy | 1 | Audit runners (Codex CLI, Claude Code, DeepSeek-backed) and the LLM issue-review/alignment stages are separately configurable — cross-family judging is possible but not a stated policy. |
 | Runtime assurance | 1 | Structured issue-case schema, LLM accept/reject case filtering, and the blind-snapshot protocol gate benchmark construction; no runtime audit stack. |
 | Cross-platform portability | 2 | Three runner back-ends (Codex CLI, Claude Code, Claude Code with DeepSeek) with Dockerfiles — three model providers. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -71,7 +71,7 @@ Uses human-raised GitHub issues as naturally occurring ground truth for reproduc
 
 ## Papers describing this project
 
-- **ReproRepo: Scaling Reproducibility Audits with GitHub Repository Issues** — Li, S., Wei, Q. A., Tang, J., Chen, V., Shah, N. B., Dettmers, T., Yang, Y., Talwalkar, A. (2026). *arXiv*. [arXiv:2606.18237](https://arxiv.org/abs/2606.18237)
+- **ReproRepo: Scaling Reproducibility Audits with GitHub Repository Issues** — Li, S., Wei, Q. A., Tang, J., Chen, V., Shah, N. B., Dettmers, T., Yang, Y., Talwalkar, A. (2026). *EMNLP 2026*. [arXiv:2606.18237](https://arxiv.org/abs/2606.18237)
 
 ## Related references (literature catalog)
 

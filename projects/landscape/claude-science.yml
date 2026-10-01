@@ -9,7 +9,8 @@ year_started: 2026
 
 positioning: >
   Anthropic's AI workbench for researchers ("Claude Code for
-  science"), announced 2026-06-30: a desktop app (macOS/Linux) in
+  science"), announced 2026-06-30: a desktop app (macOS, Linux, and,
+  natively since v0.1.47 on 2026-09-10, Windows) in
   which a generalist coordinating agent with 60+ curated skills and
   connectors spawns specialist agents to run literature analysis,
   database queries, multistep data analyses, figure iteration, and
@@ -106,13 +107,13 @@ scores:
     note: "Background reviewer agent flags incorrect citations, untraceable numbers, and figure-code mismatches in-flight and self-corrects; gating behavior not documented."
   cross_platform_portability:
     score: 1
-    note: "Single provider and dedicated macOS/Linux app, but compute targets span local machines, HPC via SSH, and Modal GPUs."
-scored_on: "2026-09-01"
+    note: "Single provider and dedicated desktop app, now shipping natively for macOS, Linux, and (since v0.1.47, 2026-09-10) Windows; compute targets still span local machines, HPC via SSH, and Modal GPUs — platform count grew but provider lock-in is unchanged."
+scored_on: "2026-10-01"
 
 limitations:
   - "Closed-source and subscription-gated; cannot be audited, self-hosted, or pointed at non-Anthropic models."
   - "Pre-configured depth is life-science-specific (genomics, proteomics, structural biology, cheminformatics) and the grants program prioritizes biology — other disciplines start from a generic baseline."
-  - "Effectiveness evidence is vendor-selected case studies rather than independent benchmarks; macOS/Linux only, no Windows."
+  - "Effectiveness evidence is vendor-selected case studies rather than independent benchmarks."
 
 related:
   - google-co-scientist

@@ -1,0 +1,132 @@
+<!-- DO NOT EDIT — auto-copied from skills/econtools/details/tyler.md -->
+
+# `/tyler`
+
+Converts a folder of academic PDFs into a token-efficient markdown wiki (one .md per paper plus a summary.txt index) so Claude Code can read literature cheaply without re-parsing raw PDFs each time.
+
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../econtools/">EconTools</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-09</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/johanfourieza/econtools/contents/tyler/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/econtools/tyler/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/johanfourieza/econtools/blob/main/tyler/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/johanfourieza/econtools?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+
+## PDF-to-Wiki Skill
+
+### Purpose
+
+This skill converts a directory of academic PDF papers into a structured, two-tier markdown wiki optimised for token efficiency. A typical 25-page economics paper costs ~12,000 tokens to read as a full PDF or full markdown. This skill produces:
+
+- **Tier 1 — Index** (`index.md`): ~400 tokens per paper. Contains title, authors, year, abstract, citation key, JEL codes, and keywords. For 100 papers, the entire index is ~40,000 tokens — easily readable in a single session.
+- **Tier 2 — Full papers** (`papers/*.md`): Cleaned markdown with YAML frontmatter. Only read on demand when you need detail on a specific paper.
+
+This means Claude can navigate a literature set of 100+ papers by reading just the index, then selectively read individual papers as needed.
+
+### What this skill produces
+
+```
+WIKI_DIR/
+├── index.md              # Auto-generated index with metadata + abstracts
+├── papers/
+│   ├── acemoglu_2012.md  # Full cleaned markdown with YAML frontmatter
+│   ├── nunn_2011.md
+│   └── ...
+└── .wiki_state.json      # Tracks converted files for incremental updates
+```
+
+Each `papers/*.md` file has YAML frontmatter:
+```yaml
+---
+title: "Why Nations Fail"
+authors: "Daron Acemoglu; James Robinson"
+year: "2012"
+citekey: "acemoglu2012"       # if --bib provided
+jel: "N10, O10"               # if found in paper
+keywords: "institutions, ..."  # if found in paper
+tags: [institutions, jel/N10] # derived from keywords + JEL (for Obsidian)
+source_pdf: "Acemoglu_Robinson_2012.pdf"
+---
+```
+
+The output folder is also a ready-to-use **Obsidian vault**. Open `WIKI_DIR` in Obsidian (or drop it inside an existing vault) and it works immediately: the YAML frontmatter shows up as note properties, the `tags:` field populates the tag pane and graph, and the index links each paper via `[[wikilinks]]` so the graph view shows the literature as a hub. Plugins like Dataview can query papers by year, JEL, or citekey.
+
+### Step-by-step instructions
+
+#### Step 0: Ask the user for inputs
+
+Ask the user for:
+
+- **PDF_DIR**: Full path to the folder containing the PDF files.
+- **WIKI_DIR**: Where to create the wiki. Default: `wiki/` in the current working directory.
+- **BIB_FILE** (optional): Path to a `.bib` file for citation key matching.
+- **Recursive?** (optional): Whether to scan subdirectories. Default: no.
+
+Confirm paths before proceeding.
+
+#### Step 1: Check and install the conversion library
+
+```bash
+python -c "import pymupdf4llm" 2>/dev/null || pip install pymupdf4llm --break-system-packages --quiet
+```
+
+If pip fails, try:
+```bash
+pip install pymupdf4llm --user --quiet
+```
+
+Report success or failure before continuing.
+
+#### Step 2: Run the conversion script
+
+The conversion script is at the absolute path shown below. Construct the command using the user's confirmed inputs:
+
+```bash
+python "C:\Users\johanf\.claude\skills\tyler\convert.py" "PDF_DIR" "WIKI_DIR" [OPTIONS]
+```
+
+**Available flags:**
+- `--recursive` or `-r`: Scan PDF_DIR recursively
+- `--bib PATH`: Path to a .bib file for citation key matching
+- `--keep-references`: Keep the references section (default: trimmed to save tokens)
+- `--force`: Re-convert all files, ignoring incremental cache
+
+The script handles everything automatically:
+1. Finds all PDFs (skips unchanged files in incremental mode)
+2. Converts each to markdown via pymupdf4llm
+3. Extracts metadata: title, authors, year, abstract, JEL codes, keywords
+4. Cleans the text: strips repeated headers/footers, page numbers
+5. Trims the references section (unless --keep-references)
+6. Writes each paper as a `.md` file with YAML frontmatter
+7. Builds `index.md` automatically from extracted metadata
+8. Saves state for incremental updates
+
+**Important:** The index is built entirely in Python from extracted abstracts — you (Claude) do NOT need to read the individual paper files to build it.
+
+#### Step 3: Report to the user
+
+After the script finishes, tell the user:
+
+- How many PDFs were found, converted, skipped, and failed
+- The location of the wiki directory and index file
+- The token savings (the script prints this)
+- Any failed files and likely causes (scanned PDFs, corrupted files)
+
+Then explain how to use the wiki in future sessions:
+
+> **Using your wiki:** In any Claude Code session, read `WIKI_DIR/index.md` to see all papers with their abstracts. Ask me questions referencing the index — I'll read individual `papers/*.md` files only when I need the full text. You can also use Grep to search across all papers for specific terms or concepts.
+
+#### Step 4 (optional): Improve the index with Claude
+
+If the user wants richer summaries beyond the extracted abstracts, offer to enhance the index. This is optional and costs tokens, but can add value:
+
+- Read papers where the abstract extraction failed or was weak
+- Add a 1–2 sentence "contribution" note per paper
+- Group papers by theme or methodology
+
+Only do this if the user explicitly asks. The auto-generated index is sufficient for most use cases.
+
+### Gotchas and known issues
+
+- **Scanned PDFs**: pymupdf4llm extracts embedded text only. Scanned-image PDFs produce empty/near-empty output. The script flags these (<500 bytes). Fix: run `ocrmypdf` first to add a text layer.
+- **Metadata extraction is heuristic**: Title, author, and abstract extraction works well for standard academic paper layouts but may fail on unusual formats. The full text is always available in the paper file.
+- **BibTeX matching is fuzzy**: It matches on title word overlap + author + year. High-confidence matches only (threshold score ≥ 6). Some papers may not match — check the index for missing citekeys.
+- **Windows paths with spaces**: Always quoted in the command. The skill handles this.
+- **Very large PDFs** (>100 pages): Convert fine but produce large markdown. Consider asking the user if they want to process only specific page ranges for book-length documents.
+- **Re-running**: Incremental by default — only re-converts new or changed PDFs. Use `--force` to re-convert everything.
+- **References trimmed by default**: The references/bibliography section is removed to save ~20–30% of tokens per paper. Use `--keep-references` if the user needs them.
+- **Tags are derived, not authoritative**: Obsidian `tags:` come from each paper's extracted keywords and JEL codes (spaces become hyphens, JEL codes become `jel/N10`-style nested tags). Papers without keywords or JEL codes get no tags. The index hub note (`index.md`) will itself appear under every tag, since it lists them all.

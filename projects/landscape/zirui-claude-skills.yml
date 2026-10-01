@@ -1,0 +1,122 @@
+slug: zirui-claude-skills
+name: "Claude Code Skills for Empirical Research (zirui-song)"
+type: external
+status: active
+url: "https://github.com/zirui-song/claude-skills"
+license: "MIT"
+maintainers:
+  - "Zirui Song"
+year_started: 2026
+
+positioning: >
+  A personal Claude Code skill pack of 21 skills for empirical
+  economics/finance research, split into six legacy "/command"-style
+  skills (robustness checklist, literature review, coding guidelines,
+  data documentation, project structure, referee response) and fifteen
+  newer agent-skill-format skills organised into four groups: an
+  empirical pipeline group (table regeneration, pipeline refresh,
+  Stata-preflight, robustness-battery, spec-curve-sweep, power-first), a
+  verification group (verify-claims, verify-numbers-pipeline,
+  referee-panel), a LaTeX/Overleaf sync group, and a cross-model-review
+  group built on Claude-Codex plan debate.
+
+distinctive_contribution: >
+  Unlike most cataloged economics skill packs, this one's centre of
+  gravity is runtime numerical assurance rather than drafting or
+  literature work: verify-numbers-pipeline builds a YAML claim manifest
+  of every reported statistic plus a verify_numbers.py checker wired to
+  a git pre-commit hook that blocks a commit containing a stale number,
+  and referee-panel runs five parallel adversarial reviewers
+  (identification, power, literature, provenance, independent
+  replication) into one ranked threat memo. spec-curve-sweep operationalises
+  a 200-500-specification sweep with a resumable runner and drafted
+  online appendix — a concrete, code-backed version of specification-curve
+  analysis rarely automated elsewhere in this catalog.
+
+focus: analysis
+
+pipeline_stages:
+  - literature-synthesis
+  - research-design
+  - data-analysis
+  - code-generation
+  - revision-editing
+  - referee-simulation
+  - dissemination
+
+architectural_features:
+  - multi-agent
+  - debate-consensus
+  - tool-use
+  - iterative-loop
+
+discipline: economics
+
+inputs:
+  - paper-draft
+  - stata-python-pipeline
+  - overleaf-project
+  - referee-report
+
+outputs:
+  - robustness-table
+  - verified-claim-manifest
+  - referee-threat-memo
+  - revised-latex-document
+  - referee-response-letter
+
+data_sources: []
+
+knowledge_sources: []
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Seven distinct stages (literature synthesis, research design via plan-debate, data analysis/robustness, code generation, revision, referee simulation, Overleaf dissemination), but no literature-discovery, hypothesis-generation, or from-scratch paper-drafting skill."
+  autonomy_level:
+    score: 1
+    note: "Verification and referee skills surface findings (UNVERIFIED tags, threat memos) for the researcher to act on; the pre-commit hook blocks rather than auto-fixes."
+  architectural_transparency:
+    score: 3
+    note: "All 21 skills are public Markdown/YAML-frontmatter files; verify-numbers-pipeline additionally ships a concrete verify_numbers.py script and Makefile target."
+  inputs_supported:
+    score: 2
+    note: "Multiple input forms (paper draft, Stata/Python pipeline, Overleaf project, referee report) with execution/data access via the pipeline-refresh and table-regeneration skills; no literature-corpus or external-API access documented."
+  outputs_reproducibility:
+    score: 2
+    note: "verify-numbers-pipeline's claim manifest plus pre-commit gate is a genuine traceability mechanism, but there is no single declared end-to-end reproduce-from-inputs path across the whole pack."
+  internal_evaluation:
+    score: 1
+    note: "referee-panel and verify-claims provide internal adversarial checks on a given paper, but the pack itself has no reported benchmark or external evaluation."
+  openness:
+    score: 2
+    note: "MIT license; skills are plain Markdown/Python but assume placeholder paths, a Stata installation, and (for three skills) a separate Codex CLI setup."
+  maturity_traction:
+    score: 1
+    note: "17 stars, a GitHub Actions badge auto-counting skills (some upkeep automation), single maintainer, pre-1.0."
+  cross_family_policy:
+    score: 1
+    note: "A dedicated 'cross-model review' skill group (codex-bridge, codex-review-plan, review-codex-plan, plan-debate) runs Claude against Codex, but it is a separately-invoked optional skill set, not the default path for the pack's other 17 skills."
+  assurance_runtime:
+    score: 3
+    note: "verify-numbers-pipeline gates commits on a machine-checkable claim manifest; verify-claims marks every unverifiable number/citation UNVERIFIED; referee-panel and power-first add identification/power checks before any coefficient is interpreted — a genuinely heavy in-pipeline audit stack with gating on failure."
+  cross_platform_portability:
+    score: 1
+    note: "Claude Code primary, with Codex CLI as a documented secondary backend for the cross-model-review group; no other IDEs/providers."
+scored_on: "2026-10-01"
+
+limitations:
+  - "Single-maintainer personal project; two overlapping skill formats (legacy '/command' .md files vs. newer agent-skill folders) in the same repo could confuse adoption."
+  - "Placeholders (paths, usernames, example coefficients) require manual substitution per project."
+  - "No external benchmark validates the verification claims (verify-claims, referee-panel) themselves — their rigor is asserted, not measured."
+  - "Codex-dependent skills require a separate Codex CLI install and API key."
+
+related:
+  - econtools
+  - econ-skills
+  - ai-research-feedback
+  - aris
+
+papers: []
+
+references: []
