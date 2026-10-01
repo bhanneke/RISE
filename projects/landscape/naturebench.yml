@@ -27,9 +27,11 @@ distinctive_contribution: >
   information firewall that strips the source method from the task
   brief so agents must discover solutions. Ships a full harness with
   built-in adapters for Claude Code, Codex CLI, and Gemini CLI, a
-  post-hoc validity judge, and a public leaderboard: across twelve
-  harness-model configurations the best reaches a 17.8% Surpass-SOTA
-  rate, with failures dominated by method-selection errors.
+  post-hoc validity judge, and a public leaderboard: by September 2026
+  the leaderboard had grown to sixteen harness-model configurations
+  (up from twelve at launch), with the best reaching a 23.3%
+  Surpass-SOTA rate (57.8% Match-SOTA), with failures still dominated
+  by method-selection errors.
 
 focus: analysis
 
@@ -76,13 +78,13 @@ scores:
     note: "Dockerized tasks, hidden test sets, versioned dataset, and persisted results directories; agent nondeterminism precludes exact reruns."
   internal_evaluation:
     score: 2
-    note: "Systematic evaluation of twelve harness-model configurations with public leaderboard and failure analysis in the arXiv paper; not yet peer-reviewed."
+    note: "Systematic evaluation grown from twelve to sixteen harness-model configurations by September 2026, including externally submitted runs (e.g. HELIX + Claude Opus 5, Luria 1.0 + DeepSeek-V4-Pro) alongside the original failure analysis; still not yet peer-reviewed."
   openness:
     score: 2
     note: "MIT for original work (NOTICE-scoped); third-party task data under heterogeneous per-task licenses; full runs need agent API keys and 24-80 GB GPUs."
   maturity_traction:
-    score: 1
-    note: "Young (June 2026) but active: 77 stars in the first month, a v2 paper revision, and a leaderboard refresh adding new models."
+    score: 2
+    note: "Launched June 2026 (77 stars in the first month) and sustained since: a NatureBench-25 25-task track (Aug 28), a Harbor/Hugging Face task-conversion integration (Aug 31), and externally submitted leaderboard runs (Claude Opus 5, DeepSeek-V4-Pro, Qwen 3.8 Max, GLM-5.3 Flash) kept current through Sept 23, 2026 — external users and regular releases, though still short of sustained production adoption."
   cross_family_policy:
     score: 1
     note: "Post-hoc validity judge is configured independently of the executing agent, so cross-family judging is possible via config but neither default nor required."
@@ -92,7 +94,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: "Built-in adapters for Claude Code, Codex CLI, and Gemini CLI plus a documented custom-agent interface."
-scored_on: "2026-07-23"
+scored_on: "2026-10-01"
 
 limitations:
   - "Heavy compute footprint: gpu_high tasks assume A100-class (80 GB) GPUs, so full benchmark runs are beyond commodity hardware."

@@ -9,35 +9,41 @@ maintainers:
 year_started: 2026
 
 positioning: >
-  The largest pure-markdown research-skill corpus in the catalog: 900+
-  skills over a four-layer hierarchy — Campaign (45+) -> Strategy
-  (200+) -> Tactic (120+) -> SOP (500+), each layer holding one concern
-  and calling only the layer below — grouped into ten composable
-  packages (north-star-crystallization, knowledge-acquisition,
-  hypothesis-formation, creative-ideation, convergence, deep-insight,
-  stress-test, experiment-execution, knowledge-structuring,
-  ara-from-context) and wired to seven MCP servers (Semantic Scholar,
-  alphaXiv, Brave, Tavily, keenable, Apify, plus a local wiki-vault
-  knowledge graph). It covers direction-setting through experiment
-  execution and stops there: no drafting, referee-simulation or
-  submission stage exists, and an automated paper-writing pipeline is
-  listed only as a roadmap item. There is no application code at all —
-  the runtime is Codex or Claude Code and the framework is the
-  instruction set.
+  A pure-markdown research-skill corpus, substantially rearchitected in
+  a "v4" rewrite merged 2026-09-23: what had been a four-layer
+  hierarchy of 900+ skills (Campaign -> Strategy -> Tactic -> SOP)
+  grouped into ten packages is now a two-layer research graph of 267
+  nodes — 51 Tactics (complete research transformations) composed from
+  216 SOPs (single-purpose steps) — reached through four product shells
+  (entry, catalog, write-spec, execute-spec); the old `cli/` and
+  `dsh-plugin/` components were dropped in the same merge. It now lists
+  11 MCP servers as optional retrieval back-ends (Semantic Scholar,
+  alphaXiv, PubMed, bioRxiv, medRxiv, Perplexity, Brave, Tavily,
+  keenable, You.com, Apify, plus a local wiki-vault knowledge graph)
+  but is explicitly "decoupled from retrieval" — none is required. It
+  still covers direction-setting through experiment execution and stops
+  there: no drafting, referee-simulation or submission stage exists,
+  and an automated paper-writing pipeline is listed only as a roadmap
+  item. There is no application code at all — the runtime is Codex or
+  Claude Code and the framework is the instruction set.
 
 distinctive_contribution: >
   Orchestration is deliberately non-linear: rather than a fixed
-  pipeline the agent is handed an "arsenal" and selects campaign
-  sequences from the current research state, with backtrack conditions
-  as first-class objects and an Executable Research Spec
-  (machine-readable, checkbox-tracked, quantified completion criteria,
-  +/-10% deviation bounds) as the contract between human direction and
-  autonomous execution. The skill files carry machine-checkable
+  pipeline, the Executable Research Spec (machine-readable,
+  checkbox-tracked, quantified completion criteria, +/-10% deviation
+  bounds) commits to a tactic sequence drawn from the 51-tactic catalog
+  and records the conditions under which that sequence is abandoned,
+  with backtracking as a first-class mechanism bridging human direction
+  and autonomous execution. The skill files carry machine-checkable
   discipline rather than prose advice — the sampled assumption-audit SOP
   declares its tactic and SOP dependencies in YAML frontmatter, budgets
   tokens per sub-task with +/-10% ranges, and hard-gates exit at >=80%
-  budget use — and the repo claims a closed dependency graph across all
-  2,476 skill-to-skill edges.
+  budget use. The v4 rewrite (merged 2026-09-23) replaced the earlier
+  900+-skill / 2,476-edge claim with a much smaller, precisely countable
+  graph — 267 nodes and roughly 485 edges (339 mandatory calls + 146
+  soft jumps) — resolving the previous self-reported count
+  inconsistency by shrinking and simplifying the graph rather than by
+  auditing the old one.
 
 focus: end-to-end
 
@@ -104,7 +110,7 @@ scores:
     note: "Apache-2.0 and self-contained (a single clone carries all 900+ skills), but running it requires a paid Codex or Claude Code subscription plus API keys for the Brave/Tavily/Apify MCP servers — not free-tier reproducible."
   maturity_traction:
     score: 2
-    note: "442 stars / 34 forks in seven months, pushed 2026-09-03, 3 open issues — real external interest, but no releases or version tags verified, no named maintainer, and no reported downstream use."
+    note: "503 stars / 42 forks (up from 442/34), including a major v4 architecture rewrite merged 2026-09-23 that replaced the four-layer/900-skill design with the two-layer graph — sustained real external interest and continued active development, but still no releases or version tags verified, no named maintainer, and no reported downstream use."
   cross_family_policy:
     score: 0
     note: "The Codex and Claude Code installers are alternatives, not a pairing: adversarial-debate and stress-test skills run inside whichever single runtime is installed, and nothing requires or recommends a reviewer from a second model family."
@@ -114,15 +120,15 @@ scores:
   cross_platform_portability:
     score: 2
     note: "Two documented runtimes (Codex via install/codex.sh or .ps1, Claude Code via manual .claude/skills plus .mcp.json) over a deliberately portable substrate of markdown skills and MCP servers; short of framework-agnostic because only these two paths are documented and only Codex has an installer."
-scored_on: '2026-09-08'
+scored_on: '2026-10-01'
 
 limitations:
   - "The stance is the inverse of this catalog's human-approval-by-default rule: the README frames the human as 'oracle' and 'guardian' while asserting 'The AI is the researcher — you set the direction' and 'Science is dying because the human is in the way'. Read DARE as a source of methods to borrow (assumption audits, adversarial debate protocols, abstraction laddering, falsifiability audits) rather than a harness to adopt whole; its single approval point sits at the spec boundary, not inside the work."
   - "No evaluation of any kind — no paper, no benchmark, no reported outcomes — so all claims about the value of the 900+ skills are architectural assertions."
   - "The gates are instruction-level, not enforced: token budgets, +/-10% bounds and the >=80%-budget exit gate are asked of the model in markdown; nothing outside the model verifies compliance."
   - "Anonymous provenance: the repo sits under a pseudonymous organisation (Yogsoth-AI, created 2026-05-12, no institutional affiliation) with no named maintainers, which makes accountability and long-term maintenance unassessable."
-  - "Counts are self-reported and inconsistent: the GitHub description says 9 packages while the README lists 10 with per-package counts, and the '900+ skills' / '2,476 edges' figures were not recounted at scoring."
-  - "Sheer size is a cost as well as a feature: 900+ skills over four layers is a large surface to audit before trusting any single campaign, and the roadmap itself lists automated redundancy pruning ('skill ablation') as an open task."
+  - "A v4 rewrite merged 2026-09-23 replaced the earlier four-layer, 900+-skill, 10-package design (whose self-reported package/skill/edge counts were internally inconsistent) with a two-layer, 267-node graph (51 tactics, 216 SOPs) and dropped the CLI and `dsh-plugin/` components entirely — a major, recent architecture change; the new, smaller counts are precise but, like the old ones, are self-reported and not independently audited here."
+  - "The rewrite is only days old at scoring date (2026-10-01): it is unclear whether the simplification has been exercised end-to-end by external users, and the previous roadmap item of automated redundancy pruning ('skill ablation') may or may not still apply to the new graph."
   - "No drafting, review or dissemination coverage — output stops at specs, designs and analyses; the Claude Code install path is manual."
 
 related:

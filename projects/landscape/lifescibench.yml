@@ -102,6 +102,30 @@ related:
   - robin
 
 # ── Papers describing this project ─────────────────────
-papers: []  # OpenAI preprint referenced in the announcement; no canonical arXiv ID verified at scoring date.
+papers:
+  - title: 'LifeSciBench: Evaluating Language Models on Realistic, Expert-Level Tasks in the Life Sciences'
+    authors:
+      - 'Liu, A.'
+      - 'Ho, A.'
+      - 'Droste, A. M.'
+      - 'Martin, D.'
+      - 'Wong, E.'
+      - 'Zhou, E.'
+      - 'Zhou, I.'
+      - 'Park, J.'
+      - 'Jiao, J.'
+      - 'Skelly, K.-R.'
+      - 'Kim, K.'
+      - 'Rao, K.'
+      - 'Uehara, M.'
+      - 'Marion, M.'
+      - 'Fitzgerald, N.'
+      - 'Dias, R.'
+      - 'Shringarpure, S.'
+      - 'Yuan, Y.'
+      - 'Wang, Y.'
+    year: 2026
+    venue: 'bioRxiv preprint (OpenAI / Tacit Labs)'
+    doi: '10.64898/2026.08.13.744657'
 
 references: []

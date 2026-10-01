@@ -100,7 +100,7 @@ scores:
     note: "MIT-licensed with a documented install path (Node 22+, LaTeX, poppler, tmux), but a run costs $20–80 on the default full-Claude profile ($2–10 on --profile dual), so the demonstrated examples are not reproducible on free infrastructure."
   maturity_traction:
     score: 2
-    note: "981 stars, 18 forks, 382 commits and pushed 2026-09-06 — the most active project in this lane — but single-maintainer, version 0.1.0 in CITATION.cff, and no tagged GitHub releases."
+    note: "~1,170 stars (up from 981 in early September), 18 forks, 382 commits, pushed 2026-09-06 — the most active project in this lane — and now also offered as a hosted browser demo at luxas.im alongside the self-hosted CLI; still single-maintainer, version 0.1.0 in CITATION.cff, and no tagged GitHub releases."
   cross_family_policy:
     score: 1
     note: "Cross-family is configurable (--profile dual runs DeepSeek-v4-pro text with GLM-5.3-flash vision, OpenAI o3 backs the math agent, Kimi via env var) but the default profile keeps executor and adversarial reviewer inside the Claude family."
@@ -110,7 +110,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: "Four-plus model providers behind env-var redirects (Anthropic default, DeepSeek, GLM vision, OpenAI o3, Kimi) but a single execution environment — its own Node/tmux harness, explicitly not a general agent framework and not usable inside another IDE."
-scored_on: '2026-09-08'
+scored_on: '2026-10-01'
 
 limitations:
   - "Uses an anti-detect browser to reach paywalled academic venues — a publisher terms-of-service and licence-compliance exposure that should be assessed before institutional use; the README does not document what the evasion does or offer a compliant-only mode."

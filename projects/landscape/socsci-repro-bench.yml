@@ -95,11 +95,11 @@ scores:
   cross_platform_portability:
     score: 3
     note: "Plain JSON gold answers plus a Dataverse deposit, agent-agnostic and format-minimal; already exercised against two entirely different agent stacks, and the tasks span three analysis languages, so nothing in the artifact assumes a runtime."
-scored_on: "2026-09-08"
+scored_on: "2026-10-01"
 
 limitations:
   - "No evaluation harness, scoring script or leaderboard in the repo, so the reported 93.4% / 78.0% and 62.1% / 35.8% figures are not independently reproducible from what is published."
-  - "License ambiguity: repo page says CC BY 4.0, GitHub API reports NOASSERTION."
+  - "License confirmed as CC BY 4.0 via the repo's LICENSE file, a content license — permissive for the task data, but it does not cover the gated Dataverse replication materials or make the (nonexistent) harness reproducible."
   - "Untouched since its creation day (2026-03-06), so the task set will not track newer agents or newly deposited papers."
   - "Gold answers are published in plain JSON in a public repo — a standing training-contamination risk for any agent evaluated after the release date."
   - "Measures the easier reproduction task: reproducing a result *from the authors' own code*, not rebuilding the analysis from methods and data as social-science-replicability does."
