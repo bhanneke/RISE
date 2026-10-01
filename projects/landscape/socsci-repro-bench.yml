@@ -81,8 +81,8 @@ scores:
     score: 2
     note: "Systematic evaluation of two frontier coding agents across all 221 tasks, reported at both task and paper level in a companion arXiv preprint (2606.11447, submitted 2026-06-09); not peer-reviewed at scoring date and no third-party replication of the measurement."
   openness:
-    score: 1
-    note: "The repo page states CC BY 4.0 but the GitHub API reports 'Other (NOASSERTION)', so terms are ambiguous; the materials themselves are gated behind an off-repo anonymised Dataverse deposit, some tasks require a commercial Stata license, and no harness is provided — reproducing the headline numbers is not possible from the repo alone."
+    score: 2
+    note: "LICENSE file confirms CC BY 4.0 (permissive), resolving the earlier GitHub-metadata ambiguity; but materials are gated behind an off-repo anonymised Dataverse deposit, some tasks require a commercial Stata license, and no harness is provided — reproducing the headline numbers is not possible from the repo alone."
   maturity_traction:
     score: 1
     note: "13 stars, 1 fork, 7 commits, all on 2026-03-06 — created and last pushed the same day, untouched since. Credible author team (Zurich / NYU) and a widely-noticed preprint, but no external users or releases."
