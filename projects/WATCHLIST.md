@@ -7,12 +7,16 @@ drop it with a dated note. Inclusion bar: a public artifact (repo,
 leaderboard, or hosted system) with real content — papers alone don't
 qualify.
 
-_Last reviewed: 2026-09-29._
+_Last reviewed: 2026-10-01._
 
 ## Watching
 
 | Item | Source | Why not yet | Would change the verdict |
 |---|---|---|---|
+| Gemini for Science / Empirical Research Assistance (ERA) | Google DeepMind, `labs.google/science` | ERA has a Nature paper (arXiv:2509.06503) and headline results (expert-level empirical code across genomics, epidemiology, etc.), but as of 2026-10-01 the "Gemini for Science" product bundling it with Co-Scientist/AlphaEvolve/NotebookLM is only a "register your interest" waitlist on Google Labs — no accessible system, no public code (added 2026-10-01) | Public rollout beyond the waitlist, or any usable prototype access |
+| OpenAI Dots | OpenAI DevDay, 2026-09-29 | Real, usable always-on agent (Pro/Business Premium users today) with research-capable read-only background tasks, but it is a general-purpose computer-use agent across 4,000+ apps, not a research-specific system with research pipeline stages, inputs, or evaluation (added 2026-10-01) | Evidence of research-specific tooling, benchmarks, or workflows built on top of Dots |
+| OpenAI "automated research intern" | OpenAI, 2026-09-06 report | Self-reported internal metric (3.1 agent-workdays/human-workday) describing how OpenAI's own research org uses its coding agents; not an external product, no public artifact (added 2026-10-01) | A named, externally accessible system rather than an internal usage statistic |
+| xAI Grok Bot / Grok 4.x multi-agent | xAI, Aug 2026 | Usable always-on computer-use agent (SuperGrok Heavy/Cursor Ultra) with a named multi-agent architecture (Harper = "research" role), but general-purpose, not a research-pipeline system with its own inputs/outputs/evaluation (added 2026-10-01) | A research-specific product or benchmark distinct from the general agent |
 | UKP review-feedback agent | `UKPLab/emnlp2026-reviewfeedbackagent` | Public, Apache-2.0, ships LazyReviewPlus — but EMNLP reproduction code, not a usable system (2★, 0 forks) | Packaging as an installable tool, or wanting a review-quality-audit sub-branch |
 | AgenticDataBench | Tsinghua + Ant Group | Solid artifact (Apache-2.0, leaderboard, HF datasets) but measures data-science/business-analytics agents — no hypothesis, identification, or write-up dimension | A curator decision to widen RISE to the data-analytics lane |
 | AI-Research-SKILLs | `Orchestra-Research` (12.4k★) | Real substance but ML-infrastructure how-to (vLLM, Megatron, Instructor), not research methodology | An explicit scope label for engineering-skill packs |
@@ -43,3 +47,5 @@ _Last reviewed: 2026-09-29._
 | ResearchClawBench | 2026-09-08 | `researchclaw-bench` |
 | PARNESS | 2026-09-08 | `parness` |
 | SwarmResearch | 2026-09-08 | `swarmresearch` |
+| Automated Alignment Researchers (Anthropic) | 2026-10-01 | `automated-w2s-research` |
+| Terminal-Bench-Science | 2026-10-01 | `terminal-bench-science` |

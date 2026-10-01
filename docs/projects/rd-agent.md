@@ -29,12 +29,12 @@ The only entry in the catalog whose flagship application is quantitative-finance
 | Outputs / reproducibility | 2 | Persists executable code, factor/model proposals with performance metrics, and full execution traces viewable in a web/Streamlit UI, and scenarios are re-runnable from config — but runs are LLM-stochastic, there is no data manifest, and no manuscript artifact is produced. |
 | Internal evaluation | 3 | External validation on several axes: reported MLE-Bench SOTA (30.22% vs 16.9% prior best) plus peer-reviewed papers at NeurIPS 2025 (R&D-Agent-Quant), ICML 2026 (FT-Dojo) and ACL 2026 Findings, and a publicly hosted demo at rdagent.azurewebsites.net. |
 | Openness | 2 | MIT license with the whole framework public and documented scenarios, but the headline results require paid frontier models (o3 + GPT-4.1) and substantial compute per loop — not reproducible end-to-end on commodity hardware. |
-| Maturity / traction | 3 | 14,542 stars / 1,890 forks / 1,018 commits, created 2024-04-03 and pushed 2026-09-04, maintained under the Microsoft org with a hosted demo and a sustained multi-paper publication record. |
+| Maturity / traction | 3 | 14.8k stars / 1.9k forks, created 2024-04-03; shipped v1.0.0 on 2026-09-23 (UI auth hardening, AutoRL-Bench integration), maintained under the Microsoft org with a hosted demo and a sustained multi-paper publication record. |
 | Cross-family policy | 1 | Cross-family is possible but neither required nor default: LiteLLM is the default backend so any provider mix is configurable, yet the Research/Development split is a role split, and the published best configuration (o3 + GPT-4.1) draws both roles from the same family. |
 | Runtime assurance | 2 | Moderate, and grounded in execution rather than prose: every proposal must compile, run on real data and beat the incumbent on a declared metric before it is retained, with failed runs and error traces fed back into the loop. No claim, citation, math or figure audit — it produces no prose to audit. |
 | Cross-platform portability | 2 | LiteLLM is the default backend with OpenAI/Azure OpenAI, DeepSeek and custom API bases documented, so 3+ providers are supported without a rewrite; but it is a single agent runtime (its own Python framework plus Docker and a Streamlit UI), not a framework-agnostic design. |
 
-*Scored on 2026-09-08. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

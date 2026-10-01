@@ -29,12 +29,12 @@ The first credible open-source counterweight to the closed research workbenches:
 | Outputs / reproducibility | 2 | Sessions, artifacts, and provenance persist on disk and are shareable as links, and the critic scores reproducibility — but end-to-end re-runnability from declared inputs is not demonstrated. |
 | Internal evaluation | 1 | Demo sessions and launch write-ups only; no benchmark results or third-party evaluation of research-output quality published. |
 | Openness | 2 | Apache-2.0, npm-installable, BYOK free and non-gated; demo examples need paid provider keys and heavier experiments need cloud compute, so reproducibility on commodity hardware is partial. |
-| Maturity / traction | 2 | Now ~2 months past the July launch: 3.4k stars / 455 forks (up from 2,696/374 at last review), sustained past the initial press-cycle spike, with continuous near-daily releases through v2.0.66 (2026-08-31) and an active issue/PR tracker (18 open issues, occasional external contributor PRs alongside the 2-3 person core team) — enough external engagement and release regularity to move past 'too young to call.' |
+| Maturity / traction | 2 | Now 3 months past the July launch: 3.9k stars / 515 forks (up from 3.4k/455 at last review), and on 2026-09-27 the team announced exiting beta with a redesigned workspace plus 'OpenScience Ace', a paid managed-model service (30+ models) — a first monetization signal layered on the free open-source core, still self-reported and days old at review time. |
 | Cross-family policy | 1 | Per-request routing across 75+ providers makes cross-family executor/reviewer setups configurable (e.g., critique sub-agent on another family), but cross-family review is neither default nor required. |
 | Runtime assurance | 1 | Optional blind-reviewer gate at finalize plus RSI trajectory critic and tool-permission prompts; all optional, with no mandatory claim-audit or citation-verification gating. |
 | Cross-platform portability | 2 | 75+ model providers and macOS/Windows/Linux via npm or platform binaries, but a single self-contained runtime — not deployable across other agent frameworks. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

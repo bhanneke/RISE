@@ -27,14 +27,14 @@ The scale is calibrated to human work rather than to a pass rate: 0-100 where 50
 | Architectural transparency | 3 | MIT-licensed with tasks/, evaluation/, eval_configs/, workspaces/ and the weighted rubrics public, nine runtime adapters in-repo, and a 51-author paper documenting the two-stage judging design. |
 | Inputs supported | 2 | Each of the 40 tasks bundles raw data with the related literature, 16 further tasks arrive via the Hugging Face dataset, and nine documented adapters accept different agent runtimes; no private-corpus support, so short of the top band. |
 | Outputs / reproducibility | 2 | Runs persist the agent's report, figures and code in workspaces/ alongside per-criterion rubric scores; LLM-judge scoring plus agent stochasticity means a rerun reproduces the procedure, not the number. |
-| Internal evaluation | 2 | The companion arXiv preprint scores nine agent integrations and a frontier-LLM sweep on all 40 tasks (best agent 21.5, best LLM 20.7, frontier average 26.5) and names three failure modes; five arXiv versions but no peer-reviewed venue or third-party replication found. |
+| Internal evaluation | 2 | The companion arXiv preprint (June 2026) scored the best agent at 21.5 (best LLM 20.7, frontier average 26.5) and named three failure modes; the public leaderboard, now populated with community submissions through Sept 2026 (InnoClaw, Qiushi Engine, Open Science, pass@5 stats), shows top scores risen to ~38.6% — still well short of the 50-point parity mark, and still no peer-reviewed venue or independent third-party replication. |
 | Openness | 2 | MIT license with tasks, rubrics, harness and adapters public and the dataset on Hugging Face, but a leaderboard-grade run needs a paid frontier agent working a full study per task, so the demonstrated examples are not reproducible on commodity hardware. |
-| Maturity / traction | 2 | 258 stars, 22 forks, 184 commits, pushed 2026-09-05, with a hosted leaderboard, a Hugging Face dataset and a community task-contribution route already used for 16 tasks — beta-stage with external participation, single-consortium origin. |
+| Maturity / traction | 2 | 266 stars, 24 forks, 186 commits, pushed 2026-09-05, with the hosted leaderboard now actively populated by cross-lab submissions (InnoClaw, Qiushi Engine, Open Science and others) through Sept 2026, plus a Hugging Face dataset and a community task-contribution route — beta-stage with real external participation, single-consortium origin. |
 | Cross-family policy | 0 | Model-agnostic target with no executor/reviewer pairing of its own; the judge model is set in eval_configs but nothing requires or recommends that it differ from the agent under test. |
 | Runtime assurance | 1 | Rubric judging is post-hoc (dimension 6); in flight there is only workspace isolation and task/eval config validation, with no gate that stops a run producing an ungrounded report. |
 | Cross-platform portability | 3 | Nine agent-runtime adapters ship in-repo plus a generic ResearchHarness path for standalone LLMs — well past the five-environment threshold, and the task format is a data bundle rather than framework-specific code. |
 
-*Scored on 2026-09-08. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -56,7 +56,7 @@ The scale is calibrated to human work rather than to a pass rate: 0-100 where 50
 
 ## Limitations
 
-- Could not confirm a populated leaderboard: the hosted board at internscience.github.io/ResearchClawBench-Home renders client-side and returned no scored runs when fetched on 2026-09-08, so the cross-agent scores are verifiable only from the preprint, not from the live board.
+- The hosted leaderboard is now confirmed populated (cross-checked via third-party mirror benchlm.ai and GitHub submission history) with community entries like InnoClaw, Qiushi Engine, AutoSciRub and Open Science reporting scores well above the original June 2026 preprint's best figure (~38.6% vs. 21.5), but these later community submissions have not been independently audited or peer-reviewed the way the original benchmark was.
 - Scoring depends on a multimodal LLM judge with no stated model-family separation from the agent under test, so self-favouring bias is not ruled out; the rubrics are expert-written but the grader is not.
 - No economics or social-science tasks. The ten domains are natural sciences plus mathematics and information science, and 'matching the paper' there means matching a measured result — not defending an identification strategy, which is where economics agents fail.
 - Anchoring to published findings makes the target a moving one and rewards re-discovery: a task is scored against what the original authors concluded, which penalises a correct agent that disagrees with a flawed paper.

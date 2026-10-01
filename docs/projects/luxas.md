@@ -29,12 +29,12 @@ Two structural anti-self-deception mechanisms rather than prompt instructions: i
 | Outputs / reproducibility | 2 | Persists LaTeX source, compiled PDF, figures, generated Python, and a full log.jsonl replay trail with `\resultref` number provenance; but runs are stochastic and no manifest or seed makes a given manuscript reproducible from its inputs. |
 | Internal evaluation | 1 | Nine gallery runs and four benchmark task directories (bench-01-u233-gamow, bench-02-rb-blockade-leakage, bench-03-ftqc-ccz-conflict, bench-04-prior-art-positioning) to inspect, but no paper, no scoring harness, no reported metrics and no third-party evaluation. |
 | Openness | 2 | MIT-licensed with a documented install path (Node 22+, LaTeX, poppler, tmux), but a run costs $20–80 on the default full-Claude profile ($2–10 on --profile dual), so the demonstrated examples are not reproducible on free infrastructure. |
-| Maturity / traction | 2 | 981 stars, 18 forks, 382 commits and pushed 2026-09-06 — the most active project in this lane — but single-maintainer, version 0.1.0 in CITATION.cff, and no tagged GitHub releases. |
+| Maturity / traction | 2 | ~1,170 stars (up from 981 in early September), 18 forks, 382 commits, pushed 2026-09-06 — the most active project in this lane — and now also offered as a hosted browser demo at luxas.im alongside the self-hosted CLI; still single-maintainer, version 0.1.0 in CITATION.cff, and no tagged GitHub releases. |
 | Cross-family policy | 1 | Cross-family is configurable (--profile dual runs DeepSeek-v4-pro text with GLM-5.3-flash vision, OpenAI o3 backs the math agent, Kimi via env var) but the default profile keeps executor and adversarial reviewer inside the Claude family. |
 | Runtime assurance | 3 | Blind separation of tool_impl from tool_review so the agent cannot self-validate circularly, a reviewer deliberately held outside the brain, three-layer adversarial review (content, figure internals, PDF layout), deterministic finish-gates that prompting cannot bypass, and `\resultref` number provenance — a full runtime audit stack with gating. |
 | Cross-platform portability | 2 | Four-plus model providers behind env-var redirects (Anthropic default, DeepSeek, GLM vision, OpenAI o3, Kimi) but a single execution environment — its own Node/tmux harness, explicitly not a general agent framework and not usable inside another IDE. |
 
-*Scored on 2026-09-08. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

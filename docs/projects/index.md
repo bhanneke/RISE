@@ -24,6 +24,7 @@ sources.
 | [Agent Laboratory](agent-laboratory.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 3 | 0 | 0 | 1 | 1 | computer-science |
 | [Agon](agon.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 1 | 2 | 1 | 1 | 2 | 2 | general |
 | [AI Co-Mathematician (Google DeepMind)](ai-co-mathematician.md) | external | `end-to-end` | 2 | 2 | 1 | 2 | 2 | 2 | 0 | 1 | 0 | 2 | 0 | general |
+| [AI Peer Review (poldrack)](ai-peer-review.md) | external | `review` | 0 | 2 | 3 | 0 | 2 | 0 | 2 | 2 | 2 | 1 | 1 | general |
 | [ai-peer-review-skill](ai-peer-review-skill.md) | external | `review` | 0 | 2 | 3 | 0 | 2 | 0 | 2 | 1 | 0 | 1 | 0 | general |
 | [AI Research Feedback](ai-research-feedback.md) | external | `review` | 1 | 2 | 3 | 1 | 1 | 0 | 2 | 2 | 0 | 1 | 0 | economics |
 | [AI-Researcher (HKUDS)](ai-researcher.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 3 | 1 | 2 | 0 | 1 | 2 | computer-science |
@@ -35,6 +36,7 @@ sources.
 | [Asta AutoDiscovery](asta-autodiscovery.md) | external | `ideation` | 1 | 3 | 3 | 1 | 2 | 3 | 2 | 2 | 0 | 1 | 1 | general |
 | [AstaBench (AI2)](asta-bench.md) | external | `end-to-end` | 0 | 2 | 3 | 3 | 3 | 3 | 3 | 3 | 1 | 1 | 2 | general |
 | [Auto-Empirical Research Skills (AERS)](auto-empirical-research-skills.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 2 | 2 | 0 | 1 | 3 | social-sciences |
+| [Automated Alignment Researchers (Anthropic)](automated-w2s-research.md) | external | `analysis` | 2 | 3 | 3 | 1 | 2 | 2 | 2 | 1 | 0 | 2 | 2 | computer-science |
 | [AutoRA (Automated Research Assistant)](autora.md) | external | `end-to-end` | 2 | 3 | 3 | 1 | 2 | 2 | 3 | 2 | 0 | 1 | 1 | social-sciences |
 | [AutoResearchClaw](autoresearchclaw.md) | external | `end-to-end` | 3 | 2 | 2 | 3 | 2 | 2 | 3 | 3 | 1 | 3 | 3 | general |
 | [AutoSurvey](autosurvey.md) | external | `literature` | 1 | 3 | 2 | 1 | 2 | 3 | 1 | 0 | 0 | 1 | 1 | general |
@@ -42,7 +44,7 @@ sources.
 | [BixBench3](bixbench3.md) | external | `analysis` | 0 | 0 | 3 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | 1 | biomedical |
 | [Claude Science](claude-science.md) | external | `end-to-end` | 2 | 2 | 1 | 3 | 3 | 1 | 1 | 2 | 0 | 2 | 1 | general |
 | [Clo-Author](clo-author.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 1 | 1 | 0 | 2 | 1 | economics |
-| [Coarse (coarse.ink)](coarse-ink.md) | external | `review` | 0 | 2 | 2 | 2 | 1 | 1 | 3 | 1 | 1 | 1 | 2 | general |
+| [Coarse (coarse.ink)](coarse-ink.md) | external | `review` | 0 | 2 | 2 | 2 | 1 | 2 | 3 | 1 | 1 | 1 | 2 | general |
 | [CORAL](coral.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 1 | 2 | 2 | general |
 | [CORE-Bench](core-bench.md) | external | `replication` | 0 | 2 | 3 | 1 | 2 | 3 | 2 | 3 | 0 | 1 | 2 | general |
 | [DARE (De-Anthropocentric Research Engine)](dare.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 0 | 2 | 2 | 0 | 2 | 2 | general |
@@ -50,12 +52,14 @@ sources.
 | [DeepResearcher (GAIR-NLP)](deepresearcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 3 | 3 | 2 | 0 | 2 | 1 | general |
 | [DeepScientist](deepscientist.md) | external | `end-to-end` | 2 | 3 | 2 | 2 | 2 | 3 | 2 | 2 | 1 | 1 | 2 | computer-science |
 | [EconAgentSkills](econ-agent-skills.md) | external | `analysis` | 2 | 1 | 3 | 2 | 2 | 0 | 2 | 1 | 0 | 1 | 2 | economics |
+| [Econ Writing Skill](econ-writing-skill.md) | external | `drafting` | 2 | 0 | 3 | 1 | 1 | 1 | 3 | 2 | 0 | 1 | 1 | economics |
 | [EconCS Bench](econcs-bench.md) | external | `end-to-end` | 0 | 0 | 3 | 1 | 0 | 1 | 1 | 1 | 0 | 0 | 3 | economics |
 | [EvoScientist](evoscientist.md) | external | `end-to-end` | 3 | 3 | 3 | 2 | 2 | 3 | 3 | 3 | 1 | 2 | 3 | general |
 | [FAROS (Foundation AutoResearch Operating System)](faros.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 1 | 2 | 0 | 3 | 1 | computer-science |
-| [AI Co-Scientist (Google DeepMind)](google-co-scientist.md) | external | `ideation` | 1 | 3 | 1 | 2 | 1 | 3 | 1 | 3 | 0 | 2 | 0 | general |
+| [ForeSci](foresci.md) | external | `ideation` | 0 | 0 | 3 | 1 | 1 | 2 | 1 | 1 | 0 | 0 | 2 | computer-science |
+| [AI Co-Scientist (Google DeepMind)](google-co-scientist.md) | external | `ideation` | 2 | 3 | 1 | 2 | 1 | 3 | 1 | 3 | 0 | 3 | 0 | general |
 | [GPT Researcher](gpt-researcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 1 | 3 | 3 | 0 | 1 | 2 | general |
-| [HeurekaBench](heureka-bench.md) | external | `analysis` | 0 | 0 | 3 | 2 | 2 | 3 | 1 | 1 | 0 | 1 | 2 | biomedical |
+| [HeurekaBench](heureka-bench.md) | external | `analysis` | 0 | 0 | 3 | 2 | 2 | 3 | 2 | 1 | 0 | 1 | 2 | biomedical |
 | [autoresearch (Karpathy)](karpathy-autoresearch.md) | external | `analysis` | 1 | 2 | 2 | 0 | 1 | 1 | 1 | 2 | 0 | 1 | 2 | computer-science |
 | [Kosmos (jimmc414 implementation)](kosmos.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 2 | 1 | 2 | 1 | 2 | 1 | general |
 | [LifeSciBench](lifescibench.md) | external | `end-to-end` | 0 | 0 | 1 | 2 | 0 | 2 | 0 | 1 | 0 | 0 | 1 | biomedical |
@@ -65,7 +69,7 @@ sources.
 | [MLE-bench (OpenAI)](mle-bench.md) | external | `analysis` | 0 | 0 | 3 | 2 | 2 | 3 | 2 | 3 | 0 | 1 | 2 | computer-science |
 | [MLGym (Meta)](mlgym.md) | external | `end-to-end` | 0 | 2 | 3 | 2 | 3 | 2 | 2 | 0 | 0 | 1 | 1 | computer-science |
 | [nano-scientist](nano-scientist.md) | external | `end-to-end` | 3 | 3 | 2 | 1 | 2 | 1 | 1 | 1 | 1 | 2 | 2 | general |
-| [NatureBench](naturebench.md) | external | `analysis` | 0 | 0 | 3 | 1 | 2 | 2 | 2 | 1 | 1 | 1 | 2 | general |
+| [NatureBench](naturebench.md) | external | `analysis` | 0 | 0 | 3 | 1 | 2 | 2 | 2 | 2 | 1 | 1 | 2 | general |
 | [Open CoScientist Agents](open-coscientist.md) | external | `ideation` | 1 | 3 | 3 | 2 | 1 | 1 | 3 | 1 | 3 | 2 | 1 | general |
 | [OpenScholar (AI2)](open-scholar.md) | external | `literature` | 0 | 2 | 3 | 2 | 2 | 3 | 3 | 3 | 1 | 1 | 1 | general |
 | [OpenEcon Data](openecon-data.md) | external | `analysis` | 0 | 0 | 2 | 1 | 1 | 0 | 1 | 2 | 0 | 1 | 2 | economics |
@@ -82,25 +86,26 @@ sources.
 | [RECAST (Replication and Extension with Causal AI Statistical Toolkit)](recast-causal-ai.md) | external | `replication` | 2 | 2 | 1 | 2 | 2 | 2 | 1 | 1 | 0 | 3 | 1 | econometrics |
 | [Refine (refine.ink)](refine-ink.md) | external | `review` | 0 | 2 | 1 | 1 | 1 | 2 | 0 | 3 | 0 | 1 | 0 | general |
 | [REPRO-Bench](repro-bench.md) | external | `replication` | 0 | 2 | 1 | 2 | 1 | 3 | 1 | 2 | 0 | 0 | 1 | social-sciences |
-| [ReproRepo](reprorepo.md) | external | `replication` | 0 | 0 | 3 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | computer-science |
+| [ReproRepo](reprorepo.md) | external | `replication` | 0 | 0 | 3 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 2 | computer-science |
 | [Research Paper Writing Skills](research-paper-writing-skills.md) | external | `drafting` | 1 | 0 | 3 | 1 | 1 | 0 | 3 | 2 | 0 | 1 | 3 | computer-science |
 | [ResearchTown](research-town.md) | external | `ideation` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 0 | 0 | 1 | 1 | general |
-| [ResearchAgent (NAACL 2025)](researchagent.md) | external | `ideation` | 1 | 2 | 3 | 2 | 2 | 2 | 1 | 1 | 0 | 2 | 0 | general |
+| [ResearchAgent (NAACL 2025)](researchagent.md) | external | `ideation` | 1 | 2 | 3 | 2 | 2 | 2 | 1 | 0 | 0 | 2 | 0 | general |
 | [ResearchClawBench](researchclaw-bench.md) | external | `end-to-end` | 0 | 0 | 3 | 2 | 2 | 2 | 2 | 2 | 0 | 1 | 3 | general |
-| [Reviewer (Ingar30)](reviewer.md) | external | `review` | 0 | 2 | 3 | 1 | 2 | 1 | 3 | 1 | 0 | 2 | 0 | economics |
+| [Reviewer (Ingar30)](reviewer.md) | external | `review` | 0 | 2 | 3 | 1 | 2 | 1 | 3 | 1 | 0 | 2 | 1 | economics |
 | [Robin (FutureHouse)](robin.md) | external | `end-to-end` | 2 | 2 | 3 | 2 | 1 | 2 | 2 | 2 | 1 | 2 | 2 | biomedical |
 | [Sakana AI Scientist v2](sakana-ai-scientist.md) | external | `end-to-end` | 2 | 3 | 3 | 1 | 2 | 3 | 1 | 3 | 0 | 1 | 0 | computer-science |
 | [Sakana AI Scientist (v1)](sakana-ai-scientist-v1.md) | external | `end-to-end` | 2 | 3 | 3 | 1 | 2 | 3 | 1 | 3 | 0 | 1 | 0 | computer-science |
 | [ScholarEval](scholar-eval.md) | external | `review` | 1 | 2 | 3 | 1 | 1 | 2 | 2 | 1 | 1 | 2 | 2 | general |
 | [Scholar Loop](scholar-loop.md) | external | `end-to-end` | 2 | 3 | 3 | 1 | 2 | 1 | 3 | 1 | 0 | 3 | 0 | computer-science |
-| [Social Science Replicability Infrastructure](social-science-replicability.md) | external | `replication` | 1 | 2 | 2 | 2 | 2 | 1 | 3 | 1 | 0 | 2 | 1 | social-sciences |
-| [SocSci-Repro-Bench](socsci-repro-bench.md) | external | `replication` | 0 | 0 | 2 | 1 | 0 | 2 | 1 | 1 | 0 | 0 | 3 | social-sciences |
+| [Social Science Replicability Infrastructure](social-science-replicability.md) | external | `replication` | 1 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 0 | 2 | 1 | social-sciences |
+| [SocSci-Repro-Bench](socsci-repro-bench.md) | external | `replication` | 0 | 0 | 2 | 1 | 0 | 2 | 2 | 1 | 0 | 0 | 3 | social-sciences |
 | [stata-code](stata-code.md) | external | `analysis` | 1 | 0 | 3 | 1 | 2 | 2 | 2 | 1 | 0 | 2 | 2 | economics |
 | [Stata MCP](stata-mcp.md) | external | `analysis` | 1 | 0 | 2 | 1 | 2 | 1 | 2 | 2 | 0 | 1 | 2 | economics |
-| [StatsPAI](statspai.md) | external | `analysis` | 0 | 0 | 3 | 1 | 2 | 2 | 3 | 2 | 0 | 1 | 2 | economics |
+| [StatsPAI](statspai.md) | external | `analysis` | 0 | 0 | 3 | 1 | 2 | 3 | 3 | 2 | 0 | 1 | 2 | economics |
 | [STORM / Co-STORM](storm.md) | external | `literature` | 1 | 2 | 3 | 2 | 2 | 2 | 3 | 3 | 0 | 1 | 2 | general |
 | [SurveyX](surveyx.md) | external | `literature` | 1 | 3 | 2 | 1 | 1 | 2 | 1 | 0 | 0 | 1 | 1 | general |
 | [SwarmResearch](swarmresearch.md) | external | `end-to-end` | 1 | 3 | 2 | 0 | 2 | 2 | 1 | 1 | 1 | 1 | 2 | computer-science |
+| [Terminal-Bench-Science](terminal-bench-science.md) | external | `analysis` | 1 | 0 | 3 | 1 | 1 | 2 | 3 | 2 | 0 | 0 | 2 | general |
 | [Tongyi DeepResearch](tongyi-deepresearch.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 3 | 3 | 3 | 0 | 1 | 2 | general |
 | [ToolUniverse](tooluniverse.md) | external | `end-to-end` | 0 | 2 | 3 | 3 | 2 | 2 | 3 | 2 | 1 | 2 | 2 | biomedical |
 | [Writing-Driven Autoresearch](writing-driven-autoresearch.md) | external | `end-to-end` | 2 | 3 | 3 | 0 | 2 | 2 | 2 | 0 | 0 | 3 | 1 | computer-science |
@@ -118,6 +123,7 @@ sources.
 - **[Agent Laboratory](agent-laboratory.md)** — An end-to-end autonomous research workflow (arXiv:2501.04227) that guides a research idea through three phases — literature review, experimentation, and report writing — with specialized LLM-driven agents and external tools (arXiv, Hugging Face, Python, LaTeX).
 - **[Agon](agon.md)** — A Claude Code plugin that drives a research project from a one-line topic through idea → proposal → running experiments with no human-written experimental code.
 - **[AI Co-Mathematician (Google DeepMind)](ai-co-mathematician.md)** — A closed, agentic multi-agent workbench (arXiv:2605.06651) built on Gemini 3.1 for open-ended *mathematics* research.
+- **[AI Peer Review (poldrack)](ai-peer-review.md)** — A CLI tool for AI-assisted meta-review of scientific papers: submits a manuscript to up to six proprietary LLMs (GPT-4o, GPT-4o-mini, Claude 3.7 Sonnet, Gemini 2.5 Pro, DeepSeek R1, Llama 4 Maverick) for independent review, then synthesizes a meta-review plus a concerns-by-reviewer matrix.
 - **[ai-peer-review-skill](ai-peer-review-skill.md)** — A single-purpose Claude Code skill sitting squarely in the referee-simulation stage: hand it a manuscript (PDF, DOCX, TXT or MD) and it extracts the text, spawns N parallel Claude subagents (default 5, named with NATO codenames alfa through echo) that each return an independent structured review — summary, major concerns, minor concerns, verdict — with one slot optionally given to an AI-Alignment-Forum-style critic red-teaming narrative, novelty, baselines, ablations and reproducibility, then synthesises a meta-review separating shared from unique concerns and issuing a final verdict.
 - **[AI Research Feedback](ai-research-feedback.md)** — Ten Claude Code skills that referee economics and finance research artifacts before they leave the author's hands.
 - **[AI-Researcher (HKUDS)](ai-researcher.md)** — An autonomous multi-agent system for ML research (arXiv 2505.18705, NeurIPS 2025 spotlight) that takes either a detailed idea (Level 1) or only a set of reference papers (Level 2) and runs resource collection from arXiv, GitHub and Hugging Face, idea generation, algorithm design, implementation and experiments inside a Docker container, an iterative validate-and-refine cycle, and hierarchical paper writing.
@@ -129,24 +135,27 @@ sources.
 - **[Asta AutoDiscovery](asta-autodiscovery.md)** — Ai2's autonomous data-driven discovery agent (formerly AutoDS; relaunched inside AstaLabs on 2026-02-12): pointed at a structured dataset, it generates natural-language hypotheses, proposes experiment plans, writes and executes Python analyses — up to 500 experiments in a session — and ranks the resulting findings by Bayesian surprise, the shift from the LLM's prior to posterior belief in each hypothesis.
 - **[AstaBench (AI2)](asta-bench.md)** — An evaluation framework from AI2 for measuring scientific-research abilities of AI agents.
 - **[Auto-Empirical Research Skills (AERS)](auto-empirical-research-skills.md)** — A Claude-plugin-structured mega-catalog of agent skills for empirical social-science research: 74 collections / 1,094 vendored skills — 7 first-party Stanford REAP × CoPaper.AI collections (including the StatsPAI causal engine and the Paper-WorkFlow meta-orchestrator) plus 67 curated, security-audited community collections — spanning topic refinement, literature review, data acquisition, identification strategy, estimation (Python/Stata/R), robustness audit, publication tables, writing, review simulation, AI-trace removal, and journal submission.
+- **[Automated Alignment Researchers (Anthropic)](automated-w2s-research.md)** — Anthropic's open-sourced sandbox and agent harness for automating a specific slice of alignment research — weak-to-strong generalization.
 - **[AutoRA (Automated Research Assistant)](autora.md)** — A Python framework for closing the empirical research loop in the behavioural and brain sciences: an *experimentalist* proposes novel experimental conditions, an *experiment runner* collects the corresponding observations from participants or a synthetic generator, and a *theorist* fits a model that explains the data — then the cycle repeats with the new evidence, all coordinated through a serializable `StandardState` object.
 - **[AutoResearchClaw](autoresearchclaw.md)** — An autonomous research pipeline taking a chat-level idea to a full paper via ACP-compatible agent back-ends (Claude Code, Codex CLI, Copilot CLI, Gemini CLI, Kimi CLI).
 - **[AutoSurvey](autosurvey.md)** — A NeurIPS 2024 framework (arXiv:2406.10252) for automatically generating comprehensive literature surveys from a topic and a paper database.
 - **[Aviary (FutureHouse)](aviary.md)** — A gymnasium for defining custom language-agent environments (arXiv:2412.21154), with pre-built environments for math, general knowledge, biological sequences, scientific literature search, and protein stability.
 - **[BixBench3](bixbench3.md)** — Twenty computational-biology tasks at the scale of a whole research study, framed explicitly as *delegation* rather than autonomy: the scientist keeps the research question and the high-level method choice, and the agent implements every analysis step from the raw data of a published study up to a set of exactly specified output artifacts (138 artifacts across the 20 tasks).
-- **[Claude Science](claude-science.md)** — Anthropic's AI workbench for researchers ("Claude Code for science"), announced 2026-06-30: a desktop app (macOS/Linux) in which a generalist coordinating agent with 60+ curated skills and connectors spawns specialist agents to run literature analysis, database queries, multistep data analyses, figure iteration, and manuscript drafting, with compute spanning the local machine, HPC clusters via SSH, and Modal GPUs.
+- **[Claude Science](claude-science.md)** — Anthropic's AI workbench for researchers ("Claude Code for science"), announced 2026-06-30: a desktop app (macOS, Linux, and, natively since v0.1.47 on 2026-09-10, Windows) in which a generalist coordinating agent with 60+ curated skills and connectors spawns specialist agents to run literature analysis, database queries, multistep data analyses, figure iteration, and manuscript drafting, with compute spanning the local machine, HPC clusters via SSH, and Modal GPUs.
 - **[Clo-Author](clo-author.md)** — A Claude Code scaffold for empirical economics research, spanning literature review through journal submission.
 - **[Coarse (coarse.ink)](coarse-ink.md)** — A web-based AI peer-review service: users upload academic papers (up to 50 MB) and receive AI-generated referee reports with 20+ detailed comments.
 - **[CORAL](coral.md)** — Infrastructure (arXiv:2604.01658) for *multi-agent autonomous self-evolution* — organizations of AI agents that run experiments, share knowledge through persistent stores, and continuously improve solutions against a user-supplied grading script.
 - **[CORE-Bench](core-bench.md)** — A computational-reproducibility benchmark: 270 tasks built from 90 published papers (Code Ocean capsules) in computer science, social science and medicine, written in Python or R, each asking an agent to reproduce the reported results and then answer written and vision-based questions about the output into a supplied `report.json`.
-- **[DARE (De-Anthropocentric Research Engine)](dare.md)** — The largest pure-markdown research-skill corpus in the catalog: 900+ skills over a four-layer hierarchy — Campaign (45+) -> Strategy (200+) -> Tactic (120+) -> SOP (500+), each layer holding one concern and calling only the layer below — grouped into ten composable packages (north-star-crystallization, knowledge-acquisition, hypothesis-formation, creative-ideation, convergence, deep-insight, stress-test, experiment-execution, knowledge-structuring, ara-from-context) and wired to seven MCP servers (Semantic Scholar, alphaXiv, Brave, Tavily, keenable, Apify, plus a local wiki-vault knowledge graph).
+- **[DARE (De-Anthropocentric Research Engine)](dare.md)** — A pure-markdown research-skill corpus, substantially rearchitected in a "v4" rewrite merged 2026-09-23: what had been a four-layer hierarchy of 900+ skills (Campaign -> Strategy -> Tactic -> SOP) grouped into ten packages is now a two-layer research graph of 267 nodes — 51 Tactics (complete research transformations) composed from 216 SOPs (single-purpose steps) — reached through four product shells (entry, catalog, write-spec, execute-spec); the old `cli/` and `dsh-plugin/` components were dropped in the same merge.
 - **[data-to-paper](data-to-paper.md)** — An end-to-end framework that takes annotated data and produces *backward-traceable* scientific manuscripts: every numeric value in the output can be click-traced to the specific code line that generated it.
 - **[DeepResearcher (GAIR-NLP)](deepresearcher.md)** — An end-to-end RL-trained deep-research agent (arXiv:2504.03160) that learns to plan, retrieve, cross-validate, and self-reflect via reinforcement learning in real-world web environments rather than in simulated retrieval.
 - **[DeepScientist](deepscientist.md)** — A local-first autonomous research studio for ML/AI work: you hand it a paper, a repository, or a bare research objective, and it reproduces a baseline, then runs long-horizon hypothesise → verify → analyse cycles under Bayesian optimisation, accumulating findings across sessions and ending in figures, reports and a LaTeX/PDF draft.
 - **[EconAgentSkills](econ-agent-skills.md)** — Ten opinionated agent skills covering the applied-econometrics workbench in four stages: data (working-with-data, api-data-fetcher, stata-data-cleaning), analysis (r-econometrics, stata-regression, python-panel-data), writing (academic-paper-writer, latex-tables) and communication (econ-visualization, beamer-presentation).
+- **[Econ Writing Skill](econ-writing-skill.md)** — A portable agent skill (`skills/econ-write/`) that packages economics paper-writing craft — section formulas, identification-strategy-aware phrasing, LaTeX conventions, and a pre-submission checklist — distilled from 50+ guides by named economists (Cochrane, McCloskey, Shapiro, Head, Bellemare, Goldin, Kremer).
 - **[EconCS Bench](econcs-bench.md)** — A benchmark suite of open research challenges in Economics and Computation (EconCS), associated with the AI-Driven Research in EconCS workshop at EC 2026.
 - **[EvoScientist](evoscientist.md)** — A self-evolving AI scientist system (arXiv:2603.08127) built on the DeepAgents framework.
 - **[FAROS (Foundation AutoResearch Operating System)](faros.md)** — A self-hosted, web-app multi-agent system spanning the full research lifecycle: topic coaching → literature-gated idea selection → a structured `PlanPackage` (hypothesis, variables, acceptance criteria, evidence citations) → sandboxed code generation and execution → experiment/metric tracking → paper drafting with citation management and LaTeX/PDF output → ReviewX, a claim-evidence-experiment consistency auditor.
+- **[ForeSci](foresci.md)** — A temporally-controlled benchmark of 500 tasks testing whether LLM agents can make forward-looking research judgments — direction forecasting, bottleneck/opportunity discovery, strategic research planning, and venue-aware positioning — from a frozen, cutoff-dated knowledge base (~7,500 documents across four fast-moving AI subfields: LLM agents, fine-tuning, RAG systems, visual generative modeling), with post-cutoff papers held out purely for validation.
 - **[AI Co-Scientist (Google DeepMind)](google-co-scientist.md)** — Google's closed multi-agent research partner (announced Feb 2025, published in Nature 2026-05-19) that generates, debates, and evolves novel research hypotheses.
 - **[GPT Researcher](gpt-researcher.md)** — An autonomous "deep research" agent that produces long-form, cited reports on any topic from web and local sources.
 - **[HeurekaBench](heureka-bench.md)** — A framework for *constructing* AI-co-scientist benchmarks rather than a fixed benchmark: a semi-automated pipeline uses multiple LLMs to mine validated insights out of published papers, reformulate them as open-ended research questions over the papers' own experimental datasets, and validate the resulting question-answer pairs against the published findings.
@@ -195,6 +204,7 @@ sources.
 - **[STORM / Co-STORM](storm.md)** — An LLM-powered knowledge-curation system that writes Wikipedia-style long-form articles from web search.
 - **[SurveyX](surveyx.md)** — An academic survey-automation system (arXiv:2502.14776) that generates domain-specific surveys from a paper title plus retrieval keywords.
 - **[SwarmResearch](swarmresearch.md)** — An orchestrator-subagent harness for open-ended discovery, from a four-author group at UIUC.
+- **[Terminal-Bench-Science](terminal-bench-science.md)** — A benchmark of 70 (growing toward 100+) expert-curated computational research workflows spanning life, physical, earth, mathematical, and engineering sciences, run through the Harbor agent-evaluation framework.
 - **[Tongyi DeepResearch](tongyi-deepresearch.md)** — An agentic large language model purpose-built for long-horizon deep-information-seeking tasks (arXiv:2510.24701), shipped both as open weights (30.5B total / 3.3B active) and as inference code with ReAct and 'Heavy' (IterResearch) modes.
 - **[ToolUniverse](tooluniverse.md)** — A curated tool registry and MCP server (arXiv:2509.23426) that packages biomedical, chemical, and general scientific APIs into a uniform agent-callable surface.
 - **[Writing-Driven Autoresearch](writing-driven-autoresearch.md)** — A multi-agent harness that inverts the usual autoresearch order: instead of experimenting and then writing up, it drafts a complete submittable paper first — claims, tables and all, with the numbers standing in as placeholders — and then drives every experiment from the claims in that draft in a modify → measure → verify → revise loop.

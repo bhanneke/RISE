@@ -25,14 +25,14 @@ Open-source (MIT) and explicitly anti-commercial in framing — "Academic peer r
 | Architectural transparency | 2 | Open source under MIT; multiple back-end models exposed (Claude, GPT-5, Gemini, DeepSeek). Internal orchestration not deeply documented in marketing. |
 | Inputs supported | 2 | PDF + optional focus note, plus a new optional --deep-literature-search mode (Perplexity Sonar Pro / Sonar Deep Research) that pulls in external literature during review — confirmed on the underlying GitHub repo (davidvandijcke/coarse, MIT, 182 stars, v1.9.2). |
 | Outputs / reproducibility | 1 | Reports are persisted client-side; not deterministic across runs by design (different model choices). |
-| Internal evaluation | 1 | Self-reported blind evaluation vs. refine.ink, Stanford Agentic Reviewer, reviewer3.com; no third-party benchmark. |
+| Internal evaluation | 2 | Self-reported blind evaluation vs. refine.ink, Stanford Agentic Reviewer, reviewer3.com, plus a new independent third-party benchmark (Nguyen et al., 'Benchmarking Agentic Review Systems', arXiv:2606.19749, submitted 2026-06-18) that evaluates Coarse alongside OpenAIReview, Reviewer3 and a zero-shot baseline on a citation/acceptance quality-proxy study and an error-injection benchmark across six LLMs — Coarse is not reported as the top performer, and the paper is an arXiv preprint, not yet confirmed peer-reviewed. |
 | Openness | 3 | MIT-licensed; BYOK (bring-your-own-key) model; transparent pricing (~under $2/review with OpenRouter). |
-| Maturity / traction | 1 | Active hosted service in 2026; underlying open-source repo (davidvandijcke/coarse) shows 182 GitHub stars and a v1.9.2 release; hosted-service user base still not publicly disclosed. |
+| Maturity / traction | 1 | Hosted service presumed active in 2026 — direct fetch of coarse.ink is blocked by this session's network egress policy, so liveness could not be directly reverified, but the ecosystem is corroborated by third-party coverage (e.g. manusights.com reviews of refine.ink referencing Coarse) and by the arXiv:2606.19749 benchmark; underlying open-source repo (davidvandijcke/coarse) now shows 191 GitHub stars (up from 182) and release v1.9.4 (up from v1.9.2); hosted-service user base still not publicly disclosed. |
 | Cross-family policy | 1 | BYOK OpenRouter exposes Claude / GPT-5 / Gemini / DeepSeek as user-selectable executor — cross-family by user choice. |
 | Runtime assurance | 1 | Single-pass review with focus-note steering; no published claim-audit harness. |
 | Cross-platform portability | 2 | Multi-provider via OpenRouter + local Claude Code/Codex/Gemini CLI fallback. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

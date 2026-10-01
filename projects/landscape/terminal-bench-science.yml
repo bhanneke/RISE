@@ -1,0 +1,112 @@
+slug: terminal-bench-science
+name: "Terminal-Bench-Science"
+type: external
+status: active
+url: "https://github.com/harbor-framework/terminal-bench-science"
+license: "Apache-2.0"
+maintainers:
+  - "Steven Dillmann (Stanford University)"
+  - "Sanmi Koyejo (Stanford University)"
+  - "Ludwig Schmidt (Stanford University / Anthropic)"
+  - "Laude Institute"
+year_started: 2026
+
+positioning: >
+  A benchmark of 70 (growing toward 100+) expert-curated computational
+  research workflows spanning life, physical, earth, mathematical, and
+  engineering sciences, run through the Harbor agent-evaluation
+  framework. It extends the Terminal-Bench line — already used
+  internally by Anthropic, OpenAI, and Google DeepMind to evaluate
+  coding agents — into science-specific terminal and data-analysis
+  tasks, each drawn from a workflow a practicing researcher actually
+  performed. Sits in RISE's evaluation-infrastructure layer alongside
+  AstaBench, MLGym, and EconCS Bench, but targets hands-on scientific
+  computing (run a pipeline, fit a model, reproduce a result) rather
+  than literature synthesis, theory, or paper-writing.
+
+distinctive_contribution: >
+  Built from genuine researcher workflows rather than synthetic tasks,
+  with a large open domain-expert review process (376 contributors
+  across 22 countries via proposals/reviews/PRs) and direct lineage
+  from a harness that frontier labs already use for their own coding
+  agents — making results comparable across labs' internal evaluations
+  and the public leaderboard alike.
+
+focus: analysis
+
+pipeline_stages:
+  - data-analysis
+  - code-generation
+  - replication
+
+architectural_features: []
+
+discipline: general
+
+inputs:
+  - task-specification
+  - per-task-dataset
+
+outputs:
+  - agent-trajectories
+  - pass-fail-scores
+  - leaderboard-rankings
+
+data_sources:
+  - per-task-research-datasets
+
+knowledge_sources:
+  - contributor-research-workflows
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Tasks cover data-analysis/code-generation/replication of real computational workflows (2-3 adjacent stages); no ideation, literature, or drafting stages evaluated."
+  autonomy_level:
+    score: 0
+    note: "Static, expert-authored task set with oracle solutions curated via PR review; any agency under test belongs to the agents being benchmarked, not the benchmark itself."
+  architectural_transparency:
+    score: 3
+    note: "Full task specs, oracle solutions, Harbor scoring harness, and sandbox configs are public under Apache-2.0."
+  inputs_supported:
+    score: 1
+    note: "Single input form (a sandboxed terminal task) with a per-task dataset; no literature or cross-task knowledge access."
+  outputs_reproducibility:
+    score: 1
+    note: "Persists agent trajectories/logs and pass-fail scores per run; no end-to-end reproducibility guarantee for the underlying research task itself."
+  internal_evaluation:
+    score: 2
+    note: "Automated oracle-based scoring via the Harbor harness with a public leaderboard; systematic but not yet externally validated as a predictor of real research capability."
+  openness:
+    score: 3
+    note: "Apache-2.0 license; tasks run end-to-end via the open-source Harbor CLI against sandboxed Modal/Daytona environments, demonstrated reproducible."
+  maturity_traction:
+    score: 2
+    note: "v0.1 released September 2026 but with substantial early traction — 656 stars, 388 forks, 376 contributors across 22 countries, and direct lineage from the already lab-adopted Terminal-Bench."
+  cross_family_policy:
+    score: 0
+    note: "Not applicable — model-agnostic evaluation harness with no policy on how systems under test are built."
+  assurance_runtime:
+    score: 0
+    note: "No in-flight research-pipeline integrity mechanism; oracle comparison is post-hoc grading of the agent run, not a runtime check within a research process."
+  cross_platform_portability:
+    score: 2
+    note: "Harbor supports multiple agent harnesses/models (e.g., claude-code and others) and multiple sandbox backends (Modal, Daytona)."
+scored_on: "2026-10-01"
+
+limitations:
+  - "v0.1 is small (70 tasks) and its domain mix reflects which experts volunteered tasks so far, not a principled sampling of scientific computing."
+  - "Oracle-based pass/fail scoring may undercredit valid alternative solution paths in open-ended research tasks."
+  - "No external validation yet of how well benchmark scores predict real-world research productivity."
+
+related:
+  - econcs-bench
+  - asta-bench
+  - mlgym
+  - mle-bench
+  - core-bench
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No dedicated paper at scoring date; announcement: https://www.tbench.ai/news/terminal-bench-science-0-1
+
+references: []

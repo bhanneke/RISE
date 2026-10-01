@@ -1,0 +1,126 @@
+slug: automated-w2s-research
+name: "Automated Alignment Researchers (Anthropic)"
+type: external
+status: active
+url: "https://github.com/safety-research/automated-w2s-research"
+license: "MIT"
+maintainers:
+  - "Anthropic (safety-research)"
+year_started: 2026
+
+positioning: >
+  Anthropic's open-sourced sandbox and agent harness for automating a
+  specific slice of alignment research — weak-to-strong generalization.
+  Nine Claude-powered agent instances autonomously propose training
+  methods, implement them, train and evaluate models against a
+  server-side held-out metric (Performance Gap Recovery), and post
+  findings to a shared forum that other agents can read. Sits in the
+  single-domain, experiment-driven corner of the landscape alongside
+  AlphaEvolve and RD-Agent, but the object of study is AI safety
+  research itself rather than general empirical science; covers
+  hypothesis-generation through code-generation and evaluation with no
+  literature search or paper-drafting stage.
+
+distinctive_contribution: >
+  The first publicly released code + sandbox + baselines for autonomous
+  alignment research with a verifiable, cheat-resistant metric (ground
+  truth never leaves the server) and a documented inter-agent "findings
+  forum." The companion paper reports automated researchers closing
+  almost the full performance gap (PGR 0.97) across 10 distinct
+  alignment failure modes within six hours, outperforming the best
+  one-shot method from 28 experienced human researchers given up to
+  eight hours, with generalization to held-out benchmarks and models up
+  to 4.7x larger than the target model.
+
+focus: analysis
+
+pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - data-analysis
+  - code-generation
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - iterative-loop
+  - persistent-memory
+
+discipline: computer-science
+
+inputs:
+  - alignment-benchmark-task
+  - labeled-unlabeled-datasets
+
+outputs:
+  - training-methods
+  - code
+  - evaluation-metrics
+  - findings-reports
+
+data_sources:
+  - chat-math-code-labeled-datasets
+
+knowledge_sources:
+  - inter-agent-findings-forum
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Four adjacent stages (hypothesis-generation through code-generation/evaluation); no literature search or paper-drafting stage."
+  autonomy_level:
+    score: 3
+    note: "Agents run multi-day, multi-hundred-hour research loops (propose, implement, train, evaluate, share) without per-step human approval within the sandboxed task."
+  architectural_transparency:
+    score: 3
+    note: "Full agent code, prompts, sandbox/Docker/RunPod configs, dashboard, and five baseline implementations are public on GitHub under MIT."
+  inputs_supported:
+    score: 1
+    note: "Single input form (a predefined weak-to-strong benchmark task) plus access to labeled/unlabeled chat, math, and code datasets; no literature access."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists code, trained models, and evaluation metrics with cached baseline results and three execution modes, but live agent runs are LLM-stochastic and GPU-dependent, not deterministically reproducible end-to-end."
+  internal_evaluation:
+    score: 2
+    note: "Systematic evaluation across 10 alignment failures with held-out generalization checks and a time-boxed 28-researcher human baseline; arXiv preprint only, not yet peer-reviewed."
+  openness:
+    score: 2
+    note: "MIT license with full setup docs and cached data/results; reproducing agent runs needs GPU compute (local or RunPod), not casual commodity hardware."
+  maturity_traction:
+    score: 1
+    note: "Young research artifact (paper and repo, August 2026); 314 stars / 49 forks and only 2 commits on main at scoring date — early-stage, not a maintained product."
+  cross_family_policy:
+    score: 0
+    note: "All nine automated-researcher agents run on Claude; no cross-model-family executor/reviewer setup."
+  assurance_runtime:
+    score: 2
+    note: "Server-side held-out evaluation API withholds ground truth so agents cannot directly optimize against it, a moderate in-pipeline anti-gaming gate; no separate claim- or citation-faithfulness checks (not applicable to this task domain)."
+  cross_platform_portability:
+    score: 2
+    note: "Three execution backends (local subprocess, Docker, RunPod cloud) support parallel distributed runs, though locked to the Claude model family."
+scored_on: "2026-10-01"
+
+limitations:
+  - "Narrow to one task family (weak-to-strong generalization on chat/math/code data), not a general-purpose research agent."
+  - "Single model family (Claude) only; no cross-family review built in."
+  - "Requires GPU compute (local or RunPod) to run; not reproducible on a laptop without cloud spend."
+  - "Early-stage research artifact (August 2026) with minimal commit history; not positioned as a maintained product."
+
+related:
+  - arbor
+  - rd-agent
+  - alphaevolve
+  - mle-bench
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: "Automated Researchers Can Mitigate Well-characterized Alignment Failures"
+    authors:
+      - "Chen, Y.-H."
+      - "Wen, J."
+      - "Kirchner, J. H."
+    year: 2026
+    venue: "arXiv (Anthropic)"
+    arxiv_id: "2608.28945"
+
+references: []

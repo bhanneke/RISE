@@ -10,7 +10,7 @@
 
 ## Positioning
 
-Anthropic's AI workbench for researchers ("Claude Code for science"), announced 2026-06-30: a desktop app (macOS/Linux) in which a generalist coordinating agent with 60+ curated skills and connectors spawns specialist agents to run literature analysis, database queries, multistep data analyses, figure iteration, and manuscript drafting, with compute spanning the local machine, HPC clusters via SSH, and Modal GPUs. Covers a broad slice of the RISE pipeline from literature work through manuscript refinement, in the same big-lab workbench layer as Prism and Google Co-Scientist.
+Anthropic's AI workbench for researchers ("Claude Code for science"), announced 2026-06-30: a desktop app (macOS, Linux, and, natively since v0.1.47 on 2026-09-10, Windows) in which a generalist coordinating agent with 60+ curated skills and connectors spawns specialist agents to run literature analysis, database queries, multistep data analyses, figure iteration, and manuscript drafting, with compute spanning the local machine, HPC clusters via SSH, and Modal GPUs. Covers a broad slice of the RISE pipeline from literature work through manuscript refinement, in the same big-lab workbench layer as Prism and Google Co-Scientist.
 
 ## Distinctive contribution
 
@@ -30,9 +30,9 @@ Auditable-artifact design: every figure ships with a reproducibility package (ex
 | Maturity / traction | 2 | Public beta (June 2026) with external users across paid tiers, named institutional early adopters, discounted academic Team plan, and a grants program; weeks old at scoring date. |
 | Cross-family policy | 0 | Anthropic models only; no cross-family executor/reviewer configuration. |
 | Runtime assurance | 2 | Background reviewer agent flags incorrect citations, untraceable numbers, and figure-code mismatches in-flight and self-corrects; gating behavior not documented. |
-| Cross-platform portability | 1 | Single provider and dedicated macOS/Linux app, but compute targets span local machines, HPC via SSH, and Modal GPUs. |
+| Cross-platform portability | 1 | Single provider and dedicated desktop app, now shipping natively for macOS, Linux, and (since v0.1.47, 2026-09-10) Windows; compute targets still span local machines, HPC via SSH, and Modal GPUs — platform count grew but provider lock-in is unchanged. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -58,7 +58,7 @@ Auditable-artifact design: every figure ships with a reproducibility package (ex
 
 - Closed-source and subscription-gated; cannot be audited, self-hosted, or pointed at non-Anthropic models.
 - Pre-configured depth is life-science-specific (genomics, proteomics, structural biology, cheminformatics) and the grants program prioritizes biology — other disciplines start from a generic baseline.
-- Effectiveness evidence is vendor-selected case studies rather than independent benchmarks; macOS/Linux only, no Windows.
+- Effectiveness evidence is vendor-selected case studies rather than independent benchmarks.
 
 ## Related projects in this catalog
 

@@ -27,14 +27,14 @@ The catalog's clearest case of tooling redesigned *for* agents rather than agent
 | Architectural transparency | 3 | Full open source with machine-readable schemas, a function registry with per-estimator validation status, extensive docs, and a very detailed changelog. |
 | Inputs supported | 1 | Single input form (dataframe + formula/estimator spec) plus bundled teaching datasets (Card 1995, LaLonde, mpdta, Lee 2008, Prop 99); no literature access. |
 | Outputs / reproducibility | 2 | Structured result objects with tidy/LaTeX/DOCX export, plotting, citation, and serialization; deterministic reruns, but no end-to-end paper/data-manifest artifacts. |
-| Internal evaluation | 2 | R/Stata reference-parity tests with validation_status tiers and sp.cross_validate, ~200k LOC of tests in CI; JOSS review pending, no external validation yet. |
+| Internal evaluation | 3 | R/Stata reference-parity tests with validation_status tiers and sp.cross_validate, ~200k LOC of tests in CI; JOSS review completed and paper published 2026-09-03 (JOSS 11(125):10604) — external peer-reviewed validation. |
 | Openness | 3 | MIT license, pip-installable from PyPI, examples run offline on commodity hardware after install; Zenodo-archived releases. |
-| Maturity / traction | 2 | 282 stars / 58 forks, v1.20.0 with rapid release cadence over ~12 months, PyPI + Zenodo DOI; external adoption still modest and peer review (JOSS) not yet complete. |
+| Maturity / traction | 2 | 328 stars / 68 forks, v1.29.0 with rapid release cadence over ~12 months, PyPI + Zenodo DOI, and a completed JOSS peer review (published 2026-09-03); external adoption still modest relative to incumbent Stata/R tooling. |
 | Cross-family policy | 0 | Not applicable — no LLM in the loop; a deterministic library callable from any model family. |
 | Runtime assurance | 1 | Schema-validated structured results, validation-tier metadata, and audit methods on result objects; no claim-audit stack (largely inapplicable to a library). |
 | Cross-platform portability | 2 | Three integration surfaces — plain Python API, MCP server, and skill packaging — all provider-agnostic, but deployment is confined to Python environments. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -62,3 +62,7 @@ The catalog's clearest case of tooling redesigned *for* agents rather than agent
 - [`auto-empirical-research-skills`](auto-empirical-research-skills.md)
 - [`tooluniverse`](tooluniverse.md)
 - [`recast-causal-ai`](recast-causal-ai.md)
+
+## Papers describing this project
+
+- **StatsPAI: A Unified, Agent-Native Python Toolkit for Causal Inference and Applied Econometrics** — Wang, B., Rozelle, S. (2026). *Journal of Open Source Software, 11(125), 10604*. [doi](https://doi.org/10.21105/joss.10604)

@@ -29,12 +29,12 @@ The hypothesis tree as first-class research memory: results, failure modes, and 
 | Outputs / reproducibility | 2 | Git-worktree-isolated experiments with session artifacts (REPORT.md, events.jsonl, Idea Tree), resumable runs, and deterministic replay/export; LLM nondeterminism limits exact re-runs. |
 | Internal evaluation | 2 | Systematic paper evaluation across six tasks plus MLE-Bench Lite (86.36% Any-Medal) against Claude Code and Codex baselines; self-reported, not yet peer-reviewed. |
 | Openness | 3 | Apache-2.0; pip-installable; keyless demo replay and a CPU-only example task run on commodity hardware, with free-key/local-model quickstart paths. |
-| Maturity / traction | 2 | 968 stars and 118 forks in ~6 weeks, PyPI package, Claude Code plugin marketplace entry, VentureBeat coverage; very young but shipping regular releases. |
+| Maturity / traction | 2 | 1.1k stars and 129 forks (up from 968/118), PyPI package, Claude Code plugin marketplace entry, VentureBeat coverage; still very young but shipping regular releases (new literature-search and self-learning-from-runs features through 2026-06-30). |
 | Cross-family policy | 0 | Coordinator and Executor share one configured provider/model per run; many back-ends supported (Anthropic, OpenAI, LiteLLM-compatible) but one family at a time. |
 | Runtime assurance | 2 | Held-out-test merge gates with a configurable margin, protected dev/test discipline, git isolation, and optional pre-experiment novelty checks — moderate, metric-focused gating. |
 | Cross-platform portability | 3 | Native CLI, Claude Code plugin, Codex skills, standalone markdown skill suite, and an MCP server; model back-ends span Anthropic, OpenAI, and any OpenAI-compatible endpoint via LiteLLM. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

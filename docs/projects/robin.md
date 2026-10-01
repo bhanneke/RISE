@@ -29,12 +29,12 @@ One of the few openly-documented RISE systems that explicitly separates *hypothe
 | Outputs / reproducibility | 1 | Hypothesis/experiment paths runnable offline; full analysis path requires paid Edison API. |
 | Internal evaluation | 2 | Demonstrated end-to-end run on a biological discovery task in the arXiv paper. |
 | Openness | 2 | Source open under Apache-2.0, but full functionality gated behind commercial API credits. |
-| Maturity / traction | 2 | 633 stars; FutureHouse backing; published in Nature 2026-05-19, though repo unchanged since 2026-04. |
+| Maturity / traction | 2 | 719 stars (up from 633); FutureHouse backing; published in Nature 2026-05-19, though repo unchanged since 2026-04-21. |
 | Cross-family policy | 1 | Edison platform agents + OpenAI/other via LiteLLM — cross-family supported. |
 | Runtime assurance | 2 | Multi-agent literature → hypothesis → experiment loop with EdisonScientific platform validation. |
 | Cross-platform portability | 2 | Docker setup + LiteLLM multi-provider; Edison API integration. |
 
-*Scored on 2026-05-18. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

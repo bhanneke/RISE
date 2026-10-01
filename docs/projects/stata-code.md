@@ -29,12 +29,12 @@ The only Stata bridge in the catalog offering four simultaneous frontends (MCP/J
 | Outputs / reproducibility | 2 | Persists structured code/log/graph references and publication-ready tables; token-efficient by design (refs over inline content) but no end-to-end paper/data-manifest bundle. |
 | Internal evaluation | 2 | Systematic internal test suite across all interfaces plus StatsPAI cross-validation for numeric result-parity auditing between two independently built tools — no external/third-party validation yet. |
 | Openness | 2 | MIT license (explicitly chosen over AGPL to avoid copyleft transmission), pip-installable; still requires a paid Stata 13+ (17+ preferred) license to actually execute analyses. |
-| Maturity / traction | 1 | 42 stars, 161 commits, v0.12 (July 2026) — active single-maintainer research prototype, pre-1.0. |
+| Maturity / traction | 1 | 46 stars, 5 forks, 161 commits, VS Code extension at v0.12.2 (10 Aug 2026 release) — active single-maintainer research prototype, pre-1.0. |
 | Cross-family policy | 0 | Not applicable — an execution tool invoked by whichever AI assistant (Claude Code, Cursor, etc.) the user configures; no cross-model review of its own. |
 | Runtime assurance | 2 | Multiple in-pipeline gates: typed 34-category error handling with suggested fixes, pre-execution command-safety guardrails (blocks shell escapes/file deletion), and StatsPAI cross-validation for result parity. |
 | Cross-platform portability | 2 | Four execution surfaces (MCP, Jupyter kernel, VS Code extension, CLI) over one core, usable from Claude Code, Cursor, Claude Desktop, and plain Jupyter/VS Code. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

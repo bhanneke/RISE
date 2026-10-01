@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills>
 
-**Licence:** `unclassified (licence file present; see repository)`
+**Licence:** `CC BY-SA 4.0`
 
 **Source:** [`projects/landscape/auto-empirical-research-skills.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/auto-empirical-research-skills.yml)
 
@@ -29,12 +29,12 @@ The largest empirical-social-science skills distribution in the catalog, and unu
 | Outputs / reproducibility | 2 | Artifact-idempotent pipeline persists code, tables, and drafts at each stage; end-to-end reproducibility demonstrated only for reference implementations, not arbitrary papers. |
 | Internal evaluation | 2 | 17 numeric benchmark tasks with data-recomputed golds plus 37-scenario/183-item eval harness in CI — but these score the reference pipelines, not typical agent output, and there is no external validation. |
 | Openness | 2 | CC BY-SA 4.0 (copyleft, commercial use allowed); vendored collections keep their own licenses, tracked in a published license audit. |
-| Maturity / traction | 2 | 3,029 stars / 399 forks within ~4 months, five-language docs, commercial deployment via CoPaper.AI — but too young for 'sustained' adoption. |
+| Maturity / traction | 2 | 4.5k stars / 532 forks (up from 3,029/399), five-language docs, commercial deployment via CoPaper.AI — fast-growing but still too young for 'sustained' adoption. |
 | Cross-family policy | 0 | Runtime manifests target multiple providers, but no cross-model-family review or verification mechanism exists. |
 | Runtime assurance | 1 | Audit-style stages (10-item replication-package check, proofreading, AI-trace audits) run inside the flagship pipeline, but no documented gate-blocking on failure. |
 | Cross-platform portability | 3 | Skills-as-markdown with a router SKILL.md and deployment manifests for Claude Code, Cursor, Aider, CodeBuddy, and OpenAI/Codex-style runtimes. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

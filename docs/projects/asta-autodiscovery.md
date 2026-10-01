@@ -26,13 +26,13 @@ The first production discovery agent to use Bayesian surprise as the objective: 
 | Inputs supported | 1 | Single input form — a structured dataset with metadata; data access but no literature-corpus integration. |
 | Outputs / reproducibility | 2 | Persists hypotheses, executable Python code, and statistical results per run, but hosted service deletes source datasets after 7 days and MCTS/LLM stochasticity limits exact reruns. |
 | Internal evaluation | 3 | Peer-reviewed at NeurIPS 2025 (21-dataset evaluation, expert judgment on two-thirds of discoveries); downstream social-science findings independently verified and published. |
-| Openness | 2 | Apache-2.0 code and pip/conda install for the research implementation, but end-to-end reproduction of the hosted product's runs not demonstrated; hosted access is credit-gated early access through 2026-07-31. |
+| Openness | 2 | Apache-2.0 code and pip/conda install for the research implementation, but end-to-end reproduction of the hosted product's runs not demonstrated; hosted access is credit-gated early access, extended from 2026-07-31 to 2026-12-31 (existing credits still honored). |
 | Maturity / traction | 2 | Early-access beta inside AstaLabs with external users across many domains (46K+ hypotheses); production repo under active development. |
 | Cross-family policy | 0 | Exploration and belief models are configurable, but documented setups are single-family (OpenAI gpt-4o for both); no cross-family review design. |
 | Runtime assurance | 1 | Hypotheses are checked by actually executing statistical experiments before ranking, but there is no independent claim audit, citation grounding, or multiple-testing gate. |
 | Cross-platform portability | 1 | Two execution paths — hosted AstaLabs app and self-hosted CLI — with OpenAI-model examples only. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -57,7 +57,7 @@ The first production discovery agent to use Bayesian surprise as the objective: 
 ## Limitations
 
 - Structured-dataset discovery only: 'surprise' is measured against the LLM's beliefs, not the published literature, so rediscoveries and spurious-correlation artifacts must be screened by domain experts.
-- Hosted service is gated early access (hypothesis credits, costs subsidized only through 2026-07-31) and deletes source datasets 7 days after analysis.
+- Hosted service is gated early access (hypothesis credits, extended through 2026-12-31) and deletes source datasets 7 days after analysis.
 - Surprisal-driven search over hundreds of automated experiments raises multiple-comparisons risk; flagged findings are candidates for validation, not conclusions.
 
 ## Related projects in this catalog

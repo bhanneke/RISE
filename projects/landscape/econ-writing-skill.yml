@@ -1,0 +1,108 @@
+slug: econ-writing-skill
+name: "Econ Writing Skill"
+type: external
+status: active
+url: "https://github.com/hanlulong/econ-writing-skill"
+license: "MIT"
+maintainers:
+  - "Lu Han"
+year_started: 2026
+
+positioning: >
+  A portable agent skill (`skills/econ-write/`) that packages economics
+  paper-writing craft — section formulas, identification-strategy-aware
+  phrasing, LaTeX conventions, and a pre-submission checklist — distilled
+  from 50+ guides by named economists (Cochrane, McCloskey, Shapiro,
+  Head, Bellemare, Goldin, Kremer). Sits in the RISE drafting/revision
+  layer alongside `research-paper-writing-skills` (the CS/ML analogue)
+  and `academic-writing-agents`, but is economics-discipline-specific
+  and content-first: curated human writing pedagogy packaged as
+  agent-consumable markdown rather than an engineered pipeline.
+
+distinctive_contribution: >
+  The only writing-skill pack in the catalog tuned specifically to
+  empirical-economics conventions: section formulas keyed to 13+
+  identification strategies (RCT, DiD, IV, RDD, ...), dedicated
+  templates for job-market papers, dissertations, and grant proposals,
+  and a quantified pre-submission gate (24-item checklist, 100-point
+  scoring rubric) rather than generic "write more clearly" guidance.
+
+focus: drafting
+
+pipeline_stages:
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+  - dissemination
+
+architectural_features:
+  - single-llm
+
+discipline: economics
+
+inputs:
+  - paper-draft
+  - section-drafts
+
+outputs:
+  - revised-paper-sections
+  - self-review-reports
+
+data_sources: []
+
+knowledge_sources:
+  - curated-writing-guides
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Four adjacent stages — drafting, revision, a referee-style self-review checklist, and dissemination (AEA replication-package/LaTeX submission conventions) — but no literature, data, or analysis coverage of its own."
+  autonomy_level:
+    score: 0
+    note: "Pure assist content: the host agent rewrites sections under the skill's formulas with the human driving every paragraph; no autonomous pipeline."
+  architectural_transparency:
+    score: 3
+    note: "Fully public markdown/scripts: SKILL.md, sources/ bibliography, identification-strategies.md, latex-tips.md, review-checklist.md, examples/, evals/ and install scripts under .claude/.codex-plugin/.agents/ — nothing hidden, though there is no benchmark harness beyond a single evals/test-cases.md file."
+  inputs_supported:
+    score: 1
+    note: "One input form (draft prose for any section or document type) plus a bundled 50+-guide knowledge base; no live literature search or data access."
+  outputs_reproducibility:
+    score: 1
+    note: "Revised prose and checklist scores persist only via the host runtime's file edits; the skill itself versions or packages nothing."
+  internal_evaluation:
+    score: 1
+    note: "An evals/test-cases.md file exists, but no published scoring methodology, results, or comparison against an external writing-quality standard was found."
+  openness:
+    score: 3
+    note: "MIT-licensed plain markdown plus install scripts; reproducing the full artifact is a clone plus directory copy, with no paid dependency beyond the host agent itself."
+  maturity_traction:
+    score: 2
+    note: "632 stars, 104 forks, 32 commits, with platform integrations for Claude Code and OpenAI Codex shipped — real external pickup for a sub-5-month-old single-maintainer project, though release cadence beyond the initial commits is unconfirmed."
+  cross_family_policy:
+    score: 0
+    note: "Not applicable — passive model-agnostic markdown content with no executor/reviewer configuration."
+  assurance_runtime:
+    score: 1
+    note: "The 24-item/100-point review-checklist is a mandated self-audit step in the workflow, but it is a prompt-level instruction with nothing enforcing or gating on it."
+  cross_platform_portability:
+    score: 1
+    note: "Ships integrations for Claude Code and OpenAI Codex (2 documented runtimes); no Gemini CLI or broader skills-standard support confirmed, short of the 3+ band."
+scored_on: "2026-10-01"
+
+limitations:
+  - "Writing-block only: assumes the analysis is already done — no literature discovery, data access, or identification-strategy execution, only guidance about how to write them up."
+  - "Effectiveness is unevaluated: an evals/test-cases.md file exists but no methodology or results are published against an external writing-quality benchmark."
+  - "Single-maintainer, young project (created 2026, 32 commits); the economics conventions reflect one curator's reading of the cited authorities, not a community consensus process."
+  - "No literature or data access; 'modern standards' content (pre-registration, AEA replication-package requirements) is descriptive guidance, not a verified or enforced check."
+
+related:
+  - research-paper-writing-skills
+  - econ-agent-skills
+  - openecon-data
+  - academic-writing-agents
+  - clo-author
+
+# ── Papers describing this project ─────────────────────
+papers: []  # No paper; source material is a curated bibliography of 50+ published writing guides (sources/).
+
+references: []
