@@ -1,0 +1,114 @@
+slug: econ-skills
+name: "econ-skills (zbsaygin)"
+type: external
+status: active
+url: "https://github.com/zbsaygin/econ-skills"
+license: "MIT"
+maintainers:
+  - "zbsaygin"
+year_started: 2026
+
+positioning: >
+  A personal Claude Code skill pack for academic economics research
+  workflows: reading papers by citekey, multi-agent literature review
+  with novelty assessment, a Delphi-consensus correctness audit of math
+  and econometrics, Econometrica-style notation cleanup, and LaTeX
+  document/Beamer-slide/figure production. Spans literature discovery
+  through paper-drafting and presentation output.
+
+distinctive_contribution: >
+  notation-clean is a narrow, unusual skill not found in any other
+  cataloged pack: it audits and simplifies mathematical notation against
+  an explicit "Econometrica publication standard" (Greek-for-parameters
+  vs. Latin-for-variables, a 5-use threshold for introducing new symbols,
+  reserved-symbol collision checks), triggered specifically on
+  notation-focused requests rather than general correctness review.
+  audit-econ pairs this with a Delphi-consensus multi-agent audit of
+  derivations, econometrics, code, and data.
+
+focus: analysis
+
+pipeline_stages:
+  - literature-discovery
+  - literature-synthesis
+  - revision-editing
+  - paper-drafting
+  - dissemination
+
+architectural_features:
+  - multi-agent
+  - debate-consensus
+  - tool-use
+
+discipline: economics
+
+inputs:
+  - paper-pdf
+  - citekey
+  - latex-document
+  - bibtex-file
+
+outputs:
+  - paper-summary
+  - literature-review
+  - audit-report
+  - latex-document
+  - beamer-slides
+  - figures
+
+data_sources: []
+
+knowledge_sources:
+  - zotero-bibtex-library
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Five stages (literature discovery/synthesis, notation/math revision, drafting, presentation output) but no data-analysis, research-design, or referee-simulation skill."
+  autonomy_level:
+    score: 1
+    note: "audit-econ presents severity-sorted findings for the user to triage and 'manages fix workflow' rather than auto-committing fixes; lit-review stress-tests via an adversarial referee but surfaces the gap for the user."
+  architectural_transparency:
+    score: 3
+    note: "All seven skills are public Markdown with explicit sub-agent and consensus-mechanism descriptions; no closed components."
+  inputs_supported:
+    score: 2
+    note: "Multiple input forms (citekey, pasted PDF, LaTeX document, .bib file) plus a literature-access pathway via lit-review's multi-agent search; no private data-source access."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists compiled LaTeX documents, Beamer decks, and standalone-PDF figures/tables, but requires per-user placeholder setup (paths, Zotero/Better BibTeX) and has no cross-skill artifact manifest."
+  internal_evaluation:
+    score: 0
+    note: "No test fixtures, benchmark, or reported evaluation for any of the seven skills at scoring date."
+  openness:
+    score: 2
+    note: "MIT license; functional use requires replacing ~10 user-specific placeholders and a Zotero + Better BibTeX bibliography pipeline, so not zero-setup."
+  maturity_traction:
+    score: 1
+    note: "7 stars, 1 fork, single commit on record at scoring date — a young, single-maintainer personal tool."
+  cross_family_policy:
+    score: 0
+    note: "No cross-model-family mechanism described; audit-econ's 'consensus' is among same-family Opus sub-agents, not across model families."
+  assurance_runtime:
+    score: 2
+    note: "audit-econ dispatches independent sub-agents to a Delphi consensus before reporting findings; lit-review stress-tests its own novelty claim with an adversarial referee pass until convergence."
+  cross_platform_portability:
+    score: 0
+    note: "Claude Code only; no stated support for other agent runtimes."
+scored_on: "2026-10-01"
+
+limitations:
+  - "Very young (1 commit, 7 stars); unproven beyond the maintainer's own use."
+  - "Heavy placeholder setup required (project paths, bibliography path, Zotero + Better BibTeX workflow) before any skill runs correctly."
+  - "No reported evaluation or test fixtures for any skill."
+  - "No license file beyond the README's one-line MIT statement."
+
+related:
+  - academic-research-skills
+  - econ-research-skills
+  - econtools
+  - econ-agent-skills
+
+papers: []
+
+references: []

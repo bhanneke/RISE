@@ -1,0 +1,96 @@
+pack:
+  slug: econtools
+  name: 'EconTools'
+  source_url: 'https://github.com/johanfourieza/econtools'
+  maintainers:
+    - 'Johan Fourie (Stellenbosch University, Economic History)'
+  license: 'MIT'
+  total_skills: 6
+  last_update: '2026-09'
+  related_project: econtools
+  compatibility:
+    - claude-code
+    - codex
+  notes: >
+    Six personal Claude Code skills for economic-history and economics
+    research, each named after a real person who shaped the author's
+    career (Claude Diebolt, Jan Luiten van Zanden, Kris Inwood, Di
+    Kilpert, Tyler Cowen). Diebolt and Kris both optionally recruit Codex
+    (GPT-5.4) as a second, independent model family. Kris explicitly
+    credits two upstream projects (PHY041/claude-skill-citation-checker
+    and Imbad0202/academic-research-skills, the latter already in this
+    catalog) for parts of its design.
+
+skills:
+  - slug: diebolt
+    name: '/diebolt'
+    kind: skill
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: 'Simulated peer review for economics working papers — a panel of independent referee agents, each with a distinct subspecialisation, personality and fictitious affiliation, reviewing in isolation under strict information barriers; an editor synthesises a prioritised briefing, and accepted revisions are applied to the LaTeX source. Adds a second-model-family (Codex/GPT-5.4) audit when available.'
+    source_path: 'diebolt/skill.md'
+    details_url: 'https://github.com/johanfourieza/econtools/blob/main/diebolt/skill.md'
+    provenance: 'econtools repo curation 2026-10-01'
+    last_update: '2026-09'
+  - slug: ehrstyle
+    name: '/ehrstyle'
+    kind: skill
+    category: submission
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: 'Applies the Economic History Review house style (Feb 2026 Notes for Contributors) to a LaTeX manuscript, bibliography, title page, and cover letter, with a bespoke biblatex style (echr.bbx/echr.cbx) for EHR-specific footnote and bibliography conventions.'
+    source_path: 'ehrstyle/SKILL.md'
+    details_url: 'https://github.com/johanfourieza/econtools/blob/main/ehrstyle/SKILL.md'
+    provenance: 'econtools repo curation 2026-10-01'
+    last_update: '2026-09'
+  - slug: janluiten
+    name: '/janluiten'
+    kind: skill
+    category: ideation
+    pipeline_stages:
+      - rq-formulation
+    field: economics
+    description: 'A research-idea sounding board modelled on a real doctoral mentor; listens first, then stress-tests the idea against the long view of research-program cycles, cultural-evolution pressures on field prestige, and behavioural misreading of one''s own motives, to help decide what to work on, with whom, and why.'
+    source_path: 'janluiten/skill.md'
+    details_url: 'https://github.com/johanfourieza/econtools/blob/main/janluiten/skill.md'
+    provenance: 'econtools repo curation 2026-10-01'
+    last_update: '2026-09'
+  - slug: kris
+    name: '/kris'
+    kind: skill
+    category: audit
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Catches hallucinated and chimeric .bib entries by running Claude and Codex (GPT-5.4) as two genuinely independent verification methods (API-cascade cross-checking vs. DOI/landing-page/Retraction-Watch/ORCID/Internet-Archive checks), randomly assigning references so no fixed pair shares a batch, then staging an adversarial challenge round on disagreements before producing an evidence-backed scorecard.'
+    source_path: 'kris/skill.md'
+    details_url: 'https://github.com/johanfourieza/econtools/blob/main/kris/skill.md'
+    provenance: 'econtools repo curation 2026-10-01'
+    last_update: '2026-09'
+  - slug: tanniedi
+    name: '/tanniedi'
+    kind: skill
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Round-trips a LaTeX paper to Word for human copy-editing (pack) and applies the editor''s tracked changes back into the original .tex files (unpack), preserving LaTeX formatting, equations, and cross-references.'
+    source_path: 'tanniedi/skill.md'
+    details_url: 'https://github.com/johanfourieza/econtools/blob/main/tanniedi/skill.md'
+    provenance: 'econtools repo curation 2026-10-01'
+    last_update: '2026-09'
+  - slug: tyler
+    name: '/tyler'
+    kind: skill
+    category: literature
+    pipeline_stages:
+      - literature-synthesis
+    field: economics
+    description: 'Converts a folder of academic PDFs into a token-efficient markdown wiki (one .md per paper plus a summary.txt index) so Claude Code can read literature cheaply without re-parsing raw PDFs each time.'
+    source_path: 'tyler/SKILL.md'
+    details_url: 'https://github.com/johanfourieza/econtools/blob/main/tyler/SKILL.md'
+    provenance: 'econtools repo curation 2026-10-01'
+    last_update: '2026-09'
