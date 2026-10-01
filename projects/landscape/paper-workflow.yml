@@ -1,0 +1,135 @@
+slug: paper-workflow
+name: "Paper-WorkFlow"
+type: external
+status: active
+url: "https://github.com/brycewang-stanford/Paper-WorkFlow"
+license: "MIT"
+maintainers:
+  - "Bryce Wang (Stanford REAP / CoPaper.AI)"
+year_started: 2026
+
+positioning: >
+  A meta-orchestrator for the empirical-economics paper pipeline: Stage
+  0-9 take a project from topic selection through literature grounding,
+  data, identification/estimation, exhibits, drafting, structural and
+  sentence-level polish, simulated referee review, and journal
+  shortlisting/submission packaging. Entry is flexible — a user can
+  join with a bare idea, existing clean data, existing results, or an
+  existing draft/referee report, and the orchestrator routes to the
+  matching stage rather than restarting the pipeline. It does not
+  reimplement research skills itself; it routes to 47 skills in a
+  companion "mother" repository (Auto-Empirical-Research-Skills,
+  already catalogued) plus optional per-journal skills from Awesome
+  Journal Skills at the submission stage.
+
+distinctive_contribution: >
+  Two hard quality gates — a method gate after Stage 3 (design
+  register + evidence bundle, blocking identification flaws) and a
+  7-dimension quality-scorecard gate after Stage 7 (blocking manuscript
+  defects, with automatic rollback to the weakest prior stage on
+  failure) — plus a maintainer-facing acceptance-test harness
+  (`evals/run_acceptance.py`) that runs the whole pipeline on synthetic
+  raw data and checks for stale files, broken citations, and improper
+  retrospective-disclosure/placeholder behavior. The README is explicit
+  that this validates software plumbing, not paper quality or
+  acceptance odds.
+
+focus: end-to-end
+
+pipeline_stages:
+  - rq-formulation
+  - literature-discovery
+  - literature-synthesis
+  - research-design
+  - data-acquisition
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+  - dissemination
+
+architectural_features:
+  - multi-agent
+  - dag-orchestration
+  - human-in-loop
+  - tool-use
+  - iterative-loop
+
+discipline: economics
+
+inputs:
+  - idea
+  - raw-data
+  - existing-results
+  - draft-manuscript
+  - referee-comments
+
+outputs:
+  - proposal
+  - cleaned-data
+  - design-register
+  - analysis-code
+  - tables-figures
+  - main.tex
+  - response-letters
+  - journal-shortlist
+  - replication-package
+  - final-report
+
+data_sources: []
+
+knowledge_sources:
+  - arxiv
+  - web-research
+
+scores:
+  lifecycle_coverage:
+    score: 3
+    note: "10-stage (0-9) protocol spans topic selection through submission, including paper-drafting and a two-gate validation stage."
+  autonomy_level:
+    score: 2
+    note: "Recommended mode is stage-gated: title, journal choice, identification strategy and final submission require explicit human authorization; a fully-autonomous mode exists but is not the default."
+  architectural_transparency:
+    score: 2
+    note: "Stage/gate logic, state schema (workflow_state.json v14) and rollback rules are public, but the 47 routed skills live in a separate companion repo, not bundled here."
+  inputs_supported:
+    score: 2
+    note: "Multiple entry forms (idea, raw data, results, draft, referee comments) plus literature access via a routed web-research/arxiv skill; no dedicated proprietary-data connector of its own."
+  outputs_reproducibility:
+    score: 3
+    note: "Resumable, versioned workspace (workflow_state.json) producing a full replication package; an acceptance-test suite runs the pipeline end-to-end from synthetic raw data to a checked DOCX/main.tex."
+  internal_evaluation:
+    score: 1
+    note: "42/42 executable-gate CI badge and acceptance tests validate the software pipeline only; the README explicitly disclaims this as evidence of paper quality or acceptance rate."
+  openness:
+    score: 2
+    note: "MIT license with passing CI, but full operation needs the separate 47-skill mother repo plus licensed analysis backends (Stata/R); not self-contained end-to-end."
+  maturity_traction:
+    score: 1
+    note: "39 stars, 186 commits, active CI; single-team (Stanford REAP x CoPaper.AI), first public in 2026."
+  cross_family_policy:
+    score: 0
+    note: "No cross-model-family review requirement; runs on whichever single agent backend the user has (Claude, Codex, Cursor or Gemini)."
+  assurance_runtime:
+    score: 2
+    note: "Method gate (identification) and 7-dimension quality-scorecard gate with automatic rollback, plus a reference-verification and zero-numeric-drift check during the polish stage."
+  cross_platform_portability:
+    score: 2
+    note: "Documented to run on 4 agent backends (Claude, Codex, Cursor, Gemini), each via its own skill/command mechanism."
+scored_on: "2026-10-01"
+
+limitations:
+  - "'End-to-end' describes pipeline coverage, not a guarantee of data availability, significant results, or passing either gate; failures are recorded as audit artifacts rather than silently hidden, but they are still failures."
+  - "Full capability depends on a separate companion repository (Auto-Empirical-Research-Skills, 47 skills) and on licensed analysis backends (Stata/R) that are not bundled."
+  - "Acceptance testing covers software plumbing (stale files, broken citations, retrospective-disclosure handling); there is no independent evidence yet of output quality or journal-acceptance outcomes."
+
+related:
+  - auto-empirical-research-skills
+  - clo-author
+  - academic-research-skills
+  - writing-driven-autoresearch
+
+references: []
+
+papers: []

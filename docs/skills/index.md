@@ -5,7 +5,7 @@ Curated collections of Markdown-defined research skills (SKILL.md files, plugin 
 The pages below are **auto-generated** from `skills/*.yml`. Do not edit by hand — edit the YAML sources.
 
 <!-- AUTO-GENERATED:skills-start -->
-*26 skill packs · 608 skills indexed.*
+*27 skill packs · 609 skills indexed.*
 
 ## Pack overview
 
@@ -27,6 +27,7 @@ The pages below are **auto-generated** from `skills/*.yml`. Do not edit by hand 
 | [DAAF — Data Analyst Augmentation Framework (Brian Heseung Kim)](daaf.md) | `LGPL-3.0-or-later (as declared in the README, badge and CITATION.cff; the repo ships the GPL-3.0 text as LICENSE plus COPYING.LESSER)` | 56 | — | `claude-code` |
 | [Econ Agent Skills (Jonas Weinert)](econ-agent-skills.md) | `CC0-1.0 per the repo LICENSE file and README ("CC0 1.0 — public domain"); GitHub's API reports the licence as NOASSERTION / "Other" — record both` | 11 | [econ-agent-skills](../projects/econ-agent-skills.md) | `claude-code` `cursor` `codex` `gemini-cli` |
 | [Econ Research Skills (Hanlu Long)](econ-research-skills.md) | `PolyForm-Noncommercial-1.0.0 (econ-review); MIT (econ-slides, econ-write)` | 4 | — | `claude-code` `codex` |
+| [Econ Writing Skill (econ-write)](econ-writing-skill.md) | `MIT` | 1 | — | `claude-code` `codex` |
 | [EvoSkills](evoskills.md) | `Apache-2.0` | 14 | [evoscientist](../projects/evoscientist.md) | `claude-code` `codex` `agnostic` |
 | [100xOS shared skills](hundredx-os.md) | `private (curator-owned)` | 133 | [e2er](../projects/e2er.md) | `claude-code` |
 | [Research Idea Evaluation Pipeline (Alejandro Lopez-Lira)](idea-evaluation-pipeline.md) | `none` | 8 | — | `agnostic` `claude-code` `cursor` `codex` |
@@ -111,6 +112,7 @@ document.addEventListener('DOMContentLoaded', applyFilters);
 <option value="daaf">daaf</option>
 <option value="econ-agent-skills">econ-agent-skills</option>
 <option value="econ-research-skills">econ-research-skills</option>
+<option value="econ-writing-skill">econ-writing-skill</option>
 <option value="evoskills">evoskills</option>
 <option value="hundredx-os">hundredx-os</option>
 <option value="idea-evaluation-pipeline">idea-evaluation-pipeline</option>
@@ -370,6 +372,7 @@ document.addEventListener('DOMContentLoaded', applyFilters);
 <tr data-pack="anthropic-skills" data-category="drafting" data-field="—" data-stages="paper-drafting"><td><code>docx</code></td><td><a href="anthropic-skills/">Anthropic Skills (foundational)</a></td><td>—</td><td><code>drafting</code></td><td><code>paper-drafting</code></td><td>Microsoft Word document generation</td><td><a href="anthropic-skills/docx/">view</a></td><td>—</td></tr>
 <tr data-pack="aris" data-category="drafting" data-field="—" data-stages="paper-drafting"><td><code>dse-loop</code></td><td><a href="aris/">ARIS skills</a></td><td>—</td><td><code>drafting</code></td><td><code>paper-drafting</code></td><td>—</td><td><a href="aris/dse-loop/">view</a></td><td>—</td></tr>
 <tr data-pack="hundredx-os" data-category="drafting" data-field="economics" data-stages="paper-drafting"><td><code>econ-model</code></td><td><a href="hundredx-os/">100xOS shared skills</a></td><td>economics</td><td><code>drafting</code></td><td><code>paper-drafting</code></td><td>—</td><td><a href="hundredx-os/latex-econ-model/">view</a></td><td>—</td></tr>
+<tr data-pack="econ-writing-skill" data-category="drafting" data-field="economics" data-stages="paper-drafting revision-editing"><td><code>econ-write</code></td><td><a href="econ-writing-skill/">Econ Writing Skill (econ-write)</a></td><td>economics</td><td><code>drafting</code></td><td><code>paper-drafting</code> <code>revision-editing</code></td><td>Synthesizes 50+ authoritative economics-writing guides into section-by-section formulas and style rules (hook, triangular structure, one central contribution, active voice) for drafting or rewriting any part of an economics paper, plus referee responses, presentations, and LaTeX formatting.</td><td><a href="econ-writing-skill/econ-write/">view</a></td><td><a href="https://github.com/hanlulong/econ-writing-skill/blob/main/skills/econ-write/SKILL.md" target="_blank" rel="noopener">↗</a></td></tr>
 <tr data-pack="barrios-skills" data-category="drafting" data-field="economics" data-stages="paper-drafting dissemination"><td><code>econ-writing-plus</code></td><td><a href="barrios-skills/">Barrios Skills (John Manuel Barrios)</a></td><td>economics</td><td><code>drafting</code></td><td><code>paper-drafting</code> <code>dissemination</code></td><td>Method-specific writing conventions for identification sections, covering 13 designs (RCT, DiD, IV, RDD, synthetic control and synthetic DiD, structural, descriptive, bunching, shift-share, event studies, causal ML, multi-strategy), with modern DiD reporting guidance (Goodman-Bacon, Callaway-Sant'Anna, Sun-Abraham, de Chaisemartin-D'Haultfoeuille). Also covers AEA replication-package standards, AI-use disclosure, ERC grant structure, macro/trade/finance conventions, title evaluation, and turning significance into economic magnitudes. It is written as a supplement to writing skills that the repo does not ship.</td><td><a href="barrios-skills/econ-writing-plus/">view</a></td><td><a href="https://github.com/Barrios88/barrios-skills/blob/main/skills/writing-and-review/econ-writing-plus/SKILL.md" target="_blank" rel="noopener">↗</a></td></tr>
 <tr data-pack="aris" data-category="drafting" data-field="—" data-stages="paper-drafting"><td><code>embodiment-description</code></td><td><a href="aris/">ARIS skills</a></td><td>—</td><td><code>drafting</code></td><td><code>paper-drafting</code></td><td>—</td><td><a href="aris/embodiment-description/">view</a></td><td>—</td></tr>
 <tr data-pack="hundredx-os" data-category="drafting" data-field="economics" data-stages="paper-drafting"><td><code>extended-abstract</code></td><td><a href="hundredx-os/">100xOS shared skills</a></td><td>economics</td><td><code>drafting</code></td><td><code>paper-drafting</code></td><td>—</td><td><a href="hundredx-os/writing-extended-abstract/">view</a></td><td>—</td></tr>
@@ -786,7 +789,7 @@ document.addEventListener('DOMContentLoaded', applyFilters);
 <thead><tr><th>Category</th><th style='text-align:right;'>Count</th></tr></thead>
 <tbody>
 <tr style="cursor:pointer;" onclick="setCategoryFilter('modeling')"><td><code>modeling</code></td><td style="text-align:right;">83</td></tr>
-<tr style="cursor:pointer;" onclick="setCategoryFilter('drafting')"><td><code>drafting</code></td><td style="text-align:right;">75</td></tr>
+<tr style="cursor:pointer;" onclick="setCategoryFilter('drafting')"><td><code>drafting</code></td><td style="text-align:right;">76</td></tr>
 <tr style="cursor:pointer;" onclick="setCategoryFilter('review')"><td><code>review</code></td><td style="text-align:right;">60</td></tr>
 <tr style="cursor:pointer;" onclick="setCategoryFilter('infra')"><td><code>infra</code></td><td style="text-align:right;">59</td></tr>
 <tr style="cursor:pointer;" onclick="setCategoryFilter('analysis')"><td><code>analysis</code></td><td style="text-align:right;">52</td></tr>

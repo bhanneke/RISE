@@ -1,0 +1,110 @@
+slug: econ-paper-review-skill
+name: "Econ Paper Review Skill (econ-review)"
+type: external
+status: active
+url: "https://github.com/hanlulong/econ-paper-review-skill"
+license: "PolyForm Noncommercial 1.0.0 (source-available; free for academic/nonprofit use, commercial use requires separate terms)"
+maintainers:
+  - "Lu Han"
+year_started: 2026
+
+positioning: >
+  A referee-simulation Claude Code/Codex skill for economics (and
+  adjacent social-science) manuscripts: it reads a paper, reconstructs
+  its argument and evidence chain, checks quotations, calculations and
+  citations against the source and against live literature, and
+  produces a typeset referee report plus a prioritized, agent-ready
+  revision plan. It is one of three sibling tools from the same author
+  (alongside the already-catalogued openecon-data and stata-mcp) and
+  is named as the self-refereeing component inside the author's own
+  envisioned econ-auto-research pipeline (not yet released — see
+  watch-list).
+
+distinctive_contribution: >
+  Verification-first design: every comment either quotes the
+  manuscript directly or names the specific checked comparison or
+  calculation it rests on, and claims of novelty or missing citations
+  trigger a live literature search before being included, rather than
+  being asserted from the model's own training knowledge. This
+  distinguishes it from the catalog's more generic, model-ensemble
+  referee tools (ai-peer-review-skill, Reviewer) by making
+  per-comment evidentiary grounding the core trust mechanism, and by
+  being deliberately economics/social-science-specific (identification
+  strategy, proofs, reproducibility standards) rather than
+  domain-agnostic.
+
+focus: review
+
+pipeline_stages:
+  - referee-simulation
+  - revision-editing
+
+architectural_features:
+  - tool-use
+  - human-in-loop
+
+discipline: economics
+
+inputs:
+  - manuscript-pdf-latex-markdown
+
+outputs:
+  - referee-report-pdf
+  - markdown-reports
+  - prioritized-revision-plan
+
+data_sources: []
+
+knowledge_sources:
+  - "live web/literature verification (sources not fully documented)"
+
+scores:
+  lifecycle_coverage:
+    score: 1
+    note: "Covers referee-simulation plus a structured revision-editing handoff (the revision plan); no literature-discovery, data, or drafting stages of its own."
+  autonomy_level:
+    score: 1
+    note: "Copilot: a full review runs unattended for 30+ minutes, but the author must read the report and decide what to implement before any revision proceeds."
+  architectural_transparency:
+    score: 2
+    note: "Source-available (PolyForm Noncommercial) with the review methodology (reconstruct -> verify -> report) documented in the README; the verification engine's internals are not fully walked through as prompts."
+  inputs_supported:
+    score: 1
+    note: "A single input form (the manuscript) plus live literature-verification access; no structured data or multi-format research input."
+  outputs_reproducibility:
+    score: 1
+    note: "Persists a referee report and revision plan (prose/structured text); output can vary run to run and is not itself a versioned analysis artifact."
+  internal_evaluation:
+    score: 1
+    note: "Demonstrated via one bundled sample review (25 comments) on a demo manuscript with intentionally inserted errors; no external benchmark or human-referee comparison reported."
+  openness:
+    score: 1
+    note: "Source-available under PolyForm Noncommercial 1.0.0 — free for academic/nonprofit use but not an OSI-permissive license; commercial use requires a separate agreement."
+  maturity_traction:
+    score: 1
+    note: "25 stars, 5 forks, 36 commits; young (first public ~2026), single-author."
+  cross_family_policy:
+    score: 0
+    note: "Single-agent by design (one Claude Code or Codex session); no cross-model-family review step."
+  assurance_runtime:
+    score: 2
+    note: "Built-in verification passes (quotation/calculation checks, live literature verification for novelty/citation claims) run before comments are finalized, described as happening 'late in the run' specifically to keep comments trustworthy."
+  cross_platform_portability:
+    score: 1
+    note: "Supports two agent runtimes (Claude Code and Codex) via a standalone-skill or plugin install."
+scored_on: "2026-10-01"
+
+limitations:
+  - "PolyForm Noncommercial license restricts commercial use — source-available, not open-source by the OSI definition."
+  - "A full review can take 30+ minutes and depends on live literature verification whose source coverage is not fully documented."
+  - "Young (25 stars); no independent evaluation yet of report quality or calibration against human referees."
+
+related:
+  - ai-peer-review-skill
+  - reviewer
+  - clo-author
+  - openecon-data
+
+references: []
+
+papers: []

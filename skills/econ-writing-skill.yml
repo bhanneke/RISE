@@ -1,0 +1,49 @@
+pack:
+  slug: econ-writing-skill
+  name: 'Econ Writing Skill (econ-write)'
+  source_url: 'https://github.com/hanlulong/econ-writing-skill'
+  maintainers:
+    - 'Lu Han'
+  license: 'MIT'
+  total_skills: 1
+  last_update: '2026-07-20'
+  related_project: ''
+  compatibility:
+    - claude-code
+    - codex
+  notes: >
+    A single, widely-adopted (632 stars) SKILL.md that synthesizes
+    writing guidance from 50+ authoritative sources on economics
+    writing — Cochrane, McCloskey, Shapiro, Head, Bellemare, Goldin,
+    Katz, Glaeser, Kremer and others — into concrete formulas and style
+    rules for every section of a paper (abstract, introduction,
+    identification narrative, tables, conclusion) plus referee
+    responses, grant proposals, and LaTeX formatting. Four companion
+    reference files ship alongside SKILL.md (identification-
+    strategies.md: 13 identification strategies; latex-tips.md;
+    review-checklist.md; specialized-tasks.md) but are reference
+    material invoked from within the one skill, not separately
+    installable skills, so only econ-write is catalogued here.
+    Sibling tools by the same author: econ-paper-review-skill
+    (catalogued as a project, referee-report generation) and
+    econ-slides-skill (Beamer conversion, not yet catalogued).
+
+skills:
+  - slug: econ-write
+    name: 'econ-write'
+    kind: skill
+    category: drafting
+    pipeline_stages:
+      - paper-drafting
+      - revision-editing
+    field: economics
+    description: >-
+      Synthesizes 50+ authoritative economics-writing guides into
+      section-by-section formulas and style rules (hook, triangular
+      structure, one central contribution, active voice) for drafting
+      or rewriting any part of an economics paper, plus referee
+      responses, presentations, and LaTeX formatting.
+    source_path: 'skills/econ-write/SKILL.md'
+    details_url: 'https://github.com/hanlulong/econ-writing-skill/blob/main/skills/econ-write/SKILL.md'
+    provenance: 'econ-writing-skill repo curation 2026-10-01'
+    last_update: '2026-07-20'
