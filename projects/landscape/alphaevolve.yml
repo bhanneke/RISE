@@ -3,7 +3,7 @@ name: "AlphaEvolve (Google DeepMind)"
 type: external
 status: active
 url: "https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/"
-license: "proprietary (closed; Early Access Program)"
+license: "proprietary (closed; general availability on Google Cloud as of 2026-07)"
 maintainers:
   - "Google DeepMind"
 year_started: 2025
@@ -81,10 +81,10 @@ scores:
     note: "Evaluation is by construction — every candidate is scored by the automated evaluator. 67-problem benchmark in Georgiev et al. provides external validation; a 2026-08 DeepMind paper (arXiv:2608.16884) reports AlphaEvolve-assisted improvement of the matrix-multiplication exponent upper bound to ω < 2.371177, a further concrete, checkable external result."
   openness:
     score: 0
-    note: "Closed-source, gated behind Google DeepMind's Early Access Program for selected academic users."
+    note: "Closed-source, no free tier — now a paid general-availability service on Google Cloud rather than an academic-only Early Access Program."
   maturity_traction:
     score: 2
-    note: "Reached general availability on Google Cloud (Gemini Enterprise Agent Platform) 2026-07-19 with enterprise customers (BASF, JetBrains, Klarna); whitepaper + high-profile follow-up papers (including Terence Tao as co-author on Georgiev et al.)."
+    note: "Reached general availability on Google Cloud (Gemini Enterprise Agent Platform) 2026-07-19 with enterprise customers (BASF, JetBrains, Klarna); DeepMind's May-2026 impact report adds production use in data-center/TPU circuit design, disaster-risk forecasting, and genomics, plus customer results (FM Logistic, Kinaxis); whitepaper + high-profile follow-up papers (including Terence Tao as co-author on Georgiev et al.)."
   cross_family_policy:
     score: 0
     note: "Single model family (Gemini Pro/Flash) within Google DeepMind."
@@ -94,7 +94,7 @@ scores:
   cross_platform_portability:
     score: 0
     note: "Tightly coupled to Google internal infrastructure and Gemini API; not portable."
-scored_on: "2026-09-01"
+scored_on: "2026-10-01"
 
 limitations:
   - "Requires a well-defined automated evaluator; not applicable to open-ended discovery without a scorable target."

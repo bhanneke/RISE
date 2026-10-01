@@ -3,7 +3,7 @@ name: "Auto-Empirical Research Skills (AERS)"
 type: external
 status: active
 url: "https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills"
-license: "unclassified (licence file present; see repository)"
+license: "CC BY-SA 4.0"
 maintainers:
   - "Bryce Wang (Stanford REAP / CoPaper.AI)"
 year_started: 2026
@@ -98,7 +98,7 @@ scores:
     note: "CC BY-SA 4.0 (copyleft, commercial use allowed); vendored collections keep their own licenses, tracked in a published license audit."
   maturity_traction:
     score: 2
-    note: "3,029 stars / 399 forks within ~4 months, five-language docs, commercial deployment via CoPaper.AI — but too young for 'sustained' adoption."
+    note: "4.5k stars / 532 forks (up from 3,029/399), five-language docs, commercial deployment via CoPaper.AI — fast-growing but still too young for 'sustained' adoption."
   cross_family_policy:
     score: 0
     note: "Runtime manifests target multiple providers, but no cross-model-family review or verification mechanism exists."
@@ -108,7 +108,7 @@ scores:
   cross_platform_portability:
     score: 3
     note: "Skills-as-markdown with a router SKILL.md and deployment manifests for Claude Code, Cursor, Aider, CodeBuddy, and OpenAI/Codex-style runtimes."
-scored_on: "2026-07-23"
+scored_on: "2026-10-01"
 
 limitations:
   - "The repo description's '23,000+ skills' counts an awesome-list ecosystem map (119 repos); the repo vendors 1,094 skills across 74 collections — the README is explicit about this distinction, the GitHub description is not."

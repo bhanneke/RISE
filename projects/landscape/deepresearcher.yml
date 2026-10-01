@@ -68,13 +68,13 @@ scores:
     note: "Released checkpoint enables reproducible inference; full RL training pipeline released."
   internal_evaluation:
     score: 3
-    note: "Quantitative gains vs. prompt-engineering and RAG-RL baselines reported in the arXiv paper."
+    note: "Quantitative gains vs. prompt-engineering and RAG-RL baselines; now peer-reviewed, accepted to EMNLP 2025 main conference (ACL Anthology 2025.emnlp-main.22)."
   openness:
     score: 3
     note: "Apache-2.0; open weights on HuggingFace; permissive license."
   maturity_traction:
     score: 2
-    note: "751 stars; active; recent academic release (2025-04)."
+    note: "801 stars, 55 forks; active; peer-reviewed at EMNLP 2025 (originally an arXiv preprint, 2025-04)."
   cross_family_policy:
     score: 0
     note: 'Self-trained 7B model; single-family by design.'
@@ -84,7 +84,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'HuggingFace checkpoint + inference scripts; single model family.'
-scored_on: "2026-05-18"
+scored_on: "2026-10-01"
 
 limitations:
   - "7B parameter scale limits ceiling on the hardest benchmarks."
@@ -108,7 +108,7 @@ papers:
       - 'Lu, P.'
       - 'et al.'
     year: 2025
-    venue: 'arXiv'
+    venue: 'EMNLP 2025 (main conference)'
     arxiv_id: '2504.03160'
 
 

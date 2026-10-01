@@ -88,7 +88,7 @@ scores:
     note: "Apache-2.0; pip-installable; keyless demo replay and a CPU-only example task run on commodity hardware, with free-key/local-model quickstart paths."
   maturity_traction:
     score: 2
-    note: "968 stars and 118 forks in ~6 weeks, PyPI package, Claude Code plugin marketplace entry, VentureBeat coverage; very young but shipping regular releases."
+    note: "1.1k stars and 129 forks (up from 968/118), PyPI package, Claude Code plugin marketplace entry, VentureBeat coverage; still very young but shipping regular releases (new literature-search and self-learning-from-runs features through 2026-06-30)."
   cross_family_policy:
     score: 0
     note: "Coordinator and Executor share one configured provider/model per run; many back-ends supported (Anthropic, OpenAI, LiteLLM-compatible) but one family at a time."
@@ -98,7 +98,7 @@ scores:
   cross_platform_portability:
     score: 3
     note: "Native CLI, Claude Code plugin, Codex skills, standalone markdown skill suite, and an MCP server; model back-ends span Anthropic, OpenAI, and any OpenAI-compatible endpoint via LiteLLM."
-scored_on: "2026-07-23"
+scored_on: "2026-10-01"
 
 limitations:
   - "Optimization-shaped: requires a runnable evaluation script and a measurable metric; no paper-drafting or peer-review stages, so it optimizes artifacts rather than authoring scholarship."

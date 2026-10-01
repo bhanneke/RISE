@@ -66,14 +66,14 @@ scores:
     score: 2
     note: "Reports + code persisted; reproducibility-by-design as a stated goal."
   internal_evaluation:
-    score: 1
-    note: "Demonstrated on example papers; no broad benchmark of replication success rates."
+    score: 2
+    note: "Systematic benchmark across 48 papers with human-verified reproducibility, run against 4 agent scaffolds and 4 LLMs, with root-cause analysis of failures; paper now forthcoming at EMNLP 2026 but not yet third-party replicated."
   openness:
     score: 3
     note: "Open source under permissive license."
   maturity_traction:
     score: 1
-    note: "Active prototype; single-developer-led; 30 stars but repo remains actively committed to (42 commits, most recent 2026-08-31)."
+    note: "Active prototype; single-developer-led; 29 stars, 7 forks, 42 commits, most recent 2026-08-31; no further commits since."
   cross_family_policy:
     score: 0
     note: 'Single-LLM-family pipeline; methodology extractor + replicator within one family.'
@@ -83,11 +83,11 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Python-CLI tool; back-end LLM swappable but not multi-IDE.'
-scored_on: "2026-09-01"
+scored_on: "2026-10-01"
 
 limitations:
   - "Success rate depends heavily on availability of target paper's data + code."
-  - "Limited published benchmarks of replication accuracy."
+  - "The 48-paper benchmark (4 scaffolds x 4 LLMs) lives in the companion paper, not as a runnable harness in this repo; success varies substantially by model, scaffold and paper."
 
 related:
   - e2er
@@ -102,7 +102,7 @@ papers:
       - 'Hoyle, A.'
       - 'Ash, E.'
     year: 2026
-    venue: 'arXiv'
+    venue: 'arXiv (forthcoming at EMNLP 2026)'
     arxiv_id: '2604.21965'
     url: 'https://elliottash.com/wp-content/uploads/2026/04/Kohler-Zollikofer-Einsiedler-Hoyle-Ash-Read-Paper-Write-Code-Agentic-Reproduction-Social-Science-Results.pdf'
 

@@ -83,7 +83,7 @@ scores:
     note: "AGPL-3.0 (copyleft, source-sharing required for hosted service); free hosted demo gated at 20 queries before signup."
   maturity_traction:
     score: 2
-    note: "69 stars, 885 commits, live production demo (data.openecon.ai/chat) — active beta with external users, single-maintainer team."
+    note: "81 stars, 891 commits, live production demo (data.openecon.ai/chat) — active beta with external users, single-maintainer team."
   cross_family_policy:
     score: 0
     note: "Not applicable — a data-fetching tool with no cross-model review process."
@@ -93,7 +93,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: "MCP server usable from Claude Code, Codex, and any compatible MCP client, plus a self-hostable stack and a browser demo."
-scored_on: "2026-09-01"
+scored_on: "2026-10-01"
 
 limitations:
   - "AGPL-3.0 license requires source-sharing for hosted deployments, a heavier obligation than the catalog's typical MIT/Apache entries."

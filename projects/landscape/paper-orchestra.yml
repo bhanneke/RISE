@@ -91,7 +91,7 @@ scores:
     note: "Apache-2.0 and the pipeline plus autoraters are runnable against your own materials, so examples are partially reproducible; but the evaluation dataset is explicitly withheld ('released separately at a later date'), no example materials directory is shipped, and OpenAI or Vertex/Gemini plus Semantic Scholar keys are required."
   maturity_traction:
     score: 1
-    note: "124 stars and 19 forks on a two-commit code drop with no releases, nothing pushed since 2026-05-17, and an explicit note that it is not an officially supported Google product — attention without maintenance."
+    note: "142 stars and 23 forks on a two-commit code drop with no releases, nothing pushed since 2026-05-17, and an explicit note that it is not an officially supported Google product — attention without maintenance."
   cross_family_policy:
     score: 0
     note: "The backend is configured globally as OpenAI or Vertex AI/Gemini with no documented per-agent model assignment, so the section writer and the refinement agent run in the same family; unverified whether per-agent overrides exist, scored low accordingly."
@@ -101,7 +101,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: "Two documented backends (OpenAI, or Vertex AI/Gemini) behind one Python CLI plus a Streamlit frontend — a small adapter set, one runtime."
-scored_on: '2026-09-08'
+scored_on: '2026-10-01'
 
 limitations:
   - "Only 2 commits on main and nothing pushed since 2026-05-17 — a one-shot code drop rather than a maintained project, despite living in the google-research organisation (which the README notes is not an official Google product)."

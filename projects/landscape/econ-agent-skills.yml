@@ -3,7 +3,7 @@ name: "EconAgentSkills"
 type: external
 status: dormant
 url: "https://github.com/JonasWeinert/EconAgentSkills"
-license: "unclassified (licence file present; see repository)"
+license: "CC0-1.0"
 maintainers:
   - "Jonas Weinert"
 year_started: 2026
@@ -89,10 +89,10 @@ scores:
     note: "No evaluation, test suite, or worked-benchmark comparison reported; the method choices are asserted from the literature, not validated against a gold standard. Verified by reading the README on 2026-09-08."
   openness:
     score: 2
-    note: "README dedicates the work under CC0 1.0 (maximally permissive) and the skills are plain markdown with runnable examples, but the GitHub API cannot parse the license and reports 'Other (NOASSERTION)', so the formal reuse terms are ambiguous; the three Stata skills additionally require a commercial Stata license to reproduce."
+    note: "A LICENSE file in the repo confirms CC0 1.0 Universal (maximally permissive; re-verified 2026-10-01, resolving the earlier GitHub-API NOASSERTION ambiguity), and the skills are plain markdown with runnable examples, but the three Stata skills additionally require a commercial Stata license to reproduce, so not all examples are commodity-hardware reproducible."
   maturity_traction:
     score: 1
-    note: "18 stars, 3 forks, 3 commits — all on 2026-05-05, the day the repo was created, with nothing pushed since. A well-made single-drop personal pack, not a maintained project."
+    note: "24 stars, 3 forks, still only 3 commits — all on 2026-05-05, the day the repo was created, with nothing pushed since (confirmed 2026-10-01). A well-made single-drop personal pack, not a maintained project."
   cross_family_policy:
     score: 0
     note: "No cross-family review mechanism: the skills are runtime-portable markdown but say nothing about which model executes versus which reviews, and no second-family check is defined anywhere. Portability is not a cross-family policy."
@@ -102,11 +102,11 @@ scores:
   cross_platform_portability:
     score: 2
     note: "Built on the open SKILL.md standard with a Python installer targeting Claude Code, Cursor and Codex, and examples in five languages — 3 documented runtimes, short of the 5+ environments band 3 requires."
-scored_on: "2026-09-08"
+scored_on: "2026-10-01"
 
 limitations:
-  - "Dormant: 3 commits, all on the creation date 2026-05-05, none in the four months since."
-  - "License is formally ambiguous — the README dedicates CC0 1.0 but GitHub reports NOASSERTION, so downstream reuse rests on the README text alone."
+  - "Dormant: 3 commits, all on the creation date 2026-05-05, none in the five months since (confirmed 2026-10-01)."
+  - "License confirmed as CC0 1.0 Universal via the repo's LICENSE file (earlier GitHub-API NOASSERTION reading was a parsing artifact, not a real ambiguity)."
   - "Deliberately opinionated: the defaults are one defensible position in live methodological debates, and a research design the author did not anticipate will fight the skill rather than be served by it."
   - "Method coverage is a mid-2026 snapshot; a named-estimator pack ages faster than a generic one, and there is no maintainer activity to refresh it."
   - "No evaluation of whether following the skills produces better estimates than an unguided agent."

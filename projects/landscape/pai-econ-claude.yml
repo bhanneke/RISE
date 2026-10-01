@@ -89,7 +89,7 @@ scores:
     note: "MIT license, example inputs in examples/ for quickstart, but running the full pipeline requires a paid Claude Code/API subscription — not free-tier reproducible."
   maturity_traction:
     score: 2
-    note: "168 stars / 58 forks, tagged v1.4.0, 38 commits, active as of August 2026 — beta-stage with growing external adoption but single-team origin."
+    note: "185 stars / 60 forks, tagged v1.4.0, 40 commits, last updated 2026-08-21 — beta-stage with growing external adoption but single-team origin."
   cross_family_policy:
     score: 0
     note: "Single-model by design — built specifically as a Claude Code Skill (name and commands are Claude-specific); no cross-family review mechanism."
@@ -99,7 +99,7 @@ scores:
   cross_platform_portability:
     score: 0
     note: "Locked to Claude Code as a Claude Code Skill; no documented support for other IDEs, runtimes, or model providers."
-scored_on: "2026-09-01"
+scored_on: "2026-10-01"
 
 limitations:
   - "Locked to a single platform (Claude Code) and a single model family, unlike theorist-toolbox's Codex-adversarial-pair option."

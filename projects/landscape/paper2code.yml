@@ -76,7 +76,7 @@ scores:
     note: "Apache-2.0; reproducible setup; ICLR paper."
   maturity_traction:
     score: 3
-    note: "4.6k+ stars; ICLR 2026 acceptance; clear external citation trajectory."
+    note: "5k+ stars; ICLR 2026 acceptance; clear external citation trajectory."
   cross_family_policy:
     score: 0
     note: 'Multi-agent within one model family.'
@@ -86,7 +86,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: 'OpenAI API + vLLM open-source path; multiple LLM back-ends supported.'
-scored_on: "2026-05-18"
+scored_on: "2026-10-01"
 
 limitations:
   - "ML-paper focus; portability to empirical economics or biomedical papers untested in the published evaluations."

@@ -78,7 +78,7 @@ scores:
     note: "Source open under Apache-2.0, but full functionality gated behind commercial API credits."
   maturity_traction:
     score: 2
-    note: "633 stars; FutureHouse backing; published in Nature 2026-05-19, though repo unchanged since 2026-04."
+    note: "719 stars (up from 633); FutureHouse backing; published in Nature 2026-05-19, though repo unchanged since 2026-04-21."
   cross_family_policy:
     score: 1
     note: 'Edison platform agents + OpenAI/other via LiteLLM — cross-family supported.'
@@ -88,7 +88,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: 'Docker setup + LiteLLM multi-provider; Edison API integration.'
-scored_on: "2026-05-18"
+scored_on: "2026-10-01"
 
 limitations:
   - "Data-analysis path requires paid Edison API credits."

@@ -80,7 +80,7 @@ scores:
     note: "Peer-reviewed at NeurIPS 2025 (21-dataset evaluation, expert judgment on two-thirds of discoveries); downstream social-science findings independently verified and published."
   openness:
     score: 2
-    note: "Apache-2.0 code and pip/conda install for the research implementation, but end-to-end reproduction of the hosted product's runs not demonstrated; hosted access is credit-gated early access through 2026-07-31."
+    note: "Apache-2.0 code and pip/conda install for the research implementation, but end-to-end reproduction of the hosted product's runs not demonstrated; hosted access is credit-gated early access, extended from 2026-07-31 to 2026-12-31 (existing credits still honored)."
   maturity_traction:
     score: 2
     note: "Early-access beta inside AstaLabs with external users across many domains (46K+ hypotheses); production repo under active development."
@@ -93,11 +93,11 @@ scores:
   cross_platform_portability:
     score: 1
     note: "Two execution paths — hosted AstaLabs app and self-hosted CLI — with OpenAI-model examples only."
-scored_on: "2026-07-23"
+scored_on: "2026-10-01"
 
 limitations:
   - "Structured-dataset discovery only: 'surprise' is measured against the LLM's beliefs, not the published literature, so rediscoveries and spurious-correlation artifacts must be screened by domain experts."
-  - "Hosted service is gated early access (hypothesis credits, costs subsidized only through 2026-07-31) and deletes source datasets 7 days after analysis."
+  - "Hosted service is gated early access (hypothesis credits, extended through 2026-12-31) and deletes source datasets 7 days after analysis."
   - "Surprisal-driven search over hundreds of automated experiments raises multiple-comparisons risk; flagged findings are candidates for validation, not conclusions."
 
 related:
