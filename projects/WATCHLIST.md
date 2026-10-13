@@ -71,7 +71,7 @@ _Last reviewed: 2026-10-01._
 | SwarmResearch | 2026-09-08 | `swarmresearch` |
 | Automated Alignment Researchers (Anthropic) | 2026-10-01 | `automated-w2s-research` |
 | Terminal-Bench-Science | 2026-10-01 | `terminal-bench-science` |
-| Econ Writing Skill (`hanlulong`) | 2026-10-01 | `econ-writing-skill` — the "probable duplicate of `econ-research-skills`'s `econ-write` component" claim was checked and found false: no such component exists anywhere in the catalog, and the catalogued `econ-agent-skills` (Weinert) is an unrelated analysis pack, not a writing pack |
+| Econ Writing Skill (`hanlulong`) | 2026-10-01 | `econ-writing-skill` (landscape entry only). The skill itself is already catalogued as `econ-write` inside the `econ-research-skills` pack, which bundles this repo; the separate skill pack added on 2026-10-01 was byte-identical to that copy and was removed on 2026-10-13 to avoid counting the skill twice |
 | ForeSci | 2026-10-01 | `foresci` — official code release (`roytian1992/ResearchForesight`) now ships the 500-task set, frozen per-domain knowledge bases, and evaluation/judge scripts promised in the paper |
 | AI Peer Review (`poldrack/ai-peer-review`) | 2026-10-01 | `ai-peer-review` — verified as a real, actively maintained tool (154★, 25 forks, MIT) distinct from its catalogued Claude-only fork `ai-peer-review-skill`: default six-provider cross-model review panel vs. the fork's single-family subagents |
 | PaperDoctor | 2026-10-01 | `paperdoctor` — new (Sept 2026) multi-institution pre-submission diagnostic agent (11 Claude Code skills; evidence-grounded claim/code/theory checks with selective experiment re-execution) |
