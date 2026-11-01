@@ -101,14 +101,14 @@ scores:
   cross_platform_portability:
     score: 2
     note: "Runs against open-weight models via vLLM plus OpenAI/Anthropic APIs and two agent adapters, but the harness assumes a conda environment and the sc-HeurekaBench data layout."
-scored_on: "2026-10-01"
+scored_on: "2026-11-01"
 
 limitations:
-  - "A LICENSE file (MIT) is now confirmed present in the repo as of 2026-10-01, reversing the earlier 'no license file' finding from 2026-09-08 — reuse terms are resolved and permissive."
+  - "A LICENSE file (MIT) has been confirmed present in the repo since 2026-09-12 — reuse terms are resolved and permissive."
   - "The framework claim is domain-general but the only instantiation is single-cell biology; portability to economics or other fields is argued, not demonstrated."
-  - "The 44 GB dataset is distributed as six Google Drive archive parts that must be concatenated by hand — no DOI, no HuggingFace mirror, fragile hosting for a benchmark meant to be re-run."
+  - "The 44 GB dataset moved to a single Hugging Face dataset repo on 2026-09-14, resolving the earlier fragile six-part Google Drive distribution."
   - "README does not state how many questions each of the six variants contains, so benchmark size cannot be verified from the repo."
-  - "No leaderboard and no push to code since 2026-02-16; scores exist only inside the ICLR paper."
+  - "No leaderboard; activity since the ICLR 2026 acceptance has been maintenance-only (license, hosting, README) rather than new benchmark content or baselines."
   - "Open-ended grading depends on an LLM judge whose own accuracy is not separately validated against human raters in the repo."
 
 related:
@@ -128,6 +128,5 @@ papers:
     venue: 'ICLR 2026'
     arxiv_id: '2601.01678'
 
-references: []  # No citekey for arXiv 2601.01678 in papers/references.bib at scoring date
 references:
   - panigrahi2026heurekabench
