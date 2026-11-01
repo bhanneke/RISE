@@ -25,14 +25,14 @@ One of the first agentic systems to demonstrate open-ended mathematical *discove
 | Architectural transparency | 1 | Paper describes the hierarchical agent topology and coordinator/workstream design, but no code, prompts, or configs are released. |
 | Inputs supported | 2 | Accepts both well-posed open problems and open-ended research directions, with literature search and computational-exploration tooling. |
 | Outputs / reproducibility | 2 | Persists LaTeX write-ups plus code from computational exploration with provenance notes; closed system and LLM nondeterminism preclude external end-to-end reproduction. |
-| Internal evaluation | 2 | Systematic benchmark result (48% on FrontierMath Tier 4) plus an expert-verified new result (Kourovka Notebook 21.10); still an arXiv preprint, not peer-reviewed. |
+| Internal evaluation | 2 | Systematic benchmark results (48% on FrontierMath Tier 4 vs. 19% for base Gemini 3.1 Pro; 87% on an internal 100-problem research-math set vs. 57%/70% for Gemini 3.1 Pro/Deep Think) plus an expert-verified new result (Kourovka Notebook 21.10); still an arXiv preprint, not peer-reviewed. |
 | Openness | 0 | Closed research system; no code, weights, or public access at scoring date. |
 | Maturity / traction | 1 | DeepMind research prototype (arXiv, May 2026), not a product; demonstrated real use by an external mathematician but no general availability. |
 | Cross-family policy | 0 | Single model family — all agents run on Gemini 3.1. |
 | Runtime assurance | 2 | In-pipeline review cycles, failed-hypothesis tracking, provenance annotations, and proof/computational verification act as moderate runtime gates. |
 | Cross-platform portability | 0 | Closed system locked to DeepMind infrastructure and Gemini; not deployable elsewhere. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

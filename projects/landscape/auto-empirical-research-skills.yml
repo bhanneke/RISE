@@ -10,16 +10,16 @@ year_started: 2026
 
 positioning: >
   A Claude-plugin-structured mega-catalog of agent skills for
-  empirical social-science research: 74 collections / 1,094 vendored
+  empirical social-science research: 78 collections / 1,151 vendored
   skills — 7 first-party Stanford REAP × CoPaper.AI collections
   (including the StatsPAI causal engine and the Paper-WorkFlow
-  meta-orchestrator) plus 67 curated, security-audited community
+  meta-orchestrator) plus curated, security-audited community
   collections — spanning topic refinement, literature review, data
   acquisition, identification strategy, estimation (Python/Stata/R),
   robustness audit, publication tables, writing, review simulation,
   AI-trace removal, and journal submission. The headline "23,000+
   skills" refers to an accompanying awesome-list map of 119 ecosystem
-  repos; the vendored, cataloged content is 1,094 skills.
+  repos; the vendored, cataloged content is 1,151 skills.
 
 distinctive_contribution: >
   The largest empirical-social-science skills distribution in the
@@ -29,7 +29,7 @@ distinctive_contribution: >
   the LaLonde naive-ATT sign flip and Card IV recovery), a behavioral
   eval harness (37 scenarios / 183 rubric items), per-skill
   provenance and license audits in catalog JSON, and a root SKILL.md
-  router so 1,094 skills are dispatched without flooding context.
+  router so 1,151 skills are dispatched without flooding context.
   Vendors several standalone entries of this catalog (clo-author,
   academic-research-skills) as collections.
 
@@ -83,7 +83,7 @@ scores:
     note: "Paper-WorkFlow meta-orchestrator claims one-command idea-to-draft runs with optional human takeover at each persisted stage; most collections are copilot-style skills a human invokes."
   architectural_transparency:
     score: 3
-    note: "All 1,094 skills vendored as public markdown/code, catalog JSON with provenance and per-skill audit, benchmark and eval harness fully public with CI."
+    note: "All 1,151 skills vendored as public markdown/code, catalog JSON with provenance and per-skill audit, benchmark and eval harness fully public with CI."
   inputs_supported:
     score: 2
     note: "Topic / draft / dataset inputs; literature (OpenAlex) and data connectors (EDGAR) exist but live in heterogeneous vendored collections rather than one unified interface."
@@ -98,7 +98,7 @@ scores:
     note: "CC BY-SA 4.0 (copyleft, commercial use allowed); vendored collections keep their own licenses, tracked in a published license audit."
   maturity_traction:
     score: 2
-    note: "4.5k stars / 532 forks (up from 3,029/399), five-language docs, commercial deployment via CoPaper.AI — fast-growing but still too young for 'sustained' adoption."
+    note: "4.9k stars / 565 forks (up from 4.5k/532), five-language docs, commercial deployment via CoPaper.AI — fast-growing but still too young for 'sustained' adoption."
   cross_family_policy:
     score: 0
     note: "Runtime manifests target multiple providers, but no cross-model-family review or verification mechanism exists."
@@ -108,10 +108,10 @@ scores:
   cross_platform_portability:
     score: 3
     note: "Skills-as-markdown with a router SKILL.md and deployment manifests for Claude Code, Cursor, Aider, CodeBuddy, and OpenAI/Codex-style runtimes."
-scored_on: "2026-10-01"
+scored_on: "2026-11-01"
 
 limitations:
-  - "The repo description's '23,000+ skills' counts an awesome-list ecosystem map (119 repos); the repo vendors 1,094 skills across 74 collections — the README is explicit about this distinction, the GitHub description is not."
+  - "The repo description's '23,000+ skills' counts an awesome-list ecosystem map (119 repos); the repo vendors 1,151 skills across 78 collections — the README is explicit about this distinction, the GitHub description is not."
   - "Roughly 90% of collections are vendored third-party work of heterogeneous quality; only the 7 first-party collections are behaviorally pinned by the numeric benchmark."
   - "Chinese-first documentation (default README) and CC BY-SA copyleft stacked on per-collection upstream licenses complicate reuse for some audiences."
 

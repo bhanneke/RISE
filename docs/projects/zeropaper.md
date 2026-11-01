@@ -29,12 +29,12 @@ Treats subscription-tier coding-agent CLIs (Claude Code / Codex / Gemini CLI) as
 | Outputs / reproducibility | 2 | Per-project git repositories isolate outputs; sandboxed execution; watermarked PDF provenance. |
 | Internal evaluation | 2 | In-pipeline adversarial gates (math-auditor, novelty-checker, simulated referees); companion benchmarks paper referenced. |
 | Openness | 1 | Source on GitHub but under the custom 'Research Use License v1.1' (adopted 2026-07-07) — prior notice, AI-disclosure, watermark-preservation, non-commercial clauses all encumber reuse; not OSI open source. |
-| Maturity / traction | 1 | Very active development (100+ commits since May 2026, last push 2026-07-23) but single-developer / Institute for Automated Research; ~60 stars. |
+| Maturity / traction | 1 | Very active development (765 commits as of 2026-11, last push 2026-09-30) but single-developer / Institute for Automated Research; 72 stars, 30 forks, 115 open issues. |
 | Cross-family policy | 1 | Optional cross-family setup (Claude Code / Codex / Gemini CLI as dispatcher); not required. |
 | Runtime assurance | 3 | Math-auditor + novelty-checker + simulated referees as adversarial gates; sandboxed execution (bubblewrap/Seatbelt); watermarking. |
 | Cross-platform portability | 1 | Three dispatcher CLIs (Claude Code, Codex, Gemini CLI); finance/macro variants but single template runtime. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

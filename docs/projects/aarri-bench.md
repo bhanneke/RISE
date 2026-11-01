@@ -34,12 +34,12 @@ Isolates the micro-level judgment failures that end-to-end benchmarks average aw
 | Outputs / reproducibility | 2 | Containerized environments plus deterministic assertion-based verification make scoring rerunnable; agent stochasticity limits exact trajectory reruns. |
 | Internal evaluation | 2 | Systematic evaluation of frontier LLMs and agent harnesses in the companion paper (best 68.3%); arXiv-only, no third-party replication yet. |
 | Openness | 1 | Public repo, free to run, but no license file at scoring date — reuse terms unclear. |
-| Maturity / traction | 1 | Very young (Apr-Jun 2026) and small (8 stars); active single-team development anchored to an 11-author academic paper. |
+| Maturity / traction | 1 | Still young (Apr-Jun 2026) and small (15 stars as of 2026-11-01, up from 8 at scoring); active single-team development anchored to an 11-author academic paper, no AARRA/AARRS follow-up stage released yet. |
 | Cross-family policy | 0 | Not applicable — model-agnostic evaluation target; paper evaluates multiple families as subjects but the benchmark has no cross-family mechanism of its own. |
 | Runtime assurance | 1 | Deterministic per-task pass/fail verification scripts; no in-flight integrity gating beyond final assertions. |
 | Cross-platform portability | 2 | Harbor-format tasks run under multiple agent harnesses and any model provider; containerized execution required. |
 
-*Scored on 2026-07-23. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -62,7 +62,7 @@ Isolates the micro-level judgment failures that end-to-end benchmarks average aw
 ## Limitations
 
 - No license file at scoring date — reuse terms are unclear.
-- Very early traction (8 stars, launched April 2026); single-team maintenance.
+- Early traction (15 stars as of 2026-11-01); single-team maintenance.
 - Granular scenarios test judgment in isolation — deliberately does not measure end-to-end research execution, so it complements rather than replaces benchmarks like AIRS-Bench or MLGym.
 
 ## Related projects in this catalog

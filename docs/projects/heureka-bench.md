@@ -2,7 +2,7 @@
 
 # HeurekaBench
 
-`external` · status: `dormant` · focus: `analysis` · discipline: `biomedical` · started: 2025
+`external` · status: `active` · focus: `analysis` · discipline: `biomedical` · started: 2025
 
 **Project page:** <https://github.com/mlbio-epfl/HeurekaBench>
 
@@ -26,15 +26,15 @@ The only entry in the catalog that publishes the *benchmark- construction* pipel
 | Autonomy level | 0 | The construction pipeline is explicitly semi-automated (LLM generation with validation against published results) and the eval harness is a set of scripts; all research agency lives in the agents being measured. |
 | Architectural transparency | 3 | Repo ships the construction pipeline, the validation stage, the G-Eval judge prompts (`geval_prompts/`), the answer-extraction and scoring scripts, and both baseline runners (`run_baselines/`, `run_biomni/`) — code and prompts, not just an artifact drop. |
 | Inputs supported | 2 | Six question-set variants (mcq/oeq × lite/full/tool-usage) over 44 GB of real experimental data, runnable against three model paths (vLLM open-weights, closed APIs) and two agent adapters (CellVoyager, Biomni). |
-| Outputs / reproducibility | 2 | Question sets are fixed JSON files and the dataset archive ships a SHA256 checksum, but distribution is six hand-reassembled Google Drive parts with no DOI or versioned release, and judge-scored open-ended answers are not bit-reproducible. |
+| Outputs / reproducibility | 3 | As of 2026-09-14 the 44 GB sc-HeurekaBench dataset moved from six hand-reassembled Google Drive parts to a single versioned Hugging Face dataset repo (huggingface.co/datasets/sibasmarakp/sc-HeurekaBench), alongside fixed JSON question sets with a SHA256 checksum — a reproducible, versioned data manifest; judge-scored open-ended answers remain not bit-reproducible. |
 | Internal evaluation | 3 | Accepted to ICLR 2026 (verified on the arXiv listing and the repo's own `@inproceedings` citation block) — peer-reviewed external validation, with baseline agents scored in the paper. |
 | Openness | 2 | A LICENSE file is now present in the repo (MIT, copyright Panigrahi/Videnović/Brbić 2026; confirmed 2026-10-01, reversing the 'no license file' finding from 2026-09-08) — permissive license, but the 44 GB dataset's fragile six-part Google Drive distribution still limits full end-to-end reproducibility on commodity hardware. |
-| Maturity / traction | 1 | 21 stars, 2 forks, 12 commits as of 2026-10-01, no code push since 2026-02-16, no leaderboard, and the only instantiation is the authors' own single-cell set — a single-lab research artifact. |
+| Maturity / traction | 1 | 23 stars, 1 fork, 14 commits as of 2026-11-01; light but ongoing maintenance (dataset migrated to Hugging Face 2026-09-14, README tidied 2026-10-30) rather than new features — still a single-lab research artifact with no leaderboard. |
 | Cross-family policy | 0 | Model-agnostic evaluation target with no executor/reviewer pairing of its own; the construction pipeline is described as using multiple LLMs but the README does not document which families, so cross-family cannot be credited. |
 | Runtime assurance | 1 | Generated questions are validated against the published findings at construction time and an optional critic module screens ill-formed agent answers — single-pass checks, with no gating on failure during an agent run. |
 | Cross-platform portability | 2 | Runs against open-weight models via vLLM plus OpenAI/Anthropic APIs and two agent adapters, but the harness assumes a conda environment and the sc-HeurekaBench data layout. |
 
-*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -58,11 +58,11 @@ The only entry in the catalog that publishes the *benchmark- construction* pipel
 
 ## Limitations
 
-- A LICENSE file (MIT) is now confirmed present in the repo as of 2026-10-01, reversing the earlier 'no license file' finding from 2026-09-08 — reuse terms are resolved and permissive.
+- A LICENSE file (MIT) has been confirmed present in the repo since 2026-09-12 — reuse terms are resolved and permissive.
 - The framework claim is domain-general but the only instantiation is single-cell biology; portability to economics or other fields is argued, not demonstrated.
-- The 44 GB dataset is distributed as six Google Drive archive parts that must be concatenated by hand — no DOI, no HuggingFace mirror, fragile hosting for a benchmark meant to be re-run.
+- The 44 GB dataset moved to a single Hugging Face dataset repo on 2026-09-14, resolving the earlier fragile six-part Google Drive distribution.
 - README does not state how many questions each of the six variants contains, so benchmark size cannot be verified from the repo.
-- No leaderboard and no push to code since 2026-02-16; scores exist only inside the ICLR paper.
+- No leaderboard; activity since the ICLR 2026 acceptance has been maintenance-only (license, hosting, README) rather than new benchmark content or baselines.
 - Open-ended grading depends on an LLM judge whose own accuracy is not separately validated against human raters in the repo.
 
 ## Related projects in this catalog
