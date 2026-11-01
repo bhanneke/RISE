@@ -1,0 +1,116 @@
+slug: researchgym
+name: "ResearchGym"
+type: external
+status: active
+url: "https://github.com/Anikethh/ResearchGym"
+license: "none"
+maintainers:
+  - "TCS Research"
+  - "Yale University"
+year_started: 2026
+
+positioning: >
+  A benchmark and execution environment (arXiv:2602.15112, ICLR 2026
+  Agents in the Wild Workshop) that turns five oral/spotlight papers
+  from ICML, ICLR, and ACL into 39 containerized sub-tasks: each
+  paper's dataset, evaluation harness, and baseline code are kept, but
+  its proposed method is hidden, so an agent must propose a hypothesis,
+  implement it, and beat the paper's own metric. Sits in the RISE
+  evaluation-infrastructure layer alongside AIRS-Bench, MLGym, and
+  AstaBench.
+
+distinctive_contribution: >
+  A Gym-like `AgenticEnv` interface (UV-local or Docker runtime) with
+  an explicit $10 default API-cost budget per 12-24h run, cost tracking
+  baked into the harness, and a dedicated InspectionAgent that
+  post-hoc audits each completed run for cheating or rule violations —
+  a runtime-integrity layer most sibling benchmarks lack. The companion
+  paper reports a GPT-5-based agent beating the provided human baseline
+  in only 1 of 15 runs (6.7%) while completing ~26.5% of sub-tasks on
+  average, with one run surpassing an ICML 2025 Spotlight result.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - data-analysis
+  - code-generation
+
+architectural_features: []
+
+discipline: computer-science
+
+inputs:
+  - task-specification
+  - agent-implementation
+
+outputs:
+  - evaluation-metrics
+  - agent-trajectories
+
+data_sources:
+  - benchmark-datasets
+
+knowledge_sources:
+  - source-papers
+
+scores:
+  lifecycle_coverage:
+    score: 0
+    note: "Evaluation infrastructure; scores the research ability of agents under test, does not itself produce scholarship."
+  autonomy_level:
+    score: 0
+    note: "Static task environments plus a cost-budgeted scoring harness; all agency lives in the agent being evaluated (reference RGAgent, ClaudeCode, or Codex wrappers provided)."
+  architectural_transparency:
+    score: 3
+    note: "Public code and trajectories on GitHub, documented CLI (run_agent.py), Agent Adapter / Runtime / AgenticEnv architecture, and an arXiv paper (v1/v2) describing the full grading pipeline."
+  inputs_supported:
+    score: 2
+    note: "Five standardized task environments (continual-learning, cross-modal-retrieval, replay buffers, materials tokenization, time-series explanation) runnable under two runtimes (UV, Docker); no external literature or data-source connector beyond the bundled pruned repos."
+  outputs_reproducibility:
+    score: 2
+    note: "Fixed baseline code and grading scripts per task with full run logs (transcript.json, cost_summary.json); agent-run stochasticity and the $10 cost cap limit exact reruns."
+  internal_evaluation:
+    score: 2
+    note: "Systematic multi-model evaluation (GPT-5, Claude Code/Opus-4.5, Codex/GPT-5.2) reported in the companion arXiv paper using the papers' own original evaluation scripts rather than an LLM judge; not yet peer-reviewed beyond workshop acceptance."
+  openness:
+    score: 1
+    note: "Public repository with code and trajectories released, but no license file identified in the repo at scoring date — reuse terms are unclear."
+  maturity_traction:
+    score: 1
+    note: "43 stars / 6 forks / 36 commits as of 2026-11-01; accepted to the ICLR 2026 Agents in the Wild Workshop, but young (Feb 2026) and still small."
+  cross_family_policy:
+    score: 1
+    note: "Optional — ships wrappers for both ClaudeCode and Codex, so a cross-family executor/inspector split is configurable, but the default RGAgent is not cross-family by design."
+  assurance_runtime:
+    score: 2
+    note: "Moderate — a dedicated InspectionAgent audits every completed run for cheating/rule violations, on top of fixed-budget cost tracking during the run; no claim-faithfulness or citation checks (not applicable to this task type)."
+  cross_platform_portability:
+    score: 1
+    note: "Two runtimes (local UV, Docker) and three model providers (OpenAI, Anthropic, Gemini) documented; not a framework-agnostic protocol."
+scored_on: "2026-11-01"
+
+limitations:
+  - "No license file identified at scoring date — reuse terms are unclear."
+  - "Only five task environments (39 sub-tasks) at launch — narrow coverage relative to AIRS-Bench or MLGym."
+  - "Workshop-level peer review only (ICLR 2026 Agents in the Wild Workshop), not a main-conference acceptance."
+  - "Domain is ML/AI research (vision, NLP, RL, time series) — no economics or social-science tasks."
+
+related:
+  - airs-bench
+  - mlgym
+  - asta-bench
+  - innovatorbench
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'ResearchGym: Evaluating Language Model Agents on Real-World AI Research'
+    authors:
+      - 'TCS Research'
+      - 'Yale University'
+    year: 2026
+    venue: 'arXiv / ICLR 2026 Agents in the Wild Workshop'
+    arxiv_id: '2602.15112'
+
+references: []

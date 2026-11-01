@@ -1,0 +1,125 @@
+slug: sakana-ai-scientist-v3
+name: "Sakana AI Agentic Scientist (AI-Scientist-v3)"
+type: external
+status: active
+url: "https://github.com/SakanaAI/AI-Scientist-v3"
+license: "Apache-2.0"
+maintainers:
+  - "Sakana AI"
+year_started: 2026
+
+positioning: >
+  Third generation of Sakana AI's "AI Scientist" lineage, reframed as an
+  orchestrator that drives off-the-shelf coding-agent CLIs (Claude Code,
+  Codex, Cursor, OpenCode, Gemini, Pi) through a six-phase pipeline —
+  task drafting, investigation, ablations, sealed final evaluation,
+  post-hoc analysis, and paper writing — against a human-authored
+  task.md plus an evaluator, rather than hand-rolling its own agent.
+
+distinctive_contribution: >
+  Replaces v1/v2's single built-in agent with a harness-agnostic design
+  that can run the same task through six different commercial/open
+  coding-agent backends for comparison, and adds a "sealed" final
+  evaluation phase (each phase runs in its own container reading only a
+  run-local snapshot) specifically to prevent the pipeline from grading
+  its own held-out test. Flagship case studies were run across 9
+  frontier model/harness combinations.
+
+focus: end-to-end
+
+pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - data-analysis
+  - code-generation
+  - paper-drafting
+  - revision-editing
+  - referee-simulation
+
+architectural_features:
+  - multi-agent
+  - tool-use
+  - dag-orchestration
+  - iterative-loop
+  - artifact-versioning
+
+discipline: computer-science
+
+inputs:
+  - research-area
+  - seed-template
+
+outputs:
+  - paper-draft
+  - code
+  - experiment-logs
+  - self-review
+
+data_sources:
+  - benchmark-datasets
+
+knowledge_sources: []
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Covers ~7 stages (ideation through paper + optional review/revision); no dedicated literature-discovery or dissemination stage — task.md is human-authored."
+  autonomy_level:
+    score: 2
+    note: "Runs each phase to completion without per-step approval, but a human still writes the task.md brief and evaluator up front; task drafting from a bare prompt is labelled experimental and 'not yet robust' per the README, so full autonomy on novel tasks is unproven."
+  architectural_transparency:
+    score: 3
+    note: "Full code, Hydra configs, phase definitions, and container/evaluation harness publicly released under Apache-2.0; README documents the six-phase design and sealed-evaluation mechanism in detail."
+  inputs_supported:
+    score: 1
+    note: "Single input form (task.md + evaluator + optional GPU preset); no literature-corpus or external-data-source integration described."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists a per-run directory (results/<task>/<agent>/<run_id>/) with phase subfolders, compiled paper.pdf, and a manifest; reproducibility depends on the task's evaluator and chosen coding-agent backend, which the repo does not pin to exact versions."
+  internal_evaluation:
+    score: 1
+    note: "Flagship claim is a development version that produced one paper accepted at ALIFE 2026, but neither the README nor the arXiv abstract names that paper or gives a benchmark/baseline comparison against prior AI-Scientist versions or other systems — anecdotal at this scoring date."
+  openness:
+    score: 2
+    note: "Apache-2.0 (reverting from v2's non-permissive 'AI Scientist Source Code License'); examples ship with evaluators so are partially reproducible, but several require Docker + multi-GPU presets, short of fully commodity-hardware reproduction."
+  maturity_traction:
+    score: 1
+    note: "Released 2026-10-15 (arXiv paper arXiv:2610.18933 submitted 2026-10-13); 575 stars / 81 forks as of 2026-11-01, days after launch — research-prototype stage, too young for an external-adoption claim beyond the single ALIFE acceptance."
+  cross_family_policy:
+    score: 1
+    note: "Supports driving 6 different coding-agent CLIs (Claude, Codex, Cursor, OpenCode, Gemini, Pi) for the same task, but cross-family comparison is a configurable choice, not the default or required path."
+  assurance_runtime:
+    score: 2
+    note: "Sealed final-evaluation containers (phase reads only a run-local snapshot, preventing self-grading) plus rubric-based evaluation during investigation and an optional external AI-reviewer pass — multiple in-pipeline gates, short of a full claim/citation/figure audit stack."
+  cross_platform_portability:
+    score: 1
+    note: "Docker-first runtime with 6 supported coding-agent backends, but README warns agents run with full tool permissions (--allow yolo) and GPU presets assume CUDA; no CPU-only or browser path documented."
+scored_on: "2026-11-01"
+
+limitations:
+  - "Task definition (task.md + evaluator) is human-authored; bare-prompt task drafting is explicitly flagged experimental and not yet robust."
+  - "No quantitative benchmark or head-to-head comparison against v1/v2 or other AI-scientist systems reported at launch."
+  - "README warns agents run with full tool permissions and inherit whatever API keys they are given — a real operational-security caveat for unattended runs."
+  - "Only one concretely named external validation claim (an ALIFE 2026 acceptance), and the paper itself does not identify that accepted paper."
+  - "Released 10 days before this scoring date — all traction figures are early and may move quickly."
+
+related:
+  - sakana-ai-scientist
+  - sakana-ai-scientist-v1
+  - agent-laboratory
+  - zeropaper
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'The Agentic Scientist: Orchestrating Coding Agents for Automated Scientific (Co-)Discovery'
+    authors:
+      - 'Lange, R. T.'
+      - 'Grillotti, L.'
+      - 'Yamada, Y.'
+      - 'Charakorn, R.'
+      - 'Ha, D.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2610.18933'
+
+references: []

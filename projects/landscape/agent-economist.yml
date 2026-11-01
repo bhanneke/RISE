@@ -1,0 +1,116 @@
+slug: agent-economist
+name: "AgentEconomist"
+type: external
+status: active
+url: "https://arxiv.org/abs/2604.27725"
+maintainers:
+  - "Zhongguancun Academy / Tsinghua University / USTC (Chen, He, Li, et al.)"
+year_started: 2026
+
+positioning: >
+  An interactive research copilot (arXiv:2604.27725) that turns a
+  human researcher's abstract economic intuition into a runnable
+  agent-based computational experiment. Three stages — literature-
+  grounded hypothesis drafting, experimental-design/simulator
+  parameterization, and experiment execution — sit on top of
+  AgentEconomy, an LLM-driven agent-based macroeconomic simulator
+  (households, firms, government, banking, calibrated from empirical
+  microdata). A human reviews and steers each stage.
+
+distinctive_contribution: >
+  Targets the ideation-to-simulation slice of the economics research
+  pipeline specifically, pairing a 13,000+ paper domain knowledge base
+  with a full agent-based macro simulator rather than a generic code
+  sandbox; explicitly positions itself against "The AI Scientist"-style
+  systems, arguing those optimize for an autonomous end product over
+  supporting the human's own research process.
+
+focus: analysis
+
+pipeline_stages:
+  - hypothesis-generation
+  - research-design
+  - formal-modeling
+  - data-analysis
+
+architectural_features:
+  - multi-agent
+  - human-in-loop
+  - rag-knowledge-base
+  - tool-use
+  - iterative-loop
+
+discipline: economics
+
+inputs:
+  - research-direction
+
+outputs:
+  - computational-results
+  - simulation-code
+
+data_sources:
+  - empirical-microdata
+
+knowledge_sources:
+  - economics-literature-corpus
+
+scores:
+  lifecycle_coverage:
+    score: 2
+    note: "Four stages — hypothesis drafting, experimental design, simulator parameterization, and execution/results — but stops before paper-drafting or referee-simulation."
+  autonomy_level:
+    score: 1
+    note: "Explicitly interactive/human-in-the-loop: the researcher reviews and steers each of the three pipeline stages rather than approving only a final artifact."
+  architectural_transparency:
+    score: 1
+    note: "Paper describes the three-stage architecture and the AgentEconomy simulator design; no code, prompts, or configs found public at scoring date."
+  inputs_supported:
+    score: 1
+    note: "Single input form (a free-text economic intuition), but draws on both a literature corpus (13,000+ papers) and empirical microdata for simulator calibration."
+  outputs_reproducibility:
+    score: 2
+    note: "Persists structured experiment artifacts (simulator configs, run code, results) per the paper, but the system itself is not public, so end-to-end reproduction by third parties is unverified."
+  internal_evaluation:
+    score: 2
+    note: "Systematic evaluation comparing AgentEconomist-produced ideas/experiments against baseline-LLM outputs using human expert judges on the same prompts; arXiv preprint only, not yet peer-reviewed at scoring date."
+  openness:
+    score: 0
+    note: "No public code or AgentEconomy simulator release found at scoring date; paper only."
+  maturity_traction:
+    score: 1
+    note: "Academic research prototype (arXiv, posted 2026-04-30); single-team, no reported external users or releases."
+  cross_family_policy:
+    score: 0
+    note: "No cross-model-family review described; single underlying LLM backend."
+  assurance_runtime:
+    score: 1
+    note: "Literature-grounding of hypotheses against the domain KB acts as a light in-pipeline check; no described math/claim-audit or adversarial gate."
+  cross_platform_portability:
+    score: 0
+    note: "Research prototype tied to the authors' AgentEconomy simulator; no described deployment on other runtimes."
+scored_on: "2026-11-01"
+
+limitations:
+  - "No public code or data release found at scoring date — architecture and results are known only from the paper."
+  - "Scope is agent-based macroeconomic simulation specifically, not general empirical economics (no identification strategy, no real-dataset estimation, no paper-drafting stage)."
+  - "Evaluation relies on a human expert user study of unreported scale; quantitative headline results were not found in public summaries at scoring date."
+
+related:
+  - econcs-bench
+  - econ-skills
+
+# ── Papers describing this project ─────────────────────
+papers:
+  - title: 'AgentEconomist: An End-to-end Agentic System Translating Economic Intuitions into Executable Computational Experiments'
+    authors:
+      - 'Chen, Jiaju'
+      - 'He, Xiangnan'
+      - 'Li, Yong'
+      - 'et al.'
+    year: 2026
+    venue: 'arXiv'
+    arxiv_id: '2604.27725'
+
+references:
+  - chen2026agenteconomist
