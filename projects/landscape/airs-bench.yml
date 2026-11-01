@@ -78,7 +78,7 @@ scores:
     note: "Fully public but CC BY-NC 4.0 — non-permissive, research-only reuse (stricter reading of the rubric than mlgym's earlier score)."
   maturity_traction:
     score: 2
-    note: "104 stars, Meta institutional backing, active development Jan-May 2026, companion paper with headline cross-model results."
+    note: "125 stars / 10 forks as of 2026-11-01 (up from 104 stars at scoring), Meta institutional backing, companion paper with headline cross-model results; no new commits observed since the active Jan-May 2026 window."
   cross_family_policy:
     score: 0
     note: "Not applicable — model-agnostic evaluation target; baselines span families (GPT-4o, o3-mini, gpt-oss, Devstral, CWM) but there is no executor/reviewer pairing of its own."
@@ -88,7 +88,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: "YAML task specs consumable by two agent runtimes (aira-dojo, MLGym) and any model provider; Python 3.12 + conda required."
-scored_on: "2026-07-23"
+scored_on: "2026-11-01"
 
 limitations:
   - "CC BY-NC 4.0 license restricts commercial reuse of tasks and code."

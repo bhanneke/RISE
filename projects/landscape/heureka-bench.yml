@@ -1,7 +1,7 @@
 slug: heureka-bench
 name: "HeurekaBench"
 type: external
-status: dormant
+status: active
 url: "https://github.com/mlbio-epfl/HeurekaBench"
 license: "MIT"
 maintainers:
@@ -81,8 +81,8 @@ scores:
     score: 2
     note: "Six question-set variants (mcq/oeq × lite/full/tool-usage) over 44 GB of real experimental data, runnable against three model paths (vLLM open-weights, closed APIs) and two agent adapters (CellVoyager, Biomni)."
   outputs_reproducibility:
-    score: 2
-    note: "Question sets are fixed JSON files and the dataset archive ships a SHA256 checksum, but distribution is six hand-reassembled Google Drive parts with no DOI or versioned release, and judge-scored open-ended answers are not bit-reproducible."
+    score: 3
+    note: "As of 2026-09-14 the 44 GB sc-HeurekaBench dataset moved from six hand-reassembled Google Drive parts to a single versioned Hugging Face dataset repo (huggingface.co/datasets/sibasmarakp/sc-HeurekaBench), alongside fixed JSON question sets with a SHA256 checksum — a reproducible, versioned data manifest; judge-scored open-ended answers remain not bit-reproducible."
   internal_evaluation:
     score: 3
     note: "Accepted to ICLR 2026 (verified on the arXiv listing and the repo's own `@inproceedings` citation block) — peer-reviewed external validation, with baseline agents scored in the paper."
@@ -91,7 +91,7 @@ scores:
     note: "A LICENSE file is now present in the repo (MIT, copyright Panigrahi/Videnović/Brbić 2026; confirmed 2026-10-01, reversing the 'no license file' finding from 2026-09-08) — permissive license, but the 44 GB dataset's fragile six-part Google Drive distribution still limits full end-to-end reproducibility on commodity hardware."
   maturity_traction:
     score: 1
-    note: "21 stars, 2 forks, 12 commits as of 2026-10-01, no code push since 2026-02-16, no leaderboard, and the only instantiation is the authors' own single-cell set — a single-lab research artifact."
+    note: "23 stars, 1 fork, 14 commits as of 2026-11-01; light but ongoing maintenance (dataset migrated to Hugging Face 2026-09-14, README tidied 2026-10-30) rather than new features — still a single-lab research artifact with no leaderboard."
   cross_family_policy:
     score: 0
     note: "Model-agnostic evaluation target with no executor/reviewer pairing of its own; the construction pipeline is described as using multiple LLMs but the README does not document which families, so cross-family cannot be credited."

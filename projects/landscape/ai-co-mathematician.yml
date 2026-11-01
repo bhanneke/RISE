@@ -84,7 +84,7 @@ scores:
     note: "Persists LaTeX write-ups plus code from computational exploration with provenance notes; closed system and LLM nondeterminism preclude external end-to-end reproduction."
   internal_evaluation:
     score: 2
-    note: "Systematic benchmark result (48% on FrontierMath Tier 4) plus an expert-verified new result (Kourovka Notebook 21.10); still an arXiv preprint, not peer-reviewed."
+    note: "Systematic benchmark results (48% on FrontierMath Tier 4 vs. 19% for base Gemini 3.1 Pro; 87% on an internal 100-problem research-math set vs. 57%/70% for Gemini 3.1 Pro/Deep Think) plus an expert-verified new result (Kourovka Notebook 21.10); still an arXiv preprint, not peer-reviewed."
   openness:
     score: 0
     note: "Closed research system; no code, weights, or public access at scoring date."
@@ -100,7 +100,7 @@ scores:
   cross_platform_portability:
     score: 0
     note: "Closed system locked to DeepMind infrastructure and Gemini; not deployable elsewhere."
-scored_on: "2026-07-23"
+scored_on: "2026-11-01"
 
 limitations:
   - "Closed system: no code, prompts, or public access — architecture is known only from the paper, and the FrontierMath and Kourovka results cannot be independently reproduced."

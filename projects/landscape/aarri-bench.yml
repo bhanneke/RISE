@@ -81,7 +81,7 @@ scores:
     note: "Public repo, free to run, but no license file at scoring date — reuse terms unclear."
   maturity_traction:
     score: 1
-    note: "Very young (Apr-Jun 2026) and small (8 stars); active single-team development anchored to an 11-author academic paper."
+    note: "Still young (Apr-Jun 2026) and small (15 stars as of 2026-11-01, up from 8 at scoring); active single-team development anchored to an 11-author academic paper, no AARRA/AARRS follow-up stage released yet."
   cross_family_policy:
     score: 0
     note: "Not applicable — model-agnostic evaluation target; paper evaluates multiple families as subjects but the benchmark has no cross-family mechanism of its own."
@@ -91,11 +91,11 @@ scores:
   cross_platform_portability:
     score: 2
     note: "Harbor-format tasks run under multiple agent harnesses and any model provider; containerized execution required."
-scored_on: "2026-07-23"
+scored_on: "2026-11-01"
 
 limitations:
   - "No license file at scoring date — reuse terms are unclear."
-  - "Very early traction (8 stars, launched April 2026); single-team maintenance."
+  - "Early traction (15 stars as of 2026-11-01); single-team maintenance."
   - "Granular scenarios test judgment in isolation — deliberately does not measure end-to-end research execution, so it complements rather than replaces benchmarks like AIRS-Bench or MLGym."
 
 related:
