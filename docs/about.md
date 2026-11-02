@@ -9,10 +9,14 @@ information systems whose primary purpose is to *produce scholarly
 knowledge*. The framing, scope, and intellectual lineage are laid
 out under [Concept](concept/definition.md).
 
-The site is **a hobby project**, maintained in the open — not yet a
-peer-reviewed scientific contribution. Treat the synthesis,
-scorings, and classifications as the curator's current best-effort
-view, subject to revision as the field moves.
+RISE is an experiment in continuous knowledge synthesis, and the site
+is itself a research information system. Each month, Claude Code
+agents survey the field, score new systems against a fixed rubric,
+and propose the changes on a branch that the curator reviews before
+it reaches the site. Every scoring therefore records the state of a
+system on the date shown with its entry, and the scorings change as
+the field and the rubric evolve. The site has not undergone peer
+review.
 
 ## Who maintains it
 

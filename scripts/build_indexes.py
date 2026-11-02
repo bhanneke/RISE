@@ -19,6 +19,7 @@ No external dependencies beyond PyYAML. Run from repo root:
 from __future__ import annotations
 
 import re
+import subprocess
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -34,6 +35,12 @@ BIB_FILE = REPO_ROOT / "papers" / "references.bib"
 DOCS_PROJECTS_DIR = REPO_ROOT / "docs" / "projects"
 DOCS_PROJECTS_INDEX = DOCS_PROJECTS_DIR / "index.md"
 DOCS_PAPERS_INDEX = REPO_ROOT / "docs" / "papers" / "index.md"
+DOCS_HOME = REPO_ROOT / "docs" / "index.md"
+SKILLS_DIR = REPO_ROOT / "skills"
+HOME_STATUS_START = "<!-- AUTO-GENERATED:catalogue-status-start -->"
+HOME_STATUS_END = "<!-- AUTO-GENERATED:catalogue-status-end -->"
+# A commit touching any of these changes the catalogue.
+CATALOGUE_PATHS = ["projects", "skills", "papers", "docs/papers/notes"]
 
 GITHUB_BASE = "https://github.com/bhanneke/RISE/blob/main"
 
@@ -788,6 +795,52 @@ def replace_between(text: str, start: str, end: str, replacement: str) -> str:
     return text + "\n\n" + new_block + "\n"
 
 
+# ── homepage status line ──────────────────────────────────────────────
+
+MONTHS = ["January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December"]
+
+
+def catalogue_date(projects: list[dict[str, Any]]) -> str:
+    """Date of the last commit that changed the catalogue (ISO, YYYY-MM-DD).
+
+    The per-page footer shows when a page's own file last changed, so the
+    homepage footer stays at the date index.md was last edited. This line
+    reports the catalogue instead. Falls back to the newest scored_on date
+    when git history is unavailable.
+    """
+    try:
+        out = subprocess.run(
+            ["git", "log", "-1", "--format=%cs", "--", *CATALOGUE_PATHS],
+            cwd=REPO_ROOT, capture_output=True, text=True, timeout=60, check=True,
+        ).stdout.strip()
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", out):
+            return out
+    except (OSError, subprocess.SubprocessError):
+        pass
+    dates = [str(p.get("scored_on")) for p in projects if p.get("scored_on")]
+    return max(dates) if dates else ""
+
+
+def count_skills() -> int:
+    total = 0
+    for f in SKILLS_DIR.glob("*.yml"):
+        m = re.search(r"^\s*total_skills:\s*(\d+)", f.read_text(encoding="utf-8"), re.M)
+        total += int(m.group(1)) if m else 0
+    return total
+
+
+def render_home_status(projects: list[dict[str, Any]], papers: list[dict[str, Any]]) -> str:
+    iso = catalogue_date(projects)
+    if iso:
+        y, m, d = (int(x) for x in iso.split("-"))
+        when = f"{d} {MONTHS[m - 1]} {y}"
+    else:
+        when = "unknown"
+    return (f"*Catalogue last updated {when} · {len(projects)} projects · "
+            f"{count_skills()} skills · {len(papers)} papers*")
+
+
 # ── validation ────────────────────────────────────────────────────────
 
 
@@ -865,6 +918,12 @@ def main() -> int:
         render_papers_by_year(papers, bib_entries),
     )
     DOCS_PAPERS_INDEX.write_text(papers_text, encoding="utf-8")
+
+    home_text = DOCS_HOME.read_text(encoding="utf-8")
+    if HOME_STATUS_START in home_text:  # never append: the block's place is set in index.md
+        home_text = replace_between(home_text, HOME_STATUS_START, HOME_STATUS_END,
+                                    render_home_status(projects, papers))
+        DOCS_HOME.write_text(home_text, encoding="utf-8")
 
     print(
         f"=== Summary ===\n"

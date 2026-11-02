@@ -1,5 +1,9 @@
 # Research Information Systems Engineering
 
+<!-- AUTO-GENERATED:catalogue-status-start -->
+*Catalogue last updated 2 November 2026 · 112 projects · 621 skills · 256 papers*
+<!-- AUTO-GENERATED:catalogue-status-end -->
+
 **RISE** is a public knowledge base introducing *Research Information
 Systems Engineering* — a framework for **designing, operating, and
 governing AI-enabled research systems**: information systems whose
