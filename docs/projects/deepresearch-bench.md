@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/Ayanami0730/deep_research_bench>
 
-**Licence:** `unclassified (conflicting badges — README badge says MIT, repo sidebar says Apache-2.0; see repository)`
+**Licence:** `Apache-2.0 (LICENSE file; the README badge says MIT)`
 
 **Source:** [`projects/landscape/deepresearch-bench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/deepresearch-bench.yml)
 
@@ -28,7 +28,7 @@ Two purpose-built automated evaluators instead of a single LLM judge: RACE (Refe
 | Inputs supported | 1 | One input form — a JSON report per query matching the required schema — with no requirement on how the agent under test sources its literature or data. |
 | Outputs / reproducibility | 2 | Fixed 100-task query set with versioned reference/criteria data and a public leaderboard submission protocol (reproducibility link, raw articles, model metadata required); judge-model drift (Gemini to GPT-5.5) means absolute scores are not stable across the benchmark's own history. |
 | Internal evaluation | 2 | Systematic cross-model evaluation reported for the official leaderboard with claimed strong RACE/FACT-vs-human agreement; peer-reviewed via ICLR 2026 acceptance, though human-judgment validation numbers are the authors' own and not independently replicated in this catalog. |
-| Openness | 1 | Code and benchmark data are public, but the license is unclear at scoring date — the README's own MIT badge conflicts with the repo sidebar's Apache-2.0 listing — and official leaderboard submission requires a temporary GPT-5.5 access key from the maintainers. |
+| Openness | 2 | Code and benchmark data are public under Apache-2.0 (the LICENSE file; the README badge says MIT, checked 2026-11-02); official leaderboard submission requires a temporary GPT-5.5 access key from the maintainers. |
 | Maturity / traction | 2 | 848 stars / 87 forks / 47 commits as of 2026-11-01, 21 open issues, ICLR 2026 acceptance, and an actively maintained leaderboard with a documented 2026 evaluator migration — real external usage, though governed by a single academic group. |
 | Cross-family policy | 0 | Not applicable — model-agnostic evaluation target; the benchmark itself uses a fixed judge model (GPT-5.5) rather than a cross-family executor/reviewer pairing. |
 | Runtime assurance | 0 | No runtime mechanism — FACT's citation checking and RACE's criteria scoring are both post-hoc evaluation of a finished report, not an in-flight gate during agent execution. |
@@ -56,7 +56,7 @@ Two purpose-built automated evaluators instead of a single LLM judge: RACE (Refe
 
 ## Limitations
 
-- License is ambiguous at scoring date (README badge vs. repo sidebar disagree) — confirm before reuse.
+- The README badge says MIT while the LICENSE file is Apache-2.0; the LICENSE file governs.
 - Evaluates web-search-and-synthesis 'deep research' agents specifically — out of scope for systems that don't produce a written report (e.g., pure code/experiment agents).
 - Judge-model dependency: the 2026 forced migration from Gemini-2.5-Pro to GPT-5.5 after a Google deprecation shows leaderboard scores are not judge-model-stable over time; legacy results live on a separate Gemini-2.5 branch.
 - Official leaderboard submission requires a maintainer-issued temporary API key, adding friction beyond self-hosted evaluation.

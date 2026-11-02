@@ -51,7 +51,7 @@ sources.
 | [CORE-Bench](core-bench.md) | external | `replication` | 0 | 2 | 3 | 1 | 2 | 3 | 2 | 3 | 0 | 1 | 2 | general |
 | [DARE (De-Anthropocentric Research Engine)](dare.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 0 | 2 | 2 | 0 | 2 | 2 | general |
 | [data-to-paper](data-to-paper.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 3 | 3 | 3 | 0 | 0 | 2 | 1 | general |
-| [DeepResearch Bench](deepresearch-bench.md) | external | `end-to-end` | 0 | 0 | 3 | 1 | 2 | 2 | 1 | 2 | 0 | 0 | 1 | general |
+| [DeepResearch Bench](deepresearch-bench.md) | external | `end-to-end` | 0 | 0 | 3 | 1 | 2 | 2 | 2 | 2 | 0 | 0 | 1 | general |
 | [DeepResearcher (GAIR-NLP)](deepresearcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 3 | 3 | 2 | 0 | 2 | 1 | general |
 | [DeepScientist](deepscientist.md) | external | `end-to-end` | 2 | 3 | 2 | 2 | 2 | 3 | 2 | 2 | 1 | 1 | 2 | computer-science |
 | [EconAgentSkills](econ-agent-skills.md) | external | `analysis` | 2 | 1 | 3 | 2 | 2 | 0 | 2 | 1 | 0 | 1 | 2 | economics |

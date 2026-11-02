@@ -3,7 +3,7 @@ name: "DeepResearch Bench"
 type: external
 status: active
 url: "https://github.com/Ayanami0730/deep_research_bench"
-license: "unclassified (conflicting badges — README badge says MIT, repo sidebar says Apache-2.0; see repository)"
+license: "Apache-2.0 (LICENSE file; the README badge says MIT)"
 maintainers:
   - "Mingxuan Du"
   - "Benfeng Xu"
@@ -78,8 +78,8 @@ scores:
     score: 2
     note: "Systematic cross-model evaluation reported for the official leaderboard with claimed strong RACE/FACT-vs-human agreement; peer-reviewed via ICLR 2026 acceptance, though human-judgment validation numbers are the authors' own and not independently replicated in this catalog."
   openness:
-    score: 1
-    note: "Code and benchmark data are public, but the license is unclear at scoring date — the README's own MIT badge conflicts with the repo sidebar's Apache-2.0 listing — and official leaderboard submission requires a temporary GPT-5.5 access key from the maintainers."
+    score: 2
+    note: "Code and benchmark data are public under Apache-2.0 (the LICENSE file; the README badge says MIT, checked 2026-11-02); official leaderboard submission requires a temporary GPT-5.5 access key from the maintainers."
   maturity_traction:
     score: 2
     note: "848 stars / 87 forks / 47 commits as of 2026-11-01, 21 open issues, ICLR 2026 acceptance, and an actively maintained leaderboard with a documented 2026 evaluator migration — real external usage, though governed by a single academic group."
@@ -95,7 +95,7 @@ scores:
 scored_on: "2026-11-01"
 
 limitations:
-  - "License is ambiguous at scoring date (README badge vs. repo sidebar disagree) — confirm before reuse."
+  - "The README badge says MIT while the LICENSE file is Apache-2.0; the LICENSE file governs."
   - "Evaluates web-search-and-synthesis 'deep research' agents specifically — out of scope for systems that don't produce a written report (e.g., pure code/experiment agents)."
   - "Judge-model dependency: the 2026 forced migration from Gemini-2.5-Pro to GPT-5.5 after a Google deprecation shows leaderboard scores are not judge-model-stable over time; legacy results live on a separate Gemini-2.5 branch."
   - "Official leaderboard submission requires a maintainer-issued temporary API key, adding friction beyond self-hosted evaluation."
