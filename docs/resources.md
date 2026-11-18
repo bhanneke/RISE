@@ -41,6 +41,24 @@ Written for the Copilot and GPT-4o generation of tools, so read it as
 a record of 2024 practice; the agentic workflows now catalogued under
 Skills have largely superseded it.
 
+**Bäckman, *AI guides*** — <https://claesbackman.com/ai-guides.html>.
+Six short how-to guides for economists who work with coding agents:
+where to run agentic AI, setting up Claude Code and Codex in VS Code for
+R, Stata, Python and LaTeX, a side-by-side comparison of the two, checks
+for verifying LLM-generated code and analysis, and keeping a LaTeX
+paper in sync between VS Code and Overleaf. The author's review and
+presentation skills are catalogued under Skills as
+[AI Research Feedback](skills/ai-research-feedback.md).
+
+**Bäckman, *Practical AI for Academics* (workshop)** —
+<https://claesbackman.com/ai_workshop/index.html>. Slides and
+explorable versions of two sessions for researchers (an introduction to
+generative AI, then practical workflows) and a one-day variant for
+university teachers with exercise files. The morning session covers
+choosing between chat and agentic tools, setting up a workspace, working
+with restricted data through codebooks and simulated data, and skills,
+subagents and MCP.
+
 **BYU Library, *Economics: AI tools*** —
 <https://guides.lib.byu.edu/economics/ai>. A university library guide
 to general-purpose AI features for finding and reading literature:
