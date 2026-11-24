@@ -1,11 +1,21 @@
 ---
 name: auto-review-loop-llm
 description: Autonomous research review loop using any OpenAI-compatible LLM API. Configure via llm-chat MCP server or environment variables. Trigger with "auto review loop llm" or "llm review".
-argument-hint: [topic-or-scope]
-allowed-tools: Bash(*), Read, Grep, Glob, Write, Edit, Agent, Skill
+argument-hint: "[topic-or-scope]"
+allowed-tools: Bash(*), Read, Grep, Glob, Write, Edit, Skill
 ---
 
 # Auto Review Loop (Generic LLM): Autonomous Research Improvement
+
+> 🔒 **Do not wrap this skill in `/loop`, `/schedule`, or `CronCreate`.** Like
+> `/auto-review-loop`, it already loops internally (review → fix → re-review),
+> feeding each round's prior-round summary into the next review prompt (the
+> backend is a stateless per-round API/MCP call, not a shared thread). An
+> external timer re-enters from the top each tick, dropping that accumulated
+> context and firing the verdict on wall-clock time instead of on artifact
+> change — zero new signal, full token cost. Schedule the *external wait that
+> precedes it*, not the verdict. See
+> [`shared-references/external-cadence.md`](../shared-references/external-cadence.md).
 
 Autonomously iterate: review → implement fixes → re-review, until the external reviewer gives a positive assessment or MAX_ROUNDS is reached.
 
@@ -14,7 +24,7 @@ Autonomously iterate: review → implement fixes → re-review, until the extern
 ## Constants
 
 - MAX_ROUNDS = 4
-- POSITIVE_THRESHOLD: score >= 6/10, or verdict contains "accept", "sufficient", "ready for submission"
+- POSITIVE_THRESHOLD: score >= 6/10 **AND** verdict ∈ {"ready", "almost"} — **both** must hold, matching the operative STOP check below. Verdict vocabulary is {"ready", "almost", "not ready"}. (Earlier wording used `or` and a stale verdict set; the `AND` form is authoritative.)
 - REVIEW_DOC: `review-stage/AUTO_REVIEW.md` (cumulative log) *(fall back to `./AUTO_REVIEW.md` for legacy projects)*
 
 ## LLM Configuration
@@ -45,14 +55,21 @@ Add to `~/.claude/settings.json`:
 
 | Provider | LLM_BASE_URL | LLM_MODEL |
 |----------|--------------|-----------|
-| **OpenAI** | `https://api.openai.com/v1` | `gpt-4o`, `o3` |
+| **OpenAI** | `https://api.openai.com/v1` | `gpt-6.1-sol`, `gpt-6-astra` |
 | **DeepSeek** | `https://api.deepseek.com/v1` | `deepseek-chat`, `deepseek-reasoner` |
-| **MiniMax** | `https://api.minimax.io/v1` | `MiniMax-M2.7` |
+| **MiniMax** | `https://api.minimax.io/v1` | `MiniMax-M3` |
 | **Kimi (Moonshot)** | `https://api.moonshot.cn/v1` | `moonshot-v1-8k`, `moonshot-v1-32k` |
 | **ZhiPu (GLM)** | `https://open.bigmodel.cn/api/paas/v4` | `glm-4`, `glm-4-plus` |
 | **SiliconFlow** | `https://api.siliconflow.cn/v1` | `Qwen/Qwen2.5-72B-Instruct` |
 | **阿里云百炼** | `https://dashscope.aliyuncs.com/compatible-mode/v1` | `qwen-max` |
 | **零一万物** | `https://api.lingyiwanwu.com/v1` | `yi-large` |
+
+The `llm-chat` server defaults to `gpt-6.1-sol`. When `LLM_FALLBACK_MODEL` is
+unset, the 504-timeout fallback inherits `LLM_MODEL` (so it is not a fixed,
+different model). Calls to `api.openai.com` automatically use
+`max_completion_tokens`; third-party OpenAI-compatible endpoints use
+`max_tokens`. Set `LLM_MAX_TOKENS_FIELD=max_tokens` or
+`LLM_MAX_TOKENS_FIELD=max_completion_tokens` to override that automatic choice.
 
 ## API Call Method
 
@@ -68,6 +85,8 @@ mcp__llm-chat__chat:
 
 **Fallback: curl**
 
+For third-party OpenAI-compatible endpoints, use `max_tokens`:
+
 ```bash
 curl -s "${LLM_BASE_URL}/chat/completions" \
   -H "Content-Type: application/json" \
@@ -79,6 +98,22 @@ curl -s "${LLM_BASE_URL}/chat/completions" \
       {"role": "user", "content": "[review prompt]"}
     ],
     "max_tokens": 4096
+  }'
+```
+
+For a direct OpenAI call, use `max_completion_tokens` instead:
+
+```bash
+curl -s "https://api.openai.com/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${LLM_API_KEY}" \
+  -d '{
+    "model": "gpt-6.1-sol",
+    "messages": [
+      {"role": "system", "content": "You are a senior ML reviewer..."},
+      {"role": "user", "content": "[review prompt]"}
+    ],
+    "max_completion_tokens": 4096
   }'
 ```
 
@@ -131,7 +166,8 @@ mcp__llm-chat__chat:
     Be brutally honest. If the work is ready, say so clearly.
 ```
 
-**If MCP NOT available:**
+**If MCP NOT available:** For third-party OpenAI-compatible endpoints use
+`max_tokens`; for direct OpenAI calls use `max_completion_tokens` instead.
 ```bash
 curl -s "${LLM_BASE_URL}/chat/completions" \
   -H "Content-Type: application/json" \
@@ -153,11 +189,11 @@ curl -s "${LLM_BASE_URL}/chat/completions" \
 - **Verdict** ("ready" / "almost" / "not ready")
 - **Action items** (ranked list of fixes)
 
-**STOP**: If score >= 6 AND verdict contains "ready/almost"
+**STOP**: If score >= 6 AND verdict ∈ {"ready", "almost"} (exact — "not ready" does NOT qualify)
 
 #### Phase C: Implement Fixes
 
-Priority: metric additions > reframing > new experiments
+Add a metric when it resolves a specific review concern that the existing results cannot settle. Use existing measurements when they already answer it.
 
 #### Phase D: Wait for Results
 

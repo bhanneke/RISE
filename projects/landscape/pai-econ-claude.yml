@@ -3,7 +3,7 @@ name: "pAI-Econ-claude"
 type: external
 status: active
 url: "https://github.com/maxwell2732/pAI-Econ-claude"
-license: "unclassified (licence file present; see repository)"
+license: "MIT (LICENSE file; copyright Chen Zhu, Xiaolu Wang, Weilong Zhang, with an original-work line for Pierfrancesco Beneventano's pAI/MSc; README matches)"
 maintainers:
   - "Chen Zhu"
   - "Xiaolu Wang"
@@ -89,7 +89,7 @@ scores:
     note: "MIT license, example inputs in examples/ for quickstart, but running the full pipeline requires a paid Claude Code/API subscription — not free-tier reproducible."
   maturity_traction:
     score: 2
-    note: "185 stars / 60 forks, tagged v1.4.0, 40 commits, last updated 2026-08-21 — beta-stage with growing external adoption but single-team origin."
+    note: "208 stars as of 2026-11-24 (185 stars / 60 forks and tagged v1.4.0 at the 2026-10-01 scoring), last push 2026-11-15 — beta-stage with growing external adoption but single-team origin."
   cross_family_policy:
     score: 0
     note: "Single-model by design — built specifically as a Claude Code Skill (name and commands are Claude-specific); no cross-family review mechanism."
@@ -99,7 +99,7 @@ scores:
   cross_platform_portability:
     score: 0
     note: "Locked to Claude Code as a Claude Code Skill; no documented support for other IDEs, runtimes, or model providers."
-scored_on: "2026-10-01"
+scored_on: "2026-11-24"
 
 limitations:
   - "Locked to a single platform (Claude Code) and a single model family, unlike theorist-toolbox's Codex-adversarial-pair option."

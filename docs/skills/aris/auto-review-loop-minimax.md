@@ -4,9 +4,19 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/auto-review-loop-minimax/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/auto-review-loop-minimax/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-11-24</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/auto-review-loop-minimax/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/auto-review-loop-minimax/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Auto Review Loop (MiniMax Version): Autonomous Research Improvement
+
+> 🔒 **Do not wrap this skill in `/loop`, `/schedule`, or `CronCreate`.** Like
+> `/auto-review-loop`, it already loops internally (review → fix → re-review),
+> feeding each round's prior-round summary into the next review prompt (the
+> backend is a stateless per-round API call, not a shared thread). An external
+> timer re-enters from the top each tick, dropping that accumulated context and
+> firing the verdict on wall-clock time instead of on artifact change — zero
+> new signal, full token cost. Schedule the *external wait that precedes it*,
+> not the verdict. See
+> `shared-references/external-cadence.md`.
 
 Autonomously iterate: review → implement fixes → re-review, until the external reviewer gives a positive assessment or MAX_ROUNDS is reached.
 
@@ -15,9 +25,9 @@ Autonomously iterate: review → implement fixes → re-review, until the extern
 ### Constants
 
 - MAX_ROUNDS = 4
-- POSITIVE_THRESHOLD: score >= 6/10, or verdict contains "accept", "sufficient", "ready for submission"
+- POSITIVE_THRESHOLD: score >= 6/10 **AND** verdict ∈ {"ready", "almost"} — **both** must hold, matching the operative STOP CONDITION below. Verdict vocabulary is {"ready", "almost", "not ready"}. (Earlier wording used `or` and a stale verdict set; the `AND` form is authoritative.)
 - REVIEW_DOC: `review-stage/AUTO_REVIEW.md` (cumulative log) *(fall back to `./AUTO_REVIEW.md` for legacy projects)*
-- REVIEWER_MODEL = `MiniMax-M2.7` — Model used via MiniMax API
+- REVIEWER_MODEL = `MiniMax-M3` — Model used via MiniMax API
 
 ### API Configuration
 
@@ -31,7 +41,7 @@ If `mcp__minimax-chat__minimax_chat` is available, use it:
 mcp__minimax-chat__minimax_chat:
   prompt: |
     [Review prompt content]
-  model: "MiniMax-M2.7"
+  model: "MiniMax-M3"
   system: "You are a senior machine learning researcher..."
 ```
 
@@ -44,7 +54,7 @@ curl -s "https://api.minimax.io/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $MINIMAX_API_KEY" \
   -d '{
-    "model": "MiniMax-M2.7",
+    "model": "MiniMax-M3",
     "messages": [
       {"role": "system", "content": "You are a senior ML researcher..."},
       {"role": "user", "content": "[Review prompt]"}
@@ -109,7 +119,7 @@ Send comprehensive context to the external reviewer.
 Use mcp__minimax-chat__minimax_chat tool with:
 - system: "You are a senior machine learning researcher serving as a reviewer for top-tier conferences like NeurIPS, ICML, and ICLR. Provide rigorous, constructive feedback."
 - prompt: [Full review prompt with context]
-- model: "MiniMax-M2.7"
+- model: "MiniMax-M3"
 ```
 
 **If MCP NOT available (Fallback):**
@@ -118,7 +128,7 @@ curl -s "https://api.minimax.io/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $MINIMAX_API_KEY" \
   -d '{
-    "model": "MiniMax-M2.7",
+    "model": "MiniMax-M3",
     "messages": [
       {
         "role": "system",
@@ -144,7 +154,7 @@ Then extract structured fields:
 - **Verdict** ("ready" / "almost" / "not ready")
 - **Action items** (ranked list of fixes)
 
-**STOP CONDITION**: If score >= 6 AND verdict contains "ready" or "almost" → stop loop, document final state.
+**STOP CONDITION**: If score >= 6 AND verdict ∈ {"ready", "almost"} (exact match — "not ready" does NOT qualify) → stop loop, document final state.
 
 #### Phase C: Implement Fixes (if not stopping)
 
@@ -159,7 +169,7 @@ Prioritization rules:
 - Skip fixes requiring excessive compute (flag for manual follow-up)
 - Skip fixes requiring external data/models not available
 - Prefer reframing/analysis over new experiments when both address the concern
-- Always implement metric additions (cheap, high impact)
+- Add a metric when it resolves a specific review concern that the existing results cannot settle. Use existing measurements when they already answer it.
 
 #### Phase D: Wait for Results
 
@@ -234,7 +244,7 @@ When loop ends (positive assessment or max rounds):
 **MCP Method (Primary):**
 ```
 mcp__minimax-chat__minimax_chat:
-  model: "MiniMax-M2.7"
+  model: "MiniMax-M3"
   system: "You are a senior machine learning researcher serving as a reviewer for top-tier conferences like NeurIPS, ICML, and ICLR. Provide rigorous, constructive feedback."
   prompt: |
     [Round N/MAX_ROUNDS of autonomous review loop]
@@ -270,7 +280,7 @@ curl -s "https://api.minimax.io/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $MINIMAX_API_KEY" \
   -d '{
-    "model": "MiniMax-M2.7",
+    "model": "MiniMax-M3",
     "messages": [
       {
         "role": "system",

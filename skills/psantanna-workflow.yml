@@ -5,12 +5,12 @@ pack:
   maintainers:
     - "Pedro H. C. Sant'Anna (Emory University, Economics)"
   license: 'MIT'
-  total_skills: 79
-  last_update: '2026-09-27'
+  total_skills: 80
+  last_update: '2026-11-07'
   related_project: ''
   compatibility:
     - claude-code
-  notes: 'A ready-to-fork Claude Code template for academics using LaTeX/Beamer + R. 61 skills + 18 agents. Calibrated peer-review pipeline against AER, QJE, JPE, Econometrica, ReStud. Adopted by 15+ research groups. Refresh 2026-09-29 (upstream at 2026-09-27, previously catalogued at 2026-04-27 with 30 skills + 14 agents): added 31 skills (replication packaging, environment capture, disclosure and submission checks, grant/DMP/power-analysis design aids, teaching tools, audit and verification primitives such as vaccinate, differential-audit, verify-artifact, oracle-review) and 4 agents (humanize-auditor, promote-memory-council, r-package-reviewer, sim-reviewer); 43 existing skill texts changed upstream and were re-copied (notably /commit no longer merges, /deep-audit became a general adversarial audit); nothing was removed.'
+  notes: 'A ready-to-fork Claude Code template for academics using LaTeX/Beamer + R. 61 skills + 18 agents. Calibrated peer-review pipeline against AER, QJE, JPE, Econometrica, ReStud. Adopted by 15+ research groups. Refresh 2026-09-29 (upstream at 2026-09-27, previously catalogued at 2026-04-27 with 30 skills + 14 agents): added 31 skills (replication packaging, environment capture, disclosure and submission checks, grant/DMP/power-analysis design aids, teaching tools, audit and verification primitives such as vaccinate, differential-audit, verify-artifact, oracle-review) and 4 agents (humanize-auditor, promote-memory-council, r-package-reviewer, sim-reviewer); 43 existing skill texts changed upstream and were re-copied (notably /commit no longer merges, /deep-audit became a general adversarial audit); nothing was removed. Refresh 2026-11-24: re-copied the 12 changed skills and added verify.'
 
 skills:
   - slug: adjudicate-review
@@ -951,3 +951,14 @@ skills:
     details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/verifier.md'
     provenance: 'psantanna repo curation 2026-05-20'
     last_update: '2026-09-26'
+  - slug: verify
+    name: '/verify'
+    kind: skill
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: economics
+    description: 'Runs the repository''s gates on the work about to be committed (the backtest suite and the quality score of each staged .qmd, .tex and .R file) and stops the commit if one fails.'
+    source_path: '.claude/skills/verify/SKILL.md'
+    details_url: 'https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/verify/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'

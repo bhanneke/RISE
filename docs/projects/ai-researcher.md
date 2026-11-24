@@ -34,12 +34,12 @@ Scientist-Bench, released with the system: tasks built from state-of-the-art pap
 | Outputs / reproducibility | 2 | Persists code, experiment logs and a LaTeX paper in the agent workplace; LLM-driven runs are not regenerable from declared inputs and there is no artifact manifest. |
 | Internal evaluation | 3 | Peer-reviewed at NeurIPS 2025 (spotlight) with a purpose-built benchmark; a third-party audit (ScientistOne, arXiv 2605.26340) found that every audited baseline system had at least one systematic integrity failure. |
 | Openness | 1 | Source is public but no licence is declared, so reuse is not permitted; runs also need paid LLM API keys and a GPU container. |
-| Maturity / traction | 2 | About 5.8k stars and 724 forks with a hosted product (novix.science), but no tagged releases and no push since 2025-10-16, so the open-source line is dormant. |
+| Maturity / traction | 2 | About 5.9k stars and 729 forks as of 2026-11-24, with a hosted product (novix.science) and no tagged releases; the only push in the past 13 months is one maintenance commit on 2026-11-23 (PR #103: fix local startup, Windows checkout and exposed credentials), the one before it being 2025-10-16, so the open-source line stays dormant. |
 | Cross-family policy | 0 | Separate COMPLETION_MODEL and CHEEP_MODEL settings pick a strong and a cheap model, but no role reviews another's work across model families. |
 | Runtime assurance | 1 | The implementation phase executes and tests code and refines on the results; there is no in-pipeline citation, claim or method-code audit before the paper is written. |
 | Cross-platform portability | 2 | LiteLLM routing supports several providers (Claude, OpenAI, DeepSeek, Gemini via OpenRouter), but execution is tied to the project's own Docker image. |
 
-*Scored on 2026-09-29. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

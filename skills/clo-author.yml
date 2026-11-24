@@ -4,13 +4,13 @@ pack:
   source_url: 'https://github.com/hugosantanna/clo-author'
   maintainers:
     - 'Hugo Sant''Anna (UAB Economics)'
-  license: 'MIT (stated in README; no licence file)'
-  total_skills: 14
-  last_update: '2026-05-11'
+  license: 'MIT (LICENSE file, "Copyright (c) 2026 Hugo Sant''Anna"; portions derived from claude-code-my-workflow, also MIT)'
+  total_skills: 18
+  last_update: '2026-10-15'
   related_project: 'clo-author'
   compatibility:
     - claude-code
-  notes: '13 commands organized as worker-critic pairs. Empirical-economics-focused defaults with multi-language analysis (R, Python, Julia).'
+  notes: 'Worker-critic skill commands for empirical economics with multi-language analysis (R, Python, Julia). Refresh 2026-11-24 (upstream last pushed 2026-10-15): re-copied the 14 existing skills (upstream dropped the ''Replaces /old-command'' notes from their descriptions) and added coherence, deepread, explain and paper-format. The LICENSE file is now present and is MIT.'
 
 skills:
   - slug: 'analyze'
@@ -112,3 +112,31 @@ skills:
       - paper-drafting
     description: ''
     source_path: '.claude/skills/write/'
+  - slug: 'coherence'
+    name: 'coherence'
+    category: audit
+    pipeline_stages:
+      - revision-editing
+    description: 'Catches internal inconsistencies in a paper (cross-references, citation keys, claim numbers against cited tables, derived arithmetic, notation) with a deterministic parser plus an optional reasoning pass.'
+    source_path: '.claude/skills/coherence/SKILL.md'
+  - slug: 'deepread'
+    name: 'deepread'
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    description: 'Deep technical read of a near-final draft run on Codex: commenters per section, adversarial verification of each comment, merged into referee-grade comments anchored to exact quotes.'
+    source_path: '.claude/skills/deepread/SKILL.md'
+  - slug: 'explain'
+    name: 'explain'
+    category: review
+    pipeline_stages:
+      - data-analysis
+    description: 'Builds understanding of analysis code an agent wrote: a delta explainer, a five-question quiz with a separate answer key and an optional interactive micro-world.'
+    source_path: '.claude/skills/explain/SKILL.md'
+  - slug: 'paper-format'
+    name: 'paper-format'
+    category: submission
+    pipeline_stages:
+      - dissemination
+    description: 'Applies and enforces the mandatory paper house style: float placement, Table 1 of pre-treatment characteristics, table and subfigure wrappers, section order and captions.'
+    source_path: '.claude/skills/paper-format/SKILL.md'

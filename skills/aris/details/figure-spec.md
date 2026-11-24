@@ -1,11 +1,22 @@
 ---
 name: figure-spec
 description: "Generate deterministic publication-quality architecture, workflow, and pipeline diagrams from structured JSON (FigureSpec) into editable SVG. Use when user says \"架构图\", \"workflow 图\", \"pipeline 图\", \"确定性矢量图\", \"figure spec\", \"draw architecture\", or needs precise, editable, publication-ready vector diagrams. Preferred over AI illustration for formal architecture/workflow figures."
-argument-hint: [description-of-diagram]
-allowed-tools: Bash(*), Read, Write, Edit
+argument-hint: "[description-of-diagram]"
+allowed-tools: Bash(*), Read, Write, Edit, mcp__codex__codex, mcp__antigravity__antigravity, mcp__antigravity__antigravity-reply, mcp__grok__grok, mcp__grok__grok-reply, mcp__claude-review__review, mcp__claude-review__review_reply, mcp__claude-review__review_start, mcp__claude-review__review_reply_start, mcp__claude-review__review_status
 ---
 
 # FigureSpec: Deterministic JSON → SVG Figure Generation
+
+> **Before each reviewer slot**, follow [Selectable Reviewers](../shared-references/reviewer-backends.md):
+> resolve invocation → `.aris/reviewer.json` → Claude Code default (Codex MCP)
+> with `reviewer_route.py` through the canonical helper resolver, preserving this
+> slot's tier, fresh contexts, source/image inputs and deterministic gates.
+> Codex examples/pins below apply only to `backend=codex`; other routes use their
+> own first-call/reply contract. Save the route and actual returned identity;
+> unavailable selections are `REVIEW_UNAVAILABLE`. Classify acceptance from actual
+> families/completion/scope. Forward invocation reviewer/model/effort overrides
+> to reviewer-bearing children. Generation workers are unchanged.
+
 
 Generate publication-quality **architecture diagrams**, **workflow pipelines**, **audit cascades**, and **system topology** figures as editable SVG vector graphics using a deterministic JSON → SVG renderer.
 
@@ -44,7 +55,7 @@ or a manually copied `tools/figure_renderer.py` keep working
 unchanged.
 
 Resolve `$FIGURE_RENDERER` with the hybrid chain (layer 0 prefers the
-self-contained location for the owning SKILL; layers 1-3 are the
+self-contained location for the owning SKILL; layers 1-4 are the
 shared-runtime chain documented in
 [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2,
 Policy A — skill-local gate):
@@ -55,11 +66,14 @@ FIGURE_RENDERER=""
 if [ -n "${CLAUDE_SKILL_DIR:-}" ] && [ -f "$CLAUDE_SKILL_DIR/scripts/figure_renderer.py" ]; then
   FIGURE_RENDERER="$CLAUDE_SKILL_DIR/scripts/figure_renderer.py"
 fi
-# Layers 1-3: shared-runtime chain (legacy compatibility + non-CC hosts).
+# Layers 1-4: shared-runtime chain (legacy compatibility + non-CC hosts).
 if [ -z "$FIGURE_RENDERER" ]; then
   cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
   if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
       ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
+  fi
+  if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+      ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
   fi
   FIGURE_RENDERER=".aris/tools/figure_renderer.py"
   [ -f "$FIGURE_RENDERER" ] || FIGURE_RENDERER="tools/figure_renderer.py"
@@ -67,8 +81,8 @@ if [ -z "$FIGURE_RENDERER" ]; then
   [ -f "$FIGURE_RENDERER" ] || FIGURE_RENDERER=""
 fi
 [ -z "$FIGURE_RENDERER" ] && {
-  echo "ERROR: figure_renderer.py not resolved (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-3: .aris/tools/, tools/, \$ARIS_REPO/tools/)." >&2
-  echo "       /figure-spec cannot produce SVG output. Fix: rerun bash tools/install_aris.sh, or copy the helper from \$ARIS_REPO/skills/figure-spec/scripts/." >&2
+  echo "ERROR: figure_renderer.py not resolved (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-4: .aris/tools/, tools/, \$ARIS_REPO/tools/, \$ARIS_REPO/tools/ via ~/.aris/repo)." >&2
+  echo "       /figure-spec cannot produce SVG output. Fix: rerun bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), or copy the helper from \$ARIS_REPO/skills/figure-spec/scripts/." >&2
   exit 1
 }
 ```
@@ -166,9 +180,11 @@ If issues found, edit the JSON spec (never the generated SVG) and re-render.
 
 For paper architecture figures, invoke cross-model review:
 
+> Resolve this reviewer slot first; the following is the `backend=codex` example.
+
 ```
 mcp__codex__codex:
-  model: gpt-5.5
+  model: gpt-6-astra
   config: {"model_reasoning_effort": "xhigh"}
   prompt: |
     Review this SVG figure for a technical paper (architecture / workflow diagram).

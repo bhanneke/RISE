@@ -4,7 +4,7 @@ pack:
   source_url: 'https://github.com/zbsaygin/econ-skills'
   maintainers:
     - 'zbsaygin'
-  license: 'MIT'
+  license: 'MIT (stated in README; no licence file)'
   total_skills: 7
   last_update: '2026-09'
   related_project: econ-skills

@@ -3,7 +3,7 @@ name: "Claude Code Research Harness Workflow"
 type: external
 status: active
 url: "https://github.com/maxwell2732/claudecode-research-harness-workflow"
-license: "MIT (badge in README; no LICENSE file found in the repository)"
+license: "MIT (LICENSE.md in the repository, opens \"MIT License\"; README badge matches)"
 maintainers:
   - "Chen Zhu (China Agricultural University)"
 year_started: 2026
@@ -89,11 +89,11 @@ scores:
     score: 2
     note: "Systematic internal check: the subsample codebook quantitatively compares reconstructed variable means against a published paper's own descriptive-statistics table and flags mismatches."
   openness:
-    score: 1
-    note: "README displays an MIT license badge, but no LICENSE file is present in the repository at scoring date — terms are not formally confirmed."
+    score: 2
+    note: "MIT licence in LICENSE.md (the 2026-10-01 scoring looked only for a file named LICENSE) — permissive; documented primarily in Chinese."
   maturity_traction:
     score: 1
-    note: "40 stars and 49 forks with a Zenodo archival DOI, but single-author, pre-1.0, and documented primarily in Chinese."
+    note: "42 stars as of 2026-11-24 (40 at scoring, plus 49 forks at scoring) with a Zenodo archival DOI, but single-author, pre-1.0, and documented primarily in Chinese."
   cross_family_policy:
     score: 0
     note: "Single-model (Claude Code) by design; no cross-family review mechanism."
@@ -103,10 +103,9 @@ scores:
   cross_platform_portability:
     score: 0
     note: "Built specifically around Claude Code's slash-command/skill mechanism; not documented for other agent runtimes."
-scored_on: "2026-10-01"
+scored_on: "2026-11-24"
 
 limitations:
-  - "No LICENSE file found in the repository despite an MIT badge in the README — licensing terms are unconfirmed."
   - "Documentation is primarily in Chinese and the workflow is tightly coupled to Claude Code's command mechanism, limiting portability."
   - "Internal validation (the CLOSE/MODERATE/DIFFERS codebook check) covers the cleaning/subsample-extraction stage only; there is no broader benchmark or third-party audit of the full seven-stage pipeline."
 

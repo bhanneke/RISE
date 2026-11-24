@@ -8,7 +8,7 @@ Python guide to statsmodels for OLS, WLS and GLS, GLMs, ARIMA and VAR time serie
 
 ## statsmodels Skill
 
-statsmodels general-purpose statistical modeling library for Python. Covers OLS/WLS/GLS, GLM (logit, probit, Poisson, negative binomial), discrete choice models, time series (ARIMA, SARIMAX, VAR), mixed effects (MixedLM), robust regression, hypothesis tests, and comprehensive diagnostics. Supports R-style formula API. Use when fitting regressions without fixed effects, running GLMs or logit/probit, analyzing time series, or using formula syntax. For fixed effects or DiD, use pyfixest; for panel/IV/system models, use linearmodels.
+statsmodels general-purpose statistical modeling library for Python. Covers OLS/WLS/GLS, GLM (logit, probit, Poisson, negative binomial), discrete choice models, time series (ARIMA, SARIMAX, VAR), mixed effects (MixedLM), robust regression, hypothesis tests, and comprehensive diagnostics. Supports R-style formula API. Use when fitting regressions without fixed effects, running GLMs or logit/probit, analyzing time series, or using formula syntax. For fixed effects, IV with fixed effects or DiD, use pyfixest; for IV without fixed effects (2SLS, LIML, GMM), panel RE/between and SUR/3SLS, use linearmodels.
 
 Comprehensive skill for statistical modeling with statsmodels. Use decision trees below to find the right guidance, then load detailed references.
 

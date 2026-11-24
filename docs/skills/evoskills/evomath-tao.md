@@ -4,7 +4,7 @@
 
 Mathematical derivation skill in the spirit of Tao-style proof reasoning
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/evomath-tao/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/evomath-tao/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-11-13</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/evomath-tao/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/evomath-tao/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## EvoMath (Tao-style)
 
@@ -46,10 +46,10 @@ Every phase below is a concrete operationalization of one or more of these princ
 - Use TodoWrite to drive the workflow. Each step is one todo; you cannot mark a
   todo completed unless the corresponding `.md` file passes its validator.
 
-If filesystem access is available, create a Markdown workspace with:
+If filesystem access is available, create a Markdown workspace with (script paths are relative to this skill's directory):
 
 ```bash
-python skills/evomath-tao/scripts/evomath_workspace.py init --dir .evomath/current
+python scripts/evomath_workspace.py init --dir .evomath/current
 ```
 
 If filesystem access is not available, keep the same Markdown sections inline in
@@ -97,7 +97,7 @@ For each step in order:
 4. Run the validator before marking the todo completed:
 
    ```bash
-   python skills/evomath-tao/scripts/evomath_workspace.py validate-phase <N> --dir .evomath/current
+   python scripts/evomath_workspace.py validate-phase <N> --dir .evomath/current
    ```
 
 5. If validation FAILS, the todo stays `in_progress`. Revise the `.md` file
@@ -109,7 +109,7 @@ For each step in order:
 If your final-status is `PROVED`, you MUST additionally run:
 
 ```bash
-python skills/evomath-tao/scripts/evomath_workspace.py validate-proved --dir .evomath/current
+python scripts/evomath_workspace.py validate-proved --dir .evomath/current
 ```
 
 This verifies that the 10-item PROVED Self-Check Checklist (see

@@ -4,8 +4,8 @@ pack:
   source_url: 'https://github.com/johanfourieza/econtools'
   maintainers:
     - 'Johan Fourie (Stellenbosch University, Economic History)'
-  license: 'MIT'
-  total_skills: 6
+  license: 'MIT (stated in README; no licence file)'
+  total_skills: 9
   last_update: '2026-09'
   related_project: econtools
   compatibility:
@@ -20,6 +20,7 @@ pack:
     credits two upstream projects (PHY041/claude-skill-citation-checker
     and Imbad0202/academic-research-skills, the latter already in this
     catalog) for parts of its design.
+    Refresh 2026-11-24 (upstream pushed 2026-09-27): added leapstyle and leapwp (LEAP Economics house style and working-paper filing, shipped in .agents/skills) and kabbo (publication-pipeline manager that talks to the Kabbo MCP server). The repository has no licence file; the README states MIT.
 
 skills:
   - slug: diebolt
@@ -94,3 +95,35 @@ skills:
     details_url: 'https://github.com/johanfourieza/econtools/blob/main/tyler/SKILL.md'
     provenance: 'econtools repo curation 2026-10-01'
     last_update: '2026-09'
+  - slug: leapstyle
+    name: '/leapstyle'
+    kind: skill
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: economics
+    description: 'Apply the LEAP Economics house style to LaTeX papers, Beamer presentations, R/ggplot2 figures, and academic prose.'
+    source_path: '.agents/skills/leapstyle/SKILL.md'
+    details_url: 'https://github.com/johanfourieza/econtools/blob/main/.agents/skills/leapstyle/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: leapwp
+    name: '/leapwp'
+    kind: skill
+    category: submission
+    pipeline_stages:
+      - dissemination
+    field: economics
+    description: 'Turn a finished paper into a LEAP working paper and file it on the shelf.'
+    source_path: '.agents/skills/leapwp/SKILL.md'
+    details_url: 'https://github.com/johanfourieza/econtools/blob/main/.agents/skills/leapwp/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: kabbo
+    name: '/kabbo'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: economics
+    description: 'Manage your academic publication pipeline via the Kabbo MCP server.'
+    source_path: 'kabbo/plugin/skills/kabbo/SKILL.md'
+    details_url: 'https://github.com/johanfourieza/econtools/blob/main/kabbo/plugin/skills/kabbo/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'

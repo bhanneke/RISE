@@ -2,10 +2,21 @@
 name: paper-slides
 description: "Generate conference presentation slides (beamer LaTeX → PDF + editable PPTX) from a compiled paper, with speaker notes and full talk script. Use when user says \"做PPT\", \"做幻灯片\", \"make slides\", \"conference talk\", \"presentation slides\", \"生成slides\", \"写演讲稿\", or wants beamer slides for a conference talk."
 argument-hint: "[paper-directory-or-talk-length] [— style-ref: <source>]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, mcp__codex__codex, mcp__codex__codex-reply, mcp__antigravity__antigravity, mcp__antigravity__antigravity-reply, mcp__grok__grok, mcp__grok__grok-reply, mcp__claude-review__review, mcp__claude-review__review_reply, mcp__claude-review__review_start, mcp__claude-review__review_reply_start, mcp__claude-review__review_status
 ---
 
 # Paper Slides: From Paper to Conference Talk
+
+> **Before each reviewer slot**, follow [Selectable Reviewers](../shared-references/reviewer-backends.md):
+> resolve invocation → `.aris/reviewer.json` → Claude Code default (Codex MCP)
+> with `reviewer_route.py` through the canonical helper resolver, preserving this
+> slot's tier, fresh contexts, source/image inputs and deterministic gates.
+> Codex examples/pins below apply only to `backend=codex`; other routes use their
+> own first-call/reply contract. Save the route and actual returned identity;
+> unavailable selections are `REVIEW_UNAVAILABLE`. Classify acceptance from actual
+> families/completion/scope. Forward invocation reviewer/model/effort overrides
+> to reviewer-bearing children. Generation workers are unchanged.
+
 
 Generate conference presentation slides from: **$ARGUMENTS**
 
@@ -24,7 +35,7 @@ Unlike posters (single page, visual-first), slides tell a **temporal story**: ea
 - **SPEAKER_NOTES = true** — Generate `\note{}` blocks in beamer and corresponding PPTX notes. Set `false` for clean slides without notes.
 - **PAPER_DIR = `paper/`** — Directory containing the compiled paper.
 - **OUTPUT_DIR = `slides/`** — Output directory for all slide files.
-- **REVIEWER_MODEL = `gpt-5.5`** — Model used via Codex MCP for slide review.
+- **REVIEWER_MODEL = `gpt-6-astra`** — Model used via Codex MCP for slide review.
 - **AUTO_PROCEED = false** — At each checkpoint, **always wait for explicit user confirmation**.
 - **COMPILER = `latexmk`** — LaTeX build tool.
 - **ENGINE = `pdflatex`** — LaTeX engine. Use `xelatex` for CJK text.
@@ -45,12 +56,15 @@ cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
 fi
+if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+    ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
+fi
 STYLE_HELPER=".aris/tools/extract_paper_style.py"
 [ -f "$STYLE_HELPER" ] || STYLE_HELPER="tools/extract_paper_style.py"
 [ -f "$STYLE_HELPER" ] || { [ -n "${ARIS_REPO:-}" ] && STYLE_HELPER="$ARIS_REPO/tools/extract_paper_style.py"; }
 [ -f "$STYLE_HELPER" ] || {
-  echo "ERROR: extract_paper_style.py not resolved at .aris/tools/, tools/, or \$ARIS_REPO/tools/." >&2
-  echo "       Fix: rerun bash tools/install_aris.sh, export ARIS_REPO, or copy the helper to tools/." >&2
+  echo "ERROR: extract_paper_style.py not resolved at .aris/tools/, tools/, \$ARIS_REPO/tools/, or via ~/.aris/repo." >&2
+  echo "       Fix: rerun bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), export ARIS_REPO, or copy the helper to tools/." >&2
   echo "       --style-ref cannot be satisfied; aborting." >&2
   exit 1
 }
@@ -70,7 +84,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 
 - Use `style_profile.md` to align section-budget tendency and theorem-environment density. Talk-type slide count above still takes precedence.
 - **Never copy speaker-note prose, slide titles, or examples** from anything reachable through the cache. The talk content is from the user's paper, not the reference.
-- **Never pass `— style-ref` (or the cache contents) to the GPT-5.4 reviewer sub-agent** — the reviewer must judge the talk's clarity on its own merits.
+- **Never pass `— style-ref` (or the cache contents) to the GPT-6-Astra reviewer sub-agent** — the reviewer must judge the talk's clarity on its own merits.
 
 ## Talk Type → Slide Count
 
@@ -83,7 +97,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 
 ## Venue Color Schemes
 
-Same as `/paper-poster`:
+Same as `/paper-poster-html`:
 
 | Venue | Primary | Accent | Background | Text |
 |-------|---------|--------|------------|------|
@@ -357,10 +371,13 @@ If page count differs significantly from outline (>2 slides off), investigate.
 
 ### Phase 5: Codex MCP Review
 
-Send the slide outline + selected LaTeX frames to GPT-5.4 xhigh:
+Send the slide outline + selected LaTeX frames to GPT-6-Astra xhigh:
+
+> Resolve this reviewer slot first; the following is the `backend=codex` example.
 
 ```
 mcp__codex__codex:
+  model: gpt-6-astra
   config: {"model_reasoning_effort": "xhigh"}
   prompt: |
     Review this [TALK_TYPE] presentation ([TALK_MINUTES] min) for [VENUE].
@@ -389,7 +406,7 @@ mcp__codex__codex:
 
 Apply fixes. Recompile if LaTeX was changed.
 
-> ⚠️ If `mcp__codex__codex` is not available (no OpenAI API key), skip external review and proceed to Phase 6. Note the skip in `SLIDES_STATE.json`.
+> If the selected reviewer is unavailable, record `REVIEW_UNAVAILABLE` in `SLIDES_STATE.json`. Preserve the existing draft-only continuation to Phase 6; do not label it reviewed or change providers.
 
 Save review to `slides/SLIDES_REVIEW.md`.
 
@@ -457,7 +474,7 @@ cd slides && python3 generate_pptx.py
 
 ### Phase 8: Full Talk Script
 
-Generate `slides/TALK_SCRIPT.md` — a complete, word-for-word script for the talk.
+Generate `slides/TALK_SCRIPT.md` — a complete, word-for-word script for the talk. Build the narrative around the paper’s results and what this audience needs to understand. Choose Q&A topics accordingly. A theory seminar might ask which step needs an assumption, while a systems group might ask what limits throughput.
 
 This is different from speaker notes (brief reminders). The talk script is a **full manuscript** that can be read aloud or used for practice.
 
@@ -528,29 +545,8 @@ The paper and code are available at the QR code on screen. I'm happy to take que
 
 ## Anticipated Q&A
 
-### Q1: How does this compare to [strongest baseline]?
-**A**: "[Specific comparison with numbers]. Our advantage is particularly clear in [specific scenario], where we see [X%] improvement."
-
-### Q2: What are the main limitations?
-**A**: "[Honest answer]. We see this as [future work direction]."
-
-### Q3: How computationally expensive is this?
-**A**: "[Training/inference cost]. Compared to [baseline], our method requires [comparison]."
-
-### Q4: Does this generalize to [related domain]?
-**A**: "[Answer based on paper's discussion section]."
-
-### Q5: What's the most surprising finding?
-**A**: "[Interesting insight from the experiments]."
-
-### Q6: How sensitive is the method to [hyperparameter/design choice]?
-**A**: "[Reference ablation study if available]."
-
-### Q7: What's the next step for this research?
-**A**: "[Future work from conclusion]."
-
-### Q8: [Domain-specific question]
-**A**: "[Answer]."
+### [A question this audience is likely to ask about the main result]
+**A**: [Answer from the paper. Cite the relevant comparison, figure, or assumption.]
 ```
 
 ### Final Output Summary
@@ -564,7 +560,7 @@ The paper and code are available at the QR code on screen. I'm happy to take que
   ├── main.pdf              # Compiled slides (primary output)
   ├── presentation.pptx     # Editable PowerPoint
   ├── SLIDE_OUTLINE.md      # Slide-by-slide outline
-  ├── SLIDES_REVIEW.md      # GPT-5.4 review feedback
+  ├── SLIDES_REVIEW.md      # GPT-6-Astra review feedback
   ├── speaker_notes.md      # Per-slide speaker notes
   ├── TALK_SCRIPT.md        # Full word-for-word talk script + Q&A
   ├── SLIDES_STATE.json     # State persistence

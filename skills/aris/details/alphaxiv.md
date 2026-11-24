@@ -1,15 +1,15 @@
 ---
 name: alphaxiv
 description: Quick single-paper lookup via AlphaXiv LLM-optimized summaries with tiered source fallback. Use when user says "explain this paper", "summarize paper", pastes an arXiv/AlphaXiv URL, or provides a bare arXiv ID for quick understanding - not for broad literature search.
-argument-hint: [arxiv-id-or-url]
-allowed-tools: Bash(*), Read, Write, WebFetch, Glob
+argument-hint: "[arxiv-id-or-url]"
+allowed-tools: Bash(*), Read, Write, Glob
 ---
 
 # AlphaXiv Paper Lookup
 
 Lookup paper: $ARGUMENTS
 
-> Quick single-paper reader with tiered source fallback (overview → full markdown → LaTeX source). Powered by [AlphaXiv](https://alphaxiv.org).
+> Quick single-paper reader with tiered source fallback (overview → full markdown → LaTeX source). Powered by [AlphaXiv](https://www.alphaxiv.org).
 
 ## Role & Positioning
 
@@ -20,15 +20,16 @@ This skill is the **quick single-paper reader** that returns LLM-optimized summa
 | `/arxiv` | arXiv API | Batch search, PDF download, metadata |
 | `/deepxiv` | DeepXiv SDK | Progressive section-level reading |
 | `/semantic-scholar` | S2 API | Published venue metadata, citation counts |
-| **`/alphaxiv`** | **alphaxiv.org** | **Instant LLM-optimized summary of one paper, with LaTeX source fallback** |
+| **`/alphaxiv`** | **www.alphaxiv.org** | **Instant LLM-optimized summary of one paper, with LaTeX source fallback** |
 
 **Do NOT use this skill for** topic discovery, broad literature search, or multi-paper surveys — use `/research-lit` or `/arxiv` instead.
 
 ## Constants
 
-- **OVERVIEW_URL** = `https://alphaxiv.org/overview/{PAPER_ID}.md`
-- **ABS_URL** = `https://alphaxiv.org/abs/{PAPER_ID}.md`
+- **OVERVIEW_URL** = `https://www.alphaxiv.org/overview/{PAPER_ID}.md`
+- **ABS_URL** = `https://www.alphaxiv.org/abs/{PAPER_ID}.md`
 - **ARXIV_SRC_URL** = `https://arxiv.org/src/{PAPER_ID}`
+- **ALPHAXIV_UA** = `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36` — any modern browser UA works; update the version numbers if AlphaXiv starts blocking this value again
 
 > Overrides (append to arguments):
 > - `/alphaxiv 2401.12345` — quick overview
@@ -44,8 +45,8 @@ Parse `$ARGUMENTS` to extract a bare arXiv paper ID. Accept these input formats:
 
 - `https://arxiv.org/abs/2401.12345` or `https://arxiv.org/abs/2401.12345v2`
 - `https://arxiv.org/pdf/2401.12345`
-- `https://alphaxiv.org/overview/2401.12345`
-- `https://alphaxiv.org/abs/2401.12345`
+- `https://alphaxiv.org/overview/2401.12345` or `https://www.alphaxiv.org/overview/2401.12345`
+- `https://alphaxiv.org/abs/2401.12345` or `https://www.alphaxiv.org/abs/2401.12345`
 - `2401.12345` or `2401.12345v2`
 
 Strip version suffixes (`v1`, `v2`, ...) for API calls. Store as `PAPER_ID`.
@@ -55,17 +56,25 @@ Parse optional directives:
 
 ### Step 2: Fetch AlphaXiv Overview (Tier 1 — Fastest)
 
-Fetch the structured overview from `https://alphaxiv.org/overview/{PAPER_ID}.md`.
+Use `curl` with `{ALPHAXIV_UA}` to fetch the AlphaXiv overview. AlphaXiv may return 403 for non-browser User-Agents; setting a standard browser UA reduces false positives from bot-detection:
+
+```bash
+curl -sL --max-time 15 -A "{ALPHAXIV_UA}" "https://www.alphaxiv.org/overview/{PAPER_ID}.md"
+```
 
 This returns a **structured, LLM-optimized report** designed for machine consumption. Use this as the default and preferred source.
 
 If the overview answers the user's question, **stop here**. Do not fetch deeper tiers unnecessarily.
 
-If the request fails (HTTP 404 — paper not yet processed) or the content is insufficient, proceed to Step 3.
+If the request fails (HTTP 4xx — 403 bot-block or 404 not-yet-processed) or returns empty content, proceed to Step 3.
 
 ### Step 3: Fetch Full AlphaXiv Markdown (Tier 2 — More Detail)
 
-Fetch the full paper markdown from `https://alphaxiv.org/abs/{PAPER_ID}.md`.
+Use `curl` with `{ALPHAXIV_UA}` to fetch the full paper markdown:
+
+```bash
+curl -sL --max-time 15 -A "{ALPHAXIV_UA}" "https://www.alphaxiv.org/abs/{PAPER_ID}.md"
+```
 
 This provides the full paper body as markdown. Use when the user needs:
 - Specific methodology details
@@ -114,32 +123,26 @@ Temporary source artifacts live under `/tmp`. Do not rely on persistence.
 
 If the user only asks for one specific detail, answer it directly — skip the full template.
 
-#### Suggest Follow-Up Skills
+**After presenting the summary, you MUST proceed to Step 6 before ending the turn.**
 
-```text
-/arxiv "PAPER_ID" - download          - download the PDF to local library
-/deepxiv "PAPER_ID" - section: Methods  - read a specific section progressively
-/research-lit "related topic"        - multi-source literature survey
-/novelty-check "idea from paper"     - verify novelty against this paper's area
-```
+### Step 6: Research Wiki Ingest
 
-## Update Research Wiki (if active)
+**You MUST always run the bash block below — it checks for `research-wiki/` internally and exits silently when absent.** Do NOT skip this step based on your own directory check; the bash block handles that for you.
 
-**Required when `research-wiki/` exists in the project**; skip silently
-otherwise. When the wiki dir exists, resolve `$WIKI_SCRIPT` per the
-canonical chain at
-[`shared-references/wiki-helper-resolution.md`](../shared-references/wiki-helper-resolution.md)
-(Variant B — warn-and-skip), then ingest the single paper that was read:
+Substitute only `<paper_arxiv_id>` and `<thesis>`; keep `${ARIS_REPO:-...}` as-is so an already-set env var is preserved.
 
 ```bash
 if [ -d research-wiki/ ]; then
   cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
   ARIS_REPO="${ARIS_REPO:-$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null)}"
+  if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+    ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
+  fi
   WIKI_SCRIPT=".aris/tools/research_wiki.py"
   [ -f "$WIKI_SCRIPT" ] || WIKI_SCRIPT="tools/research_wiki.py"
   [ -f "$WIKI_SCRIPT" ] || { [ -n "${ARIS_REPO:-}" ] && WIKI_SCRIPT="$ARIS_REPO/tools/research_wiki.py"; }
   [ -f "$WIKI_SCRIPT" ] || {
-    echo "WARN: research_wiki.py not found; paper summary delivered, wiki ingest skipped. Fix: bash tools/install_aris.sh, export ARIS_REPO, or cp <ARIS-repo>/tools/research_wiki.py tools/." >&2
+    echo "WARN: research_wiki.py not found; paper summary delivered, wiki ingest skipped. Fix: bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), export ARIS_REPO, or cp <ARIS-repo>/tools/research_wiki.py tools/." >&2
     WIKI_SCRIPT=""
   }
   [ -n "$WIKI_SCRIPT" ] && python3 "$WIKI_SCRIPT" ingest_paper research-wiki/ \
@@ -155,6 +158,15 @@ If wiki was not present at read time (or the helper was unreachable),
 the user can backfill via
 `python3 "$WIKI_SCRIPT" sync research-wiki/ --arxiv-ids <id>` after
 resolving `$WIKI_SCRIPT` as above.
+
+#### Suggest Follow-Up Skills (after Step 6 completes)
+
+```text
+/arxiv "PAPER_ID" - download          - download the PDF to local library
+/deepxiv "PAPER_ID" - section: Methods  - read a specific section progressively
+/research-lit "related topic"        - multi-source literature survey
+/novelty-check "idea from paper"     - verify novelty against this paper's area
+```
 
 ## Key Rules
 

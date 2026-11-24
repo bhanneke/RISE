@@ -4,7 +4,7 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT (stated in README; no licence file)</code></div><div><b>Updated:</b> 2026-05-11</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/dashboard/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/dashboard/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT (LICENSE file, "Copyright (c) 2026 Hugo Sant'Anna"; portions derived from claude-code-my-workflow, also MIT)</code></div><div><b>Updated:</b> 2026-10-15</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/dashboard/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/dashboard/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Dashboard
 
@@ -18,7 +18,9 @@ Generate or refresh `project_dashboard.html` — a single scrollable HTML page w
 
 #### `/dashboard` or `/dashboard refresh` — Rebuild from current state
 
-Scan the project and regenerate all sections of `project_dashboard.html`:
+If `project_dashboard.html` does not exist yet, run `python3 scripts/generate_dashboard.py` first — it scans
+the project and writes the operational skeleton, so you only author the research sections. The script
+never overwrites an existing dashboard (use `--fresh` to force), so a refresh updates the file in place:
 
 1. **Scan data:** `find data/ -type f` — count files, sizes, categories. Classify each as `downloaded` or `manual download`.
 2. **Scan scripts:** `find scripts/ -type f -name "*.R" -o -name "*.py" -o -name "*.jl"` — list with status.
@@ -33,7 +35,7 @@ Output: Write/update `project_dashboard.html` in project root.
 
 #### `/dashboard create` — Generate from scratch
 
-Full generation including research design sections. Use after `/discover` and `/strategize` have produced outputs. Prompts user for:
+Run `python3 scripts/generate_dashboard.py --fresh` for the operational sections, then write the research design sections. Use after `/discover` and `/strategize` have produced outputs. Prompts user for:
 - Research question (one sentence)
 - Causal chain (nodes)
 - Contributions (2-4 bullets)
@@ -57,12 +59,33 @@ Append a new entry to the changelog section with today's date. Prompts for:
 | 2 | Data | `#data` | Role inventory + file-level tables with sizes |
 | 3 | Identification | `#identification` | IV/design, specifications, threats, fallback |
 | 4 | Literature | `#literature` | Positioning, proximity, gaps |
-| 5 | Code | `#code` | Scripts list with run status |
+| 5 | Code | `#code` | Scripts list with run status **and understanding status** |
 | 6 | Quality | `#quality` | Component scores and gate status |
 | 7 | History | `#history` | Timeline of quality reports |
 | 8 | Plans | `#plans` | Active plans (DRAFT/APPROVED/COMPLETED) |
 | 9 | Paper | `#paper` | Figures/tables plan, word allocation |
 | 10 | Changelog | `#changelog` | Reverse-chronological milestone log |
+
+---
+
+### Understanding Column (Code section)
+
+The Code section carries a status pill per script from:
+
+```bash
+python3 scripts/explainer_status.py --json
+```
+
+| Status | Pill | Meaning |
+|--------|------|---------|
+| PASSED | green | Current explainer, quiz passed at this fingerprint |
+| UNTESTED | amber | Explainer current, quiz not taken |
+| STALE | amber | Script changed since the explainer was written |
+| MISSING | grey | No explainer |
+
+Link each pill to `quality_reports/explainers/{script}_explainer.md` when it exists. This is the
+early-warning surface for INV-26 — the gate itself fires at `/submit`, and by then a STALE row is
+a deadline problem. See `.claude/rules/understanding.md`.
 
 ---
 

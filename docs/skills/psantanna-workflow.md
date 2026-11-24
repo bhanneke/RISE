@@ -2,7 +2,7 @@
 
 # Pedro Sant'Anna's Claude Code Workflow
 
-license: `MIT` · 79 skills · last update: 2026-09-27
+license: `MIT` · 80 skills · last update: 2026-11-07
 
 **Source:** <https://github.com/pedrohcgs/claude-code-my-workflow>
 
@@ -10,7 +10,7 @@ license: `MIT` · 79 skills · last update: 2026-09-27
 
 **Compatibility:** `claude-code`
 
-> A ready-to-fork Claude Code template for academics using LaTeX/Beamer + R. 61 skills + 18 agents. Calibrated peer-review pipeline against AER, QJE, JPE, Econometrica, ReStud. Adopted by 15+ research groups. Refresh 2026-09-29 (upstream at 2026-09-27, previously catalogued at 2026-04-27 with 30 skills + 14 agents): added 31 skills (replication packaging, environment capture, disclosure and submission checks, grant/DMP/power-analysis design aids, teaching tools, audit and verification primitives such as vaccinate, differential-audit, verify-artifact, oracle-review) and 4 agents (humanize-auditor, promote-memory-council, r-package-reviewer, sim-reviewer); 43 existing skill texts changed upstream and were re-copied (notably /commit no longer merges, /deep-audit became a general adversarial audit); nothing was removed.
+> A ready-to-fork Claude Code template for academics using LaTeX/Beamer + R. 61 skills + 18 agents. Calibrated peer-review pipeline against AER, QJE, JPE, Econometrica, ReStud. Adopted by 15+ research groups. Refresh 2026-09-29 (upstream at 2026-09-27, previously catalogued at 2026-04-27 with 30 skills + 14 agents): added 31 skills (replication packaging, environment capture, disclosure and submission checks, grant/DMP/power-analysis design aids, teaching tools, audit and verification primitives such as vaccinate, differential-audit, verify-artifact, oracle-review) and 4 agents (humanize-auditor, promote-memory-council, r-package-reviewer, sim-reviewer); 43 existing skill texts changed upstream and were re-copied (notably /commit no longer merges, /deep-audit became a general adversarial audit); nothing was removed. Refresh 2026-11-24: re-copied the 12 changed skills and added verify.
 
 **Source YAML:** [`skills/psantanna-workflow.yml`](https://github.com/bhanneke/RISE/blob/main/skills/psantanna-workflow.yml)
 
@@ -133,7 +133,7 @@ license: `MIT` · 79 skills · last update: 2026-09-27
 | [`/capture-environment`](psantanna-workflow/capture-environment.md) | economics | `replication` | Snapshots the computational environment (R, Stata or Python) for a replication package and writes the matching lockfiles and version records. | [view](psantanna-workflow/capture-environment.md) | [origin](https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/capture-environment/SKILL.md) | 2026-09-26 |
 | [`/replication-package`](psantanna-workflow/replication-package.md) | economics | `replication` `dissemination` | Assembles a submission-ready replication package to the AEA Data and Code Availability Standard: README, dataset manifest, computational requirements, table and figure map. | [view](psantanna-workflow/replication-package.md) | [origin](https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/replication-package/SKILL.md) | 2026-09-26 |
 
-### `review` (14)
+### `review` (15)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
@@ -151,6 +151,7 @@ license: `MIT` · 79 skills · last update: 2026-09-27
 | [`agent:sim-reviewer`](psantanna-workflow/sim-reviewer.md) | economics | `formal-modeling` | Monte Carlo simulation reviewer: assumption regime, DGP and estimand alignment, replication budget and Monte Carlo SE, coverage against the truth, and parallel-seed discipline. | [view](psantanna-workflow/sim-reviewer.md) | [origin](https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/sim-reviewer.md) | 2026-09-26 |
 | [`agent:slide-auditor`](psantanna-workflow/slide-auditor.md) | economics | `referee-simulation` | — | [view](psantanna-workflow/slide-auditor.md) | [origin](https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/slide-auditor.md) | 2026-09-26 |
 | [`agent:tikz-reviewer`](psantanna-workflow/tikz-reviewer.md) | economics | `referee-simulation` | — | [view](psantanna-workflow/tikz-reviewer.md) | [origin](https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/agents/tikz-reviewer.md) | 2026-09-26 |
+| [`/verify`](psantanna-workflow/verify.md) | economics | `referee-simulation` | Runs the repository's gates on the work about to be committed (the backtest suite and the quality score of each staged .qmd, .tex and .R file) and stops the commit if one fails. | [view](psantanna-workflow/verify.md) | [origin](https://github.com/pedrohcgs/claude-code-my-workflow/blob/main/.claude/skills/verify/SKILL.md) | — |
 
 ### `revision` (3)
 

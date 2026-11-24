@@ -1,3 +1,8 @@
+---
+name: tax-guide
+description: "Run a guided tax-preparation questionnaire and create a document checklist and preparation plan."
+---
+
 # /tax-guide — Personalized Tax Prep Guide
 
 A guided Q&A that assesses your tax situation and generates a personalized preparation plan. Outputs a recommendation (self-file, self-file with care, or hire a professional), a document checklist, a suggested workflow, and privacy guidance.

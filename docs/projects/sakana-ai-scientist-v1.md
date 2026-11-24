@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/SakanaAI/AI-Scientist>
 
-**Licence:** `unclassified (licence file present; see repository)`
+**Licence:** `AI Scientist Source Code License v1.0 (LICENSE file, December 2025; custom Responsible-AI-style licence, not OSI open source)`
 
 **Source:** [`projects/landscape/sakana-ai-scientist-v1.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/sakana-ai-scientist-v1.yml)
 

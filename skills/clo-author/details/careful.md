@@ -1,10 +1,10 @@
 ---
 name: careful
-description: Block destructive bash commands for this session. Prevents rm -rf, git reset --hard, git push --force, and similar dangerous operations. Activate with /careful, deactivate with /careful off.
+description: Block destructive bash commands until you turn it off. Prevents rm -rf, git reset --hard, git push --force, and similar dangerous operations. Activate with /careful, deactivate with /careful off.
 user-invocable: true
 ---
 
-# Careful -- Session-Scoped Destructive Command Guard
+# Careful -- Destructive Command Guard
 
 Blocks Bash commands matching destructive patterns. Use when working on critical branches, before a deadline, or whenever you want an extra safety net.
 
@@ -59,7 +59,7 @@ When `/careful off`:
 
 ## Gotchas
 
-- Session-scoped -- resets when conversation ends
+- Stays on, across conversations, until `/careful off` (the guard file persists on disk)
 - Only blocks Bash tool calls -- doesn't affect user's terminal
 - Can be overridden if the user explicitly approves the blocked command
 - `rm` without `-rf` is still allowed (single file deletion)

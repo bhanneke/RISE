@@ -2,7 +2,7 @@ slug: scholar-loop
 name: "Scholar Loop"
 type: external
 status: active
-url: "https://github.com/renee-jia/scholar-loop"
+url: "https://github.com/r2m-ai/scholar-loop"
 license: "MIT"
 maintainers:
   - "renee-jia"
@@ -89,7 +89,7 @@ scores:
     note: "MIT; pip-installable; the entire loop runs deterministically in under a second on CPU with no API key via the bundled MockLLM."
   maturity_traction:
     score: 1
-    note: "470 stars and 35 forks — essentially flat since last review (468/35) — confirming the single-maintainer research preview has had no pushes since 2026-06-23, now over three months idle at scoring; growth has stalled along with development."
+    note: "476 stars and 36 forks as of 2026-11-24 (468 / 35 at the 2026-10-01 scoring) and 148 commits; the repository moved from renee-jia/scholar-loop to r2m-ai/scholar-loop (the old URL serves the new repo), and development resumed with commits on 2026-11-15 and 2026-11-16 (web UI, README, pre-release review fixes) after no pushes since 2026-06-23; the README badge still reads 'research preview' and no release is shown. Single maintainer."
   cross_family_policy:
     score: 0
     note: "Single family — the optional [llm] extra ships only an Anthropic client, and writer and reviewer share the same model; the optimization loop deliberately uses no LLM-as-judge."
@@ -99,10 +99,10 @@ scores:
   cross_platform_portability:
     score: 0
     note: "Pure-Python package runs anywhere, but live runs support only the Anthropic backend; the MockLLM is a test double, not a deployment target."
-scored_on: "2026-10-01"
+scored_on: "2026-11-24"
 
 limitations:
-  - "No commits since 2026-06-23 (over three months idle at this review) and star/fork counts have plateaued (470/35, up from 468/35) — the single-maintainer 'research preview' looks stalled rather than merely quiet; now bordering on the window where this catalog would reclassify it as dormant if idleness continues."
+  - "Single-maintainer 'research preview' with no release: no pushes from 2026-06-23 to at least the 2026-10-01 scoring, then commits on 2026-11-15 and 2026-11-16, and star/fork growth is flat (476/36 on 2026-11-24, 468/35 on 2026-10-01); the repository moved to the r2m-ai organisation, so links to the old renee-jia URL only resolve through a redirect."
   - "Shipped domains are toy sklearn/PyTorch tasks with weak baselines, and the system's own reviewer rejects both captured papers as too marginal (the README concedes it is not wrong)."
   - "Anthropic-only live backend and no container sandboxing yet — the author names sandboxing as the open residual boundary."
 

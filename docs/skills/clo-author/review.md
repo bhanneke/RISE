@@ -4,7 +4,7 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT (stated in README; no licence file)</code></div><div><b>Updated:</b> 2026-05-11</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/review/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/review/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>review</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT (LICENSE file, "Copyright (c) 2026 Hugo Sant'Anna"; portions derived from claude-code-my-workflow, also MIT)</code></div><div><b>Updated:</b> 2026-10-15</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>referee-simulation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/review/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/review/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Review
 
@@ -18,7 +18,7 @@ Unified review command that routes to the appropriate critic agents based on the
 
 #### Auto-detect by file type
 - `.tex` paper file → **Comprehensive review** (writer-critic + strategist-critic + Verifier)
-- `.R`, `.py`, `.do`, `.jl` file → **Code review** (coder-critic standalone, categories 4-12)
+- `.R`, `.py`, `.do`, `.jl` file → **Code review** (coder-critic standalone mode)
 - `.tex` talk file (in talks/) → **Talk review** (storyteller-critic)
 
 #### Explicit flags (override auto-detect)
@@ -27,8 +27,8 @@ Unified review command that routes to the appropriate critic agents based on the
 - `--stress [journal]` → **Hostile stress test** (same flow, adversarial referee dispositions)
 - `--methods` → **Causal audit** (strategist-critic standalone, 4-phase review)
 - `--theory [target]` → **Proof audit** (theorist-critic standalone, 4-phase review — logical validity, assumption minimality, citations, linkage)
-- `--proofread` → **Manuscript polish** (writer-critic standalone, 6 categories)
-- `--code [file]` → **Code review** (coder-critic standalone, categories 4-12)
+- `--proofread` → **Manuscript polish** (writer-critic standalone mode)
+- `--code [file]` → **Code review** (coder-critic standalone mode)
 - `--replicate [language]` → **Cross-language replication** (Coder re-implements in target language + coder-critic + comparison)
 - `--all` or no file → **Paper excellence** (all critics in parallel + weighted score — theorist-critic included when a theory section is present)
 
@@ -39,7 +39,7 @@ Unified review command that routes to the appropriate critic agents based on the
 #### Comprehensive Review (default for .tex paper)
 Dispatch in parallel:
 1. **strategist-critic** — causal design audit (4 phases)
-2. **writer-critic** — manuscript polish (6 categories)
+2. **writer-critic** — manuscript polish
 3. **Verifier** — compilation check
 Compute weighted aggregate score.
 
@@ -63,8 +63,20 @@ The editor's referee assignment specifies for each referee:
 - **Critical pet peeve** (one from the critical pool)
 - **Constructive pet peeve** (one from the constructive pool)
 
+**Fence the manuscript first.** Copy the paper out of the repository and give the referees that
+copy, not the repo path:
+
+```bash
+FENCE="$(mktemp -d)/paper" && cp -R paper "$FENCE" && cp Bibliography_base.bib "$FENCE"/ 2>/dev/null; echo "$FENCE"
+```
+
+Inside the repository, `quality_reports/reviews/` and the research journal hold earlier rounds'
+verdicts, and a referee who has read the last verdict tends to repeat it instead of reading the
+paper. Tell each referee to read only the fenced copy. (`--r2` deliberately reuses round 1 and is
+not fenced.)
+
 Dispatch **domain-referee** and **methods-referee** in parallel, each receiving:
-1. The paper manuscript
+1. The fenced manuscript path
 2. The target journal name (for .claude/references/journal-profiles.md calibration)
 3. Their assigned disposition and pet peeves, injected into the prompt:
 
@@ -162,29 +174,9 @@ Include the lint report in the coder-critic's input so it can skip already-flagg
 
 **Step 2: Judgment review** — dispatch **coder-critic** in standalone mode.
 
-#### Full 12-Category Code Review Checklist
-
-**Strategic alignment (categories 1-3) — only run within the pipeline or via `--methods`:**
-
-| # | Category | What It Checks |
-|---|----------|----------------|
-| 1 | Design fidelity | Does code implement the strategy memo's design? |
-| 2 | Estimand alignment | Does code estimate what the paper claims? |
-| 3 | Specification match | Do controls, fixed effects, and samples match the paper? |
-
-**Code quality (categories 4-12) — always run in standalone mode:**
-
-| # | Category | What It Checks |
-|---|----------|----------------|
-| 4 | Script structure | Header, sections, logical flow |
-| 5 | Console hygiene | No print/cat pollution, clean output |
-| 6 | Reproducibility | set.seed, relative paths, no hardcoded values |
-| 7 | Function design | DRY, appropriate abstraction level |
-| 8 | Figure quality | Labels, dimensions, theme, transparency |
-| 9 | RDS pattern | saveRDS for all computed objects |
-| 10 | Comments | Explain why, not what |
-| 11 | Error handling | Graceful failures, informative messages |
-| 12 | Polish | Consistent style, no dead code, clean namespace |
+The coder-critic's categories live in `templates/code-review-16-categories.md`: 1–4 are strategic
+alignment (run inside the pipeline or with `--methods`), 5–16 are code quality (always run). The
+agent's Standalone Mode section says which apply; don't restate them here.
 
 #### Severity Calibration Examples
 
@@ -259,8 +251,9 @@ python3 scripts/generate_dashboard.py
 ```
 
 #### Manuscript Polish (`--proofread`)
-Dispatch **writer-critic** standalone:
-- 6 categories: structure, claims-evidence, ID fidelity, writing, grammar, compilation
+Run `python3 scripts/style_metrics.py <file or paper/>` and include its output in the writer-critic's
+input (whenever the writer-critic is dispatched, in any mode). Then dispatch **writer-critic** standalone:
+- Categories per the writer-critic's Standalone Mode (`manuscript-review-8-categories.md`)
 - Save report to `quality_reports/[file]_proofread_report.md`
 
 #### Cross-Language Replication (`--replicate [language]`)

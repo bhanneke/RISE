@@ -2,7 +2,7 @@
 
 # Awesome Journal Skills (AJS)
 
-license: `MIT` · 25 skills · last update: 2026-07-23
+license: `MIT` · 25 skills · last update: 2026-09-27
 
 **Source:** <https://github.com/brycewang-stanford/Awesome-Journal-Skills>
 
@@ -99,5 +99,5 @@ license: `MIT` · 25 skills · last update: 2026-07-23
 |---|---|---|---|---|---|---|
 | [`american-economic-review`](awesome-journal-skills/american-economic-review.md) | economics | `dissemination` | Venue-fit skill for AER from the English Social-Science Journal bundle — fit, framing, the method-and-evidence bar, house style, official-submission re-check, and desk-reject heuristics; exemplar of the one-skill-per-journal breadth-bundle format. | [view](awesome-journal-skills/american-economic-review.md) | [origin](https://github.com/brycewang-stanford/Awesome-Journal-Skills/blob/main/English-SocialScience-Journal-Skills/skills/american-economic-review/SKILL.md) | 2026-07 |
 | [`qje-submission`](awesome-journal-skills/qje-submission.md) | economics | `dissemination` | Final pre-submission preflight for QJE via Editorial Express — single-PDF format, double-blind anonymization, author-date references, the no-fee policy, and supplementary files. | [view](awesome-journal-skills/qje-submission.md) | [origin](https://github.com/brycewang-stanford/Awesome-Journal-Skills/blob/main/Quarterly-Journal-of-Economics-Skills/skills/qje-submission/SKILL.md) | 2026-07 |
-| [`rt-journal-match`](awesome-journal-skills/rt-journal-match.md) | general | `dissemination` | Answers "which journal should I send this to?" — profiles the paper, shortlists candidate venues across 185+ packs, and ranks them into reach/match/safe with a resubmission ladder, reading live venue facts from each pack's source-map. | [view](awesome-journal-skills/rt-journal-match.md) | [origin](https://github.com/brycewang-stanford/Awesome-Journal-Skills/blob/main/Research-Toolkit-Skills/skills/rt-journal-match/SKILL.md) | 2026-07 |
+| [`rt-journal-match`](awesome-journal-skills/rt-journal-match.md) | general | `dissemination` | Answers "which journal should I send this to?": profiles the paper, shortlists candidate venues from an index of 743 venues and ranks them into reach, match and safe with a resubmission ladder. | [view](awesome-journal-skills/rt-journal-match.md) | [origin](https://github.com/brycewang-stanford/Awesome-Journal-Skills/blob/main/Research-Toolkit-Skills/skills/rt-journal-match/SKILL.md) | 2026-07 |
 | [`rt-submission-readiness`](awesome-journal-skills/rt-submission-readiness.md) | general | `dissemination` | Venue-parameterized go/no-go scorecard on the actual manuscript — fit, identification, robustness, exhibits, exposition, venue mechanics, data/code, pre-empted objections — returning PASS/FLAG/FAIL per dimension plus desk-reject risk. | [view](awesome-journal-skills/rt-submission-readiness.md) | [origin](https://github.com/brycewang-stanford/Awesome-Journal-Skills/blob/main/Research-Toolkit-Skills/skills/rt-submission-readiness/SKILL.md) | 2026-07 |

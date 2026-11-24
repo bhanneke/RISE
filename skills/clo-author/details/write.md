@@ -1,8 +1,8 @@
 ---
 name: write
-description: Draft academic paper sections using paragraph-level argument moves. Cleanup pass strips AI patterns after drafting. Replaces /draft-paper and /humanizer.
+description: Draft academic paper sections using paragraph-level argument moves. Cleanup pass strips AI patterns after drafting.
 argument-hint: "[section or mode: intro | strategy | results | conclusion | abstract | full | humanize | style-guide] [file path (optional)]"
-allowed-tools: Read,Grep,Glob,Write,Edit,Task
+allowed-tools: Read,Grep,Glob,Write,Edit,Agent,Task
 ---
 
 # Write
@@ -33,6 +33,21 @@ Before drafting, read all available context:
 5. Check `Bibliography_base.bib` for available citations
 6. Scan `paper/tables/` and `paper/figures/` for generated output
 7. Read `quality_reports/results_summary.md` if it exists (from Coder)
+8. Read `quality_reports/explainers/{script}_explainer.md` for the scripts behind the exhibits you
+   are about to describe. The sample construction ledger is where the Data section's N comes from
+   and where the Results section's caveats come from — the writer should be drafting from it, not
+   from the tables alone.
+
+**Understanding warning (`results` and `data` sections).** Run
+`python3 scripts/explainer_status.py`. If any script behind the tables is MISSING, STALE, or
+UNTESTED, say so before drafting:
+
+> Drafting results from `03_main_estimation.R`, which has no passing quiz attempt. You can proceed
+> — this warns, it does not block — but the Data section will assert sample restrictions you have
+> not yet confirmed you understand. `/explain scripts/R/03_main_estimation.R --quiz` takes about
+> five minutes.
+
+Blocking happens at `/submit`, not here. See `.claude/rules/understanding.md`.
 
 #### 2. Paper Type Detection
 
@@ -164,6 +179,9 @@ Strips 24 patterns across 4 categories:
 ---
 
 ## LaTeX Conventions
+
+Read `.claude/rules/working-paper-format.md` and `.claude/rules/paper-organization.md` before writing
+`.tex`; they define the preamble, title page, float placement, Table 1, and section order.
 
 - `\citet{}` for textual citations ("Smith (2024) shows...")
 - `\citep{}` for parenthetical citations ("...is well documented (Smith, 2024)")

@@ -5,13 +5,13 @@ pack:
   maintainers:
     - 'Claes Bäckman (claesbackman.com)'
   license: 'MIT'
-  total_skills: 12
-  last_update: '2026-11-15'
+  total_skills: 13
+  last_update: '2026-11-23'
   related_project: 'ai-research-feedback'
   compatibility:
     - claude-code
   notes: >
-    Twelve Claude Code skills for getting critical feedback on economics and
+    Thirteen Claude Code skills for getting critical feedback on economics and
     finance research and for presenting it — the most-starred single-author
     econ skill pack in this catalog (566 stars on 2026-11-18). The review tier is deliberately
     graduated by cost, so a draft can be iterated cheaply and audited
@@ -189,3 +189,13 @@ skills:
     details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/explorable-beamer/SKILL.md'
     provenance: 'AI-research-feedback repo refresh 2026-11-18'
     last_update: '2026-11-15'
+  - slug: voice-builder
+    name: '/voice-builder'
+    category: editing
+    pipeline_stages:
+      - revision-editing
+    field: general
+    description: 'Builds and tests a voice file from the user''s own papers so that an agent edits and drafts in their voice, checks each claim in the file against quoted samples, wires it into CLAUDE.md and turns later corrections into lasting rules.'
+    source_path: 'Skills/voice-builder/SKILL.md'
+    details_url: 'https://github.com/claesbackman/AI-research-feedback/blob/main/Skills/voice-builder/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'

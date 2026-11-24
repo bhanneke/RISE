@@ -88,7 +88,7 @@ This skill drives StatsPAI through the **canonical pipeline of an applied AER em
 
 - **Source**: https://github.com/brycewang-stanford/StatsPAI
 - **Install**: `pip install "statspai[fixest,plotting]"` (API surface re-validated against **statspai 1.19.0** — every `sp.*` reference, signature, and result-object attribute claim in this skill is checked by `validate_api_claims.py` in this folder). The bare `pip install statspai` is **not enough** for the default pipeline — see the dependency matrix below.
-- **Paper**: JOSS submission under review; JSS materials in `Paper-JSS/README.md` and `docs/jss_source_audit_dossier.md`
+- **Paper**: Wang & Rozelle (2026), *Journal of Open Source Software* 11(125), 10604, <https://doi.org/10.21105/joss.10604>; JSS materials in `Paper-JSS/README.md` and `docs/jss_source_audit_dossier.md`
 
 > **Install the right extras or the documented calls will raise `ImportError`.** Several core functions live behind optional dependency groups (verified from `pyproject.toml`):
 >
@@ -1513,7 +1513,7 @@ print(c.list())         # DataFrame with name / kind / title for every item
 
 ### 8.5 Reproducibility stamp
 
-> A `CausalResult` (from DID / CS / IV-causal / DML / TMLE / …) exposes `.estimate` (scalar), `.ci` (tuple), `.estimand`, and `.n_obs` — it has **no** `.conf_int()`, and `.data_info`'s key is `"nobs"`, not `"n_obs"`. An `EconometricResults` (regress / feols / ivreg) instead exposes `.params[name]` and `.conf_int().loc[name]` — use that branch for an OLS/FE main result.
+> A `CausalResult` (from DID / CS / IV-causal / DML / TMLE / …) exposes `.estimate` (scalar), `.ci` (tuple), `.estimand`, and `.n_obs` — plus `.nobs` (alias of `.n_obs`) and `.conf_int()` (one row, labelled by `.estimand`, equal to `.ci`); `.data_info`'s key is `"nobs"`, not `"n_obs"`. An `EconometricResults` (regress / feols / ivreg) instead exposes `.params[name]` and `.conf_int().loc[name]` — use that branch for an OLS/FE main result.
 
 ```python
 import json
@@ -1686,7 +1686,7 @@ fig.savefig("figures/figA1_ps_overlap.png", dpi=300)
 
 # 2.3 Crude KM curves by exposure (descriptive identification graphic).
 # KMResult.plot() returns a bare Axes (NOT a (fig, ax) tuple) — save via ax.figure.
-km = sp.kaplan_meier(cohort, duration="followup_days", event="mace", group="statin_initiation")
+km = sp.kaplan_meier(cohort, duration="followup_days", event="mace", group="statin_initiation", conf_type="log-log")
 ax = km.plot()
 ax.figure.savefig("figures/figA2_km.png", dpi=300)
 ```
@@ -2127,7 +2127,7 @@ sp.causal_text.llm_annotator_correct(
     annotations_llm=df["t_llm"],                                      # aligned pd.Series (all rows)
     annotations_human=df["t_true"],                                   # NaN where unlabelled
     outcome=df["y"], covariates=df[["age", "edu"]],
-    method="hausman")                                                 # Egami et al. 2024
+    method="hausman")                                                 # Egami et al. 2023
 ```
 
 ### Mechanisms / Decomposition
@@ -2229,7 +2229,7 @@ sp.interactive(fig)                                                   # WYSIWYG 
 | `sp.regtable(ivw, egger, median, ...)` for MR results | `mr_ivw`/`mr_egger`/`mr_median` return **dicts** (`estimate/se/ci_lower/ci_upper/p_value/...`), not result objects. Build a `pd.DataFrame({...}).T` and `.to_excel()`/`.to_latex()` it |
 | `aft.to_word(...)` / hand-rolling a `pd.DataFrame` for an AFT table | `sp.regtable(aft, ...)` works **directly** — `AFTResult` exposes `.params` + `.std_errors`, so regtable renders SEs/stars and the `RegtableResult` exports to Word/Excel/LaTeX. `AFTResult` itself still has no `.to_word`/`.to_latex`/`.conf_int`; read `.n`/`.n_events`/`.aic`/`.family`/`.summary()` for the footer. For a causal survival estimand use `sp.ltmle_survival(...)` |
 | `sp.causal(..., dag=discovered.dag)` | `LLMConstrainedDAGResult` has no `.dag` — use `discovered.to_dag()` (or inspect `.final_edges`) |
-| `result.conf_int()` / `result.data_info["n_obs"]` on a `CausalResult` | `CausalResult` exposes `.estimate` / `.ci` (tuple) / `.n_obs` / `.estimand` (no `.conf_int()`; `data_info` key is `"nobs"`). `.params[name]` + `.conf_int().loc[name]` are for econometric (OLS/feols/ivreg) results |
+| `result.data_info["n_obs"]` / `result.conf_int().loc["treat"]` on a `CausalResult` | `CausalResult` exposes `.estimate` / `.ci` (tuple) / `.n_obs` (alias `.nobs`) / `.estimand`; `data_info`'s key is `"nobs"`. Its `.conf_int()` has a single row labelled by `.estimand` (`.conf_int().loc[result.estimand]`), not by the treatment column |
 
 ---
 

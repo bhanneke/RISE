@@ -81,7 +81,7 @@ scores:
     note: "No LICENSE, LICENSE.md or COPYING file at the repository root and the GitHub API reports no licence, so despite 13,405 forks the code is source-available but legally unlicensed; it also needs a single NVIDIA GPU (tested on H100), so it is not commodity-hardware reproducible."
   maturity_traction:
     score: 2
-    note: "Score carried entirely by traction, not maturity: 95,362 stars and 13,405 forks with a whole downstream category descending from it, against 36 commits, no releases, no packaging, and nothing pushed since 2026-03-26."
+    note: "Score carried entirely by traction, not maturity: 100,538 stars as of 2026-11-24 (95,362 at the 2026-09-08 scoring) and 13,405 forks with a whole downstream category descending from it, against 36 commits, no releases, no packaging, and nothing pushed since 2026-03-26."
   cross_family_policy:
     score: 0
     note: "No reviewer role exists — the only judge is the val_bpb metric — so there is nothing for a cross-family policy to apply to."
@@ -91,7 +91,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: "Agent-runtime-agnostic by design — program.md is a plain markdown instruction file with no framework coupling, so any coding agent can drive it — but the execution environment is hardware-locked to one NVIDIA GPU (H100-tested), with community forks required for other accelerators."
-scored_on: '2026-09-08'
+scored_on: "2026-11-24"
 
 limitations:
   - "Unlicensed: no LICENSE file in the repo and GitHub reports none, so the 13,405 forks and every derivative rest on unclear reuse terms. (The README carries an MIT badge-style claim that no licence file substantiates.)"

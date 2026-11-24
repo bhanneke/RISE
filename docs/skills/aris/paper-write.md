@@ -4,15 +4,27 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-write/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-write/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-11-24</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-write/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-write/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Paper Write: Section-by-Section LaTeX Generation
+
+> **Before each reviewer slot**, follow Selectable Reviewers:
+> resolve invocation → `.aris/reviewer.json` → Claude Code default (Codex MCP)
+> with `reviewer_route.py` through the canonical helper resolver, preserving this
+> slot's tier, fresh contexts, source/image inputs and deterministic gates.
+> Codex examples/pins below apply only to `backend=codex`; other routes use their
+> own first-call/reply contract. Save the route and actual returned identity;
+> unavailable selections are `REVIEW_UNAVAILABLE`. Classify acceptance from actual
+> families/completion/scope. Forward invocation reviewer/model/effort overrides
+> to reviewer-bearing children. Writer selection is separate; follow the
+> writing-worker guidance below when drafting or revising prose.
+
 
 Draft a LaTeX paper based on: **$ARGUMENTS**
 
 ### Constants
 
-- **REVIEWER_MODEL = `gpt-5.5`** — Model used via Codex MCP for section review. Must be an OpenAI model.
+- **REVIEWER_MODEL = `gpt-6-astra`** — Model used via Codex MCP for section review. For `backend=codex`, use an OpenAI model.
 - **TARGET_VENUE = `ICLR`** — Default venue. Supported: `ICLR`, `NeurIPS`, `ICML`, `CVPR` (also ICCV/ECCV), `ACL` (also EMNLP/NAACL), `AAAI`, `ACM` (ACM MM, SIGIR, KDD, CHI, etc.), `IEEE_JOURNAL` (IEEE Transactions / Letters, e.g., T-PAMI, JSAC, TWC, TCOM, TSP, TIP), `IEEE_CONF` (IEEE conferences, e.g., ICC, GLOBECOM, INFOCOM, ICASSP). Determines style file and formatting.
 - **ANONYMOUS = true** — If true, use anonymous author block. Set `false` for camera-ready. Note: most IEEE venues do NOT use anonymous submission — set `false` for IEEE.
 - **MAX_PAGES = 9** — Main body page limit. For ML conferences: counts from first page to end of Conclusion section, references and appendix NOT counted. **For IEEE venues: references ARE counted toward the page limit.** Typical limits: IEEE journal = no strict limit (but 12-14 pages typical for Transactions, 4-5 for Letters), IEEE conference = 5-8 pages including references.
@@ -52,12 +64,15 @@ cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
 fi
+if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+    ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
+fi
 STYLE_HELPER=".aris/tools/extract_paper_style.py"
 [ -f "$STYLE_HELPER" ] || STYLE_HELPER="tools/extract_paper_style.py"
 [ -f "$STYLE_HELPER" ] || { [ -n "${ARIS_REPO:-}" ] && STYLE_HELPER="$ARIS_REPO/tools/extract_paper_style.py"; }
 [ -f "$STYLE_HELPER" ] || {
-  echo "ERROR: extract_paper_style.py not resolved at .aris/tools/, tools/, or \$ARIS_REPO/tools/." >&2
-  echo "       Fix: rerun bash tools/install_aris.sh, export ARIS_REPO, or copy the helper to tools/." >&2
+  echo "ERROR: extract_paper_style.py not resolved at .aris/tools/, tools/, \$ARIS_REPO/tools/, or via ~/.aris/repo." >&2
+  echo "       Fix: rerun bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), export ARIS_REPO, or copy the helper to tools/." >&2
   echo "       --style-ref cannot be satisfied; aborting." >&2
   exit 1
 }
@@ -201,6 +216,8 @@ Create shared math macros based on the paper's notation:
 
 #### Step 3: Write Each Section
 
+Use the Launch Mindset and Optional Writing Worker guidance in `../shared-references/writing-principles.md` for every section. Root prepares the factual brief from the plan, original sources, results, figures, and verified bibliography; a configured writer drafts substantive prose and handles same-session revisions, otherwise the executor writes. Pass any supplied `writer`, `writer-model`, and `writer-effort` independently of reviewer settings. Root checks technical accuracy and compilation while preserving the writer's good phrasing; the existing section reviews and audits still apply.
+
 Process sections in order. For each section:
 
 1. **Read the plan** — what claims, evidence, citations belong here
@@ -259,7 +276,7 @@ Before drafting the front matter, re-read the one-sentence contribution from `PA
 
 **§5 Conclusion:**
 - Summarize contributions (NOT copy-paste from intro — rephrase)
-- Limitations (be honest — reviewers appreciate this)
+- Limitations (material constraints on interpreting the result, in the format required by the venue)
 - Future work (1-2 concrete directions)
 - Ethics statement and reproducibility statement (if venue requires)
 - Target: 0.5 pages
@@ -488,7 +505,9 @@ Remove AI-isms: delve, pivotal, landscape, tapestry, underscore, noteworthy, int
 
 Passive voice IS acceptable for: established facts, methods where agent is irrelevant, or when required by venue style.
 
-**Pass 3: Sentence Architecture** — Structure and flow.
+**Pass 3: Sentence Architecture** — Structure and flow. Vary paragraph shape:
+if every paragraph runs problem → method → benefit → summary, the mold numbs
+the reader — break it.
 
 - Flag sentences > 40 words for splitting
 - Ensure subject and verb are close together (no long parenthetical insertions between them)
@@ -517,14 +536,23 @@ Passive voice IS acceptable for: established facts, methods where agent is irrel
 
 #### Step 6: Cross-Review with REVIEWER_MODEL
 
-Send the complete draft to GPT-5.4 xhigh:
+Send the complete draft to GPT-6-Astra xhigh:
+
+> Resolve this reviewer slot first; the following is the `backend=codex` example.
 
 ```
 mcp__codex__codex:
-  model: gpt-5.5
+  model: gpt-6-astra
   config: {"model_reasoning_effort": "xhigh"}
   prompt: |
     Review this [VENUE] paper draft (main body, excluding appendix).
+
+    Judge claim calibration in BOTH directions. Recommend narrowing only when the
+    current scope or modality exceeds the evidence; do not ask for extra hedges
+    around a supported result. Flag stacked hedges, self-defence ("we do not
+    claim"), instruction confessions ("we do not address X"), and generic caveats
+    outside Limitations as writing defects to remove. Tone fixes must never alter
+    facts, negation, modality, scope, comparison direction, or numbers.
 
     Focus on:
     1. Does each claim from the intro have supporting evidence?
@@ -575,19 +603,87 @@ Before declaring done:
 
 ### Key Rules
 
+=== CONFIDENT PROSE, HONEST LIMITS (never upgrades claims) ===
+1. Calibrate each claim to the evidence's actual scope and modality, then state
+   that calibrated claim directly. Necessary assumptions, uncertainty, and
+   scope are part of the claim; stacked hedges and defensive throat-clearing
+   are not.
+2. If the current claim is unsupported, narrow it to a version the evidence
+   supports or cut it. Do not substitute a softer-sounding synonym for fixing
+   scope, modality, comparison, or aggregation.
+3. Put generic caveats and broader boundary discussion in one Limitations
+   section. Outside it, remove generic disclaimers such as "further research
+   is needed", "may not generalize", and "should be interpreted with caution".
+   Claim-defining scope, assumptions, and statistical qualifications stay
+   attached to the claims they make true.
+4. State a limitation when it affects how readers should interpret the result.
+   For example, identify the hardware tested when discussing measured latency.
+5. Writing instructions are not manuscript content. "Do not mention X" means
+   omit X, not write "we do not address/claim/discuss X". Never expose
+   drafting instructions, requested omissions, reviewer feedback, or revision
+   history in manuscript prose.
+6. Replace self-defence ("we do not claim", "our goal is merely") with a
+   positive, evidence-matched statement of what the paper does establish. If
+   the defensive sentence carries a real boundary, keep that boundary in the
+   claim or Limitations; do not delete truth-conditional content.
+7. Tone-only edits never alter facts, negation, modality, scope, assumptions,
+   comparison direction, aggregation, numbers, formulas, or citations. Genuine
+   overclaims must still be narrowed; supported claims wrapped in redundant
+   caution must be stated directly.
+8. One causal spine: gap -> question -> insight -> consequence -> evidence ->
+   implication. Every section advances it. Make the method feel inevitable:
+   the gap creates a concrete question, the key insight answers it, the method
+   follows from the insight, each major experiment tests a consequence of it,
+   and the conclusion states exactly what the evidence establishes.
+   Front-load the contribution; never narrate the drafting or revision process.
+9. The paper is a launch, not a progress report. Organize the narrative
+   around the work's strongest genuine advantage — a new capability, problem,
+   mechanism or viewpoint, wider applicability, lower cost, a better tradeoff.
+   Material that does not form an advantage stays out of the main line. If the
+   results cannot carry the original story, rebuild the story around the
+   strongest evidence instead of defending the original one.
+10. Pick the contest the paper wins. Do not build the narrative on a metric
+    where the method is not ahead; frame the comparison around the task
+    definition, evaluation dimension or constraint that reflects what the
+    method is for, and say explicitly which contest it wins. Unfavorable
+    numbers still appear — tables stay complete. Where the evidence supports
+    it, explain them as a goal difference or a deliberate tradeoff rather
+    than narrating a defeat ("underperforms", "fails to surpass"); where it
+    does not, state the underperformance neutrally, narrow the claim, and
+    keep it in Limitations if it is material. Never elevate a local
+    observation into a verdict on the whole method, and never invent a
+    tradeoff to cover a weakness.
+11. Every experiment has an argumentative duty: it shows the method works,
+    shows the gain comes from the key mechanism, shows value in the target
+    scenario, or rules out the most likely alternative explanation. An
+    experiment carrying none of these is cut, shortened, moved to the
+    appendix, or redesigned. The experiments section is an argument, not a
+    results warehouse.
+12. State the advantage yourself — under which condition it appears, why it
+    appears, what it solves — rather than expecting the reviewer to find it
+    in a table. Abstract and introduction open like a launch: an important
+    unsolved problem, the gap in existing methods, this paper's distinct
+    idea, the heaviest result. The conclusion reinforces what was solved,
+    proposed and proven and why it matters; no new self-negation or widened
+    limitations in the last paragraph.
+
+
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 - **Do NOT generate author names, emails, or affiliations** — use anonymous block or placeholder
 - **Write complete sections, not outlines** — the output should be compilable LaTeX
 - **One file per section** — modular structure for easy editing
 - **Every claim must cite evidence** — cross-reference the Claims-Evidence Matrix
 - **Compile-ready** — the output should compile with `latexmk` without errors (modulo missing figures)
-- **No over-claiming** — use hedging language ("suggests", "indicates") for weak evidence
+- **Calibrate, don't hedge** — match each claim to its evidence's actual scope and modality, then state it directly; generic caveats live in Limitations only (the CONFIDENT PROSE, HONEST LIMITS block above is the contract)
+- **Launch, not progress report** — organize around the strongest genuine advantage, pick the contest the paper wins, give every experiment an argumentative duty; unfavorable numbers stay in the tables, explained as tradeoffs where the evidence supports that and stated neutrally where it does not — never narrated as defeats, never dressed as a tradeoff they are not (rules 9-12 above)
 - **Venue style matters** — ML conferences (ICLR/NeurIPS/ICML) use `natbib` (`\citep`/`\citet`); **IEEE venues use `cite` package (`\cite{}`, numeric)**. Never mix.
 - **Page limit rules differ by venue** — ML conferences: main body to Conclusion, references/appendix NOT counted. **IEEE: references ARE counted toward the page limit.**
 - **Clean bib** — references.bib must only contain entries that are actually `\cite`d
 - **Section count is flexible** — match PAPER_PLAN structure, don't force into 5 sections
 - **Backup before overwrite** — never destroy existing `paper/` directory without backing up
 - **Front-load the contribution** — do not hide the payoff until the experiments or appendix
+- **Order results by argument, not by lab notebook** — present experiments in the sequence that best builds the case, never in the order they happened to run
+- **Controls and ablations sit next to the claim they test** — not pooled in a distant subsection where the reader has forgotten what was at stake
 
 ### Writing Quality Reference
 

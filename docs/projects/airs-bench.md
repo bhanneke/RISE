@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/facebookresearch/airs-bench>
 
-**Licence:** `unclassified (licence file present; see repository)`
+**Licence:** `CC BY-NC 4.0 (LICENSE file, unmodified CC text; README states the same)`
 
 **Source:** [`projects/landscape/airs-bench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/airs-bench.yml)
 
@@ -29,12 +29,12 @@ Anchors agent performance to *published human SOTA* rather than synthetic target
 | Outputs / reproducibility | 2 | Fixed <problem, dataset, metric> triplets with SOTA anchors and seeded multi-run reporting; agent-run stochasticity limits exact reruns. |
 | Internal evaluation | 2 | Systematic evaluation of 14 agent configurations at 10-20 seeds in the companion arXiv paper; not yet peer-reviewed or third-party replicated. |
 | Openness | 1 | Fully public but CC BY-NC 4.0 — non-permissive, research-only reuse (stricter reading of the rubric than mlgym's earlier score). |
-| Maturity / traction | 2 | 125 stars / 10 forks as of 2026-11-01 (up from 104 stars at scoring), Meta institutional backing, companion paper with headline cross-model results; no new commits observed since the active Jan-May 2026 window. |
+| Maturity / traction | 2 | 127 stars as of 2026-11-24 (125 on 2026-11-01), last push 2026-10-10; Meta institutional backing and a companion paper with headline cross-model results. |
 | Cross-family policy | 0 | Not applicable — model-agnostic evaluation target; baselines span families (GPT-4o, o3-mini, gpt-oss, Devstral, CWM) but there is no executor/reviewer pairing of its own. |
 | Runtime assurance | 1 | Automated metric scoring plus valid-submission checks; no in-flight integrity gating during agent runs. |
 | Cross-platform portability | 2 | YAML task specs consumable by two agent runtimes (aira-dojo, MLGym) and any model provider; Python 3.12 + conda required. |
 
-*Scored on 2026-11-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

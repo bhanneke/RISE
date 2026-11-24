@@ -1,8 +1,8 @@
 ---
 name: formula-derivation
 description: Structures and derives research formulas when the user wants to 推导公式, build a theory line, organize assumptions, turn scattered equations into a coherent derivation, or rewrite theory notes into a paper-ready formula document. Use when the derivation target is not yet fully fixed, the main object still needs to be chosen, or the user needs a coherent derivation package rather than a finished theorem proof.
-argument-hint: [problem-goal-current-formulas-or-notes]
-allowed-tools: Read, Write, Edit, Grep, Glob
+argument-hint: "[problem-goal-current-formulas-or-notes]"
+allowed-tools: Read, Write, Edit, Grep, Glob, Skill(lean-formalize)
 ---
 
 # Formula Derivation: Research Theory Line Construction
@@ -158,7 +158,6 @@ The derivation package must include:
 - derivation map
 - main derivation steps
 - remarks / interpretations
-- boundaries and non-claims
 
 Writing rules:
 - do not hide gaps with words like "clearly", "obviously", or "similarly"
@@ -176,7 +175,7 @@ Before finishing the target derivation file, verify:
 - each formula step is correctly labeled as identity / proposition / approximation / interpretation
 - the derivation does not silently switch objects
 - special cases and general cases still belong to one theory line
-- boundaries and non-claims are stated
+- the conclusion states its range of validity; any unresolved step is identified
 
 If the derivation still lacks a coherent object, stable assumptions, or an honest path from premises to result, downgrade the status and write a blocker report instead of forcing a clean story.
 
@@ -217,18 +216,14 @@ Step 2. ...
 
 ## Remarks and Interpretation
 - ...
-
-## Boundaries and Non-Claims
-- ...
-
-## Open Risks
-- ...
 ```
+
+State each condition where the argument uses it. Add an `Open Risks` section only when a specific unresolved issue remains.
 
 ## Output Modes
 
 ### If the derivation is coherent as stated
-Write the full structure above with a clean derivation package.
+Finish with the result under the stated assumptions.
 
 ### If the notes are close but not coherent yet
 Write:
@@ -262,6 +257,11 @@ Use `proof-writer` only after:
 - the notation is settled
 - and the task is now to prove or refute that claim rigorously
 
+Once a precise claim and its hypotheses are available, use
+[`/lean-formalize`](../lean-formalize/SKILL.md) when the user requests Lean or a
+specific proof obligation benefits from formal implementation and checking;
+routine algebraic derivations do not require it.
+
 ## Chat Response
 
 After writing the target derivation file, respond briefly with:
@@ -276,5 +276,4 @@ After writing the target derivation file, respond briefly with:
 - Separate assumptions, identities, propositions, approximations, and interpretations.
 - Keep one invariant object across special and general cases whenever possible.
 - Treat simplified constant-parameter cases as analysis slices, not as the conceptual main object.
-- If uncertainty remains, mark it explicitly in `Open Risks`; do not hide it in polished prose.
 - Coherence matters more than elegance.

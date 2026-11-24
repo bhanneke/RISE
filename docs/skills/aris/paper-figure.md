@@ -4,9 +4,20 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>figures</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-figure/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-figure/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>figures</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-11-24</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-figure/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-figure/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Paper Figure: Publication-Quality Plots from Experiment Data
+
+> **Before each reviewer slot**, follow Selectable Reviewers:
+> resolve invocation → `.aris/reviewer.json` → Claude Code default (Codex MCP)
+> with `reviewer_route.py` through the canonical helper resolver, preserving this
+> slot's tier, fresh contexts, source/image inputs and deterministic gates.
+> Codex examples/pins below apply only to `backend=codex`; other routes use their
+> own first-call/reply contract. Save the route and actual returned identity;
+> unavailable selections are `REVIEW_UNAVAILABLE`. Classify acceptance from actual
+> families/completion/scope. Forward invocation reviewer/model/effort overrides
+> to reviewer-bearing children. Generation workers are unchanged.
+
 
 Generate all figures and tables for a paper based on: **$ARGUMENTS**
 
@@ -31,7 +42,7 @@ Generate all figures and tables for a paper based on: **$ARGUMENTS**
 - **COLOR_PALETTE = `tab10`** — Default matplotlib color cycle. Options: `tab10`, `Set2`, `colorblind` (deuteranopia-safe)
 - **FONT_SIZE = 10** — Base font size (matches typical conference body text)
 - **FIG_DIR = `figures/`** — Output directory for generated figures
-- **REVIEWER_MODEL = `gpt-5.5`** — Model used via Codex MCP for figure quality review.
+- **REVIEWER_MODEL = `gpt-6-astra`** — Model used via Codex MCP for figure quality review.
 
 ### Inputs
 
@@ -180,7 +191,11 @@ for script in gen_fig*.py; do
 done
 ```
 
-Verify all output files exist and are non-empty.
+Verify all output files exist and are non-empty. Then **render-then-verify**:
+re-open each RENDERED PDF/PNG (not the script) and self-check — no clipped
+labels, no legend covering data, every number/label readable at final print
+size. This self-check happens BEFORE the Step 7 review, so the reviewer's
+budget goes to substance, not to catching clipped axes.
 
 #### Step 6: Generate LaTeX Include Snippets
 
@@ -200,11 +215,13 @@ Save all snippets to `figures/latex_includes.tex` for easy copy-paste into the p
 
 #### Step 7: Figure Quality Review with REVIEWER_MODEL
 
-Send figure descriptions and captions to GPT-5.4 for review:
+Send figure descriptions and captions to GPT-6-Astra for review:
+
+> Resolve this reviewer slot first; the following is the `backend=codex` example.
 
 ```
 mcp__codex__codex:
-  model: gpt-5.5
+  model: gpt-6-astra
   config: {"model_reasoning_effort": "xhigh"}
   prompt: |
     Review these figure/table plans for a [VENUE] submission.
@@ -221,7 +238,35 @@ mcp__codex__codex:
 
 #### Step 8: Quality Checklist
 
-Before finishing, verify each figure (from pedrohcgs/claude-code-my-workflow):
+The checklist is PARTITIONED (pattern from Anthropic's Claude Science
+`figure-style` skill, Apache-2.0): **correctness rules always bind** — they are
+about whether the figure tells the truth, have no aesthetic content, and no
+style choice may override them; **guidance rules are defaults** — they produce
+a clean result, but a deliberate, stated alternative may override them.
+
+**Correctness — always binds, verify against the DATA before the render:**
+
+- [ ] **Excluded data never enters summaries** — a row excluded/flagged in the
+      source either disappears entirely or is drawn visibly distinct (open /
+      hatched marker, named in the key); it never feeds a mean/CI plotted
+      alongside included rows
+- [ ] **Captions and any claim-like title text are tested against EVERY plotted
+      row** — if one category contradicts the claim, qualify it ("on 3 of 4
+      benchmarks") or downgrade to a description; a figure that overclaims is
+      wrong even if it renders beautifully
+- [ ] **Comparable conditions only** — arms measured under different N / budget
+      / protocol are not drawn as visual peers; separate them or mark the
+      difference in the caption
+- [ ] **State n and what was held fixed** — every panel with a summary mark
+      says n and the unit of replication (panel or caption)
+- [ ] **Render-then-verify** — the Step-5 self-check on the RENDERED PDF/PNG
+      (not the script) actually happened: no clipped labels, no legend covering
+      data, every number/label readable at final print size
+
+**Guidance — strong defaults (from pedrohcgs/claude-code-my-workflow), a
+deliberate stated alternative may override — EXCEPT items that Key Rules below
+make hard (vector-PDF output and no-titles-inside-figures are Key Rules: treat
+those two as binding, not overridable):**
 
 - [ ] Font size readable at printed paper size (not too small)
 - [ ] Colors distinguishable in grayscale (print-friendly)

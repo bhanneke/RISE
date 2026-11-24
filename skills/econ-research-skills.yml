@@ -6,7 +6,7 @@ pack:
     - 'Hanlu Long (hanlulong on GitHub; also maintains awesome-ai-for-economists)'
   license: 'PolyForm-Noncommercial-1.0.0 (econ-review); MIT (econ-slides, econ-write)'
   total_skills: 4
-  last_update: '2026-07-19'
+  last_update: '2026-11-07'
   related_project: ''
   compatibility:
     - claude-code
@@ -58,8 +58,8 @@ skills:
       - dissemination
     field: economics
     description: 'Turns an economics paper into a compiled LaTeX/Beamer talk (conference, seminar, job-market, discussant) with strict number provenance, slide-table surgery, timed speaker scripts, and mandatory rendered-page inspection via bundled deck and script checkers.'
-    source_path: 'SKILL.md'
-    details_url: 'https://github.com/hanlulong/econ-slides-skill/blob/main/SKILL.md'
+    source_path: 'skills/econ-slides/SKILL.md'
+    details_url: 'https://github.com/hanlulong/econ-slides-skill/blob/main/skills/econ-slides/SKILL.md'
     provenance: 'econ-slides-skill repo curation 2026-07-23'
     last_update: '2026-07'
   - slug: econ-write

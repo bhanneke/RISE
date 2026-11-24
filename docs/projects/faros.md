@@ -6,12 +6,7 @@
 
 **Project page:** <https://github.com/OpenNSWM-Lab/FAROS>
 
-**Licence:** `none`
-
-!!! warning "No licence declared"
-    The repository declares no licence, so its code cannot be reused,
-    modified or redistributed without the maintainer's permission. RISE
-    describes and links to the project; nothing from it is reproduced here.
+**Licence:** `MIT (LICENSE file, "Copyright (c) 2026 FAROS contributors"; README matches; third-party code, templates, datasets and models keep their own terms per THIRD_PARTY_NOTICES.txt)`
 
 **Source:** [`projects/landscape/faros.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/faros.yml)
 
@@ -33,13 +28,13 @@ Widest single-repo lifecycle coverage seen in this sweep — idea through paper 
 | Inputs supported | 2 | Natural-language research interest (topic-coached into a scoped task) plus user dataset upload in the Experiment module and literature-corpus retrieval in the Idea module; no private/institutional corpus integration observed. |
 | Outputs / reproducibility | 2 | Project/run/experiment/chart/paper/ReviewX artifacts share traceable identifiers per the README, but no end-to-end reproducibility was independently verified and no data/code manifest format is documented. |
 | Internal evaluation | 2 | experiments/reviewx_eval/ contains real benchmark harnesses (PeerQA and NLPeer pilot imports, gold_labels schema, human-eval export, bootstrap_scores.py) — systematic internal evaluation against external peer-review datasets, though no published paper or third-party validation yet. |
-| Openness | 1 | Public GitHub repo, but no LICENSE file and no license mentioned anywhere in the README as of scoring date — source-visible but not permissively licensed for reuse. |
-| Maturity / traction | 2 | ~3,000 stars / 389 forks / 269 watchers by Sept 2026 on a repo whose first commit was 2026-05-13 (168 commits since); tagged release 1.1.0-rc1 with 608 backend + 30 frontend tests passing — beta-stage traction, but the README itself calls it a 'release candidate for competition validation and research prototyping', not production. |
+| Openness | 2 | MIT LICENSE file (Copyright (c) 2026 FAROS contributors; README matches) — permissive for the project's own code; third-party code, datasets and models keep their own terms (THIRD_PARTY_NOTICES.txt). The 2026-09-01 scoring recorded no licence file. |
+| Maturity / traction | 2 | ~3,000 stars / 389 forks / 269 watchers by Sept 2026 on a repo whose first commit was 2026-05-13 (168 commits since); tagged release 1.1.0-rc1 with 608 backend + 30 frontend tests passing — beta-stage traction, but the README itself calls it a 'release candidate for competition validation and research prototyping', not production. As of 2026-11-24: 3,051 stars, last push 2026-10-21. |
 | Cross-family policy | 0 | Provider abstraction supports swapping LLM backends, but Qwen is the recommended/primary provider throughout and no cross-family executor/reviewer split is documented. |
 | Runtime assurance | 3 | Evidence-first gating before idea generation (literature quality gate, not just retrieval count), multi-reviewer checks in PlanPackage, and ReviewX performing claim extraction, evidence alignment, consistency checking, and reliability scoring with a human-feedback loop — a fairly complete audit stack, though without math-proof verification. |
 | Cross-platform portability | 1 | Single self-hosted web application (FastAPI + frontend + Docker); Provider abstraction gives multi-LLM support but it is not deployable as a plugin/skill across other agent runtimes or IDEs. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

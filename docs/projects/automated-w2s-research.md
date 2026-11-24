@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/safety-research/automated-w2s-research>
 
-**Licence:** `MIT`
+**Licence:** `MIT (stated in README; no licence file)`
 
 **Source:** [`projects/landscape/automated-w2s-research.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/automated-w2s-research.yml)
 
@@ -28,13 +28,13 @@ The first publicly released code + sandbox + baselines for autonomous alignment 
 | Inputs supported | 1 | Single input form (a predefined weak-to-strong benchmark task) plus access to labeled/unlabeled chat, math, and code datasets; no literature access. |
 | Outputs / reproducibility | 2 | Persists code, trained models, and evaluation metrics with cached baseline results and three execution modes, but live agent runs are LLM-stochastic and GPU-dependent, not deterministically reproducible end-to-end. |
 | Internal evaluation | 2 | Systematic evaluation across 10 alignment failures with held-out generalization checks and a time-boxed 28-researcher human baseline; arXiv preprint only, not yet peer-reviewed. |
-| Openness | 2 | MIT license with full setup docs and cached data/results; reproducing agent runs needs GPU compute (local or RunPod), not casual commodity hardware. |
-| Maturity / traction | 1 | Young research artifact (paper and repo, August 2026); 314 stars / 49 forks and only 2 commits on main at scoring date — early-stage, not a maintained product. |
+| Openness | 1 | README states MIT but the repository has no LICENSE file, so no licence is formally granted; setup docs and cached data/results are provided, and reproducing agent runs needs GPU compute (local or RunPod). |
+| Maturity / traction | 1 | Young research artifact (paper and repo, August 2026); 314 stars / 49 forks and only 2 commits on main at scoring date (338 stars as of 2026-11-24, last push 2026-04-13) — early-stage, not a maintained product. |
 | Cross-family policy | 0 | All nine automated-researcher agents run on Claude; no cross-model-family executor/reviewer setup. |
 | Runtime assurance | 2 | Server-side held-out evaluation API withholds ground truth so agents cannot directly optimize against it, a moderate in-pipeline anti-gaming gate; no separate claim- or citation-faithfulness checks (not applicable to this task domain). |
 | Cross-platform portability | 2 | Three execution backends (local subprocess, Docker, RunPod cloud) support parallel distributed runs, though locked to the Claude model family. |
 
-*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -62,6 +62,7 @@ The first publicly released code + sandbox + baselines for autonomous alignment 
 - Single model family (Claude) only; no cross-family review built in.
 - Requires GPU compute (local or RunPod) to run; not reproducible on a laptop without cloud spend.
 - Early-stage research artifact (August 2026) with minimal commit history; not positioned as a maintained product.
+- No licence file; the README states MIT only.
 
 ## Related projects in this catalog
 

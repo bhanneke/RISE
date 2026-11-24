@@ -1,9 +1,9 @@
 slug: mlgym
 name: "MLGym (Meta)"
 type: external
-status: dormant
+status: archived
 url: "https://github.com/facebookresearch/MLGym"
-license: "unclassified (licence file present; see repository)"
+license: "CC BY-NC 4.0 (LICENSE file; the README says portions are available under separate terms: SWE-Agent and Modded-NanoGPT MIT, Gymnax and Gymnax-blines Apache-2.0)"
 maintainers:
   - "Meta AI / FAIR"
 year_started: 2025
@@ -76,7 +76,7 @@ scores:
     note: "CC BY-NC 4.0 license — open for research and non-commercial use; not permissive for commercial deployment."
   maturity_traction:
     score: 0
-    note: "620 stars; last commit 2025-08-10 (confirmed via GitHub commit log) — over 13 months of inactivity as of 2026-09, crossing the rubric's >12-month dormancy threshold; Meta institutional backing but development appears stalled despite the README's 'under heavy development' flag."
+    note: "625 stars; the GitHub API reports the repository as archived (read-only) as of 2026-11-24, with the last push on 2025-08-10 — over 15 months of inactivity, past the rubric's >12-month band; Meta institutional backing, but development has stopped."
   cross_family_policy:
     score: 0
     note: 'Single-family in published baselines; framework agnostic but no policy.'
@@ -86,7 +86,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Open framework, multiple agents pluggable; not multi-IDE.'
-scored_on: "2026-09-01"
+scored_on: "2026-11-24"
 
 limitations:
   - "Non-commercial license restricts deployment options."

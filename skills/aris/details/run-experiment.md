@@ -1,8 +1,8 @@
 ---
 name: run-experiment
 description: Deploy and run ML experiments on local, remote, Vast.ai, or Modal serverless GPU. Use when user says "run experiment", "deploy to server", "跑实验", or needs to launch training jobs.
-argument-hint: [experiment-description]
-allowed-tools: Bash(*), Read, Grep, Glob, Edit, Write, Agent, Skill(serverless-modal)
+argument-hint: "[experiment-description]"
+allowed-tools: Bash(*), Read, Grep, Glob, Edit, Write, Skill(serverless-modal)
 ---
 
 # Run Experiment
@@ -21,6 +21,25 @@ Read the project's `CLAUDE.md` to determine the experiment environment:
 - **Modal** (`gpu: modal`): Serverless GPU via Modal. No SSH, no Docker, auto scale-to-zero. Delegate to `/serverless-modal`.
 
 **Modal detection:** If `CLAUDE.md` has `gpu: modal` or a `## Modal` section, the entire deployment is handled by `/serverless-modal`. Jump to **Step 4: Deploy (Modal)** — Steps 2-3 are not needed (Modal handles code sync and GPU allocation automatically).
+
+**Environment contract** (`../shared-references/compute-env-contract.md`): read
+existing server notes or the provider's ledger before preparing the environment.
+Reuse the user's confirmed conda/venv and working command; a missing ARIS ledger
+does not require rebuilding. If no relevant validation exists, run one small,
+task-relevant smoke in that environment and record the command and actual output.
+Reuse prior validation when the environment and execution path have not changed.
+New or rebuilt environments need the spec, import/kernel checks and a fresh
+agent-follows-doc pass once setup is stable; substantive installation or invocation
+changes need the affected checks. Plain prose/log edits do not trigger a rebuild
+or fresh recheck. This execution evidence does not replace research acceptance.
+
+**Preparation failures:** carry the same failure, attempted fixes and remaining
+budget across child skills in the existing run notes/tracker. After two targeted
+repairs to the same environment problem make no new progress, stop repeating
+preparation and return the exact command/error to the main owner for takeover or
+an authorized alternative. Missing permissions, authentication, network access or
+a compatible driver are environment prerequisites, not reasons to rewrite the
+training script. Keep the original code-sanity retry budget and reviewer gates.
 
 **Vast.ai detection priority:**
 1. If `CLAUDE.md` has `gpu: vast` or a `## Vast.ai` section:
@@ -58,10 +77,27 @@ Check the project's `CLAUDE.md` for a `code_sync` setting. If not specified, def
 
 #### Option A: rsync (default)
 
-Only sync necessary files — NOT data, checkpoints, or large files:
+Prefer the project's existing deployment command or explicit file list. Otherwise,
+allow directory traversal and include the configuration/small resources read by
+the actual experiment command, alongside Python sources. For example:
+
 ```bash
-rsync -avz --include='*.py' --exclude='*' <local_src>/ <server>:<remote_dst>/
+rsync -avz --prune-empty-dirs \
+  --exclude='.*' --exclude='__pycache__/' --exclude='/venv/' --exclude='/env/' \
+  --exclude='data/' --exclude='datasets/' --exclude='weights/' \
+  --exclude='checkpoints/' --exclude='outputs/' --exclude='wandb/' \
+  --include='*/' --include='*.py' \
+  --include='/configs/sanity.json' --include='/assets/vocab.json' \
+  --exclude='*' "<local_src>/" "<server>:<remote_dst>/"
 ```
+
+Replace the two explicit config/resource paths with those your command needs;
+add other required small files explicitly. Keep exclusions before directory/file
+includes, and add project-specific private paths there. Hidden agent/config files,
+data, weights and outputs stay out of this example. Use the project source root,
+not the user's home directory; do not replace these rules with an unfiltered copy.
+A successful sync exit is not a launch check: run the smallest actual experiment
+from the configured remote code directory and inspect its log and result file.
 
 #### Option B: git (when `code_sync: git` is set in CLAUDE.md)
 
@@ -89,7 +125,14 @@ rsync -avz -e "ssh -p <PORT>" \
   ./ root@<HOST>:/workspace/project/
 ```
 
-If `requirements.txt` exists, install dependencies:
+Install dependencies per the env contract (ordered phases — pins first, one
+`pip install` per phase; see `../shared-references/compute-env-contract.md`):
+```bash
+ssh -p <PORT> root@<HOST> "pip install -q torch==<pinned>"       # phase 1: pins
+ssh -p <PORT> root@<HOST> "pip install -q <remaining packages>"  # phase 2+
+```
+Legacy fallback — `requirements.txt` only, no env spec: install as one phase,
+and treat any version fight as the signal to convert to ordered phases:
 ```bash
 scp -P <PORT> requirements.txt root@<HOST>:/workspace/
 ssh -p <PORT> root@<HOST> "pip install -q -r /workspace/requirements.txt"

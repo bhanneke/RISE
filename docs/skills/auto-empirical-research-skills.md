@@ -2,7 +2,7 @@
 
 # Auto-Empirical Research Skills (AERS) — first-party skills
 
-license: `CC BY-SA 4.0 (repo default); MIT for the mirrored first-party collections (StatsPAI, AER-skills, Paper-WorkFlow)` · 22 skills · last update: 2026-07-22
+license: `CC BY-SA 4.0 (repo default); MIT for the mirrored first-party collections (StatsPAI, AER-skills)` · 21 skills · last update: 2026-11-24
 
 **Source:** <https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills>
 
@@ -12,7 +12,7 @@ license: `CC BY-SA 4.0 (repo default); MIT for the mirrored first-party collecti
 
 **Compatibility:** `claude-code` `codex` `cursor`
 
-> Repo bundles 1,094 skills across 74 collections, ~90% vendored third-party (clo-author, academic-research-skills, ARIS, awesome-econ-ai-stuff, etc. — cataloged separately in RISE); this manifest catalogs the 22 first-party skills: the root router, the four flagship full-pipeline analysis skills (StatsPAI / Python / Stata / R backends), the chinese-de-aigc editing skill, the 15-skill AER-skills collection (mirror of brycewang-stanford/AER-skills), and the Paper-WorkFlow meta-orchestrator (git submodule of brycewang-stanford/Paper-WorkFlow). First-party status taken from the repo's own catalog/provenance.json origin labels.
+> As of the 2026-07 scoring the repo bundled 1,094 skills across 74 collections, ~90% vendored third-party (clo-author, academic-research-skills, ARIS, awesome-econ-ai-stuff, etc. — cataloged separately in RISE); this manifest catalogs the 22 first-party skills: the root router, the four flagship full-pipeline analysis skills (StatsPAI / Python / Stata / R backends), the chinese-de-aigc editing skill, the 15-skill AER-skills collection (mirror of brycewang-stanford/AER-skills), and the Paper-WorkFlow meta-orchestrator (git submodule of brycewang-stanford/Paper-WorkFlow). First-party status taken from the repo's own catalog/provenance.json origin labels. Refresh 2026-11-24 (upstream pushed 2026-11-24; README now counts 1,151 skills): the old chinese-de-aigc skill is gone and a different skill, 48-de-AIGC-skills, labelled first-party AERS skill in catalog/provenance.json, took its place; the 69-Paper-WorkFlow collection is now labelled vendored upstream (a git submodule, empty in the repository archive) and is catalogued as its own project (paper-workflow), so it was removed from this manifest. 5 changed copies re-copied.
 
 
 **Source YAML:** [`skills/auto-empirical-research-skills.yml`](https://github.com/bhanneke/RISE/blob/main/skills/auto-empirical-research-skills.yml)
@@ -54,7 +54,7 @@ license: `CC BY-SA 4.0 (repo default); MIT for the mirrored first-party collecti
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| [`chinese-de-aigc`](auto-empirical-research-skills/chinese-de-aigc.md) | general | `revision-editing` | Chinese academic de-AIGC rewriting targeting CNKI/Wanfang/VIP/Turnitin-zh detectors — a five-step locate/diagnose/rewrite/self-score/recheck loop over 17 diagnostic rules for the five structural signatures of Chinese LLM prose, with per-section strategies. | [view](auto-empirical-research-skills/chinese-de-aigc.md) | [origin](https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/48-copaper-ai-chinese-de-aigc/SKILL.md) | 2026-07-22 |
+| [`/de-aigc-skills`](auto-empirical-research-skills/de-aigc-skills.md) | general | `revision-editing` | Bilingual (Chinese/English) academic de-AIGC and provenance skill for empirical papers: a six-step audit, rewrite and cold-reader recheck loop in three modes, with hard rules that keep every number, coefficient and citation intact and two helper scripts. | [view](auto-empirical-research-skills/de-aigc-skills.md) | [origin](https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/48-de-AIGC-skills/SKILL.md) | — |
 
 ### `figures` (1)
 
@@ -68,13 +68,12 @@ license: `CC BY-SA 4.0 (repo default); MIT for the mirrored first-party collecti
 |---|---|---|---|---|---|---|
 | [`aer-topic-selection`](auto-empirical-research-skills/aer-topic-selection.md) | economics | `rq-formulation` | Evaluates whether a research idea clears the AER top-5 bar, routes between AER, AER:Insights, and the AEJ family, and sharpens a fuzzy contribution sentence into one publishable claim. | [view](auto-empirical-research-skills/aer-topic-selection.md) | [origin](https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-topic-selection/SKILL.md) | 2026-07-22 |
 
-### `infra` (3)
+### `infra` (2)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
 | [`aer-workflow`](auto-empirical-research-skills/aer-workflow.md) | economics |  | Router for the 15-skill AER-skills collection — sequences manuscript work from topic selection through rebuttal for AER, AER:Insights, and AEJ journals; routes, does not replace, the specialized skills. | [view](auto-empirical-research-skills/aer-workflow.md) | [origin](https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/50-brycewang-aer-skills/skills/aer-workflow/SKILL.md) | 2026-07-22 |
-| [`auto-empirical-research-skills`](auto-empirical-research-skills/aers-router.md) | general |  | Root router for whole-repo installs — classifies an empirical-research request by stage/method and dispatches to one of the 1,094 vendored skills via catalog JSON lookups instead of reading the repo wholesale. | [view](auto-empirical-research-skills/aers-router.md) | [origin](https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/SKILL.md) | 2026-07-22 |
-| [`paper-workflow`](auto-empirical-research-skills/paper-workflow.md) | economics | `rq-formulation` `research-design` `data-acquisition` `data-analysis` `paper-drafting` `revision-editing` `referee-simulation` `dissemination` | Meta-orchestrator for a complete empirical paper (econ/social science): Stage 0-9 resumable pipeline from topic selection to submission with two hard human gates (Method Gate after estimation, Draft Quality Gate after polish); routes Python/StatsPAI, Stata, or R analysis backends and invokes existing skills rather than reimplementing them. Git submodule mirroring brycewang-stanford/Paper-WorkFlow. | [view](auto-empirical-research-skills/paper-workflow.md) | [origin](https://github.com/brycewang-stanford/Paper-WorkFlow/blob/main/SKILL.md) | 2026-07-22 |
+| [`auto-empirical-research-skills`](auto-empirical-research-skills/aers-router.md) | general |  | Root router for whole-repo installs: classifies an empirical-research request by stage and method and dispatches to one of the 1,151 skills listed in the repo README via catalog JSON lookups instead of reading the repo wholesale. | [view](auto-empirical-research-skills/aers-router.md) | [origin](https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/SKILL.md) | 2026-07-22 |
 
 ### `literature` (1)
 

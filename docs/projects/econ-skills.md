@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/zbsaygin/econ-skills>
 
-**Licence:** `MIT`
+**Licence:** `MIT (stated in README; no licence file)`
 
 **Source:** [`projects/landscape/econ-skills.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/econ-skills.yml)
 
@@ -28,13 +28,13 @@ notation-clean is a narrow, unusual skill not found in any other cataloged pack:
 | Inputs supported | 2 | Multiple input forms (citekey, pasted PDF, LaTeX document, .bib file) plus a literature-access pathway via lit-review's multi-agent search; no private data-source access. |
 | Outputs / reproducibility | 2 | Persists compiled LaTeX documents, Beamer decks, and standalone-PDF figures/tables, but requires per-user placeholder setup (paths, Zotero/Better BibTeX) and has no cross-skill artifact manifest. |
 | Internal evaluation | 0 | No test fixtures, benchmark, or reported evaluation for any of the seven skills at scoring date. |
-| Openness | 2 | MIT license; functional use requires replacing ~10 user-specific placeholders and a Zotero + Better BibTeX bibliography pipeline, so not zero-setup. |
+| Openness | 1 | README carries a one-line MIT statement but the repository has no licence file (checked 2026-11-24), so no licence is formally granted; functional use also requires replacing ~10 user-specific placeholders and a Zotero + Better BibTeX bibliography pipeline. |
 | Maturity / traction | 1 | 7 stars, 1 fork, single commit on record at scoring date — a young, single-maintainer personal tool. |
 | Cross-family policy | 0 | No cross-model-family mechanism described; audit-econ's 'consensus' is among same-family Opus sub-agents, not across model families. |
 | Runtime assurance | 2 | audit-econ dispatches independent sub-agents to a Delphi consensus before reporting findings; lit-review stress-tests its own novelty claim with an adversarial referee pass until convergence. |
 | Cross-platform portability | 0 | Claude Code only; no stated support for other agent runtimes. |
 
-*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

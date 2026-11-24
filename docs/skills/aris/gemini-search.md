@@ -4,7 +4,7 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/gemini-search/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/gemini-search/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>literature</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-11-24</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>literature-discovery</code> · <code>literature-synthesis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/gemini-search/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/gemini-search/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Gemini Literature Search
 
@@ -28,7 +28,7 @@ Use Gemini when you want AI-driven discovery that goes beyond keyword matching �
 
 - **MAX_RESULTS = 15** — Target number of papers Gemini should find.
 - **MIN_YEAR = 2022** — Default minimum publication year. Override with `— year: 2020-`.
-- **DEFAULT_MODEL = gemini-3-pro-preview** — Strongest available Gemini option (Gemini 3 Pro). Requires `gemini-cli` v0.40+ and `mcp__gemini-cli__ask-gemini` accepting Gemini 3 aliases (verified). Override with `— model: gemini-3-flash-preview` (Gemini 3 Flash, faster, higher quota), `— model: auto-gemini-3` (auto-routes inside the Gemini 3 family by load), or `— model: gemini-2.5-pro` / `gemini-2.5-flash` (legacy, for users on older `gemini-cli` < v0.40). The MCP tool accepts all of these verbatim.
+- **DEFAULT_MODEL = auto-gemini-3** — Auto-routes within the Gemini 3 family (Pro / Flash) by server-side capacity. Required by `mcp__gemini-cli__ask-gemini` and `gemini-cli` v0.40+; explicit `gemini-3-pro-preview` is **silently downgraded to `gemini-2.5-pro`** on OAuth-personal / Google One AI Pro accounts when capacity is exhausted. Override with `— model: gemini-3-flash-preview` (Gemini 3 Flash explicit, faster, higher quota), or `— model: gemini-2.5-pro` / `gemini-2.5-flash` (legacy, only for users on older `gemini-cli` < v0.40). The MCP tool accepts all of these verbatim.
 
 > Overrides (append to arguments):
 > - `/gemini-search "topic" — max: 20` — request up to 20 papers
@@ -87,14 +87,14 @@ claude mcp add gemini-cli -- npx -y gemini-mcp-tool
 
 #### Authentication
 
-Gemini CLI uses your Google account or an API key. Add to `.claude/.env`:
+Gemini CLI uses your Google account or an API key. Reuse an existing Google account login, or set an API key in the same shell **before starting Claude Code** so the MCP process inherits it:
 
 ```bash
-## .claude/.env
-GEMINI_API_KEY=your-key-here
+export GEMINI_API_KEY='your-key-here'
+claude
 ```
 
-Claude Code automatically loads `.claude/.env` as environment variables.
+A separate tool-shell `export` does not update an already running host or MCP process. If you keep credentials in an environment file, load it explicitly before starting the host rather than relying on automatic `.env` loading.
 
 - Free key from [Google AI Studio](https://aistudio.google.com/apikey)
 - Flash model (`gemini-2.5-flash`) has a generous free tier (500 req/min)
@@ -159,7 +159,7 @@ Find at least MAX_RESULTS papers with good coverage across:
 - closely related variants of the topic
 
 Format as a numbered list with all fields for each paper.',
-  model: 'DEFAULT_MODEL'
+  model: 'auto-gemini-3'
 })
 ```
 

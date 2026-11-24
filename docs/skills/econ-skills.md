@@ -2,7 +2,7 @@
 
 # econ-skills (zbsaygin)
 
-license: `MIT` · 7 skills · last update: 2026-09
+license: `MIT (stated in README; no licence file)` · 7 skills · last update: 2026-09
 
 **Source:** <https://github.com/zbsaygin/econ-skills>
 

@@ -2,7 +2,7 @@
 
 # Prose Revision (h/t Anthony Lee Zhang)
 
-license: `MIT` · 1 skills · last update: 2026-07-14
+license: `MIT` · 1 skills · last update: 2026-10-13
 
 **Source:** <https://github.com/Gabberflast/prose-revision-skill-ht-anthony-lee-zhang>
 
@@ -21,4 +21,4 @@ license: `MIT` · 1 skills · last update: 2026-07-14
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| [`prose-revision-skill-ht-anthony-lee-zhang`](prose-revision/prose-revision.md) | general | `revision-editing` | Revise draft prose by finding the best structure for the ideas already there — idea flow first, linguistic flow second; preserve voice and claim strength; distinct from proofreading. | [view](prose-revision/prose-revision.md) | [origin](https://github.com/Gabberflast/prose-revision-skill-ht-anthony-lee-zhang/blob/main/SKILL.md) | 2026-07 |
+| [`prose-revision-skill-ht-anthony-lee-zhang`](prose-revision/prose-revision.md) | general | `revision-editing` | Revise draft prose by designing the reader's path through the ideas already there: idea flow first, linguistic flow second; preserve voice and claim strength; distinct from proofreading. | [view](prose-revision/prose-revision.md) | [origin](https://github.com/Gabberflast/prose-revision-skill-ht-anthony-lee-zhang/blob/main/SKILL.md) | 2026-07 |

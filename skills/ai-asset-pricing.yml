@@ -5,7 +5,7 @@ pack:
   maintainers:
     - 'Alex Dickerson (Alexander-M-Dickerson on GitHub)'
   license: 'MIT (repo LICENSE, "Copyright (c) 2025 Alex Dickerson")'
-  total_skills: 37
+  total_skills: 38
   last_update: '2026-04-19'
   related_project: ''
   compatibility:
@@ -47,6 +47,7 @@ pack:
     user must supply: `idea`, `research` and `verify-citations` search through a
     Perplexity MCP server, and the WRDS skills need the user's own WRDS account.
     The repo has been unchanged since 2026-04-19.
+    Refresh 2026-11-24: added wrds-ssh and copied the SKILL.md texts of split-pdf, wrds-psql and wrds-schema, which were listed without a details copy.
 
 skills:
   - slug: audit-captions
@@ -499,3 +500,13 @@ skills:
     details_url: 'https://github.com/Alexander-M-Dickerson/ai-asset-pricing/blob/main/.claude/skills/write-section/SKILL.md'
     provenance: 'ai-asset-pricing provenance audit 2026-09-29 (first-party; no upstream skill found)'
     last_update: '2026-03-24'
+  - slug: wrds-ssh
+    name: '/wrds-ssh'
+    category: data-handling
+    pipeline_stages:
+      - data-acquisition
+    field: finance
+    description: 'Connects to WRDS servers to run SAS code and PostgreSQL queries, submit batch jobs and transfer files.'
+    source_path: '.claude/skills/wrds-ssh/SKILL.md'
+    details_url: 'https://github.com/Alexander-M-Dickerson/ai-asset-pricing/blob/main/.claude/skills/wrds-ssh/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'

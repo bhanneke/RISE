@@ -4,9 +4,17 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/dse-loop/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/dse-loop/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-11-24</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/dse-loop/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/dse-loop/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## DSE Loop: Autonomous Design Space Exploration
+
+> 🔁 **Do not wrap this skill in `/loop` / `CronCreate`.** It already loops
+> internally until its objective is met or it times out. Unlike the
+> verdict-bearing review/audit skills, its stop gate is an **objective
+> machine-checkable metric** (Type-A), so its self-termination is safe
+> same-model — the reason not to wrap it is **scheduler duplication**, not the
+> verdict fence. See
+> `shared-references/external-cadence.md`.
 
 Autonomously explore a design space: run → analyze → pick next parameters → repeat, until the objective is met or timeout is reached. Designed for computer architecture and EDA problems.
 
@@ -260,7 +268,17 @@ If the context window compacts mid-run, the loop recovers from `DSE_STATE.json` 
 - **Keep raw outputs** — save each run's full output in `dse_results/outputs/iter_N/`
 - **Constraint violations are not improvements** — a design point that violates constraints is never "best", regardless of the metric
 - If a run crashes, log the error, skip that point, and continue with the next
-- If the same crash repeats 3 times with different configs, stop and report the issue
+- If the same crash repeats 3 times with different configs, the harness code itself is
+  the suspect — **discard and reimplement the run/parse script cleanly from the spec**
+  (a peer move to another patch; delete only the script, never `dse_log.csv` /
+  `dse_results/`; see `shared-references/external-cadence.md` § *Let a broken attempt
+  restart, not just patch*). **Before resuming the sweep, re-validate metric
+  comparability**: re-parse one COMPLETED iteration's raw output from
+  `dse_results/outputs/iter_N/` with the new parser and confirm it reproduces that row of
+  `dse_log.csv`; on mismatch, either fix the parser or re-parse and flag all affected
+  rows — never mix two parsing semantics in one log. If a clean reimplement crashes the
+  same way, stop and report — the spec or the environment is then in question, which is
+  what needs the human
 
 ### Example Invocations
 

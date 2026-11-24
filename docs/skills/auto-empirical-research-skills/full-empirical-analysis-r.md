@@ -4,7 +4,7 @@
 
 Same 8-step empirical pipeline in the tidyverse + fixest R ecosystem — did/HonestDiD/rdrobust/gsynth/MatchIt/grf/DoubleML estimation with modelsummary/gt/ggplot2 publication outputs and Quarto reproducibility; epidemiology and ML-causal modes included.
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../auto-empirical-research-skills/">Auto-Empirical Research Skills (AERS) — first-party skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>CC BY-SA 4.0 (repo default); MIT for the mirrored first-party collections (StatsPAI, AER-skills, Paper-WorkFlow)</code></div><div><b>Updated:</b> 2026-07-22</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code> · <code>code-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/brycewang-stanford/Auto-Empirical-Research-Skills/contents/skills/00.3-Full-empirical-analysis-skill_R/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/auto-empirical-research-skills/full-empirical-analysis-r/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/00.3-Full-empirical-analysis-skill_R/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/brycewang-stanford/Auto-Empirical-Research-Skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../auto-empirical-research-skills/">Auto-Empirical Research Skills (AERS) — first-party skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> economics</div><div><b>License:</b> <code>CC BY-SA 4.0 (repo default); MIT for the mirrored first-party collections (StatsPAI, AER-skills)</code></div><div><b>Updated:</b> 2026-07-22</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code> · <code>code-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/brycewang-stanford/Auto-Empirical-Research-Skills/contents/skills/00.3-Full-empirical-analysis-skill_R/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/auto-empirical-research-skills/full-empirical-analysis-r/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/blob/main/skills/00.3-Full-empirical-analysis-skill_R/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/brycewang-stanford/Auto-Empirical-Research-Skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Full Empirical Analysis — Classical R Workflow
 
@@ -2392,3 +2392,49 @@ TwoSampleMR::mr(...)                                                        # Me
 - **Paper drafting** after analysis → the writing skills in this repo.
 
 This skill ends at Step 8 — `.tex` / `.docx` tables and `.pdf` figures. Paper drafting is out of scope.
+
+---
+
+### Step 8.5 — Handoff to the manuscript (exit contract)
+
+This skill's remit still ends at Step 8. "Ends" should not mean "dead-ends", though:
+the writing stage needs a machine-readable contract, not a folder of loose files.
+Before you stop, emit two artifacts next to the tables and figures.
+
+**1. `exhibits_index.md`** — one row per numbered exhibit:
+
+| Exhibit | Files | Claim it supports | Produced by |
+|---|---|---|---|
+| Table 2 | `tables/table2_main.{tex,docx,xlsx}` | Main effect of the policy on log output | `analysis.R` §baseline |
+| Figure 2 | `figures/fig2_event_study.{png,pdf}` | No differential pre-trend | `analysis.R` §event-study |
+
+**2. `results_summary.json`** — every headline estimate as a flat record:
+
+```json
+{"baseline": {"coef": 0.1234, "se": 0.0412, "p": 0.0031, "n": 12345, "spec": "TWFE + region-year FE"}}
+```
+
+Why both, and why in these shapes:
+
+- The manuscript stage cites exhibits by **include directive**, never by retyped
+  numbers — `\input{tables/table2_main}` in LaTeX, `{{ include: table2_main }}` in
+  Markdown. The index is what tells the writer which file backs which claim.
+- Every number a paper prints must trace back to a result file at the precision it is
+  displayed. `results_summary.json` is what makes that checkable instead of trusted.
+  A coefficient that exists only inside a rendered table cannot be verified against
+  the prose that cites it.
+
+**Then hand off:**
+
+- **Full paper → Word `.docx` / LaTeX, end to end** → `skills/69-Paper-WorkFlow/`. It
+  orchestrates Stage 5–9 (draft → polish → de-AIGC → review → submission) and its
+  `scripts/assemble_manuscript_docx.py` assembles `09_submission/main.docx` — body,
+  every exhibit above, figures and reference list in one file — from exactly these two
+  artifacts. Pick the body format at its Stage 0: **Markdown when the deliverable is
+  Word** (Markdown → `.docx` is high fidelity; LaTeX → `.docx` is lossy), LaTeX when
+  the venue takes `.tex`.
+- **Prose drafting only** → the writing skills in this repo (`04-*-scientific-writer`,
+  `35-*-academic-writing-skills`).
+- **LaTeX / Quarto typesetting only** → `08-ndpvt-web-latex-document-skill`,
+  `60-regisely-superpapers`.
+

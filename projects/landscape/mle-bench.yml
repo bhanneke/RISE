@@ -3,7 +3,7 @@ name: "MLE-bench (OpenAI)"
 type: external
 status: dormant
 url: "https://github.com/openai/mle-bench"
-license: "unclassified (licence file present; see repository)"
+license: "MIT (LICENSE file, \"Copyright (c) 2024 OpenAI\"; the file scopes it to the code, not to the datasets downloaded while using the package)"
 maintainers:
   - "OpenAI"
   - "Jun Shern Chan"
@@ -88,7 +88,7 @@ scores:
     note: "MIT licence, but explicitly scoped — 'this license applies to the code in this repository, but not the external datasets and files that may be downloaded' — so the data arrives under Kaggle's own competition terms and needs an accepted-rules Kaggle account."
   maturity_traction:
     score: 3
-    note: "1,739 stars, 257 forks, an ICLR 2025 Oral, and sustained external adoption: leaderboard submissions from Baidu, Google Cloud AI Research, Microsoft (R&D-Agent), Meta (AIRA-dojo), SJTU, Fractal AI and startups, running from 2024-10 to 2026-03."
+    note: "1,803 stars (2026-11-24), 257 forks, an ICLR 2025 Oral, and sustained external adoption: leaderboard submissions from Baidu, Google Cloud AI Research, Microsoft (R&D-Agent), Meta (AIRA-dojo), SJTU, Fractal AI and startups, running from 2024-10 to 2026-03."
   cross_family_policy:
     score: 0
     note: "Not applicable — grading is deterministic CSV scoring with no LLM in the evaluation path, so there is no executor/reviewer pairing to make cross-family."
@@ -98,7 +98,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: "Deliberately agent-agnostic — three open-source scaffolds demonstrated and leaderboard entrants have run it with OpenAI, Anthropic, Google and DeepSeek models — but the harness itself needs Linux, Docker and the Kaggle API."
-scored_on: "2026-09-08"
+scored_on: "2026-11-24"
 
 limitations:
   - "Leaderboard submissions have been paused since 2026-04-24 'while we develop an improved process for ensuring submissions are fair and comparable', so the ranking is frozen mid-race."

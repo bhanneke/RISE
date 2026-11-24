@@ -1,3 +1,8 @@
+---
+name: proposal-revise
+description: "Apply reviewer or collaborator feedback to an existing proposal while maintaining its voice and project context."
+---
+
 # Revise Proposal
 *v2.4 — Renamed from revise-proposal; noun-first grouping. Adds donor profile lookup and funder-conflict flagging during revision.*
 *v2.x — Reviewer-comment categorization, voice-pack enforcement, automatic backup before save*

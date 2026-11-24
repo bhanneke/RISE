@@ -1,6 +1,6 @@
 ---
 name: auto-empirical-research-skills
-description: Route empirical-research requests through the Auto-Empirical Research Skills catalog when this whole repository is installed as one skill in Codex, CodeBuddy, Claude Code, or another IDE. Use to choose and load the right vendored AERS skill for causal inference, econometrics, replication, data acquisition, manuscript writing, peer review and referee responses, citation checking, de-AIGC editing, or full empirical-paper workflows without reading the entire repository at once.
+description: Route empirical-research requests through the Auto-Empirical Research Skills catalog when this whole repository is installed as one skill in Codex, CodeBuddy, Claude Code, or another IDE. Use to choose and load the right vendored AERS skill for causal inference, econometrics, replication, data acquisition, manuscript writing, peer review and referee responses, citation checking, de-AIGC editing, or full empirical-paper workflows, or an end-to-end run from raw data all the way to a finished Word (.docx) manuscript, without reading the entire repository at once.
 license: CC-BY-SA-4.0
 ---
 
@@ -8,18 +8,27 @@ license: CC-BY-SA-4.0
 
 Use this root skill when the full AERS repository has been installed as a single skill folder. Treat it as a router and catalog, not as a request to load every vendored `SKILL.md`.
 
-The catalog holds **1,094 skills across 74 vendored collections**. Never read them all — route to one, then load only that skill's `SKILL.md`.
+The catalog holds **1,151 skills across 78 vendored collections**. Never read them all — route to one, then load only that skill's `SKILL.md`.
 
 ## Workflow
 
 1. Classify the user's empirical-research task by **stage**, then load the single best-matching skill:
-   - Full pipeline or orchestration: start with `skills/69-Paper-WorkFlow/` or the `skills/00.*` flagship analysis skills (StatsPAI / Python / Stata / R).
+   - Full pipeline or orchestration: start with `skills/69-Paper-WorkFlow/` or the `skills/00*` flagship analysis skills — `skills/00-Full-empirical-analysis-skill_StatsPAI/` (StatsPAI), `skills/00.1-Full-empirical-analysis-skill_Python/` (Python), `skills/00.2-Full-empirical-analysis-skill_Stata/` (Stata), `skills/00.3-Full-empirical-analysis-skill_R/` (R). Note the StatsPAI flagship has no dot in its prefix, so a `skills/00.*` glob misses it.
    - Causal inference and econometrics: pick by method from the table below, or search `catalog/skills.json` / `docs/TAXONOMY.md`.
    - AER or top economics journal work: start with `skills/50-brycewang-aer-skills/`.
    - Replication, citation, or peer review: use `docs/SKILL_CATALOG.md` and `docs/GOLDEN_WORKFLOWS.md` to choose a focused skill.
-   - Chinese academic de-AIGC or academic rewriting: start with `skills/48-copaper-ai-chinese-de-aigc/` or nearby writing skills in the catalog.
+   - Academic de-AIGC (English or Chinese) or academic rewriting: start with `skills/48-de-AIGC-skills/` or nearby writing skills in the catalog.
 2. Read only the selected child skill's `SKILL.md`, then follow its progressive-disclosure instructions for `references/`, `scripts/`, `assets/`, or templates.
-3. If no child skill clearly matches, inspect `catalog/skills.json` first (has `path`, `name`, `description`, `line_count`, and a globally-unique `qualified_name`), then `docs/SKILL_CATALOG.md`. For richer filtering (topic `tags`, `quality_score`, `license`, `commercial_use`), use `catalog/skills-enriched.json`. Avoid broad recursive reads of `skills/`.
+3. If no child skill clearly matches, run the ranked catalog search first — it takes English or Chinese task text:
+
+     ```bash
+     python3 scripts/find-skill.py "staggered difference-in-differences event study"
+     python3 scripts/find-skill.py "降低中文论文 AIGC 率" -k 5
+     ```
+
+   It ranks by relevance, then by the routing tier in `catalog/curation.json`: first-party `core` skills first, a single preferred copy for each duplicated name (the other copies are folded away), and natural-science / CS guides (`out-of-domain`) last unless the query names them. Take the top result unless its description clearly misfits, then read only that `SKILL.md`. Its accuracy is measured by `python3 scripts/check-routing.py` against `evals/routing-cases.json`.
+
+   If you need raw data instead, `catalog/skills.json` has `path`, `name`, `description`, `line_count`, and a globally-unique `qualified_name`; `catalog/skills-enriched.json` adds `tier`, `tags`, `quality_score`, `license`, and `commercial_use`. Avoid broad recursive reads of `skills/`.
    - Both catalog JSON files are large (roughly 1 MB / 20k lines each) — query them instead of reading them whole. Example:
 
      ```bash
@@ -27,21 +36,28 @@ The catalog holds **1,094 skills across 74 vendored collections**. Never read th
      ```
 
      A plain `grep -in "synthetic control" catalog/skills.json` works too when a rough match is enough.
-4. For installation help, use `docs/INSTALL.md` for Codex-style copy installs and `INSTALL.md` for Claude Code marketplace/plugin installs.
+4. For installation help, use `INSTALL.md`: method 0 when the user hands you this folder's local path and asks you to install it, section 2C for Codex (`~/.agents/skills/`), method 1 for Claude Code marketplace/plugin installs. `docs/INSTALL.md` has the short copy-install reference.
 5. If editing this repository, keep parent and nested repos separate. In particular, inspect `git status` inside `skills/69-Paper-WorkFlow/` (a git submodule) before touching it.
 
 ## Method → where to start
 
-Match the user's identification strategy or task to a starting collection, then confirm against `catalog/skills.json`:
+Match the user's identification strategy or task to a starting collection, then confirm against `catalog/skills.json`.
+
+This table is a shortcut to the most common starting points, **not a complete index** — it names fewer than half of the vendored collections, and the rest are reachable only through `catalog/skills.json`. A task missing from this table is not a task without a skill: fall through to step 3 and search the catalog before concluding nothing matches.
 
 | Task / method | Start here |
 |---|---|
 | Full paper pipeline (orchestrator) | `skills/69-Paper-WorkFlow/` |
+| **Data → full Word `.docx` manuscript** (one run: analysis + writing + assembled deliverable) | `skills/69-Paper-WorkFlow/` — pick `manuscript.format = markdown` at its Stage 0 when the deliverable is Word; Stage 9 assembles `09_submission/main.docx` (body + tables + figures + references) and gates it |
+| Markdown / LaTeX → `.docx` conversion only (no analysis) | `skills/67-econfin-workflow-toolkit/md-to-docx/`, `skills/08-ndpvt-web-latex-document-skill/` |
+| Agent-native causal analysis (one call runs DiD / RD / IV / SCM / DML with automatic robustness gates) | `skills/00-Full-empirical-analysis-skill_StatsPAI/` |
 | DiD / staggered DiD / event study | `skills/50-brycewang-aer-skills/`, `skills/10-Jill0099-causal-inference-mixtape/`, `skills/13-scunning1975-MixtapeTools/` |
 | Instrumental variables (IV) | `skills/50-brycewang-aer-skills/`, `skills/40-py-econometrics-pyfixest/` |
 | Regression discontinuity (RDD) | `skills/50-brycewang-aer-skills/`, `skills/10-Jill0099-causal-inference-mixtape/` |
 | Synthetic control (SCM) | `skills/50-brycewang-aer-skills/`, `skills/13-scunning1975-MixtapeTools/` |
 | Panel fixed effects | `skills/40-py-econometrics-pyfixest/`, `skills/39-vincentarelbundock-marginaleffects/` |
+| Specification search / multiverse / p-hacking audit, honest p-values, p-curve, pre-registration | `skills/73-brycewang-p-hacking-skills/` (start at `skills/00-phack-router/`; teaching & audit only) |
+| Questionnaire / survey SEM in SPSS + AMOS — reliability, EFA, CFA (CR / AVE / HTMT), structural model, bootstrap mediation, multi-group, PROCESS (结构方程 / 问卷 / 信效度) | `skills/74-brycewang-spss-amos-sem/` |
 | Matching / propensity scores | `skills/10-Jill0099-causal-inference-mixtape/`, `skills/11-James-Traina-compound-science/` |
 | Structural estimation | `skills/11-James-Traina-compound-science/`, `skills/14-luischanci-claude-code-research-starter/` |
 | Time series / forecasting | `skills/17-DAAF-Contribution-Community-daaf/`, `skills/43-wentorai-research-plugins/` |
@@ -51,17 +67,19 @@ Match the user's identification strategy or task to a starting collection, then 
 | Survey / questionnaire design | `skills/43-wentorai-research-plugins/`, `skills/25-HosungYou-Diverga/` |
 | DML / CATE / causal forests | `skills/00.1-Full-empirical-analysis-skill_Python/`, `skills/63-tondevrel-scientific-agent-skills/` |
 | Bayesian modeling | `skills/23-Learning-Bayesian-Statistics-baygent-skills/`, `skills/51-pymc-labs-CausalPy/` |
+| Python analysis (full pipeline) | `skills/00.1-Full-empirical-analysis-skill_Python/`, `skills/40-py-econometrics-pyfixest/` |
 | Stata analysis | `skills/00.2-Full-empirical-analysis-skill_Stata/`, `skills/32-dylantmoore-stata-skill/`, `skills/64-tmonk-mcp-stata/` |
 | R analysis | `skills/00.3-Full-empirical-analysis-skill_R/`, `skills/55-ab604-claude-code-r-skills/` |
 | Game theory / theory papers | `skills/65-game-theory-paper-writer/` |
 | Qualitative / thematic analysis | `skills/53-keemanxp-thematic-analysis-skill/` |
-| Data acquisition (SEC filings, open data) | `skills/57-dgunning-edgartools/`, `skills/59-shiquda-openalex-skill/` |
+| Data acquisition (Kaggle, SEC filings, open data) | `skills/72-kaggle-research/`, `skills/57-dgunning-edgartools/`, `skills/59-shiquda-openalex-skill/` |
 | Literature review | `skills/36-taoyunudt-literature-review-skill/`, `skills/52-keemanxp-slr-prisma/`, `skills/59-shiquda-openalex-skill/` |
+| Lit-review tool selection / PDF→Markdown / cited Q&A over PDFs / PRISMA screening runners | `skills/71-brycewang-lit-review-agent-tools/` |
 | Citation checking | `skills/62-PHY041-claude-skill-citation-checker/` |
 | Manuscript writing / proofreading | `skills/04-K-Dense-AI-claude-scientific-writer/`, `skills/38-peternka-academic-proofreader/` |
 | Peer review / referee reports / referee responses | `skills/21-claesbackman-AI-research-feedback/`, `skills/12-pedrohcgs-claude-code-my-workflow/`, `skills/67-econfin-workflow-toolkit/` |
 | LaTeX / Quarto compilation, slides | `skills/08-ndpvt-web-latex-document-skill/`, `skills/60-regisely-superpapers/`, `skills/12-pedrohcgs-claude-code-my-workflow/` |
-| De-AIGC / humanize | `skills/48-copaper-ai-chinese-de-aigc/`, `skills/45-stephenturner-skill-deslop/`, `skills/47-conorbronsdon-avoid-ai-writing/` |
+| De-AIGC / humanize | `skills/48-de-AIGC-skills/`, `skills/45-stephenturner-skill-deslop/`, `skills/47-conorbronsdon-avoid-ai-writing/` |
 | Chinese SSCI/CSSCI journal polishing | `skills/70-ssci-polish/`, `skills/49-voidborne-d-humanize-chinese/` |
 | Replication | `skills/28-maxwell2732-paper-replicate-agent-demo/`, `skills/29-quarcs-lab-project20XXy/` |
 | Open science / reproducibility | `skills/54-scdenney-open-science-skills/`, `skills/29-quarcs-lab-project20XXy/` |
@@ -80,12 +98,14 @@ Trigger phrases (any one is enough to dispatch to the orchestrator):
 - "end-to-end empirical paper"
 - "完整复现"
 - "from proposal to submission"
+- "从数据到 docx 论文全文" / "一条龙" / "出一份 Word 版论文"
+- "raw data to a finished Word manuscript"
 
 The orchestrator is **not** the right entry point for a single-task ask (e.g. "fit a DiD", "recode this variable", "write a referee report") — those are listed in the Method → where to start table above.
 
 ## Coverage Notes
 
-- `skills/69-Paper-WorkFlow/` is a **git submodule**. If its folder is empty, the copy or clone skipped submodules (`git submodule update --init` fixes a clone); fall back to the `skills/00.*` flagship pipeline skills, which are vendored directly.
+- `skills/69-Paper-WorkFlow/` is a **git submodule**. If its folder is empty, the copy or clone skipped submodules (`git submodule update --init` fixes a clone); fall back to the `skills/00*` flagship pipeline skills, which are vendored directly. Those end at publication-ready tables and figures plus a Step 8.5 handoff contract (`exhibits_index.md` + `results_summary.json`); pair them with a writing skill for the manuscript itself, since assembling and gating the full `.docx` lives in the orchestrator.
 - The vendored ARIS collection (`skills/42-wanshuiyin-ARIS/`) also ships its skill set as OpenAI Codex CLI runtime ports (`skills-codex*` subtrees). Those stay on disk but are excluded from `catalog/skills.json` (see `scripts/skill_discovery.py`) — route Claude agents to the primary `skills/` tree only.
 
 ## Install Notes
@@ -93,13 +113,17 @@ The orchestrator is **not** the right entry point for a single-task ask (e.g. "f
 - Whole-repo imports are supported by this root `SKILL.md` as a lightweight compatibility entry point.
 - Individual skill installs are still preferred when a runtime expects one folder per skill. Copy the folder that directly contains the target `SKILL.md`.
 - Do not copy the repository root into a runtime and expect every child skill to become individually registered unless that runtime explicitly supports recursive skill discovery.
-- **Name collisions:** the catalog contains 47 bare `name`s shared across collections (e.g. `data-analysis`, `lit-review`, `proofread`). When a runtime registers skills by flat name, install one collection at a time, or disambiguate with the globally-unique `qualified_name` field in `catalog/skills.json` (`<collection>::<name>`, e.g. `12-pedrohcgs-claude-code-my-workflow::data-analysis`), or the full `skills/<collection>/.../SKILL.md` path.
+- **Do not flat-install the whole catalog** (e.g. symlinking every child folder into `~/.claude/skills`). Every registered skill's description is loaded at session start — about 68k tokens for all 1,151 here — and runtimes truncate long skill listings, so matching gets *worse*, not better. Use a plugin, this router, or a handful of copied skills.
+- **Name collisions:** the catalog contains 48 bare `name`s shared across collections (e.g. `data-analysis`, `lit-review`, `proofread`); `catalog/curation.json` names one preferred copy of each, which `scripts/find-skill.py` returns. When a runtime registers skills by flat name, install one collection at a time, or disambiguate with the globally-unique `qualified_name` field in `catalog/skills.json` (`<collection>::<name>`, e.g. `12-pedrohcgs-claude-code-my-workflow::data-analysis`), or the full `skills/<collection>/.../SKILL.md` path.
 
 ## Key Files
 
 - `catalog/skills.json`: machine-readable list of vendored skills.
-- `catalog/skills-enriched.json`: same list plus `tags`, `quality_score`, `license`, and `commercial_use` for filtering.
+- `catalog/skills-enriched.json`: same list plus `tier`, `tags`, `quality_score`, `license`, and `commercial_use` for filtering.
+- `catalog/curation.json`: hand-curated routing tiers (core collections, the preferred copy of each duplicated name, out-of-domain prefixes). Ranking only — nothing is removed.
+- `scripts/find-skill.py`: ranked search over the catalog (the router's search step).
 - `docs/SKILL_CATALOG.md`: human-readable skill index.
 - `docs/TAXONOMY.md`: task and method taxonomy.
 - `docs/GOLDEN_WORKFLOWS.md`: ready-to-use empirical-research prompts.
 - `docs/INSTALL.md`: runtime installation guidance for single-skill and whole-repo use.
+- `docs/CONTENT_ZH.md` and `README-zh-CN.md`: Chinese-language collection index and entry point. Prefer these when the user is working in Chinese — several collections (de-AIGC, SSCI/CSSCI polishing, Chinese academic writing) are documented there in more detail than in the English docs.

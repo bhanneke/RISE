@@ -4,9 +4,20 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/grant-proposal/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/grant-proposal/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-11-24</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/grant-proposal/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/grant-proposal/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Grant Proposal: From Research Ideas to Fundable Application
+
+> **Before each reviewer slot**, follow Selectable Reviewers:
+> resolve invocation → `.aris/reviewer.json` → Claude Code default (Codex MCP)
+> with `reviewer_route.py` through the canonical helper resolver, preserving this
+> slot's tier, fresh contexts, source/image inputs and deterministic gates.
+> Codex examples/pins below apply only to `backend=codex`; other routes use their
+> own first-call/reply contract. Save the route and actual returned identity;
+> unavailable selections are `REVIEW_UNAVAILABLE`. Classify acceptance from actual
+> families/completion/scope. Forward invocation reviewer/model/effort overrides
+> to reviewer-bearing children. Generation workers are unchanged.
+
 
 Draft a grant proposal based on: **$ARGUMENTS**
 
@@ -35,7 +46,7 @@ Grant proposals argue for **future work** (feasibility + potential), not complet
 
 - **GRANT_TYPE = `KAKENHI`** — Default grant type. Supported: `KAKENHI`, `NSF`, `NSFC`, `ERC`, `DFG`, `SNSF`, `ARC`, `NWO`, `GENERIC`. Override via argument (e.g., `/grant-proposal "topic — NSF"`).
 - **GRANT_SUBTYPE = `auto`** — Sub-type within the grant agency. Examples: KAKENHI `Start-up`/`Wakate`/`Kiban-B`; NSFC `Youth`/`Excellent-Youth`/`Distinguished`/`Overseas`/`Key`; NSF `CAREER`/`CRII`/`Standard`. Auto-detected from argument or defaults to the most common sub-type.
-- **REVIEWER_MODEL = `gpt-5.5`** — Model used via Codex MCP for proposal review. Must be an OpenAI model (e.g., `gpt-5.5`, `o3`, `gpt-4o`).
+- **REVIEWER_MODEL = `gpt-6-astra`** — Model used via Codex MCP for proposal review. For `backend=codex`, use an OpenAI model (e.g., `gpt-6-astra`, `gpt-6.1-sol`).
 - **OUTPUT_FORMAT = `markdown`** — Output format. Supported: `markdown`, `latex`. LaTeX uses grant-specific templates when available.
 - **MAX_REVIEW_ROUNDS = 2** — Maximum external review-revise cycles before finalizing.
 - **OUTPUT_DIR = `grant-proposal/`** — Directory for generated proposal files.
@@ -58,12 +69,15 @@ cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
 fi
+if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+    ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
+fi
 STYLE_HELPER=".aris/tools/extract_paper_style.py"
 [ -f "$STYLE_HELPER" ] || STYLE_HELPER="tools/extract_paper_style.py"
 [ -f "$STYLE_HELPER" ] || { [ -n "${ARIS_REPO:-}" ] && STYLE_HELPER="$ARIS_REPO/tools/extract_paper_style.py"; }
 [ -f "$STYLE_HELPER" ] || {
-  echo "ERROR: extract_paper_style.py not resolved at .aris/tools/, tools/, or \$ARIS_REPO/tools/." >&2
-  echo "       Fix: rerun bash tools/install_aris.sh, export ARIS_REPO, or copy the helper to tools/." >&2
+  echo "ERROR: extract_paper_style.py not resolved at .aris/tools/, tools/, \$ARIS_REPO/tools/, or via ~/.aris/repo." >&2
+  echo "       Fix: rerun bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), export ARIS_REPO, or copy the helper to tools/." >&2
   echo "       --style-ref cannot be satisfied; aborting." >&2
   exit 1
 }
@@ -83,7 +97,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 
 - Use `style_profile.md` to align paragraph length tendency, figure budget, and citation density. Grant-type-mandated section order (KAKENHI 研究目的 → 研究計画・方法 → 準備状況, NSF Intellectual Merit → Broader Impacts, etc.) **always takes precedence** — the agency template wins, the style ref only refines secondary structure.
 - **Never copy proposal prose, claims, vision statements, or budget items** from anything reachable through the cache. The reference might be someone else's funded proposal; reproducing language risks plagiarism.
-- **Never pass `— style-ref` (or the cache contents) to the GPT-5.4 reviewer sub-agent** when it scores the draft — the proposal must be judged on its own merits.
+- **Never pass `— style-ref` (or the cache contents) to the GPT-6-Astra reviewer sub-agent** when it scores the draft — the proposal must be judged on its own merits.
 
 ### Grant Type Specifications
 
@@ -332,7 +346,7 @@ Timeline: [timeline]
 ```
 
 **What this does:**
-- GPT-5.4 xhigh acts as a grant review panelist (not a paper reviewer)
+- GPT-6-Astra xhigh acts as a grant review panelist (not a paper reviewer)
 - Evaluates aims independence, narrative arc, risk identification, timeline realism
 - Identifies the single biggest reviewer concern
 - Provides actionable fixes ranked by severity
@@ -348,7 +362,7 @@ Apply structural feedback before proceeding to drafting.
 - Aim 2: [title] — Risk: MEDIUM
 - Aim 3: [title] — Risk: LOW
 - Timeline: [summary]
-- Reviewer feedback: [key points from GPT-5.4]
+- Reviewer feedback: [key points from GPT-6-Astra]
 
 Proceed to section drafting? Or adjust the structure?
 ```
@@ -457,27 +471,41 @@ Which should I generate? (e.g., "1 and 3", "all", "skip")
 Invoke `/research-review` on the complete draft for grant-type-specific evaluation:
 
 ```
-/research-review "Complete [GRANT_TYPE] [GRANT_SUBTYPE] proposal draft. Evaluate as a [GRANT_TYPE] review panelist using official criteria. [PASTE FULL PROPOSAL TEXT]"
+/research-review "Read the grant review bundle at grant-proposal/codex_panel_review_bundle_round_1.md and evaluate it as a [GRANT_TYPE] [GRANT_SUBTYPE] review panelist using the official criteria."
 ```
 
 **What this does:**
-- GPT-5.4 xhigh acts as a grant review panelist
+- GPT-6-Astra xhigh acts as a grant review panelist
 - Scores each section 1-5 using agency-specific criteria
 - Identifies fatal flaws and recommends funding/revisions/rejection
 - Provides ranked action items for improvement
 - All feedback saved to `grant-proposal/GRANT_REVIEW.md`
 
-> ⚠️ **Codex MCP fallback**: If `mcp__codex__codex` is not available (no OpenAI API key), skip external review. Note "External review skipped — no Codex MCP available. Consider running `/auto-review-loop-llm` separately." in GRANT_REVIEW.md. The proposal is still usable without external review.
+> If the selected reviewer is unavailable, record `REVIEW_UNAVAILABLE` in `GRANT_REVIEW.md`. The proposal remains an explicitly unreviewed draft; do not switch providers automatically.
 
 If `/research-review` is invoked (preferred), it handles the Codex call internally. If calling Codex directly (e.g., to maintain thread context from Phase 2):
 
 #### Round 1 (full draft review):
 
+Write `grant-proposal/codex_panel_review_bundle_round_1.md` containing the
+criteria below plus the absolute path to `grant-proposal/GRANT_PROPOSAL.md`,
+then keep the Codex MCP prompt short:
+
+> Resolve this reviewer slot first; the following is the `backend=codex` example.
+
 ```
 mcp__codex__codex-reply:
   threadId: [from Phase 2]
-  config: {"model_reasoning_effort": "xhigh"}
+  # inherits the thread's model/effort — do not re-send
   prompt: |
+    Read the grant review bundle at <absolute path to
+    grant-proposal/codex_panel_review_bundle_round_1.md> and follow all
+    instructions in it.
+```
+
+Bundle contents:
+
+```
     Review this complete [GRANT_TYPE] [GRANT_SUBTYPE] proposal draft.
 
     Act as a [GRANT_TYPE] review panelist. Evaluate using the official criteria:
@@ -495,18 +523,34 @@ mcp__codex__codex-reply:
     - Single most impactful change to improve funding chances?
     - Any fatal flaws?
 
-    [PASTE FULL PROPOSAL TEXT]
+    Proposal draft path (read this file yourself): <absolute path to
+    grant-proposal/GRANT_PROPOSAL.md>
 ```
 
 #### Round 2+ (after revisions):
 
 If MAX_REVIEW_ROUNDS > 1 and revisions were applied:
 
+Write `grant-proposal/codex_panel_review_bundle_round_N.md` containing the
+change log, any raw diff / changed-file paths worth inspecting, and the
+absolute path to the current `grant-proposal/GRANT_PROPOSAL.md`, then reuse the
+same short MCP prompt pattern:
+
+> Resolve this reviewer slot first; the following is the `backend=codex` example.
+
 ```
 mcp__codex__codex-reply:
   threadId: [saved from Round 1]
-  config: {"model_reasoning_effort": "xhigh"}
+  # inherits the thread's model/effort — do not re-send
   prompt: |
+    Read the grant review bundle at <absolute path to
+    grant-proposal/codex_panel_review_bundle_round_N.md> and follow all
+    instructions in it.
+```
+
+Bundle contents:
+
+```
     [Round N review of revised [GRANT_TYPE] [GRANT_SUBTYPE] proposal]
 
     Since your last review, I have applied the following changes:
@@ -517,7 +561,8 @@ mcp__codex__codex-reply:
     Please re-evaluate. Same format: section scores, overall assessment, remaining weaknesses.
     Focus on whether the CRITICAL and MAJOR issues from Round 1 have been adequately addressed.
 
-    [PASTE REVISED PROPOSAL TEXT]
+    Revised proposal path (read this file yourself): <absolute path to
+    grant-proposal/GRANT_PROPOSAL.md>
 ```
 
 #### Phase 5: Revision & Output
@@ -583,7 +628,7 @@ Before declaring done:
 - Language: [language]
 - Aims: [N] aims covering [summary]
 - Timeline: [N] years
-- Review score: [summary from GPT-5.4]
+- Review score: [summary from GPT-6-Astra]
 - Output: grant-proposal/GRANT_PROPOSAL.md
 
 Files saved to grant-proposal/. Please review and customize:
@@ -629,7 +674,7 @@ Parameters can be passed inline with `—` separator. They flow to sub-skills wh
 | `max review rounds` | 2 | External review cycles | — |
 | `sources` | all | Literature sources | → `/research-lit` |
 | `arxiv download` | false | Download arXiv PDFs | → `/research-lit` |
-| `reviewer model` | gpt-5.5 | Codex review model | → Codex MCP |
+| `reviewer model` | gpt-6-astra | Codex review model | → Codex MCP |
 | `auto proceed` | false | Skip checkpoints | — |
 
 ### Composing with Other Skills

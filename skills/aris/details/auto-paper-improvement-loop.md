@@ -1,11 +1,34 @@
 ---
 name: auto-paper-improvement-loop
-description: "Autonomously improve a generated paper via GPT-5.4 xhigh review → implement fixes → recompile, for 2 rounds. Use when user says \"改论文\", \"improve paper\", \"论文润色循环\", \"auto improve\", or wants to iteratively polish a generated paper."
+description: "Autonomously improve a generated paper via GPT-6-Astra xhigh review → implement fixes → recompile, for 2 rounds. Use when user says \"改论文\", \"improve paper\", \"论文润色循环\", \"auto improve\", or wants to iteratively polish a generated paper."
 argument-hint: "[paper-directory] [— style-ref: <source>] [— edit-whitelist <path>]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Skill, mcp__codex__codex, mcp__codex__codex-reply, mcp__antigravity__antigravity, mcp__antigravity__antigravity-reply, mcp__grok__grok, mcp__grok__grok-reply, mcp__claude-review__review, mcp__claude-review__review_reply, mcp__claude-review__review_start, mcp__claude-review__review_reply_start, mcp__claude-review__review_status, mcp__model-worker__worker, mcp__model-worker__worker_reply
 ---
 
 # Auto Paper Improvement Loop: Review → Fix → Recompile
+
+> **Before each reviewer slot**, follow [Selectable Reviewers](../shared-references/reviewer-backends.md):
+> resolve invocation → `.aris/reviewer.json` → Claude Code default (Codex MCP)
+> with `reviewer_route.py` through the canonical helper resolver, preserving this
+> slot's tier, fresh contexts, source/image inputs and deterministic gates.
+> Codex examples/pins below apply only to `backend=codex`; other routes use their
+> own first-call/reply contract. Save the route and actual returned identity;
+> unavailable selections are `REVIEW_UNAVAILABLE`. Classify acceptance from actual
+> families/completion/scope. Forward invocation reviewer/model/effort overrides
+> to reviewer-bearing children. Writer selection is separate; follow the
+> writing-worker guidance below when drafting or revising prose.
+
+
+> 🔒 **Do not wrap this skill in `/loop`, `/schedule`, or `CronCreate`.** It
+> already loops internally (review → fix → recompile) with its own round
+> structure and a deliberate fresh-reviewer bias guard each round (no
+> `codex-reply`). Re-asking it to "improve the paper" on a
+> wall-clock timer produces no new signal — quality changes when the *review*
+> changes, not when the clock ticks — and a timed re-run that also accepts its
+> own output to decide when to stop crosses into self-acquittal
+> (`acceptance-gate.md`). Schedule the *external wait that precedes it*, not the
+> improvement loop. See
+> [`shared-references/external-cadence.md`](../shared-references/external-cadence.md).
 
 Autonomously improve the paper at: **$ARGUMENTS**
 
@@ -18,7 +41,7 @@ Unlike `/auto-review-loop` (which iterates on **research** — running experimen
 ## Constants
 
 - **MAX_ROUNDS = 2** — Two rounds of review→fix→recompile. Empirically, Round 1 catches structural issues (4→6/10), Round 2 catches remaining presentation issues (6→7/10). Diminishing returns beyond 2 rounds for writing-only improvements.
-- **REVIEWER_MODEL = `gpt-5.5`** — Model used via Codex MCP for paper review.
+- **REVIEWER_MODEL = `gpt-6-astra`** — Model used via Codex MCP for paper review.
 - **REVIEWER_BIAS_GUARD = true** — When `true`, every review round uses a fresh `mcp__codex__codex` thread with no prior review context. Never use `mcp__codex__codex-reply` for review rounds. Set to `false` only for deliberate debugging of the legacy behavior. **Empirical evidence:** running the same paper with `codex-reply` + "since last round we did X" prompts inflated scores from real 3/10 → fake 8/10 across multiple rounds; switching to fresh threads recovered the true 3/10 assessment.
 - **REVIEW_LOG = `PAPER_IMPROVEMENT_LOG.md`** — Cumulative log of all rounds, stored in paper directory.
 - **HUMAN_CHECKPOINT = false** — When `true`, pause after each round's review and present score + weaknesses to the user. The user can approve fixes, provide custom modification instructions, skip specific fixes, or stop early. When `false` (default), runs fully autonomously.
@@ -40,12 +63,15 @@ cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
 fi
+if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+    ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
+fi
 STYLE_HELPER=".aris/tools/extract_paper_style.py"
 [ -f "$STYLE_HELPER" ] || STYLE_HELPER="tools/extract_paper_style.py"
 [ -f "$STYLE_HELPER" ] || { [ -n "${ARIS_REPO:-}" ] && STYLE_HELPER="$ARIS_REPO/tools/extract_paper_style.py"; }
 [ -f "$STYLE_HELPER" ] || {
-  echo "ERROR: extract_paper_style.py not resolved at .aris/tools/, tools/, or \$ARIS_REPO/tools/." >&2
-  echo "       Fix: rerun bash tools/install_aris.sh, export ARIS_REPO, or copy the helper to tools/." >&2
+  echo "ERROR: extract_paper_style.py not resolved at .aris/tools/, tools/, \$ARIS_REPO/tools/, or via ~/.aris/repo." >&2
+  echo "       Fix: rerun bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), export ARIS_REPO, or copy the helper to tools/." >&2
   echo "       --style-ref cannot be satisfied; aborting." >&2
   exit 1
 }
@@ -65,7 +91,7 @@ Sources accepted: local TeX dir / file, local PDF, arXiv id, http(s) URL. Overle
 
 - Use `style_profile.md` only during the **fix-implementation** phase, to nudge structural choices when applying reviewer feedback. Reviewer feedback always takes precedence; style ref is tie-breaker for *how* to apply a fix, not *whether* to apply it.
 - **Never copy prose, claims, examples, or terminology** from anything reachable through the cache when implementing fixes.
-- **Never pass `— style-ref` (or the cache contents) to the GPT-5.4 reviewer sub-agent.** The Reviewer Independence Protocol below requires reviewers see only the artifact and the user's prompt — leaking the style ref would contaminate the review with author-side context. **This is the most critical invariant in this skill.**
+- **Never pass `— style-ref` (or the cache contents) to the GPT-6-Astra reviewer sub-agent.** The Reviewer Independence Protocol below requires reviewers see only the artifact and the user's prompt — leaking the style ref would contaminate the review with author-side context. **This is the most critical invariant in this skill.**
 
 ## Optional: Edit Whitelist (`— edit-whitelist <path>`, opt-in)
 
@@ -232,14 +258,33 @@ done > /tmp/paper_full_text.txt
 
 ### Step 2: Round 1 Review
 
-Send the full paper text AND compiled PDF to GPT-5.4 xhigh:
+Send the full paper text AND compiled PDF to GPT-6-Astra xhigh:
+
+> Resolve this reviewer slot first; the following is the `backend=codex` example.
 
 ```
 mcp__codex__codex:
-  model: gpt-5.5
+  model: gpt-6-astra
   config: {"model_reasoning_effort": "xhigh"}
   prompt: |
     You are reviewing a [VENUE] paper. Please provide a detailed, structured review.
+
+    Judge claim calibration in BOTH directions. Recommend narrowing only when the
+    current scope or modality exceeds the evidence; do not ask for extra hedges
+    around a supported result. Flag stacked hedges, self-defence ("we do not
+    claim"), instruction confessions ("we do not address X"), and generic caveats
+    outside Limitations as writing defects to remove. Tone fixes must never alter
+    facts, negation, modality, scope, comparison direction, or numbers.
+    Also flag narrative defects: a progress-report structure ("we first tried
+    A, then B"), a story built on a metric the method loses, results narrated
+    as defeats ("underperforms", "fails to surpass") instead of explained as a
+    goal difference or tradeoff, experiments with no argumentative duty, an
+    abstract or introduction that opens on background or implementation
+    instead of problem -> gap -> idea -> strongest result, and a conclusion
+    that ends on new self-negation. The fix is reframing and cutting where
+    the evidence supports the reframing; a genuine weakness is stated
+    neutrally and kept in Limitations. Never delete unfavorable numbers from
+    tables, and never dress a weakness as a tradeoff.
 
     ## Paper Files:
     - LaTeX source: [list all section .tex files]
@@ -292,6 +337,8 @@ Parse user response same as `/auto-review-loop`: approve / custom instructions /
 
 ### Step 3: Implement Round 1 Fixes
 
+Follow the Launch Mindset and Optional Writing Worker guidance in `../shared-references/writing-principles.md`. For prose fixes, continue the configured writer with `worker_reply` (or start it with `worker`) under any active edit-whitelist constraints; otherwise revise directly. Pass the accepted fixes, source facts, and target files. Root checks technical accuracy while preserving strong prose; existing reviews, audits, and recompilation still apply.
+
 Parse the review and implement fixes by severity:
 
 **Priority order:**
@@ -301,12 +348,20 @@ Parse the review and implement fixes by severity:
 
 **Edit-whitelist gate (if set):** If `EDIT_WHITELIST` is set, before applying each proposed edit, check the target path against `allowed_paths` / `forbidden_paths` and the new-lines diff against `forbidden_operations` per the "Optional: Edit Whitelist" section. Rejections are logged to `PAPER_IMPROVEMENT_LOG.md` under `## Rejected by edit_whitelist (Round 1)` with file, reason (`path` or `operation`), the offending pattern, and the original reviewer concern. The loop continues with remaining edits — a rejection never aborts the round. Surface a rejection summary at the end of the round.
 
+**Before applying any fix:** calibrate claims to evidence and state them
+directly; generic caveats belong in Limitations only; writing instructions are
+never manuscript content; tone edits never change what the paper knows.
+
 **Common fix patterns:**
 
 | Issue | Fix Pattern |
 |-------|-------------|
 | Assumption-model mismatch | Rewrite assumption to match the model, add formal proposition bridging the gap |
-| Overclaims | Soften language: "validate" → "demonstrate practical relevance", "comparable" → "qualitatively competitive" |
+| Genuine overclaim | Narrow the claim itself to the supported scope/modality — never substitute a softer-sounding synonym for fixing scope, comparison, or aggregation |
+| Supported claim wrapped in caution | Remove the redundant hedges; keep any scope qualifier that makes the claim true |
+| Scattered generic caveats | Consolidate into Limitations and delete the duplicates |
+| Story built on a losing metric, or results narrated as defeats | Reframe around the contest the paper wins; explain the gap as a goal difference or tradeoff when the evidence supports that, otherwise state it neutrally and narrow the claim; keep every number in the table |
+| Experiment with no argumentative duty | Cut, shorten, move to the appendix, or redesign it so it proves the method, the mechanism, the target-scenario value, or rules out an alternative |
 | Missing metrics | Add quantitative table with honest parameter counts and caveats |
 | Theorem not self-contained | Add "Interpretation" paragraph listing all dependencies |
 | Notation confusion | Rename conflicting symbols globally, add Notation paragraph |
@@ -373,12 +428,31 @@ This is advisory only — the inline Step 4.5 check remains the default and cont
 
 If `REVIEWER_BIAS_GUARD = true` (default), use a **fresh** `mcp__codex__codex` thread for Round 2. Do not reuse the Round 1 threadId for prompting. Save the returned threadId only for recovery bookkeeping.
 
+> Resolve this reviewer slot first; the following is the `backend=codex` example.
+
 ```
 mcp__codex__codex:
-  model: gpt-5.5
+  model: gpt-6-astra
   config: {"model_reasoning_effort": "xhigh"}
   prompt: |
     You are reviewing a [VENUE] paper. This is a fresh, zero-context review.
+
+    Judge claim calibration in BOTH directions. Recommend narrowing only when the
+    current scope or modality exceeds the evidence; do not ask for extra hedges
+    around a supported result. Flag stacked hedges, self-defence ("we do not
+    claim"), instruction confessions ("we do not address X"), and generic caveats
+    outside Limitations as writing defects to remove. Tone fixes must never alter
+    facts, negation, modality, scope, comparison direction, or numbers.
+    Also flag narrative defects: a progress-report structure ("we first tried
+    A, then B"), a story built on a metric the method loses, results narrated
+    as defeats ("underperforms", "fails to surpass") instead of explained as a
+    goal difference or tradeoff, experiments with no argumentative duty, an
+    abstract or introduction that opens on background or implementation
+    instead of problem -> gap -> idea -> strongest result, and a conclusion
+    that ends on new self-negation. The fix is reframing and cutting where
+    the evidence supports the reframing; a genuine weakness is stated
+    neutrally and kept in Limitations. Never delete unfavorable numbers from
+    tables, and never dress a weakness as a tradeoff.
     Ignore any prior review rounds, prior fix lists, or executor explanations.
     Judge the paper only from the current LaTeX source and compiled PDF.
 
@@ -419,7 +493,7 @@ Run this only if the paper is theory-heavy (≥5 `\begin{theorem}|\begin{lemma}|
 
 ```bash
 # Invoke the canonical adversarial-review primitive on the current paper.
-# /kill-argument runs two fresh-thread codex 5.5 xhigh calls and writes
+# /kill-argument runs two fresh-thread codex gpt-6-astra ultra calls and writes
 # KILL_ARGUMENT.{md,json} into the paper directory. It is detect-only —
 # it never edits the paper itself.
 /kill-argument "$PAPER_DIR"
@@ -453,9 +527,11 @@ If `/kill-argument` returns `verdict: NOT_APPLICABLE` (paper isn't theory- or sc
 
 Same process as Step 3. Typical Round 2 fixes:
 - Add controlled synthetic experiments validating theory
-- Further soften any remaining overclaims
+- Re-check calibration in both directions: narrow genuine overclaims, state
+  supported claims directly, consolidate scattered generic caveats into
+  Limitations — and do not re-soften claims the evidence already supports
 - Formalize informal arguments (e.g., truncation → formal proposition)
-- Strengthen limitations section
+- Make Limitations more specific only when a material limit is missing
 
 **Edit-whitelist gate (if set):** Same as Step 3 — if `EDIT_WHITELIST` is set, run the path + forbidden-operation checks before applying each proposed edit. Rejections are logged to `PAPER_IMPROVEMENT_LOG.md` under `## Rejected by edit_whitelist (Round 2)` and the loop continues. Surface a rejection summary at the end of the round.
 
@@ -549,7 +625,7 @@ Create `PAPER_IMPROVEMENT_LOG.md` in the paper directory:
 ## Round 1 Review & Fixes
 
 <details>
-<summary>GPT-5.4 xhigh Review (Round 1)</summary>
+<summary>GPT-6-Astra xhigh Review (Round 1)</summary>
 
 [Full raw review text, verbatim]
 
@@ -563,7 +639,7 @@ Create `PAPER_IMPROVEMENT_LOG.md` in the paper directory:
 ## Round 2 Review & Fixes
 
 <details>
-<summary>GPT-5.4 xhigh Review (Round 2)</summary>
+<summary>GPT-6-Astra xhigh Review (Round 2)</summary>
 
 [Full raw review text, verbatim]
 
@@ -611,12 +687,12 @@ paper/
 - **Large file handling**: If the Write tool fails due to file size, immediately retry using Bash (`cat << 'EOF' > file`) to write in chunks. Do NOT ask the user for permission — just do it silently.
 
 - **Preserve all PDF versions** — user needs to compare progression
-- **Save FULL raw review text** — do not summarize or truncate GPT-5.4 responses
+- **Save FULL raw review text** — do not summarize or truncate GPT-6-Astra responses
 - **Reviewer independence (Round 2+)**: when `REVIEWER_BIAS_GUARD = true` (default), use a **fresh** `mcp__codex__codex` thread for every review round; never use `mcp__codex__codex-reply` and never include "since last round" / fix summaries in the prompt. See the Reviewer Independence Protocol section above.
 - **Always recompile after fixes** — verify 0 errors before proceeding
 - **Do not fabricate experimental results** — synthetic validation must describe methodology, not invent numbers
-- **Respect the paper's claims** — soften overclaims rather than adding unsupported new claims
-- **Global consistency** — when renaming notation or softening claims, check ALL files (abstract, intro, method, experiments, theory sections, conclusion, tables, figure captions)
+- **Respect the paper's claims** — narrow genuine overclaims rather than adding unsupported new claims, and state supported claims directly rather than wrapping them in fresh hedges
+- **Global consistency** — when renaming notation or changing a claim's scope, keep every restatement semantically consistent across ALL files (abstract, intro, method, experiments, theory sections, conclusion, tables, figure captions); consistency means matching scope, not copying disclaimer sentences everywhere
 - **Edit-whitelist rejections are LOGGED, not silently dropped** — when `EDIT_WHITELIST` is set and an edit is rejected for a path or forbidden-operation violation, the rejection MUST be appended to `PAPER_IMPROVEMENT_LOG.md` with file, reason, offending pattern, and the original reviewer concern. The loop reports a rejection summary at the end of every round (and in the checkpoint, if `HUMAN_CHECKPOINT = true`). Never silently swallow a whitelist rejection — the audit trail is the whole point of the parameter.
 
 ## Typical Score Progression

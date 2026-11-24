@@ -1,17 +1,36 @@
 ---
 name: kill-argument
 description: "Two-thread adversarial review: a fresh reviewer constructs the strongest 200-word rejection memo, then a second fresh reviewer defends the paper point-by-point and surfaces still-unresolved critical issues. Use when user says \"kill argument\", \"adversarial review\", \"hostile review\", \"rebuttal preparation\", \"reviewer-2 simulation\", or before submitting a theory paper that has already passed standard review rounds."
-argument-hint: [paper-directory]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, mcp__codex__codex
+argument-hint: "[paper-directory]"
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, mcp__codex__codex, mcp__antigravity__antigravity, mcp__antigravity__antigravity-reply, mcp__grok__grok, mcp__grok__grok-reply, mcp__claude-review__review, mcp__claude-review__review_reply, mcp__claude-review__review_start, mcp__claude-review__review_reply_start, mcp__claude-review__review_status
 ---
 
 # Kill Argument Exercise: Adversarial Attack-Defense Review
+
+> **Before each reviewer slot**, follow [Selectable Reviewers](../shared-references/reviewer-backends.md):
+> resolve invocation → `.aris/reviewer.json` → Claude Code default (Codex MCP)
+> with `reviewer_route.py` through the canonical helper resolver, preserving this
+> slot's tier, fresh contexts, source/image inputs and deterministic gates.
+> Codex examples/pins below apply only to `backend=codex`; other routes use their
+> own first-call/reply contract. Save the route and actual returned identity;
+> unavailable selections are `REVIEW_UNAVAILABLE`. Classify acceptance from actual
+> families/completion/scope. Forward invocation reviewer/model/effort overrides
+> to reviewer-bearing children. Generation workers are unchanged.
+
+
+> 🔒 **Do not wrap this skill in `/loop`, `/schedule`, or `CronCreate`.** It is
+> verdict-bearing — it produces an adversarial accept/reject verdict (attack →
+> adjudication). Re-firing it on a wall-clock timer adds no new signal (the
+> attack changes only when the *paper* changes). Schedule the *external wait
+> that precedes it* — draft stable → then run this **once** before submission.
+> See
+> [`shared-references/external-cadence.md`](../shared-references/external-cadence.md).
 
 Stress-test the headline claims of a paper against the strongest possible rejection argument: **$ARGUMENTS**
 
 ## Why This Exists
 
-Standard score-based reviews (`/peer-review`, `/research-review`, `/auto-paper-improvement-loop`) tend to produce **balanced** weakness lists.  Each weakness gets ~equal attention, ranked CRITICAL > MAJOR > MINOR.  Empirically, this misses one specific failure mode: the **single most damaging argument** a reviewer would write in a rejection paragraph — the one sentence that, if a senior area chair reads it, kills the paper.
+Standard score-based reviews (`/research-review`, `/auto-paper-improvement-loop`) tend to produce **balanced** weakness lists.  Each weakness gets ~equal attention, ranked CRITICAL > MAJOR > MINOR.  Empirically, this misses one specific failure mode: the **single most damaging argument** a reviewer would write in a rejection paragraph — the one sentence that, if a senior area chair reads it, kills the paper.
 
 A balanced reviewer might list "scope-overclaim risk" as MAJOR alongside 3-5 other MAJORs, never quite committing.  An adversarial reviewer **must commit**: their entire job is to convince the area chair to reject in 200 words.
 
@@ -23,7 +42,7 @@ This skill runs that adversarial pass deliberately, then forces a second fresh r
 
 | Skill | What it asks the reviewer | Output |
 |-------|---------------------------|--------|
-| `/peer-review` | "Score this paper, list weaknesses by severity" | balanced weakness list |
+| Standard peer review | "Score this paper, list weaknesses by severity" | balanced weakness list |
 | `/research-review` | "Deep technical review of methods + claims" | structured deep critique |
 | `/proof-checker` | "Is this theorem actually proved?" | per-step proof obligation audit |
 | `/paper-claim-audit` | "Does the paper report numbers truthfully?" | per-claim evidence verification |
@@ -39,16 +58,17 @@ This skill is **complementary**, not a replacement.  Run after standard reviews 
 - For theory papers with a high-level title that may oversimplify the actual theorem (the most common reject-attack pattern).
 - For papers where a reviewer might attack scope, assumption-vs-claim mismatch, missing proof obligations, or evidence-vs-headline gaps.
 
-This skill is most valuable for **theory papers** with ≥5 theorem-class environments (so the headline depends on real proof obligations).  For empirical papers without theorems, use `/peer-review` instead.
+This skill is most valuable for **theory papers** with ≥5 theorem-class environments (so the headline depends on real proof obligations).  For empirical papers without theorems, use `/research-review` instead.
 
 ## Constants
 
-- **REVIEWER_MODEL** = `gpt-5.5` (default; specify `gpt-5.4` if you want to fall back to the legacy default).  Reviewer reasoning effort = `xhigh`.
+- **REVIEWER_MODEL** = `gpt-6-astra` (default; `gpt-6.1-sol` is the first model capability fallback per `shared-references/reviewer-routing.md`, `gpt-5.4` only as an explicit legacy override).  Reviewer reasoning effort = `ultra` for the attack / defense / adjudication threads (deep-audit tier; capability fallback per `shared-references/reviewer-routing.md`, never below `xhigh`).  Beast-mode axis probes stay at `xhigh`.
 - **CONTEXT_POLICY** = `fresh` (REVIEWER_BIAS_GUARD).  Each thread is a fresh `mcp__codex__codex` call.  **Never** use `mcp__codex__codex-reply`.  No prior review summary, fix list, or executor explanation enters either prompt.
 - **ATTACK_LENGTH** = approximately 200 words (do not exceed 250).  Single coherent argument, not a list.
 - **DEFENSE_DECOMPOSITION** = 3-7 atomic rejection points extracted from the attack memo.  Each gets its own classification.
 - **CLASSIFICATION** = `answered_by_current_text` / `partially_answered` / `still_unresolved`.  (Names chosen so the adjudicator does not assume "fixed" implies prior history of patching — they read the paper as a fresh reviewer would.)
 - **OUTPUT** = `KILL_ARGUMENT.md` (human-readable) + `KILL_ARGUMENT.json` (machine-readable) in the paper directory.
+- **RENDER_HTML = true** — When `true` (default), auto-render `KILL_ARGUMENT.md` to HTML after writing the report. Uses **full Codex review gate** (audit-class artifact — full render-fidelity check matches the skill's cross-model audit invariant; the sidecar `KILL_ARGUMENT.json` is also passed to the renderer). Set `false` to skip, or pass `— render html: false`.
 
 ## Workflow
 
@@ -77,10 +97,12 @@ If a compiled PDF is missing, the skill should still run on .tex source alone, b
 
 Invoke `mcp__codex__codex` (NOT `codex-reply`) with the following prompt structure:
 
+> Resolve this reviewer slot first; the following is the `backend=codex` example.
+
 ```
 mcp__codex__codex:
-  model: gpt-5.5
-  config: {"model_reasoning_effort": "xhigh"}
+  model: gpt-6-astra
+  config: {"model_reasoning_effort": "ultra"}
   sandbox: read-only
   cwd: <paper directory>
   prompt: |
@@ -133,14 +155,56 @@ mcp__codex__codex:
 
 Save the returned `threadId` for the trace; do NOT pass it to Thread 2.  Save the attack memo verbatim — both Thread 2 and the human-readable report use it.
 
+### Step 2.5 (optional, `beast` effort): multi-axis attack fan-out
+
+**Default OFF.** The deliverable of this skill *is* a verdict — the single
+strongest rejection paragraph — and
+[`shared-references/fan-out-pattern.md`](../shared-references/fan-out-pattern.md)
+is explicit: **do not fan out the verdict; fan out only the evidence that
+feeds it.** The default single-commitment attack (Step 2) is deliberate —
+forcing one paragraph produces sharper feedback than a balanced list (see *Why
+This Exists*). Do **not** replace it with a list.
+
+Under `beast` effort you may widen the *evidence* the commitment draws on
+without diluting the commitment:
+
+1. **Axis probes (evidence breadth).** Run the six attack axes (theorem
+   validity / assumption-vs-claim / missing obligation / limit-order /
+   claim-vs-evidence / scope-overclaim) as **separate fresh-codex probes**,
+   each asked for the strongest ~120-word thrust *on that axis alone*. These
+   are evidence-gathering, not the verdict. Probes run at `xhigh` (not
+   `ultra`) — six serial delegating calls would multiply cost for evidence
+   that the ultra-tier commit re-judges anyway.
+   - **These are NOT Claude subagents, and there is deliberately NO `Agent`
+     grant.** Each probe is a fresh `mcp__codex__codex` call — the adversary
+     must be cross-model (non-Claude). Codex MCP is **serial** (concurrent
+     codex calls hang), so the probes run **sequentially** — Tier-3 in the
+     fan-out ladder. This is exactly why `kill-argument` lists no `Agent` in
+     `allowed-tools`: it spawns nothing; it threads codex calls.
+2. **Commit (the verdict, still single).** A final fresh-codex synthesis reads
+   the six probes plus the paper and must **commit to the single most damaging
+   ~200-word rejection paragraph** — selecting and fusing at most two axes, NOT
+   listing all six. The Step-2 commitment requirement is unchanged; the probes
+   only ensure no axis was overlooked before committing.
+
+The adjudication (Step 3) then runs against this committed attack exactly as in
+the default flow. Cost: `beast` adds ~6 extra serial codex calls — use it for
+the final pre-submission pass on a high-stakes paper, not routinely.
+
+Tracing: record each probe's `threadId` (`axis_probe_thread_ids[]`) and the
+synthesis `threadId` in the trace, the same way Steps 2–3 save their thread
+ids. The committed attack memo, not the six probes, is what Step 3 consumes.
+
 ### Step 3: Adjudication memo (Thread 2, fresh codex with attack + paper)
 
 Invoke a second `mcp__codex__codex` call (still NOT `codex-reply` — Thread 2 is independent of Thread 1's codex history):
 
+> Resolve this reviewer slot first; the following is the `backend=codex` example.
+
 ```
 mcp__codex__codex:
-  model: gpt-5.5
-  config: {"model_reasoning_effort": "xhigh"}
+  model: gpt-6-astra
+  config: {"model_reasoning_effort": "ultra"}
   sandbox: read-only
   cwd: <paper directory>
   prompt: |
@@ -223,7 +287,7 @@ Compose the human-readable report `<paper-dir>/KILL_ARGUMENT.md`:
 # Kill Argument Report — <paper title>
 
 **Date**: <YYYY-MM-DD>
-**Reviewer model**: gpt-5.5 xhigh, fresh threads (no codex-reply)
+**Reviewer model**: <resolved pair that actually ran — target gpt-6-astra ultra>, fresh threads (no codex-reply)
 **Attack thread**: <threadId 1>
 **Adjudicator thread**: <threadId 2>
 **Verdict**: <PASS / WARN / FAIL / NOT_APPLICABLE / BLOCKED / ERROR> (`reason_code: <...>`)
@@ -269,8 +333,8 @@ ARIS Audit Artifact Schema (`shared-references/assurance-contract.md`):
   },
   "trace_path": ".aris/traces/kill-argument/<date>_run<NN>/",
   "thread_id": "<defense threadId — primary; attack threadId in details>",
-  "reviewer_model": "gpt-5.5",
-  "reviewer_reasoning": "xhigh",
+  "reviewer_model": "<resolved — the model that actually ran (target: gpt-6-astra)>",
+  "reviewer_reasoning": "<resolved — the effort that actually ran (target: ultra)>",
   "generated_at": "<UTC ISO-8601>",
   "details": {
     "attack_thread_id": "<threadId 1>",
@@ -310,8 +374,8 @@ paper after running the audit.
 |---|---|---|
 | `FAIL` | `unresolved_critical` | ≥1 `still_unresolved` at `critical` severity |
 | `WARN` | `unresolved_major_or_minor` | ≥1 `still_unresolved` at `major` or `minor` severity (and no `critical`) |
-| `WARN` | `partial_critical_or_repeated_major` | ≥1 `partially_answered` at `critical`, OR ≥2 `partially_answered` at `major` |
-| `PASS` | `defense_survives_with_minor_partial_only` | 0 `still_unresolved`, AND all `partially_answered` are at `minor` severity |
+| `WARN` | `partial_critical_or_repeated_major` | 0 `still_unresolved`, AND ≥1 `partially_answered` at `critical` or `major` |
+| `PASS` | `defense_survives_with_minor_partial_only` | 0 `still_unresolved`, AND ≥1 `partially_answered`, all at `minor` severity |
 | `PASS` | `defense_survives` | 0 `still_unresolved`, AND 0 `partially_answered` |
 | `NOT_APPLICABLE` | `not_theory_or_scope_paper` | Paper has <2 `\begin{theorem\|lemma\|proposition\|corollary}` AND no scope / generality claims in abstract |
 | `NOT_APPLICABLE` | `headline_unstable` | Title or abstract changed within the last 2 commits — re-run after headline stabilizes |
@@ -321,8 +385,9 @@ paper after running the audit.
 | `ERROR` | `decomposition_parse_failed` | Adjudicator thread did not return parseable per-point structure |
 | `ERROR` | `trace_save_failed` | Trace directory write failed |
 
-`PASS` requires `still_unresolved == 0`. Any `partially_answered` at
-`major` or higher → at most `WARN`.
+`PASS` requires `still_unresolved == 0`. With `still_unresolved == 0`, any
+`partially_answered` at `major` or higher makes the best available verdict
+`WARN` — never `PASS`.
 
 The verdict is computed from the per-point counts; do NOT let the
 defense thread output the top-level verdict directly (that would let
@@ -359,6 +424,7 @@ To the user:
 - `<paper-dir>/KILL_ARGUMENT.json` — machine-readable ledger
 - `.aris/traces/kill-argument/<date>_runNN/` — per-thread codex traces (Attack memo + Adjudication memo)
 - Optional: applied fixes if user explicitly requests; default is **detect-only, do not auto-modify**.
+- `<paper-dir>/KILL_ARGUMENT.html` (when `RENDER_HTML = true`, default) — single-file HTML view auto-rendered via `/render-html "<paper-dir>/KILL_ARGUMENT.md" --json "<paper-dir>/KILL_ARGUMENT.json"`. Full review gate applies. The `.review.json` sidecar carries the render-fidelity verdict. **Non-blocking**: if `/render-html` fails (helper missing, Codex MCP unavailable, file write error), log the failure and treat the skill as complete — the HTML view is a convenience, not a prerequisite for the kill-argument verdict.
 
 ## Key Rules
 
@@ -372,7 +438,7 @@ To the user:
 
 ## When NOT to Use
 
-- Empirical papers without theorems / scope claims — `/peer-review` is more useful.  The skill emits `NOT_APPLICABLE` with `reason_code: not_theory_or_scope_paper` in this case.
+- Empirical papers without theorems / scope claims — `/research-review` is more useful.  The skill emits `NOT_APPLICABLE` with `reason_code: not_theory_or_scope_paper` in this case.
 - Very early drafts where the headline isn't stable yet — fix the headline first.  The skill emits `NOT_APPLICABLE` with `reason_code: headline_unstable` if the title or abstract changed within the last 2 commits.
 - Papers with ongoing experiments — wait until results stabilize, then run.
 - (`/auto-paper-improvement-loop` Step 5.5 used to run this protocol inline; as of May 2026 it now invokes `/kill-argument` and reads `KILL_ARGUMENT.json` instead, so there is no longer a "do not invoke from inside auto-loop" exclusion.)

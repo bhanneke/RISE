@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/alejandroll10/zeropaper>
 
-**Licence:** `unclassified (licence file present; see repository)`
+**Licence:** `Auto Research Pipeline - Research Use License v1.1 (LICENSE file; custom non-commercial licence, not OSI open source)`
 
 **Source:** [`projects/landscape/zeropaper.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/zeropaper.yml)
 

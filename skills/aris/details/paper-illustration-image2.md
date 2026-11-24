@@ -1,11 +1,22 @@
 ---
 name: paper-illustration-image2
 description: "Generate publication-quality academic illustrations through a local Codex app-server bridge that uses Codex native image generation. This is a separate experimental alternative to `paper-illustration`, intended for Claude Code users who want a GPT-image-style renderer without modifying the original skill."
-argument-hint: [description-or-method-file]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, mcp__codex-image2__generate, mcp__codex-image2__generate_start, mcp__codex-image2__generate_status, mcp__codex__codex, mcp__codex__codex-reply
+argument-hint: "[description-or-method-file]"
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, mcp__codex-image2__generate, mcp__codex-image2__generate_start, mcp__codex-image2__generate_status, mcp__codex__codex, mcp__codex__codex-reply, mcp__antigravity__antigravity, mcp__antigravity__antigravity-reply, mcp__grok__grok, mcp__grok__grok-reply, mcp__claude-review__review, mcp__claude-review__review_reply, mcp__claude-review__review_start, mcp__claude-review__review_reply_start, mcp__claude-review__review_status
 ---
 
 # Paper Illustration Image2
+
+> **Before each reviewer slot**, follow [Selectable Reviewers](../shared-references/reviewer-backends.md):
+> resolve invocation → `.aris/reviewer.json` → Claude Code default (Codex MCP)
+> with `reviewer_route.py` through the canonical helper resolver, preserving this
+> slot's tier, fresh contexts, source/image inputs and deterministic gates.
+> Codex examples/pins below apply only to `backend=codex`; other routes use their
+> own first-call/reply contract. Save the route and actual returned identity;
+> unavailable selections are `REVIEW_UNAVAILABLE`. Classify acceptance from actual
+> families/completion/scope. Forward invocation reviewer/model/effort overrides
+> to reviewer-bearing children. Generation workers are unchanged.
+
 
 Generate publication-quality paper figures using **Claude as the planner/reviewer**
 and a **local Codex app-server MCP bridge** as the raster renderer.
@@ -87,11 +98,14 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
   if [ -n "${CLAUDE_SKILL_DIR:-}" ] && [ -f "$CLAUDE_SKILL_DIR/scripts/paper_illustration_image2.py" ]; then
     IMAGE2_HELPER="$CLAUDE_SKILL_DIR/scripts/paper_illustration_image2.py"
   fi
-  # Layers 1-3: shared-runtime chain via shim at tools/paper_illustration_image2.py.
+  # Layers 1-4: shared-runtime chain via shim at tools/paper_illustration_image2.py.
   if [ -z "$IMAGE2_HELPER" ]; then
     cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
     if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
         ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
+    fi
+    if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+        ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
     fi
     IMAGE2_HELPER=".aris/tools/paper_illustration_image2.py"
     [ -f "$IMAGE2_HELPER" ] || IMAGE2_HELPER="tools/paper_illustration_image2.py"
@@ -99,8 +113,8 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
     [ -f "$IMAGE2_HELPER" ] || IMAGE2_HELPER=""
   fi
   [ -z "$IMAGE2_HELPER" ] && {
-    echo "ERROR: paper_illustration_image2.py not resolved (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-3: .aris/tools/, tools/, \$ARIS_REPO/tools/)." >&2
-    echo "       /paper-illustration-image2 cannot proceed. Fix: rerun bash tools/install_aris.sh, or copy the canonical script from \$ARIS_REPO/skills/paper-illustration-image2/scripts/." >&2
+    echo "ERROR: paper_illustration_image2.py not resolved (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-4: .aris/tools/, tools/, \$ARIS_REPO/tools/, \$ARIS_REPO/tools/ via ~/.aris/repo)." >&2
+    echo "       /paper-illustration-image2 cannot proceed. Fix: rerun bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), or copy the canonical script from \$ARIS_REPO/skills/paper-illustration-image2/scripts/." >&2
     exit 1
   }
   ```
@@ -231,9 +245,8 @@ layout plan:
 - relative module prominence
 - arrow routing and likely collision points
 
-If `mcp__codex__codex` is available, you may ask it for a short second-opinion
-layout critique here, but Claude should still complete this step even without
-Codex.
+If the selected text-review route is available, you may ask it for a short second-opinion
+layout critique here, but the executor should still complete this step without an external critic.
 
 Use Codex layout critique for:
 
@@ -253,7 +266,7 @@ before rendering:
 - the figure will read clearly in grayscale / print
 - no glow, rainbow gradient, or slide-deck decoration slips in
 
-If `mcp__codex__codex` is available, you may ask it for a short text-only
+If the selected text-review route is available, you may ask it for a short text-only
 style audit, but do not block on it.
 
 ## Step 4: Generate Through the Bridge

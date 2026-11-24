@@ -17,7 +17,9 @@ Generate or refresh `project_dashboard.html` — a single scrollable HTML page w
 
 ### `/dashboard` or `/dashboard refresh` — Rebuild from current state
 
-Scan the project and regenerate all sections of `project_dashboard.html`:
+If `project_dashboard.html` does not exist yet, run `python3 scripts/generate_dashboard.py` first — it scans
+the project and writes the operational skeleton, so you only author the research sections. The script
+never overwrites an existing dashboard (use `--fresh` to force), so a refresh updates the file in place:
 
 1. **Scan data:** `find data/ -type f` — count files, sizes, categories. Classify each as `downloaded` or `manual download`.
 2. **Scan scripts:** `find scripts/ -type f -name "*.R" -o -name "*.py" -o -name "*.jl"` — list with status.
@@ -32,7 +34,7 @@ Output: Write/update `project_dashboard.html` in project root.
 
 ### `/dashboard create` — Generate from scratch
 
-Full generation including research design sections. Use after `/discover` and `/strategize` have produced outputs. Prompts user for:
+Run `python3 scripts/generate_dashboard.py --fresh` for the operational sections, then write the research design sections. Use after `/discover` and `/strategize` have produced outputs. Prompts user for:
 - Research question (one sentence)
 - Causal chain (nodes)
 - Contributions (2-4 bullets)
@@ -56,12 +58,33 @@ Append a new entry to the changelog section with today's date. Prompts for:
 | 2 | Data | `#data` | Role inventory + file-level tables with sizes |
 | 3 | Identification | `#identification` | IV/design, specifications, threats, fallback |
 | 4 | Literature | `#literature` | Positioning, proximity, gaps |
-| 5 | Code | `#code` | Scripts list with run status |
+| 5 | Code | `#code` | Scripts list with run status **and understanding status** |
 | 6 | Quality | `#quality` | Component scores and gate status |
 | 7 | History | `#history` | Timeline of quality reports |
 | 8 | Plans | `#plans` | Active plans (DRAFT/APPROVED/COMPLETED) |
 | 9 | Paper | `#paper` | Figures/tables plan, word allocation |
 | 10 | Changelog | `#changelog` | Reverse-chronological milestone log |
+
+---
+
+## Understanding Column (Code section)
+
+The Code section carries a status pill per script from:
+
+```bash
+python3 scripts/explainer_status.py --json
+```
+
+| Status | Pill | Meaning |
+|--------|------|---------|
+| PASSED | green | Current explainer, quiz passed at this fingerprint |
+| UNTESTED | amber | Explainer current, quiz not taken |
+| STALE | amber | Script changed since the explainer was written |
+| MISSING | grey | No explainer |
+
+Link each pill to `quality_reports/explainers/{script}_explainer.md` when it exists. This is the
+early-warning surface for INV-26 — the gate itself fires at `/submit`, and by then a STALE row is
+a deadline problem. See `.claude/rules/understanding.md`.
 
 ---
 

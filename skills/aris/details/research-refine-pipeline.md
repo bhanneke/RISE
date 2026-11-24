@@ -1,10 +1,21 @@
 ---
 name: research-refine-pipeline
 description: 'Run an end-to-end workflow that chains `research-refine` and `experiment-plan`. Use when the user wants a one-shot pipeline from vague research direction to focused final proposal plus detailed experiment roadmap, or asks to "串起来", build a pipeline, do it end-to-end, or generate both the method and experiment plan together.'
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, mcp__codex__codex, mcp__codex__codex-reply
 ---
 
 # Research Refine Pipeline: End-to-End Method and Experiment Planning
+
+> **Before each reviewer slot**, follow [Selectable Reviewers](../shared-references/reviewer-backends.md):
+> resolve invocation → `.aris/reviewer.json` → Claude Code default (Codex MCP)
+> with `reviewer_route.py` through the canonical helper resolver, preserving this
+> slot's tier, fresh contexts, source/image inputs and deterministic gates.
+> Codex examples/pins below apply only to `backend=codex`; other routes use their
+> own first-call/reply contract. Save the route and actual returned identity;
+> unavailable selections are `REVIEW_UNAVAILABLE`. Classify acceptance from actual
+> families/completion/scope. Forward invocation reviewer/model/effort overrides
+> to reviewer-bearing children. Generation workers are unchanged.
+
 
 Refine and concretize: **$ARGUMENTS**
 
@@ -47,12 +58,12 @@ Do not plan a large experiment suite on top of an unstable method. First stabili
 - Extract the problem, rough approach, constraints, resources, and target venue.
 - Check whether `refine-logs/FINAL_PROPOSAL.md` already exists and still matches the current request.
 - If the proposal is missing, stale, or materially different from the current request, run the full `research-refine` stage.
-- If the proposal is already strong and aligned, reuse it and jump to experiment planning.
+- If the proposal is already strong and aligned, reuse it for planning when it also satisfies any threshold explicitly requested for this run.
 - If in doubt, prefer re-running `research-refine` rather than planning experiments for the wrong method.
 
 ### Phase 1: Method Refinement Stage
 
-Run the `research-refine` workflow and keep its V3 philosophy intact:
+Run `research-refine` with any `threshold` and `max rounds` the user supplied:
 
 - preserve the Problem Anchor
 - prefer the smallest adequate mechanism
@@ -67,7 +78,7 @@ Exit this stage only when these are explicit:
 - the key claims and must-run ablations
 - the remaining risks, if any
 
-If the verdict is still `REVISE`, continue into experiment planning only if the remaining weaknesses are clearly documented.
+If a user-requested score threshold is unmet, report the result and stop before planning. With a `REVISE` verdict, continue into planning only if the remaining weaknesses are documented and can be addressed by the planned experiments.
 
 ### Phase 2: Planning Gate
 

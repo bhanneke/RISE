@@ -1,3 +1,8 @@
+---
+name: proposal-write
+description: "Draft funding proposals, letters of intent or project summaries from structured inputs and project context."
+---
+
 # Write Proposal
 *v3.4 — Added donor intelligence context (meeting transcripts + Gmail) to Step 3*
 *v3.x — Auto-loaded project context, donor profile lookup, template gate as the single hard stop*

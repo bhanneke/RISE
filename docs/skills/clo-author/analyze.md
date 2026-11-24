@@ -4,7 +4,7 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT (stated in README; no licence file)</code></div><div><b>Updated:</b> 2026-05-11</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/analyze/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/analyze/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../clo-author/">Clo-Author skills</a></div><div><b>Category:</b> <code>analysis</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT (LICENSE file, "Copyright (c) 2026 Hugo Sant'Anna"; portions derived from claude-code-my-workflow, also MIT)</code></div><div><b>Updated:</b> 2026-10-15</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>data-analysis</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/hugosantanna/clo-author/contents/.claude/skills/analyze/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/clo-author/analyze/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/hugosantanna/clo-author" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/hugosantanna/clo-author?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Analyze
 
@@ -41,7 +41,7 @@ Before writing any code, the Coder must output a structured report proving it re
 Proceeding to implementation.
 ```
 
-If the strategy memo is missing, the Coder proceeds with the user's description — but flags that no memo was found and strategic alignment checks (coder-critic categories 1-3) cannot be verified.
+If the strategy memo is missing, the Coder proceeds with the user's description — but flags that no memo was found and strategic alignment checks (coder-critic categories 1-4) cannot be verified.
 
 #### Step 2: Data Preparation (if needed)
 If raw data provided, dispatch **Data-engineer** first:
@@ -69,23 +69,7 @@ The Coder follows these principles:
 - **saveRDS everything.** Every computed object (estimates, model fits, data frames, summary statistics) gets serialized to `.rds` for downstream use by the writer and other agents.
 
 #### Step 4: Code Review
-Dispatch **coder-critic** agent — run the full 12-category checklist:
-
-**Strategic (categories 1-3):**
-1. **Code-strategy alignment** — Does the code implement the strategy memo faithfully? Correct dependent variable, treatment, controls, fixed effects, sample restrictions?
-2. **Sanity checks** — Are summary statistics printed before regressions? Do coefficient signs match economic intuition? Are sample sizes reasonable?
-3. **Robustness sufficiency** — Are required robustness checks present? Alternative specifications, placebo tests, sensitivity analysis per strategy memo?
-
-**Code Quality (categories 4-12):**
-4. **Structure** — Does the script follow the standard template? Clear section headers, logical flow from setup to export?
-5. **Console hygiene** — No spurious `print()` statements polluting output. Intentional output only.
-6. **Reproducibility** — `set.seed()` at top if any stochastic elements. No absolute paths. All packages loaded at top. Directory creation with `showWarnings = FALSE`.
-7. **Functions** — Repeated logic extracted into functions. No copy-paste code blocks with minor variations.
-8. **Figure quality** — Publication-ready: proper axis labels, titles, legends, font sizes. Consistent theme across all figures.
-9. **RDS pattern** — Every computed object (models, data frames, summary stats) saved via `saveRDS()` for downstream use. Not just final outputs — intermediate objects too.
-10. **Comments** — Section headers present. Non-obvious code commented. No commented-out dead code left behind.
-11. **Error handling** — Graceful handling of missing files, empty data subsets, convergence failures. Informative error messages.
-12. **Polish** — Consistent naming conventions. No magic numbers. Clean whitespace. Professional quality ready for replication package.
+Dispatch **coder-critic** agent — run the full 16-category checklist in `review/templates/code-review-16-categories.md`: categories 1–4 check strategic alignment (code vs. strategy memo, paper-to-code naming, sanity checks, robustness), 5–16 code quality and numerical discipline.
 
 If strategy memo exists, cross-reference code against stated design.
 Save report to `quality_reports/[script]_code_review.md`.
@@ -101,12 +85,38 @@ If coder-critic finds Critical or Major issues:
 1. Re-dispatch Coder with specific fixes (max 3 rounds)
 2. Re-run coder-critic to verify fixes
 
-#### Step 6: Present Results
+#### Step 6: Explainer and Quiz (mandatory once code review passes)
+
+Code review answers "is this correct?" It does not answer "does the author understand it?" Those
+are different questions and only the first one scales — nobody reads a 2,000-line cleaning
+pipeline line by line, and the sample restrictions buried in it are what a referee will ask about.
+
+Once coder-critic scores >= 80, dispatch the **explainer** agent (see `.claude/agents/explainer.md`):
+
+```
+quality_reports/explainers/{script}_explainer.md    # delta against the strategy memo
+quality_reports/explainers/{script}_quiz.md         # 5 questions
+quality_reports/explainers/{script}_quiz_key.md     # answers + traces, separate file
+```
+
+**If the sample construction ledger comes back `NOT INSTRUMENTED`**, the script is not printing
+drop counts. Re-dispatch the Coder to add them to the restriction block, re-run, then re-dispatch
+the explainer. Never let the explainer estimate a count it could not read.
+
+Then present the explainer and offer the quiz. Taking it is the author's call — the gate does not
+block here. It blocks at `/submit`, warns at `/write results`, and `python3
+scripts/explainer_status.py` reports coverage at any time. See `.claude/rules/understanding.md`.
+
+Full protocol, grading, and micro-worlds: `/explain`.
+
+#### Step 7: Present Results
 1. **Results summary** — key estimates with SEs and interpretation (from `results_summary.md`)
 2. **Scripts created** — paths and descriptions
 3. **Output files** — tables in `paper/tables/`, figures in `paper/figures/`
 4. **Code review score** — from coder-critic
-5. **TODO items** — missing data, additional specifications needed
+5. **Sample ledger headline** — the restriction that dropped the most observations, with counts
+6. **Quiz** — offered, and its result if taken
+7. **TODO items** — missing data, additional specifications needed
 
 ---
 
@@ -226,6 +236,7 @@ Inspired by Scott Cunningham's replication methodology: **if two independent imp
 - **Show your work.** Print summary statistics before jumping to regressions.
 - **Strategy alignment.** If strategy memo exists, code MUST implement it faithfully.
 - **Worker-critic pairing.** Coder creates, coder-critic critiques. Never skip review.
+- **Correct is not the same as understood.** Every passing script gets an explainer and a quiz. If you cannot say which restriction cost you the most observations, you do not yet own the result.
 - **saveRDS everything.** Every computed object gets saved via `saveRDS()` for downstream use -- model fits, cleaned data frames, summary statistics, not just final tables.
 - **Publication-ready output.** Tables and figures directly includable in the paper.
 - **Cross-language convergence.** When `--dual` is used, divergence is a bug until proven otherwise.

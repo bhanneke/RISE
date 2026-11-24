@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/hugosantanna/clo-author>
 
-**Licence:** `MIT (stated in README; no licence file)`
+**Licence:** `MIT (LICENSE file, "Copyright (c) 2026 Hugo Sant'Anna"; portions derived from claude-code-my-workflow, also MIT)`
 
 **Source:** [`projects/landscape/clo-author.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/clo-author.yml)
 
@@ -28,13 +28,13 @@ Worker-critic pair architecture as a first-class design principle: every creator
 | Inputs supported | 2 | Topic / question / referee-report inputs; user provides data; multi-language analysis (R, Python, Julia). |
 | Outputs / reproducibility | 2 | Generates replication packages with `/submit`; LaTeX paper is single source of truth; quality gate (>=80/100) before ship. |
 | Internal evaluation | 2 | Built-in peer-review simulation with weighted reviewer dispositions; no published external benchmark yet. |
-| Openness | 1 | Source is public on GitHub but no declared open-source license — reuse rights are uncertain. |
-| Maturity / traction | 1 | Created 2026-02; 251 stars as of 2026-09 (up from 193); pushed as recently as 2026-08-07; still a single-author project. |
+| Openness | 2 | MIT LICENSE file (Copyright (c) 2026 Hugo Sant'Anna; portions derived from claude-code-my-workflow, also MIT) — permissive reuse; the 2026-09-01 scoring found no licence file. |
+| Maturity / traction | 1 | Created 2026-02; 274 stars as of 2026-11-24 (251 in 2026-09); last push 2026-10-15; still a single-author project. |
 | Cross-family policy | 0 | Worker-critic pairs within Claude Code (single model family). |
 | Runtime assurance | 2 | Worker-critic pair architecture with 3-round escalation + 80/100 quality gate before ship. |
 | Cross-platform portability | 1 | Claude Code primary back-end; multi-language analysis (R, Python, Julia) is data-side, not agent-side. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -58,7 +58,6 @@ Worker-critic pair architecture as a first-class design principle: every creator
 
 ## Limitations
 
-- No declared open-source license; reuse rights uncertain.
 - Economics-focused by default; portability to other fields requires customizing domain-profile + journal profiles.
 - Depends on Claude Code; not a fully local solution.
 - Quality gates and review simulation are internal; no third-party validation reported.

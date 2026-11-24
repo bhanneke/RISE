@@ -5,12 +5,12 @@ pack:
   maintainers:
     - "Chris Blattman (University of Chicago, Harris School of Public Policy)"
   license: 'MIT'
-  total_skills: 23
-  last_update: '2026-04-30'
+  total_skills: 35
+  last_update: '2026-11-18'
   related_project: ''
   compatibility:
     - claude-code
-  notes: 'Claude Code for academics — skills, agents, and setup guides. 367 stars MIT. Listed as a community extension by Pedro Santanna. Mix of research-specific skills (deep-research, proposal-write, review-plan, methodology review) and personal-workflow skills (morning-brief, schedule-query).'
+  notes: 'Claude Code for academics — skills, agents, and setup guides. 367 stars MIT. Listed as a community extension by Pedro Santanna. Mix of research-specific skills (deep-research, proposal-write, review-plan, methodology review) and personal-workflow skills (morning-brief, schedule-query). Refresh 2026-11-24: upstream moved the skills from skills/<name>.md to skills/<name>/SKILL.md and added a starter-kit-source folder. Re-pointed 11 existing skills (checkin, deep-research, post-meeting and setup-project-management have new texts and new descriptions), removed 9 entries whose texts no longer exist upstream (dr-synthesize, prompt-only, prompt-refine, review-plan, tips-bookmarks, pre-meeting-brief and the old council, done and prompt), re-copied the 3 agents, and added 14 skills from skills/ plus 7 from starter-kit-source. Most additions are personal-productivity skills rather than research skills. The plugins/starter-kit-claude and plugins/starter-kit-codex folders mirror starter-kit-source and are not catalogued separately.'
 
 skills:
   - slug: announcement-digest
@@ -22,8 +22,8 @@ skills:
       - literature-synthesis
     field: general
     description: "Triage and digest announcements / newsletters / Slack-equivalent feeds"
-    source_path: 'skills/announcement-digest.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/announcement-digest.md'
+    source_path: 'skills/announcement-digest/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/announcement-digest/SKILL.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
   - slug: checkin
@@ -32,22 +32,9 @@ skills:
     category: infra
     pipeline_stages: []
     field: general
-    description: "Daily check-in / status update with Claude"
-    source_path: 'skills/checkin.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/checkin.md'
-    provenance: 'claudeblattman repo curation 2026-05-20'
-    last_update: '2026-04'
-  - slug: council
-    name: '/council'
-    kind: skill
-    category: ideation
-    pipeline_stages:
-      - rq-formulation
-      - hypothesis-generation
-    field: general
-    description: "Convene a multi-perspective 'council' on an open question"
-    source_path: 'skills/council.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/council.md'
+    description: 'Run an interactive email check-in with FYIs, decisions, drafts, and durable follow-up.'
+    source_path: 'skills/checkin/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/checkin/SKILL.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
   - slug: deep-research
@@ -58,33 +45,9 @@ skills:
       - literature-discovery
       - literature-synthesis
     field: social-sciences
-    description: "Multi-agent deep research with paste-loop UX and subagent template"
-    source_path: 'skills/deep-research.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/deep-research.md'
-    provenance: 'claudeblattman repo curation 2026-05-20'
-    last_update: '2026-04'
-  - slug: done
-    name: '/done'
-    kind: skill
-    category: infra
-    pipeline_stages: []
-    field: general
-    description: "Mark work complete + update tracking"
-    source_path: 'skills/done.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/done.md'
-    provenance: 'claudeblattman repo curation 2026-05-20'
-    last_update: '2026-04'
-  - slug: dr-synthesize
-    name: '/dr-synthesize'
-    kind: skill
-    category: literature
-    pipeline_stages:
-      - literature-discovery
-      - literature-synthesis
-    field: social-sciences
-    description: "Synthesize results from a deep-research run"
-    source_path: 'skills/dr-synthesize.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/dr-synthesize.md'
+    description: 'Run actual ChatGPT and Gemini Deep Research through their signed-in browser interfaces, retrieve complete exports, and synthesize the reports.'
+    source_path: 'skills/deep-research/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/deep-research/SKILL.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
   - slug: goals-review
@@ -95,8 +58,8 @@ skills:
       - research-design
     field: general
     description: "Periodic review of personal/research goals"
-    source_path: 'skills/goals-review.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/goals-review.md'
+    source_path: 'skills/goals-review/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/goals-review/SKILL.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
   - slug: morning-brief
@@ -106,8 +69,8 @@ skills:
     pipeline_stages: []
     field: general
     description: "Daily morning briefing template"
-    source_path: 'skills/morning-brief.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/morning-brief.md'
+    source_path: 'skills/morning-brief/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/morning-brief/SKILL.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
   - slug: post-meeting
@@ -116,53 +79,9 @@ skills:
     category: infra
     pipeline_stages: []
     field: general
-    description: "Post-meeting summary + action items"
-    source_path: 'skills/post-meeting.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/post-meeting.md'
-    provenance: 'claudeblattman repo curation 2026-05-20'
-    last_update: '2026-04'
-  - slug: pre-meeting-brief
-    name: '/pre-meeting-brief'
-    kind: skill
-    category: infra
-    pipeline_stages: []
-    field: general
-    description: "Pre-meeting brief generation"
-    source_path: 'skills/pre-meeting-brief.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/pre-meeting-brief.md'
-    provenance: 'claudeblattman repo curation 2026-05-20'
-    last_update: '2026-04'
-  - slug: prompt-only
-    name: '/prompt-only'
-    kind: skill
-    category: meta
-    pipeline_stages: []
-    field: general
-    description: "Skill that only produces a prompt (no execution)"
-    source_path: 'skills/prompt-only.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/prompt-only.md'
-    provenance: 'claudeblattman repo curation 2026-05-20'
-    last_update: '2026-04'
-  - slug: prompt-refine
-    name: '/prompt-refine'
-    kind: skill
-    category: meta
-    pipeline_stages: []
-    field: general
-    description: "Iteratively refine a prompt"
-    source_path: 'skills/prompt-refine.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/prompt-refine.md'
-    provenance: 'claudeblattman repo curation 2026-05-20'
-    last_update: '2026-04'
-  - slug: prompt
-    name: '/prompt'
-    kind: skill
-    category: meta
-    pipeline_stages: []
-    field: general
-    description: "Build a prompt from scratch with formatting-core"
-    source_path: 'skills/prompt.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/prompt.md'
+    description: 'Summarize a selected meeting transcript, extract decisions and action items, and draft a follow-up email in chat by default; nosend skips the draft.'
+    source_path: 'skills/post-meeting/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/post-meeting/SKILL.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
   - slug: proposal-revise
@@ -173,8 +92,8 @@ skills:
       - revision-editing
     field: social-sciences
     description: "Revise an existing grant or research proposal"
-    source_path: 'skills/proposal-revise.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/proposal-revise.md'
+    source_path: 'skills/proposal-revise/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/proposal-revise/SKILL.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
   - slug: proposal-write
@@ -185,20 +104,8 @@ skills:
       - paper-drafting
     field: social-sciences
     description: "Draft a grant or research proposal"
-    source_path: 'skills/proposal-write.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/proposal-write.md'
-    provenance: 'claudeblattman repo curation 2026-05-20'
-    last_update: '2026-04'
-  - slug: review-plan
-    name: '/review-plan'
-    kind: skill
-    category: review
-    pipeline_stages:
-      - referee-simulation
-    field: general
-    description: "Review a research plan with structured feedback"
-    source_path: 'skills/review-plan.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/review-plan.md'
+    source_path: 'skills/proposal-write/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/proposal-write/SKILL.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
   - slug: schedule-query
@@ -208,8 +115,8 @@ skills:
     pipeline_stages: []
     field: general
     description: "Query and reason about a calendar / schedule"
-    source_path: 'skills/schedule-query.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/schedule-query.md'
+    source_path: 'skills/schedule-query/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/schedule-query/SKILL.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
   - slug: setup-project-management
@@ -218,9 +125,9 @@ skills:
     category: infra
     pipeline_stages: []
     field: general
-    description: "Bootstrap a project-management workspace"
-    source_path: 'skills/setup-project-management.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/setup-project-management.md'
+    description: 'Set up or repair a project''s local context, source index, and optional dashboard.'
+    source_path: 'skills/setup-project-management/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/setup-project-management/SKILL.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
   - slug: tax-guide
@@ -230,19 +137,8 @@ skills:
     pipeline_stages: []
     field: general
     description: "Personal tax-related Q&A"
-    source_path: 'skills/tax-guide.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/tax-guide.md'
-    provenance: 'claudeblattman repo curation 2026-05-20'
-    last_update: '2026-04'
-  - slug: tips-bookmarks
-    name: '/tips-bookmarks'
-    kind: skill
-    category: infra
-    pipeline_stages: []
-    field: general
-    description: "Save and retrieve tips / bookmarks"
-    source_path: 'skills/tips-bookmarks.md'
-    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/tips-bookmarks.md'
+    source_path: 'skills/tax-guide/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/tax-guide/SKILL.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
   - slug: proposal-critic-agent
@@ -281,3 +177,215 @@ skills:
     details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/agents/review-writing.md'
     provenance: 'claudeblattman repo curation 2026-05-20'
     last_update: '2026-04'
+  - slug: aniket-me
+    name: '/aniket-me'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Use only when the user''s request starts with "Aniket me", "Aniket-me", or "/aniket-me".'
+    source_path: 'skills/aniket-me/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/aniket-me/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: blattify
+    name: '/blattify'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Help someone who already has an AI agent apply the useful parts of claudeblattman.com to real work or an existing workflow.'
+    source_path: 'skills/blattify/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/blattify/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: pre-meeting
+    name: '/pre-meeting'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Prepare for a meeting using the project''s description, dashboard, previous meeting records and relevant correspondence.'
+    source_path: 'skills/pre-meeting/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/pre-meeting/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: research-council
+    name: '/research-council'
+    kind: skill
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: general
+    description: 'Research a question using the available Claude, Codex and Gemini agents independently, then synthesize their evidence.'
+    source_path: 'skills/research-council/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/research-council/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: skill-build
+    name: '/skill-build'
+    kind: skill
+    category: meta
+    pipeline_stages: []
+    field: general
+    description: 'Create a reusable agent skill from a recurring task, an established workflow, or work and corrections the user has just finished.'
+    source_path: 'skills/skill-build/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/skill-build/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: skill-refresh
+    name: '/skill-refresh'
+    kind: skill
+    category: meta
+    pipeline_stages: []
+    field: general
+    description: 'Diagnose, update, simplify, or retest an existing agent skill using an observed failure, user correction, or changed tool.'
+    source_path: 'skills/skill-refresh/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/skill-refresh/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: tips-curate
+    name: '/tips-curate'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Collect AI workflow tips from bookmarks, email, or saved research reports, deduplicate and assess them, then save selected findings to one shared tips log.'
+    source_path: 'skills/tips-curate/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/tips-curate/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: tips-integrate
+    name: '/tips-integrate'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Turn saved AI tips and system-improvement follow-ups into ranked proposals, using independent critics for larger batches, then apply selected changes or queue investigations.'
+    source_path: 'skills/tips-integrate/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/tips-integrate/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: tips-scout
+    name: '/tips-scout'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Prepare and save an AI-workflow research prompt from coverage gaps and active topics; consult Grok through the installed official subscription route only when explicitly requested.'
+    source_path: 'skills/tips-scout/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/tips-scout/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: todo-add
+    name: '/todo-add'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Add a task to the appropriate configured to-do list while checking for duplicates.'
+    source_path: 'skills/todo-add/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/todo-add/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: todo-queue
+    name: '/todo-queue'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Process emails in a configured task label into Apple Reminders, including timing details.'
+    source_path: 'skills/todo-queue/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/todo-queue/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: todo-review
+    name: '/todo-review'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Review and consolidate tasks across configured to-do files.'
+    source_path: 'skills/todo-review/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/todo-review/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: triage-inbox
+    name: '/triage-inbox'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Classify and file recent Gmail messages using the user''s saved email policy.'
+    source_path: 'skills/triage-inbox/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/triage-inbox/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: weekly-review
+    name: '/weekly-review'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Refresh one project''s dashboard and dated history from selected new evidence, preserving human corrections and identifying changes needed in the underlying project plan.'
+    source_path: 'skills/weekly-review/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/skills/weekly-review/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: adversarial-review
+    name: '/adversarial-review'
+    kind: skill
+    category: review
+    pipeline_stages:
+      - referee-simulation
+    field: general
+    description: 'Review existing work with independent fresh reviewers and fresh synthesis.'
+    source_path: 'starter-kit-source/skills/adversarial-review/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/starter-kit-source/skills/adversarial-review/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: ask-agents
+    name: '/ask-agents'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Ask the specific Claude, Codex, Gemini, or Grok agent the user names and automatically retrieve its response.'
+    source_path: 'starter-kit-source/skills/ask-agents/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/starter-kit-source/skills/ask-agents/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: council
+    name: '/council'
+    kind: skill
+    category: review
+    pipeline_stages: []
+    field: general
+    description: 'Develop independent approaches to a task, decision, plan, or draft, then use a fresh worker to synthesize them.'
+    source_path: 'starter-kit-source/skills/council/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/starter-kit-source/skills/council/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: done
+    name: '/done'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Close out current work by saving decisions, unresolved tasks, useful artifacts, a session log and a current-state handoff for the next session.'
+    source_path: 'starter-kit-source/skills/done/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/starter-kit-source/skills/done/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: kit-hello
+    name: '/kit-hello'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Check the installed starter kit, prerequisites, and next step without calling external models.'
+    source_path: 'starter-kit-source/skills/kit-hello/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/starter-kit-source/skills/kit-hello/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: kit-setup
+    name: '/kit-setup'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Discover and test optional Claude, Codex, Gemini through Antigravity, and Grok subscription connections.'
+    source_path: 'starter-kit-source/skills/kit-setup/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/starter-kit-source/skills/kit-setup/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'
+  - slug: prompt
+    name: '/prompt'
+    kind: skill
+    category: infra
+    pipeline_stages: []
+    field: general
+    description: 'Organize rough requests into machine-facing prompts, refine existing prompts, and run the task when requested.'
+    source_path: 'starter-kit-source/skills/prompt/SKILL.md'
+    details_url: 'https://github.com/chrisblattman/claudeblattman/blob/main/starter-kit-source/skills/prompt/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'

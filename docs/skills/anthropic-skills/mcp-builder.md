@@ -4,7 +4,7 @@
 
 Build MCP servers (Anthropic spec)
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../anthropic-skills/">Anthropic Skills (foundational)</a></div><div><b>Category:</b> <code>meta</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/anthropics/skills/contents/skills/mcp-builder/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/anthropic-skills/mcp-builder/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/anthropics/skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../anthropic-skills/">Anthropic Skills (foundational)</a></div><div><b>Category:</b> <code>meta</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0 (per-skill LICENSE.txt files; the repository has no root licence file, and doc-coauthoring ships no licence file)</code></div><div><b>Updated:</b> 2026-11-16</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/anthropics/skills/contents/skills/mcp-builder/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/anthropic-skills/mcp-builder/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/anthropics/skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## MCP Server Development Guide
 
@@ -60,8 +60,18 @@ Key pages to review:
 - **MCP Best Practices**: 📋 View Best Practices - Core guidelines
 
 **For TypeScript (recommended):**
-- **TypeScript SDK**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
-- ⚡ TypeScript Guide - TypeScript patterns and examples
+
+The TypeScript SDK has two major versions. Pick one before writing code:
+- **v2** (`@modelcontextprotocol/server`): the current stable release. Use it for new servers.
+- **v1** (`@modelcontextprotocol/sdk`): receives bug and security fixes only. Use it only when the project's `package.json` already depends on `@modelcontextprotocol/sdk`, or migrate that project with `npx @modelcontextprotocol/codemod@latest v1-to-v2 .`
+
+If the project already uses v1, tell the user once, in a sentence or two, that v2 (`@modelcontextprotocol/server`) is the current stable release, that v1 receives only bug and security fixes, and that `npx @modelcontextprotocol/codemod@latest v1-to-v2 .` migrates the project. Then continue with v1 unless the user asks to migrate.
+
+Don't mix the two in one project: v1 code samples (imports from `@modelcontextprotocol/sdk/...`) don't apply to v2.
+
+- **TypeScript SDK (v2)**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`; the full docs index is `https://ts.sdk.modelcontextprotocol.io/v2/llms.txt`
+- ⚡ TypeScript Guide (v2) - TypeScript patterns and examples
+- For v1 projects only: `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/v1.x/README.md` and the TypeScript Guide (v1)
 
 **For Python:**
 - **Python SDK**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
@@ -82,7 +92,7 @@ Prioritize comprehensive API coverage. List endpoints to implement, starting wit
 #### 2.1 Set Up Project Structure
 
 See language-specific guides for project setup:
-- ⚡ TypeScript Guide - Project structure, package.json, tsconfig.json
+- ⚡ TypeScript Guide (v2) - Project structure, package.json, tsconfig.json (v1 for existing v1 projects)
 - 🐍 Python Guide - Module organization, dependencies
 
 #### 2.2 Implement Core Infrastructure
@@ -140,6 +150,7 @@ Review for:
 
 **TypeScript:**
 - Run `npm run build` to verify compilation
+- v2 projects: run the self-check script from the v2 guide against the built server
 - Test with MCP Inspector: `npx @modelcontextprotocol/inspector`
 
 **Python:**
@@ -212,7 +223,8 @@ Load these resources as needed during development:
 
 #### SDK Documentation (Load During Phase 1/2)
 - **Python SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
-- **TypeScript SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
+- **TypeScript SDK (v2)**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`; full docs index at `https://ts.sdk.modelcontextprotocol.io/v2/llms.txt`
+- **TypeScript SDK (v1, existing v1 projects only)**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/v1.x/README.md`
 
 #### Language-Specific Implementation Guides (Load During Phase 2)
 - 🐍 Python Implementation Guide - Complete Python/FastMCP guide with:
@@ -222,12 +234,16 @@ Load these resources as needed during development:
   - Complete working examples
   - Quality checklist
 
-- ⚡ TypeScript Implementation Guide - Complete TypeScript guide with:
-  - Project structure
-  - Zod schema patterns
-  - Tool registration with `server.registerTool`
-  - Complete working examples
-  - Quality checklist
+- ⚡ TypeScript Implementation Guide (SDK v2) - Complete TypeScript guide for `@modelcontextprotocol/server` with:
+  - Project setup and the server factory
+  - Tool design: Zod 4 schemas, output formats, pagination, errors
+  - A complete example serving stdio and Streamable HTTP, plus bearer auth
+  - Resources, prompts, and notifications
+  - A self-check script to verify the built server
+  - Links to SDK examples for advanced features
+  - A v1 → v2 translation table, migration steps, and a quality checklist
+
+- ⚡ TypeScript Implementation Guide (SDK v1) - The equivalent guide for existing `@modelcontextprotocol/sdk` projects
 
 #### Evaluation Guide (Load During Phase 4)
 - ✅ Evaluation Guide - Complete evaluation creation guide with:

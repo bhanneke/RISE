@@ -1,7 +1,7 @@
 ---
 name: deepxiv
 description: Search and progressively read open-access academic papers through DeepXiv. Use when the user wants layered paper access, section-level reading, trending papers, or DeepXiv-backed literature retrieval.
-argument-hint: [query-or-paper-id]
+argument-hint: "[query-or-paper-id]"
 allowed-tools: Bash(*), Read, Write
 ---
 
@@ -13,11 +13,12 @@ Search topic or paper ID: $ARGUMENTS
 
 DeepXiv is the **progressive-reading** literature source:
 
-| Skill | Best for |
-|------|----------|
-| `/arxiv` | Direct preprint search and PDF download |
-| `/semantic-scholar` | Published venue metadata, citation counts, DOI links |
-| `/deepxiv` | Layered reading: search → brief → head → section, plus trending and web search |
+| Skill | Source | Best for |
+|-------|--------|----------|
+| `/arxiv` | arXiv API | Batch search, PDF download, metadata |
+| **`/deepxiv`** | **DeepXiv SDK** | **Progressive section-level reading** |
+| `/semantic-scholar` | S2 API | Published venue metadata, citation counts |
+| `/alphaxiv` | www.alphaxiv.org | Instant LLM-optimized summary of one paper, with LaTeX source fallback |
 
 Use DeepXiv when you want to avoid loading full papers too early.
 
@@ -47,7 +48,14 @@ DeepXiv is optional. If the CLI is not installed, tell the user:
 pip install deepxiv-sdk
 ```
 
-On first use, `deepxiv` auto-registers a free token and stores it in `~/.env`.
+Authentication is handled by the third-party `deepxiv-sdk` CLI using
+`DEEPXIV_TOKEN`. In [SDK 1.2.2](https://pypi.org/project/deepxiv-sdk/1.2.2/),
+a command that needs a token auto-registers one if none is configured and saves
+it to `~/.env`. With `python-dotenv` installed, the CLI also loads `~/.env` and
+the current project's `.env` on startup. Providing `DEEPXIV_TOKEN` in the CLI's
+environment skips automatic registration and token saving, but does not disable
+that file loading. This skill does not need to read those files or display tokens;
+leave authentication to the CLI.
 
 ## Workflow
 
@@ -79,6 +87,9 @@ documented in Step 3.
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
+fi
+if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+    ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
 fi
 DEEPXIV_FETCHER=".aris/tools/deepxiv_fetch.py"
 [ -f "$DEEPXIV_FETCHER" ] || DEEPXIV_FETCHER="tools/deepxiv_fetch.py"
@@ -225,11 +236,14 @@ read (brief / head / section / full) during this invocation — mere
 if [ -d research-wiki/ ]; then
   cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
   ARIS_REPO="${ARIS_REPO:-$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null)}"
+  if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+    ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
+  fi
   WIKI_SCRIPT=".aris/tools/research_wiki.py"
   [ -f "$WIKI_SCRIPT" ] || WIKI_SCRIPT="tools/research_wiki.py"
   [ -f "$WIKI_SCRIPT" ] || { [ -n "${ARIS_REPO:-}" ] && WIKI_SCRIPT="$ARIS_REPO/tools/research_wiki.py"; }
   [ -f "$WIKI_SCRIPT" ] || {
-    echo "WARN: research_wiki.py not found; depth-read summary delivered, wiki ingest skipped. Fix: bash tools/install_aris.sh, export ARIS_REPO, or cp <ARIS-repo>/tools/research_wiki.py tools/." >&2
+    echo "WARN: research_wiki.py not found; depth-read summary delivered, wiki ingest skipped. Fix: bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), export ARIS_REPO, or cp <ARIS-repo>/tools/research_wiki.py tools/." >&2
     WIKI_SCRIPT=""
   }
   if [ -n "$WIKI_SCRIPT" ]; then

@@ -5,8 +5,8 @@ pack:
   maintainers:
     - 'John Manuel Barrios (Barrios88 on GitHub)'
   license: 'MIT (repo LICENSE, "Copyright (c) 2026 John Barrios"). The vendored third-party skills keep their own terms: the Anthropic document skills say "Proprietary. LICENSE.txt has complete terms", and the K-Dense skills carry per-library licence lines.'
-  total_skills: 12
-  last_update: '2026-09-17'
+  total_skills: 11
+  last_update: '2026-10-13'
   related_project: ''
   compatibility:
     - cursor
@@ -68,6 +68,7 @@ pack:
     redacted to a placeholder, and `web-scrape` assumes Yale's `curl_yale`
     proxy tooling. Authorship of `web-scrape` is the least certain of the ten
     first-party verdicts.
+    Refresh 2026-11-24: econ-lit-search is no longer in the upstream repository (removed from this manifest); the econ-referee copy and description were refreshed.
 
 skills:
   - slug: wrds
@@ -131,18 +132,6 @@ skills:
     provenance: 'barrios-skills provenance audit 2026-09-29 (first-party; no upstream found)'
     last_update: '2026-05-26'
 
-  - slug: econ-lit-search
-    name: 'econ-lit-search'
-    category: literature
-    pipeline_stages:
-      - literature-discovery
-    field: economics
-    description: 'Staged search over a Meilisearch index of about 51k economics papers (NBER working papers plus JEL-coded journal articles): a cheap broad scan with citation-sorted snippets, then full abstracts, body-passage snippets, and full text only when needed, with filters by exact author string, JEL code, journal and year range. Caveat: the public copy redacts the index host to a placeholder URL and reads the key from `MEILI_API_KEY`, so it does not run without access to the author''s index.'
-    source_path: 'skills/research-tools/econ-lit-search/SKILL.md'
-    details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/research-tools/econ-lit-search/SKILL.md'
-    provenance: 'barrios-skills provenance audit 2026-09-29 (first-party as far as can be checked; no upstream or other copy found)'
-    last_update: '2026-05-26'
-
   - slug: web-scrape
     name: 'web-scrape'
     category: data-handling
@@ -198,7 +187,7 @@ skills:
     pipeline_stages:
       - referee-simulation
     field: accounting
-    description: 'A short pre-submission referee workflow for accounting, finance and economics papers. Its iron law is that every major comment cites a page, table or figure, and any claim the manuscript cannot support is marked Unverified, never invented. It classifies the paper, locates the contribution sentence, and audits in a fixed order that stops early only on a fatal flaw. It adds accounting- and finance-specific flags and venue checklists (JAR/TAR/JAE, JF/JFE/RFS, AEA) and always delivers three outputs: substance comments, separate editing notes and a prioritized revision plan. Self-declared original rather than a fork of the PolyForm-noncommercial OpenEcon referee.'
+    description: 'Pre-submission referee report for accounting, finance and economics papers: source-fidelity, numerical, claim-evidence, identification, sample, magnitude and robustness audits, with every major comment tied to a page, table or figure and a ranked revision plan.'
     source_path: 'skills/writing-and-review/econ-referee/SKILL.md'
     details_url: 'https://github.com/Barrios88/barrios-skills/blob/main/skills/writing-and-review/econ-referee/SKILL.md'
     provenance: 'barrios-skills provenance audit 2026-09-29 (first-party; 0.014 vs hanlulong econ-review)'

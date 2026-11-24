@@ -2,7 +2,7 @@
 
 # Anthropic Skills (foundational)
 
-license: `MIT` · 8 skills · last update: 2026-05
+license: `Apache-2.0 (per-skill LICENSE.txt files; the repository has no root licence file, and doc-coauthoring ships no licence file)` · 8 skills · last update: 2026-11-16
 
 **Source:** <https://github.com/anthropics/skills>
 
@@ -10,7 +10,7 @@ license: `MIT` · 8 skills · last update: 2026-05
 
 **Compatibility:** `claude-code` `agnostic`
 
-> Anthropic's public skills repository. Most skills are general-purpose (slides, docx, pdf, frontend); included here only for skills relevant to research workflows.
+> Anthropic's public skills repository. Most skills are general-purpose (slides, docx, pdf, frontend); included here only for skills relevant to research workflows. Refresh 2026-11-24: re-copied the 6 changed SKILL.md files (docx, pptx, xlsx, claude-api and others). Seven catalogued skills carry an Apache-2.0 LICENSE.txt in the upstream skill folder; doc-coauthoring has none and the repository has no root licence file, so it is link-only (details copy removed).
 
 **Source YAML:** [`skills/anthropic-skills.yml`](https://github.com/bhanneke/RISE/blob/main/skills/anthropic-skills.yml)
 
@@ -26,7 +26,7 @@ license: `MIT` · 8 skills · last update: 2026-05
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| [`doc-coauthoring`](anthropic-skills/doc-coauthoring.md) | — | `paper-drafting` | Long-document coauthoring workflow | [view](anthropic-skills/doc-coauthoring.md) | — | — |
+| [`doc-coauthoring`](https://github.com/anthropics/skills/blob/main/skills/doc-coauthoring/SKILL.md){ target=_blank rel=noopener } | — | `paper-drafting` | Long-document coauthoring workflow | — | [origin](https://github.com/anthropics/skills/blob/main/skills/doc-coauthoring/SKILL.md) | — |
 | [`docx`](anthropic-skills/docx.md) | — | `paper-drafting` | Microsoft Word document generation | [view](anthropic-skills/docx.md) | — | — |
 | [`pdf`](anthropic-skills/pdf.md) | — | `paper-drafting` | PDF document generation | [view](anthropic-skills/pdf.md) | — | — |
 

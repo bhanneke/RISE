@@ -3,7 +3,7 @@ name: "OpenEcon Data"
 type: external
 status: active
 url: "https://github.com/hanlulong/openecon-data"
-license: "unclassified (licence file present; see repository)"
+license: "AGPL-3.0 (LICENSE file; README states the same)"
 maintainers:
   - "Lu Han (OpenEcon.ai)"
 year_started: 2026
@@ -83,7 +83,7 @@ scores:
     note: "AGPL-3.0 (copyleft, source-sharing required for hosted service); free hosted demo gated at 20 queries before signup."
   maturity_traction:
     score: 2
-    note: "81 stars, 891 commits, live production demo (data.openecon.ai/chat) — active beta with external users, single-maintainer team."
+    note: "95 stars as of 2026-11-24 (81 at scoring), last push 2026-11-21, 891 commits at scoring, live production demo (data.openecon.ai/chat) — active beta with external users, single-maintainer team."
   cross_family_policy:
     score: 0
     note: "Not applicable — a data-fetching tool with no cross-model review process."
@@ -93,7 +93,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: "MCP server usable from Claude Code, Codex, and any compatible MCP client, plus a self-hostable stack and a browser demo."
-scored_on: "2026-10-01"
+scored_on: "2026-11-24"
 
 limitations:
   - "AGPL-3.0 license requires source-sharing for hosted deployments, a heavier obligation than the catalog's typical MIT/Apache entries."

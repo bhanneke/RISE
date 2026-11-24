@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/maxwell2732/claudecode-research-harness-workflow>
 
-**Licence:** `MIT (badge in README; no LICENSE file found in the repository)`
+**Licence:** `MIT (LICENSE.md in the repository, opens "MIT License"; README badge matches)`
 
 **Source:** [`projects/landscape/research-harness-workflow.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/research-harness-workflow.yml)
 
@@ -28,13 +28,13 @@ Targets the data-cleaning/merging stage as the primary locus of silent failure (
 | Inputs supported | 2 | Multiple input forms — raw survey data, a written research specification, and (in the subsample mode) a published paper to reproduce — though no literature-corpus or external data-source connector. |
 | Outputs / reproducibility | 3 | Produces a versioned replication package (scripts + logs + outputs + report) and is itself archived with a Zenodo DOI. |
 | Internal evaluation | 2 | Systematic internal check: the subsample codebook quantitatively compares reconstructed variable means against a published paper's own descriptive-statistics table and flags mismatches. |
-| Openness | 1 | README displays an MIT license badge, but no LICENSE file is present in the repository at scoring date — terms are not formally confirmed. |
-| Maturity / traction | 1 | 40 stars and 49 forks with a Zenodo archival DOI, but single-author, pre-1.0, and documented primarily in Chinese. |
+| Openness | 2 | MIT licence in LICENSE.md (the 2026-10-01 scoring looked only for a file named LICENSE) — permissive; documented primarily in Chinese. |
+| Maturity / traction | 1 | 42 stars as of 2026-11-24 (40 at scoring, plus 49 forks at scoring) with a Zenodo archival DOI, but single-author, pre-1.0, and documented primarily in Chinese. |
 | Cross-family policy | 0 | Single-model (Claude Code) by design; no cross-family review mechanism. |
 | Runtime assurance | 2 | Multiple in-pipeline gates: read-only raw-data protection, mandatory merge diagnostics, and an identification/causal-language review stage before release. |
 | Cross-platform portability | 0 | Built specifically around Claude Code's slash-command/skill mechanism; not documented for other agent runtimes. |
 
-*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -55,7 +55,6 @@ Targets the data-cleaning/merging stage as the primary locus of silent failure (
 
 ## Limitations
 
-- No LICENSE file found in the repository despite an MIT badge in the README — licensing terms are unconfirmed.
 - Documentation is primarily in Chinese and the workflow is tightly coupled to Claude Code's command mechanism, limiting portability.
 - Internal validation (the CLOSE/MODERATE/DIFFERS codebook check) covers the cleaning/subsample-extraction stage only; there is no broader benchmark or third-party audit of the full seven-stage pipeline.
 

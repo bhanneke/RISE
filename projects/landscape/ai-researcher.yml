@@ -92,7 +92,7 @@ scores:
     note: "Source is public but no licence is declared, so reuse is not permitted; runs also need paid LLM API keys and a GPU container."
   maturity_traction:
     score: 2
-    note: "About 5.8k stars and 724 forks with a hosted product (novix.science), but no tagged releases and no push since 2025-10-16, so the open-source line is dormant."
+    note: "About 5.9k stars and 729 forks as of 2026-11-24, with a hosted product (novix.science) and no tagged releases; the only push in the past 13 months is one maintenance commit on 2026-11-23 (PR #103: fix local startup, Windows checkout and exposed credentials), the one before it being 2025-10-16, so the open-source line stays dormant."
   cross_family_policy:
     score: 0
     note: "Separate COMPLETION_MODEL and CHEEP_MODEL settings pick a strong and a cheap model, but no role reviews another's work across model families."
@@ -102,7 +102,7 @@ scores:
   cross_platform_portability:
     score: 2
     note: "LiteLLM routing supports several providers (Claude, OpenAI, DeepSeek, Gemini via OpenRouter), but execution is tied to the project's own Docker image."
-scored_on: "2026-09-29"
+scored_on: "2026-11-24"
 
 limitations:
   - "No licence declared: the code cannot be reused, modified or redistributed without the maintainer's permission."

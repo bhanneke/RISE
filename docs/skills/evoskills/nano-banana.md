@@ -4,7 +4,7 @@
 
 AI-generated inline figures (Google Gemini Nano Banana)
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>figures</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/nano-banana/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/nano-banana/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>figures</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-11-13</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/nano-banana/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/nano-banana/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Nano Banana
 
@@ -28,9 +28,11 @@ Generate high-quality presentation slides as images using Gemini's image generat
 
 ### Before You Start: Prerequisites
 
-Before proceeding with any slide generation, verify these prerequisites:
+Before proceeding with any slide generation, verify these prerequisites. Script and style paths in this document are relative to this skill's directory.
 
-1. **API Key**: Check that a Google API key is available. Run:
+1. **Dependencies**: `pip install pillow google-genai python-pptx python-dotenv` (also listed in `requirements.txt` at the skill root). Install into the environment the user is working in. Atlas Cloud uses the same dependencies and does not require an additional SDK.
+
+2. **Provider and API Key**: Gemini is the default provider. Check that its API key is available:
    ```bash
    echo $GOOGLE_API_KEY
    ```
@@ -39,7 +41,9 @@ Before proceeding with any slide generation, verify these prerequisites:
    - Provide it directly (pass via `--api-key` argument)
    - If the user provides the key in conversation, pass it to scripts with `--api-key`
 
-2. **Language**: Ask the user what language the slide content should be in. This affects the content you write in `slides_plan.json`, not the style template.
+   To use Atlas Cloud instead, set `ATLASCLOUD_API_KEY` and pass `--provider atlas`. Atlas Cloud is opt-in and does not change the default Gemini workflow.
+
+3. **Language**: Ask the user what language the slide content should be in. This affects the content you write in `slides_plan.json`, not the style template.
 
 ---
 
@@ -174,26 +178,39 @@ Present the styles to the user and let them choose. If unsure, recommend Lineal 
 | `gemini-3-pro-image-preview` | Moderate | Best | Final version, important presentations |
 | `gemini-3.1-flash-image-preview` | Fast | Good | Drafts, rapid iteration, large decks |
 | `gemini-2.5-flash-image` | Fastest | Basic | Quick prototypes, bulk generation |
+| `google/nano-banana-2-lite/text-to-image` | Fast | Good | Atlas Cloud slide generation at 1K |
+| `google/nano-banana-2-lite/edit` | Fast | Good | Atlas Cloud slide editing at 1K |
 
 For first-time generation, recommend `gemini-3.1-flash-image-preview` (fast iteration). Switch to `gemini-3-pro-image-preview` for the final version.
 
 #### Generate Command
 
 ```bash
-python /skills/nano-banana/scripts/generate_ppt.py \
+python scripts/generate_ppt.py \
   --plan slides_plan.json \
-  --style /skills/nano-banana/styles/lineal-color.md \
+  --style styles/lineal-color.md \
   --model gemini-3.1-flash-image-preview \
+  --output ppt_output
+```
+
+Atlas Cloud is available as an optional provider:
+
+```bash
+python scripts/generate_ppt.py \
+  --plan slides_plan.json \
+  --style styles/lineal-color.md \
+  --provider atlas \
   --output ppt_output
 ```
 
 **Arguments:**
 - `--plan` (required): Path to slides_plan.json
 - `--style` (required): Path to style template
-- `--model`: Image generation model (default: `gemini-3-pro-image-preview`)
-- `--resolution`: `2K` (default) or `4K`
+- `--provider`: `gemini` (default) or `atlas`
+- `--model`: Image generation model (default `gemini-3-pro-image-preview`; Atlas accepts only `google/nano-banana-2-lite/text-to-image`)
+- `--resolution`: Gemini supports `2K` (default) or `4K`; Atlas uses `1K`
 - `--output`: Output directory (default: `ppt_output/TIMESTAMP`)
-- `--api-key`: Google API key (if not in environment)
+- `--api-key`: Provider API key (if not in the provider environment variable)
 - `--workers`: Number of parallel workers (default: 1, recommended: 3-5 for large decks)
 
 Output structure:
@@ -207,6 +224,8 @@ ppt_output/
 └── index.html      # Browser viewer
 ```
 
+**Exit code.** `0` means every slide was generated. `2` means a partial deck was written: the last line on stderr lists the missing slide numbers (`Failed slides: 3, 7`), and each failure is printed as `[n/total] FAIL: <reason>`. Re-running the command regenerates the whole deck, so when the failures share one reason (quota, key, model name) fix that first. `1` means no slide was generated (or the API key / library is missing); there is nothing to review yet.
+
 ---
 
 ### Phase 4: Launch Review Server
@@ -214,7 +233,7 @@ ppt_output/
 Start the interactive review server so the user can review slides and write feedback:
 
 ```bash
-python /skills/nano-banana/scripts/serve_viewer.py \
+python scripts/serve_viewer.py \
   --dir ppt_output \
   --plan slides_plan.json \
   --port 8080 \
@@ -235,19 +254,34 @@ Wait for the user to confirm they have saved their feedback before proceeding.
 Read `slides_plan.json` and find all slides with a non-empty `feedback` field. For each one, run the edit script:
 
 ```bash
-python /skills/nano-banana/scripts/edit_slide.py \
+python scripts/edit_slide.py \
   --input ppt_output/images/slide-{NUMBER}.png \
   --instruction "{FEEDBACK_TEXT}" \
   --output ppt_output/images/slide-{NUMBER}.png \
   --model gemini-3.1-flash-image-preview
 ```
 
+To edit through Atlas Cloud, the script uploads the local source image for temporary generation use before submitting the edit task:
+
+```bash
+python scripts/edit_slide.py \
+  --input ppt_output/images/slide-01.png \
+  --instruction "Remove the footer text at the bottom" \
+  --output ppt_output/images/slide-01.png \
+  --provider atlas
+```
+
 **Arguments:**
 - `--input` (required): Path to the original slide image
 - `--instruction` (required): The edit instruction (from feedback field)
 - `--output`: Output path (default: overwrite input)
-- `--model`: Image generation model
-- `--api-key`: Google API key (if not in environment)
+- `--provider`: `gemini` (default) or `atlas`
+- `--model`: Image editing model (default `gemini-3-pro-image-preview`; Atlas accepts only `google/nano-banana-2-lite/edit`)
+- `--api-key`: Provider API key (if not in the provider environment variable)
+
+`edit_slide.py` prints `OK: <path>` and exits `0` on success, or `FAIL: <reason>` and exits `1`. Both scripts exit `1` before any request when a required Python package is missing.
+
+Atlas generation POST requests are submitted once and are never retried. Only prediction GET requests use bounded polling.
 
 After editing all slides with feedback, clear the `feedback` fields from `slides_plan.json` and tell the user to refresh the browser to see updated slides.
 
@@ -260,7 +294,7 @@ If the user has more feedback, repeat Phase 4-5. This review-edit cycle continue
 Once the user approves all slides, ask for the desired filename and package them:
 
 ```bash
-python /skills/nano-banana/scripts/package_pptx.py \
+python scripts/package_pptx.py \
   --dir ppt_output/images \
   --output presentation.pptx \
   --kill-server .viewer.pid
@@ -305,8 +339,9 @@ python /skills/nano-banana/scripts/package_pptx.py \
 
 | Script | Purpose | Key Arguments |
 |--------|---------|---------------|
-| `scripts/generate_ppt.py` | Batch generate all slides from plan | `--plan`, `--style`, `--model`, `--output`, `--resolution`, `--api-key`, `--workers` |
-| `scripts/edit_slide.py` | Edit a single slide based on instruction | `--input`, `--instruction`, `--output`, `--model`, `--api-key` |
+| `scripts/generate_ppt.py` | Batch generate all slides from plan | `--plan`, `--style`, `--provider`, `--model`, `--output`, `--resolution`, `--api-key`, `--workers` |
+| `scripts/edit_slide.py` | Edit a single slide based on instruction | `--input`, `--instruction`, `--output`, `--provider`, `--model`, `--api-key` |
+| `scripts/atlas_image.py` | Submit and poll optional Atlas Cloud image tasks | Used by generation and editing scripts |
 | `scripts/serve_viewer.py` | Local review server with feedback | `--dir`, `--plan`, `--port`, `--no-open`, `--pid-file` |
 | `scripts/package_pptx.py` | Package slide images into .pptx | `--dir`, `--output`, `--kill-server` |
 

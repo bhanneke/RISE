@@ -5,8 +5,8 @@ pack:
   maintainers:
     - 'Brian Heseung Kim (brhkim on GitHub), for the DAAF-Contribution-Community organisation'
   license: 'LGPL-3.0-or-later (as declared in the README, badge and CITATION.cff; the repo ships the GPL-3.0 text as LICENSE plus COPYING.LESSER)'
-  total_skills: 56
-  last_update: '2026-08-18'
+  total_skills: 60
+  last_update: '2026-11-03'
   related_project: ''
   compatibility:
     - claude-code
@@ -45,6 +45,7 @@ pack:
     copies are verbatim and are redistributed under LGPL-3.0-or-later with
     attribution to Brian Heseung Kim and the DAAF contributors; each upstream
     skill also ships reference files that are not copied here.
+    Refresh 2026-11-24: re-copied the 49 changed skills, rewrote the daaf-deploy-smoke-testing and election-data-source-countypres descriptions to match the new texts, and added literature-review, pdf-reading, scholarly-search and typesafe-ai.
 
 skills:
   - slug: agent-authoring
@@ -77,7 +78,7 @@ skills:
     category: infra
     pipeline_stages: []
     field: general
-    description: 'Contributor tool that checks a live DAAF install end to end on its configured provider route, from a free preflight through one paid round trip to a six-probe functional battery and a zero-cost deterministic test tier. Requires the DAAF_DEV=1 developer image.'
+    description: 'Maintainer tool that checks a live DAAF install end to end on one of five install routes (named with a required --route flag), in tiers from a free preflight and deterministic battery to paid round-trip and functional batteries.'
     source_path: '.claude/skills/daaf-deploy-smoke-testing/SKILL.md'
     details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/daaf-deploy-smoke-testing/SKILL.md'
     provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
@@ -319,7 +320,7 @@ skills:
     pipeline_stages:
       - data-acquisition
     field: social-sciences
-    description: 'Source guide to MIT MEDSL county presidential returns 2000-2024 via Harvard Dataverse, whose main pitfall is that filtering on the TOTAL vote mode silently drops about 1,000 counties after 2020; it gives a three-pattern reconstruction of county totals.'
+    description: 'Source guide to MIT MEDSL county presidential returns 2000-2024 via Harvard Dataverse, whose main pitfall is that filtering on the TOTAL vote mode silently drops every county in the states that report only by vote mode (848 county-equivalents across 10 states in 2020); it gives a three-pattern reconstruction of county totals.'
     source_path: '.claude/skills/election-data-source-countypres/SKILL.md'
     details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/election-data-source-countypres/SKILL.md'
     provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
@@ -739,3 +740,44 @@ skills:
     details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/web-retrieval/SKILL.md'
     provenance: 'DAAF provenance audit 2026-09-29 (first-party; best external match 0.077)'
     last_update: '2026-08-08'
+  - slug: literature-review
+    name: '/literature-review'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    field: general
+    description: 'Method for literature reviews at three levels chosen up front (quick scan, standard review, formal or systematic review), covering screening, per-paper notes, claim checking against pages, stated weights per paper and risk-of-bias checklists.'
+    source_path: '.claude/skills/literature-review/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/literature-review/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24; DAAF-originated by upstream text)'
+  - slug: pdf-reading
+    name: '/pdf-reading'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+    field: general
+    description: 'Reads research PDFs with page-anchored provenance: deterministic text extraction as the quote anchor, a second extractor, OCR for scans, a card gate that checks each quoted passage and number against its cited page, and a vision cross-check policy.'
+    source_path: '.claude/skills/pdf-reading/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/pdf-reading/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24; DAAF-originated by upstream text)'
+  - slug: scholarly-search
+    name: '/scholarly-search'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+    field: general
+    description: 'Searches and traces academic literature through a provenance CLI that fuses OpenAlex, Semantic Scholar and ERIC, with reference verification, snowballing, retraction checks and open-access lookups, saving raw responses and a manifest row for every call.'
+    source_path: '.claude/skills/scholarly-search/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/scholarly-search/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24; DAAF-originated by upstream text)'
+  - slug: typesafe-ai
+    name: '/typesafe-ai'
+    category: analysis
+    pipeline_stages:
+      - data-analysis
+    field: general
+    description: 'Guide to calling Typesafe AI''s Jev typed-judgment API over HTTP from DAAF scripts; it generates no text but returns calibrated probabilities for choice, score and yes/no questions.'
+    source_path: '.claude/skills/typesafe-ai/SKILL.md'
+    details_url: 'https://github.com/DAAF-Contribution-Community/daaf/blob/main/.claude/skills/typesafe-ai/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24; DAAF-originated by upstream text)'

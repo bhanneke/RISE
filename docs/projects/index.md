@@ -38,14 +38,14 @@ sources.
 | [Asta AutoDiscovery](asta-autodiscovery.md) | external | `ideation` | 1 | 3 | 3 | 1 | 2 | 3 | 2 | 2 | 0 | 1 | 1 | general |
 | [AstaBench (AI2)](asta-bench.md) | external | `end-to-end` | 0 | 2 | 3 | 3 | 3 | 3 | 3 | 3 | 1 | 1 | 2 | general |
 | [Auto-Empirical Research Skills (AERS)](auto-empirical-research-skills.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 2 | 2 | 0 | 1 | 3 | social-sciences |
-| [Automated Alignment Researchers (Anthropic)](automated-w2s-research.md) | external | `analysis` | 2 | 3 | 3 | 1 | 2 | 2 | 2 | 1 | 0 | 2 | 2 | computer-science |
+| [Automated Alignment Researchers (Anthropic)](automated-w2s-research.md) | external | `analysis` | 2 | 3 | 3 | 1 | 2 | 2 | 1 | 1 | 0 | 2 | 2 | computer-science |
 | [AutoRA (Automated Research Assistant)](autora.md) | external | `end-to-end` | 2 | 3 | 3 | 1 | 2 | 2 | 3 | 2 | 0 | 1 | 1 | social-sciences |
 | [AutoResearchClaw](autoresearchclaw.md) | external | `end-to-end` | 3 | 2 | 2 | 3 | 2 | 2 | 3 | 3 | 1 | 3 | 3 | general |
 | [AutoSurvey](autosurvey.md) | external | `literature` | 1 | 3 | 2 | 1 | 2 | 3 | 1 | 0 | 0 | 1 | 1 | general |
 | [Aviary (FutureHouse)](aviary.md) | external | `end-to-end` | 0 | 2 | 3 | 2 | 3 | 2 | 3 | 2 | 1 | 1 | 2 | general |
 | [BixBench3](bixbench3.md) | external | `analysis` | 0 | 0 | 3 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | 1 | biomedical |
 | [Claude Science](claude-science.md) | external | `end-to-end` | 2 | 2 | 1 | 3 | 3 | 1 | 1 | 2 | 0 | 2 | 1 | general |
-| [Clo-Author](clo-author.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 1 | 1 | 0 | 2 | 1 | economics |
+| [Clo-Author](clo-author.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 2 | 1 | 0 | 2 | 1 | economics |
 | [Coarse (coarse.ink)](coarse-ink.md) | external | `review` | 0 | 2 | 2 | 2 | 1 | 2 | 3 | 1 | 1 | 1 | 2 | general |
 | [CORAL](coral.md) | external | `end-to-end` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 1 | 2 | 2 | general |
 | [CORE-Bench](core-bench.md) | external | `replication` | 0 | 2 | 3 | 1 | 2 | 3 | 2 | 3 | 0 | 1 | 2 | general |
@@ -56,12 +56,12 @@ sources.
 | [DeepScientist](deepscientist.md) | external | `end-to-end` | 2 | 3 | 2 | 2 | 2 | 3 | 2 | 2 | 1 | 1 | 2 | computer-science |
 | [EconAgentSkills](econ-agent-skills.md) | external | `analysis` | 2 | 1 | 3 | 2 | 2 | 0 | 2 | 1 | 0 | 1 | 2 | economics |
 | [Econ Paper Review Skill (econ-review)](econ-paper-review-skill.md) | external | `review` | 1 | 1 | 2 | 1 | 1 | 1 | 1 | 1 | 0 | 2 | 1 | economics |
-| [econ-skills (zbsaygin)](econ-skills.md) | external | `analysis` | 2 | 1 | 3 | 2 | 2 | 0 | 2 | 1 | 0 | 2 | 0 | economics |
+| [econ-skills (zbsaygin)](econ-skills.md) | external | `analysis` | 2 | 1 | 3 | 2 | 2 | 0 | 1 | 1 | 0 | 2 | 0 | economics |
 | [Econ Writing Skill](econ-writing-skill.md) | external | `drafting` | 2 | 0 | 3 | 1 | 1 | 1 | 3 | 2 | 0 | 1 | 1 | economics |
 | [EconCS Bench](econcs-bench.md) | external | `end-to-end` | 0 | 0 | 3 | 1 | 0 | 1 | 1 | 1 | 0 | 0 | 3 | economics |
-| [EconTools](econtools.md) | external | `review` | 2 | 1 | 3 | 2 | 2 | 1 | 2 | 1 | 1 | 2 | 1 | economics |
+| [EconTools](econtools.md) | external | `review` | 2 | 1 | 3 | 2 | 2 | 1 | 1 | 1 | 1 | 2 | 1 | economics |
 | [EvoScientist](evoscientist.md) | external | `end-to-end` | 3 | 3 | 3 | 2 | 2 | 3 | 3 | 3 | 1 | 2 | 3 | general |
-| [FAROS (Foundation AutoResearch Operating System)](faros.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 1 | 2 | 0 | 3 | 1 | computer-science |
+| [FAROS (Foundation AutoResearch Operating System)](faros.md) | external | `end-to-end` | 3 | 2 | 3 | 2 | 2 | 2 | 2 | 2 | 0 | 3 | 1 | computer-science |
 | [ForeSci](foresci.md) | external | `ideation` | 0 | 0 | 3 | 1 | 1 | 2 | 1 | 1 | 0 | 0 | 2 | computer-science |
 | [AI Co-Scientist (Google DeepMind)](google-co-scientist.md) | external | `ideation` | 2 | 3 | 1 | 2 | 1 | 3 | 1 | 3 | 0 | 3 | 0 | general |
 | [GPT Researcher](gpt-researcher.md) | external | `literature` | 1 | 3 | 3 | 2 | 2 | 1 | 3 | 3 | 0 | 1 | 2 | general |
@@ -89,7 +89,7 @@ sources.
 | [Paper-WorkFlow](paper-workflow.md) | external | `end-to-end` | 3 | 2 | 2 | 2 | 3 | 1 | 2 | 1 | 0 | 2 | 2 | economics |
 | [PaperCoder (Paper2Code)](paper2code.md) | external | `replication` | 1 | 3 | 3 | 2 | 3 | 3 | 3 | 3 | 0 | 2 | 2 | computer-science |
 | [PaperBench (OpenAI)](paperbench.md) | external | `replication` | 0 | 0 | 3 | 2 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | computer-science |
-| [PaperDoctor](paperdoctor.md) | external | `review` | 1 | 2 | 3 | 2 | 1 | 2 | 2 | 1 | 0 | 2 | 0 | general |
+| [PaperDoctor](paperdoctor.md) | external | `review` | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 1 | 0 | 2 | 0 | general |
 | [PARNESS](parness.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 1 | 1 | 1 | 1 | 2 | 2 | general |
 | [Prism](prism.md) | external | `drafting` | 2 | 1 | 1 | 2 | 2 | 0 | 1 | 2 | 0 | 1 | 0 | general |
 | [ralph-wiggum-asset-pricing](ralph-wiggum-asset-pricing.md) | external | `drafting` | 2 | 2 | 3 | 2 | 2 | 1 | 1 | 1 | 1 | 3 | 1 | finance |
@@ -101,7 +101,7 @@ sources.
 | [REPRO-Bench](repro-bench.md) | external | `replication` | 0 | 2 | 1 | 2 | 1 | 3 | 1 | 2 | 0 | 0 | 1 | social-sciences |
 | [ReproAgent](reproagent.md) | external | `replication` | 1 | 3 | 3 | 1 | 2 | 3 | 2 | 1 | 1 | 2 | 1 | computer-science |
 | [ReproRepo](reprorepo.md) | external | `replication` | 0 | 0 | 3 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 2 | computer-science |
-| [Claude Code Research Harness Workflow](research-harness-workflow.md) | external | `analysis` | 2 | 2 | 3 | 2 | 3 | 2 | 1 | 1 | 0 | 2 | 0 | social-sciences |
+| [Claude Code Research Harness Workflow](research-harness-workflow.md) | external | `analysis` | 2 | 2 | 3 | 2 | 3 | 2 | 2 | 1 | 0 | 2 | 0 | social-sciences |
 | [Research Paper Writing Skills](research-paper-writing-skills.md) | external | `drafting` | 1 | 0 | 3 | 1 | 1 | 0 | 3 | 2 | 0 | 1 | 3 | computer-science |
 | [ResearchTown](research-town.md) | external | `ideation` | 2 | 3 | 3 | 2 | 2 | 2 | 3 | 0 | 0 | 1 | 1 | general |
 | [ResearchAgent (NAACL 2025)](researchagent.md) | external | `ideation` | 1 | 2 | 3 | 2 | 2 | 2 | 1 | 0 | 0 | 2 | 0 | general |
@@ -128,7 +128,7 @@ sources.
 | [Writing-Driven Autoresearch](writing-driven-autoresearch.md) | external | `end-to-end` | 2 | 3 | 3 | 0 | 2 | 2 | 2 | 0 | 0 | 3 | 1 | computer-science |
 | [zeropaper (Auto AI Research Template)](zeropaper.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | 3 | 1 | finance |
 | [Claude Code Skills for Empirical Research (zirui-song)](zirui-claude-skills.md) | external | `analysis` | 2 | 1 | 3 | 2 | 2 | 1 | 2 | 1 | 1 | 3 | 1 | economics |
-| [Zochi (Intology)](zochi.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 2 | 0 | 2 | 1 | computer-science |
+| [Zochi (Intology)](zochi.md) | external | `end-to-end` | 3 | 3 | 2 | 2 | 2 | 3 | 2 | 0 | 0 | 2 | 1 | computer-science |
 
 *Score columns: LC = lifecycle coverage, AUT = autonomy, ARC = architectural transparency, IN = inputs supported, OUT = outputs/reproducibility, EVAL = internal evaluation, OPEN = openness, MAT = maturity/traction, XF = cross-family policy, RUN = runtime assurance, PORT = cross-platform portability. Scale 0–3. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 

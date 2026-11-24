@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/QinghongLin/paperdoctor>
 
-**Licence:** `MIT`
+**Licence:** `MIT (stated in README; no licence file)`
 
 **Source:** [`projects/landscape/paperdoctor.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/paperdoctor.yml)
 
@@ -28,13 +28,13 @@ Every finding is an auditable triple (observation, evidence pointer — a senten
 | Inputs supported | 2 | Two input forms (paper PDF + code repo) with access to the paper's own cited-literature and experiment artifacts. |
 | Outputs / reproducibility | 1 | Persists a structured diagnostic report (prose + evidence pointers); no versioned paper+code+data manifest output. |
 | Internal evaluation | 2 | Systematically compared against human reviewers and other agentic reviewers in the paper's own study; not yet third-party validated. |
-| Openness | 2 | MIT license, pip-installable with documented quick-start; requires paid Mathpix (or MinerU fallback) and LLM API credentials to run. |
-| Maturity / traction | 1 | 38 stars / 1 fork as of scoring date; posted September 2026, multi-institution authorship but single public release. |
+| Openness | 1 | README states 'MIT License' but links to /blob/main rather than to a file, and the repository has no LICENSE file, so no licence is actually granted; pip-installable with documented quick-start, but requires paid Mathpix (or MinerU fallback) and LLM API credentials. |
+| Maturity / traction | 1 | 45 stars as of 2026-11-24 (38 stars / 1 fork at scoring), last commit 2026-07-04; posted September 2026, multi-institution authorship but single public release. |
 | Cross-family policy | 0 | Built as Claude Code skills; no documented cross-model-family review requirement or default. |
 | Runtime assurance | 2 | L2 typed verifiers route claims to dedicated checkers and L3 selectively reruns experiments — multiple in-pipeline gates before the report is finalized. |
 | Cross-platform portability | 0 | Tied to the Claude Code skill format; no evidence of other agent-runtime adapters. |
 
-*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -58,6 +58,7 @@ Every finding is an auditable triple (observation, evidence pointer — a senten
 - Requires paid Mathpix (or MinerU) and LLM API credentials; not free to run at scale.
 - Packaged specifically as Claude Code skills — portability to other agent runtimes is untested.
 - Very young (38 stars); evaluated only in its own benchmark study, no independent adoption evidence yet.
+- No licence file; the README states MIT only, so reuse terms are not formally granted.
 
 ## Related projects in this catalog
 

@@ -1,3 +1,8 @@
+---
+name: goals-review
+description: "Review quarterly objectives, progress scores and deadlines using the configured goals file."
+---
+
 # Goals Review
 
 *v1.1 — Adapted for public use. Review quarterly objectives, update progress scores, and manage deadlines.*

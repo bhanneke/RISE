@@ -1,7 +1,7 @@
 slug: zochi
 name: "Zochi (Intology)"
 type: external
-status: active
+status: dormant
 url: "https://github.com/IntologyAI/Zochi"
 license: "MIT"
 maintainers:
@@ -79,8 +79,8 @@ scores:
     score: 2
     note: "MIT-licensed code for earlier version; current system features are commercial."
   maturity_traction:
-    score: 2
-    note: "316 stars; commercial backing (Intology); credible publication trajectory. Intology's active development focus has since moved to its successor system, Locus (announced 2026, leads PostTrainBench), while this repository's last commit remains 2025-11-19."
+    score: 0
+    note: "322 stars as of 2026-11-24; commercial backing (Intology); credible publication trajectory. Intology's active development focus has since moved to its successor system, Locus (announced 2026, leads PostTrainBench), while this repository's last commit remains 2025-11-19, now over 12 months ago — so status moves to dormant and maturity to 0 under the rubric's abandoned band."
   cross_family_policy:
     score: 0
     note: 'Same-model self-refinement is the canonical failure mode ARIS Table 4 identifies.'
@@ -90,7 +90,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Public code covers earlier version; current pipeline is commercial.'
-scored_on: "2026-10-01"
+scored_on: "2026-11-24"
 
 limitations:
   - "Public code lags the current capabilities described in marketing — current pipeline is not fully open."

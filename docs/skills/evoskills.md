@@ -2,7 +2,7 @@
 
 # EvoSkills
 
-license: `Apache-2.0` · 14 skills · last update: 2026-05-17
+license: `Apache-2.0` · 16 skills · last update: 2026-11-13
 
 **Source:** <https://github.com/EvoScientist/EvoSkills>
 
@@ -12,7 +12,7 @@ license: `Apache-2.0` · 14 skills · last update: 2026-05-17
 
 **Compatibility:** `claude-code` `codex` `agnostic`
 
-> Companion skill packs for EvoScientist. Installable into other CLI coding agents.
+> Companion skill packs for EvoScientist. Installable into other CLI coding agents. Refresh 2026-11-24: re-copied the 9 changed SKILL.md files, rewrote the paper-navigator and paper-review descriptions to match, and added paper-figures and paper-graph.
 
 **Source YAML:** [`skills/evoskills.yml`](https://github.com/bhanneke/RISE/blob/main/skills/evoskills.yml)
 
@@ -38,11 +38,12 @@ license: `Apache-2.0` · 14 skills · last update: 2026-05-17
 |---|---|---|---|---|---|---|
 | [`paper-writing`](evoskills/paper-writing.md) | — | `paper-drafting` | Paper drafting pipeline | [view](evoskills/paper-writing.md) | — | — |
 
-### `figures` (1)
+### `figures` (2)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
 | [`nano-banana`](evoskills/nano-banana.md) | — | `paper-drafting` | AI-generated inline figures (Google Gemini Nano Banana) | [view](evoskills/nano-banana.md) | — | — |
+| [`paper-figures`](evoskills/paper-figures.md) | — | `paper-drafting` | Produces standalone publication-ready PNG graphics and reproducible matplotlib scripts from tabular data. | [view](evoskills/paper-figures.md) | — | — |
 
 ### `ideation` (1)
 
@@ -56,11 +57,12 @@ license: `Apache-2.0` · 14 skills · last update: 2026-05-17
 |---|---|---|---|---|---|---|
 | [`evo-memory`](evoskills/evo-memory.md) | — |  | Persistent memory layer for EvoScientist sessions | [view](evoskills/evo-memory.md) | — | — |
 
-### `literature` (2)
+### `literature` (3)
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| [`paper-navigator`](evoskills/paper-navigator.md) | — | `literature-discovery` `literature-synthesis` | Navigate literature with persistent memory | [view](evoskills/paper-navigator.md) | — | — |
+| [`paper-graph`](evoskills/paper-graph.md) | — | `literature-synthesis` | Maps the lineage of a research field, showing how earlier technical challenges led to later approaches, as a Markdown report with Mermaid diagrams. | [view](evoskills/paper-graph.md) | — | — |
+| [`paper-navigator`](evoskills/paper-navigator.md) | — | `literature-discovery` `literature-synthesis` | Finds and reads academic papers via Semantic Scholar and arXiv: keyword, citation-graph and recommendation search, relevance judged against a written rubric, with persistent reading notes. | [view](evoskills/paper-navigator.md) | — | — |
 | [`research-survey`](evoskills/research-survey.md) | — | `literature-discovery` `literature-synthesis` | Survey/literature review generation | [view](evoskills/research-survey.md) | — | — |
 
 ### `modeling` (1)
@@ -73,7 +75,7 @@ license: `Apache-2.0` · 14 skills · last update: 2026-05-17
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| [`paper-review`](evoskills/paper-review.md) | — | `referee-simulation` | Multi-perspective peer review | [view](evoskills/paper-review.md) | — | — |
+| [`paper-review`](evoskills/paper-review.md) | — | `referee-simulation` | Self-review of the user's own paper before submission with adversarial stress-testing in three passes, including a deep read and a five-aspect checklist. | [view](evoskills/paper-review.md) | — | — |
 
 ### `revision` (1)
 

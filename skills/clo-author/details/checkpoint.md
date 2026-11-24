@@ -172,10 +172,11 @@ Keep it tight — 3–5 bullets per section max.
 
 ### Step 4e. Refresh Project Dashboard
 
-Regenerate the project dashboard to capture latest session state:
-```bash
-python3 scripts/generate_dashboard.py
-```
+The dashboard (`project_dashboard.html`) may be hand-crafted with custom sections. **Never overwrite it blindly.**
+
+- `generate_dashboard.py` is safe to run — it skips if the file already exists (incremental mode)
+- `generate_dashboard.py --fresh` overwrites entirely — **only use for new projects with no custom content**
+- If the dashboard has custom content and new data was produced (e.g., a merge pipeline wrote a manifest), update the relevant section of the HTML directly rather than regenerating
 
 ### Step 5: Confirm
 

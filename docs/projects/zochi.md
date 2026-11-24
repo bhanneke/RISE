@@ -2,7 +2,7 @@
 
 # Zochi (Intology)
 
-`external` · status: `active` · focus: `end-to-end` · discipline: `computer-science` · started: 2025
+`external` · status: `dormant` · focus: `end-to-end` · discipline: `computer-science` · started: 2025
 
 **Project page:** <https://github.com/IntologyAI/Zochi>
 
@@ -29,12 +29,12 @@ The strongest *external-validation* claim in the AI-scientist landscape: peer-re
 | Outputs / reproducibility | 2 | Published papers + benchmark code; full system reproduction depends on current closed components. |
 | Internal evaluation | 3 | External peer review at ACL 2025 + ICLR 2025 workshops — strongest external validation in the catalog. |
 | Openness | 2 | MIT-licensed code for earlier version; current system features are commercial. |
-| Maturity / traction | 2 | 316 stars; commercial backing (Intology); credible publication trajectory. Intology's active development focus has since moved to its successor system, Locus (announced 2026, leads PostTrainBench), while this repository's last commit remains 2025-11-19. |
+| Maturity / traction | 0 | 322 stars as of 2026-11-24; commercial backing (Intology); credible publication trajectory. Intology's active development focus has since moved to its successor system, Locus (announced 2026, leads PostTrainBench), while this repository's last commit remains 2025-11-19, now over 12 months ago — so status moves to dormant and maturity to 0 under the rubric's abandoned band. |
 | Cross-family policy | 0 | Same-model self-refinement is the canonical failure mode ARIS Table 4 identifies. |
 | Runtime assurance | 2 | External peer-review acceptance (ACL 2025) is the strongest runtime-equivalent assurance signal in the catalog. |
 | Cross-platform portability | 1 | Public code covers earlier version; current pipeline is commercial. |
 
-*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

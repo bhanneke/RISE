@@ -1,3 +1,8 @@
+---
+name: schedule-query
+description: "Check availability across configured calendars and draft scheduling replies with specific time proposals."
+---
+
 # Schedule Query
 
 *v1.1 — Check calendar availability and draft scheduling replies with specific time proposals*

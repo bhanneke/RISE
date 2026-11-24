@@ -1,8 +1,8 @@
 ---
 name: submit
-description: Submission pipeline — journal targeting, replication package, audit, and final gate. Replaces /submit, /target-journal, /audit-replication, /data-deposit.
+description: Submission pipeline — journal targeting, replication package, audit, and final gate.
 argument-hint: "[mode: target | package | audit | final] [journal name (optional)]"
-allowed-tools: Read,Grep,Glob,Write,Bash,Task
+allowed-tools: Read,Grep,Glob,Write,Bash,Agent,Task
 ---
 
 # Submit
@@ -60,8 +60,19 @@ Full verification + score enforcement + submission checklist.
 Workflow:
 1. Run comprehensive review if not done recently
 2. Run replication audit
-3. Check score gate: aggregate >= 95, all components >= 80
-4. Save gate summary to `quality_reports/quality_gate_[date].md`
+2b. Run `/coherence --strict` (deterministic layer): blocking and minor findings must both be zero
+3. Check the submission gate — aggregate >= 95, every component >= 80, every non-conditional
+   component scored, and the understanding gate (INV-26), which `score.py` runs as a pass/fail command:
+```bash
+python3 scripts/score.py --gate submission
+python3 scripts/verify.py --mode submission
+```
+3b. If the understanding gate is what failed, `explainer_status.py` lists the scripts:
+Exit 1 blocks submission. Every script behind a table or figure needs a current explainer and a
+passing quiz attempt at its current fingerprint. Fix with `/explain <script>` (MISSING or STALE)
+or `/explain <script> --quiz` (UNTESTED). This never enters the weighted score — see
+`.claude/rules/understanding.md`.
+4. Save gate summary to `quality_reports/quality_gate_[date].md` (include the understanding table)
 5. Generate HTML quality gate report and refresh dashboard:
 ```bash
 python3 scripts/generate_html_report.py quality-gate quality_reports/quality_gate_[date].md
@@ -86,6 +97,7 @@ python3 scripts/generate_dashboard.py
 
 ## Principles
 - **Score >= 95 + all components >= 80. No exceptions.**
+- **You must be able to explain every number you submit.** The understanding gate is pass/fail and independent of the score — a 97 on a paper whose sample construction you can't reconstruct is not ready.
 - **Don't skip verification.** Even if reports exist, check they're recent.
 - **If it fails, stop.** Don't generate materials for a failing paper.
 - **Cover letter is a draft.** User must review before sending.

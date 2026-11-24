@@ -4,7 +4,7 @@
 
 Persistent memory layer for EvoScientist sessions
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/evo-memory/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/evo-memory/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>infra</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-11-13</div></div><div style="margin-top:0.5em;"><b>Stages:</b> —</div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/evo-memory/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/evo-memory/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Evo-Memory
 
@@ -41,7 +41,7 @@ Records what you've learned about research DIRECTIONS — which areas are promis
 
 **Each entry records**: Direction name, one-sentence summary, evidence (which cycle, what results), classification (feasible / implementation failure / fundamental failure), date.
 
-**How it's used**: `research-ideation` reads M_I at the start of Step 0. The paper uses embedding-based retrieval with cosine similarity, selecting the top-k_I most similar items (k_I=2 in experiments). Feasible directions from prior cycles can seed new tree branches. Unsuccessful directions are used during pruning — fundamental failures are pruned; implementation failures may be retried.
+**How it's used**: `research-ideation` reads M_I at the start of Step 0. The paper uses embedding-based retrieval with cosine similarity, selecting the top-k_I most similar items (k_I=2 in experiments). Feasible directions from prior cycles are offered as candidate research directions in Step 3. Unsuccessful directions are used during refinement in Step 4 — ideas matching a fundamental failure are pruned; implementation failures may be retried.
 
 See assets/ideation-memory-template.md for the template.
 
@@ -149,7 +149,7 @@ When starting a new research cycle (loading `research-ideation` or `experiment-p
 
 1. Read `/memory/ideation-memory.md` and `/memory/experiment-memory.md`
 2. Summarize relevant entries to inject into the current context
-3. For `research-ideation`: Use M_I feasible directions to seed tree branches. Use M_I unsuccessful directions (fundamental failures only) during pruning.
+3. For `research-ideation`: Offer M_I feasible directions as candidate research directions in Step 3. Use M_I unsuccessful directions (fundamental failures only) to prune ideas during Step 4 refinement.
 4. For `experiment-pipeline`: Use M_E strategies to inform hyperparameter ranges, training schedules, and debugging approaches.
 
 **Don't blindly apply old strategies.** Context matters. A strategy that worked for image classification may not work for text generation. Always check the recorded context against the current problem.
@@ -160,8 +160,8 @@ When starting a new research cycle (loading `research-ideation` or `experiment-p
 
 1. Read `/memory/ideation-memory.md`
 2. Select the top-k_I=2 entries most relevant to the user's current goal. Compare the user's goal statement against each entry's Summary and Retrieval Tags for semantic similarity.
-3. For each selected feasible direction: incorporate it as a seed branch at Level 1 of the idea tree. Example injection: *"Prior cycle found 'Modality-aware model compression' promising (Elo 1548, cycle 3). Use as a Level 1 branch alongside new technique variants."*
-4. For each unsuccessful direction with `Failure Classification: Fundamental`: flag for pruning. Example injection: *"Prior cycle confirmed 'Autoregressive real-time video generation' is a fundamental failure (O(n) latency). Prune any tree branch matching this pattern."*
+3. For each selected feasible direction: offer it as a candidate when Step 3 chooses its 3 research directions (the total stays at 3). Example injection: *"Prior cycle found 'Modality-aware model compression' promising (Elo 1500, cycle 3). Consider it as one of the 3 research directions alongside new ones."*
+4. For each unsuccessful direction with `Failure Classification: Fundamental`: flag for pruning. Example injection: *"Prior cycle confirmed 'Autoregressive real-time video generation' is a fundamental failure (O(n) latency). Prune any idea matching this pattern."*
 
 #### For experiment-pipeline (inject M_E)
 

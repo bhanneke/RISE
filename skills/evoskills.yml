@@ -5,14 +5,14 @@ pack:
   maintainers:
     - 'EvoScientist team'
   license: 'Apache-2.0'
-  total_skills: 14
-  last_update: '2026-05-17'
+  total_skills: 16
+  last_update: '2026-11-13'
   related_project: 'evoscientist'
   compatibility:
     - claude-code
     - codex
     - agnostic
-  notes: 'Companion skill packs for EvoScientist. Installable into other CLI coding agents.'
+  notes: 'Companion skill packs for EvoScientist. Installable into other CLI coding agents. Refresh 2026-11-24: re-copied the 9 changed SKILL.md files, rewrote the paper-navigator and paper-review descriptions to match, and added paper-figures and paper-graph.'
 
 skills:
   - slug: 'academic-slides'
@@ -69,7 +69,7 @@ skills:
     pipeline_stages:
       - literature-discovery
       - literature-synthesis
-    description: 'Navigate literature with persistent memory'
+    description: 'Finds and reads academic papers via Semantic Scholar and arXiv: keyword, citation-graph and recommendation search, relevance judged against a written rubric, with persistent reading notes.'
     source_path: 'skills/paper-navigator/'
   - slug: 'paper-planning'
     name: 'paper-planning'
@@ -90,7 +90,7 @@ skills:
     category: review
     pipeline_stages:
       - referee-simulation
-    description: 'Multi-perspective peer review'
+    description: 'Self-review of the user''s own paper before submission with adversarial stress-testing in three passes, including a deep read and a five-aspect checklist.'
     source_path: 'skills/paper-review/'
   - slug: 'paper-writing'
     name: 'paper-writing'
@@ -115,3 +115,17 @@ skills:
       - literature-synthesis
     description: 'Survey/literature review generation'
     source_path: 'skills/research-survey/'
+  - slug: 'paper-figures'
+    name: 'paper-figures'
+    category: figures
+    pipeline_stages:
+      - paper-drafting
+    description: 'Produces standalone publication-ready PNG graphics and reproducible matplotlib scripts from tabular data.'
+    source_path: 'skills/paper-figures/SKILL.md'
+  - slug: 'paper-graph'
+    name: 'paper-graph'
+    category: literature
+    pipeline_stages:
+      - literature-synthesis
+    description: 'Maps the lineage of a research field, showing how earlier technical challenges led to later approaches, as a Markdown report with Mermaid diagrams.'
+    source_path: 'skills/paper-graph/SKILL.md'

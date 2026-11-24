@@ -29,12 +29,12 @@ It fixed the template the whole downstream family inherited — a frozen data/ev
 | Outputs / reproducibility | 1 | Persists code diffs, val_bpb numbers and progress.png but no prose artifact of any kind; the fixed five-minute budget and single metric make successive runs comparable, though nothing is packaged for replay. |
 | Internal evaluation | 1 | Every candidate change is scored on val_bpb against the baseline, and the author's own progress.png shows one run's trajectory — but no aggregate study of whether the loop reliably discovers improvements, no benchmark, and no paper. |
 | Openness | 1 | No LICENSE, LICENSE.md or COPYING file at the repository root and the GitHub API reports no licence, so despite 13,405 forks the code is source-available but legally unlicensed; it also needs a single NVIDIA GPU (tested on H100), so it is not commodity-hardware reproducible. |
-| Maturity / traction | 2 | Score carried entirely by traction, not maturity: 95,362 stars and 13,405 forks with a whole downstream category descending from it, against 36 commits, no releases, no packaging, and nothing pushed since 2026-03-26. |
+| Maturity / traction | 2 | Score carried entirely by traction, not maturity: 100,538 stars as of 2026-11-24 (95,362 at the 2026-09-08 scoring) and 13,405 forks with a whole downstream category descending from it, against 36 commits, no releases, no packaging, and nothing pushed since 2026-03-26. |
 | Cross-family policy | 0 | No reviewer role exists — the only judge is the val_bpb metric — so there is nothing for a cross-family policy to apply to. |
 | Runtime assurance | 1 | Exactly one in-flight gate: a change is kept only if it improves validation bits-per-byte on a fixed five-minute run; no claim checking, no code audit, no second opinion. |
 | Cross-platform portability | 2 | Agent-runtime-agnostic by design — program.md is a plain markdown instruction file with no framework coupling, so any coding agent can drive it — but the execution environment is hardware-locked to one NVIDIA GPU (H100-tested), with community forks required for other accelerators. |
 
-*Scored on 2026-09-08. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

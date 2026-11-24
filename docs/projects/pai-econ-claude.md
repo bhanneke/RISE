@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/maxwell2732/pAI-Econ-claude>
 
-**Licence:** `unclassified (licence file present; see repository)`
+**Licence:** `MIT (LICENSE file; copyright Chen Zhu, Xiaolu Wang, Weilong Zhang, with an original-work line for Pierfrancesco Beneventano's pAI/MSc; README matches)`
 
 **Source:** [`projects/landscape/pai-econ-claude.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/pai-econ-claude.yml)
 
@@ -29,12 +29,12 @@ A 40+ template "model_library" of canonical economic-theory models (micro/labor/
 | Outputs / reproducibility | 2 | Each stage persists a versioned intermediate record (propositions, proof sketches, optional simulation code/figures, manuscript files) gated by human checkpoints; no demonstrated end-to-end reproducibility across arbitrary runs. |
 | Internal evaluation | 2 | Companion arXiv preprint (2607.21268) evaluates the gated pipeline against an ungated baseline on 5 matched economic-theory tasks with severity/usefulness scoring; not yet externally peer-reviewed or replicated by a third party. |
 | Openness | 2 | MIT license, example inputs in examples/ for quickstart, but running the full pipeline requires a paid Claude Code/API subscription — not free-tier reproducible. |
-| Maturity / traction | 2 | 185 stars / 60 forks, tagged v1.4.0, 40 commits, last updated 2026-08-21 — beta-stage with growing external adoption but single-team origin. |
+| Maturity / traction | 2 | 208 stars as of 2026-11-24 (185 stars / 60 forks and tagged v1.4.0 at the 2026-10-01 scoring), last push 2026-11-15 — beta-stage with growing external adoption but single-team origin. |
 | Cross-family policy | 0 | Single-model by design — built specifically as a Claude Code Skill (name and commands are Claude-specific); no cross-family review mechanism. |
 | Runtime assurance | 3 | 8 in-pipeline gates (novelty risk, canonical-model fit, model coherence, proof integrity, economic meaning, mathematical review) that diagnose failure modes and trigger loopbacks before a stage can advance — a full runtime audit stack with gating on failure. |
 | Cross-platform portability | 0 | Locked to Claude Code as a Claude Code Skill; no documented support for other IDEs, runtimes, or model providers. |
 
-*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

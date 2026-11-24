@@ -3,7 +3,7 @@ name: "PaperDoctor"
 type: external
 status: active
 url: "https://github.com/QinghongLin/paperdoctor"
-license: "MIT"
+license: "MIT (stated in README; no licence file)"
 maintainers:
   - "Lin, K.Q. (Oxford) and 16 co-authors (Stanford, NUS, Cambridge, U. Washington)"
 year_started: 2026
@@ -73,11 +73,11 @@ scores:
     score: 2
     note: "Systematically compared against human reviewers and other agentic reviewers in the paper's own study; not yet third-party validated."
   openness:
-    score: 2
-    note: "MIT license, pip-installable with documented quick-start; requires paid Mathpix (or MinerU fallback) and LLM API credentials to run."
+    score: 1
+    note: "README states 'MIT License' but links to /blob/main rather than to a file, and the repository has no LICENSE file, so no licence is actually granted; pip-installable with documented quick-start, but requires paid Mathpix (or MinerU fallback) and LLM API credentials."
   maturity_traction:
     score: 1
-    note: "38 stars / 1 fork as of scoring date; posted September 2026, multi-institution authorship but single public release."
+    note: "45 stars as of 2026-11-24 (38 stars / 1 fork at scoring), last commit 2026-07-04; posted September 2026, multi-institution authorship but single public release."
   cross_family_policy:
     score: 0
     note: "Built as Claude Code skills; no documented cross-model-family review requirement or default."
@@ -87,12 +87,13 @@ scores:
   cross_platform_portability:
     score: 0
     note: "Tied to the Claude Code skill format; no evidence of other agent-runtime adapters."
-scored_on: "2026-10-01"
+scored_on: "2026-11-24"
 
 limitations:
   - "Requires paid Mathpix (or MinerU) and LLM API credentials; not free to run at scale."
   - "Packaged specifically as Claude Code skills — portability to other agent runtimes is untested."
   - "Very young (38 stars); evaluated only in its own benchmark study, no independent adoption evidence yet."
+  - "No licence file; the README states MIT only, so reuse terms are not formally granted."
 
 related:
   - ai-research-feedback

@@ -1,8 +1,8 @@
 ---
 name: tools
-description: Utility commands — commit, compile, validate-bib, lint, journal, context-status, deploy, learn. Replaces individual utility skills.
-argument-hint: "[subcommand: commit | compile | validate-bib | lint | journal | context | deploy | learn | upgrade] [args]"
-allowed-tools: Read,Grep,Glob,Write,Edit,Bash,Task
+description: Utility commands — commit, compile, validate-bib, lint, journal, context-status, deploy, learn.
+argument-hint: "[subcommand: commit | compile | validate-bib | lint | journal | context | dashboard | deploy | learn | upgrade] [args]"
+allowed-tools: Read,Grep,Glob,Write,Edit,Bash,Agent,Task
 ---
 
 # Tools
@@ -33,8 +33,11 @@ The dashboard scans the entire project — paper sections, data, scripts, qualit
 Stage changes, create commit, optionally create PR and merge.
 - Run git status to identify changes
 - Stage relevant files (never stage .env or credentials)
-- Create commit with descriptive message
-- If quality score available and >= 80, note in commit
+- Run `python3 scripts/score.py --gate commit`. If it fails, stop and report which components pull
+  the score below 80. On a project nothing has scored yet it passes with a notice; say so and commit.
+- Create commit with descriptive message; note the score when there is one
+- The git pre-commit hook (`scripts/install-hooks.sh` installs it) runs scaffold integrity and lint
+  checks on every commit, including ones made outside this skill
 
 ### `/tools compile [file]` — LaTeX Compilation
 Automated multi-pass compilation via latexmk.
@@ -117,44 +120,47 @@ Extract reusable knowledge from the current session. Auto-memory handles correct
 ### `/tools upgrade` — Upgrade Clo-Author Infrastructure
 Upgrade an existing project to the latest clo-author architecture.
 
-**What it does:**
-1. Clone the latest clo-author release into a temp directory
-2. Save the user's filled-in domain-profile.md and any custom journal profiles
-3. Delete the old `.claude/` directory
-4. Copy the new `.claude/` in
-5. Restore the user's domain-profile.md and custom journal profiles
-6. Optionally copy new `templates/`
-7. Report what changed
+The scaffold is more than `.claude/`: the gates run from scripts in `scripts/`, the commit gate from
+`.githooks/`. An upgrade that replaces only `.claude/` leaves skills calling scripts that are missing
+or out of date. Show the user the plan below and wait for approval before deleting anything.
 
-**Workflow:**
 ```
 Step 1: DOWNLOAD
-  - Clone latest clo-author into /tmp/clo-author-upgrade
-  - Or: gh release download --repo hugosantanna/clo-author
+  - git clone --depth=1 https://github.com/hugosantanna/clo-author.git into a temp directory
 
 Step 2: PRESERVE USER CUSTOMIZATIONS
-  - Save .claude/references/domain-profile.md if filled in (not just placeholders)
-  - Save any custom journal profiles the user added to journal-profiles.md
-  - Save .claude/settings.json (user's permissions and hooks)
-  - Save .claude/settings.local.json if it exists
+  - .claude/references/domain-profile.md if filled in (not just placeholders)
+  - custom journal profiles the user added to journal-profiles.md
+  - .claude/settings.local.json (personal; restored as is)
+  - from the OLD .claude/settings.json, only what the user added: allow entries missing from the
+    new settings.json, and hooks whose command is not under .claude/hooks/. Do NOT restore the old
+    file over the new one: it would bring back retired hooks (e.g. post-edit-lint.sh) and drop new
+    fields such as the guards' "onFailure": "block".
 
-Step 3: REPLACE
-  - Delete old .claude/ entirely
-  - Copy new .claude/ from the downloaded release
-  - Restore saved customizations from Step 2
+Step 3: REPLACE THE SCAFFOLD
+  - .claude/       delete and copy the new one; restore Step 2's files; put the user's added allow
+                   entries and hooks into settings.local.json, not settings.json
+  - scripts/       copy every top-level file from the release's scripts/ whose first lines carry
+                   "clo-author: infrastructure", plus scripts/deepread_prompts/. Overwrite only
+                   files that carry the marker in the user's copy too, or do not exist yet
+  - .githooks/     copy, then run scripts/install-hooks.sh
+  - paper/preambles/header.tex   copy only if the project has none
+  - templates/     copy new files; ask before overwriting changed ones
 
 Step 4: DO NOT TOUCH
-  - paper/, scripts/, data/, explorations/, quality_reports/
+  - user analysis code: scripts/R/, scripts/python/, any script without the marker
+  - paper/ (except a missing header.tex), data/, explorations/, quality_reports/
   - CLAUDE.md, Bibliography_base.bib, README.md, .gitignore
-  - Any other user content
 
-Step 5: REPORT
-  - List what was updated (new agents, skills, rules)
-  - List what was preserved (domain profile, settings, custom profiles)
-  - Clean up temp directory
+Step 5: VERIFY AND REPORT
+  - python3 scripts/check_scaffold.py and python3 scripts/test_hooks.py must pass
+  - list what changed (agents, skills, rules, scripts), what was preserved, and where the user's
+    old settings entries went; read the release's CHANGELOG.md entries since the old version
+  - remove the temp directory
 ```
 
-**No git merge. No upstream remote. No conflicts.** Just delete and replace `.claude/`.
+**No git merge. No upstream remote.** The user's analysis code is never overwritten: only files that
+carry the infrastructure marker are replaced.
 
 ---
 

@@ -6,7 +6,7 @@ pack:
     - 'Bryce Wang (Stanford REAP / CoPaper.AI)'
   license: 'MIT'
   total_skills: 25
-  last_update: '2026-07-23'
+  last_update: '2026-09-27'
   related_project: ''
   compatibility:
     - claude-code
@@ -50,7 +50,7 @@ skills:
     pipeline_stages:
       - dissemination
     field: general
-    description: 'Answers "which journal should I send this to?" — profiles the paper, shortlists candidate venues across 185+ packs, and ranks them into reach/match/safe with a resubmission ladder, reading live venue facts from each pack''s source-map.'
+    description: 'Answers "which journal should I send this to?": profiles the paper, shortlists candidate venues from an index of 743 venues and ranks them into reach, match and safe with a resubmission ladder.'
     source_path: 'Research-Toolkit-Skills/skills/rt-journal-match/SKILL.md'
     details_url: 'https://github.com/brycewang-stanford/Awesome-Journal-Skills/blob/main/Research-Toolkit-Skills/skills/rt-journal-match/SKILL.md'
     provenance: 'Awesome-Journal-Skills repo curation 2026-07-23'

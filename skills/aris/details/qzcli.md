@@ -1,7 +1,7 @@
 ---
 name: qzcli
 description: Manage GPU compute jobs on the Qizhi (启智) platform using qzcli — a kubectl-style CLI tool. Use when user says "qzcli", "启智平台", "submit job", "stop job", "查计算组", "avail", "list jobs", "batch submit", or needs to manage distributed training jobs on a Qizhi instance.
-argument-hint: [login|avail|list|create|stop <job-id>|batch|status|watch]
+argument-hint: "[login|avail|list|create|stop <job-id>|batch|status|watch]"
 allowed-tools: Bash(*), Read, Write
 ---
 
@@ -10,6 +10,14 @@ allowed-tools: Bash(*), Read, Write
 A kubectl/docker-style CLI for managing GPU compute jobs on the Qizhi (启智) platform.
 
 **GitHub:** [tianyilt/qzcli_tool](https://github.com/tianyilt/qzcli_tool)
+
+## Environment contract
+
+Qizhi is the scheduler-cluster shape of `../shared-references/compute-env-contract.md`:
+images are built OFF-platform and referenced at submit time, so the declarative
+env spec + `env:<name>@<specHash>` ledger (`.aris/compute/qizhi.md`) is what
+keeps "which image has which stack" answerable. Run the kernel witness inside a
+submitted job (not on the login side) before trusting an image for a long run.
 
 ## Installation
 

@@ -7,8 +7,8 @@ pack:
     - 'Li, Yongcan'
     - 'Li, Shuai'
   license: 'MIT'
-  total_skills: 80
-  last_update: '2026-05-18'
+  total_skills: 87
+  last_update: '2026-11-24'
   related_project: 'aris'
   compatibility:
     - claude-code
@@ -20,7 +20,7 @@ pack:
     - copilot-cli
     - windsurf
     - agnostic
-  notes: '74+ Markdown SKILL.md files designed around cross-model adversarial collaboration. Framework-agnostic by design.'
+  notes: '74+ Markdown SKILL.md files designed around cross-model adversarial collaboration. Framework-agnostic by design. Refresh 2026-11-24 (upstream pushed 2026-11-24): re-copied the 76 SKILL.md files that differ from the upstream HEAD; dropped 4 manifest entries that have no SKILL.md at those paths at HEAD (shared-references, skills-codex, skills-codex-claude-review, skills-codex-gemini-review - mirror directories, not skills); added 11 first-party skills (citation-crosscheck, firecrawl-search, integrity-forensics, keenable-search, lean-formalize, meta-apply, paper-poster-html, proof-orchestrator, research-implement-feature, web-debug-search, wiki-enrich). The skills/skills-codex* directories hold Codex-runtime variants of the same skills and are not catalogued separately. paper-poster is now a deprecated redirect to paper-poster-html.'
 
 skills:
   - slug: 'ablation-planner'
@@ -342,7 +342,7 @@ skills:
     category: drafting
     pipeline_stages:
       - paper-drafting
-    description: ''
+    description: 'Deprecated upstream: now only a redirect to paper-poster-html.'
     source_path: 'skills/paper-poster/SKILL.md'
   - slug: 'paper-slides'
     name: 'paper-slides'
@@ -526,34 +526,6 @@ skills:
       - paper-drafting
     description: ''
     source_path: 'skills/serverless-modal/SKILL.md'
-  - slug: 'shared-references'
-    name: 'shared-references'
-    category: drafting
-    pipeline_stages:
-      - paper-drafting
-    description: ''
-    source_path: 'skills/shared-references/SKILL.md'
-  - slug: 'skills-codex-claude-review'
-    name: 'skills-codex-claude-review'
-    category: review
-    pipeline_stages:
-      - referee-simulation
-    description: ''
-    source_path: 'skills/skills-codex-claude-review/SKILL.md'
-  - slug: 'skills-codex-gemini-review'
-    name: 'skills-codex-gemini-review'
-    category: review
-    pipeline_stages:
-      - referee-simulation
-    description: ''
-    source_path: 'skills/skills-codex-gemini-review/SKILL.md'
-  - slug: 'skills-codex'
-    name: 'skills-codex'
-    category: code-gen
-    pipeline_stages:
-      - code-generation
-    description: ''
-    source_path: 'skills/skills-codex/SKILL.md'
   - slug: 'slides-polish'
     name: 'slides-polish'
     category: slides
@@ -596,3 +568,78 @@ skills:
       - paper-drafting
     description: ''
     source_path: 'skills/writing-systems-papers/SKILL.md'
+  - slug: 'citation-crosscheck'
+    name: 'citation-crosscheck'
+    category: audit
+    pipeline_stages:
+      - revision-editing
+    description: 'Double-blind bibliographic cross-check: one agent extracts each cited entry verbatim from the local .bib, a second independently re-fetches the same paper''s record from the web while blind to the .bib, and a third extractor emits…'
+    source_path: 'skills/citation-crosscheck/SKILL.md'
+  - slug: 'firecrawl-search'
+    name: 'firecrawl-search'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+    description: 'Web search and page scraping via Firecrawl, returning full-page markdown.'
+    source_path: 'skills/firecrawl-search/SKILL.md'
+  - slug: 'integrity-forensics'
+    name: 'integrity-forensics'
+    category: audit
+    pipeline_stages:
+      - referee-simulation
+    description: 'Runs an integrity-forensics sweep over a paper (span-anchored evidence ledger, model auditors, rules-only reporter) and turns the verdict into a typed pass/warn/block gate with an obligations ledger.'
+    source_path: 'skills/integrity-forensics/SKILL.md'
+  - slug: 'keenable-search'
+    name: 'keenable-search'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+    description: 'Keyless web search and page fetch via Keenable.'
+    source_path: 'skills/keenable-search/SKILL.md'
+  - slug: 'lean-formalize'
+    name: 'lean-formalize'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    description: 'Develop and verify a mathematical proof in Lean, continue an incomplete Lean project, or audit whether it proves the original statement.'
+    source_path: 'skills/lean-formalize/SKILL.md'
+  - slug: 'meta-apply'
+    name: 'meta-apply'
+    category: meta
+    pipeline_stages: []
+    description: 'Privileged applier that lands approved meta-optimize patches into the skill corpus, with a cross-model jury and human approval at landing.'
+    source_path: 'skills/meta-apply/SKILL.md'
+  - slug: 'paper-poster-html'
+    name: 'paper-poster-html'
+    category: slides
+    pipeline_stages:
+      - dissemination
+    description: 'Builds a conference poster as a single HTML/CSS file with measurement-driven layout checks and a print-ready PDF; upstream now treats it as the default poster pipeline.'
+    source_path: 'skills/paper-poster-html/SKILL.md'
+  - slug: 'proof-orchestrator'
+    name: 'proof-orchestrator'
+    category: modeling
+    pipeline_stages:
+      - formal-modeling
+    description: 'Manages a stateful, run-directory-based proof project across runs, including manual handoff packages when a local attempt stalls.'
+    source_path: 'skills/proof-orchestrator/SKILL.md'
+  - slug: 'research-implement-feature'
+    name: 'research-implement-feature'
+    category: code-gen
+    pipeline_stages:
+      - code-generation
+    description: 'Builds a working artifact from a plain implementation request: an end-to-end spine first, then one feature per step, with every under-determined decision logged in an assumption ledger before the code that depends on it.'
+    source_path: 'skills/research-implement-feature/SKILL.md'
+  - slug: 'web-debug-search'
+    name: 'web-debug-search'
+    category: infra
+    pipeline_stages: []
+    description: 'Searches GitHub, Stack Exchange, developer communities and official documentation for software errors, compatibility problems and workarounds.'
+    source_path: 'skills/web-debug-search/SKILL.md'
+  - slug: 'wiki-enrich'
+    name: 'wiki-enrich'
+    category: literature
+    pipeline_stages:
+      - literature-synthesis
+    description: 'Fills in the per-paper TODO sections of research-wiki pages that literature-ingest skills leave as bare scaffolds.'
+    source_path: 'skills/wiki-enrich/SKILL.md'

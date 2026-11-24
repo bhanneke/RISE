@@ -1,11 +1,22 @@
 ---
 name: experiment-bridge
 description: "Workflow 1.5: Bridge between idea discovery and auto review. Reads EXPERIMENT_PLAN.md, implements experiment code, deploys to GPU, collects initial results. Use when user says \"实现实验\", \"implement experiments\", \"bridge\", \"从计划到跑实验\", \"deploy the plan\", or has an experiment plan ready to execute."
-argument-hint: [experiment-plan-path-or-topic]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
+argument-hint: "[experiment-plan-path-or-topic]"
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Skill, mcp__codex__codex, mcp__codex__codex-reply, mcp__antigravity__antigravity, mcp__antigravity__antigravity-reply, mcp__grok__grok, mcp__grok__grok-reply, mcp__claude-review__review, mcp__claude-review__review_reply, mcp__claude-review__review_start, mcp__claude-review__review_reply_start, mcp__claude-review__review_status
 ---
 
 # Workflow 1.5: Experiment Bridge
+
+> **Before each reviewer slot**, follow [Selectable Reviewers](../shared-references/reviewer-backends.md):
+> resolve invocation → `.aris/reviewer.json` → Claude Code default (Codex MCP)
+> with `reviewer_route.py` through the canonical helper resolver, preserving this
+> slot's tier, fresh contexts, source/image inputs and deterministic gates.
+> Codex examples/pins below apply only to `backend=codex`; other routes use their
+> own first-call/reply contract. Save the route and actual returned identity;
+> unavailable selections are `REVIEW_UNAVAILABLE`. Classify acceptance from actual
+> families/completion/scope. Forward invocation reviewer/model/effort overrides
+> to reviewer-bearing children. Generation workers are unchanged.
+
 
 Implement and deploy experiments from plan: **$ARGUMENTS**
 
@@ -15,14 +26,14 @@ This skill bridges Workflow 1 (idea discovery + method refinement) and Workflow 
 
 ```
 Workflow 1 output:                    This skill:                                    Workflow 2 input:
-refine-logs/EXPERIMENT_PLAN.md   →   implement → GPT-5.4 review → deploy → collect → initial results ready
+refine-logs/EXPERIMENT_PLAN.md   →   implement → GPT-6-Astra review → deploy → collect → initial results ready
 refine-logs/EXPERIMENT_TRACKER.md     code        (cross-model)    /run-experiment     for /auto-review-loop
 refine-logs/FINAL_PROPOSAL.md
 ```
 
 ## Constants
 
-- **CODE_REVIEW = true** — GPT-5.4 xhigh reviews experiment code before deployment. Catches logic bugs before wasting GPU hours. Set `false` to skip.
+- **CODE_REVIEW = true** — GPT-6-Astra xhigh reviews experiment code before deployment. Catches logic bugs before wasting GPU hours. Set `false` to skip.
 - **AUTO_DEPLOY = true** — Automatically deploy experiments after implementation + review. Set `false` to manually inspect code before deploying.
 - **SANITY_FIRST = true** — Run the sanity-stage experiment first (smallest, fastest) before launching the rest. Catches setup bugs early.
 - **MAX_PARALLEL_RUNS = 4** — Maximum number of experiments to deploy in parallel (limited by available GPUs).
@@ -72,6 +83,13 @@ Present a brief summary:
 Proceeding to implementation.
 ```
 
+**Research-contract fallback**: if `idea-stage/docs/research_contract.md` does
+not exist yet (idea selected outside `/idea-discovery`, or an older run),
+create it now from `templates/RESEARCH_CONTRACT_TEMPLATE.md` using the selected
+idea + claims from the experiment plan. Downstream `/result-to-claim` and
+`/ablation-planner` read this file as the claims source, and session recovery
+(`docs/SESSION_RECOVERY_GUIDE.md`) depends on it existing.
+
 ### Phase 2: Implement Experiment Code
 
 **If `BASE_REPO` is set** — clone the repo first:
@@ -106,10 +124,13 @@ For each milestone (in order), write the experiment scripts:
 
 **Skip this step if `CODE_REVIEW` is `false`.**
 
-Before deploying, send the experiment code to GPT-5.4 xhigh for review:
+Before deploying, send the experiment code to GPT-6-Astra xhigh for review:
+
+> Resolve this reviewer slot first; the following is the `backend=codex` example.
 
 ```
 mcp__codex__codex:
+  model: gpt-6-astra
   config: {"model_reasoning_effort": "xhigh"}
   prompt: |
     Review the following experiment implementation for correctness.
@@ -132,6 +153,30 @@ mcp__codex__codex:
     6. Any potential issues (OOM risk, numerical instability, missing seeds)?
 
     For each issue found, specify: CRITICAL / MAJOR / MINOR and the exact fix.
+
+    === SCOPE LIMITS (these bound what you PROPOSE, never what you look for) ===
+    Report anything that is actually wrong here — including a rare-looking case, if
+    this repo actually produces it. Then keep the fix in scope:
+    1. This is a RESEARCH-WORKFLOW tool, not a security paper. Verification is
+       welcome; over-defense is not. Assume a cooperating operator on their own
+       machine — a malicious local user is NOT in the threat model.
+    2. Do NOT propose SHA / hash / content-fingerprint / digest-binding schemes.
+       Reporting a real defect in hashing code that already exists is fine.
+    3. NO speculative machinery: do not add feature flags, migration frameworks,
+       compat layers, wrappers, pins, or similar mechanisms unless evidence shows
+       a current repo defect they fix or an explicit existing invariant they must
+       preserve. "Load-bearing", "compatibility", and "not scaffolding" are labels,
+       not evidence. Point to the failing path/artifact or invariant, and check the
+       proposal's factual premises, such as whether a named package version exists.
+    4. NO corner-case obsession: exotic encodings, symlink races, RTL text and
+       millisecond races are out of scope unless you can show the case arises here.
+    5. Where a rubric or checklist is genuinely needed, do not over-mechanize
+       judgement. A clear sentence a human reads beats a scored table nobody
+       maintains.
+    Exception: code that runs remote commands, starts a network service, or installs
+    an MCP server runs on the user's machine with their credentials — trust-boundary
+    findings there are in scope and the default is strict.
+    Say plainly when something is correct. Do not manufacture findings.
 ```
 
 **On review results:**
@@ -153,9 +198,18 @@ Wait for completion. Verify:
 - GPU memory usage is within bounds
 - Output format matches expectations
 
-If sanity fails → **auto-debug before giving up** (max 3 attempts):
+For environment/preparation failures, apply the inherited stop condition in
+[`compute-env-contract.md`](../shared-references/compute-env-contract.md) §5
+before the code-repair loop below. Preserve attempts across `/run-experiment`
+calls; missing access, authentication, networking or driver support is not fixed
+by rewriting the training script. The following budget remains for code fixes.
 
-1. **Read the error** — parse traceback, stderr, and log files
+If sanity fails → **auto-debug before giving up**. Budget: up to **2 patch
+attempts** on the same failure, then up to **2 clean reimplements** (4 total):
+
+1. **Read the error** — parse traceback, stderr, and log files. (The same
+   read-the-primary-artifact discipline applies to surprising REVIEWER verdicts:
+   see `shared-references/review-tracing.md` § *Debugging With Traces*.)
 2. **Diagnose** — classify the failure:
    - OOM → reduce batch size or enable gradient checkpointing
    - ImportError → install missing package
@@ -166,7 +220,19 @@ If sanity fails → **auto-debug before giving up** (max 3 attempts):
 4. **Attempt 2+ still failing? → Call in Codex rescue** (if Codex plugin installed):
    Before the next retry, invoke `/codex:rescue` to get a second opinion on the root cause. Codex independently reads the code and error logs — it may spot issues Claude missed (wrong tensor shapes, subtle import shadowing, config mismatches, etc.). Apply its suggested fix, then re-run.
    - If `/codex:rescue` is not available (plugin not installed), continue with Claude's own diagnosis
-5. **Still failing after 3 attempts?** → stop, report the failure with all attempted fixes and error logs. Do not proceed with broken code.
+5. **Both patch attempts failed on the same failure? → Discard and reimplement cleanly**
+   (up to 2 reimplements). Rewriting the failing script from `EXPERIMENT_PLAN.md` / the
+   research contract is a PEER move to another patch, not a last resort — a third patch
+   on top of two wrong ones is usually worse than a clean rebuild. Delete ONLY the
+   attempt's own code/scaffolding (scripts this phase generated); the plan,
+   `EXPERIMENT_TRACKER.md`, user-authored project source, collected data, and results
+   are never deletable (see `shared-references/external-cadence.md` § *Let a broken
+   attempt restart, not just patch*).
+6. **Budget exhausted (2 patches + 2 reimplements), or two reimplements failed the SAME
+   way?** → stop, report the failure with all attempted fixes and error logs. Two clean
+   reimplements failing identically usually means the plan or the environment is wrong —
+   say so explicitly in the report, because that (not the broken build itself) is what
+   needs the human. Do not proceed with broken code.
 
 > Never give up on the first failure. Most experiment crashes are fixable without human intervention.
 

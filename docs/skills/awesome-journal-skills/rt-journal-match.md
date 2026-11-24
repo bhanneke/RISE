@@ -2,7 +2,7 @@
 
 # `rt-journal-match`
 
-Answers "which journal should I send this to?" — profiles the paper, shortlists candidate venues across 185+ packs, and ranks them into reach/match/safe with a resubmission ladder, reading live venue facts from each pack's source-map.
+Answers "which journal should I send this to?": profiles the paper, shortlists candidate venues from an index of 743 venues and ranks them into reach, match and safe with a resubmission ladder.
 
 <div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../awesome-journal-skills/">Awesome Journal Skills (AJS)</a></div><div><b>Category:</b> <code>submission</code></div><div><b>Field:</b> general</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-07</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>dissemination</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/brycewang-stanford/Awesome-Journal-Skills/contents/Research-Toolkit-Skills/skills/rt-journal-match/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/awesome-journal-skills/rt-journal-match/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/brycewang-stanford/Awesome-Journal-Skills/blob/main/Research-Toolkit-Skills/skills/rt-journal-match/SKILL.md" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/brycewang-stanford/Awesome-Journal-Skills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
@@ -13,6 +13,9 @@ methodology + the stable venue index live in
 `shared-resources/journal-selection/journal-match.md`
 and `venue-index.tsv`.
 
+Worked end to end, with real output:
+`worked-example.md`.
+
 ### When to trigger
 
 - The author has a result/draft and no settled target.
@@ -22,13 +25,57 @@ and `venue-index.tsv`.
 ### What it does
 
 1. **Profile the paper** — discipline + subfield, method/design, contribution type,
-   setting/data/region, ambition (be honest).
-2. **Shortlist** from `venue-index.tsv` by discipline / lane / region (long-tail venues →
-   the discipline breadth bundle).
+   setting/data/region, ambition (be honest). Write it down once, in the shape of
+   `paper-profile.yml`;
+   every later skill reads the same file instead of re-deriving it.
+
+2. **Shortlist** — run the matcher rather than reading the index by eye:
+
+   ```bash
+   python3 tools/match_venues.py \
+       --title "..." --abstract "..." \
+       --discipline economics/labor --lane empirical --top 15
+   ```
+
+   `--discipline` is a **prior, not a filter**: the discipline and its adjacents
+   (`discipline-adjacency.tsv`)
+   are boosted, but a strong match elsewhere still surfaces, because Step 1 is a
+   judgement that is sometimes wrong. Add `--only-discipline` when you are certain,
+   `--exclude <venue_id>` for venues that have already rejected the paper,
+   `--json` to pipe it. `--list-disciplines` prints the vocabulary.
+
+   Every row names where to read more — `source_map` for a depth pack,
+   `profile_path` for a breadth profile — and the terms it matched on, so a
+   nonsense hit is visible as a nonsense hit.
+
+   **Read the warnings.** The matcher flags *weak evidence* when its leading
+   candidates each rest on one or two shared words — a ranking built on that is
+   close to noise, because words the language reuses ("sensor", "generation",
+   "network") will out-score a genuine subject match. It flags a *coverage gap*
+   when nothing in the discipline you named scored at all: the prior can only
+   re-rank venues that matched, never conjure one. Either warning means **do not
+   pass the list on as a shortlist** — add the abstract, re-check the discipline
+   label, or report that the subject area is thin in the index and route to
+   `rt-venue-integrity`.
+
+   The matcher is measured: **R@10 = 41.5%** from a bare title, on a held-out half of a
+   1,738-paper gold set (`eval/RESULTS.md`).
+   That is a floor for one thin query, not the capability — it is why step 3 exists.
+   The per-discipline table there is worth reading before trusting a result: coverage is
+   uneven, and life sciences and natural science are visibly the thinnest.
+
 3. **Score** each candidate on **Fit × acceptance-odds × turnaround × cost/policy ×
    audience**, reading the live facts from each candidate's `resources/official-source-map.md`.
+   Never quote a fee, acceptance rate, turnaround or page limit from memory.
+
 4. **Return reach / match / safe** (≈2–3 each) with one-line rationales + the live facts,
-   then a **submit order and resubmission ladder**.
+   then a **submit order and resubmission ladder** — seed the ladder from
+   `ladder.tsv` (candidate
+   adjacency, not a ranking) and apply your own fit/odds judgement to it.
+
+5. **Cost the ladder** with `rt-ladder-ev` whenever the
+   author is under a clock or is choosing between two orders. The sequence, not the
+   venue, is what costs a year.
 
 ### Hard rules
 
@@ -36,7 +83,11 @@ and `venue-index.tsv`.
   limits, data policy).
 - **Fit judgment defers** to the venue's `*-topic-selection` / `*-contribution-framing`.
 - **Be honest about odds**; don't inflate a paper into a reach it can't clear.
-- **Coverage honesty**: if a plausible venue is outside the index and its bundle, say so.
+- **Coverage honesty**: if a plausible venue is outside the index and its bundle, say so —
+  and hand to `rt-venue-integrity` before the author
+  submits somewhere unverified.
+- **The matcher retrieves; you recommend.** Never pass its ranking through as a
+  shortlist: open the packs first.
 
 ### Output format
 
@@ -54,6 +105,4 @@ and `venue-index.tsv`.
 - Recommending only reaches (wastes the timeline) or only safes (undersells the paper).
 - Ignoring `lane` — sending a qualitative/theory paper to an empirical-only venue.
 - Treating the `tier` column as a precise ranking (it is an indicative bucket).
-
-Next: once a target is chosen, `rt-execution-bridge` to run the analysis and
-`rt-submission-readiness` to check the bar.
+- Reporting the matcher's top-10 as the answer. It is a reading list.

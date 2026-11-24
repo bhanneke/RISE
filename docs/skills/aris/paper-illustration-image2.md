@@ -4,9 +4,20 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-illustration-image2/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-illustration-image2/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-11-24</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/paper-illustration-image2/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/paper-illustration-image2/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Paper Illustration Image2
+
+> **Before each reviewer slot**, follow Selectable Reviewers:
+> resolve invocation → `.aris/reviewer.json` → Claude Code default (Codex MCP)
+> with `reviewer_route.py` through the canonical helper resolver, preserving this
+> slot's tier, fresh contexts, source/image inputs and deterministic gates.
+> Codex examples/pins below apply only to `backend=codex`; other routes use their
+> own first-call/reply contract. Save the route and actual returned identity;
+> unavailable selections are `REVIEW_UNAVAILABLE`. Classify acceptance from actual
+> families/completion/scope. Forward invocation reviewer/model/effort overrides
+> to reviewer-bearing children. Generation workers are unchanged.
+
 
 Generate publication-quality paper figures using **Claude as the planner/reviewer**
 and a **local Codex app-server MCP bridge** as the raster renderer.
@@ -88,11 +99,14 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
   if [ -n "${CLAUDE_SKILL_DIR:-}" ] && [ -f "$CLAUDE_SKILL_DIR/scripts/paper_illustration_image2.py" ]; then
     IMAGE2_HELPER="$CLAUDE_SKILL_DIR/scripts/paper_illustration_image2.py"
   fi
-  # Layers 1-3: shared-runtime chain via shim at tools/paper_illustration_image2.py.
+  # Layers 1-4: shared-runtime chain via shim at tools/paper_illustration_image2.py.
   if [ -z "$IMAGE2_HELPER" ]; then
     cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
     if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
         ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
+    fi
+    if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+        ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
     fi
     IMAGE2_HELPER=".aris/tools/paper_illustration_image2.py"
     [ -f "$IMAGE2_HELPER" ] || IMAGE2_HELPER="tools/paper_illustration_image2.py"
@@ -100,8 +114,8 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
     [ -f "$IMAGE2_HELPER" ] || IMAGE2_HELPER=""
   fi
   [ -z "$IMAGE2_HELPER" ] && {
-    echo "ERROR: paper_illustration_image2.py not resolved (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-3: .aris/tools/, tools/, \$ARIS_REPO/tools/)." >&2
-    echo "       /paper-illustration-image2 cannot proceed. Fix: rerun bash tools/install_aris.sh, or copy the canonical script from \$ARIS_REPO/skills/paper-illustration-image2/scripts/." >&2
+    echo "ERROR: paper_illustration_image2.py not resolved (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-4: .aris/tools/, tools/, \$ARIS_REPO/tools/, \$ARIS_REPO/tools/ via ~/.aris/repo)." >&2
+    echo "       /paper-illustration-image2 cannot proceed. Fix: rerun bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), or copy the canonical script from \$ARIS_REPO/skills/paper-illustration-image2/scripts/." >&2
     exit 1
   }
   ```
@@ -232,9 +246,8 @@ layout plan:
 - relative module prominence
 - arrow routing and likely collision points
 
-If `mcp__codex__codex` is available, you may ask it for a short second-opinion
-layout critique here, but Claude should still complete this step even without
-Codex.
+If the selected text-review route is available, you may ask it for a short second-opinion
+layout critique here, but the executor should still complete this step without an external critic.
 
 Use Codex layout critique for:
 
@@ -254,7 +267,7 @@ before rendering:
 - the figure will read clearly in grayscale / print
 - no glow, rainbow gradient, or slide-deck decoration slips in
 
-If `mcp__codex__codex` is available, you may ask it for a short text-only
+If the selected text-review route is available, you may ask it for a short text-only
 style audit, but do not block on it.
 
 ### Step 4: Generate Through the Bridge

@@ -2,7 +2,7 @@
 
 # Econ Research Skills (Hanlu Long)
 
-license: `PolyForm-Noncommercial-1.0.0 (econ-review); MIT (econ-slides, econ-write)` · 4 skills · last update: 2026-07-19
+license: `PolyForm-Noncommercial-1.0.0 (econ-review); MIT (econ-slides, econ-write)` · 4 skills · last update: 2026-11-07
 
 **Source:** <https://github.com/hanlulong/econ-paper-review-skill>
 
@@ -39,4 +39,4 @@ license: `PolyForm-Noncommercial-1.0.0 (econ-review); MIT (econ-slides, econ-wri
 
 | Skill | Field | Stages | Description | Full text | Source | Updated |
 |---|---|---|---|---|---|---|
-| [`/econ-slides`](econ-research-skills/econ-slides.md) | economics | `dissemination` | Turns an economics paper into a compiled LaTeX/Beamer talk (conference, seminar, job-market, discussant) with strict number provenance, slide-table surgery, timed speaker scripts, and mandatory rendered-page inspection via bundled deck and script checkers. | [view](econ-research-skills/econ-slides.md) | [origin](https://github.com/hanlulong/econ-slides-skill/blob/main/SKILL.md) | 2026-07 |
+| [`/econ-slides`](econ-research-skills/econ-slides.md) | economics | `dissemination` | Turns an economics paper into a compiled LaTeX/Beamer talk (conference, seminar, job-market, discussant) with strict number provenance, slide-table surgery, timed speaker scripts, and mandatory rendered-page inspection via bundled deck and script checkers. | [view](econ-research-skills/econ-slides.md) | [origin](https://github.com/hanlulong/econ-slides-skill/blob/main/skills/econ-slides/SKILL.md) | 2026-07 |

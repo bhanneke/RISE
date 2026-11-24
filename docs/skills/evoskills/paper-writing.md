@@ -4,7 +4,7 @@
 
 Paper drafting pipeline
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-05-17</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/paper-writing/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/paper-writing/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../evoskills/">EvoSkills</a></div><div><b>Category:</b> <code>drafting</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>Apache-2.0</code></div><div><b>Updated:</b> 2026-11-13</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/EvoScientist/EvoSkills/contents/skills/paper-writing/ --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/evoskills/paper-writing/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/EvoScientist/EvoSkills" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/EvoScientist/EvoSkills?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Paper Writing
 
@@ -23,14 +23,14 @@ If you used upstream EvoSkills, pull these artifacts before writing:
 
 | Source Skill | Artifact | Used In |
 |-------------|----------|---------|
-| `paper-planning` | Story summary (task → challenge → insight → contribution → advantage) | Steps 1-2 (Introduction writing plan) |
+| `paper-planning` | Story summary (task → challenge → insight → contribution → advantage) | Step 2 (Introduction writing plan) |
 | `paper-planning` | Module Motivation Mapping table | Step 3 (Method subsections) |
 | `paper-planning` | Experiment plan (comparisons + ablations + demos) | Step 5 (Experiments section) |
 | `paper-planning` | Pipeline figure sketch | Steps 1, 6 (Method overview figure) |
-| `paper-planning` | Claim-to-experiment mapping | Steps 2, 5 (Abstract, Introduction, Experiments) |
-| `paper-planning` | Fallback narrative (if planned) | Steps 7-8 (Introduction / Conclusion pivot) |
+| `paper-planning` | Claim-to-experiment mapping | Steps 2, 5, 9 (Introduction, Experiments, Abstract) |
+| `paper-planning` | Fallback narrative (if planned) | Step 4 (Introduction pivot), Step 9 (Conclusion) |
 | `experiment-pipeline` | Stage 1-4 results, ablation tables, trajectory logs | Step 5 (write experiments) |
-| `experiment-craft` | Failure analysis, implementation tricks | Step 3 (Method section), Step 9 (limitations) |
+| `experiment-craft` | Failure analysis, implementation tricks | Step 3 (Method section / Supplementary), Step 9 (Conclusion limitations) |
 
 ### The 11-Step Writing Process
 
@@ -44,7 +44,7 @@ Follow these steps in order. Each step builds on the previous one.
 6. **Polish figures** — Finalize the pipeline figure. Create the teaser figure.
 7. **Write Related Work** — List related papers, group into topics, write paragraphs.
 8. **Review the paper** — Self-review Introduction, Method, and Experiments. Use the `paper-review` skill.
-9. **Write Abstract** — Organize the Abstract writing plan, then draft.
+9. **Write Abstract and Conclusion** — Organize the Abstract writing plan, then draft. Write the Conclusion with its Limitation section, so that every section exists before the final iterations.
 10. **Choose the title** — List important keywords, then compose an informative title.
 11. **Iterate** — Repeatedly review and revise the entire paper.
 
@@ -120,6 +120,7 @@ See references/related-work-guide.md
 - Must include **Limitation** section (reviewers frequently cite "no limitation" as a weakness)
 - Limitation = task goal / setting limitations (like future work), NOT technical defects
 - Rule: "If our method does not fall below current SOTA metrics, it is not a technical defect"
+- That rule is about how to frame performance. A leak, an unfair comparison or an unsupported claim is a defect at any metric level: fix it rather than write it up as a limitation (`paper-review` records it as a finding)
 
 #### Supplementary Material
 

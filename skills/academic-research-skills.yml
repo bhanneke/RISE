@@ -5,15 +5,15 @@ pack:
   maintainers:
     - 'Edward Cheng-I Wu'
   license: 'CC BY-NC 4.0'
-  total_skills: 4
-  last_update: '2026-05-17'
+  total_skills: 5
+  last_update: '2026-11-24'
   related_project: 'academic-research-skills'
   compatibility:
     - claude-code
     - codex
     - vscode
     - jetbrains
-  notes: 'Distributed as a Claude Code plugin. Four top-level skills, each backed by multiple sub-agents (7–13 each). Notable for claim-faithfulness audit pass (ARS_CLAIM_AUDIT) and cross-model verification.'
+  notes: 'Distributed as a Claude Code plugin. Five top-level skills, each backed by multiple sub-agents (12 for academic-paper, a role-separated 5-seat panel for academic-paper-reviewer, 13 for deep-research). Notable for claim-faithfulness audit pass (ARS_CLAIM_AUDIT) and cross-model verification. Refresh 2026-11-24 (upstream pushed 2026-11-24): re-copied the four existing skills, rewrote their descriptions to match the new SKILL.md texts (new rebuttal-audit mode, an eighth deep-research mode, a 5-seat reviewer panel) and added sr-screener.'
 
 skills:
   - slug: academic-paper
@@ -23,11 +23,11 @@ skills:
       - paper-drafting
       - revision-editing
     field: general
-    description: '12-agent paper writing skill with Style Calibration, Writing Quality Check, LaTeX hardening, visualization, revision coaching, citation conversion, anti-leakage protocol, and VLM figure verification.'
+    description: '12-agent paper writing pipeline with 11 modes (full, plan, outline, revision, revision coaching, abstract, literature review, format conversion, citation check, disclosure, rebuttal audit), style calibration and a writing-quality check.'
     source_path: 'academic-paper/SKILL.md'
     details_url: 'https://github.com/Imbad0202/academic-research-skills/blob/main/academic-paper/SKILL.md'
     provenance: 'ARS repo curation 2026-05-20'
-    last_update: '2026-05'
+    last_update: '2026-08-15'
 
   - slug: academic-paper-reviewer
     name: academic-paper-reviewer
@@ -35,11 +35,11 @@ skills:
     pipeline_stages:
       - referee-simulation
     field: general
-    description: '7-agent multi-perspective peer review with 0–100 quality rubrics (EIC + 3 dynamic reviewers + Devil''s Advocate), concession threshold protocol, attack intensity preservation, optional cross-model DA critique/calibration, R&R traceability matrix.'
+    description: 'Multi-perspective paper review with a role-separated 5-seat panel (journal-fit reviewer, three peer-review roles, devil''s advocate); modes for full review, re-review, quick assessment, methodology focus, Socratic guidance and calibration.'
     source_path: 'academic-paper-reviewer/SKILL.md'
     details_url: 'https://github.com/Imbad0202/academic-research-skills/blob/main/academic-paper-reviewer/SKILL.md'
     provenance: 'ARS repo curation 2026-05-20'
-    last_update: '2026-05'
+    last_update: '2026-08-15'
 
   - slug: deep-research
     name: deep-research
@@ -48,19 +48,30 @@ skills:
       - literature-discovery
       - literature-synthesis
     field: general
-    description: '13-agent research team with Socratic guided mode, PRISMA systematic review, intent detection, dialogue health monitoring, optional cross-model DA, Semantic Scholar API verification.'
+    description: '13-agent research team with 8 modes (full research, quick brief, paper review, literature review, fact-check, three-way literature scan, Socratic dialogue, systematic review with optional meta-analysis).'
     source_path: 'deep-research/SKILL.md'
     details_url: 'https://github.com/Imbad0202/academic-research-skills/blob/main/deep-research/SKILL.md'
     provenance: 'ARS repo curation 2026-05-20'
-    last_update: '2026-05'
+    last_update: '2026-08-15'
 
   - slug: academic-pipeline
     name: academic-pipeline
     category: meta
     pipeline_stages: []
     field: general
-    description: 'Pipeline orchestrator that chains deep-research → academic-paper → academic-paper-reviewer with quality gates between stages.'
+    description: 'Orchestrates the 10-stage pipeline from research through writing, integrity checks, two-stage review and revision to finalisation, chaining deep-research, academic-paper and academic-paper-reviewer.'
     source_path: 'academic-pipeline/SKILL.md'
     details_url: 'https://github.com/Imbad0202/academic-research-skills/blob/main/academic-pipeline/SKILL.md'
     provenance: 'ARS repo curation 2026-05-20'
-    last_update: '2026-05'
+    last_update: '2026-11-19'
+  - slug: sr-screener
+    name: '/sr-screener'
+    category: literature
+    pipeline_stages:
+      - literature-discovery
+      - literature-synthesis
+    field: general
+    description: 'Protocol-driven screening for systematic, scoping and rapid reviews: confirms eligibility rules from a protocol, screens titles/abstracts and full texts with two blinded AI reviewers plus an adjudicator, runs QC checks and PRISMA counts, and hands the corpus to academic-paper.'
+    source_path: 'sr-screener/SKILL.md'
+    details_url: 'https://github.com/Imbad0202/academic-research-skills/blob/main/sr-screener/SKILL.md'
+    provenance: 'RISE monthly review 2026-11 (added from upstream HEAD, checked 2026-11-24)'

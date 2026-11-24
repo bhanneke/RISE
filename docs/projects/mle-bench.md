@@ -6,7 +6,7 @@
 
 **Project page:** <https://github.com/openai/mle-bench>
 
-**Licence:** `unclassified (licence file present; see repository)`
+**Licence:** `MIT (LICENSE file, "Copyright (c) 2024 OpenAI"; the file scopes it to the code, not to the datasets downloaded while using the package)`
 
 **Source:** [`projects/landscape/mle-bench.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/mle-bench.yml)
 
@@ -29,12 +29,12 @@ Human medal thresholds as the yardstick: performance is reported as the share of
 | Outputs / reproducibility | 2 | Task and grading are explicitly deterministic, splits are versioned files, and every leaderboard row ships a grading report — but agent runs are high-variance (hence the ≥3-seed protocol) and 3.3 TB with ~2 days of Kaggle-API prep stands between a reader and a rerun. |
 | Internal evaluation | 3 | Peer-reviewed at ICLR 2025 as an Oral (verified on iclr.cc), and externally validated in practice by ~28 leaderboard rows of third-party agent submissions with published grading reports through early 2026. |
 | Openness | 2 | MIT licence, but explicitly scoped — 'this license applies to the code in this repository, but not the external datasets and files that may be downloaded' — so the data arrives under Kaggle's own competition terms and needs an accepted-rules Kaggle account. |
-| Maturity / traction | 3 | 1,739 stars, 257 forks, an ICLR 2025 Oral, and sustained external adoption: leaderboard submissions from Baidu, Google Cloud AI Research, Microsoft (R&D-Agent), Meta (AIRA-dojo), SJTU, Fractal AI and startups, running from 2024-10 to 2026-03. |
+| Maturity / traction | 3 | 1,803 stars (2026-11-24), 257 forks, an ICLR 2025 Oral, and sustained external adoption: leaderboard submissions from Baidu, Google Cloud AI Research, Microsoft (R&D-Agent), Meta (AIRA-dojo), SJTU, Fractal AI and startups, running from 2024-10 to 2026-03. |
 | Cross-family policy | 0 | Not applicable — grading is deterministic CSV scoring with no LLM in the evaluation path, so there is no executor/reviewer pairing to make cross-family. |
 | Runtime assurance | 1 | Deterministic grading plus optional extras (a rule-violation detector and a plagiarism detector) and obfuscated competition descriptions; these are post-submission checks with no in-flight gating of an agent's run. |
 | Cross-platform portability | 2 | Deliberately agent-agnostic — three open-source scaffolds demonstrated and leaderboard entrants have run it with OpenAI, Anthropic, Google and DeepSeek models — but the harness itself needs Linux, Docker and the Kaggle API. |
 
-*Scored on 2026-09-08. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

@@ -2,11 +2,11 @@
 
 # MLGym (Meta)
 
-`external` · status: `dormant` · focus: `end-to-end` · discipline: `computer-science` · started: 2025
+`external` · status: `archived` · focus: `end-to-end` · discipline: `computer-science` · started: 2025
 
 **Project page:** <https://github.com/facebookresearch/MLGym>
 
-**Licence:** `unclassified (licence file present; see repository)`
+**Licence:** `CC BY-NC 4.0 (LICENSE file; the README says portions are available under separate terms: SWE-Agent and Modded-NanoGPT MIT, Gymnax and Gymnax-blines Apache-2.0)`
 
 **Source:** [`projects/landscape/mlgym.yml`](https://github.com/bhanneke/RISE/blob/main/projects/landscape/mlgym.yml)
 
@@ -29,12 +29,12 @@ First gym environment specifically for *ML research tasks* — not general QA or
 | Outputs / reproducibility | 3 | Reproducible by design — gym-style task specs + trajectory artifacts. |
 | Internal evaluation | 2 | Used to benchmark AI research agents in the arXiv paper; framework described as experimental. |
 | Openness | 2 | CC BY-NC 4.0 license — open for research and non-commercial use; not permissive for commercial deployment. |
-| Maturity / traction | 0 | 620 stars; last commit 2025-08-10 (confirmed via GitHub commit log) — over 13 months of inactivity as of 2026-09, crossing the rubric's >12-month dormancy threshold; Meta institutional backing but development appears stalled despite the README's 'under heavy development' flag. |
+| Maturity / traction | 0 | 625 stars; the GitHub API reports the repository as archived (read-only) as of 2026-11-24, with the last push on 2025-08-10 — over 15 months of inactivity, past the rubric's >12-month band; Meta institutional backing, but development has stopped. |
 | Cross-family policy | 0 | Single-family in published baselines; framework agnostic but no policy. |
 | Runtime assurance | 1 | Task-level trajectory + leaderboard scoring; runtime gating minimal. |
 | Cross-platform portability | 1 | Open framework, multiple agents pluggable; not multi-IDE. |
 
-*Scored on 2026-09-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 

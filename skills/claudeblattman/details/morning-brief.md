@@ -1,3 +1,8 @@
+---
+name: morning-brief
+description: "Prepare a daily briefing from configured calendar, email, reminders and goals sources."
+---
+
 # Morning Briefing
 
 *v1.5 — Unified hard deadline keywords; edge case fixes; structural cleanup*
@@ -175,8 +180,7 @@ tell application "Reminders"
         set rDue to due date of aReminder as string
       end try
       set rPri to priority of aReminder
-      set output to output & listName & "|" & rName & "|" & rDue & "|" & rPri & "
-"
+      set output to output & listName & "|" & rName & "|" & rDue & "|" & rPri & "\n"
     end repeat
   end repeat
   return output

@@ -3,7 +3,7 @@ name: "econ-skills (zbsaygin)"
 type: external
 status: active
 url: "https://github.com/zbsaygin/econ-skills"
-license: "MIT"
+license: "MIT (stated in README; no licence file)"
 maintainers:
   - "zbsaygin"
 year_started: 2026
@@ -81,8 +81,8 @@ scores:
     score: 0
     note: "No test fixtures, benchmark, or reported evaluation for any of the seven skills at scoring date."
   openness:
-    score: 2
-    note: "MIT license; functional use requires replacing ~10 user-specific placeholders and a Zotero + Better BibTeX bibliography pipeline, so not zero-setup."
+    score: 1
+    note: "README carries a one-line MIT statement but the repository has no licence file (checked 2026-11-24), so no licence is formally granted; functional use also requires replacing ~10 user-specific placeholders and a Zotero + Better BibTeX bibliography pipeline."
   maturity_traction:
     score: 1
     note: "7 stars, 1 fork, single commit on record at scoring date — a young, single-maintainer personal tool."
@@ -95,7 +95,7 @@ scores:
   cross_platform_portability:
     score: 0
     note: "Claude Code only; no stated support for other agent runtimes."
-scored_on: "2026-10-01"
+scored_on: "2026-11-24"
 
 limitations:
   - "Very young (1 commit, 7 stars); unproven beyond the maintainer's own use."

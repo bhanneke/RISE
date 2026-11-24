@@ -4,9 +4,18 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>code-gen</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>code-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/experiment-queue/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/experiment-queue/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>code-gen</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-11-24</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>code-generation</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/experiment-queue/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/experiment-queue/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Experiment Queue
+
+> ⏱ **External cadence: visibility only.** This skill already runs its own
+> detached server-side scheduler (60s poll + `depends_on` + wave transitions).
+> Use its status output for overnight visibility (N done / N running / N
+> pending); do **not** wrap it in a second `/loop` / `CronCreate` poll — that
+> duplicates the scheduler on an uncoordinated clock and races the
+> wave-transition logic it was built to prevent. See
+> `shared-references/external-cadence.md`
+> ("don't duplicate an existing scheduler").
 
 Orchestrate large batches of ML experiments on SSH remote GPU servers with proper state tracking, OOM retry, stale cleanup, and wave transitions.
 
@@ -38,6 +47,12 @@ Based on session audit (2026-04-16), the major wall-clock sinks in multi-seed gr
 All of these are pure engineering friction that can be orchestrated.
 
 ### Core Concepts
+
+> **Environment contract**: queue jobs assume the target env is already built
+> and validated per `../shared-references/compute-env-contract.md` (spec-hash
+> ledger + kernel witness). A wave of jobs dying at import time = the env
+> contract was skipped, not a queue bug; check the provider's
+> `.aris/compute/<provider>.md` ledger before re-queueing.
 
 #### Job Manifest
 
@@ -82,8 +97,18 @@ jobs:
 pending → running → completed
                  ↘ failed_oom → pending (after delay) [retry up to N]
                  ↘ failed_other → stuck (needs manual inspection)
-stale_screen_detected → cleaned → pending
+stale screen (process gone, screen lingering) → failed_other → stuck
 ```
+
+> **Operator note on `stuck` (the agent's move, not the queue's):** the queue
+> deterministically parks `failed_other` jobs as `stuck` — that part is code and
+> unchanged. Before handing a `stuck` batch to the human, the OPERATING AGENT
+> should check: if the same failure repeats across jobs, try ONE clean
+> reimplement of the **agent-generated wrapper/attempt script only** — never
+> user/project source (`run_*.py` you didn't write), the manifest, queue state,
+> logs, or results (see `shared-references/external-cadence.md` § *Let a broken
+> attempt restart, not just patch*). Reserve the human handoff for
+> contract/environment doubts, not merely broken attempt code.
 
 #### Wave Orchestration
 
@@ -136,21 +161,24 @@ QUEUE_TOOLS=""
 if [ -n "${CLAUDE_SKILL_DIR:-}" ] && [ -f "$CLAUDE_SKILL_DIR/scripts/queue_manager.py" ]; then
   QUEUE_TOOLS="$CLAUDE_SKILL_DIR/scripts"
 fi
-## Layers 1-3: legacy chain via tools/experiment_queue/ shims.
+## Layers 1-4: legacy chain via tools/experiment_queue/ shims.
 if [ -z "$QUEUE_TOOLS" ]; then
   cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
   if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
       ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
+  fi
+  if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+      ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
   fi
   QUEUE_TOOLS=".aris/tools/experiment_queue"
   [ -f "$QUEUE_TOOLS/queue_manager.py" ] || QUEUE_TOOLS="tools/experiment_queue"
   [ -f "$QUEUE_TOOLS/queue_manager.py" ] || { [ -n "${ARIS_REPO:-}" ] && QUEUE_TOOLS="$ARIS_REPO/tools/experiment_queue"; }
   [ -f "$QUEUE_TOOLS/queue_manager.py" ] || QUEUE_TOOLS=""
 fi
-[ -z "$QUEUE_TOOLS" ] && { echo "ERROR: experiment_queue helpers not found (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-3: .aris/tools/, tools/, \$ARIS_REPO/tools/). Rerun install_aris.sh, set ARIS_REPO, or copy the canonical scripts from \$ARIS_REPO/skills/experiment-queue/scripts/." >&2; exit 1; }
+[ -z "$QUEUE_TOOLS" ] && { echo "ERROR: experiment_queue helpers not found (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-4: .aris/tools/, tools/, \$ARIS_REPO/tools/, \$ARIS_REPO/tools/ via ~/.aris/repo). Rerun install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), set ARIS_REPO, or copy the canonical scripts from \$ARIS_REPO/skills/experiment-queue/scripts/." >&2; exit 1; }
 ```
 
-The `.aris/tools` symlink is set up by `install_aris.sh` (#174). Older installs without that symlink fall through to `tools/experiment_queue` (works if invoked from inside the ARIS repo) or `$ARIS_REPO/tools/experiment_queue`. After Phase 3.3, each of those legacy paths contains a Python `os.execv` shim that forwards to the canonical `skills/experiment-queue/scripts/` location, so existing users do not need to re-run anything.
+The `.aris/tools` symlink is set up by `install_aris.sh` (#174). Older installs without that symlink fall through to `tools/experiment_queue` (works if invoked from inside the ARIS repo), `$ARIS_REPO/tools/experiment_queue`, or the same path resolved via the global pointer file `~/.aris/repo` (#366, for installs with no project-local manifest). After Phase 3.3, each of those legacy paths contains a Python `os.execv` shim that forwards to the canonical `skills/experiment-queue/scripts/` location, so existing users do not need to re-run anything.
 
 **3b. Compute remote paths.** Use both a remote-relative form (for `scp` destinations — modern `scp` runs in SFTP mode and does NOT reliably expand `$HOME` in destination paths) and a `$HOME`-prefixed form (for `ssh ... command` strings, where remote bash WILL expand `$HOME`):
 
@@ -200,6 +228,11 @@ LOCAL_RUN_DIR="/abs/path/to/project/experiment_queue/<existing-run-ts>"   # the 
 . "$LOCAL_RUN_DIR/run_meta.txt"                                            # reloads PROJECT_DIR / RUN_TS / REMOTE_RUN_REL / REMOTE_RUN_DIR
 ## Then re-run Step 3d verbatim. Do NOT re-run Step 3c (would overwrite manifest.json + state.json).
 ```
+
+A `queue_state.json` written before the 2026-08 scheduler fix records jobs the old code
+mis-judged as failed. Resuming it parks those jobs as `stuck` — they are not retried, so a
+state file whose jobs are all `failed_other` finishes with nothing launched. Delete that
+state file and re-run the manifest from Step 3c.
 
 The scheduler:
 - Reads manifest
@@ -256,20 +289,22 @@ phases:
       N: [384, 512]
     template:
       cmd: python run_train.py --direction c --backbone softmax --n_hidden ${N} ...
-      output_check: checkpoints/transformer/teacher_L96_K500_N${N}.pt
+      expected_output: checkpoints/transformer/teacher_L96_K500_N${N}.pt
   
   - name: distill_students
-    depends_on: train_teachers
+    depends_on: [train_teachers]        # must be a LIST, even for a single dependency
     grid:
       N: [384, 512]
       seed: [42, 200, 201]
     template:
       cmd: python run_distill.py --n_hidden ${N} --seed ${seed} ...
-      output_check: figures/distill_sw_N${N}_*_seed${seed}.json
+      expected_output: figures/distill_sw_N${N}_*_seed${seed}.json
 ```
 
-Scheduler enforces `depends_on`: `distill_students` jobs stay `pending` until all
-`train_teachers` jobs are `completed`.
+Scheduler enforces `depends_on`: `distill_students` jobs stay `pending` until every
+`train_teachers` job is terminal — `completed` **or** `stuck`. A failed teacher does not
+hold its students back, so check `queue_state.json` for `stuck` jobs before trusting a
+dependent wave.
 
 ### OOM Handling
 
@@ -352,7 +387,10 @@ If scheduler crashes / is killed:
 - **Idempotent scheduler** — safe to restart; picks up from state file
 - **Expected-output-based completion** — don't trust screen state alone; verify output file exists
 - **Bounded retry** — max N OOM retries, then mark `stuck` and alert
-- **Dependencies enforced at launch** — never launch student before teacher checkpoint exists
+- **Dependencies enforced at launch** — a wave launches only after every job in the phases it
+  depends on has reached a terminal state. Note "terminal" includes `stuck`: if a teacher job
+  fails, the phase still completes and its students launch against a missing checkpoint. Check
+  `queue_state.json` for `stuck` jobs before trusting a dependent wave's results.
 
 ### Known Failure Modes
 
@@ -383,7 +421,7 @@ Then user can check anytime or wait for summary report.
 
 ### Rationale / Source
 
-Identified via 2026-04-16 post-mortem analysis (Codex GPT-5.4 xhigh) of a 1.5-day
+Identified via 2026-04-16 post-mortem analysis (Codex GPT-5.5 xhigh) of a 1.5-day
 multi-seed paper experiment session:
 
 - Wall-clock sink: stale screens, OOM, wave transitions, manual parser

@@ -1,8 +1,9 @@
 ---
 name: new-project
 description: Full research pipeline from idea to paper. Orchestrates all phases — discovery, strategy, analysis, writing, peer review, and submission. Use when starting a new research project from scratch.
+disable-model-invocation: true
 argument-hint: "[research topic or 'interactive' for guided start]"
-allowed-tools: Read,Grep,Glob,Write,Edit,Bash,Task,WebSearch,WebFetch
+allowed-tools: Read,Grep,Glob,Write,Edit,Bash,Agent,Task,WebSearch,WebFetch
 ---
 
 # New Project
@@ -15,7 +16,7 @@ Launch a full research pipeline from idea to paper, orchestrated through the dep
 
 ## Pipeline Overview
 
-This skill orchestrates the full dependency graph. Each phase activates when its dependencies are met. The orchestrator manages agent dispatch, three-strikes escalation, and quality gates.
+This skill orchestrates the full dependency graph declared in `.claude/rules/permissions.md`; dispatch checks follow `.claude/rules/lifecycle.md` (`scripts/pipeline.py`). Each phase activates when its dependencies are met. The orchestrator manages agent dispatch, three-strikes escalation, and quality gates.
 
 ```
 Phase 1: Discovery
@@ -87,7 +88,7 @@ Before any work begins:
 
    Skip this step for applied papers using off-the-shelf estimators.
 
-**Gate:** Strategy memo must pass strategist-critic review (score >= 80). If theory section exists, theorist-critic must also pass (score >= 80).
+**Gate:** Strategy memo must pass strategist-critic review (verdict SOUND or MINOR ISSUES). If theory section exists, theorist-critic must also pass (score >= 80).
 
 ### Step 3: Execution Phase
 
@@ -111,9 +112,9 @@ Before any work begins:
 8. **Run `/review --peer`** for simulated peer review:
    - domain-referee (subject expertise) + methods-referee (econometrics)
    - Independent, blind reports
-   - Orchestrator synthesizes editorial decision
+   - Editor synthesizes the reports into an editorial decision
 
-**Gate:** Aggregate score >= 80 (commit-ready). Score >= 90 for submission.
+**Gate:** Aggregate score >= 80 (commit-ready). Submission requires >= 95 and every component >= 80.
 
 ### Step 5: Submission Phase (optional, user-triggered)
 

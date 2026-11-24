@@ -4,7 +4,7 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>figures</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/mermaid-diagram/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/mermaid-diagram/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>figures</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-11-24</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>paper-drafting</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/mermaid-diagram/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/mermaid-diagram/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Mermaid Diagram Generator
 
@@ -13,7 +13,6 @@ Generate high-quality Mermaid diagram code based on user requirements, with file
 ### Constants
 
 - **OUTPUT_DIR = `figures/`** — Output directory for all generated files
-- **MAX_ITERATIONS = 3** — Maximum refinement rounds for syntax errors
 
 ### Workflow: MUST EXECUTE ALL STEPS
 
@@ -29,7 +28,7 @@ mkdir -p figures
 Parse the input: **$ARGUMENTS**
 
 1. Analyze user description to determine the most suitable diagram type
-2. Read the corresponding syntax reference documentation (see Diagram Type Reference below)
+2. Read the corresponding syntax reference documentation (see Step 2 below)
 3. **If the diagram involves mathematical notation** (formulas, equations, Greek letters, subscripts, superscripts, fractions, matrices, etc.), apply the math syntax rules from the **Math Formulas in Diagrams** section below
 4. Identify all components, connections, and data flow
 5. Plan the diagram structure
@@ -116,12 +115,12 @@ flowchart TD
 ## Check if mermaid-cli is available
 if command -v mmdc &> /dev/null; then
     # Render to PNG to verify syntax is correct
-    mmdc -i figures/<diagram-name>.mmd -o figures/<diagram-name>.png -b transparent
-    echo "✅ Syntax valid — PNG rendered to figures/<diagram-name>.png"
+    mmdc -i figures/<diagram-name>.mmd -o figures/<diagram-name>.png -b transparent \
+        && echo "✅ Syntax valid — PNG rendered to figures/<diagram-name>.png"
 else
     # Try npx as fallback
-    npx -y @mermaid-js/mermaid-cli@latest -i figures/<diagram-name>.mmd -o figures/<diagram-name>.png -b transparent
-    echo "✅ Syntax valid — PNG rendered to figures/<diagram-name>.png"
+    npx -y @mermaid-js/mermaid-cli@latest -i figures/<diagram-name>.mmd -o figures/<diagram-name>.png -b transparent \
+        && echo "✅ Syntax valid — PNG rendered to figures/<diagram-name>.png"
 fi
 ```
 
@@ -129,79 +128,13 @@ fi
 1. Read the error message carefully
 2. Fix the syntax issue in both `.mmd` and `.md` files
 3. Re-run verification
-4. Repeat up to MAX_ITERATIONS (3) times
+4. Continue only while a concrete error remains and the next correction addresses it; respect any user-set round or budget limit.
 
-#### Step 5: Claude STRICT Visual Review & Scoring (MANDATORY)
+#### Step 5: Review the Rendered Diagram (MANDATORY)
 
-After successful rendering, Claude MUST read the generated PNG and perform a STRICT review:
+After successful rendering, Claude MUST inspect the generated PNG against the request. Check that required components and labels are present, each arrow has the intended source, target, and direction, and the layout, text, and data flow are readable at the intended viewing size. Confirm that `.mmd` contains raw Mermaid and `.md` wraps the same code in a Mermaid fence.
 
-```markdown
-### Claude's STRICT Review of <diagram-name>
-
-#### What I See
-[Describe the rendered diagram in DETAIL - every block, every arrow, every label]
-
-#### Files Generated
-- `figures/<diagram-name>.mmd` — Raw Mermaid source
-- `figures/<diagram-name>.md` — Markdown with embedded diagram
-- `figures/<diagram-name>.png` — Rendered PNG (if mmdc available)
-
-#### ═══════════════════════════════════════════════════════════════
-#### STRICT VERIFICATION CHECKLIST (ALL must pass for score ≥ 9)
-#### ═══════════════════════════════════════════════════════════════
-
-#### A. File Correctness
-- [ ] `.mmd` file contains valid Mermaid syntax (no markdown fences)
-- [ ] `.md` file has the mermaid code wrapped in ```mermaid``` fences
-- [ ] `.mmd` and `.md` contain IDENTICAL Mermaid code
-- [ ] Diagram renders without errors (via mmdc)
-
-#### B. Arrow Correctness Verification (CRITICAL - any failure = score ≤ 6)
-Check EACH arrow:
-- [ ] Arrow 1: [Source] → [Target] — Does it point to the CORRECT target?
-- [ ] Arrow 2: [Source] → [Target] — Does it point to the CORRECT target?
-- [ ] ... (check ALL arrows)
-
-#### C. Block Content Verification (any failure = score ≤ 7)
-Check EACH block/node:
-- [ ] Block 1 "[Name]": Has correct label? Content correct?
-- [ ] Block 2 "[Name]": Has correct label? Content correct?
-- [ ] ... (check ALL blocks)
-
-#### D. Completeness
-- [ ] All components from user requirements are present
-- [ ] All connections/arrows are correct
-- [ ] Node labels are meaningful and match requirements
-
-#### E. Visual Quality
-- [ ] Layout is clean and readable
-- [ ] Color scheme is professional (not rainbow)
-- [ ] Text is readable at normal zoom
-- [ ] Proper spacing (not cramped, not sparse)
-- [ ] Data flow is traceable in 5 seconds
-
-#### ═══════════════════════════════════════════════════════════════
-
-#### Issues Found (BE SPECIFIC)
-1. [Issue 1]: [EXACTLY what is wrong] → [How to fix]
-2. [Issue 2]: [EXACTLY what is wrong] → [How to fix]
-
-#### Score: X/10
-
-#### Score Breakdown Guide:
-- **10**: Perfect. No issues. Publication-ready.
-- **9**: Excellent. Minor issues that don't affect understanding.
-- **8**: Good but has noticeable issues (layout, styling).
-- **7**: Usable but has clear problems (wrong arrows, missing labels).
-- **6**: Has arrow direction errors or missing major components.
-- **1-5**: Major issues. Unacceptable.
-
-#### Verdict
-[ ] ACCEPT (score ≥ 9 AND all critical checks pass)
-[ ] FIX (score < 9 OR any critical check fails — list EXACT fixes needed)
-```
-
-**If FIX: apply corrections to both `.mmd` and `.md` files, re-render, and re-verify. Loop until ACCEPT or MAX_ITERATIONS reached.**
+Fix concrete semantic or readability problems in both source files, then re-render and inspect the affected areas. Stop when the diagram meets the request and no material issue remains; do not repeat review for a numerical score or cosmetic preference. Respect any user-set round or budget limit. If rendering is unavailable or a material issue remains at that limit, report it clearly instead of claiming verification succeeded.
 
 #### Step 6: Final Output Summary
 
@@ -403,17 +336,10 @@ figures/
 
 ### Key Rules (MUST FOLLOW)
 
-1. **ALWAYS save files to `figures/` directory** — Never just output code in chat
-2. **ALWAYS generate BOTH `.mmd` and `.md` files** — They must contain identical Mermaid code
-3. **ALWAYS read the reference documentation** before generating code for a diagram type
-4. **ALWAYS verify syntax** — Run mmdc or manually validate before accepting
-5. **ALWAYS review the rendered PNG** — Read the image and perform STRICT scoring
-6. **NEVER accept score < 9** — Keep refining until excellence
-7. **VERIFY EVERY ARROW DIRECTION** — Wrong direction = automatic fail (score ≤ 6)
-8. **VERIFY EVERY BLOCK CONTENT** — Wrong content = automatic fail (score ≤ 7)
-9. **BE SPECIFIC in feedback** — "Arrow from A to B points wrong" not "arrow is wrong"
-10. **FIX errors before accepting** — Do not deliver broken diagrams
-11. **Use descriptive file names** — kebab-case derived from the diagram content
+1. Save `.mmd` and `.md` files to `figures/` with descriptive kebab-case names and identical Mermaid code.
+2. Read the relevant syntax guidance, render with `mmdc`, and inspect the generated PNG before claiming verification.
+3. Verify components, block contents, labels, and every arrow's direction against the request.
+4. Fix concrete errors and report any unresolved issue or unavailable verification clearly.
 
 ---
 

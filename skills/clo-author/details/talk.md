@@ -1,8 +1,8 @@
 ---
 name: talk
-description: Create and audit presentations (Beamer or Quarto RevealJS). Combines talk creation, visual audit, and compilation. Replaces /create-talk, /visual-audit, /compile-latex (for talks).
+description: Create and audit presentations (Beamer or Quarto RevealJS). Combines talk creation, visual audit, and compilation.
 argument-hint: "[mode: create | audit | compile] [format: job-market | seminar | short | lightning] [--beamer] [file path]"
-allowed-tools: Read,Grep,Glob,Write,Edit,Task,Bash
+allowed-tools: Read,Grep,Glob,Write,Edit,Agent,Task,Bash
 ---
 
 # Talk

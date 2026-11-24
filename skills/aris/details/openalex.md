@@ -1,7 +1,7 @@
 ---
 name: openalex
 description: Search academic papers via OpenAlex API for open citation data, institutional affiliations, and funding information. Use when user says "openalex search", "search openalex", "open citation graph", or wants comprehensive academic metadata beyond arXiv/Semantic Scholar.
-argument-hint: [search-query]
+argument-hint: "[search-query]"
 allowed-tools: Bash(*), Read, Write
 ---
 
@@ -58,18 +58,14 @@ Use OpenAlex when you want:
    pip install requests
    ```
 
-2. **Optional: API keys** — Create `.claude/.env` in project root:
+2. **Optional: API key and email** — Set the variables you use in the same shell **before starting Claude Code** so helper commands inherit them:
    ```bash
-   # Copy from template
-   cp .claude/.env.example .claude/.env
-   
-   # Edit and add your keys
-   # .claude/.env
-   OPENALEX_API_KEY=your-key-here
-   OPENALEX_EMAIL=your-email@example.com
+   export OPENALEX_API_KEY='your-key-here'
+   export OPENALEX_EMAIL='your-email@example.com'
+   claude
    ```
-   
-   Claude Code automatically loads `.claude/.env` as environment variables.
+
+   The helper reads `OPENALEX_API_KEY` and `OPENALEX_EMAIL` from its process environment. A separate tool-shell `export` does not update an already running host. If you keep credentials in an environment file, load it explicitly before starting the host rather than relying on automatic `.env` loading.
 
 3. **Get API keys** (optional but recommended):
    - **OpenAlex API key**: Free tier $1/day (10,000 list calls, 1,000 search calls) from [openalex.org](https://openalex.org/)
@@ -110,12 +106,15 @@ cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
 if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
     ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
 fi
+if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+    ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
+fi
 OPENALEX_FETCHER=".aris/tools/openalex_fetch.py"
 [ -f "$OPENALEX_FETCHER" ] || OPENALEX_FETCHER="tools/openalex_fetch.py"
 [ -f "$OPENALEX_FETCHER" ] || { [ -n "${ARIS_REPO:-}" ] && OPENALEX_FETCHER="$ARIS_REPO/tools/openalex_fetch.py"; }
 [ -f "$OPENALEX_FETCHER" ] || {
-  echo "ERROR: openalex_fetch.py not resolved at .aris/tools/, tools/, or \$ARIS_REPO/tools/." >&2
-  echo "       Fix: rerun bash tools/install_aris.sh, export ARIS_REPO, or copy the helper to tools/." >&2
+  echo "ERROR: openalex_fetch.py not resolved at .aris/tools/, tools/, \$ARIS_REPO/tools/, or via ~/.aris/repo." >&2
+  echo "       Fix: rerun bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), export ARIS_REPO, or copy the helper to tools/." >&2
   echo "       Also ensure 'requests' is installed: pip install requests" >&2
   exit 1
 }

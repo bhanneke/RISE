@@ -4,7 +4,7 @@
 
 `external` · status: `active` · focus: `end-to-end` · discipline: `computer-science` · started: 2026
 
-**Project page:** <https://github.com/renee-jia/scholar-loop>
+**Project page:** <https://github.com/r2m-ai/scholar-loop>
 
 **Licence:** `MIT`
 
@@ -29,12 +29,12 @@ Treats the outer loop and its integrity guards as the product: two-phase frozen 
 | Outputs / reproducibility | 2 | Persists drafts, run ledgers, and logs — every reported number traces to a frozen-metric measurement in the jsonl — but exact re-runs are deterministic only under the MockLLM. |
 | Internal evaluation | 1 | Two captured live Opus runs on toy tasks (digits 5.0%->3.82% err, diabetes RMSE 56.5->55.24) plus a reward-hacking stress test; no benchmark evaluation or external validation. |
 | Openness | 3 | MIT; pip-installable; the entire loop runs deterministically in under a second on CPU with no API key via the bundled MockLLM. |
-| Maturity / traction | 1 | 470 stars and 35 forks — essentially flat since last review (468/35) — confirming the single-maintainer research preview has had no pushes since 2026-06-23, now over three months idle at scoring; growth has stalled along with development. |
+| Maturity / traction | 1 | 476 stars and 36 forks as of 2026-11-24 (468 / 35 at the 2026-10-01 scoring) and 148 commits; the repository moved from renee-jia/scholar-loop to r2m-ai/scholar-loop (the old URL serves the new repo), and development resumed with commits on 2026-11-15 and 2026-11-16 (web UI, README, pre-release review fixes) after no pushes since 2026-06-23; the README badge still reads 'research preview' and no release is shown. Single maintainer. |
 | Cross-family policy | 0 | Single family — the optional [llm] extra ships only an Anthropic client, and writer and reviewer share the same model; the optimization loop deliberately uses no LLM-as-judge. |
 | Runtime assurance | 3 | Heavy deterministic guard stack with gating: frozen two-phase scoring, edit allowlist, VerifiedRegistry number-grounding, schema validate-retry, per-agent predict-then-verify calibration, and tiered promotion gates — adversarially tested via the cheater engine. |
 | Cross-platform portability | 0 | Pure-Python package runs anywhere, but live runs support only the Anthropic backend; the MockLLM is a test double, not a deployment target. |
 
-*Scored on 2026-10-01. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
+*Scored on 2026-11-24. See the [evaluation rubric](https://github.com/bhanneke/RISE/blob/main/projects/EVALUATION.md).*
 
 ## Tags
 
@@ -58,7 +58,7 @@ Treats the outer loop and its integrity guards as the product: two-phase frozen 
 
 ## Limitations
 
-- No commits since 2026-06-23 (over three months idle at this review) and star/fork counts have plateaued (470/35, up from 468/35) — the single-maintainer 'research preview' looks stalled rather than merely quiet; now bordering on the window where this catalog would reclassify it as dormant if idleness continues.
+- Single-maintainer 'research preview' with no release: no pushes from 2026-06-23 to at least the 2026-10-01 scoring, then commits on 2026-11-15 and 2026-11-16, and star/fork growth is flat (476/36 on 2026-11-24, 468/35 on 2026-10-01); the repository moved to the r2m-ai organisation, so links to the old renee-jia URL only resolve through a redirect.
 - Shipped domains are toy sklearn/PyTorch tasks with weak baselines, and the system's own reviewer rejects both captured papers as too marginal (the README concedes it is not wrong).
 - Anthropic-only live backend and no container sandboxing yet — the author names sandboxing as the open residual boundary.
 

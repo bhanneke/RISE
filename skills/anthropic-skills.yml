@@ -4,22 +4,16 @@ pack:
   source_url: 'https://github.com/anthropics/skills'
   maintainers:
     - 'Anthropic'
-  license: 'MIT'
+  license: 'Apache-2.0 (per-skill LICENSE.txt files; the repository has no root licence file, and doc-coauthoring ships no licence file)'
   total_skills: 8
-  last_update: '2026-05'
+  last_update: '2026-11-16'
   related_project: ''
   compatibility:
     - claude-code
     - agnostic
-  notes: 'Anthropic''s public skills repository. Most skills are general-purpose (slides, docx, pdf, frontend); included here only for skills relevant to research workflows.'
+  notes: 'Anthropic''s public skills repository. Most skills are general-purpose (slides, docx, pdf, frontend); included here only for skills relevant to research workflows. Refresh 2026-11-24: re-copied the 6 changed SKILL.md files (docx, pptx, xlsx, claude-api and others). Seven catalogued skills carry an Apache-2.0 LICENSE.txt in the upstream skill folder; doc-coauthoring has none and the repository has no root licence file, so it is link-only (details copy removed).'
 
 skills:
-  - slug: 'skill-creator'
-    name: 'skill-creator'
-    category: meta
-    pipeline_stages: []
-    description: 'Meta-skill for building new skills from scratch'
-    source_path: 'skills/skill-creator/'
   - slug: 'doc-coauthoring'
     name: 'doc-coauthoring'
     category: drafting
@@ -27,6 +21,13 @@ skills:
       - paper-drafting
     description: 'Long-document coauthoring workflow'
     source_path: 'skills/doc-coauthoring/'
+    details_url: 'https://github.com/anthropics/skills/blob/main/skills/doc-coauthoring/SKILL.md'
+  - slug: 'skill-creator'
+    name: 'skill-creator'
+    category: meta
+    pipeline_stages: []
+    description: 'Meta-skill for building new skills from scratch'
+    source_path: 'skills/skill-creator/'
   - slug: 'docx'
     name: 'docx'
     category: drafting

@@ -3,7 +3,7 @@ name: "FAROS (Foundation AutoResearch Operating System)"
 type: external
 status: active
 url: "https://github.com/OpenNSWM-Lab/FAROS"
-license: "none"
+license: "MIT (LICENSE file, \"Copyright (c) 2026 FAROS contributors\"; README matches; third-party code, templates, datasets and models keep their own terms per THIRD_PARTY_NOTICES.txt)"
 maintainers:
   - "OpenNSWM-Lab"
 year_started: 2026
@@ -96,11 +96,11 @@ scores:
     score: 2
     note: "experiments/reviewx_eval/ contains real benchmark harnesses (PeerQA and NLPeer pilot imports, gold_labels schema, human-eval export, bootstrap_scores.py) — systematic internal evaluation against external peer-review datasets, though no published paper or third-party validation yet."
   openness:
-    score: 1
-    note: "Public GitHub repo, but no LICENSE file and no license mentioned anywhere in the README as of scoring date — source-visible but not permissively licensed for reuse."
+    score: 2
+    note: "MIT LICENSE file (Copyright (c) 2026 FAROS contributors; README matches) — permissive for the project's own code; third-party code, datasets and models keep their own terms (THIRD_PARTY_NOTICES.txt). The 2026-09-01 scoring recorded no licence file."
   maturity_traction:
     score: 2
-    note: "~3,000 stars / 389 forks / 269 watchers by Sept 2026 on a repo whose first commit was 2026-05-13 (168 commits since); tagged release 1.1.0-rc1 with 608 backend + 30 frontend tests passing — beta-stage traction, but the README itself calls it a 'release candidate for competition validation and research prototyping', not production."
+    note: "~3,000 stars / 389 forks / 269 watchers by Sept 2026 on a repo whose first commit was 2026-05-13 (168 commits since); tagged release 1.1.0-rc1 with 608 backend + 30 frontend tests passing — beta-stage traction, but the README itself calls it a 'release candidate for competition validation and research prototyping', not production. As of 2026-11-24: 3,051 stars, last push 2026-10-21."
   cross_family_policy:
     score: 0
     note: "Provider abstraction supports swapping LLM backends, but Qwen is the recommended/primary provider throughout and no cross-family executor/reviewer split is documented."
@@ -110,7 +110,7 @@ scores:
   cross_platform_portability:
     score: 1
     note: "Single self-hosted web application (FastAPI + frontend + Docker); Provider abstraction gives multi-LLM support but it is not deployable as a plugin/skill across other agent runtimes or IDEs."
-scored_on: "2026-09-01"
+scored_on: "2026-11-24"
 
 limitations:
   - "No LICENSE file in the repository as of scoring date — legal reuse terms are unclear despite the code being publicly visible."

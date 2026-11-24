@@ -3,7 +3,7 @@ name: "Academic Research Skills (ARS)"
 type: external
 status: active
 url: "https://github.com/Imbad0202/academic-research-skills"
-license: "unclassified (licence file present; see repository)"
+license: "CC BY-NC 4.0 (LICENSE file, \"Copyright (c) 2026 Cheng-I Wu\"; README badge matches)"
 maintainers:
   - "Edward Cheng-I Wu"
 year_started: 2026
@@ -90,7 +90,7 @@ scores:
     note: "CC BY-NC 4.0 (non-commercial); sponsor-supported; Codex CLI sibling distribution available."
   maturity_traction:
     score: 3
-    note: "50k+ stars (up from 44.5k+); rapid release cadence continues through v3.22.2 (2026-09-25, adding a deterministic run-ledger/handoff-check and acronym checker); English + Traditional Chinese docs; multi-IDE support."
+    note: "58.4k stars as of 2026-11-24 (50k+ at the 2026-10-01 scoring), pushed 2026-11-24; the academic-pipeline SKILL.md now carries version 3.24.4 (metadata last_updated 2026-11-19) and the repo added an sr-screener systematic-review screening skill; English + Traditional Chinese docs; multi-IDE support."
   cross_family_policy:
     score: 1
     note: 'ARS_CROSS_MODEL flag enables cross-family verification; not the default.'
@@ -100,7 +100,7 @@ scores:
   cross_platform_portability:
     score: 3
     note: 'Claude Code + VS Code + JetBrains + Codex CLI sibling distribution + 5 install methods.'
-scored_on: "2026-10-01"
+scored_on: "2026-11-24"
 
 limitations:
   - "Non-commercial license restricts deployment options."

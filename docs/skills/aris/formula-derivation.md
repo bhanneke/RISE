@@ -4,7 +4,7 @@
 
 
 
-<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-05-18</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/formula-derivation/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/formula-derivation/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
+<div class="skill-card" style="background:#fafafa; border:1px solid #e0e0e0; border-radius:8px; padding:1em 1.2em; margin:1em 0 1.5em; font-size:0.95em;"><div style="display:flex; flex-wrap:wrap; gap:1em 2em; align-items:baseline;"><div><b>Pack:</b> <a href="../aris/">ARIS skills</a></div><div><b>Category:</b> <code>modeling</code></div><div><b>Field:</b> —</div><div><b>License:</b> <code>MIT</code></div><div><b>Updated:</b> 2026-11-24</div></div><div style="margin-top:0.5em;"><b>Stages:</b> <code>formal-modeling</code></div><div style="margin-top:0.8em;"><button onclick="navigator.clipboard.writeText(`gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/formula-derivation/SKILL.md --jq .content | base64 -d`); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#00897b; color:white; border:none; padding:0.4em 0.8em; border-radius:4px; cursor:pointer; font-size:0.9em; margin-right:0.5em;">&#128203; copy fetch command</button><button onclick="navigator.clipboard.writeText(&apos;https://bhanneke.github.io/RISE/skills/aris/formula-derivation/&apos;); this.textContent=&apos;&#x2713; copied&apos;;" style="background:#fff; color:#333; border:1px solid #ccc; padding:0.4em 0.7em; border-radius:4px; cursor:pointer; font-size:0.9em;">&#128279; share link</button></div><div style="margin-top:0.6em; font-size:0.9em;"><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener">&#8599; view SKILL.md on source</a> &middot; <img src="https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat" alt="GitHub stars" style="vertical-align:middle;"></div></div>
 
 ## Formula Derivation: Research Theory Line Construction
 
@@ -159,7 +159,6 @@ The derivation package must include:
 - derivation map
 - main derivation steps
 - remarks / interpretations
-- boundaries and non-claims
 
 Writing rules:
 - do not hide gaps with words like "clearly", "obviously", or "similarly"
@@ -177,7 +176,7 @@ Before finishing the target derivation file, verify:
 - each formula step is correctly labeled as identity / proposition / approximation / interpretation
 - the derivation does not silently switch objects
 - special cases and general cases still belong to one theory line
-- boundaries and non-claims are stated
+- the conclusion states its range of validity; any unresolved step is identified
 
 If the derivation still lacks a coherent object, stable assumptions, or an honest path from premises to result, downgrade the status and write a blocker report instead of forcing a clean story.
 
@@ -218,18 +217,14 @@ Step 2. ...
 
 ### Remarks and Interpretation
 - ...
-
-### Boundaries and Non-Claims
-- ...
-
-### Open Risks
-- ...
 ```
+
+State each condition where the argument uses it. Add an `Open Risks` section only when a specific unresolved issue remains.
 
 ### Output Modes
 
 #### If the derivation is coherent as stated
-Write the full structure above with a clean derivation package.
+Finish with the result under the stated assumptions.
 
 #### If the notes are close but not coherent yet
 Write:
@@ -263,6 +258,11 @@ Use `proof-writer` only after:
 - the notation is settled
 - and the task is now to prove or refute that claim rigorously
 
+Once a precise claim and its hypotheses are available, use
+`/lean-formalize` when the user requests Lean or a
+specific proof obligation benefits from formal implementation and checking;
+routine algebraic derivations do not require it.
+
 ### Chat Response
 
 After writing the target derivation file, respond briefly with:
@@ -277,5 +277,4 @@ After writing the target derivation file, respond briefly with:
 - Separate assumptions, identities, propositions, approximations, and interpretations.
 - Keep one invariant object across special and general cases whenever possible.
 - Treat simplified constant-parameter cases as analysis slices, not as the conceptual main object.
-- If uncertainty remains, mark it explicitly in `Open Risks`; do not hide it in polished prose.
 - Coherence matters more than elegance.

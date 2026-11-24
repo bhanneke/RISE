@@ -3,7 +3,7 @@ name: "Clo-Author"
 type: external
 status: active
 url: "https://github.com/hugosantanna/clo-author"
-license: "MIT (stated in README; no licence file)"
+license: "MIT (LICENSE file, \"Copyright (c) 2026 Hugo Sant'Anna\"; portions derived from claude-code-my-workflow, also MIT)"
 maintainers:
   - "Hugo Sant'Anna (University of Alabama at Birmingham, Economics)"
 year_started: 2026
@@ -93,11 +93,11 @@ scores:
     score: 2
     note: "Built-in peer-review simulation with weighted reviewer dispositions; no published external benchmark yet."
   openness:
-    score: 1
-    note: "Source is public on GitHub but no declared open-source license — reuse rights are uncertain."
+    score: 2
+    note: "MIT LICENSE file (Copyright (c) 2026 Hugo Sant'Anna; portions derived from claude-code-my-workflow, also MIT) — permissive reuse; the 2026-09-01 scoring found no licence file."
   maturity_traction:
     score: 1
-    note: "Created 2026-02; 251 stars as of 2026-09 (up from 193); pushed as recently as 2026-08-07; still a single-author project."
+    note: "Created 2026-02; 274 stars as of 2026-11-24 (251 in 2026-09); last push 2026-10-15; still a single-author project."
   cross_family_policy:
     score: 0
     note: 'Worker-critic pairs within Claude Code (single model family).'
@@ -107,10 +107,9 @@ scores:
   cross_platform_portability:
     score: 1
     note: 'Claude Code primary back-end; multi-language analysis (R, Python, Julia) is data-side, not agent-side.'
-scored_on: "2026-09-01"
+scored_on: "2026-11-24"
 
 limitations:
-  - "No declared open-source license; reuse rights uncertain."
   - "Economics-focused by default; portability to other fields requires customizing domain-profile + journal profiles."
   - "Depends on Claude Code; not a fully local solution."
   - "Quality gates and review simulation are internal; no third-party validation reported."
